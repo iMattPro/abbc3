@@ -1,0 +1,224 @@
+<!-- MOD : BBCODES by MSSTI - 2/2 INICIO -->
+<style>
+/**
+ * POPUP CONTAINER STYLES
+ */
+#popupMask {
+	position: absolute;
+	z-index: 200;
+	top: 0px;
+	left: 0px;
+	width: 98%;
+	height: 100%;
+	opacity: .4;
+/*	filter: alpha(opacity=40);	*/
+	/* this hack is so it works in IE
+	 * I find setting the color in the css gives me more flexibility 
+	 * than the PNG solution. */	 
+	background-color:transparent !important;
+	background-color: #333333;
+	/* this hack is for opera support
+	 * you can uncomment the background-image if you don't care about opera.
+	 * this gives you the flexibility to use any bg color that you want, instead of the png	*/
+	background-image: url("../../../images/maskBG.png") !important; /* For browsers Moz, Opera, etc. */
+	background-image:none;
+	background-repeat: repeat;
+	display:none;
+}
+
+#popupContainer {
+	position: absolute;
+	z-index: 201;
+	top: 0px;
+	left: 0px;
+	display:none;
+	padding: 0px;
+}
+#popupInner {
+	border: 2px solid #000000;
+	background-color: #ffffff;
+}
+
+#popupFrame {
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 202;
+}
+#popupTitleBar {
+	background-color: #486CAE;
+	color: #ffffff;
+	font-weight: bold;
+	height: 1.3em;
+	padding: 5px;
+	border-bottom: 2px solid #000000;
+	border-top: 1px solid #78A3F2;
+	border-left: 1px solid #78A3F2;
+	border-right: 1px solid #204095;
+	position: relative;
+	z-index: 203;
+}
+#popupTitle {
+	float:left;
+	font-size: 1.1em;
+}
+#popupControls {
+	float: right;
+	cursor: pointer;
+/*	cursor: hand;	*/
+}
+#posttable img {
+	cursor: pointer;
+	border: 0;
+}
+</style>
+		<table id="posttable" width="100%" border="1" bordercolor="#C0C0C0" style="border-collapse: collapse;" cellspacing="0" cellpadding="0" valign="top">
+			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
+				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2">
+					<span style="float:right;padding:5px 5px 0 0;font-size:10px;color:#cccccc;"><a href="http://www.mssti.com/phpbb2">Advanced BBCode Box 3</a></span>
+					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
+					<span class="genmed nowrap">Tipo de fuente: </span>
+					<select style="height: 20px;" class="genmed"	name="ft" onChange="bbstyle2('ft',this.form.ft.options[this.form.ft.selectedIndex].value);this.form.ft.selectedIndex = 0" onMouseOver="helpline2('ft')" onMouseOut="helpline2('tip')">
+						<option style="font-weight : bold;" selected="selected">Font type</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: Arial;"					class="genmed"	value="Arial" >Arial</option> 
+						<option style="color:black; background-color: #FFFFFF; font-family: Arial Black;"			class="genmed"	value="Arial Black" >Arial Black</option> 
+						<option style="color:black; background-color: #FFFFFF; font-family: Century Gothic;"		class="genmed"	value="Century Gothic" >Century Gothic</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: Comic Sans MS;"			class="genmed"	value="Comic Sans MS" >Comic Sans MS</option> 
+						<option style="color:black; background-color: #FFFFFF; font-family: Courier New;"			class="genmed"	value="Courier New" >Courier New</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: Georgia;"				class="genmed"	value="Georgia" >Georgia</option> 
+						<option style="color:black; background-color: #FFFFFF; font-family: Lucida Console;"		class="genmed"	value="Lucida Console">Lucida Console</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: Microsoft Sans Serif;"	class="genmed"	value="Microsoft Sans Serif" >Microsoft Sans Serif</option> 
+						<option style="color:black; background-color: #FFFFFF; font-family: Symbol;"				class="genmed"	value="Symbol" >Symbol</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: Tahoma;"				class="genmed"	value="Tahoma" >Tahoma</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: Trebuchet;"				class="genmed"	value="Trebuchet" >Trebuchet</option> 
+						<option style="color:black; background-color: #FFFFFF; font-family: Times New Roman;"		class="genmed"	value="Times New Roman" >Times New Roman</option> 
+						<option style="color:black; background-color: #FFFFFF; font-family: Verdana;"				class="genmed"	value="Verdana" >Verdana</option> 
+					</select>
+					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
+					<span class="genmed nowrap">{L_FONT_SIZE}: </span>
+					<select style="height: 20px" class="genmed"		name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" onMouseOver="helpline2('fs')" onMouseOut="helpline2('tip')">
+						<option style="font-size:50%"	class="genmed"	value="50">{L_FONT_TINY}</option>
+						<option style="font-size:85%"	class="genmed"	value="85">{L_FONT_SMALL}</option>
+						<option style="font-size:100%"	class="genmed"	value="100" selected="selected">{L_FONT_NORMAL}</option>
+						<option style="font-size:150%"	class="genmed"	value="150">{L_FONT_LARGE}</option>
+						<option style="font-size:200%"	class="genmed"	value="200">{L_FONT_HUGE}</option>
+						<option style="font-size:300%"	class="genmed"	value="300">Gigante</option>
+					</select>
+					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
+					<select style="height: 20px" class="genmed"		name="hili" onchange="bbfontstyle('[highlight=#' + this.form.hili.options[this.form.hili.selectedIndex].value + ']', '[/highlight]');this.form.hili.selectedIndex = 0;" onMouseOver="helpline2('hili')" onMouseOut="helpline2('tip')">
+						<option value="" selected="selected">Highlight</option>
+						<option value="000000" style="background-color:black">black</option>
+						<option value="FFFFFF" style="background-color:white">white</option>
+						<option value="00BFFF" style="background-color:skyblue">skyblue</option>
+						<option value="4169E1" style="background-color:royalblue">royalblue</option>
+						<option value="0000FF" style="background-color:blue">blue</option>
+						<option value="00008B" style="background-color:darkblue">darkblue</option>
+						<option value="FFA500" style="background-color:orange">orange</option>
+						<option value="FF6347" style="background-color:tomato">tomato</option>
+						<option value="FF7F50" style="background-color:coral">coral</option>
+						<option value="FF4500" style="background-color:orangered">orangered</option>
+						<option value="DC143C" style="background-color:crimson">crimson</option>
+						<option value="FF0000" style="background-color:red">red</option>
+						<option value="B22222" style="background-color:firebrick">firebrick</option>
+						<option value="8B0000" style="background-color:darkred">darkred</option>
+						<option value="008000" style="background-color:green">green</option>
+						<option value="32CD32" style="background-color:limegreen">limegreen</option>
+						<option value="2E8B57" style="background-color:seagreen">seagreen</option>
+						<option value="FF1493" style="background-color:deeppink">deeppink</option>
+						<option value="800080" style="background-color:purple">purple</option>
+						<option value="4B0082" style="background-color:indigo">indigo</option>
+						<option value="DEB887" style="background-color:burlywood">burlywood</option>
+						<option value="F4A460" style="background-color:sandybrown">sandybrown</option>
+						<option value="A0522D" style="background-color:sienna">sienna</option>
+						<option value="D2691E" style="background-color:chocolate">chocolate</option>
+						<option value="008080" style="background-color:teal">teal</option>
+						<option value="C0C0C0" style="background-color:silver">silver</option>
+						<option value="808080" style="background-color:gray">gray</option>
+					</select>
+					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
+					<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
+				</td>
+			</tr>
+			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
+				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2"> 
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/justify.gif"	class="postimage"	type="image"	name="justify"		onClick="bbstyle2('justify')"	onMouseOver="helpline2('justify')"	onMouseOut="helpline2('tip')"	title="Texto Justificado" />
+					<img src="bbcode_box/images/right.gif" 		class="postimage"	type="image"	name="right"		onClick="bbstyle2('right')"		onMouseOver="helpline2('right')"	onMouseOut="helpline2('tip')"	title="Texto alineado a la derecha" />
+					<img src="bbcode_box/images/center.gif"		class="postimage"	type="image"	name="center"		onClick="bbstyle2('center')"	onMouseOver="helpline2('center')"	onMouseOut="helpline2('tip')"	title="Texto alineado al centro" />
+					<img src="bbcode_box/images/left.gif"		class="postimage"	type="image"	name="left"			onClick="bbstyle2('left')"		onMouseOver="helpline2('left')"		onMouseOut="helpline2('tip')"	title="Texto alineado a la izquierda" />
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/sup.gif"		class="postimage"	type="image"	name="supscript"	onClick="bbstyle2('sup')"		onMouseOver="helpline2('sup')"		onMouseOut="helpline2('tip')"	title="Texto superindice" />
+					<img src="bbcode_box/images/sub.gif"		class="postimage"	type="image"	name="subs"			onClick="bbstyle2('sub')"		onMouseOver="helpline2('sub')"		onMouseOut="helpline2('tip')"	title="Texto subindice" />
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/bold.gif"		class="postimage"	type="image"	name="bold"			onClick="bbstyle2('bold')"		onMouseOver="helpline2('b')"		onMouseOut="helpline2('tip')"	title="Texto en negrita" />
+					<img src="bbcode_box/images/italic.gif"		class="postimage"	type="image"	name="italic"		onClick="bbstyle2('italic')"	onMouseOver="helpline2('i')"		onMouseOut="helpline2('tip')"	title="Texto en cursiva" />
+					<img src="bbcode_box/images/under.gif"		class="postimage"	type="image"	name="under"		onClick="bbstyle2('under')"		onMouseOver="helpline2('u')"		onMouseOut="helpline2('tip')"	title="Texto subrayado" />
+					<img src="bbcode_box/images/strike.gif"		class="postimage"	type="image"	name="strik"		onClick="bbstyle2('strike')"	onMouseOver="helpline2('strike')"	onMouseOut="helpline2('tip')"	title="Texto tachado" />
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/fade.gif"		class="postimage"	type="image"	name="fade"			onClick="bbstyle2('fade')"		onMouseOver="helpline2('fade')"		onMouseOut="helpline2('tip')"	title="fade" />
+					<img src="bbcode_box/images/grad.gif"		class="postimage"	type="image"	name="grad"			onClick="bbstyle2('grad')"		onMouseOver="helpline2('grad')"		onMouseOut="helpline2('tip')"	title="gradient" />
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/rtl.gif"		class="postimage"	type="image"	name="dirrtl"		onClick="bbstyle2('dirrtl')"	onMouseOver="helpline2('rtl')"		onMouseOut="helpline2('tip')"	title="Right to Left" />
+					<img src="bbcode_box/images/ltr.gif"		class="postimage"	type="image"	name="dirltr"		onClick="bbstyle2('dirltr')"	onMouseOver="helpline2('ltr')"		onMouseOut="helpline2('tip')"	title="Left to Right" />
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/marqd.gif"		class="postimage"	type="image"	name="marqd"		onClick="bbstyle2('marqd')"		onMouseOver="helpline2('marqd')"	onMouseOut="helpline2('tip')"	title="Marque to down" />
+					<img src="bbcode_box/images/marqu.gif"		class="postimage"	type="image"	name="marqu"		onClick="bbstyle2('marqu')"		onMouseOver="helpline2('marqu')"	onMouseOut="helpline2('tip')"	title="Marque to up" />
+					<img src="bbcode_box/images/marql.gif"		class="postimage"	type="image"	name="marql"		onClick="bbstyle2('marql')"		onMouseOver="helpline2('marql')"	onMouseOut="helpline2('tip')"	title="Marque to left" />
+					<img src="bbcode_box/images/marqr.gif"		class="postimage"	type="image"	name="marqr"		onClick="bbstyle2('marqr')"		onMouseOver="helpline2('marqr')"	onMouseOut="helpline2('tip')"	title="Marque to right" />
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/table.gif"		class="postimage"	type="image"	name="table"		onClick="bbstyle2('table')"		onMouseOver="helpline2('table')"	onMouseOut="helpline2('tip')"	title="Insertar tabla" />
+				</td>
+			</tr>
+			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
+				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2">
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/code.gif"		class="postimage"	type="image"	name="code"			onClick="bbstyle2('code')"		onMouseOver="helpline2('code')"		onMouseOut="helpline2('tip')"	title="Insertar Codigo" />
+					<img src="bbcode_box/images/quote.gif"		class="postimage"	type="image"	name="quote"		onClick="bbstyle2('quote')"		onMouseOver="helpline2('quote')"	onMouseOut="helpline2('tip')"	title="Citar texto" />
+					<!-- IF S_BBCODE_QUOTE -->
+					<img src="bbcode_box/images/spoil.gif"		class="postimage"	type="image"	name="spoil"		onClick="bbstyle2('spoil')"		onMouseOver="helpline2('spoil')"	onMouseOut="helpline2('tip')"	title="Ocultar datos" />
+					<!-- ENDIF -->
+					<!-- IF S_LINKS_ALLOWED -->
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/emule.gif"		class="postimage"	type="image"	name="url"			onClick="bbstyle2('url')"		onMouseOver="helpline2('url')"		onMouseOut="helpline2('tip')"	title="Insertar Direccion ed2k" />
+					<img src="bbcode_box/images/url.gif"		class="postimage"	type="image"	name="url"			onClick="bbstyle2('url')"		onMouseOver="helpline2('url')"		onMouseOut="helpline2('tip')"	title="Insertar Direccion Web" />
+					<img src="bbcode_box/images/email.gif"		class="postimage"	type="image"	name="email"		onClick="bbstyle2('email')"		onMouseOver="helpline2('mail')"		onMouseOut="helpline2('tip')"	title="Insertar Direccion de Email" />
+					<!-- ENDIF -->
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<!-- IF S_BBCODE_IMG -->
+					<img src="bbcode_box/images/img.gif"		class="postimage"	type="image"	name="img"			onClick="bbstyle2('img')"		onMouseOver="helpline2('img')"		onMouseOut="helpline2('tip')"	title="Insertar Imagen" />
+					<!-- ENDIF -->
+					<!-- IF S_BBCODE_FLASH -->
+					<img src="bbcode_box/images/flash.gif"		class="postimage"	type="image"	name="flash"		onClick="bbstyle2('flash')"		onMouseOver="helpline2('flash')"	onMouseOut="helpline2('tip')"	title="Insertar archivo Flash" />
+					<!-- ENDIF -->
+					<img src="bbcode_box/images/video.gif"		class="postimage"	type="image"	name="video"		onClick="bbstyle2('video')"		onMouseOver="helpline2('video')"	onMouseOut="helpline2('tip')"	title="Insertar archivo Video" />
+					<img src="bbcode_box/images/sound.gif"		class="postimage"	type="image"	name="stream"		onClick="bbstyle2('stream')"	onMouseOver="helpline2('stream')"	onMouseOut="helpline2('tip')"	title="Insertar archivo Stream" />
+					<img src="bbcode_box/images/ram.gif"		class="postimage"	type="image"	name="ram"			onClick="bbstyle2('ram')"		onMouseOver="helpline2('ram')"		onMouseOut="helpline2('tip')"	title="Insertar archivo Real Media" />
+					<img src="bbcode_box/images/stage.gif"		class="postimage"	type="image"	name="stage" 		onClick="bbstyle2('stage')"		onMouseOver="helpline2('stage6')"	onMouseOut="helpline2('tip')"	title="Insertar Video Stage6" />
+					<img src="bbcode_box/images/googlevid.gif"	class="postimage"	type="image"	name="GVideo"		onClick="bbstyle2('GVideo')"	onMouseOver="helpline2('googlevid')"onMouseOut="helpline2('tip')"	title="Insertar Google Video" />
+					<img src="bbcode_box/images/youtube.gif"	class="postimage"	type="image"	name="youtube"		onClick="bbstyle2('youtube')"	onMouseOver="helpline2('youtube')"	onMouseOut="helpline2('tip')"	title="Insertar video Youtube" />
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/listbullets.gif"class="postimage"	type="image"	name="listb"		onClick="bbstyle2('listb')"		onMouseOver="helpline2('listb')"	onMouseOut="helpline2('tip')"	title="Lista desordenada" />
+					<img src="bbcode_box/images/listnumber.gif"	class="postimage"	type="image"	name="listm"		onClick="bbstyle2('listm')"		onMouseOver="helpline2('listm')"	onMouseOut="helpline2('tip')"	title="Lista ordenada" />
+					<img src="bbcode_box/images/hr.gif"			class="postimage"	type="image"	name="hr"			onClick="bbstyle2('hr')"		onMouseOver="helpline2('hr')"		onMouseOut="helpline2('tip')"	title="Línea de separación" />
+					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="bbcode_box/images/cut.gif"		class="postimage"	type="image"	name="cut"			onClick="bbstyle2('cut')"		onMouseOver="helpline2('cut')"		onMouseOut="helpline2('tip')" 	title="Borrar el texto seleccionado" />
+					<img src="bbcode_box/images/copy.gif"		class="postimage"	type="image"	name="copy"			onClick="bbstyle2('copy')"		onMouseOver="helpline2('copy')"		onMouseOut="helpline2('tip')" 	title="Copiar el texto seleccionado" />
+					<img src="bbcode_box/images/paste.gif"		class="postimage"	type="image"	name="paste"		onClick="bbstyle2('paste')"		onMouseOver="helpline2('paste')"	onMouseOut="helpline2('tip')" 	title="Pegar el texto copiado" />
+					<img src="bbcode_box/images/plain.gif"		class="postimage"	type="image"	name="plain"		onClick="bbstyle2('plain')"		onMouseOver="helpline2('plain')"	onMouseOut="helpline2('tip')" 	title="Eliminar todos los BBcode" />
+				</td>
+			</tr>
+			<!-- BEGIN custom_tags -->
+			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
+				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2">
+					<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+				</td>
+			</tr>
+			<!-- END custom_tags -->
+			<tr>
+				<td colspan="2">
+					<input type="text" readonly="readonly" name="helpbox" style="width:99%" class="helpline" value="{L_STYLES_TIP}" />
+				</td>
+			</tr>
+		</table>
+<!-- MOD : BBCODES by MSSTI - 2/2 FIN -->
