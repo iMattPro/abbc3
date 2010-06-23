@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.7 2010/03/18 10:03:18 leviatan21 Exp $
+* @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/05/18 10:05:18 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -50,12 +50,21 @@ $lang = array_merge($lang, array(
 	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted ABBC3 MOD from database</strong>',
 ));
 
+// This lines are for the UCP
+$lang = array_merge($lang, array(
+	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
+	'UCP_ABBC3_SETTINGS'			=> 'ABBC3 Settings',
+	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Enable the “Advanced BBcodes Box 3” toolbar instead of the regular BBcode buttons?',
+	'UCP_ABBC3_BBCODES'				=> 'ABBC3 View',
+	'UCP_ABBC3_BBCODES_EXPLAIN'		=> 'If the “Advanced BBcodes Box 3” toolbar is enabled, do you want to use the “Compact view” instead of the ABBC3 buttons?',
+));
+
 // abbc3_details
 $lang = array_merge($lang, array(
 	'ACP_ABBCODES'						=> 'Advanced BBcodes Box 3',
 	
 	'ABBCODES_DISABLE'					=> 'ABBC3',
-	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
+	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBcodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
 	'ABBCODES_PATH'						=> 'Script path',
 	'ABBCODES_PATH_EXPLAIN'				=> 'Path to ABBC3 files in your phpBB root directory, e.g. <samp>styles/abbcode</samp>',
 	'ABBCODES_BG'						=> 'Background image',
@@ -104,8 +113,23 @@ $lang = array_merge($lang, array(
 	'ABBCODES_VIDEO_SIZE'				=> 'Video dimensions',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.',
 
-//	'ABBCODES_UPLOAD_EXTENSION'			=> 'Available extensions',
-//	'ABBCODES_UPLOAD_EXTENSION_EXPLAIN'	=> 'You can add/change/delete allowed datatypes. Separate extensions with a comma (,)<br /><strong>Note : </strong> These values will overwrite the Attachments Manage extensions setings.',
+	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
+##	For translate :                                	 Don't			Yes
+	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'phpBB style Default',
+													'dropdown'	=> 'Drop Down Menu',
+													'fancy'		=> '“fancy” selector',
+													'tigra'		=> 'Tigra color picker'),
+	'ABBCODES_WIZARD_MODE'				=> 'Choose the wizards mode',
+##	For translate :                                	Don't			Yes
+	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Disable wizards',
+													'1'			=> 'Pop Up window',
+													'2'			=> 'In post'),
+	'ABBCODES_UCP_MODE'					=> 'UCP Control options',
+	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Allow users to select their owm ABBC3 view modes?',
+
+	'ABBCODES_WIZARD'					=> 'Wizard',
+	'ABBCODES_WIZARD_SIZE'				=> 'Wizard dimensions',
+	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Default width and height for pop-up wizard window.',
 ));
 
 // bbcodes_edit
@@ -177,6 +201,16 @@ $lang = array_merge($lang, array(
 	'INSTALLER_DELETE_SUCCESSFUL'		=> 'Deleted the <strong>%1$s version : %2$s</strong> was successfully.<br />Now delete all files.',
 	'INSTALLER_DELETE_UNSUCCESSFUL'		=> 'Could <strong>not</strong> delete %1$s version :%2$s .',
 
+	// UCP ADD-ON
+	'INSTALLER_UCP'						=> 'UCP',
+	'INSTALLER_UCP_PREFS'				=> 'User Control Panel',
+	'INSTALLER_UCP_WELCOME'				=> 'Welcome to the <strong>ABBC3</strong> UCP menu',
+	'INSTALLER_UCP_WELCOME_NOTE'		=> 'When you choose to install the ABBC3 UCP, two new values will be added to the “phpbb_users” table.
+	<br /> The first is for allow users to switch between ABBC3 toolbar or use the default phpbb3 buttons ( Default value yes )
+	<br /> The second is for allow users to switch between ABBC3 compact view or full view ( Default value no )',
+	'INSTALLER_UCP_END'					=> 'Installation of <strong>%1$s : %2$s</strong> was successful. <br /> <p>You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move your <strong>install_abbc3.php</strong> file!</p>',
+	'INSTALLER_UCP_END_NOTE'			=> 'Please be advised that this steps only modify the database, do not forget to follow the code and template changes instructions.',
+
 	// Re-parse
 	'INSTALLER_REPARSE'					=> 'Re-parse',
 	'INSTALLER_REPARSE_WELCOME'			=> 'Welcome to the Re-parse menu',
@@ -188,7 +222,7 @@ $lang = array_merge($lang, array(
 	'INSTALLER_REPARSE_PM'				=> 'Re-parse private messages',
 	'INSTALLER_REPARSE_SUCCESSFUL'		=> '%1$s was successful.',
 	'INSTALLER_REPARSE_UNSUCCESSFUL'	=> 'Could <strong>not</strong> %1$s.',
-	
+
 	'STEP_PERCENT_COMPLETED'			=> 'Step <strong>%d</strong> of <strong>%d</strong>',
 	'INSTALLER_NOTE'					=> '<strong>Note :</strong> Before adding this MOD to your forum, you should backup the database and all files related to this MOD!',
 	'INSTALLER_DELETE_INFORMATION'		=> 'Could <strong>not</strong> find ABBC3 installed!',

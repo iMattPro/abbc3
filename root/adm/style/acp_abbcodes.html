@@ -105,7 +105,7 @@
 							handle.style.backgroundPosition = 'top left';
 
 							/** Show the resizer method error if we need it **/
-							if (id == 'fieldset_6' && type == 'false' && resizer_error)
+							if (id == 'fieldset_9' && type == 'false' && resizer_error)
 							{
 								dE('resizer_error', 1);
 							}
@@ -118,7 +118,7 @@
 							handle.style.backgroundPosition = 'top right';
 
 							/** Hide the resizer method error if we need it **/
-							if (id == 'fieldset_6' && type == 'false' && resizer_error)
+							if (id == 'fieldset_9' && type == 'false' && resizer_error)
 							{
 								dE('resizer_error', -1);
 							}
@@ -204,15 +204,15 @@
 	<!-- IF options.S_LEGEND -->
 
 		<!-- IF $SHOW_WARNING -->
-			<div id="resizer_error" class="errorbox" style="text-align: {S_CONTENT_FLOW_BEGIN}; display: none; ">
-				<h3 style="text-align: center;">{L_WARNING}</h3>
-				<!-- IF not ADVANCEDBOX_EXIST --><div id="error_AdvancedBox" class="small"><hr />{L_NO_EXIST_EXPLAIN_ADVANCEDBOX}</div><!-- ENDIF -->
-				<!-- IF not HIGHSLIDE_EXIST --><div id="error_HighslideBox" class="small"><hr />{L_NO_EXIST_EXPLAIN_HIGHSLIDE}</div><!-- ENDIF -->
-				<!-- IF not LITEBOX_EXIST --><div id="error_LiteBox" class="small"><hr />{L_NO_EXIST_EXPLAIN_LITEBOX}</div><!-- ENDIF -->
-				<!-- IF not GREYBOX_EXIST --><div id="error_GreyBox" class="small"><hr />{L_NO_EXIST_EXPLAIN_GREYBOX}</div><!-- ENDIF -->
-				<!-- IF not LIGHTVIEW_EXIST --><div id="error_Lightview" class="small"><hr />{L_NO_EXIST_EXPLAIN_LIHTVIEW}</div><!-- ENDIF -->
-				<!-- IF not IBOX_EXIST --><div id="error_Ibox" class="small"><hr />{L_NO_EXIST_EXPLAIN_IBOX}</div><!-- ENDIF -->
-				<!-- IF not POPBOX_EXIST --><div id="error_PopBox" class="small"><hr />{L_NO_EXIST_EXPLAIN_POPBOX}</div><!-- ENDIF -->
+			<div id="resizer_error" style="text-align: {S_CONTENT_FLOW_BEGIN}; display: none;">
+				<div class="errorbox"><h3 style="text-align: center;">{L_WARNING}</h3></div>
+				<!-- IF not ADVANCEDBOX_EXIST --><div id="error_AdvancedBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_ADVANCEDBOX}</div><!-- ENDIF -->
+				<!-- IF not HIGHSLIDE_EXIST --><div id="error_HighslideBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_HIGHSLIDE}</div><!-- ENDIF -->
+				<!-- IF not LITEBOX_EXIST --><div id="error_LiteBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_LITEBOX}</div><!-- ENDIF -->
+				<!-- IF not GREYBOX_EXIST --><div id="error_GreyBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_GREYBOX}</div><!-- ENDIF -->
+				<!-- IF not LIGHTVIEW_EXIST --><div id="error_Lightview" class=" errorsmall"><hr />{L_NO_EXIST_EXPLAIN_LIHTVIEW}</div><!-- ENDIF -->
+				<!-- IF not IBOX_EXIST --><div id="error_Ibox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_IBOX}</div><!-- ENDIF -->
+				<!-- IF not POPBOX_EXIST --><div id="error_PopBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_POPBOX}</div><!-- ENDIF -->
 			</div>
 			<!-- DEFINE $SHOW_WARNING = '0' -->
 		<!-- ENDIF -->
@@ -230,12 +230,12 @@
 
 	<!-- ELSE -->
 			<dl>
-				<dt><label for="{options.KEY}">{options.TITLE}:</label><!-- IF options.S_EXPLAIN --><br /><span>{options.TITLE_EXPLAIN}</span><!-- ENDIF --></dt>
+				<dt><label for="{options.KEY}"><!-- {options.S_ROW_COUNT}) //-->{options.TITLE}:</label><!-- IF options.S_EXPLAIN --><br /><span>{options.TITLE_EXPLAIN}</span><!-- ENDIF --></dt>
 				<dd>{options.CONTENT}</dd>
 			</dl>
 	<!-- ENDIF -->
 
-	<!-- IF options.S_ROW_COUNT eq 6 --><!-- DEFINE $SHOW_WARNING = '1' --><!-- ENDIF -->
+	<!-- IF options.S_ROW_COUNT eq 9 --><!-- DEFINE $SHOW_WARNING = '1' --><!-- ENDIF -->
 
 	<!-- END options -->
 	
@@ -313,8 +313,8 @@
 				<!-- IF items.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
 					
 					<td>
-					<!-- IF items.IMG_SRC and not S_BBCODE_EDIT --><img src="{items.IMG_SRC}" title="{items.NAME}" alt="{items.NAME}" style="float:right;"/><!-- ENDIF -->
-					<span><!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}</strong>&nbsp;<!-- ENDIF -->{items.TAG_EXPLAIN}</span>
+					<!-- IF items.IMG_SRC and not S_BBCODE_EDIT --><img src="{items.IMG_SRC}" title="{items.NAME}" alt="{items.NAME}" style="float: right;"/><!-- ENDIF -->
+					<!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}</strong><br /><!-- ENDIF -->{items.TAG_EXPLAIN}
 					<input type="hidden" name="id[{items.ID}]" value="{items.ID}" />
 					<input type="hidden" name="name[{items.ID}]" value="{items.NAME}" />
 					</td>
@@ -347,11 +347,18 @@
 						<select id="group" name="group_id[]" multiple="multiple" size="10">{items.S_GROUP_OPTIONS}</select>
 					</td>
 				</tr>
+			<!-- IF items.S_RADIO_BUTTONS -->
+				<!-- IF items.S_ROW_COUNT is even --><tr class="row2"><!-- ELSE --><tr class="row1"><!-- ENDIF -->
+					<td colspan="{$COLSPAN}">
+						<strong>{L_ABBCODES_COLOUR_MODE} :</strong> {items.S_RADIO_BUTTONS}
+					</td>
+				</tr>
+			<!-- ENDIF -->
 				<tr>
 					<td colspan="{$COLSPAN}">
 						* {L_ABBCODES_GROUPS_EXPLAIN}
 					</td>
-			<!-- ELSE -->
+				<!-- ELSE -->
 					<td>{items.ON_POST}</td>
 					<td>{items.ON_PM}</td>
 					<td>{items.ON_SIG}</td>

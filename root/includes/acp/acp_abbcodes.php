@@ -1,12 +1,13 @@
 <?php
 /**
-* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.7 2010/03/18 10:03:18 leviatan21 Exp $
+* @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes/acp
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/05/22 10:05:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
+* @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
 * 
-* @todo add compact_mode option : enabled/disabled, wizzard options : enabled/disabled, height, width
+* @todo
 **/
 
 /**
@@ -34,35 +35,41 @@ class acp_abbcodes
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 		
 		$user->add_lang(array('acp/styles', 'mods/acp_abbcodes', 'mods/abbcode'));
-		
-/** Set some default values so the user havn't to run any install - Start **/
-		$max_filesize		 = ($config['max_filesize'])		? $config['max_filesize']			: 0	;
+
+		$radio_ary = array(1 => 'ORDER_ALLOW_DENY', 0 => 'ORDER_DENY_ALLOW');
+
+		/** Set some default values so the user havn't to run any install - Start **/
 		$img_max_width		 = ($config['img_max_width'])		? $config['img_max_width']			: 500 ;
 		$sig_img_max_width	 = ($config['max_sig_img_width'])	? $config['max_sig_img_width']		: 300 ;
 		$img_max_thumb_width = ($config['img_max_thumb_width']) ? $config['img_max_thumb_width']	: 200 ;
 
+		// Same default values as root/install_abbc3.php -> get_abbc3_config()
+		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			 ? $config['ABBC3_VERSION']				: '3.0.8';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				 ? $config['ABBC3_MOD']					: true;
 		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			 ? $config['ABBC3_PATH']				: 'styles/abbcode';
-		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				 ? $config['ABBC3_BG']					: 'bg_abbc3.gif';
-		$config['ABBC3_TAB']				= (isset($config['ABBC3_TAB']))				 ? $config['ABBC3_TAB']					: 1;
-		$config['ABBC3_BOXRESIZE']			= (isset($config['ABBC3_BOXRESIZE']))		 ? $config['ABBC3_BOXRESIZE']			: 1;
-
 		$config['ABBC3_RESIZE']				= (isset($config['ABBC3_RESIZE']))			 ? $config['ABBC3_RESIZE']				: 1;
 		$config['ABBC3_RESIZE_METHOD']		= (isset($config['ABBC3_RESIZE_METHOD']))	 ? $config['ABBC3_RESIZE_METHOD']		: 'AdvancedBox';
 		$config['ABBC3_RESIZE_BAR']			= (isset($config['ABBC3_RESIZE_BAR']))		 ? $config['ABBC3_RESIZE_BAR']			: 1;
 		$config['ABBC3_MAX_IMG_WIDTH']		= (isset($config['ABBC3_MAX_IMG_WIDTH']))	 ? $config['ABBC3_MAX_IMG_WIDTH']		: $img_max_width;
 		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	 ? $config['ABBC3_MAX_IMG_HEIGHT']		: 0;
-		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	 ? $config['ABBC3_MAX_THUM_WIDTH']		: $img_max_thumb_width;
 		$config['ABBC3_RESIZE_SIGNATURE']	= (isset($config['ABBC3_RESIZE_SIGNATURE'])) ? $config['ABBC3_RESIZE_SIGNATURE']	: 0;
 		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	 ? $config['ABBC3_MAX_SIG_WIDTH']		: $sig_img_max_width;
 		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	 ? $config['ABBC3_MAX_SIG_HEIGHT']		: 0;
+		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	 ? $config['ABBC3_MAX_THUM_WIDTH']		: $img_max_thumb_width;
 
+		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				 ? $config['ABBC3_BG']					: 'bg_abbc3.gif';
+		$config['ABBC3_TAB']				= (isset($config['ABBC3_TAB']))				 ? $config['ABBC3_TAB']					: 1;
+		$config['ABBC3_BOXRESIZE']			= (isset($config['ABBC3_BOXRESIZE']))		 ? $config['ABBC3_BOXRESIZE']			: 1;
 		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		 ? $config['ABBC3_VIDEO_width']			: 425;
 		$config['ABBC3_VIDEO_height']		= (isset($config['ABBC3_VIDEO_height']))	 ? $config['ABBC3_VIDEO_height']		: 350;
 
-//		$config['ABBC3_UPLOAD_MAX_SIZE']	= (isset($config['ABBC3_UPLOAD_MAX_SIZE']))	 ? $config['ABBC3_UPLOAD_MAX_SIZE']		: $max_filesize;
-//		$config['ABBC3_UPLOAD_EXTENSION']	= (isset($config['ABBC3_UPLOAD_EXTENSION'])) ? $config['ABBC3_UPLOAD_EXTENSION']	: 'swf, gif, jpg, jpeg, png, psd, bmp, tif, tiff';
-/** Set some default values so the user havn't to run any install - End **/
+		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		 ? $config['ABBC3_COLOR_MODE']			: 'phpbb';
+		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	 ? $config['ABBC3_HIGHLIGHT_MODE']		: 'phpbb';
+		$config['ABBC3_WIZARD_MODE']		= (isset($config['ABBC3_WIZARD_MODE']))		 ? $config['ABBC3_WIZARD_MODE']			: 1;
+		$config['ABBC3_WIZARD_width']		= (isset($config['ABBC3_WIZARD_width']))	 ? $config['ABBC3_WIZARD_width']		: 700;
+		$config['ABBC3_WIZARD_height']		= (isset($config['ABBC3_WIZARD_height']))	 ? $config['ABBC3_WIZARD_height']		: 400;
+		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		 ? $config['ABBC3_UCP_MODE']			: 1;
+		/** Set some default values so the user havn't to run any install - End **/
 
 		// Set up general vars
 		$action				= request_var('action', '');
@@ -162,31 +169,33 @@ class acp_abbcodes
 			'vars'	=> array(
 				'legend1'				=> 'GENERAL_OPTIONS',
 				'ABBC3_MOD'				=> array('lang' => 'ABBCODES_DISABLE',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
-				'ABBC3_PATH'			=> array('lang'	=> 'ABBCODES_PATH',				'validate' => 'path',	'type' => 'text::255',		'explain'	=> true),
+		//		'ABBC3_PATH'			=> array('lang'	=> 'ABBCODES_PATH',				'validate' => 'path',	'type' => 'text::255',		'explain'	=> true),
 				'ABBC3_BG'				=> array('lang' => 'ABBCODES_BG',				'validate' => 'string',	'type' => 'custom',			'function'	=> 'image_select', 'params' => array($this->dir . '/images/bg', '{CONFIG_VALUE}', 'config[ABBC3_BG]', true, $this->u_action, 'ABBC3_BG'), 'explain' => true),
 				'ABBC3_TAB'				=> array('lang' => 'ABBCODES_TAB',				'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true, 'append' => '&nbsp;&nbsp;<span>[ <img src="' . $this->dir . '/images/dots.gif" alt="" /> ]</span>'),
 				'ABBC3_BOXRESIZE'		=> array('lang' => 'ABBCODES_BOXRESIZE',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
+				'ABBC3_UCP_MODE'		=> array('lang' => 'ABBCODES_UCP_MODE',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
 
-				'legend2'				=> 'CAT_IMAGES',
-				'ABBC3_RESIZE'			=> array('lang' => 'ABBCODES_RESIZE',									'type' => 'string',			'explain'	=> true, 'append' => '<span id="ABBC3_RESIZE">' . $user->lang['ABBCODES_JAVASCRIPT_EXPLAIN'] . '</span>'),
+				'legend2'				=> 'ABBCODES_WIZARD',
+				'ABBC3_WIZARD_width'	=> false,
+				'ABBC3_WIZARD_height'	=> false,
+				'ABBC3_WIZARD'			=> array('lang' => 'ABBCODES_WIZARD_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true,  'append'  => ' ' . $user->lang['PIXEL']),
+				'ABBC3_WIZARD_MODE'		=> array('lang'	=> 'ABBCODES_WIZARD_MODE',		'validate' => 'int',	'type' => 'custom',			'function'	=> 'get_radio', 'params' => array('config[ABBC3_WIZARD_MODE]', $user->lang['ABBCODES_WIZARD_SELECTOR'], $config['ABBC3_WIZARD_MODE'], 'ABBC3_WIZARD_MODE'), 'explain' => false),
+
+				'legend3'				=> 'CAT_IMAGES',
+				'ABBC3_RESIZE'			=> array('lang' => 'ABBCODES_RESIZE',									'type' => 'string',			'explain'	=> true, 'append' => ' <span id="ABBC3_RESIZE">' . $user->lang['ABBCODES_JAVASCRIPT_EXPLAIN'] . '</span>'),
 				'ABBC3_RESIZE_METHOD'	=> array('lang' => 'ABBCODES_RESIZE_METHOD',	'validate' => 'string',	'type' => 'custom',			'function'	=> 'method_select', 'params' => array('{CONFIG_VALUE}', 'config[ABBC3_RESIZE_METHOD]', 'ABBC3_RESIZE_METHOD'), 'explain' => true),
 				'ABBC3_RESIZE_BAR'		=> array('lang' => 'ABBCODES_RESIZE_BAR',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
-				'ABBC3_MAX_IMG_WIDTH'	=> array('lang' => 'ABBCODES_MAX_IMAGE_WIDTH',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' px'),
-				'ABBC3_MAX_IMG_HEIGHT'	=> array('lang' => 'ABBCODES_MAX_IMAGE_HEIGHT',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' px'),
-				'ABBC3_MAX_THUM_WIDTH'	=> array('lang' => 'ABBCODES_MAX_THUMB_WIDTH',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' px'),
+				'ABBC3_MAX_IMG_WIDTH'	=> array('lang' => 'ABBCODES_MAX_IMAGE_WIDTH',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' ' . $user->lang['PIXEL']),
+				'ABBC3_MAX_IMG_HEIGHT'	=> array('lang' => 'ABBCODES_MAX_IMAGE_HEIGHT',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' ' . $user->lang['PIXEL']),
+				'ABBC3_MAX_THUM_WIDTH'	=> array('lang' => 'ABBCODES_MAX_THUMB_WIDTH',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' ' . $user->lang['PIXEL']),
 				'ABBC3_RESIZE_SIGNATURE'=> array('lang' => 'ABBCODES_RESIZE_SIGNATURE',	'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
-				'ABBC3_MAX_SIG_WIDTH'	=> array('lang' => 'ABBCODES_SIG_IMAGE_WIDTH',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' px'),
-				'ABBC3_MAX_SIG_HEIGHT'	=> array('lang' => 'ABBCODES_SIG_IMAGE_HEIGHT',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' px'),
+				'ABBC3_MAX_SIG_WIDTH'	=> array('lang' => 'ABBCODES_SIG_IMAGE_WIDTH',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' ' . $user->lang['PIXEL']),
+				'ABBC3_MAX_SIG_HEIGHT'	=> array('lang' => 'ABBCODES_SIG_IMAGE_HEIGHT',	'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' ' . $user->lang['PIXEL']),
 
-				'legend3'				=> 'ABBC3_BBVIDEO_TAG',
-				'ABBC3_VIDEO'			=> array('lang' => 'ABBCODES_VIDEO_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true, 'append' => ' px'),
+				'legend4'				=> 'ABBC3_BBVIDEO_TAG',
+				'ABBC3_VIDEO'			=> array('lang' => 'ABBCODES_VIDEO_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true, 'append' => ' ' . $user->lang['PIXEL']),
 				'ABBC3_VIDEO_width'		=> false,
 				'ABBC3_VIDEO_height'	=> false,
-
-//				'legend4'				=> 'ABBC3_UPLOAD_MOVER',
-//				'upload_path'			=> array('lang'	=> 'UPLOAD_DIR',										'type' => 'string',			'explain'	=> true, 'append' => ' <span id="upload_path">' . $config['upload_path'] . '/</span>'),
-//				'ABBC3_UPLOAD_MAX_SIZE'	=> array('lang'	=> 'ATTACH_MAX_FILESIZE',		'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' ' . $user->lang['BYTES']),
-//				'ABBC3_UPLOAD_EXTENSION'=> array('lang'	=> 'ABBCODES_UPLOAD_EXTENSION',	'validate' => 'string',	'type' => 'textarea:5:40',	'explain'	=> true),
 			)
 		);
 
@@ -226,13 +235,14 @@ class acp_abbcodes
 
 			if ($this->submit)
 			{
-				set_config($config_name, $config_value, true);
+				set_config($config_name, $config_value);
+			//	set_config($config_name, $config_value, true);
+			//	$cache->destroy('config');
 			}
 		}
 
 		if ($this->submit)
 		{
-			$cache->destroy('config');
 			add_log('admin', 'LOG_CONFIG_ABBCODES');
 
 			if (!sizeof($error))
@@ -444,7 +454,7 @@ class acp_abbcodes
 	**/
 	function bbcodes_edit($id, $mode, $action, $bbcode = '')
 	{
-		global $user, $db, $template, $config;
+		global $user, $db, $cache, $template, $config;
 
 		$user->add_lang(array('acp/posting', 'mods/acp_abbcodes', 'mods/abbcode'));
 
@@ -472,7 +482,6 @@ class acp_abbcodes
 				'display_on_pm'			=> (isset($display_on_pm[$bbcode])) ? 1 : 0,
 				'display_on_sig'		=> (isset($display_on_sig[$bbcode])) ? 1 : 0,
 				'bbcode_image'			=> (isset($bbcode_image[$bbcode])) ? $bbcode_image[$bbcode] : '',
-			//	'bbcode_group'			=> $group_ids,
 				'bbcode_group'			=> (isset($group_ids) && trim($group_ids) != '') ? $group_ids : 0,
 			);
 
@@ -482,6 +491,23 @@ class acp_abbcodes
 				$bbcode_sql['bbcode_image'] = $img_spacer;
 			}
 
+			if ($abbcode_name[$bbcode] == 'ABBC3_COLOR' || $abbcode_name[$bbcode] == 'ABBC3_HIGHLIGHT')
+			{
+				if ($abbc3_color_mode = request_var('abbc3_color', ''))
+				{
+					set_config('ABBC3_COLOR_MODE', $abbc3_color_mode);
+				//	set_config('ABBC3_COLOR_MODE', $abbc3_color_mode, true);
+				//	$cache->destroy('config');
+				}
+
+				if ($abbc3_highlight_mode = request_var('abbc3_highlight', ''))
+				{
+					set_config('ABBC3_HIGHLIGHT_MODE', $abbc3_highlight_mode);
+				//	set_config('ABBC3_HIGHLIGHT_MODE', $abbc3_highlight_mode, true);
+				//	$cache->destroy('config');
+				}
+			}
+
 			$sql = "UPDATE " . BBCODES_TABLE . "
 				SET " . $db->sql_build_array('UPDATE', $bbcode_sql) . "
 				WHERE bbcode_id = " . $bbcode;
@@ -489,7 +515,7 @@ class acp_abbcodes
 
 			if ($result)
 			{
-				trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action . "&amp;last_id=$bbcode"));
+				trigger_error($user->lang['LOG_CONFIG_ABBCODES'] . adm_back_link($this->u_action . "&amp;last_id=$bbcode"));
 			}
 			else
 			{
@@ -558,7 +584,7 @@ class acp_abbcodes
 			// is a breack line or division ?
 			if ((substr($abbcode_name,0,11) == 'ABBC3_BREAK')
 			  || (substr($abbcode_name,0,14) == 'ABBC3_DIVISION')
-			  || in_array($row['bbcode_tag'], array('imgshack', 'imgshack', 'cut', 'copy', 'paste', 'plain'))
+			  || in_array($row['bbcode_tag'], array('imgshack', 'cut', 'copy', 'paste', 'plain'))
 			)
 			{
 				$is_a_bbcode	= false;
@@ -621,6 +647,12 @@ class acp_abbcodes
 			}
 			else if ($action == 'edit' && $row['bbcode_id'] == $bbcode)
 			{
+				$radio = '';
+				if ($abbcode_name == 'ABBC3_COLOR' || $abbcode_name == 'ABBC3_HIGHLIGHT')
+				{
+					$radio = get_radio(strtolower($abbcode_name), $user->lang['ABBCODES_COLOUR_SELECTOR'], $config[$abbcode_name . '_MODE'], $abbcode_name);
+				}
+
 				$template->assign_block_vars('items', array(
 					'ID'					=> $bbcode_id,
 					'NAME'					=> $abbcode_name,
@@ -635,6 +667,7 @@ class acp_abbcodes
 					'SIG_CHECKED'			=> ($row['display_on_sig'])		? ' checked="checked"' : '',
 
 					'S_GROUP_OPTIONS'		=> groups_select_options(explode(',', $row['bbcode_group']), $exclude),
+					'S_RADIO_BUTTONS'		=> ($radio) ? $radio : '',
 				));
 			}
 		}
@@ -705,6 +738,34 @@ class acp_abbcodes
 		$s_method_options.= '</select>';
 
 		return $s_method_options;
+	}
+
+	/**
+	* Select list of display color picker
+	**/
+	function get_radio($name, &$input_ary, $input_default = false, $id = false, $key = false)
+	{
+		global $user;
+
+		// destroy a single element of an array
+		if ($name == "abbc3_highlight")
+		{
+			unset($input_ary['phpbb']);
+		}
+
+		$html = '';
+		$id_assigned = false;
+		foreach ($input_ary as $value => $title)
+		{
+			$value = strtolower($value);
+			$id = strtolower($id);
+			
+			$selected = ($input_default !== false && $value == $input_default) ? ' checked="checked"' : '';
+			$html .= ' <label><input class="radio" type="radio" name="' . $name . '"' . (($id && !$id_assigned) ? ' id="' . $id . '"' : '') . ' value="' . $value . '"' . $selected . (($key) ? ' accesskey="' . $key . '"' : '') . ' />&nbsp;' . $title . '&nbsp;</label>';
+			$id_assigned = true;
+		}
+
+		return $html;
 	}
 
 	function groups_select_options($select_id = false, $exclude_ids = false)
