@@ -13,12 +13,13 @@
 ##		The MOD is very fast loading, and is a sleek addition to your phpBB bulletin board.
 ##		You must have javascript enabled to use this MOD.
 ##
-## MOD Version: 1.0.2
+## MOD Version: 1.0.3
 ##
 ## Installation Level: Easy
 ## Installation Time: ~10 Minutes
 ##
 ## Files To Edit:
+##	ucp.php
 ##	posting.php
 ##	includes/functions_content.php
 ##	styles/prosilver/template/overall_header.html
@@ -127,15 +128,21 @@
 #####################################################################
 ## MOD History:
 ##
+##	2008-01-15 - Version 1.0.3
+##	- Fix in subsilver posting_abbcodes_buttons.html.
+##	- added contrib/add-on folder with Quick reply info.
+##	- fix private message bugs. ( Thanks El_Vindicador)
+##	- fix others minor bugs.
+##
 ##	2008-01-14 - Version 1.0.2
-##	- Fix in subsilver posting_abbcodes_buttons.html
 ##	- Change folder placement (Suggested by MrC).
 ##	- Added languaje file.
 ##	- Changed highlight dropdown colors with phpbb colors.
 ##	- Change the copyright link to image link.
 ##	- Added Giant font size (you must go ACP -> General Tab -> Board configuration -> Post settings
-##		look at "Maximum font size per post:
-##				 Maximum font size allowed in a post. Set to 0 for unlimited font size.
+##		look at 
+##		"Maximum font size per post:
+##		 Maximum font size allowed in a post. Set to 0 for unlimited font size."
 ##		and change 200 value with 300)
 ##
 ##	2008-01-11 - Version 1.0.1
@@ -153,10 +160,28 @@
 #
 #-----[ COPY ]-------------------------------------------------------
 #
-copy root/includes/abbcode.php           to includes/abbcode.php
-copy root/language/en/mods/abbcode.php   to language/en/mods/abbcode.php
-copy root/styles/prosilver/*.*           to styles/prosilver/*.*
-copy root/styles/subsilver2/*.*          to styles/subsilver2/*.*
+copy root/includes/abbcode.php         to includes/abbcode.php
+copy root/language/en/mods/abbcode.php to language/en/mods/abbcode.php
+copy root/styles/prosilver/*.*         to styles/prosilver/*.*
+copy root/styles/subsilver2/*.*        to styles/subsilver2/*.*
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+#
+ucp.php
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+// Setting a variable to let the style designer know where he is...
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#
+// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START
+$user->add_lang('mods/abbcode');
+// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END
 
 #
 #-----[ OPEN ]-------------------------------------------------------
