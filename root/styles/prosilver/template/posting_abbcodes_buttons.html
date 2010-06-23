@@ -73,13 +73,678 @@
 	border: 0;
 }
 </style>
+
+<script type="text/javascript">
+// <![CDATA[
+
+/**
+* Help line tips values
+*/
+var help_line2 = {
+	abbc_justify	:	"{L_ABBCODE_JUSTIFY_MOVER}"	+	"{L_ABBCODE_JUSTIFY_HELP}" ,
+	abbc_right		:	"{L_ABBCODE_RIGHT_MOVER}"	+	"{L_ABBCODE_RIGHT_HELP}" ,
+	abbc_center		:	"{L_ABBCODE_CENTER_MOVER}"	+	"{L_ABBCODE_CENTER_HELP}" ,
+	abbc_left		:	"{L_ABBCODE_LEFT_MOVER}"	+	"{L_ABBCODE_LEFT_HELP}" ,
+	abbc_pre		:	"{L_ABBCODE_PRE_MOVER}"		+	"{L_ABBCODE_PRE_HELP}" ,
+
+	abbc_sup		:	"{L_ABBCODE_SUP_MOVER}"		+	"{L_ABBCODE_SUP_HELP}" ,
+	abbc_sub		:	"{L_ABBCODE_SUB_MOVER}"		+	"{L_ABBCODE_SUB_HELP}" ,
+
+	abbc_b			:	"{L_ABBCODE_BOLD_MOVER}"	+	"{L_ABBCODE_BOLD_HELP}" ,
+	abbc_i			:	"{L_ABBCODE_ITA_MOVER}"		+	"{L_ABBCODE_ITA_HELP}" ,
+	abbc_u			:	"{L_ABBCODE_UNDER_MOVER}"	+	"{L_ABBCODE_UNDER_HELP}" ,
+	abbc_strike		:	"{L_ABBCODE_STRIKE_MOVER}"	+	"{L_ABBCODE_STRIKE_HELP}" ,
+
+	abbc_fade		:	"{L_ABBCODE_FADE_MOVER}"	+	"{L_ABBCODE_FADE_HELP}" ,
+	abbc_grad		:	"{L_ABBCODE_GRAD_MOVER}"	+	"{L_ABBCODE_GRAD_HELP}" ,
+
+	abbc_rtl		:	"{L_ABBCODE_RTL_MOVER}"		+	"{L_ABBCODE_RTL_HELP}" ,
+	abbc_ltr		:	"{L_ABBCODE_LTR_MOVER}"		+	"{L_ABBCODE_LTR_HELP}" ,
+
+	abbc_marqd		:	"{L_ABBCODE_MARQD_MOVER}"	+	"{L_ABBCODE_MARQD_HELP}" ,
+	abbc_marqu		:	"{L_ABBCODE_MARQU_MOVER}"	+	"{L_ABBCODE_MARQU_HELP}" ,
+	abbc_marqr		:	"{L_ABBCODE_MARQR_MOVER}"	+	"{L_ABBCODE_MARQR_HELP}" ,
+	abbc_marql		:	"{L_ABBCODE_MARQL_MOVER}"	+	"{L_ABBCODE_MARQL_HELP}" ,
+
+	abbc_table		:	"{L_ABBCODE_TABLE_MOVER}"	+	"{L_ABBCODE_TABLE_HELP}" ,
+	
+	abbc_quote		:	"{L_ABBCODE_QUOTE_MOVER}"	+	"{L_ABBCODE_QUOTE_HELP}" ,
+	abbc_code		:	"{L_ABBCODE_CODE_MOVER}"	+	"{L_ABBCODE_CODE_HELP}" ,
+
+	abbc_spoil		:	"{L_ABBCODE_SPOIL_MOVER}"	+	"{L_ABBCODE_SPOIL_HELP}" ,
+
+	abbc_ed2k		:	"{L_ABBCODE_ED2K_MOVER}"	+	"{L_ABBCODE_ED2K_HELP}",
+	abbc_url		:	"{L_ABBCODE_URL_MOVER}"		+	"{L_ABBCODE_URL_HELP}" ,
+	abbc_mail		:	"{L_ABBCODE_EMAIL_MOVER}"	+	"{L_ABBCODE_EMAIL_HELP}" ,
+	abbc_web		:	"{L_ABBCODE_WEB_MOVER}"		+	"{L_ABBCODE_WEB_HELP}" ,
+
+	abbc_img		:	"{L_ABBCODE_IMG_MOVER}"		+	"{L_ABBCODE_IMG_HELP}" ,
+
+	abbc_flash		:	"{L_ABBCODE_FLASH_MOVER}"	+	"{L_ABBCODE_FLASH_HELP}" ,
+	abbc_video		:	"{L_ABBCODE_VIDEO_MOVER}"	+	"{L_ABBCODE_VIDEO_HELP}" ,
+	abbc_stream		:	"{L_ABBCODE_STREAM_MOVER}"	+	"{L_ABBCODE_STREAM_HELP}" ,
+	abbc_ram		:	"{L_ABBCODE_RAM_MOVER}"		+	"{L_ABBCODE_RAM_HELP}" ,
+	abbc_stage6		:	"{L_ABBCODE_STAGE_MOVER}"	+	"{L_ABBCODE_STAGE_HELP}" ,
+	abbc_googlevid	:	"{L_ABBCODE_GVIDEO_MOVER}"	+	"{L_ABBCODE_GVIDEO_HELP}" ,
+	abbc_youtube	:	"{L_ABBCODE_YOUTUBE_MOVER}"	+	"{L_ABBCODE_YOUTUBE_HELP}" ,
+
+	abbc_listb		:	"{L_ABBCODE_LISTB_MOVER}"	+	"{L_ABBCODE_LISTB_HELP}" ,
+	abbc_listm		:	"{L_ABBCODE_LISTM_MOVER}"	+	"{L_ABBCODE_LISTM_HELP}" ,
+	abbc_hr			:	"{L_ABBCODE_HR_MOVER}"		+	"{L_ABBCODE_HR_HELP}" ,
+
+	abbc_fontcolor	:	"{L_ABBCODE_TEXTC_MOVER}"	+	"{L_ABBCODE_TEXTC_HELP}" ,
+	abbc_fontsize	:	"{L_ABBCODE_TEXTS_MOVER}"	+	"{L_ABBCODE_TEXTS_HELP}" ,
+	abbc_fonttype	:	"{L_ABBCODE_TEXTF_MOVER}"	+	"{L_ABBCODE_TEXTF_HELP}" ,
+	abbc_fonthili	:	"{L_ABBCODE_TEXTH_MOVER}"	+	"{L_ABBCODE_TEXTH_HELP}" ,
+	
+	abbc_cut		:	"{L_ABBCODE_CUT_MOVER}" ,
+	abbc_copy		:	"{L_ABBCODE_COPY_MOVER}" ,
+	abbc_paste		:	"{L_ABBCODE_PASTE_MOVER}" ,
+	abbc_plain		:	"{L_ABBCODE_PLAIN_MOVER}" ,
+	
+	abbc_tip		:	"{L_BBCODE_STYLES_TIP}"
+}
+
+/**
+* Show help line tips
+*/
+function helpline2(help)
+{
+	if (!help)
+	{
+		help = 'tip';
+	}
+	// document.forms[form_name].helpbox.value = help_line[help];
+	if ( !help_line2["abbc_" + help] )
+	{
+	//	document.getElementById('helpline').innerHTML = help_line[help] + '&nbsp;';
+		document.forms[form_name].helpbox.value = help_line[help];
+	}
+	else
+	{
+	//	document.getElementById('helpline').innerHTML = help_line2["abbc_" + help] + '&nbsp;';
+		document.forms[form_name].helpbox.value = help_line2["abbc_" + help]
+	}
+}
+
+var oSelect, oSelectRange, oSelectLength, copy_paste, doc;
+
+/**
+* Main function
+*/
+function bbstyle2(bbcode,ftvalue)
+{
+	// Get client info
+	var clientPC = navigator.userAgent.toLowerCase();
+	
+	// Get browser version
+	var clientVer = parseInt(navigator.appVersion);
+	
+	var is_ie = ((clientPC.indexOf('msie') != -1) && (clientPC.indexOf('opera') == -1));
+	var is_win = ((clientPC.indexOf('win') != -1) || (clientPC.indexOf('16bit') != -1));
+	
+	
+	var txtarea = document.forms[form_name].elements[text_name];
+	
+	if ( bbcode == "ABBC_justify" )
+	{
+		bbfontstyle("[align=justify]", "[/align]");
+	}
+	else if ( bbcode == "ABBC_right" )
+	{
+		bbfontstyle("[align=right]", "[/align]");
+	}
+	else if ( bbcode == "ABBC_center" )
+	{
+		bbfontstyle("[align=center]", "[/align]");
+	}
+	else if ( bbcode == "ABBC_left" )
+	{
+		bbfontstyle("[align=left]", "[/align]");
+	}
+	else if ( bbcode == "ABBC_sup" )
+	{
+		bbfontstyle("[sup]", "[/sup]");
+	}
+	else if ( bbcode == "ABBC_sub" )
+	{
+		bbfontstyle("[sub]", "[/sub]");
+	}
+	else if ( bbcode == "ABBC_bold" )
+	{
+		bbfontstyle("[b]", "[/b]");
+	}
+	else if ( bbcode == "ABBC_italic" )
+	{
+		bbfontstyle("[i]", "[/i]");
+	}
+	else if ( bbcode == "ABBC_under" )
+	{
+		bbfontstyle("[u]", "[/u]");
+	}
+	else if ( bbcode == "ABBC_strike" )
+	{
+		bbfontstyle("[s]", "[/s]");
+	}
+	else if ( bbcode == "ABBC_pre" )
+	{
+		bbfontstyle("[pre]", "[/pre]");
+	}
+	else if ( bbcode == "ABBC_fade" )
+	{
+		bbfontstyle("[fade]", "[/fade]");
+	}
+	else if ( bbcode == "ABBC_grad" )
+	{
+		if ((clientVer >= 4) && is_ie && is_win)
+		{
+			oSelectRange = document.selection.createRange();
+			oSelectLength = oSelectRange.text.length
+		}
+		else if (txtarea.selectionEnd && (txtarea.selectionEnd - txtarea.selectionStart > 0))
+		{
+			var selLength = txtarea.textLength;
+			var selStart = txtarea.selectionStart;
+			var selEnd = txtarea.selectionEnd;
+			var scrollTop = txtarea.scrollTop;
+			
+			if (selEnd == 1 || selEnd == 2)
+			{
+				selEnd = selLength;
+			}
+			
+			var s1 = (txtarea.value).substring(0,selStart);
+			var s2 = (txtarea.value).substring(selStart, selEnd);
+			var s3 = (txtarea.value).substring(selEnd, selLength);
+
+			oSelectRange = s2;
+			oSelectLength = selEnd - selStart;
+		}
+		if ( (oSelectLength < 1) || (!oSelectLength) )
+		{
+			alert("{L_ABBCODE_GRAD_MIN_ERROR}" + oSelectLength);
+			return;
+		}
+		if (oSelectLength > 120)
+		{
+			alert("{L_ABBCODE_GRAD_MAX_ERROR}" + oSelectLength);
+			return;
+		}
+		if (window.showModalDialog)
+		{
+			showModalDialog("{T_IMAGESET_PATH}/bbcode_box/grad.htm",oSelectRange,"help:no; center:yes; status:no; dialogHeight:100px; dialogWidth:650px");
+		}
+		else
+		{
+			initPopUp();
+			showPopWin('{T_IMAGESET_PATH}/bbcode_box/modalContent.html', 650, 100, true);
+		}
+//		txtarea.focus();
+	}
+	else if ( bbcode == "ABBC_dirrtl" )
+	{
+	//	txtarea.dir=('rtl');
+		bbfontstyle("[dir=rtl]", "[/dir]");
+	}
+	else if ( bbcode == "ABBC_dirltr" )
+	{
+	//	txtarea.dir=('ltr');
+		bbfontstyle("[dir=ltr]", "[/dir]");
+	}
+	else if ( bbcode == "ABBC_marqd" )
+	{
+		bbfontstyle("[marq=down]", "[/marq]");
+	}
+	else if ( bbcode == "ABBC_marqu" )
+	{
+		bbfontstyle("[marq=up]", "[/marq]");
+	}
+	else if ( bbcode == "ABBC_marql" )
+	{
+		bbfontstyle("[marq=left]", "[/marq]");
+	}
+	else if ( bbcode == "ABBC_marqr" )
+	{
+		bbfontstyle("[marq=right]", "[/marq]");
+	}
+	else if ( bbcode == "ABBC_table" )
+	{
+		var styleT   = prompt("{L_ABBCODE_TABLE_STYLE}", "");
+		
+		var enterR   = prompt("{L_ABBCODE_ROW_NUMBER}", "1");
+		var styleR   = prompt("{L_ABBCODE_ROW_STYLE}", "");
+		if (!enterR)
+		{
+			FoundErrors += "{L_ABBCODE_ROW_ERROR}";
+		}
+		var enterC   = prompt("{L_ABBCODE_CELL_NUMBER}", "1");
+		var styleC   = prompt("{L_ABBCODE_CELL_STYLE}", "");
+		if (!enterC)
+		{
+			FoundErrors += "{L_ABBCODE_CELL_ERROR}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}"+FoundErrors);
+			return;
+		}
+		var Row = '';
+		for (var R=0; R < parseInt(enterR); R++)
+		{
+			Col = '';
+			for (var C=0; C < parseInt(enterC); C++)
+			{
+				Col += "[td=" + styleC + "]" + "[/td]";
+			}
+			Row += "[tr=" + styleR + "]" + Col + "[/tr]\n";
+		}		
+		bbfontstyle("[table=" + styleT + "]\n" + Row + "[/table]",'');
+	}
+	else if ( bbcode == "ABBC_code" )
+	{
+		bbfontstyle("[code]", "[/code]");
+	}
+	else if ( bbcode == "ABBC_quote" )
+	{
+		bbfontstyle("[quote]", "[/quote]");
+	}
+	else if ( bbcode == "ABBC_spoil" )
+	{
+		bbfontstyle("[spoil]", "[/spoil]");
+	}
+	else if ( bbcode == "ABBC_ed2k" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_ED2K_TAG}", "ed2k://");
+		var enterTITLE = prompt("{L_ABBCODE_DESC}{L_ABBCODE_ED2K_TAG}", "{L_ABBCODE_NAME}");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		if (!enterTITLE)
+		{
+			FoundErrors += "{L_ABBCODE_NODESC}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_ED2K_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[url="+enterURL+"]"+enterTITLE, "[/url]");
+	}
+	else if ( bbcode == "ABBC_url" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_URL_TAG}", "http://");
+		var enterTITLE = prompt("{L_ABBCODE_DESC}{L_ABBCODE_URL_TAG}", "{L_ABBCODE_NAME}");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		if (!enterTITLE)
+		{
+			FoundErrors += "{L_ABBCODE_NODESC}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_URL_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[url="+enterURL+"]"+enterTITLE, "[/url]");
+	}
+	else if ( bbcode == "ABBC_web" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_WEB_TAG}", "http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		var enterW   = prompt("{L_ABBCODE_WIDTH}", "99%" );
+		if (!enterW)
+		{
+			FoundErrors += "{L_ABBCODE_NOWIDTH}";
+		}
+		var enterH   = prompt("{L_ABBCODE_HEIGHT}", "500");
+		if (!enterH)
+		{
+			FoundErrors += "{L_ABBCODE_NOHEIGHT}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_WEB_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[web width="+enterW+" height="+enterH+"]"+enterURL, "[/web]");
+	}
+	else if ( bbcode == "ABBC_email" )
+	{
+		var FoundErrors = '';
+		var enterMail   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_EMAIL_TAG}","");
+		if (!enterMail)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_EMAIL_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[email]"+enterMail, "[/email]");
+	}
+	else if ( bbcode == "ABBC_img" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_IMG_TAG}","http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_IMG_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[img]"+enterURL, "[/img]");
+	}
+	else if ( bbcode == "ABBC_flash" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_FLASH_TAG}", "http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		var enterW   = prompt("{L_ABBCODE_WIDTH}", "250");
+		if (!enterW)
+		{
+			FoundErrors += "{L_ABBCODE_NOWIDTH}";
+		}
+		var enterH   = prompt("{L_ABBCODE_HEIGHT}", "250");
+		if (!enterH)
+		{
+			FoundErrors += "{L_ABBCODE_NOHEIGHT}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_FLASH_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[flash width="+enterW+" height="+enterH+"]"+enterURL, "[/flash]");
+	}
+	else if ( bbcode == "ABBC_video" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_VIDEO_TAG}", "http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		var enterW   = prompt("{L_ABBCODE_WIDTH}", "400");
+		if (!enterW)
+		{
+			FoundErrors += "{L_ABBCODE_NOWIDTH}";
+		}
+		var enterH   = prompt("{L_ABBCODE_HEIGHT}", "350");
+		if (!enterH)
+		{
+			FoundErrors += "{L_ABBCODE_NOHEIGHT}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_VIDEO_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[video width="+enterW+" height="+enterH+"]"+enterURL, "[/video]");
+	}
+	else if ( bbcode == "ABBC_stream" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_STREAM_TAG}","http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_STREAM_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[stream]"+enterURL, "[/stream]");
+	}
+	else if ( bbcode == "ABBC_ram" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_RAM_TAG}","http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		var enterW   = prompt("{L_ABBCODE_WIDTH}", "220");
+		if (!enterW)
+		{
+			FoundErrors += "{L_ABBCODE_NOWIDTH}";
+		}
+		var enterH   = prompt("{L_ABBCODE_HEIGHT}", "140");
+		if (!enterH)
+		{
+			FoundErrors += "{L_ABBCODE_NOHEIGHT}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_RAM_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[ram width="+enterW+" height="+enterH+"]"+enterURL, "[/ram]");
+	}
+	else if ( bbcode == "ABBC_stage6" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_ID}{L_ABBCODE_RAM_TAG}","0");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOID}";
+		}
+		var enterW   = prompt("{L_ABBCODE_WIDTH}", "704");
+		if (!enterW)
+		{
+			FoundErrors += "{L_ABBCODE_NOWIDTH}";
+		}
+		var enterH   = prompt("{L_ABBCODE_HEIGHT}", "496");
+		if (!enterH)
+		{
+			FoundErrors += "{L_ABBCODE_NOHEIGHT}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_RAM_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[stage6 width="+enterW+" height="+enterH+"]"+enterURL, "[/stage6]");
+	}
+	else if ( bbcode == "ABBC_GVideo" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_GVIDEO_TAG}{L_ABBCODE_GVIDEO_NOTE}","http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_GVIDEO_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[GVideo]"+enterURL, "[/GVideo]");
+	}
+	else if ( bbcode == "ABBC_youtube" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_YOUTUBE_TAG}{L_ABBCODE_YOUTUBE_NOTE}","http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_YOUTUBE_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[youtube]"+enterURL, "[/youtube]");
+	}
+	else if ( bbcode == "ABBC_listb" )
+	{
+		bbfontstyle("[list][*]", "[/list]");
+	}
+	else if ( bbcode == "ABBC_listm" )
+	{
+		bbfontstyle("[list=1][*]", "[/list]");
+	}
+	else if ( bbcode == "ABBC_hr" )
+	{
+		bbfontstyle("[hr]", "");
+	}
+	else if ( bbcode == "ABBC_plain" )
+	{
+		if ((clientVer >= 4) && is_ie && is_win)
+		{
+			// Get text selection
+			theSelection = document.selection.createRange().text;
+			
+			if (theSelection != '')
+			{
+				temp = theSelection;
+			//	temp = temp.replace(/\[FLASH=([^\]]*)\]WIDTH=[0-9]{0,4} HEIGHT=[0-9]{0,4}\[\/FLASH\]/gi,"$1");
+			//	temp = temp.replace(/\[VIDEO=([^\]]*)\]WIDTH=[0-9]{0,4} HEIGHT=[0-9]{0,4}\[\/VIDEO\]/gi,"$1");
+				document.selection.createRange().text = temp.replace(/\[[^\]]*\]/gi,"");
+			}
+		}
+		else if (txtarea.selectionEnd && (txtarea.selectionEnd - txtarea.selectionStart > 0))
+		{
+			var selLength = txtarea.textLength;
+			var selStart = txtarea.selectionStart;
+			var selEnd = txtarea.selectionEnd;
+			var scrollTop = txtarea.scrollTop;
+			
+			if (selEnd == 1 || selEnd == 2)
+			{
+				selEnd = selLength;
+			}
+			
+			var s1 = (txtarea.value).substring(0,selStart);
+			var s2 = (txtarea.value).substring(selStart, selEnd);
+			var s3 = (txtarea.value).substring(selEnd, selLength);
+
+			temp = s2;
+		//	temp = temp.replace(/\[FLASH=([^\]]*)\]WIDTH=[0-9]{0,4} HEIGHT=[0-9]{0,4}\[\/FLASH\]/gi,"$1");
+		//	temp = temp.replace(/\[VIDEO=([^\]]*)\]WIDTH=[0-9]{0,4} HEIGHT=[0-9]{0,4}\[\/VIDEO\]/gi,"$1");
+			temp = temp.replace(/\[[^\]]*\]/gi,"");
+			txtarea.value = s1 + temp + s3;
+
+			txtarea.selectionStart = selEnd + open.length + close.length;
+			txtarea.selectionEnd = txtarea.selectionStart;
+		}
+//		txtarea.focus();
+	}
+	else if ( bbcode == "ABBC_cut" )
+	{
+		if ((clientVer >= 4) && is_ie && is_win)
+		{
+			// Get text selection
+			theSelection = document.selection.createRange().text;
+			
+			if (theSelection != '')
+			{
+				document.selection.createRange().text = '';
+			}
+		}
+		else if (txtarea.selectionEnd && (txtarea.selectionEnd - txtarea.selectionStart > 0))
+		{
+			var selLength = txtarea.textLength;
+			var selStart = txtarea.selectionStart;
+			var selEnd = txtarea.selectionEnd;
+			var scrollTop = txtarea.scrollTop;
+			
+			if (selEnd == 1 || selEnd == 2)
+			{
+				selEnd = selLength;
+			}
+
+			txtarea.value = (txtarea.value).substring(0,selStart) + (txtarea.value).substring(selEnd, selLength);
+		}
+//		txtarea.focus();
+	}
+	else if ( bbcode == "ABBC_copy" )
+	{
+		if ((clientVer >= 4) && is_ie && is_win)
+		{
+			// Get text selection
+			copy_paste = document.selection.createRange().text;			
+		}
+		else if (txtarea.selectionEnd && (txtarea.selectionEnd - txtarea.selectionStart > 0))
+		{
+			var selLength = txtarea.textLength;
+			var selStart = txtarea.selectionStart;
+			var selEnd = txtarea.selectionEnd;
+			var scrollTop = txtarea.scrollTop;
+			
+			if (selEnd == 1 || selEnd == 2)
+			{
+				selEnd = selLength;
+			}
+			
+			copy_paste = (txtarea.value).substring(selStart, selEnd);
+		}
+//		txtarea.focus();
+	}
+	else if ( bbcode == "ABBC_paste" )
+	{
+		bbfontstyle(''+copy_paste, '');
+	}
+	else
+	{
+		alert ("{L_ABBCODE_ERROR_TAG}"+bbcode);
+		return;
+	}
+}
+
+/**
+* Dropdown Highlight Color pallette
+*/
+function ABBCcolorPalette()
+{
+	var r = 4, g = 4, b = 4;
+	var numberList = new Array(6);
+	var color = '';
+
+	numberList[0] = '00';
+	numberList[1] = '40';
+	numberList[2] = '80';
+	numberList[3] = 'BF';
+	numberList[4] = 'FF';
+
+	for (r = 4; r > -1; r--)
+	{
+		for (g = 4; g > -1; g--)
+		{
+			for (b = 4; b > -1; b--)
+			{
+				color = String(numberList[r]) + String(numberList[g]) + String(numberList[b]);
+				document.write('<option value="' + color + '" style="background-color:#' + color + '">#' + color + '</option>');
+			}
+		}
+	}
+}
+// ]]>
+</script>
+
 		<table id="posttable" width="100%" border="1" bordercolor="#C0C0C0" style="border-collapse: collapse;" cellspacing="0" cellpadding="0" valign="top">
 			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
-				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2">
-					<span style="float:right;padding:5px 5px 0 0;font-size:10px;color:#cccccc;"><a href="http://www.mssti.com/phpbb2">Advanced BBCode Box 3</a></span>
-					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
-					<select style="height: 20px;" class="genmed"	name="ft" onChange="bbstyle2('ft',this.form.ft.options[this.form.ft.selectedIndex].value);this.form.ft.selectedIndex = 0" onMouseOver="helpline2('ft')" onMouseOut="helpline2('tip')">
-						<option style="font-weight : bold;" selected="selected">Font type</option>
+				<td background="{T_IMAGESET_PATH}/bbcode_box/images/bg.gif" valign="middle" colspan="2">
+					<span style="float:right;padding:2px 5px 0 0;font-size:10px;color:#cccccc;"><a href="http://www.mssti.com/phpBB3" target="_blank"><img src="{T_IMAGESET_PATH}/bbcode_box/images/help.png"	title="Advanced BBCode Box 3" /></a></span>
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif" style="padding-left: 4px;">
+					<select style="height: 20px;" class="genmed"	name="abbc_fonttype" onChange="bbfontstyle('[font=' + this.form.abbc_fonttype.options[this.form.abbc_fonttype.selectedIndex].value + ']', '[/font]'); this.form.abbc_fonttype.selectedIndex = 0" onMouseOver="helpline2('fonttype')" onMouseOut="helpline2()">
+						<option style="font-weight : bold;" selected="selected">{L_ABBCODE_FONT_TYPE}</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Arial;"					class="genmed"	value="Arial" >Arial</option> 
 						<option style="color:black; background-color: #FFFFFF; font-family: Arial Black;"			class="genmed"	value="Arial Black" >Arial Black</option> 
 						<option style="color:black; background-color: #FFFFFF; font-family: Century Gothic;"		class="genmed"	value="Century Gothic" >Century Gothic</option>
@@ -94,123 +759,102 @@
 						<option style="color:black; background-color: #FFFFFF; font-family: Times New Roman;"		class="genmed"	value="Times New Roman" >Times New Roman</option> 
 						<option style="color:black; background-color: #FFFFFF; font-family: Verdana;"				class="genmed"	value="Verdana" >Verdana</option> 
 					</select>
-					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
-					<select style="height: 20px" class="genmed"		name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" onMouseOver="helpline2('fs')" onMouseOut="helpline2('tip')">
-						<option style="font-weight : bold;" selected="selected">{L_FONT_SIZE}</option>
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif" style="padding-left: 4px;">
+					<select style="height: 20px" class="genmed"		name="abbc_fontsize" onchange="bbfontstyle('[size=' + this.form.abbc_fontsize.options[this.form.abbc_fontsize.selectedIndex].value + ']', '[/size]'); this.form.abbc_fontsize.selectedIndex = 2;" onMouseOver="helpline2('fontsize')" onMouseOut="helpline2()">
+						<option style="font-weight : bold;" selected="selected">{L_ABBCODE_FONT_SIZE}</option>
 						<option style="font-size:50%"	class="genmed"	value="50">{L_FONT_TINY}</option>
 						<option style="font-size:85%"	class="genmed"	value="85">{L_FONT_SMALL}</option>
 						<option style="font-size:100%"	class="genmed"	value="100">{L_FONT_NORMAL}</option>
 						<option style="font-size:150%"	class="genmed"	value="150">{L_FONT_LARGE}</option>
 						<option style="font-size:200%"	class="genmed"	value="200">{L_FONT_HUGE}</option>
-						<option style="font-size:300%"	class="genmed"	value="300">Gigante</option>
+						<option style="font-size:300%"	class="genmed"	value="300">{L_ABBCODE_FONT_GIANT}</option>
 					</select>
-					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
-					<select style="height: 20px" class="genmed"		name="hili" onchange="bbfontstyle('[highlight=#' + this.form.hili.options[this.form.hili.selectedIndex].value + ']', '[/highlight]');this.form.hili.selectedIndex = 0;" onMouseOver="helpline2('hili')" onMouseOut="helpline2('tip')">
-						<option value="" selected="selected">Highlight</option>
-						<option value="000000" style="background-color:black">black</option>
-						<option value="FFFFFF" style="background-color:white">white</option>
-						<option value="00BFFF" style="background-color:skyblue">skyblue</option>
-						<option value="4169E1" style="background-color:royalblue">royalblue</option>
-						<option value="0000FF" style="background-color:blue">blue</option>
-						<option value="00008B" style="background-color:darkblue">darkblue</option>
-						<option value="FFA500" style="background-color:orange">orange</option>
-						<option value="FF6347" style="background-color:tomato">tomato</option>
-						<option value="FF7F50" style="background-color:coral">coral</option>
-						<option value="FF4500" style="background-color:orangered">orangered</option>
-						<option value="DC143C" style="background-color:crimson">crimson</option>
-						<option value="FF0000" style="background-color:red">red</option>
-						<option value="B22222" style="background-color:firebrick">firebrick</option>
-						<option value="8B0000" style="background-color:darkred">darkred</option>
-						<option value="008000" style="background-color:green">green</option>
-						<option value="32CD32" style="background-color:limegreen">limegreen</option>
-						<option value="2E8B57" style="background-color:seagreen">seagreen</option>
-						<option value="FF1493" style="background-color:deeppink">deeppink</option>
-						<option value="800080" style="background-color:purple">purple</option>
-						<option value="4B0082" style="background-color:indigo">indigo</option>
-						<option value="DEB887" style="background-color:burlywood">burlywood</option>
-						<option value="F4A460" style="background-color:sandybrown">sandybrown</option>
-						<option value="A0522D" style="background-color:sienna">sienna</option>
-						<option value="D2691E" style="background-color:chocolate">chocolate</option>
-						<option value="008080" style="background-color:teal">teal</option>
-						<option value="C0C0C0" style="background-color:silver">silver</option>
-						<option value="808080" style="background-color:gray">gray</option>
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif" style="padding-left: 4px;">
+					<select style="height: 20px" class="genmed"		name="abbc_fonthili" onchange="bbfontstyle('[highlight=#' + this.form.abbc_fonthili.options[this.form.abbc_fonthili.selectedIndex].value + ']', '[/highlight]'); this.form.abbc_fonthili.selectedIndex = 0;" onMouseOver="helpline2('fonthili')" onMouseOut="helpline2()">
+						<option value="" selected="selected">{L_ABBCODE_FONT_HILI}</option>
+						<script type="text/javascript">
+						// <![CDATA[
+							ABBCcolorPalette();
+						// ]]>
+						</script>
 					</select>
-					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif" style="padding-left: 4px;">
 					<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
 				</td>
 			</tr>
 			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
-				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2"> 
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/justify.gif"	class="postimage"	type="image"	name="justify"		onClick="bbstyle2('justify')"	onMouseOver="helpline2('justify')"	onMouseOut="helpline2('tip')"	title="Texto Justificado" />
-					<img src="bbcode_box/images/right.gif" 		class="postimage"	type="image"	name="right"		onClick="bbstyle2('right')"		onMouseOver="helpline2('right')"	onMouseOut="helpline2('tip')"	title="Texto alineado a la derecha" />
-					<img src="bbcode_box/images/center.gif"		class="postimage"	type="image"	name="center"		onClick="bbstyle2('center')"	onMouseOver="helpline2('center')"	onMouseOut="helpline2('tip')"	title="Texto alineado al centro" />
-					<img src="bbcode_box/images/left.gif"		class="postimage"	type="image"	name="left"			onClick="bbstyle2('left')"		onMouseOver="helpline2('left')"		onMouseOut="helpline2('tip')"	title="Texto alineado a la izquierda" />
-					<img src="bbcode_box/images/preformat.gif"	class="postimage"	type="image"	name="pre"			onClick="bbstyle2('pre')"		onMouseOver="helpline2('pre')"		onMouseOut="helpline2('tip')"	title="Texto preformateado" />
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/sup.gif"		class="postimage"	type="image"	name="supscript"	onClick="bbstyle2('sup')"		onMouseOver="helpline2('sup')"		onMouseOut="helpline2('tip')"	title="Texto superindice" />
-					<img src="bbcode_box/images/sub.gif"		class="postimage"	type="image"	name="subs"			onClick="bbstyle2('sub')"		onMouseOver="helpline2('sub')"		onMouseOut="helpline2('tip')"	title="Texto subindice" />
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/bold.gif"		class="postimage"	type="image"	name="bold"			onClick="bbstyle2('bold')"		onMouseOver="helpline2('b')"		onMouseOut="helpline2('tip')"	title="Texto en negrita" />
-					<img src="bbcode_box/images/italic.gif"		class="postimage"	type="image"	name="italic"		onClick="bbstyle2('italic')"	onMouseOver="helpline2('i')"		onMouseOut="helpline2('tip')"	title="Texto en cursiva" />
-					<img src="bbcode_box/images/under.gif"		class="postimage"	type="image"	name="under"		onClick="bbstyle2('under')"		onMouseOver="helpline2('u')"		onMouseOut="helpline2('tip')"	title="Texto subrayado" />
-					<img src="bbcode_box/images/strike.gif"		class="postimage"	type="image"	name="strik"		onClick="bbstyle2('strike')"	onMouseOver="helpline2('strike')"	onMouseOut="helpline2('tip')"	title="Texto tachado" />
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/fade.gif"		class="postimage"	type="image"	name="fade"			onClick="bbstyle2('fade')"		onMouseOver="helpline2('fade')"		onMouseOut="helpline2('tip')"	title="fade" />
-					<img src="bbcode_box/images/grad.gif"		class="postimage"	type="image"	name="grad"			onClick="bbstyle2('grad')"		onMouseOver="helpline2('grad')"		onMouseOut="helpline2('tip')"	title="gradient" />
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/rtl.gif"		class="postimage"	type="image"	name="dirrtl"		onClick="bbstyle2('dirrtl')"	onMouseOver="helpline2('rtl')"		onMouseOut="helpline2('tip')"	title="Right to Left" />
-					<img src="bbcode_box/images/ltr.gif"		class="postimage"	type="image"	name="dirltr"		onClick="bbstyle2('dirltr')"	onMouseOver="helpline2('ltr')"		onMouseOut="helpline2('tip')"	title="Left to Right" />
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/marqd.gif"		class="postimage"	type="image"	name="marqd"		onClick="bbstyle2('marqd')"		onMouseOver="helpline2('marqd')"	onMouseOut="helpline2('tip')"	title="Marque to down" />
-					<img src="bbcode_box/images/marqu.gif"		class="postimage"	type="image"	name="marqu"		onClick="bbstyle2('marqu')"		onMouseOver="helpline2('marqu')"	onMouseOut="helpline2('tip')"	title="Marque to up" />
-					<img src="bbcode_box/images/marql.gif"		class="postimage"	type="image"	name="marql"		onClick="bbstyle2('marql')"		onMouseOver="helpline2('marql')"	onMouseOut="helpline2('tip')"	title="Marque to left" />
-					<img src="bbcode_box/images/marqr.gif"		class="postimage"	type="image"	name="marqr"		onClick="bbstyle2('marqr')"		onMouseOver="helpline2('marqr')"	onMouseOut="helpline2('tip')"	title="Marque to right" />
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/table.gif"		class="postimage"	type="image"	name="table"		onClick="bbstyle2('table')"		onMouseOver="helpline2('table')"	onMouseOut="helpline2('tip')"	title="Insertar tabla" />
+				<td background="{T_IMAGESET_PATH}/bbcode_box/images/bg.gif" valign="middle" colspan="2"> 
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/justify.gif"		class="postimage"	type="image"	name="abbc_justify"		onClick="bbstyle2('ABBC_justify')"	onMouseOver="helpline2('justify')"	onMouseOut="helpline2()"	title="{L_ABBCODE_JUSTIFY_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/right.gif" 		class="postimage"	type="image"	name="abbc_right"		onClick="bbstyle2('ABBC_right')"	onMouseOver="helpline2('right')"	onMouseOut="helpline2()"	title="{L_ABBCODE_RIGHT_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/center.gif"		class="postimage"	type="image"	name="abbc_center"		onClick="bbstyle2('ABBC_center')"	onMouseOver="helpline2('center')"	onMouseOut="helpline2()"	title="{L_ABBCODE_CENTER_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/left.gif"			class="postimage"	type="image"	name="abbc_left"		onClick="bbstyle2('ABBC_left')"		onMouseOver="helpline2('left')"		onMouseOut="helpline2()"	title="{L_ABBCODE_LEFT_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/preformat.gif"	class="postimage"	type="image"	name="abbc_pre"			onClick="bbstyle2('ABBC_pre')"		onMouseOver="helpline2('pre')"		onMouseOut="helpline2()"	title="{L_ABBCODE_PRE_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/sup.gif"			class="postimage"	type="image"	name="abbc_supscript"	onClick="bbstyle2('ABBC_sup')"		onMouseOver="helpline2('sup')"		onMouseOut="helpline2()"	title="{L_ABBCODE_SUP_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/sub.gif"			class="postimage"	type="image"	name="abbc_subs"		onClick="bbstyle2('ABBC_sub')"		onMouseOver="helpline2('sub')"		onMouseOut="helpline2()"	title="{L_ABBCODE_SUB_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/bold.gif"			class="postimage"	type="image"	name="abbc_bold"		onClick="bbstyle2('ABBC_bold')"		onMouseOver="helpline2('b')"		onMouseOut="helpline2()"	title="{L_ABBCODE_BOLD_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/italic.gif"		class="postimage"	type="image"	name="abbc_italic"		onClick="bbstyle2('ABBC_italic')"	onMouseOver="helpline2('i')"		onMouseOut="helpline2()"	title="{L_ABBCODE_ITA_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/under.gif"		class="postimage"	type="image"	name="abbc_under"		onClick="bbstyle2('ABBC_under')"	onMouseOver="helpline2('u')"		onMouseOut="helpline2()"	title="{L_ABBCODE_UNDER_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/strike.gif"		class="postimage"	type="image"	name="abbc_strike"		onClick="bbstyle2('ABBC_strike')"	onMouseOver="helpline2('strike')"	onMouseOut="helpline2()"	title="{L_ABBCODE_STRIKE_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/fade.gif"			class="postimage"	type="image"	name="abbc_fade"		onClick="bbstyle2('ABBC_fade')"		onMouseOver="helpline2('fade')"		onMouseOut="helpline2()"	title="{L_ABBCODE_FADE_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/grad.gif"			class="postimage"	type="image"	name="abbc_grad"		onClick="bbstyle2('ABBC_grad')"		onMouseOver="helpline2('grad')"		onMouseOut="helpline2()"	title="{L_ABBCODE_GRAD_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/rtl.gif"			class="postimage"	type="image"	name="abbc_dirrtl"		onClick="bbstyle2('ABBC_dirrtl')"	onMouseOver="helpline2('rtl')"		onMouseOut="helpline2()"	title="{L_ABBCODE_RTL_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/ltr.gif"			class="postimage"	type="image"	name="abbc_dirltr"		onClick="bbstyle2('ABBC_dirltr')"	onMouseOver="helpline2('ltr')"		onMouseOut="helpline2()"	title="{L_ABBCODE_LTR_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/marqd.gif"		class="postimage"	type="image"	name="abbc_marqd"		onClick="bbstyle2('ABBC_marqd')"	onMouseOver="helpline2('marqd')"	onMouseOut="helpline2()"	title="{L_ABBCODE_MARQD_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/marqu.gif"		class="postimage"	type="image"	name="abbc_marqu"		onClick="bbstyle2('ABBC_marqu')"	onMouseOver="helpline2('marqu')"	onMouseOut="helpline2()"	title="{L_ABBCODE_MARQU_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/marql.gif"		class="postimage"	type="image"	name="abbc_marql"		onClick="bbstyle2('ABBC_marql')"	onMouseOver="helpline2('marql')"	onMouseOut="helpline2()"	title="{L_ABBCODE_MARQL_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/marqr.gif"		class="postimage"	type="image"	name="abbc_marqr"		onClick="bbstyle2('ABBC_marqr')"	onMouseOver="helpline2('marqr')"	onMouseOut="helpline2()"	title="{L_ABBCODE_MARQR_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/table.gif"		class="postimage"	type="image"	name="abbc_table"		onClick="bbstyle2('ABBC_table')"	onMouseOver="helpline2('table')"	onMouseOut="helpline2()"	title="{L_ABBCODE_TABLE_MOVER}" />
 				</td>
 			</tr>
 			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
-				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2">
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/code.gif"		class="postimage"	type="image"	name="code"			onClick="bbstyle2('code')"		onMouseOver="helpline2('code')"		onMouseOut="helpline2('tip')"	title="Insertar Codigo" />
-					<img src="bbcode_box/images/quote.gif"		class="postimage"	type="image"	name="quote"		onClick="bbstyle2('quote')"		onMouseOver="helpline2('quote')"	onMouseOut="helpline2('tip')"	title="Citar texto" />
+				<td background="{T_IMAGESET_PATH}/bbcode_box/images/bg.gif" valign="middle" colspan="2">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/code.gif"			class="postimage"	type="image"	name="abbc_code"		onClick="bbstyle2('ABBC_code')"		onMouseOver="helpline2('code')"		onMouseOut="helpline2()"	title="{L_ABBCODE_CODE_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/quote.gif"		class="postimage"	type="image"	name="abbc_quote"		onClick="bbstyle2('ABBC_quote')"	onMouseOver="helpline2('quote')"	onMouseOut="helpline2()"	title="{L_ABBCODE_QUOTE_MOVER}" />
 					<!-- IF S_BBCODE_QUOTE -->
-					<img src="bbcode_box/images/spoil.gif"		class="postimage"	type="image"	name="spoil"		onClick="bbstyle2('spoil')"		onMouseOver="helpline2('spoil')"	onMouseOut="helpline2('tip')"	title="Ocultar datos" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/spoil.gif"		class="postimage"	type="image"	name="abbc_spoil"		onClick="bbstyle2('ABBC_spoil')"	onMouseOver="helpline2('spoil')"	onMouseOut="helpline2()"	title="{L_ABBCODE_SPOIL_MOVER}" />
 					<!-- ENDIF -->
 					<!-- IF S_LINKS_ALLOWED -->
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/emule.gif"		class="postimage"	type="image"	name="url"			onClick="bbstyle2('url')"		onMouseOver="helpline2('url')"		onMouseOut="helpline2('tip')"	title="Insertar Direccion ed2k" />
-					<img src="bbcode_box/images/url.gif"		class="postimage"	type="image"	name="url"			onClick="bbstyle2('url')"		onMouseOver="helpline2('url')"		onMouseOut="helpline2('tip')"	title="Insertar Direccion Web" />
-					<img src="bbcode_box/images/email.gif"		class="postimage"	type="image"	name="email"		onClick="bbstyle2('email')"		onMouseOver="helpline2('mail')"		onMouseOut="helpline2('tip')"	title="Insertar Direccion de Email" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/emule.gif"		class="postimage"	type="image"	name="abbc_ed2k"		onClick="bbstyle2('ABBC_ed2k')"		onMouseOver="helpline2('ed2k')"		onMouseOut="helpline2()"	title="{L_ABBCODE_ED2K_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/url.gif"			class="postimage"	type="image"	name="abbc_url"			onClick="bbstyle2('ABBC_url')"		onMouseOver="helpline2('url')"		onMouseOut="helpline2()"	title="{L_ABBCODE_URL_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/email.gif"		class="postimage"	type="image"	name="abbc_email"		onClick="bbstyle2('ABBC_email')"	onMouseOver="helpline2('mail')"		onMouseOut="helpline2()"	title="{L_ABBCODE_EMAIL_MOVER}" />
+<!-- -->			<img src="{T_IMAGESET_PATH}/bbcode_box/images/web.gif"			class="postimage"	type="image"	name="abbc_web"			onClick="bbstyle2('ABBC_web')"		onMouseOver="helpline2('web')"		onMouseOut="helpline2()"	title="{L_ABBCODE_WEB_MOVER}" />	<!-- -->
 					<!-- ENDIF -->
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
 					<!-- IF S_BBCODE_IMG -->
-					<img src="bbcode_box/images/img.gif"		class="postimage"	type="image"	name="img"			onClick="bbstyle2('img')"		onMouseOver="helpline2('img')"		onMouseOut="helpline2('tip')"	title="Insertar Imagen" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/img.gif"			class="postimage"	type="image"	name="abbc_img"			onClick="bbstyle2('ABBC_img')"		onMouseOver="helpline2('img')"		onMouseOut="helpline2()"	title="{L_ABBCODE_IMG_MOVER}" />
 					<!-- ENDIF -->
 					<!-- IF S_BBCODE_FLASH -->
-					<img src="bbcode_box/images/flash.gif"		class="postimage"	type="image"	name="flash"		onClick="bbstyle2('flash')"		onMouseOver="helpline2('flash')"	onMouseOut="helpline2('tip')"	title="Insertar archivo Flash" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/flash.gif"		class="postimage"	type="image"	name="abbc_flash"		onClick="bbstyle2('ABBC_flash')"	onMouseOver="helpline2('flash')"	onMouseOut="helpline2()"	title="{L_ABBCODE_FLASH_MOVER}" />
 					<!-- ENDIF -->
-					<img src="bbcode_box/images/video.gif"		class="postimage"	type="image"	name="video"		onClick="bbstyle2('video')"		onMouseOver="helpline2('video')"	onMouseOut="helpline2('tip')"	title="Insertar archivo Video" />
-					<img src="bbcode_box/images/sound.gif"		class="postimage"	type="image"	name="stream"		onClick="bbstyle2('stream')"	onMouseOver="helpline2('stream')"	onMouseOut="helpline2('tip')"	title="Insertar archivo Stream" />
-					<img src="bbcode_box/images/ram.gif"		class="postimage"	type="image"	name="ram"			onClick="bbstyle2('ram')"		onMouseOver="helpline2('ram')"		onMouseOut="helpline2('tip')"	title="Insertar archivo Real Media" />
-					<img src="bbcode_box/images/stage.gif"		class="postimage"	type="image"	name="stage" 		onClick="bbstyle2('stage')"		onMouseOver="helpline2('stage6')"	onMouseOut="helpline2('tip')"	title="Insertar Video Stage6" />
-					<img src="bbcode_box/images/googlevid.gif"	class="postimage"	type="image"	name="GVideo"		onClick="bbstyle2('GVideo')"	onMouseOver="helpline2('googlevid')"onMouseOut="helpline2('tip')"	title="Insertar Google Video" />
-					<img src="bbcode_box/images/youtube.gif"	class="postimage"	type="image"	name="youtube"		onClick="bbstyle2('youtube')"	onMouseOver="helpline2('youtube')"	onMouseOut="helpline2('tip')"	title="Insertar video Youtube" />
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/listbullets.gif"class="postimage"	type="image"	name="listb"		onClick="bbstyle2('listb')"		onMouseOver="helpline2('listb')"	onMouseOut="helpline2('tip')"	title="Lista desordenada" />
-					<img src="bbcode_box/images/listnumber.gif"	class="postimage"	type="image"	name="listm"		onClick="bbstyle2('listm')"		onMouseOver="helpline2('listm')"	onMouseOut="helpline2('tip')"	title="Lista ordenada" />
-					<img src="bbcode_box/images/hr.gif"			class="postimage"	type="image"	name="hr"			onClick="bbstyle2('hr')"		onMouseOver="helpline2('hr')"		onMouseOut="helpline2('tip')"	title="Línea de separación" />
-					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
-					<img src="bbcode_box/images/cut.gif"		class="postimage"	type="image"	name="cut"			onClick="bbstyle2('cut')"		onMouseOver="helpline2('cut')"		onMouseOut="helpline2('tip')" 	title="Borrar el texto seleccionado" />
-					<img src="bbcode_box/images/copy.gif"		class="postimage"	type="image"	name="copy"			onClick="bbstyle2('copy')"		onMouseOver="helpline2('copy')"		onMouseOut="helpline2('tip')" 	title="Copiar el texto seleccionado" />
-					<img src="bbcode_box/images/paste.gif"		class="postimage"	type="image"	name="paste"		onClick="bbstyle2('paste')"		onMouseOver="helpline2('paste')"	onMouseOut="helpline2('tip')" 	title="Pegar el texto copiado" />
-					<img src="bbcode_box/images/plain.gif"		class="postimage"	type="image"	name="plain"		onClick="bbstyle2('plain')"		onMouseOver="helpline2('plain')"	onMouseOut="helpline2('tip')" 	title="Eliminar todos los BBcode" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/video.gif"		class="postimage"	type="image"	name="abbc_video"		onClick="bbstyle2('ABBC_video')"	onMouseOver="helpline2('video')"	onMouseOut="helpline2()"	title="{L_ABBCODE_VIDEO_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/sound.gif"		class="postimage"	type="image"	name="abbc_stream"		onClick="bbstyle2('ABBC_stream')"	onMouseOver="helpline2('stream')"	onMouseOut="helpline2()"	title="{L_ABBCODE_STREAM_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/ram.gif"			class="postimage"	type="image"	name="abbc_ram"			onClick="bbstyle2('ABBC_ram')"		onMouseOver="helpline2('ram')"		onMouseOut="helpline2()"	title="{L_ABBCODE_RAM_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/stage.gif"		class="postimage"	type="image"	name="abbc_stage" 		onClick="bbstyle2('ABBC_stage6')"	onMouseOver="helpline2('stage6')"	onMouseOut="helpline2()"	title="{L_ABBCODE_STAGE_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/googlevid.gif"	class="postimage"	type="image"	name="abbc_GVideo"		onClick="bbstyle2('ABBC_GVideo')"	onMouseOver="helpline2('googlevid')"onMouseOut="helpline2()"	title="{L_ABBCODE_GVIDEO_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/youtube.gif"		class="postimage"	type="image"	name="abbc_youtube"		onClick="bbstyle2('ABBC_youtube')"	onMouseOver="helpline2('youtube')"	onMouseOut="helpline2()"	title="{L_ABBCODE_YOUTUBE_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/listbullets.gif"	class="postimage"	type="image"	name="abbc_listb"		onClick="bbstyle2('ABBC_listb')"	onMouseOver="helpline2('listb')"	onMouseOut="helpline2()"	title="{L_ABBCODE_LISTB_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/listnumber.gif"	class="postimage"	type="image"	name="abbc_listm"		onClick="bbstyle2('ABBC_listm')"	onMouseOver="helpline2('listm')"	onMouseOut="helpline2()"	title="{L_ABBCODE_LISTM_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/hr.gif"			class="postimage"	type="image"	name="abbc_hr"			onClick="bbstyle2('ABBC_hr')"		onMouseOver="helpline2('hr')"		onMouseOut="helpline2()"	title="{L_ABBCODE_HR_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/cut.gif"			class="postimage"	type="image"	name="abbc_cut"			onClick="bbstyle2('ABBC_cut')"		onMouseOver="helpline2('cut')"		onMouseOut="helpline2()" 	title="{L_ABBCODE_CUT_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/copy.gif"			class="postimage"	type="image"	name="abbc_copy"		onClick="bbstyle2('ABBC_copy')"		onMouseOver="helpline2('copy')"		onMouseOut="helpline2()" 	title="{L_ABBCODE_COPY_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/paste.gif"		class="postimage"	type="image"	name="abbc_paste"		onClick="bbstyle2('ABBC_paste')"	onMouseOver="helpline2('paste')"	onMouseOut="helpline2()" 	title="{L_ABBCODE_PASTE_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/plain.gif"		class="postimage"	type="image"	name="abbc_plain"		onClick="bbstyle2('ABBC_plain')"	onMouseOver="helpline2('plain')"	onMouseOut="helpline2()" 	title="{L_ABBCODE_PLAIN_MOVER}" />
 				</td>
 			</tr>
 			<!-- IF S_BBCODE_ALLOWED and .custom_tags -->
 			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
-				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2">
+				<td background="{T_IMAGESET_PATH}/bbcode_box/images/bg.gif" valign="middle" colspan="2">
 					<!-- BEGIN custom_tags -->
 					<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
 					<!-- END custom_tags -->

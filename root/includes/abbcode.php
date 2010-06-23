@@ -22,6 +22,8 @@ if (!defined('IN_PHPBB'))
 */
 function process_abbcode_box($text)
 {
+	global $user;
+	$user->add_lang('mods/abbcode');
 	/************************************************************************************
 	* Let´s phpbb3 take care of it
 	*************************************************************************************
@@ -86,8 +88,10 @@ function process_abbcode_box($text)
 	$replacements_bbcode_box[] = '<PRE><BDO lang="he" dir="\\1">\\2</BDO></PRE>';
 
 	// [spoil]Spoiler[/spoil] code..
+	$spoiler_show = $user->lang['SPOILER_SHOW'];
+	$spoiler_hide = $user->lang['SPOILER_HIDE'];
 	$patterns_bbcode_box[]     = "#\[spoil\](.*?)\[/spoil\]#si";
-	$replacements_bbcode_box[] = '<div class="quotewrapper"><div class="quotetitle"><input class="btnlite" type="button" value="Ver el Spoiler" onClick="javascript:if (this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display != \'\') { this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display = \'\'; this.innerText = \'\'; this.value = \'Ocultar el Spoiler\'; } else { this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display = \'none\'; this.innerText = \'\'; this.value = \'Ver el Spoiler\'; }" onfocus="this.blur();"></div><div class="quotecontent"><div style="display: none;">\\1</div></div></div>';
+	$replacements_bbcode_box[] = '<div class="quotewrapper"><div class="quotetitle"><input class="btnlite" type="button" value="' . $spoiler_show . '" onClick="javascript:if (this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display != \'\') { this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display = \'\'; this.innerText = \'\'; this.value = \'' . $spoiler_hide . '\'; } else { this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display = \'none\'; this.innerText = \'\'; this.value = \'' . $spoiler_show .'\'; }" onfocus="this.blur();"></div><div class="quotecontent"><div style="display: none;">\\1</div></div></div>';
 	
 	// [flash width=X height=X]Flash URL[/flash] code..
 	$patterns_bbcode_box[]		= "#\[flash width=([0-9]?[0-9]?[0-9]) height=([0-49]?[0-9]?[0-9])\](.*?)\[/flash\]#si";

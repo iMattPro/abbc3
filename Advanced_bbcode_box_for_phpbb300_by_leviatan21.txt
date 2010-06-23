@@ -1,5 +1,5 @@
-##############################################################
-## MOD Title: Advanced BBCode Box 3 MOD
+#####################################################################
+## MOD Title: Advanced BBCode Box 3
 ##
 ## MOD Author: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb2/
 ## MOD Author: Disturbed One < anthony@anthonycoy.com > (Anthony Coy) http://www.hvmdesign.com
@@ -7,38 +7,40 @@
 ## MOD Author: freddie < freddie@tactic.be > (Stefaan Van Damme) http://www.tactic.be
 ##
 ## MOD Description: This MOD adds lots of useful BBCode features and makes the bbcode buttons
-##		    look just like Microsoft Office. It also improves the functions of
-##		    phpBB's BBCode function. It adds the bbcode exactly where the cursor is,
-##		    inserts smilies where the cursor is, and adds more ways to customize posts.
-##		    The MOD is very fast loading, and is a sleek addition to your phpBB bulletin board.
+##		look just like Microsoft Office. It also improves the functions of
+##		phpBB's BBCode function. It adds the bbcode exactly where the cursor is,
+##		inserts smilies where the cursor is, and adds more ways to customize posts.
+##		The MOD is very fast loading, and is a sleek addition to your phpBB bulletin board.
+##		You must have javascript enabled to use this MOD.
 ##
-## MOD Version: 1.0.1
+## MOD Version: 1.0.2
 ##
 ## Installation Level: Easy
 ## Installation Time: ~10 Minutes
 ##
-## Files To Edit: (5)
+## Files To Edit:
+##	posting.php
 ##	includes/functions_content.php
 ##	styles/prosilver/template/overall_header.html
 ##	styles/prosilver/template/posting_buttons.html
 ##	styles/subsilver2/template/overall_header.html
 ##	styles/subsilver2/template/posting_buttons.html
 ##
-## Included Files: (57)
-##	bbcode_box/*.*
+## Included Files:
 ##	includes/abbcode.php
-##	styles/prosilver/template/*.*
-##	styles/subsilver2/template/*.*
+##	language/en/mods/abbcode.php
+##	styles/prosilver/*.*
+##	styles/subsilver2/*.*
 ##
 ## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2 
-##############################################################
+#####################################################################
 ## For security purposes, please check: http://www.phpbb.com/mods/
 ## for the latest version of this MOD. Although MODs are checked
 ## before being allowed in the MODs Database there is no guarantee
 ## that there are no security problems within the MOD. No support
 ## will be given for MODs not found within the MODs Database which
 ## can be found at http://www.phpbb.com/mods/
-##############################################################
+#####################################################################
 ## Author Notes:
 ##
 ##	I contacted "Disturbed One" the original developer of this mod 
@@ -100,7 +102,7 @@
 ##	- Cut selected text.
 ##	- Copy selected text.
 ##	- Paste previously copy text.
-##	- Web included by iframe (Without icon !] but working)
+##	- Web included by iframe
 ##	- Remove BBCode (Removes all BBCode tags from selected text)
 ##
 ##	EasyMOD
@@ -113,7 +115,7 @@
 ##
 ##	Translation
 ##	-----------
-##	Not implemented yet :(.
+##	See contrib/language folder
 ##
 ##	Official last version
 ##	-----------
@@ -122,41 +124,70 @@
 ##	http://www.mssti.com/phpbb3/index.php
 ##	User : usertest / password: usertest
 ##
-##############################################################
+#####################################################################
 ## MOD History:
+##
+##	2008-01-14 - Version 1.0.2
+##	- Fix in subsilver posting_abbcodes_buttons.html
+##	- Change folder placement (Suggested by MrC).
+##	- Added languaje file.
+##	- Changed highlight dropdown colors with phpbb colors.
+##	- Change the copyright link to image link.
+##	- Added Giant font size (you must go ACP -> General Tab -> Board configuration -> Post settings
+##		look at "Maximum font size per post:
+##				 Maximum font size allowed in a post. Set to 0 for unlimited font size.
+##		and change 200 value with 300)
 ##
 ##	2008-01-11 - Version 1.0.1
 ##	- Added typo Pre.
-##	- Adder table wizard.
+##	- Adder table wizard (Suggested by ahmedgroup).
 ##	- Fix Gradient.
-##	- Fix abbcodes buttons from phpbb3 ACP
+##	- Fix abbed codes buttons from phpbb3 ACP.
 ##
 ##	2008-01-10 - Version 1.0.0
 ##	- Upgrade from phpbb2.x to phpbb3.0.0 (Gold)
 ##
-##############################################################
+#####################################################################
 ## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
-############################################################## 
+#####################################################################
 #
-#-----[ COPY ]------------------------------------------
+#-----[ COPY ]-------------------------------------------------------
 #
-copy root/bbcode_box/*.*                 to bbcode_box/*.*
 copy root/includes/abbcode.php           to includes/abbcode.php
-copy root/styles/prosilver/template/*.*  to styles/prosilver/template/*.*
-copy root/styles/subsilver2/template/*.* to styles/subsilver2/template/*.*
+copy root/language/en/mods/abbcode.php   to language/en/mods/abbcode.php
+copy root/styles/prosilver/*.*           to styles/prosilver/*.*
+copy root/styles/subsilver2/*.*          to styles/subsilver2/*.*
 
 #
-#-----[ OPEN ]------------------------------------------
+#-----[ OPEN ]-------------------------------------------------------
+#
+posting.php
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+// Always check if the submitted attachment data is valid and belongs to the user.
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
+#
+// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START
+$user->add_lang('mods/abbcode');
+// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END
+
+#
+#-----[ OPEN ]-------------------------------------------------------
 #
 includes/functions_content.php
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 #
 	$text = str_replace(array("\n", "\r"), array('<br />', "\n"), $text);
 
 #
-#-----[ AFTER, ADD ]------------------------------------------
+#-----[ AFTER, ADD ]-------------------------------------------------
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find. 
 #
 
@@ -167,18 +198,18 @@ includes/functions_content.php
 	// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END
 
 #
-#-----[ OPEN ]------------------------------------------
+#-----[ OPEN ]-------------------------------------------------------
 # NOTE: You will have to make this change to ALL themes you have installed. I use "prosilver" as an example.
 #
 styles/prosilver/template/overall_header.html
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 #
 </head>
 
 #
-#-----[ BEFORE, ADD ]------------------------------------------
+#-----[ BEFORE, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
 
@@ -187,31 +218,31 @@ styles/prosilver/template/overall_header.html
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 	
 #
-#-----[ OPEN ]------------------------------------------
+#-----[ OPEN ]-------------------------------------------------------
 # NOTE: You will have to make this change to ALL themes you have installed. I use "prosilver" as an example.
 #
 styles/prosilver/template/posting_buttons.html
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 #
 <div id="format-buttons">
 
 #
-#-----[ AFTER, ADD ]------------------------------------------
+#-----[ AFTER, ADD ]-------------------------------------------------
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find. 
 #
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <!--
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 #
 </div>
 <!-- ENDIF -->
 
 #
-#-----[ BEFORE, ADD ]------------------------------------------
+#-----[ BEFORE, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
 -->
@@ -219,18 +250,18 @@ styles/prosilver/template/posting_buttons.html
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 
 #
-#-----[ OPEN ]------------------------------------------
+#-----[ OPEN ]-------------------------------------------------------
 # NOTE: You will have to make this change to ALL themes you have installed. I use "subsilver2" as an example.
 #
 styles/subsilver2/template/overall_header.html
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 #
 </head>
 
 #
-#-----[ BEFORE, ADD ]------------------------------------------
+#-----[ BEFORE, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
 
@@ -239,32 +270,32 @@ styles/subsilver2/template/overall_header.html
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 	
 #
-#-----[ OPEN ]------------------------------------------
+#-----[ OPEN ]-------------------------------------------------------
 # NOTE: You will have to make this change to ALL themes you have installed. I use "subsilver2" as an example.
 #
 styles/subsilver2/template/posting_buttons.html
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 # NOTE: This line appears twice, but we will use only the first match.
 <!-- IF S_BBCODE_ALLOWED -->
 
 #
-#-----[ AFTER, ADD ]------------------------------------------
+#-----[ AFTER, ADD ]-------------------------------------------------
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find. 
 #
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <!--
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 #
 <!-- ENDIF -->
 	</td>
 </tr>
 
 #
-#-----[ BEFORE, ADD ]------------------------------------------
+#-----[ BEFORE, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
 -->
@@ -272,33 +303,36 @@ styles/subsilver2/template/posting_buttons.html
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 #
 <!-- IF S_BBCODE_ALLOWED and .custom_tags -->
 
 #
-#-----[ BEFORE, ADD ]------------------------------------------
+#-----[ BEFORE, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <!--
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 
 #
-#-----[ FIND ]------------------------------------------
+#-----[ FIND ]-------------------------------------------------------
 #
 <!-- IF S_BBCODE_ALLOWED -->
 <tr>
 
 #
-#-----[ BEFORE, ADD ]------------------------------------------
+#-----[ BEFORE, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 -->
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 
 #
-#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#-----[DIY]----------------------------------------------------------
+#
+After installation, make sure you purge the cache and refresh all the styles through the ACP to get everything to show up correctly.
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]---------------------------------------
 #
 # EoM
