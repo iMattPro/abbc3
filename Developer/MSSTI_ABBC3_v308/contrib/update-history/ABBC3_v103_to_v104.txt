@@ -1,0 +1,234 @@
+#####################################################################
+## MOD Title: Advanced BBCode Box 3
+##
+## MOD Author: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb2/
+##
+## MOD Description: How to upgrade Advanced BBCode Box 3 from 1.0.3 to 1.0.4
+##
+## MOD Version: 1.0.4
+##
+## Installation Level: Easy
+## Installation Time: ~5 Minutes
+##
+## Files To Edit:
+##	styles/prosilver/template/overall_header.html
+##	styles/subsilver2/template/overall_header.html
+##
+## Included Files:
+##	includes/abbcode.php
+##	language/en/mods/abbcode.php
+##	styles/prosilver/*.*
+##	styles/subsilver2/*.*
+##
+## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2 
+#####################################################################
+## For security purposes, please check: http://www.phpbb.com/mods/
+## for the latest version of this MOD. Although MODs are checked
+## before being allowed in the MODs Database there is no guarantee
+## that there are no security problems within the MOD. No support
+## will be given for MODs not found within the MODs Database which
+## can be found at http://www.phpbb.com/mods/
+#####################################################################
+## Author Notes:
+##
+##	I contacted "Disturbed One" the original developer of this mod 
+##	 and "freddie" the last developer of this mod, 
+##	 and ask for upgrade the Advanced BBcode Box for phpbb2.x to phpbb3.0.0, 
+##	 Both say that they will not do the job, and are agree that I do it, 
+##	 so here I am ;)
+##
+##	Please do not remove the copyright notice located on the box without my permission.
+##
+##	Tested on Windows Browsers:
+##	- Internet Explorer 7.0
+##	- Mozilla Firefox 2.0
+##	- Opera 9.1
+##	- Safari 3.0
+##	- Netscape 8.1
+##
+##	List of bbcodes included :
+##	- Font Type Dropdown.
+##	- Font Size Dropdown.
+##	- Highlight Font Color Dropdown.
+##	- Justify Align.
+##	- Left Align.
+##	- Center Align.
+##	- Right Align.
+##	- Preformat text
+##	- Superscript.
+##	- Subscript.
+##	- Bold.
+##	- Italic.
+##	- Underline.
+##	- Strikethrough.
+##	- Text Fade.
+##	- Text Gradient.
+##	- Message Box text direction Left to Light (Traditional).
+##	- Message Box text direction right to Left (Arabic, etc).
+##	- Marquee Down.
+##	- Marquee Up.
+##	- Marquee Left.
+##	- Marquee Right.
+##	- Table row cell wizard.
+##	- Code.
+##	- Quote.
+##	- Spoiler (User must click on link to review text within tags).
+##	- ed2k link Wizard.
+##	- Hyperlink Wizard.
+##	- Email Wizard.
+##	- Web included by iframe
+##	- Image Wizard.
+##	- Imgshack
+##	- Flash Wizard.
+##	- Streaming Video/Audio Wizard.
+##	- Ram Wizard.
+##	- Stage6 video Wizard.
+##	- Google video Wizard.
+##	- Youtube video  Wizard.
+##	- Unordered List Wizard.
+##	- Ordered List Wizard.
+##	- Line Break
+##	- Cut selected text.
+##	- Copy selected text.
+##	- Paste previously copy text.
+##	- Remove BBCode (Removes all BBCode tags from selected text)
+##
+##	EasyMOD
+##	-----------
+##	This MOD is NOT Tested with EasyMod
+##
+##	SQL commands
+##	-----------
+##	This MOD No need a database install/update.
+##
+##	Translation
+##	-----------
+##	See contrib/language folder
+##	es [Spanish Argentina]
+##	pt_br [Português Brasil]
+##	tr [Turkish]
+##	fr [Francais]
+##	pl [Polish]
+##
+##	Official last version
+##	-----------
+##	Meanwhile the phpBB group validation and as the MOD is not yet
+##	in the phpBB MOD database, check this official link for updates...
+##	http://www.mssti.com/phpbb3/index.php
+##	If you want to test this board, you can use a demo acount :
+##	Please visit : http://www.mssti.com/phpbb3/viewtopic.php?f=2&t=1
+##
+#####################################################################
+## MOD History:
+##
+##	2008-01-18 - Version 1.0.4
+##	- added security on laguages files.
+##	- renewed wizards.
+##	- added/renewed font styles.
+##	- added imageshack upload.
+##	- fix video + Real Player + stream tags.
+##	- fix table.
+##	- Improve cosmetic issue.
+##
+##	2008-01-15 - Version 1.0.3
+##	- Fix in subsilver posting_abbcodes_buttons.html.
+##	- added contrib/add-on folder with Quick reply info.
+##	- fix private message bugs. ( Thanks El_Vindicador )
+##	- fix others minor bugs.
+##
+##	2008-01-14 - Version 1.0.2
+##	- Change folder placement ( Suggested by MrC ).
+##	- Added languaje file.
+##	- Changed highlight dropdown colors with phpbb colors.
+##	- Change the copyright link to image link.
+##	- Added Giant font size (you must go ACP -> General Tab -> Board configuration -> Post settings
+##		look at 
+##		"Maximum font size per post:
+##		 Maximum font size allowed in a post. Set to 0 for unlimited font size."
+##		and change 200 value with 300)
+##
+##	2008-01-11 - Version 1.0.1
+##	- Added typo Pre.
+##	- Adder table wizard ( Suggested by ahmedgroup ).
+##	- Fix Gradient.
+##	- Fix abbed codes buttons from phpbb3 ACP.
+##
+##	2008-01-10 - Version 1.0.0
+##	- Upgrade from phpbb2.x to phpbb3.0.0 (Gold)
+##
+#####################################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+#####################################################################
+
+#
+#-----[ DELETE ]-----------------------------------------------------
+#
+#
+styles/prosilver/template/bbcode_box.js
+styles/subsilver2/template/bbcode_box.js
+
+#
+#
+#-----[ COPY / OVERWRITTE ]-------------------------------------------------------
+#
+copy root/includes/abbcode.php         to includes/abbcode.php
+copy root/language/en/mods/abbcode.php to language/en/mods/abbcode.php
+copy root/styles/prosilver/*.*         to styles/prosilver/*.*
+copy root/styles/subsilver2/*.*        to styles/subsilver2/*.*
+
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+#
+styles/prosilver/template/overall_header.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/bbcode_box.js" charset="iso-8859-1"></script>
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
+
+#
+#-----[ REPLACE WITH ]------------------------------------------------
+#
+
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/bbcode_box.js" charset="iso-8859-1"></script>
+<style type="text/css" media="all">
+@import "{T_IMAGESET_PATH}/bbcode_box/stylesheet.css";
+</style>
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
+	
+#
+#-----[ OPEN ]-------------------------------------------------------
+#
+styles/subsilver2/template/overall_header.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/bbcode_box.js" charset="iso-8859-1"></script>
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
+
+#
+#-----[ REPLACE WITH ]------------------------------------------------
+#
+
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/bbcode_box.js" charset="iso-8859-1"></script>
+<style type="text/css" media="all">
+@import "{T_IMAGESET_PATH}/bbcode_box/stylesheet.css";
+</style>
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
+	
+#
+#-----[DIY]----------------------------------------------------------
+#
+After installation, make sure you purge the cache and refresh all the styles through the ACP to get everything to show up correctly.
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]---------------------------------------
+#
+# EoM

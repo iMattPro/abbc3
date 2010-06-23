@@ -1,0 +1,537 @@
+#####################################################################
+## MOD Title: Advanced BBCode Box 3 ( aka ABBC3 )
+##
+## MOD Author: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb2/
+##
+## MOD Description: How to upgrade ABBC3 from 1.0.6b to 1.0.7
+##
+## MOD Version: 1.0.7
+##
+## Installation Level: Easy
+## Installation Time: ~15 Minutes
+##
+## Files To Edit:
+##	common.php
+##	includes/functions.php
+##	includes/functions_content.php
+##
+##	styles/prosilver/template/overall_header.html
+##	styles/prosilver/template/posting_buttons.html
+##
+##	styles/subsilver2/template/overall_header.html
+##	styles/subsilver2/template/posting_buttons.html
+##	styles/subsilver2/template/posting_body.html
+##	styles/subsilver2/template/ucp_profile_signature.html
+##
+## Included Files:
+##	includes/abbcode.php
+##	includes/functions_content.php
+##	language/en/mods/abbcode.php
+##	styles/prosilver/*.*
+##	styles/subsilver2/*.*
+##
+## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2 
+#####################################################################
+## For security purposes, please check: http://www.phpbb.com/mods/
+## for the latest version of this MOD. Although MODs are checked
+## before being allowed in the MODs Database there is no guarantee
+## that there are no security problems within the MOD. No support
+## will be given for MODs not found within the MODs Database which
+## can be found at http://www.phpbb.com/mods/
+#####################################################################
+## Author Notes:
+##
+##	Please, please, be careful with subsilver2 update !
+##
+##-------------------------------------------------------------------
+##	One you finish the install, please take your time to read the the contrib folder content.
+##	You will find instructions for :
+##	- How to personalize & setup ABBC3
+##	- How to add a new icon & bbcode to ABBC3
+##	- How to use ABBC3 with other's mod
+##-------------------------------------------------------------------
+##
+#####################################################################
+##
+#####################################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+#####################################################################
+
+#
+#-----[ COPY ]-------------------------------------------------------
+#
+copy root/includes/abbcode.php            to includes/abbcode.php
+copy root/includes/functions_abbcode.php  to includes/functions_abbcode.php
+copy root/language/en/mods/abbcode.php    to language/en/mods/abbcode.php
+copy root/styles/prosilver/*.*            to styles/prosilver/*.*
+copy root/styles/subsilver2/*.*           to styles/subsilver2/*.*
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+#
+common.php
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+// MOD : ABBC3 (V1.0.6b) - START
+require($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+// MOD : ABBC3 (V1.0.6b) - END
+
+
+#
+#-----[ REPLACE WITH ]------------------------------------------------
+# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#
+// MOD : ABBC3 (V1.0.7) - START
+require($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+// MOD : ABBC3 (V1.0.7) - END
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+#
+includes/functions.php
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+	// MOD : ABBC3 (V1.0.6b) - START
+	display_abbc3();
+	// MOD : ABBC3 (V1.0.6b) - END
+#
+#-----[ REPLACE WITH ]------------------------------------------------
+# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#
+	// MOD : ABBC3 (V1.0.7) - START
+	$abbcode3 = new abbcode3();
+	$abbcode3->abbcode3_init();
+	$abbcode3->display_abbc3();
+	// MOD : ABBC3 (V1.0.7) - END
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+#
+includes/functions_content.php
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+	global $config, $user, $phpbb_root_path;
+
+	// MOD : ABBC3 (V1.0.6b) - START
+	$text = process_abbc3($text);
+	// MOD : ABBC3 (V1.0.6b) - END
+
+	if ($force_option || !$config['allow_smilies'] || !$user->optionget('viewsmilies'))
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+	global $config, $user, $phpbb_root_path;
+
+	if ($force_option || !$config['allow_smilies'] || !$user->optionget('viewsmilies'))
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+	if (sizeof($censors))
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#
+	// MOD : ABBC3 (V1.0.7) - START
+	$abbcode3 = new abbcode3();
+	$abbcode3->abbcode3_init();
+	$text = $abbcode3->process_abbc3($text);
+	// MOD : ABBC3 (V1.0.7) - END
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+# NOTE: You will have to make this change to ALL themes you have installed, based on prosilver. I use "prosilver" as an example.
+#
+styles/prosilver/template/overall_header.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<!-- // MOD : ABBC3 (V1.0.6b) - START -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/bbcode_box.js" charset="{S_CONTENT_ENCODING}"></script>
+<!-- IF S_ABBC3_LITEBOX -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/prototype.lite.js"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/moo.fx.js"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/litebox-1.0.js"></script>
+<script type="text/javascript">
+	var fileLoadingImage = "{T_IMAGESET_PATH}/bbcode_box/lightbox/loading.gif";
+	var fileBottomNavCloseImage = "{T_IMAGESET_PATH}/bbcode_box/lightbox/closelabel.gif";
+</script>
+<!-- ENDIF -->
+
+<style type="text/css" media="all">
+@import "{T_IMAGESET_PATH}/bbcode_box/stylesheet.css";
+@import "{T_IMAGESET_PATH}/bbcode_box/lightbox/lightbox.css";
+</style>
+<!-- // MOD : ABBC3 (V1.0.6b) - END -->
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+<!-- // MOD : ABBC3 (V1.0.7) - START -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/bbcode_box.js" charset="{S_CONTENT_ENCODING}"></script>
+<!-- IF S_ABBC3_LITEBOX -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/prototype.lite.js"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/moo.fx.js"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/litebox-1.0.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+	var fileLoadingImage = "{T_IMAGESET_PATH}/bbcode_box/lightbox/loading.gif";
+	var fileBottomNavCloseImage = "{T_IMAGESET_PATH}/bbcode_box/lightbox/closelabel.gif";
+	window.onload = initLightbox;
+// ]]>
+</script>
+<!-- ENDIF -->
+
+<style type="text/css" media="all">
+@import "{T_IMAGESET_PATH}/bbcode_box/stylesheet.css";
+@import "{T_IMAGESET_PATH}/bbcode_box/lightbox/lightbox.css";
+</style>
+<!-- // MOD : ABBC3 (V1.0.7) - END -->
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}" <!-- IF S_ABBC3_LITEBOX --> onload="initLightbox()" <!-- ENDIF --> >
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+<body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}">
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+# NOTE: You will have to make this change to ALL themes you have installed. I use "prosilver" as an example.
+#
+styles/prosilver/template/posting_buttons.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - START -->
+<!-- IF S_ABBC3_MOD -->
+	<!-- INCLUDE posting_abbcodes_buttons.html -->
+<!-- ELSE -->
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - END -->
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+<!-- // MOD : ABBC3 (V1.0.7) - START -->
+<!-- IF S_ABBC3_MOD -->
+	<!-- INCLUDE posting_abbcodes_buttons.html -->
+<!-- ELSE -->
+<!-- // MOD : ABBC3 (V1.0.7) - END -->
+
+#
+#-----[ FIND ]-------------------------------------------------------
+# NOTE : This change is not important to work fine, is simple to update the mod version
+# NOTE: This line appears several times, we will do this for all matches.
+#
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - START -->
+<!-- ENDIF -->
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - END -->
+</div>
+<!-- ENDIF -->
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+<!-- // MOD : ABBC3 (V1.0.7) - START -->
+<!-- ENDIF -->
+<!-- // MOD : ABBC3 (V1.0.7) - END -->
+</div>
+<!-- ENDIF -->
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+# NOTE: You will have to make this change to ALL themes you have installed, based on subsilver2. I use "subsilver2" as an example.
+#
+styles/subsilver2/template/overall_header.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<!-- // MOD : ABBC3 (V1.0.6b) - START -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/bbcode_box.js" charset="{S_CONTENT_ENCODING}"></script>
+<!-- IF S_ABBC3_LITEBOX -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/prototype.lite.js"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/moo.fx.js"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/litebox-1.0.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+	var fileLoadingImage = "{T_IMAGESET_PATH}/bbcode_box/lightbox/loading.gif";
+	var fileBottomNavCloseImage = "{T_IMAGESET_PATH}/bbcode_box/lightbox/closelabel.gif";
+// ]]>
+</script>
+<!-- ENDIF -->
+
+<style type="text/css" media="all">
+@import "{T_IMAGESET_PATH}/bbcode_box/stylesheet.css";
+@import "{T_IMAGESET_PATH}/bbcode_box/lightbox/lightbox.css";
+</style>
+<!-- // MOD : ABBC3 (V1.0.6b) - END -->
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+<!-- // MOD : ABBC3 (V1.0.7) - START -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/bbcode_box.js" charset="{S_CONTENT_ENCODING}"></script>
+<!-- IF S_ABBC3_LITEBOX -->
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/prototype.lite.js"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/moo.fx.js"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/lightbox/litebox-1.0.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+	var fileLoadingImage = "{T_IMAGESET_PATH}/bbcode_box/lightbox/loading.gif";
+	var fileBottomNavCloseImage = "{T_IMAGESET_PATH}/bbcode_box/lightbox/closelabel.gif";
+	window.onload = initLightbox;
+// ]]>
+</script>
+<!-- ENDIF -->
+
+<style type="text/css" media="all">
+@import "{T_IMAGESET_PATH}/bbcode_box/stylesheet.css";
+@import "{T_IMAGESET_PATH}/bbcode_box/lightbox/lightbox.css";
+</style>
+<!-- // MOD : ABBC3 (V1.0.7) - END -->
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<body class="{S_CONTENT_DIRECTION}" <!-- IF S_ABBC3_LITEBOX --> onload="initLightbox()" <!-- ENDIF --> >
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+<body class="{S_CONTENT_DIRECTION}">
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+# NOTE: You will have to make this change to ALL themes you have installed, based on subsilver2. I use "subsilver2" as an example.
+#
+styles/subsilver2/template/posting_buttons.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<!-- IF S_BBCODE_ALLOWED -->
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - START -->
+<!-- IF S_ABBC3_MOD -->
+	<!-- INCLUDE posting_abbcodes_buttons.html -->
+<!-- ELSE -->
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - END -->
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+<!-- IF S_BBCODE_ALLOWED -->
+	<!-- // MOD : ABBC3 (V1.0.7) - START -->
+	<!-- IF S_ABBC3_MOD -->
+		<!-- INCLUDE posting_abbcodes_buttons.html -->
+	<!-- ELSE -->
+	<!-- // MOD : ABBC3 (V1.0.7) - END -->
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+		</select></span>
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - START -->
+<!-- ENDIF -->
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - END-->
+<!-- ENDIF -->
+	</td>
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+		</select></span>
+	<!-- // MOD : ABBC3 (V1.0.7) - START -->
+	<!-- ENDIF -->
+	<!-- // MOD : ABBC3 (V1.0.7) - END -->
+	<!-- ENDIF -->
+	</td>
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - START -->
+<!-- IF S_ABBC3_MOD -->
+	<!-- nothing happend -->
+<!-- ELSE -->
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - END-->
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+<!-- // MOD : ABBC3 (V1.0.7) - START -->
+<!-- IF !S_ABBC3_MOD -->
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+	</tr>
+<!-- ENDIF -->
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - START -->
+<!-- ENDIF -->
+<!-- // MOD : Advanced BBCode Box 3 (V1.0.6) - END -->
+
+<!-- IF S_BBCODE_ALLOWED -->
+
+#
+#-----[ REPLACE WITH ]-----------------------------------------------
+#
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_BBCODE_ALLOWED -->
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+		<td class="genmed" align="center">{L_FONT_COLOR}</td>
+	<!-- ENDIF -->
+</tr>
+<!-- ENDIF -->
+
+#
+#-----[ AFTER, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line after the preceding line(s) to find.
+#
+<!-- ENDIF -->
+<!-- // MOD : ABBC3 (V1.0.7) - END -->
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+# NOTE: You will have to make this change to ALL themes you have installed, based on subsilver2. I use "subsilver2" as an example.
+#
+styles/subsilver2/template/posting_body.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+			<td valign="top" style="width: 100%;"><textarea name="message" rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" style="width: 98%;">{MESSAGE}</textarea></td>
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#
+		<!-- // MOD : ABBC3 (V1.0.7) - START -->
+		<!-- IF S_ABBC3_MOD -->
+			<td valign="top" colspan="2"><textarea name="message" rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" style="width: 99%;">{MESSAGE}</textarea></td>		
+		<!-- ELSE -->
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+				</script>
+			</td>
+			<!-- ENDIF -->
+
+#
+#-----[ AFTER, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line after the preceding line(s) to find.
+#
+		<!-- ENDIF -->
+		<!-- // MOD : ABBC3 (V1.0.7) - END -->
+
+#
+#-----[ OPEN ]-------------------------------------------------------
+# NOTE: You will have to make this change to ALL themes you have installed, based on subsilver2. I use "subsilver2" as an example.
+#
+styles/subsilver2/template/ucp_profile_signature.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+			<td colspan="2"><textarea class="post" name="signature" rows="10" cols="76" style="width: 90%;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{SIGNATURE}</textarea></td>
+
+#
+#-----[ BEFORE, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#
+		<!-- // MOD : ABBC3 (V1.0.7) - START -->
+		<!-- IF S_ABBC3_MOD -->
+			<td colspan="2"><textarea class="post" name="signature" rows="10" cols="76" style="width: 99%;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{SIGNATURE}</textarea></td>
+		</tr>
+		<!-- ELSE -->
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+						</script>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<!-- ENDIF -->
+
+#
+#-----[ AFTER, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line after the preceding line(s) to find.
+#
+		<!-- ENDIF -->
+		<!-- // MOD : ABBC3 (V1.0.7) - END -->
+
+#
+#-----[DIY]----------------------------------------------------------
+#
+After installation, make sure you purge the cache and refresh all the styles through the ACP to get everything to show up correctly.
+
+Added Giant font size (you must go ACP -> General Tab -> Board configuration -> Post settings
+	look at "Maximum font size per post: Maximum font size allowed in a post. Set to 0 for unlimited font size."
+	and change "200" value with "300"
+
+For more instructions on how to personalize ABBC3, please read the contrib folder content.
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]---------------------------------------
+#
+# EoM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#-----[DIY]----------------------------------------------------------
+#
+After installation, make sure you purge the cache and refresh all the styles through the ACP to get everything to show up correctly.
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]---------------------------------------
+#
+# EoM
