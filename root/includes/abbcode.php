@@ -115,6 +115,10 @@ function process_abbcode_box($text)
 	$patterns_bbcode_box[]		= "#\[youtube\]http://(.*?).youtube.com/watch\?v=([0-9A-Za-z-_]{11})[^[]*\[/youtube\]#is";
 	$replacements_bbcode_box[]	= '<object width="425" height="350"><param name="movie" value="http://\\1.youtube.com/v/\\2"></param><param name="wmode" value="transparent"></param><embed src="http://\\1.youtube.com/v/\\2" type="application/x-shockwave-flash" wmode="transparent" width="425" height="350"></embed></object>';
 
+	// [veoh]YouTube URL[/veoh] code.. //http://www.veoh.com/videos/v2471077X3FRGHxR
+	$patterns_bbcode_box[]		= "#\[veoh\]http://(.*?).veoh.com/videos/(.*?)\[/veoh\]#si";
+	$replacements_bbcode_box[]	= '<embed src="http://\\1.veoh.com/videodetails2.swf?permalinkId=\\2&id=anonymous&player=videodetailsembedded&videoAutoPlay=0" allowFullScreen="true" width="540" height="438" bgcolor="#000000" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>';
+
 	// [hr]
 	$ret = str_replace("[hr]", "<hr noshade color='#000000' size='1'>", $ret);
 	

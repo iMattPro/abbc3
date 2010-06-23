@@ -127,6 +127,7 @@ var help_line2 = {
 	abbc_stage6		:	"{L_ABBCODE_STAGE_MOVER}"	+	"{L_ABBCODE_STAGE_HELP}" ,
 	abbc_googlevid	:	"{L_ABBCODE_GVIDEO_MOVER}"	+	"{L_ABBCODE_GVIDEO_HELP}" ,
 	abbc_youtube	:	"{L_ABBCODE_YOUTUBE_MOVER}"	+	"{L_ABBCODE_YOUTUBE_HELP}" ,
+	abbc_veoh		:	"{L_ABBCODE_VEOH_MOVER}"	+	"{L_ABBCODE_VEOH_HELP}" ,
 
 	abbc_listb		:	"{L_ABBCODE_LISTB_MOVER}"	+	"{L_ABBCODE_LISTB_HELP}" ,
 	abbc_listm		:	"{L_ABBCODE_LISTM_MOVER}"	+	"{L_ABBCODE_LISTM_HELP}" ,
@@ -592,6 +593,21 @@ function bbstyle2(bbcode,ftvalue)
 		}
 		bbfontstyle("[youtube]"+enterURL, "[/youtube]");
 	}
+	else if ( bbcode == "ABBC_veoh" )
+	{
+		var FoundErrors = '';
+		var enterURL   = prompt("{L_ABBCODE_LINK}{L_ABBCODE_VEOH_TAG}{L_ABBCODE_VEOH_NOTE}","http://");
+		if (!enterURL)
+		{
+			FoundErrors += "{L_ABBCODE_NOLINK}";
+		}
+		if (FoundErrors)
+		{
+			alert("{L_ABBCODE_ERROR}{L_ABBCODE_VEOH_TAG}"+FoundErrors);
+			return;
+		}
+		bbfontstyle("[veoh]"+enterURL, "[/veoh]");
+	}
 	else if ( bbcode == "ABBC_listb" )
 	{
 		bbfontstyle("[list][*]", "[/list]");
@@ -841,6 +857,7 @@ function ABBCcolorPalette()
 					<img src="{T_IMAGESET_PATH}/bbcode_box/images/stage.gif"		class="postimage"	type="image"	name="abbc_stage" 		onClick="bbstyle2('ABBC_stage6')"	onMouseOver="helpline2('stage6')"	onMouseOut="helpline2()"	title="{L_ABBCODE_STAGE_MOVER}" />
 					<img src="{T_IMAGESET_PATH}/bbcode_box/images/googlevid.gif"	class="postimage"	type="image"	name="abbc_GVideo"		onClick="bbstyle2('ABBC_GVideo')"	onMouseOver="helpline2('googlevid')"onMouseOut="helpline2()"	title="{L_ABBCODE_GVIDEO_MOVER}" />
 					<img src="{T_IMAGESET_PATH}/bbcode_box/images/youtube.gif"		class="postimage"	type="image"	name="abbc_youtube"		onClick="bbstyle2('ABBC_youtube')"	onMouseOver="helpline2('youtube')"	onMouseOut="helpline2()"	title="{L_ABBCODE_YOUTUBE_MOVER}" />
+					<img src="{T_IMAGESET_PATH}/bbcode_box/images/veoh.gif"			class="postimage"	type="image"	name="abbc_veoh"		onClick="bbstyle2('ABBC_veoh')"		onMouseOver="helpline2('veoh')"		onMouseOut="helpline2()"	title="{L_ABBCODE_VEOH_MOVER}" />
 					<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif"			style="padding-left: 4px;">
 					<img src="{T_IMAGESET_PATH}/bbcode_box/images/listbullets.gif"	class="postimage"	type="image"	name="abbc_listb"		onClick="bbstyle2('ABBC_listb')"	onMouseOver="helpline2('listb')"	onMouseOut="helpline2()"	title="{L_ABBCODE_LISTB_MOVER}" />
 					<img src="{T_IMAGESET_PATH}/bbcode_box/images/listnumber.gif"	class="postimage"	type="image"	name="abbc_listm"		onClick="bbstyle2('ABBC_listm')"	onMouseOver="helpline2('listm')"	onMouseOut="helpline2()"	title="{L_ABBCODE_LISTM_MOVER}" />
