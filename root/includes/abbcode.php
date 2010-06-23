@@ -99,7 +99,8 @@ function process_abbcode_box($text)
 
 	// [video width=X height=X]Video URL[/video] code..
 	$patterns_bbcode_box[]		= "#\[video width=([0-9]?[0-9]?[0-9]) height=([0-9]?[0-9]?[0-9])\](.*?)\[/video\]#si";
-	$replacements_bbcode_box[]	= '<embed src="\\3" width="\\1" height="\\2"></embed>';
+	$replacements_bbcode_box[]	= '<embed src="\\3" autostart="false" width="\\1" height="\\2"></embed>';
+//	$replacements_bbcode_box[]	= '<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95"><param name="controller" value="true"><param name="autoplay" value="false"><embed src="\\3" autostart="false" hidden="false" loop="false" width="\\1" height="\\2"></embed></object>';
 
 	// Stage6 Video bbcode mod by reef_01
 	$patterns_bbcode_box[]		= "#\[stage6\](.*?)\[/stage6\]#si";
@@ -114,10 +115,6 @@ function process_abbcode_box($text)
 	// [youtube]YouTube URL[/youtube] code.. //http://www.youtube.com/watch?v=p21nZmtq56M
 	$patterns_bbcode_box[]		= "#\[youtube\]http://(.*?).youtube.com/watch\?v=([0-9A-Za-z-_]{11})[^[]*\[/youtube\]#is";
 	$replacements_bbcode_box[]	= '<object width="425" height="350"><param name="movie" value="http://\\1.youtube.com/v/\\2"></param><param name="wmode" value="transparent"></param><embed src="http://\\1.youtube.com/v/\\2" type="application/x-shockwave-flash" wmode="transparent" width="425" height="350"></embed></object>';
-
-	// [veoh]YouTube URL[/veoh] code.. //http://www.veoh.com/videos/v2471077X3FRGHxR
-	$patterns_bbcode_box[]		= "#\[veoh\]http://(.*?).veoh.com/videos/(.*?)\[/veoh\]#si";
-	$replacements_bbcode_box[]	= '<embed src="http://\\1.veoh.com/videodetails2.swf?permalinkId=\\2&id=anonymous&player=videodetailsembedded&videoAutoPlay=0" allowFullScreen="true" width="540" height="438" bgcolor="#000000" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>';
 
 	// [hr]
 	$ret = str_replace("[hr]", "<hr noshade color='#000000' size='1'>", $ret);
@@ -173,5 +170,33 @@ function process_abbcode_box($text)
 
 	return $ret;
 }
+
+/**
+ * ******************************************************************
+ * IMAGES BBCODE
+ * You can do it yourself in ACP -> Posting -> Messages -> BBCodes [Add a new BBcode]
+ * ******************************************************************
+ * LEFT aligned			:	[Add a new BBCode]
+ * BBCode usage			:	[img_l]{TEXT}[/img_l]
+ * HTML replacement		:	<div align="left"><img src="{TEXT}" /></div>
+ * Help line			:	[img_l]image url[/img_l]
+ * Settings				:	checked
+ * [ Submit ]
+ * 
+ * RIGHT aligned		:	[Add a new BBCode]
+ * BBCode usage			:	[img_r]{TEXT}[/img_r]
+ * HTML replacement		:	<div align="right"><img src="{TEXT}" /></div>
+ * Help line			:	[img_r]image url[/img_r]
+ * Settings				:	checked
+ * [ Submit ]
+ *  
+ * CENTER aligned		:	[Add a new BBCode]
+ * BBCode usage			:	[img_c]{TEXT}[/img_c]
+ * HTML replacement		:	<div align="center"><img src="{TEXT}" /></div>
+ * Help line			:	[img_c]image url[/img_c]
+ * Settings				:	checked
+ * [ Submit ]
+ * 
+ */
 
 ?>
