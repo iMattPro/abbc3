@@ -1,0 +1,124 @@
+<script type="text/javascript">
+<!--
+/**
+ * Toggle the visibility of the qr box
+ */
+function toggle_quick_reply()
+{
+	if (document.getElementById('quick_reply'))
+	{
+		if (document.getElementById('quick_reply').style.display == 'none')
+		{
+			document.getElementById('quick_reply').style.display = 'block';
+		}
+		else
+		{
+			document.getElementById('quick_reply').style.display = 'none';
+		}
+	}
+}
+
+<!-- IF S_QR_RESIZE -->
+/**
+ * Resize a textbox
+ * Original function by Disturbed One (http://www.hvmdesign.com/)
+ */
+function textbox_resize(pix)  
+{  
+	var box			= document.getElementById('message');
+	var new_height	= (parseInt(box.style.height) ? parseInt(box.style.height) : 300) + pix;
+	
+	if (new_height > 0)
+	{
+		box.style.height = new_height + 'px';
+	}
+	
+	return false;
+}
+<!-- ENDIF -->
+
+if (<!-- IF S_QR_HIDE_BOX -->1<!-- ELSE -->0<!-- ENDIF -->)
+{
+	if (document.addEventListener)
+	{
+		document.addEventListener('DOMContentLoaded', toggle_quick_reply, false);
+	}
+	else
+	{
+		onload_functions.push('toggle_quick_reply()');
+	}
+}
+//-->
+</script>
+
+<div id="quick_reply">
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
+<!--<form action="{S_QR_POST_ACTION}" method="post">-->
+	<form action="{S_QR_POST_ACTION}" method="post" name="postform"{S_FORM_ENCTYPE}>
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
+		<table class="tablebg" width="100%" cellspacing="0" cellpadding="0">
+		<tr>
+			<th colspan="2">{L_QUICK_REPLY}</th>
+		</tr>
+		<!-- IF S_QR_SUBJECT -->
+
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
+		<!-- IF S_BBCODE_ALLOWED -->
+		<script type="text/javascript">
+		// <![CDATA[
+			var form_name = 'postform';
+			var text_name = 'message';
+		// ]]>
+		</script>
+		<tr>
+			<td class="row2" align="center" valign="middle" colspan="2">
+				<table width="71%" cellspacing="1">
+					<!-- INCLUDE posting_buttons.html -->
+				</table>
+			</td>
+		</tr>
+		<!-- ENDIF -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
+
+		<tr>
+			<td class="row2" align="center" valign="middle" colspan="2"><input class="post" type="text" name="subject" size="45" maxlength="64" tabindex="1" value="{QR_SUBJECT}" style="width: 70%;" /></td>
+		</tr>
+		<!-- ENDIF -->
+		<tr>
+			<td class="row2" align="center" valign="middle" colspan="2"><textarea name="message" id="message" rows="15" cols="76" tabindex="2" style="width: 70%; height: 250px;"></textarea></td>
+		</tr>
+		<!-- IF S_QR_RESIZE -->
+		<tr>
+			<td class="row2" colspan="2">
+				<input type="button" value=" + " class="btnlite" onclick="textbox_resize(100);" />
+				<input type="button" value=" - " class="btnlite" onclick="textbox_resize(-100);" />
+			</td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF not S_USER_LOGGED_IN -->
+		<tr>
+			<td class="row1" width="15%"><label for="username"><b class="genmed">{L_USERNAME}: </b></label></td>
+			<td class="row2" valign="middle"><input type="text" style="width: 300px" class="post" name="username" id="username" size="30" tabindex="3" /></td>
+		</tr>
+		<!-- IF S_CONFIRM_CODE -->
+		<tr>
+			<td class="row1"><label for="confirm_code"><b class="genmed">{L_CONFIRM_CODE}: </b></label></td>
+			<td class="row2">
+				{CONFIRM_IMAGE}<br clear="all" /><br />
+				<input type="hidden" name="confirm_id" value="{CONFIRM_ID}" />
+				<input class="post" type="text" name="confirm_code" id="confirm_code" size="8" maxlength="8" tabindex="4" />
+			</td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- ENDIF -->
+		<tr>
+			<td class="cat" align="center" colspan="2">
+				{S_QR_HIDDEN_FIELDS}
+				<input type="submit" name="preview" tabindex="6" value="{L_PREVIEW}" class="btnlite" />&nbsp;&nbsp;
+				<input type="submit" name="post" tabindex="5" value="{L_SUBMIT}" class="btnmain" accesskey="s" />
+			</td>
+		</tr>
+		</table>
+	{S_FORM_TOKEN}
+	</form>
+</div>
