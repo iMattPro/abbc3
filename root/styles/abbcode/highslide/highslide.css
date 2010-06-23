@@ -1,0 +1,196 @@
+/******************************************************************************
+Name:    Highslide JS
+Version: 4.0.6 (September 9 2008)
+Config:  default
+Author:  Torstein H?nsi
+Support: http://highslide.com/support
+
+Licence:
+Highslide JS is licensed under a Creative Commons Attribution-NonCommercial 2.5
+License (http://creativecommons.org/licenses/by-nc/2.5/).
+
+You are free:
+	* to copy, distribute, display, and perform the work
+	* to make derivative works
+
+Under the following conditions:
+	* Attribution. You must attribute the work in the manner  specified by  the
+	  author or licensor.
+	* Noncommercial. You may not use this work for commercial purposes.
+
+* For  any  reuse  or  distribution, you  must make clear to others the license
+  terms of this work.
+* Any  of  these  conditions  can  be  waived  if  you  get permission from the 
+  copyright holder.
+
+Your fair use and other rights are in no way affected by the above.
+******************************************************************************/
+/* Highslide JS	- Start */
+.highslide-wrapper div {
+	font-family: Verdana, Helvetica;
+	font-size: 10pt;
+}
+.highslide {
+	cursor: url("zoomin.cur"), pointer;
+	outline: none;
+	text-decoration: none;
+}
+.highslide img {
+	border: 2px solid silver;
+}
+.highslide:hover img {
+	border-color: gray;
+}
+.highslide-active-anchor img, .highslide-active-anchor:hover img {
+	border-color: black;
+}
+.highslide-image {
+	border-width: 2px;
+	border-style: solid;
+	border-color: black black #202020 black;
+	background: gray;
+}
+.highslide-wrapper, .glossy-dark {
+	background: #111;
+}
+.highslide-image-blur {
+}
+.highslide-caption {
+	display: none;
+	border-top: none;
+	font-size: 1em;
+	padding: 5px;
+	color: white;
+	background: #111;
+}
+.highslide-heading {
+	display: none;
+	color: white;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-bottom: 0.4em;
+}
+.highslide-dimming {
+	position: absolute;
+	background: black;
+}
+.highslide-loading {
+	display: block;
+	color: white;
+	font-size: 9px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 3px;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	background-color: black;
+
+	padding-left: 22px;
+	background-image: url("loader.gif");
+	background-repeat: no-repeat;
+	background-position: 3px 1px;
+}
+a.highslide-credits,
+a.highslide-credits i {
+	padding: 2px;
+	color: silver;
+	text-decoration: none;
+	font-size: 10px;
+}
+a.highslide-credits:hover,
+a.highslide-credits:hover i {
+	color: white;
+	background-color: gray;
+}
+.highslide-move a {
+	cursor: move;
+}
+/* Controls. See http://www.google.com/search?q=css+sprites */
+.highslide-controls {
+    width: 105px;
+    height: 20px;
+    position: relative;
+    top: -23px;
+    left: 0px;
+}
+.highslide-controls ul {
+	height: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.highslide-controls li {
+    float: left;
+}
+.highslide-controls a {
+    background-image: url("controlbar-white-small.gif");
+    display: block;
+    float: left;
+    height: 20px;
+    width: 20px;
+    outline: none;
+}
+.highslide-controls a.disabled {
+    cursor: default;
+}
+.highslide-controls a span {
+    /* hide the text for these graphic buttons */
+    display: none;
+}
+.highslide-controls .highslide-move {
+	display: none;
+}
+.highslide-move a {
+    cursor: move;
+}
+/* The CSS sprites for the controlbar */
+.highslide-controls .highslide-previous a {
+    background-position: 0 0;
+}
+.highslide-controls .highslide-previous a:hover {
+    background-position: 0 -20px;
+}
+.highslide-controls .highslide-previous a.disabled {
+    background-position: 0 -40px !important;
+}
+.highslide-controls .highslide-play a {
+    background-position: -20px 0;
+}
+.highslide-controls .highslide-play a:hover {
+    background-position: -20px -20px;
+}
+.highslide-controls .highslide-play a.disabled {
+	background-position: -20px -40px !important;
+}
+.highslide-controls .highslide-pause a {
+    background-position: -40px 0;
+}
+.highslide-controls .highslide-pause a:hover {
+    background-position: -40px -20px;
+}
+.highslide-controls .highslide-next a {
+    background-position: -60px 0;
+}
+.highslide-controls .highslide-next a:hover {
+    background-position: -60px -20px;
+}
+.highslide-controls .highslide-next a.disabled {
+    background-position: -60px -40px !important;
+}
+.highslide-controls .highslide-full-expand a {
+    background-position: -100px 0;
+}
+.highslide-controls .highslide-full-expand a:hover {
+    background-position: -100px -20px;
+}
+.highslide-controls .highslide-full-expand a.disabled {
+    background-position: -100px -40px !important;
+}
+.highslide-controls .highslide-close a {
+    background-position: -120px 0;
+}
+.highslide-controls .highslide-close a:hover {
+    background-position: -120px -20px;
+} 
+/* Highslide JS	- End */

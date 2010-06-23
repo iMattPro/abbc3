@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Advanced BBCode Box 3 ( aka ABBC3 ) - Update : This file describes the changes in language files from version 1.0.11 to 1.0.12</title>
+		
+		<description lang="en">This file describes the changes in language files from version 1.0.11 to 1.0.12</description>
+
+		<author-notes lang="en"><![CDATA[See the main install file for any additional information about the MOD.]]></author-notes>
+	
+		<author-group>
+			<author>
+				<realname>Gabriel</realname>
+				<username>leviatan21</username>
+				<email>info@mssti.com</email>
+				<homepage>http://www.mssti.com/phpbb3/</homepage>
+				<contributions-group>
+					<contributions status="current" from="2008-01-10" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+		
+		<mod-version>1.0.12</mod-version>
+		
+		<installation>
+			<level>easy</level>
+			<time>600</time>
+			<target-version>3.0.5</target-version>
+		</installation>
+
+	</header>
+
+	<action-group>
+		<diy-instructions lang="en"><![CDATA[###################################################################################################
+#
+#---- [ OPEN ] ------------------------------------------------------
+#
+root/language/en/mods/acp_abbcode.php
+###################################################################################################
+Line		Note		Variable					Need tranlation?
+###################################################################################################
+
+36 to 40		New lines		Notes					No
+59		New line		ABBCODES_PATH				Yes
+60		New line		ABBCODES_PATH_EXPLAIN			Yes
+72		New line		ABBCODES_RESIZE_BAR			Yes
+73		New line		ABBCODES_RESIZE_BAR_EXPLAIN			Yes
+74 to 86		Changed		ABBCODES_RESIZE_METHODS			Yes
+88		New line		NO_EXIST_EXPLAIN_ADVANCEDBOX		Yes
+89		New line		NO_EXIST_EXPLAIN_OTHERS			Yes
+99		New line		ABBCODES_SIG_IMAGE_WIDTH			Yes
+100		New line		ABBCODES_SIG_IMAGE_WIDTH_EXPLAIN		Yes
+101		New line		ABBCODES_SIG_IMAGE_HEIGHT			Yes
+102		New line		ABBCODES_SIG_IMAGE_HEIGHT_EXPLAIN		Yes
+123		New line		ABBCODES_TIP				Yes
+
+###################################################################################################
+#---- [ OPEN ] ------------------------------------------------------
+#
+root/language/en/mods/abbcode.php
+#
+# Note : You will see many changes in this file, don't panic
+#	Most are xxx_VIEW, this lines are used in the ABBC3 help page 
+#		and most of it don't need translation.
+#	This change was made for better, and use real bbcodes instead examples
+#		doing my job and yours easier.
+#
+###################################################################################################
+Line		Note		Variable					Need tranlation?
+###################################################################################################
+
+36 to 40		New lines		Notes					No
+47		Changed		ABBC3_HELP_ABOUT				No
+55		Changed		ABBC3_RESIZE_FILESIZE			Yes
+56		Changed		ABBC3_RESIZE_NOFILESIZE			Yes
+61 to 62		New line		Note					No
+117 to 121	Changed		Note about translation			No
+128		Changed		ABBC3_FONT_VIEW				No
+140		Changed		ABBC3_SIZE_VIEW				No
+146		Changed		ABBC3_HIGHLIGHT_VIEW			No
+152		Changed		ABBC3_COLOR_VIEW				No
+168		Changed		ABBC3_CODE_VIEW				No
+172		Changed		ABBC3_QUOTE_TIP				No
+173		Changed		Note about translation			No
+174		Changed		ABBC3_QUOTE_VIEW				Yes
+185		Changed		ABBC3_SPOIL_VIEW				No
+192		New line		ABBC3_HIDDEN_VIEW				No
+200		Changed		Note about translation			No
+201		Changed		ABBC3_MOD_VIEW				Yes
+207		Changed		ABBC3_OFFTOPIC_VIEW			No
+209		New line		Note					No
+210		New line		ABBC3_SCRIPPET_MOVER			Yes
+211		New line		ABBC3_SCRIPPET_TIP				Yes
+212		New line		Note about translation			No
+213		New line		ABBC3_SCRIPPET_VIEW			Yes
+215		New line		Note					No
+216		New line		ABBC3_TABS_MOVER				Yes
+217		New line		ABBC3_TABS_TIP				Yes
+218		New line		Note about translation			No
+219		New line		ABBC3_TABS_VIEW				Yes
+225		Changed		ABBC3_NFO_VIEW				No
+230		Changed		Note about translation			No
+231		Changed		ABBC3_ALIGNJUSTIFY_VIEW			No
+236		Changed		ABBC3_ALIGNRIGHT_VIEW			No
+241		Changed		ABBC3_ALIGNCENTER_VIEW			No
+246		Changed		ABBC3_ALIGNLEFT_VIEW			No
+251		Changed		ABBC3_PRE_VIEW				No
+257		Changed		ABBC3_TAB_VIEW				No
+262		Changed		Note about translation			No
+263		Changed		ABBC3_SUP_VIEW				Yes
+268		Changed		Note about translation			No
+269		Changed		ABBC3_SUB_VIEW				Yes
+274		Changed		ABBC3_B_VIEW				No
+279		Changed		ABBC3_I_VIEW				No
+284		Changed		ABBC3_U_VIEW				No
+289		Changed		ABBC3_S_VIEW				No
+294		Changed		ABBC3_FADE_VIEW				No
+299		Changed		Note about translation			No
+300		Changed		Note about translation			No
+301		Changed		ABBC3_GRAD_VIEW				Yes
+305		New line		ABBC3_GRAD_ERROR				Yes
+310		Changed		ABBC3_GLOW_VIEW				No
+315		Changed		ABBC3_SHADOW_VIEW				No
+320		Changed		ABBC3_DROPSHADOW_VIEW			No
+325		Changed		ABBC3_BLUR_VIEW				No
+330		Changed		ABBC3_WAVE_VIEW				No
+336		Changed		Note about translation			No
+337		Changed		ABBC3_LISTB_VIEW				Yes
+343		Changed		Note about translation			No
+344		Changed		ABBC3_LISTO_VIEW				Yes
+355		Changed		ABBC3_HR_VIEW				No
+360		Changed		ABBC3_DIRRTL_VIEW				No
+365		Changed		ABBC3_DIRLTR_VIEW				No
+370		Changed		ABBC3_MARQDOWN_VIEW			No
+375		Changed		ABBC3_MARQUP_VIEW				No
+380		Changed		ABBC3_MARQRIGHT_VIEW			No
+385		Changed		ABBC3_MARQLEFT_VIEW			No
+390		Changed		ABBC3_TABLE_VIEW				No
+420		New line		Note					No
+421		New line		ABBC3_ANCHOR_MOVER				Yes
+422		New line		ABBC3_ANCHOR_TIP				Yes
+423		New line		ABBC3_ANCHOR_EXAMPLE			Yes
+424		New line		Note about translation			No
+425		New line		ABBC3_ANCHOR_VIEW				Yes
+431		Changed		ABBC3_URL_EXAMPLE				No
+432		Changed		ABBC3_URL_VIEW				No
+439		Changed		ABBC3_EMAIL_VIEW				No
+446		Changed		ABBC3_ED2K_VIEW				No
+456		Changed		ABBC3_WEB_EXAMPLE				No
+457		Changed		ABBC3_WEB_VIEW				No
+464		Changed		ABBC3_IMG_VIEW				No
+471		Changed		ABBC3_THUMBNAIL_VIEW			No
+476		Changed		ABBC3_IMGSHACK_VIEW			No
+483		Changed		ABBC3_RAPIDSHARE_EXAMPLE			No
+484		Changed		ABBC3_RAPIDSHARE_VIEW			No
+495		Changed		ABBC3_TESTLINK_EXAMPLE			No
+496		Changed		ABBC3_TESTLINK_VIEW			No
+504		Changed		ABBC3_CLICK_EXAMPLE			No
+505		New line		Note about translation			No
+506		Changed		ABBC3_CLICK_VIEW				No
+514		New line		Note about translation			No
+515		Changed		ABBC3_SEARCH_VIEW				Yes
+521		Changed		ABBC3_BBVIDEO_EXAMPLE			No
+522		Changed		ABBC3_BBVIDEO_VIEW				No
+531		Changed		ABBC3_FLASH_VIEW				No
+538		Changed		ABBC3_FLV_VIEW				No
+545		Changed		ABBC3_VIDEO_VIEW				No
+552		Changed		ABBC3_STREAM_VIEW				No
+559		Changed		ABBC3_QUICKTIME_VIEW			No
+566		Changed		ABBC3_RAM_VIEW				No
+573		Changed		ABBC3_GVIDEO_VIEW				No
+579		Changed		ABBC3_YOUTUBE_EXAMPLE			No
+580		Changed		ABBC3_YOUTUBE_VIEW				No
+587		Changed		ABBC3_VEOH_VIEW				No
+594		Changed		ABBC3_COLLEGEHUMOR_VIEW			No
+600		Changed		ABBC3_DM_VIEW				No
+606		Changed		ABBC3_GAMESPOT_VIEW			No
+612		Changed		ABBC3_GAMETRAILERS_VIEW			No
+618		Changed		ABBC3_IGNVIDEO_VIEW			No
+624		Changed		ABBC3_LIVELEAK_VIEW			No
+632		Changed		DEEZER_VIEW				No]]>
+		</diy-instructions>
+	</action-group>
+</mod>
