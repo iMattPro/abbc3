@@ -58,11 +58,11 @@ function process_abbcode_box($text)
 	// [align=left/center/right/justify]Formatted Code[/align] code..
 	$patterns_bbcode_box[]     = "#\[align=(left|right|center|justify)\](.*?)\[/align\]#si";
 	$replacements_bbcode_box[] = '<div style="text-align:\\1">\\2</div>';
-	
+
 	// [pre]text[/pre] code..
 	$ret = str_replace("[pre]", '<pre>', $ret);
 	$ret = str_replace("[/pre]", '</pre>', $ret);
-	
+
 	// [sub]Subscrip[/sub] code..
 	$ret = str_replace("[sub]", '<sub>', $ret); 	// $patterns_bbcode_box[]     = "#\[sup\](.*?)\[/sup\]#si";
 	$ret = str_replace("[/sub]", '</sub>', $ret);	// $replacements_bbcode_box[] = '<sup>\\1</sup>';
@@ -70,15 +70,15 @@ function process_abbcode_box($text)
 	// [sup]Superscript[/sup] code..
 	$ret = str_replace("[sup]", '<sup>', $ret);		// $patterns_bbcode_box[]     = "#\[sub\](.*?)\[/sub\]#si";
 	$ret = str_replace("[/sup]", '</sup>', $ret);	// $replacements_bbcode_box[] = '<sub>\\1</sub>';
-	
+
 	// [strike]Strikethrough[/strike] code..
 	$ret = str_replace("[s]", '<strike>', $ret);
 	$ret = str_replace("[/s]", '</strike>', $ret);
-	
+
 	// [fade]Faded Text[/fade] code..
 	$ret = str_replace("[fade]", '<span class="fade_link">', $ret);
 	$ret = str_replace("[/fade]", '</span> <script type="text/javascript">fade_ontimer();</script>', $ret);
-	
+
 	// [marquee=left/right/up/down]Marquee Code[/marquee] code..
 	$patterns_bbcode_box[]     = "#\[marq=(left|right|up|down)\](.*?)\[/marq\]#si";
 	$replacements_bbcode_box[] = '<marquee direction="\\1" scrolldelay="120">\\2</marquee>';
@@ -91,23 +91,22 @@ function process_abbcode_box($text)
 	$spoiler_show = $user->lang['SPOILER_SHOW'];
 	$spoiler_hide = $user->lang['SPOILER_HIDE'];
 	$patterns_bbcode_box[]     = "#\[spoil\](.*?)\[/spoil\]#si";
-	$replacements_bbcode_box[] = '<div class="quotewrapper"><div class="quotetitle"><input class="btnlite" type="button" value="' . $spoiler_show . '" onClick="javascript:if (this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display != \'\') { this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display = \'\'; this.innerText = \'\'; this.value = \'' . $spoiler_hide . '\'; } else { this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display = \'none\'; this.innerText = \'\'; this.value = \'' . $spoiler_show .'\'; }" onfocus="this.blur();"></div><div class="quotecontent"><div style="display: none;">\\1</div></div></div>';
-	
+	$replacements_bbcode_box[] = '<div class="spoilwrapper"><div class="spoiltitle"><input class="btnspoil" type="button" value="' . $spoiler_show . '" onClick="javascript:if (this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display != \'\') { this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display = \'\'; this.innerText = \'\'; this.value = \'' . $spoiler_hide . '\'; } else { this.parentNode.parentNode.getElementsByTagName(\'div\')[1].getElementsByTagName(\'div\')[0].style.display = \'none\'; this.innerText = \'\'; this.value = \'' . $spoiler_show .'\'; }" onfocus="this.blur();"></div><div class="spoilcontent"><div style="display: none;">\\1</div></div></div>';
+
 	// [flash width=X height=X]Flash URL[/flash] code..
 	$patterns_bbcode_box[]		= "#\[flash width=([0-9]?[0-9]?[0-9]) height=([0-49]?[0-9]?[0-9])\](.*?)\[/flash\]#si";
 	$replacements_bbcode_box[]	='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="\\1" height="\\2" ><param name=movie value="\\3"><param name="quality" value="high" /> <param name="scale" value="noborder" /><param name="wmode" value="transparent" /> <param name="bgcolor" value="#000000" /><embed type="application/x-shockwave-flash" src="\\3" quality="high" scale="noborder" wmode="transparent" bgcolor="#000000" width="\\1" height="\\2" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed></object>';
 
 	// [video width=X height=X]Video URL[/video] code..
 	$patterns_bbcode_box[]		= "#\[video width=([0-9]?[0-9]?[0-9]) height=([0-9]?[0-9]?[0-9])\](.*?)\[/video\]#si";
-	$replacements_bbcode_box[]	= '<embed src="\\3" autostart="false" width="\\1" height="\\2"></embed>';
-//	$replacements_bbcode_box[]	= '<object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95"><param name="controller" value="true"><param name="autoplay" value="false"><embed src="\\3" autostart="false" hidden="false" loop="false" width="\\1" height="\\2"></embed></object>';
+	$replacements_bbcode_box[]	= '<OBJECT ID="MediaPlayer1" CLASSID="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95" CODEBASE="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab# Version=5,1,52,701" STANDBY="Loading Microsoft Windows® Media Player components..." TYPE="application/x-oleobject" width="\\1" height="\\2"><param name="fileName" value="\\3"><param name="animationatStart" value="false"><param name="transparentatStart" value="true"><param name="autoStart" value="false"><param name="showControls" value="true"><param name="Volume" value="-300"><embed type="application/x-mplayer2" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" src="\\3" name="MediaPlayer1" width=\\1 height=\\2 autostart=0 showcontrols=1 volume=-300></OBJECT>';
 
 	// Stage6 Video bbcode mod by reef_01
 	$patterns_bbcode_box[]		= "#\[stage6\](.*?)\[/stage6\]#si";
 	$replacements_bbcode_box[]	= '<object classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616" codebase="http://download.divx.com/player/DivXBrowserPlugin.cab" width="704" height="396" ><param name="src" value="http://video.stage6.com/\\1/.divx" /><param name="autoplay" value="false" /><param name="custommode" value="Stage6" /><param name="showpostplaybackad" value="false" /><embed type="video/divx" src="http://video.stage6.com/\\1/.divx" pluginspage="http://go.divx.com/plugin/download/" showpostplaybackad="false" custommode="Stage6" autoplay="false" width="704" height="396" /></object><br /><a href="http://video.stage6.com/\\1/.divx">Descargar Video</a><br />';
 	$patterns_bbcode_box[]		= "#\[stage6 width=([0-9]?[0-9]?[0-9]) height=([0-9]?[0-9]?[0-9])\](.*?)\[/stage6\]#si";
 	$replacements_bbcode_box[]	= '<object  classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616" codebase="http://download.divx.com/player/DivXBrowserPlugin.cab" width="\\1" height="\\2" ><param name="src" value="http://video.stage6.com/\\3/.divx" /><param name="autoplay" value="false" /><param name="custommode" value="Stage6" /><param name="showpostplaybackad" value="false" /><embed type="video/divx" src="http://video.stage6.com/\\3/.divx" pluginspage="http://go.divx.com/plugin/download/" showpostplaybackad="false" custommode="Stage6" autoplay="false" width="\\1" height="\\2" /></object><br /><!--<a href="http://video.stage6.com/\\3/.divx">Download Video</a><br />-->';
-	
+
 	// [Gvideo]video.google URL[/Gvideo] code.. //http://video.google.com/videoplay?docid=-8071916037166432748
 	$patterns_bbcode_box[]		= "#\[Gvideo\]http://video.google.(.*?)/videoplay\?docid=(.*?)\[/Gvideo\]#si";
 	$replacements_bbcode_box[]	= '<object classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=5,0,0,0" width="425" height="350"><param name="movie" value="http://video.google.\\1/googleplayer.swf?docid=\\2" /><param name="play" value="false" /><param name="loop" value="false" /><param name="quality" value="high" /><param name="allowScriptAccess" value="never" /><param name="allowNetworking" value="internal" /><embed src="http://video.google.\\1/googleplayer.swf?docid=\\2" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" width="425" height="350" play="false" loop="false" quality="high" allowscriptaccess="never" allownetworking="internal"></embed></object>';
@@ -118,30 +117,40 @@ function process_abbcode_box($text)
 
 	// [hr]
 	$ret = str_replace("[hr]", "<hr noshade color='#000000' size='1'>", $ret);
-	
+
 	// [ram]Ram URL[/ram] code..
-	$patterns_bbcode_box[]		= "#\[ram\](.*?)\[/ram\]#si";
-	$replacements_bbcode_box[]	= '<embed src="\\1" align="center" width="275" height="40" type="audio/x-pn-realaudio-plugin" console="cons" controls="ControlPanel" autostart="false"></embed>';
-	
+	$patterns_bbcode_box[]		= "#\[ram width=([0-9]?[0-9]?[0-9]) height=([0-9]?[0-9]?[0-9])\](.*?)\[/ram\]#si";
+	$replacements_bbcode_box[]	= '<embed name="RMPlayer_EMBED" id="RMPlayer_EMBED" type="audio/x-pn-realaudio-plugin" autostart="false" controls="ControlPanel" console="video" maintainaspect="true" autogotourl="false" loop="false" center="true" nologo="false" nolabels="true" numloop="0" shuffle="false" align="baseline" border="0"  src="\\3" width="\\1" height="\\2" controls="PlayButton" exts="RA,RAM" mastersoundvolume="100" ></embed>' ;
+
 	// [stream]Sound URL[/stream] code..
 	$patterns_bbcode_box[]		= "#\[stream\](.*?)\[/stream\]#si";
-	$replacements_bbcode_box[]	= '<object id="wmp" width=300 height=70 classid="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,0,0,0" standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject"><param name="FileName" value="\\1"><param name="ShowControls" value="1"><param name="ShowDisplay" value="0"><param name="ShowStatusBar" value="1"><param name="AutoSize" value="1"><embed type="application/x-mplayer2" pluginspage="http://www.microsoft.com/windows95/downloads/contents/wurecommended/s_wufeatured/mediaplayer/default.asp" src="\\1" name=MediaPlayer2 showcontrols=1 showdisplay=0 showstatusbar=1 autosize=1 visible=1 animationatstart=0 transparentatstart=1 loop=0 height=70 width=300></embed></object>';
+	$replacements_bbcode_box[]	= '<OBJECT ID="MediaPlayer1" CLASSID="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95" CODEBASE="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab# Version=5,1,52,701" STANDBY="Loading Microsoft Windows® Media Player components..." TYPE="application/x-oleobject" width="280" height="46"><param name="fileName" value="\\1"><param name="animationatStart" value="false"><param name="transparentatStart" value="true"><param name="autoStart" value="false"><param name="showControls" value="true"><param name="Volume" value="-300"><embed type="application/x-mplayer2" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" src="\\1" name="MediaPlayer1" width=280 height=46 autostart=0 showcontrols=1 volume=-300></OBJECT>';
 
 	// [web]Web Iframe URL[/web] code..
 	$patterns_bbcode_box[]		= "#\[web width=([0-9]?[0-9]?[0-9]?[(%|\w+)]) height=([0-9]?[0-9]?[0-9]?[(%|\w+)])\](.*?)\[/web\]#si";
 	$replacements_bbcode_box[]	= '<iframe width="\\1" height="\\2" src="\\3" style="font-size: 2px;"></iframe>';
 
+	// extract table http://jacksleight.com/assets/blog/really-shiny/scripts/table-extractor.txt
+	// php 4 compatibility functions
+	if(!function_exists('stripos'))
+	{
+		function stripos($haystack,$needle,$offset = 0)
+		{
+			return (strpos(strtolower($haystack), strtolower($needle), $offset));
+		}
+	}
+	$startTable = stripos($ret, ' [table' , 1) ;
+	$endTable   = stripos($ret, '[/table]', $startTable) + 8;
+	$ret_table  = substr($ret, $startTable, $endTable - $startTable);
+	$ret_table  = str_replace(array('<br />', "\n"), array("\n", "\r"), $ret_table);
+	$ret = substr_replace($ret, $ret_table, $startTable, $endTable);
+	
 	// [table=blah]Table[/table] code..
-	$ret = preg_replace("/\[table=(.*?)\]/si", '<table style="\\1" cellspacing="0" cellpadding="0" >', $ret);
-	$ret = str_replace("[/table]", '</table>', $ret);
-
+	$ret = preg_replace("#\[table=(.*?)\](.*?)\[/table\]#is", '<table style="\\1" cellspacing="0" cellpadding="0">\\2</table>', $ret );
 	// [tr=blah]tr[/tr] code..
-	$ret = preg_replace("/\[tr=(.*?)\]/si", '<tr style="\\1">', $ret);
-	$ret = str_replace("[/tr]", '</tr>', $ret);
-
+	$ret = preg_replace("#\[tr=(.*?)\](.*?)\[/tr\]#is", '<tr style="\\1">\\2</tr>', $ret);
 	// [td=blah]td[/td] code..
-	$ret = preg_replace("/\[td=(.*?)\]/si", '<td style="\\1">', $ret);
-	$ret = str_replace("[/td]", '</td>', $ret);
+	$ret = preg_replace("#\[td=(.*?)\](.*?)\[/td\]#is", '<td style="\\1">\\2</td>', $ret);
 
 	// ed2k://|server|serverIP|serverPort
 	// [url]ed2k://|file|...[/url] code
@@ -167,10 +176,8 @@ function process_abbcode_box($text)
 	
 	// Remove our padding from the string..
 	$ret = substr($ret, 1);
-
 	return $ret;
 }
-
 /**
  * ******************************************************************
  * IMAGES BBCODE

@@ -197,7 +197,7 @@ styles/prosilver/template/overall_header.html
 #
 
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/bbcode_box/bbcode_box.js" charset="iso-8859-1"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/bbcode_box.js" charset="iso-8859-1"></script>
 <style type="text/css" media="all">
 @import "{T_IMAGESET_PATH}/bbcode_box/stylesheet.css";
 </style>
@@ -220,7 +220,7 @@ styles/subsilver2/template/overall_header.html
 #
 
 <!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/bbcode_box/bbcode_box.js" charset="iso-8859-1"></script>
+<script type="text/javascript" src="{T_IMAGESET_PATH}/bbcode_box/bbcode_box.js" charset="iso-8859-1"></script>
 <style type="text/css" media="all">
 @import "{T_IMAGESET_PATH}/bbcode_box/stylesheet.css";
 </style>

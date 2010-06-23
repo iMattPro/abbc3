@@ -1195,15 +1195,19 @@ function win_close()
 				<span style="float:right;padding:2px 5px 0 0;font-size:10px;color:#cccccc;"><a href="http://www.mssti.com/phpBB3" target="_blank"><img src="{T_IMAGESET_PATH}/bbcode_box/images/help.png"	title="Advanced BBCode Box 3" /></a></span>
 				<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif" style="padding-left: 4px;">
 				<select style="height: 21px;" class="genmed"	name="abbc_fonttype" onChange="bbfontstyle('[font=' + this.form.abbc_fonttype.options[this.form.abbc_fonttype.selectedIndex].value + ']', '[/font]'); this.form.abbc_fonttype.selectedIndex = 0" onMouseOver="helpline2('fonttype')" onMouseOut="helpline2()">
-					<option selected="selected" style="background-color: #cccccc; font-weight: bold; font-style:italic;" >- {L_ABBCODE_FONT_TYPE} -</option>
 					<optgroup label="- ABBC Box 3 -">
+						<option selected="selected" style="background-color: #cccccc; font-weight: bold; font-style:italic;" >- {L_ABBCODE_FONT_TYPE} -</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Bradley Hand ITC;"		class="genmed"	value="Bradley Hand ITC" >Bradley Hand ITC</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Century Gothic;"		class="genmed"	value="Century Gothic" >Century Gothic</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Curlz MT;"				class="genmed"	value="Curlz MT">Curlz MT</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: cursive;"				class="genmed"	value="cursive">Cursive</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: fantasy;"				class="genmed"	value="fantasy">Fantasy</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: French Script MT;"		class="genmed"	value="French Script MT">French Script MT</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Garamond;"				class="genmed"	value="Garamond">Garamond</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Garamond Bold;"			class="genmed"	value="Garamond Bold">Garamond Bold</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Goudy Stout;"			class="genmed"	value="Goudy Stout">Goudy Stout</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: Helvetica;"				class="genmed"	value="Helvetica">Helvetica</option>
+						<option style="color:black; background-color: #FFFFFF; font-family: monospace;"				class="genmed"	value="monospace">Monospace</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: OCR A Extended;"		class="genmed"	value="OCR A Extended">OCR A Extended</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Script MT Bold;"		class="genmed"	value="Script MT Bold">Script MT Bold</option>
 					</optgroup>
@@ -1248,10 +1252,8 @@ function win_close()
 					// ]]>
 					</script>
 				</select>
-				<!--
 				<img src="{T_IMAGESET_PATH}/bbcode_box/images/dots.gif" style="padding-left: 4px;">
 				<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
-				-->
 			</td>
 		</tr>
 		<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
@@ -1336,13 +1338,11 @@ function win_close()
 			</td>
 		</tr>
 		<!-- ENDIF -->
-		<!--
 		<tr>
 			<td colspan="2">
 				<input type="text" readonly="readonly" name="helpbox" style="width:99%" class="helpline" value="{L_STYLES_TIP}" />
 			</td>
 		</tr>
-		-->
 	</table>
 	
 	<div id="popupMask"></div>

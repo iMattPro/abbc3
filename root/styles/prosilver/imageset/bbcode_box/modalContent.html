@@ -8,8 +8,6 @@
 	
 	<script language="javascript">
 
-		var doc;
-		var txtarea = parent.document.forms['postform'].elements['message'];
 		var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 		var clientVer = parseInt(navigator.appVersion); // Get browser version
 
@@ -17,7 +15,8 @@
 		var is_win = ((clientPC.indexOf('win') != -1) || (clientPC.indexOf('16bit') != -1));
 
 		var oSelect,oSelectRange,oSelectLength;
-		txtarea.focus();
+		var txtarea = parent.document.forms['postform'].elements['message'];
+//		txtarea.focus();
 
 		if ((clientVer >= 4) && is_ie && is_win)
 		{
@@ -342,7 +341,7 @@
 	<table id="frm" align="center" border="0">
 		<tr>
 			<td align="center" nowrap>
-				<select id="clr1" onchange="document.body.focus();gradient_preview();">
+				<select id="clr1" onchange="gradient_preview();">
 					<option value="">&nbsp;x&nbsp;</option>
 					<option value="000000" style="background-color:black">black</option>
 					<option value="FFFFFF" style="background-color:white">white</option>
@@ -373,7 +372,7 @@
 					<option value="808080" style="background-color:gray">gray</option>
 				</select>
 				&nbsp;				
-				<select id="clr2" onchange="document.body.focus();gradient_preview();">
+				<select id="clr2" onchange="gradient_preview();">
 					<option value="" selected="selected">&nbsp;x&nbsp;</option>
 					<option value="000000" style="background-color:black">black</option>
 					<option value="FFFFFF" style="background-color:white">white</option>
@@ -404,7 +403,7 @@
 					<option value="808080" style="background-color:gray">gray</option>
 				</select>
 				&nbsp;				
-				<select id="clr3" onchange="document.body.focus();gradient_preview();">
+				<select id="clr3" onchange="gradient_preview();">
 					<option value="" selected="selected">&nbsp;x&nbsp;</option>
 					<option value="000000" style="background-color:black">black</option>
 					<option value="FFFFFF" style="background-color:white">white</option>
@@ -435,7 +434,7 @@
 					<option value="808080" style="background-color:gray">gray</option>
 				</select>
 				&nbsp;				
-				<select id="clr4" onchange="document.body.focus();gradient_preview();">
+				<select id="clr4" onchange="gradient_preview();">
 					<option value="" selected="selected">&nbsp;x&nbsp</option>
 					<option value="000000" style="background-color:black">black</option>
 					<option value="FFFFFF" style="background-color:white">white</option>
@@ -466,7 +465,7 @@
 					<option value="808080" style="background-color:gray">gray</option>
 				</select>
 				&nbsp;
-				<select id="clr5" onchange="document.body.focus();gradient_preview();">
+				<select id="clr5" onchange="gradient_preview();">
 					<option value="">&nbsp;x&nbsp;</option>
 					<option value="000000" style="background-color:black">black</option>
 					<option value="FFFFFF" style="background-color:white">white</option>
@@ -497,7 +496,7 @@
 					<option value="808080" style="background-color:gray">gray</option>
 				</select>&nbsp;
 				
-				<select id="template" onchange="document.body.focus();gradient_template();" name="hi">
+				<select id="template" onchange="gradient_template();" name="hi">
 					<option value="1,1,1,1,1" selected="selected">Selected Colors</option>
 					<option value="3,0,0,0,5">1</option>
 					<option value="14,12,9,0,0">2</option>
