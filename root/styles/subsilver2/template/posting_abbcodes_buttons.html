@@ -1,4 +1,4 @@
-<!-- MOD : BBCODES by MSSTI - 2/2 INICIO -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <style>
 /**
  * POPUP CONTAINER STYLES
@@ -79,7 +79,7 @@
 					<span style="float:right;padding:5px 5px 0 0;font-size:10px;color:#cccccc;"><a href="http://www.mssti.com/phpbb2">Advanced BBCode Box 3</a></span>
 					<img src="bbcode_box/images/dots.gif" style="padding-left: 4px;">
 					<select style="height: 20px;" class="genmed"	name="ft" onChange="bbstyle2('ft',this.form.ft.options[this.form.ft.selectedIndex].value);this.form.ft.selectedIndex = 0" onMouseOver="helpline2('ft')" onMouseOut="helpline2('tip')">
-						<option style="font-weight : bold;" selected="selected">Tipo de fuente</option>
+						<option style="font-weight : bold;" selected="selected">Font type</option>
 						<option style="color:black; background-color: #FFFFFF; font-family: Arial;"					class="genmed"	value="Arial" >Arial</option> 
 						<option style="color:black; background-color: #FFFFFF; font-family: Arial Black;"			class="genmed"	value="Arial Black" >Arial Black</option> 
 						<option style="color:black; background-color: #FFFFFF; font-family: Century Gothic;"		class="genmed"	value="Century Gothic" >Century Gothic</option>
@@ -144,6 +144,7 @@
 					<img src="bbcode_box/images/right.gif" 		class="postimage"	type="image"	name="right"		onClick="bbstyle2('right')"		onMouseOver="helpline2('right')"	onMouseOut="helpline2('tip')"	title="Texto alineado a la derecha" />
 					<img src="bbcode_box/images/center.gif"		class="postimage"	type="image"	name="center"		onClick="bbstyle2('center')"	onMouseOver="helpline2('center')"	onMouseOut="helpline2('tip')"	title="Texto alineado al centro" />
 					<img src="bbcode_box/images/left.gif"		class="postimage"	type="image"	name="left"			onClick="bbstyle2('left')"		onMouseOver="helpline2('left')"		onMouseOut="helpline2('tip')"	title="Texto alineado a la izquierda" />
+					<img src="bbcode_box/images/preformat.gif"	class="postimage"	type="image"	name="pre"			onClick="bbstyle2('pre')"		onMouseOver="helpline2('pre')"		onMouseOut="helpline2('tip')"	title="Texto preformateado" />
 					<img src="bbcode_box/images/dots.gif"		style="padding-left: 4px;">
 					<img src="bbcode_box/images/sup.gif"		class="postimage"	type="image"	name="supscript"	onClick="bbstyle2('sup')"		onMouseOver="helpline2('sup')"		onMouseOut="helpline2('tip')"	title="Texto superindice" />
 					<img src="bbcode_box/images/sub.gif"		class="postimage"	type="image"	name="subs"			onClick="bbstyle2('sub')"		onMouseOver="helpline2('sub')"		onMouseOut="helpline2('tip')"	title="Texto subindice" />
@@ -205,12 +206,14 @@
 					<img src="bbcode_box/images/plain.gif"		class="postimage"	type="image"	name="plain"		onClick="bbstyle2('plain')"		onMouseOver="helpline2('plain')"	onMouseOut="helpline2('tip')" 	title="Eliminar todos los BBcode" />
 				</td>
 			</tr>
-			<!-- BEGIN custom_tags -->
+			<!-- IF S_BBCODE_ALLOWED and .custom_tags -->
 			<tr valign="middle" align="{S_CONTENT_FLOW_BEGIN}" height="30">
 				<td background="bbcode_box/images/bg.gif" valign="middle" colspan="2">
+					<!-- BEGIN custom_tags -->
 					<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+					<!-- END custom_tags -->
 				</td>
 			</tr>
-			<!-- END custom_tags -->
+			<!-- ENDIF -->
 		</table>
-<!-- MOD : BBCODES by MSSTI - 2/2 FIN -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->

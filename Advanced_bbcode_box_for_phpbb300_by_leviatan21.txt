@@ -12,7 +12,7 @@
 ##		    inserts smilies where the cursor is, and adds more ways to customize posts.
 ##		    The MOD is very fast loading, and is a sleek addition to your phpBB bulletin board.
 ##
-## MOD Version: 1.0.0
+## MOD Version: 1.0.1
 ##
 ## Installation Level: Easy
 ## Installation Time: ~10 Minutes
@@ -24,7 +24,7 @@
 ##	styles/subsilver2/template/overall_header.html
 ##	styles/subsilver2/template/posting_buttons.html
 ##
-## Included Files: (56)
+## Included Files: (57)
 ##	bbcode_box/*.*
 ##	includes/abbcode.php
 ##	styles/prosilver/template/*.*
@@ -64,6 +64,7 @@
 ##	- Left Align.
 ##	- Center Align.
 ##	- Right Align.
+##	- Preformat text
 ##	- Superscript.
 ##	- Subscript.
 ##	- Bold.
@@ -78,7 +79,7 @@
 ##	- Marquee Up.
 ##	- Marquee Left.
 ##	- Marquee Right.
-##	- Table row cell.
+##	- Table row cell wizard.
 ##	- Code.
 ##	- Quote.
 ##	- Spoiler (User must click on link to review text within tags).
@@ -124,6 +125,12 @@
 ##############################################################
 ## MOD History:
 ##
+##	2008-01-11 - Version 1.0.1
+##	- Added typo Pre.
+##	- Adder table wizard.
+##	- Fix Gradient.
+##	- Fix abbcodes buttons from phpbb3 ACP
+##
 ##	2008-01-10 - Version 1.0.0
 ##	- Upgrade from phpbb2.x to phpbb3.0.0 (Gold)
 ##
@@ -153,11 +160,11 @@ includes/functions_content.php
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find. 
 #
 
-	// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - INICIO
+	// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START
 	global $phpEx, $phpbb_root_path;
 	include_once($phpbb_root_path . 'includes/abbcode.' . $phpEx);
 	$text = process_abbcode_box($text);
-	// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - FIN
+	// MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END
 
 #
 #-----[ OPEN ]------------------------------------------
@@ -175,9 +182,9 @@ styles/prosilver/template/overall_header.html
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
 
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - INICIO -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/bbcode_box.js" charset="iso-8859-1"></script>
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - FIN -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 	
 #
 #-----[ OPEN ]------------------------------------------
@@ -194,7 +201,7 @@ styles/prosilver/template/posting_buttons.html
 #-----[ AFTER, ADD ]------------------------------------------
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find. 
 #
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - INICIO -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <!--
 
 #
@@ -209,7 +216,7 @@ styles/prosilver/template/posting_buttons.html
 #
 -->
 <!-- INCLUDE posting_abbcodes_buttons.html -->
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - FIN -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 
 #
 #-----[ OPEN ]------------------------------------------
@@ -227,9 +234,9 @@ styles/subsilver2/template/overall_header.html
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
 
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - INICIO -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/bbcode_box.js" charset="iso-8859-1"></script>
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - FIN -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 	
 #
 #-----[ OPEN ]------------------------------------------
@@ -246,7 +253,7 @@ styles/subsilver2/template/posting_buttons.html
 #-----[ AFTER, ADD ]------------------------------------------
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find. 
 #
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - INICIO -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <!--
 
 #
@@ -262,7 +269,7 @@ styles/subsilver2/template/posting_buttons.html
 #
 -->
 <!-- INCLUDE posting_abbcodes_buttons.html -->
-<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - FIN -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 
 #
 #-----[ FIND ]------------------------------------------
@@ -273,7 +280,9 @@ styles/subsilver2/template/posting_buttons.html
 #-----[ BEFORE, ADD ]------------------------------------------
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 <!--
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 
 #
 #-----[ FIND ]------------------------------------------
@@ -285,7 +294,9 @@ styles/subsilver2/template/posting_buttons.html
 #-----[ BEFORE, ADD ]------------------------------------------
 # NOTE: Add these lines on a new blank line before the preceding line(s) to find. 
 #
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - START -->
 -->
+<!-- // MOD : Advanced bbcode box for phpbb3.0.0 by leviatan21 - END -->
 
 #
 #-----[ SAVE/CLOSE ALL FILES ]------------------------------------------

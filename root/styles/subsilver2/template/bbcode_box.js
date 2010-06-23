@@ -7,6 +7,7 @@ var help_line2 = {
 	cb_right : "Texto alineado a la derecha: [align=right]texto[/align]",
 	cb_center : "Texto alineado al centro: [align=center]texto[/align]",
 	cb_left : "Texto alineado a la izquierda: [align=left]texto[/align]",
+	cb_pre : "Texto pre formateado: [pre]texto[/pre]",
 
 	cb_sup : "Exponente: [sup]texto[/sup]",
 	cb_sub : "Subíndice: [sub]texto[/sub]",
@@ -27,7 +28,7 @@ var help_line2 = {
 	cb_marqr : "Desplazamiento de texto hacia la derecha: [marq=right]texto[/marq]",
 	cb_marql : "Desplazamiento de texto hacia la izquierda: [marq=left]texto[/marq]",
 
-	cb_table : "Insertar una tabla [table=][tr=][td=] texto [/td][/tr][/table]",
+	cb_table : "Insertar una tabla [table=(style)][tr=(style)][td=(style)] texto [/td][/tr][/table]",
 	
 	cb_quote : "Citar: [quote]texto[/quote]",
 	cb_code : "Codigo: [code]codigo[/code]",
@@ -133,6 +134,10 @@ function bbstyle2(bbcode,ftvalue)
 	{
 		bbfontstyle("[s]", "[/s]");
 	}
+	else if ( bbcode == "pre" ) // BBCstrike();
+	{
+		bbfontstyle("[pre]", "[/pre]");
+	}
 	else if ( bbcode == "fade" ) // BBCfade();
 	{
 		bbfontstyle("[fade]", "[/fade]");
@@ -232,7 +237,36 @@ function bbstyle2(bbcode,ftvalue)
 	}
 	else if ( bbcode == "table" ) // BBCtable();
 	{
-		bbfontstyle("[table=][tr=][td=]","[/td][/tr][/table]");
+		var styleT   = prompt("Introduzca estilo de tabla \n\n Ejemplo:width:50%;border:1px solid #CCCCCC;", "");
+		
+		var enterR   = prompt("Introduzca cantidad de filas", "1");
+		var styleR   = prompt("Introduzca estilo de filas \n\n Ejemplo:border:1px solid #CCCCCC;", "");
+		if (!enterR)
+		{
+			FoundErrors += "Usted no escribió la cantidad de filas.";
+		}
+		var enterC   = prompt("Introduzca cantidad de columnas", "1");
+		var styleC   = prompt("Introduzca estilo de filas \n\n Ejemplo:text-align:center;", "");
+		if (!enterC)
+		{
+			FoundErrors += "Usted no escribió la cantidad de columnas.";
+		}
+		if (FoundErrors)
+		{
+			alert("Error:"+FoundErrors);
+			return;
+		}
+		var Row = '';
+		for (var R=0; R < parseInt(enterR); R++)
+		{
+			Col = '';
+			for (var C=0; C < parseInt(enterC); C++)
+			{
+				Col += "[td=" + styleC + "]" + "[/td]";
+			}
+			Row += "[tr=" + styleR + "]" + Col + "[/tr]\n";
+		}		
+		bbfontstyle("[table=" + styleT + "]\n" + Row + "[/table]",'');
 	}
 	else if ( bbcode == "url" ) // BBCurl();
 	{

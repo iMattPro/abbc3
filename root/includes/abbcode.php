@@ -57,6 +57,10 @@ function process_abbcode_box($text)
 	$patterns_bbcode_box[]     = "#\[align=(left|right|center|justify)\](.*?)\[/align\]#si";
 	$replacements_bbcode_box[] = '<div style="text-align:\\1">\\2</div>';
 	
+	// [pre]text[/pre] code..
+	$ret = str_replace("[pre]", '<pre>', $ret);
+	$ret = str_replace("[/pre]", '</pre>', $ret);
+	
 	// [sub]Subscrip[/sub] code..
 	$ret = str_replace("[sub]", '<sub>', $ret); 	// $patterns_bbcode_box[]     = "#\[sup\](.*?)\[/sup\]#si";
 	$ret = str_replace("[/sub]", '</sub>', $ret);	// $replacements_bbcode_box[] = '<sup>\\1</sup>';
@@ -123,7 +127,7 @@ function process_abbcode_box($text)
 	$replacements_bbcode_box[]	= '<iframe width="\\1" height="\\2" src="\\3" style="font-size: 2px;"></iframe>';
 
 	// [table=blah]Table[/table] code..
-	$ret = preg_replace("/\[table=(.*?)\]/si", '<table style="\\1">', $ret);
+	$ret = preg_replace("/\[table=(.*?)\]/si", '<table style="\\1" cellspacing="0" cellpadding="0" >', $ret);
 	$ret = str_replace("[/table]", '</table>', $ret);
 
 	// [tr=blah]tr[/tr] code..
