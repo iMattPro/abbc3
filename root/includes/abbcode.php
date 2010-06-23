@@ -23,7 +23,10 @@ define('IN_ABBC3', true);
 */
 function display_abbc3()
 {
-	global $template;
+	global $template, $user;
+	
+	$user->add_lang('mods/abbcode');
+
 	/************************************************************************************
 	* Some settings untill I made an ACP control for Advanced bbcode
 	************************************************************************************/
@@ -105,9 +108,11 @@ function display_abbc3()
 /**
 * Parse ABBC3 bbodes
 */
-function process_abbcode_box ( $text )
+function process_abbc3 ( $post_message )
 {
 	global $user;
+	
+	$user->add_lang('mods/abbcode');
 
 	// Other seting
 	$abbc3_unique_id = substr(base_convert(unique_id(), 16, 36), 0, 8);
@@ -134,7 +139,7 @@ function process_abbcode_box ( $text )
 	************************************************************************************/
 
 	// pad it with a space so we can match things at the start of the 1st line.
-	$post_text = ' ' . $text;
+	$tmp_message = ' ' . $post_message;
 
 	// Patterns and replacements for URL processing
 	$abbcode_ary = array (
@@ -333,21 +338,21 @@ function process_abbcode_box ( $text )
 
 	foreach ( $abbcode_ary as $abbcode_found => $abbcode_replace )
 	{
-		if ( preg_match ( $abbcode_found, $post_text ) )
+		if ( preg_match ( $abbcode_found, $tmp_message ) )
 		{
-			$post_text = preg_replace ( $abbcode_found, $abbcode_replace, $post_text );
+			$tmp_message = preg_replace ( $abbcode_found, $abbcode_replace, $tmp_message );
 		}
 	}
 
-	if ( preg_match_all ( "/\[table=(.*?)\](.*?)\[\/table\]/i", $post_text, $table_ary ) )
+	if ( preg_match_all ( "/\[table=(.*?)\](.*?)\[\/table\]/i", $tmp_message, $table_ary ) )
 	{
-		$post_text = table_pass ( $post_text, $table_ary );
+		$tmp_message = table_pass ( $tmp_message, $table_ary );
 	}
 
-	return substr ( $post_text, 1 );	// Remove our padding from the string..
+	return substr ( $tmp_message, 1 );	// Remove our padding from the string..
 }
 
-function table_pass ( $post_text, $table_ary )
+function table_pass ( $tmp_message, $table_ary )
 {
 	foreach ( $table_ary[0] as $i => $table )
 	{
@@ -384,11 +389,12 @@ function table_pass ( $post_text, $table_ary )
 		$table_seek = array ( '{TABLE_STYLE}', '{TABLE_INNER}' );
 		$table_with = array ( $table_style, $table_inner );
 		$table_replace = str_replace( $table_seek, $table_with, '<table style="{TABLE_STYLE}" cellspacing="0" cellpadding="0">{TABLE_INNER}</table>' );
-		$post_text = str_replace( $table, $table_replace, $post_text );
+		$tmp_message = str_replace( $table, $table_replace, $tmp_message );
 	}
 	
-	return $post_text;
+	return $tmp_message;
 }
+
 
 /**
  * ******************************************************************

@@ -163,7 +163,7 @@ $lang = array_merge($lang, array(
 	'ABBCODE_URL_HELP'			=> ' [url]http://...[/url] or [url=http://...]Name Web[/url]',
 	
 	'ABBCODE_EMAIL_MOVER'		=> 'Email',
-	'ABBCODE_EMAIL_HELP'		=> ' [email]user@server.ext[/email] or [email=user@server.ext]My email[/url]',
+	'ABBCODE_EMAIL_HELP'		=> ' [email]user@server.ext[/email] or [email=user@server.ext]My email[/email]',
 	
 	'ABBCODE_WEB_MOVER'			=> 'Insert site in the post',
 	'ABBCODE_WEB_HELP'			=> ' [web]URL web[/web]',
