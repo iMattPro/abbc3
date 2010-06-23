@@ -1,0 +1,9 @@
+	// MOD : add-on rapidshare checker - START
+	'ABBCODE_RAPIDSHARE_MOVER'	=> 'inserir um link do rapidshare',
+	'ABBCODE_RAPIDSHARE_HELP'	=> ' [rapidshare]http://rapidshare.com/files/...][/rapidshare]',
+	'ABBCODE_RAPIDSHARE_TAG'	=> 'rapidshare',
+	'ABBCODE_RAPIDSHARE_NOTE'	=> 'Example: http://rapidshare.com/files/86587996/Advanced_BBCode_Box_3_v1.0.5.zip.html',
+	'RAPIDSHARE_GOOD'			=> 'O ficheiro esta no servidor!',
+	'RAPIDSHARE_WRONG'			=> 'O ficheiro não foi encontrado !',
+	// MOD : add-on rapidshare checker - END
+

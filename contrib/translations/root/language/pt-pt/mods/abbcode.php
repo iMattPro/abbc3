@@ -1,18 +1,18 @@
 <?php
 /**
 *
-* abbcode [Português Brasil]
+* abbcode [Português Português]
 * @package language
 * @version $Id: abbcode.php, v 1.0.6 2008/01/10 15:25:07 leviatan21 Exp $
-* @portuguese version $Id: $ phpBB 3.0.0 - 1.0.0
+* @Versão portuguêsa $Id: $ phpBB 3.0.0 - 1.0.2
 * @copyright leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb2/
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @translator: Balero - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=384755
+* @Liçença http://opensource.org/licenses/gpl-license.php GNU Public License
+* @tradutor: electric - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=384755
 * 
 */
 
 /**
-* DO NOT CHANGE
+* NÃO MUDAR
 */
 if (!defined('IN_PHPBB'))
 {
@@ -24,29 +24,29 @@ if (empty($lang) || !is_array($lang))
 	$lang = array();
 }
 
-// DEVELOPERS PLEASE NOTE
+// DESENVOLVEDORE OBSERVE
 //
-// All language files should use UTF-8 as their encoding and the files must not contain a BOM.
+// Todos os arquivos devem utilizar linguagem UTF-8 como sua codificação e os arquivos não devem conter uma BOM.
 //
-// Placeholders can now contain order information, e.g. instead of
-// 'Page %s of %s' you can (and should) write 'Page %1$s of %2$s', this allows
-// translators to re-order the output of data while ensuring it remains correct
+// Local titulares agora pode conter fim informação, por exemplo, Em vez de
+// 'Página% s de% s' você pode (e deve) escrever' Página% 1 $ s de% 2 $ s', isso permite
+// Reordenar a saída dos dados, assegurando ao mesmo tempo que continua correcta
 //
-// You do not need this where single placeholders are used, e.g. 'Message %d' is fine
-// equally where a string contains only two placeholders which are used to wrap text
-// in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
+// Você não precisa ter esse único lugar onde os titulares são utilizados, por exemplo, 'Mensagem% d' esta bom
+// Igualmente quando uma string contém apenas dois titulares lugar, que são usados para quebrar texto
+// Num url novamente você não precisa especificar uma ordem por exemplo, 'Clique% sHERE% s'  esta bom
 //
-// Reference : http://www.phpbb.com/mods/documentation/phpbb-documentation/language/index.php#lang-use-php
+// Referencia: http://www.phpbb.com/mods/documentation/phpbb-documentation/language/index.php#lang-use-php
 
 /**
-* NOTE: Most of the language items are used in javascript
-* If you want to use quotes or other chars that need escaped, be sure you escape them double
-* (Especially for ', you must use \\\' instead of \'. For " you only need to use \".
+* NOTa: A maioria dos itens são usados na linguagem javascript
+* se você quiser usar aspas ou outros caracteres que necessitam de escape, certifique-se de que lhes escape duplo
+* (Especialmente para ', você deve usar \\\' em vez de \'. For " apenas precisa de usar \".
 */
 
 /**
 * ******************************************************************
-* Some characters you may want to copy&paste:
+* alguns caracteres que você pode querer copiar & colar:
 * ******************************************************************
 * é - Ã©
 * è - Ã¨
@@ -78,13 +78,13 @@ if (empty($lang) || !is_array($lang))
 ********************************************************************/
 
 $lang = array_merge($lang, array(
-	'BBCODE_STYLES_TIP'			=> 'Dica: Estilos podem ser aplicados rapidamente nos textos',
+	'BBCODE_STYLES_TIP'			=> 'Nota: Estilos podem ser aplicados rapidamente nos textos',
 	
 	// Dropdown titles options
 	'ABBCODE_FONT_TYPE'			=> 'Tipo da Fonte ',
 	'ABBCODE_FONT_SIZE'			=> 'Tamanho da Fonte',
 	'ABBCODE_FONT_HILI'			=> 'Destacado',
-	'ABBCODE_FONT_GIANT'		=> 'Gigante',
+	'ABBCODE_FONT_GIANT'		=> 'Enorme',
 	
 	// Text to be applied to the helpline & mouseover
 	'ABBCODE_JUSTIFY_MOVER'		=> 'Justificar o texto',
@@ -148,10 +148,10 @@ $lang = array_merge($lang, array(
 	'ABBCODE_TABLE_HELP'		=> ' [table=(ccs style)][tr=(ccs style)][td=(ccs style)]texto[/td][/tr][/table]',
 
 	'ABBCODE_QUOTE_MOVER'		=> 'Citar',
-	'ABBCODE_QUOTE_HELP'		=> ' [quote]texto[/quote] uo [quote=\"membro\"]texto[/quote]',
+	'ABBCODE_QUOTE_HELP'		=> ' [quote]texto[/quote] ou [quote=\"membro\"]texto[/quote]',
 
 	'ABBCODE_CODE_MOVER'		=> 'Código',
-	'ABBCODE_CODE_HELP'			=> ' [code]codigo[/code]',
+	'ABBCODE_CODE_HELP'			=> ' [code]código[/code]',
 
 	'ABBCODE_SPOIL_MOVER'		=> 'Spoilers',
 	'ABBCODE_SPOIL_HELP'		=> ' [spoil]texto[/spoil]',
@@ -163,7 +163,7 @@ $lang = array_merge($lang, array(
 	'ABBCODE_URL_HELP'			=> ' [url]http://...[/url] ou [url=http://...]Url da Página[/url]',
 
 	'ABBCODE_EMAIL_MOVER'		=> 'Inserir e-mail',
-	'ABBCODE_EMAIL_HELP'		=> ' [email]user@server.ext[/email] uo [email=user@server.ext]Meu e-mail[/email]',
+	'ABBCODE_EMAIL_HELP'		=> ' [email]user@server.ext[/email] ou [email=user@server.ext]Meu e-mail[/email]',
 
 	'ABBCODE_WEB_MOVER'			=> 'Inserir páginas da internet no seu post',
 	'ABBCODE_WEB_HELP'			=> ' [web]URL web[/web]',
@@ -173,7 +173,7 @@ $lang = array_merge($lang, array(
 
 	'ABBCODE_THUMB_MOVER'		=> 'Inserir miniatura',
 	'ABBCODE_THUMB_HELP'		=> ' [thumbnail(=left|right)]http://...[/thumbnail]',
-
+	
 	'ABBCODE_IMGSHARK_MOVER'	=> 'Inserir imagem do imageshack',
 	'ABBCODE_IMGSHARK_HELP'		=> ' [url=http://imageshack.us][img=http://...][/img][/url]',
 
@@ -191,7 +191,7 @@ $lang = array_merge($lang, array(
 
 	'ABBCODE_QUICKTIME_MOVER'	=> 'Inserir Quick time',
 	'ABBCODE_QUICKTIME_HELP'	=> ' [quicktime width=# height=#]URL Quick time[/quicktime]',
-
+	
 	'ABBCODE_STAGE6_MOVER'		=> 'Inserir vídeo do Stage6', // de http://www.stage6.com/
 	'ABBCODE_STAGE6_HELP'		=> ' [stage6]Stage6 ID[/stage6]',
 
@@ -209,7 +209,7 @@ $lang = array_merge($lang, array(
 
 	'ABBCODE_HR_MOVER'			=> 'Inserir linha de espaçamento',
 	'ABBCODE_HR_HELP'			=> ' [hr] Nota: Cria uma linha para separar texto',
-	
+
 	'ABBCODE_TEXTC_MOVER'		=> 'Cor da fonte',
 	'ABBCODE_TEXTC_HELP'		=> ' [color=red]texto[/color] Nota: Você pode usar tanto código das cores em HTML (color=#FF0000 ou color=red)',
 
@@ -226,12 +226,12 @@ $lang = array_merge($lang, array(
 	'ABBCODE_COPY_MOVER'		=> 'Copia o texto selecionado',
 	'ABBCODE_PASTE_MOVER'		=> 'Cola o texto copiado',
 	'ABBCODE_PLAIN_MOVER'		=> 'Remove todos os BBcodes do texto selecionado',
-	'ABBCODE_PASTE_ERROR'		=> 'Por favor, primeiro copia o texto, eles cole ',
-	'ABBCODE_NOSELECT_ERROR'	=> 'Por favor, primeiro selecione o texto ',
+	'ABBCODE_PASTE_ERROR'		=> 'Por favor, Primeiro copiar o texto, e depois cole-o',
+	'ABBCODE_NOSELECT_ERROR'	=> 'Por favor, selecione primeiro o texto',
 	
 	// Wizard texts
 	'ABBCODE_ERROR'				=> 'Erro : ',
-	'ABBCODE_ERROR_TAG'			=> 'Erro inesperado usando a tag : ',
+	'ABBCODE_ERROR_TAG'			=> 'Erro inesperado ao usar a tag : ',
 
 	'ABBCODE_ID'				=> 'Coloque o identificador (id) :',
 	'ABBCODE_NOID'				=> 'Você não colocou o identificador (id) do ',
@@ -258,16 +258,16 @@ $lang = array_merge($lang, array(
 
 	'ABBCODE_EMAIL_TAG'			=> 'email',
 	'ABBCODE_EMAIL_NOTE' 		=> 'Exemplo: user@server.ext',
-	
+
 	'ABBCODE_IMG_TAG'			=> 'imagem',
 	'ABBCODE_IMG_NOTE'			=> 'Exemplo: http://www.google.com/intl/en_com/images/logo_plain.png',
 
 	'ABBCODE_THUMB_TAG'			=> 'thumbnail',
 	'ABBCODE_THUMB_NOTE'		=> 'Exemplo: http://www.google.com/intl/en_com/images/logo_plain.png',
-
+	
 	'ABBCODE_FLASH_TAG'			=> 'flash',
 	'ABBCODE_FLASH_NOTE'		=> 'Exemplo: http://www.adobe.com/support/flash/ts/documents/test_version/version.swf',
-	
+
 	'ABBCODE_VIDEO_TAG'			=> 'vídeo',
 	'ABBCODE_VIDEO_NOTE'		=> '', //'Exemplo: ???',
 
@@ -278,8 +278,8 @@ $lang = array_merge($lang, array(
 	'ABBCODE_RAM_NOTE'			=> '', //'Exemplo: ???',
 
 	'ABBCODE_QUICKTIME_TAG'		=> 'Quick time',
-	'ABBCODE_QUICKTIME_NOTE'	=> 'Exemplo: http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt' . '<br/>' .'http://www.carnivalmidways.com/images/Music/thisisatest.mp3',
-	
+	'ABBCODE_QUICKTIME_NOTE'	=> 'Example: http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt' . '<br/>' .'http://www.carnivalmidways.com/images/Music/thisisatest.mp3',
+
 	'ABBCODE_STAGE6_TAG'		=> 'Stage6 Vídeo',
 	'ABBCODE_STAGE6_NOTE'		=> 'Exemplo: 2068715',
 
@@ -292,16 +292,16 @@ $lang = array_merge($lang, array(
 	'ABBCODE_TABLE_STYLE'		=> 'Coloque o estilo da tabela',
 	'ABBCODE_TABLE_NOTE'		=> 'Exemplo: width:50%;border:1px solid #cccccc;',
 	'ABBCODE_ROW_NUMBER'		=> 'Colocar número de linhas',
-	'ABBCODE_ROW_ERROR'			=> 'Você não colocou um número de linhas',
-	'ABBCODE_ROW_STYLE'			=> 'Coloque o estilo de linha',
+	'ABBCODE_ROW_ERROR'			=> 'Você não colocou o número da linhas',
+	'ABBCODE_ROW_STYLE'			=> 'Coloque o estilo da linha',
 	'ABBCODE_ROW_NOTE'			=> 'Exemplo: texto-align:center;',
-	'ABBCODE_CELL_NUMBER'		=> 'Coloque o número de células',
-	'ABBCODE_CELL_ERROR'		=> 'Você não colocou um número de células',
-	'ABBCODE_CELL_STYLE'		=> 'Coloque o estilo de célula',
+	'ABBCODE_CELL_NUMBER'		=> 'Coloque o número da células',
+	'ABBCODE_CELL_ERROR'		=> 'Você não colocou o número da células',
+	'ABBCODE_CELL_STYLE'		=> 'Coloque o estilo da célula',
 	'ABBCODE_CELL_NOTE'			=> 'Exemplo: border:1px solid #cccccc;',
 	
 	'ABBCODE_GRAD_MIN_ERROR'	=> 'Por favor, primeiro selecione o texto : ',
-	'ABBCODE_GRAD_MAX_ERROR'	=> 'Só é permitido menos que 120 caracteres : ',
+	'ABBCODE_GRAD_MAX_ERROR'	=> 'Só é permitido menos de 120 caracteres : ',
 	
 	'SPOILER_SHOW'				=> 'Mostrar Spoiler',
 	'SPOILER_HIDE'				=> 'Esconder Spoiler',
