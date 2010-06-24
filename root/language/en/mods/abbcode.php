@@ -117,6 +117,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOSCRIPT'			=> 'Your browser has disabled scripts or does not support client-side scripting. <em>( JavaScript! )</em>',
 	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'The page you are viewing requires the use of JavaScript for best performance.<br />If you have intentionally disabled JavaScript, please enable it.',
 	'ABBC3_FUNCTION_DISABLED'	=> 'This function is not available on this board.',
+	'ABBC3_SUBMIT'				=> 'Insert to post',
 	'SAMPLE_TEXT'				=> 'This is a text sample' //	' . $lang['SAMPLE_TEXT'] . '
 ));
 
