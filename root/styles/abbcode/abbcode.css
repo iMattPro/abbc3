@@ -299,7 +299,7 @@ DELETE ME 2 */
 
 /* wizards - Start */
 #abbcode_wizards {
-	font-size : 1em;
+	font-size: inherit;
 }
 
 #abbcode_wizards #grad_preview {
@@ -310,12 +310,6 @@ DELETE ME 2 */
 	font-size : 20px;
 	font-family : Arial, Helvetica, sans-serif;
 	font-weight : bold;
-}
-
-#abbcode_wizards select,
-#abbcode_wizards input,
-#abbcode_wizards label {
-	font-size : 1em;
 }
 /* wizards - End */
 
