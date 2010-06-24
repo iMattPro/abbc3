@@ -363,7 +363,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 * Build radio fields
 * @version 3.0.7-PL1
 */
-function radio_select($name, &$input_ary, $input_default = false, $id = false, $key = false)
+function radio_select($name, $input_ary, $input_default = false, $id = false, $key = false)
 {
 	global $user;
 
