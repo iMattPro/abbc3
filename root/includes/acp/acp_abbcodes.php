@@ -743,7 +743,7 @@ class acp_abbcodes
 	/**
 	* Select list of display color picker
 	**/
-	function get_radio($name, &$input_ary, $input_default = false, $id = false, $key = false)
+	function get_radio($name, $input_ary, $input_default = false, $id = false, $key = false)
 	{
 		global $user;
 
