@@ -154,7 +154,7 @@
 				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED -->]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[S_BBCODE_ALLOWED]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ and S_ABBC3_COLOR_MODE eq 'phpbb']]></inline-action>
+					<inline-action type="after-add"><![CDATA[ and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb')]]></inline-action>
 				</inline-edit>				
 			</edit>
 		</open>
@@ -228,7 +228,7 @@
 				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED -->]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[S_BBCODE_ALLOWED]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ and not S_ABBC3_COLOR]]></inline-action>
+					<inline-action type="after-add"><![CDATA[ and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb')]]></inline-action>
 				</inline-edit>
 			</edit>
 
