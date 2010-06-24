@@ -288,6 +288,7 @@
 						<!-- IF S_BBCODE_EDIT --> <!-- DEFINE $COLSPAN = 7 --> <!-- ELSE --> <!-- DEFINE $COLSPAN = 1 --> <!-- ENDIF -->
 						<th colspan="{$COLSPAN}">{L_ABBCODES_NAME}</th>
 						<!-- IF not S_BBCODE_EDIT -->
+						<th>{L_ABBCODES_TIP}</th>
 						<th>{L_ACP_POST_SETTINGS}</th>
 						<th>{L_ACP_MESSAGE_SETTINGS}</th>
 						<th>{L_ACP_SIGNATURE_SETTINGS}</th>
@@ -296,7 +297,7 @@
 					</tr>
 						<!-- IF S_BBCODE_EDIT -->
 					<tr class="row3">
-						<td>{L_ABBCODES_TIP}</td>
+						<td>{L_ABBCODES_NAME}</td>
 						<td>{L_ACP_POST_SETTINGS}</td>
 						<td>{L_ACP_MESSAGE_SETTINGS}</td>
 						<td>{L_ACP_SIGNATURE_SETTINGS}</td>
@@ -312,9 +313,10 @@
 				
 				<!-- IF items.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
 					
+					<!-- IF not S_BBCODE_EDIT --><td><!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}</strong><!-- ENDIF --></td><!-- ENDIF -->
 					<td>
 					<!-- IF items.IMG_SRC and not S_BBCODE_EDIT --><img src="{items.IMG_SRC}" title="{items.NAME}" alt="{items.NAME}" style="float: right;"/><!-- ENDIF -->
-					<!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}</strong><br /><!-- ENDIF -->{items.TAG_EXPLAIN}
+					<!-- IF items.TAG_NAME and S_BBCODE_EDIT --><strong>{items.TAG_NAME}</strong><br /><!-- ENDIF -->{items.TAG_EXPLAIN}
 					<input type="hidden" name="id[{items.ID}]" value="{items.ID}" />
 					<input type="hidden" name="name[{items.ID}]" value="{items.NAME}" />
 					</td>

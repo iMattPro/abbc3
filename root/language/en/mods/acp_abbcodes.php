@@ -145,7 +145,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups : </strong>If there are no selected groups then all users can use this BBcode.<br />In order to select (or un-select) multiple groups, you must use Ctrl-Click (or Cmd-Click on Mac) items to add them. If you forget to hold down Ctrl/Cmd when clicking an item, then all the previously selected items will be deselected.',
 
 	'ABBCODES_TIP'						=> 'Tag tip',
-	'ABBCODES_NAME'						=> 'Tag name',
+	'ABBCODES_NAME'						=> 'BBcode tag',
 	'ABBCODES_TAG'						=> 'Tag image icon',
 	'ABBCODES_ORDER'					=> 'Tag order',
 

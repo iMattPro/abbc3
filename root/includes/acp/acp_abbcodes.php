@@ -629,7 +629,7 @@ class acp_abbcodes
 					'ID'					=> $bbcode_id,
 					'ORDER'					=> $row['bbcode_order'],
 					'NAME'					=> str_replace('=', '', trim($row['bbcode_tag'])),
-					'TAG_NAME'				=> $bbcode_tagname,
+					'TAG_NAME'				=> ($abbcode) ? $bbcode_tagname : '[' . $abbcode_tag . ']',
 					'TAG_EXPLAIN'			=> ($abbcode) ? $abbcode_explain : '<strong>[' . $abbcode_tag .']</strong>',
  					'IMG_SRC'				=> ($abbcode_image && $abbcode_image != $img_spacer) ? $this->dir . '/images/' . $abbcode_image : '',
 
