@@ -1,11 +1,11 @@
 <?php
 /**
-* @package: phpBB 3.0.7-PL1 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: abbcode.php, v 3.0.7-PL1 2010/05/02 10:05:02 leviatan21 Exp $
+* @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
+* @version: $Id: abbcode.php, v 3.0.8 2010/06/26 10:06:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @translator: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
+* @translator: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
 **/
 
 /**
@@ -42,8 +42,8 @@ $lang = array_merge($lang, array(
 // Help page
 	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode box 3 :: Página de ayuda',
 	'ABBC3_HELP_DESC'			=> 'Descripción',
-	'ABBC3_HELP_WRITE'			=> 'Usted escribe',
-	'ABBC3_HELP_VIEW'			=> 'Se muestra',
+	'ABBC3_HELP_WRITE'			=> 'BBcode formato de uso',
+	'ABBC3_HELP_VIEW'			=> 'BBcode ejemplo se muestra como',
 	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 por <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
 	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 	
@@ -115,6 +115,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_UNAUTHORISED'		=> 'No está permitido usar ciertas palabras : <br /><strong> %s </strong>',
 	'ABBC3_NOSCRIPT'			=> 'Su navegador tiene desactivado scripts o no admite client-side scripting. <em>(JavaScript!)</em>',
 	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'La página que está viendo requiere el uso de JavaScript para un mejor funcionamiento.<br />Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.',
+	'ABBC3_FUNCTION_DISABLED'	=> 'Esta función no está disponible en este foro.',
+	'ABBC3_SUBMIT'				=> 'Insertar en el mensaje',
 	'SAMPLE_TEXT'				=> 'Esto es una muestra de texto', //	' . $lang['SAMPLE_TEXT'] . '
 ));
 
@@ -154,7 +156,14 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLOR_TIP'			=> '[color=red]texto[/color]',
 	'ABBC3_COLOR_NOTE'			=> 'Nota: puede usar colores HTML (color=#FF0000 o color=red)',
 	'ABBC3_COLOR_VIEW'			=> '[color=red]' . $lang['SAMPLE_TEXT'] . '[/color]',
-	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Nota:</strong> Activar o desactivar el color de fuente ABBC3 a los usuarios, y/o utilizar la opción estándar de color phpbb3.',
+//	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Nota:</strong> Activar o desactivar el color de fuente ABBC3 a los usuarios, y/o utilizar la opción estándar de color phpbb3.',
+
+	// Tigra Color & Highlight family Groups
+	'ABBC3_COLOUR_SAFE'			=> 'Paleta segura para la Web',
+	'ABBC3_COLOUR_WIN'			=> 'Paleta del sistema Windows',
+	'ABBC3_COLOUR_GREY'			=> 'Paleta de escala de grises',
+	'ABBC3_COLOUR_MAC'			=> 'Paleta del sistema Mac OS',
+	'ABBC3_SAMPLE'				=> 'Muestra',
 
 	// Cut selected text
 	'ABBC3_CUT_MOVER'			=> 'Borrar el texto seleccionado',
@@ -447,13 +456,14 @@ $lang = array_merge($lang, array(
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Nota:</strong> permitir que otros sitios web se incluyan en los mensajes, puede suponer un riesgo de seguridad. Utilícelo bajo su propio riesgo, o asignelo a grupos de confianza.',
 
 	// Image & Thumbnail Wizard
-	'ABBC3_ALIGN_LABEL'			=> 'Alinear Imagen',
-	'ABBC3_ALIGN_NONE'			=> 'Sin alinear',
-	'ABBC3_ALIGN_LEFT'			=> 'Izquierda',
-	'ABBC3_ALIGN_CENTER'		=> 'Centro',
-	'ABBC3_ALIGN_RIGHT'			=> 'Derecha',
-	'ABBC3_FLOAT_LEFT'			=> 'flotar a la izquierda',
-	'ABBC3_FLOAT_RIGHT'			=> 'flotar a la derecha',
+	'ABBC3_ALIGN_MODE'			=> 'Alinear Imagen',
+##	For translate :							 Don't				Yes
+	'ABBC3_ALIGN_SELECTOR'		=> array(	'none'			=> 'Sin alinear',
+											'left'			=> 'Izquierda',
+											'center'		=> 'Centro',
+											'right'			=> 'Derecha',
+											'float-left'	=> 'Flotar a la izquierda',
+											'float-right'	=> 'Flotar a la derecha'),
 
 	// Image 
 	'ABBC3_IMG_TAG'				=> 'imagen',
