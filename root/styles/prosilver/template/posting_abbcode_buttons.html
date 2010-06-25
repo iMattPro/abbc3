@@ -3,722 +3,36 @@
 <script type="text/javascript" src="{ROOT_PATH}adm/style/tooltip.js"></script>
 <!-- ENDIF -->
 
+<!-- IF (S_ABBC3_COLOR_MODE eq 'tigra' or S_ABBC3_HIGHLIGHT_MODE eq 'tigra') -->
+<script type="text/javascript" src="{S_ABBC3_PATH}/posting_abbcode_picker.js"></script>
+<!-- ENDIF -->
+
 <script type="text/javascript">
 // <![CDATA[
-
-var copy_paste = '';
-/**
-* Default values for width and height values for the wizard pop-up window
-**/
-var popup_width		= 700;
-var popup_height	= 400;
-var popup_wizards	= true;
-
-/**
-* Help line tips values
-**/
-var help_line2 = {
-<!-- BEGIN abbc3_tags -->
-	'{abbc3_tags.TAG_NAME}'	: ("{abbc3_tags.TAG_MOVER}" ? "{abbc3_tags.TAG_MOVER}" : "") + (("{abbc3_tags.TAG_TIP}" || "{abbc3_tags.TAG_NOTE}") ? " :" : "") + (("{abbc3_tags.TAG_TIP}") ? " {abbc3_tags.TAG_TIP}" : "") + (("{abbc3_tags.TAG_NOTE}") ? " {abbc3_tags.TAG_NOTE}" : "") + (("{abbc3_tags.TAG_EXAMPLE}") ? "\n{L_ABBC3_EXAMPLE} : {abbc3_tags.TAG_EXAMPLE}" : ""),
-<!-- END abbc3_tags -->
-	'abbc3_font'			: "{LA_ABBC3_FONT_MOVER}" + "{LA_ABBC3_FONT_TIP}" + '\n' + "{LA_ABBC3_FONT_NOTE}",
-	'abbc3_size'			: "{LA_ABBC3_SIZE_MOVER}" + "{LA_ABBC3_SIZE_TIP}" + '\n' + "{LA_ABBC3_SIZE_NOTE}",
-	'abbc3_highlight'		: "{LA_ABBC3_HIGHLIGHT_MOVER}" + "{LA_ABBC3_HIGHLIGHT_TIP}" + '\n' + "{LA_ABBC3_HIGHLIGHT_NOTE}",
-	'abbc3_color'			: "{LA_ABBC3_COLOR_MOVER}" + "{LA_ABBC3_COLOR_TIP}" + '\n' + "{LA_ABBC3_COLOR_NOTE}",
-	'abbc3_tip'				: "{LA_BBCODE_STYLES_TIP}"
-};
-
-/**
-* Show help line tips
-**/
-function helpline2(help, help_box)
-{
-	if (!help)
-	{
-		help = 'abbc3_tip';
-	}
-	if (!help_box)
-	{
-		help_box = 'helpbox';
-	}
-
-	var helpbox = document.forms[form_name].elements[help_box];
-	if (helpbox)
-	{
-		helpbox.value = (help_line2[help]) ? help_line2[help] : help_line[help];
-	}
-}
-
-/**
-* Replace all bbcodes to a plain text
-* Code based off : http://ufku.com/personal/bbc2html
-* Demo			 : http://ufku.com/drupal/bueditor/contributions/bbcode
-**/
-function bbcode_to_plain(data)
-{
-	/** Have a possible bbcode ? **/
-	if (data.indexOf('[') < 0)
-	{
-		return data;
-	}
-
-	/**
-	* the RegExp() built a regular expression
-	* Regular expressions are patterns used to match character combinations in strings. 
-	**/
-	function bbcode_to_plain_create_regexp(pattern, modifiers)
-	{
-		return new RegExp(pattern, modifiers);
-	}
-	/**
-	* The exec() method tests for a match in a string.
-	* This method returns the matched text if it finds a match, otherwise it returns null.
-	**/
-	function bbcode_to_plain_matched_text(str, pattern, modifiers)
-	{
-		return bbcode_to_plain_create_regexp(pattern, modifiers).exec(str);
-	}
-	/**
-	* The replace() method searches for a match between a substring and a string, and replaces the matched substring with a new substring
-	**/
-	function bbcode_to_plain_simple_replace(str)
-	{
-		return str.replace(basic_bbcode_match, bbcode_to_plain_pattern);
-	}
-	/**
-	* The replace() method searches for a match between a regular expression and a string, and replaces the matched substring with a new substring
-	**/
-	function bbcode_to_plain_regexp_replace(str, replace)
-	{
-		for (var i in replace)
-		{
-			if (bbcode_to_plain_matched_text(str, i, 'gim'))
-			{
-				str = str.replace(bbcode_to_plain_create_regexp(i, 'gim'), replace[i]);
-			}
-		}
-		return str;
-	}
-	/**
-	* Check wich replacement we should apply
-	**/
-	function bbcode_to_plain_pattern(match_0, match_1, match_2, match_3)
-	{
-		if (match_3 && match_3.indexOf('[') > -1)
-		{
-			match_3 = bbcode_to_plain_simple_replace(match_3);
-		}
-	/** alert( '0('+$0+') 1('+$1+') 2('+$2+') 3('+$3+')'); **/
-		switch (match_1)
-		{
-			case 'url':
-			case 'email':
-				if (match_3 != '' && match_2 != '')
-				{
-					match_3 = match_2;
-				}
-				break;
-			case 'click':
-					match_3 = match_2;
-				break;
-		}
-		/** Nothing to do ? **/
-		return match_3;
-	/** return '['+ match_1 + (match_2 ? '='+ match_2 : '') +']'+ match_3 +'[/'+ match_1 +']'; **/
-	}
-
-	var basic_bbcode_match	 = bbcode_to_plain_create_regexp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
-	var basic_bbcode_replace = bbcode_to_plain_create_regexp('^(\\d+)x(\\d+)$');
-
-	/** Special bbcodes **/
-	var special_bbcodes_init = {
-			code : [{'': ''}, '', ''],
-			quote : [{'': ''}, '', ''],
-			list : [{'': ''}, '', ''],
-			bbvideo : [{'': ''}, '', ''],
-			align : [{'': ''}, '', ''],
-			tr : [{'': ''}, '', ''],
-			td : [{'': ''}, '', ''],
-			video : [{'': ''}, '', ''],
-			gvideo : [{'': ''}, '', ''],
-			quicktime : [{'': ''}, '', ''],
-			ram : [{'': ''}, '', ''],
-			flv : [{'': ''}, '', ''],
-			flash : [{'': ''}, '', ''],
-			web : [{'': ''}, '', '']
-	};
-
-	var special_bbcodes_array = {};
-	for (var i in special_bbcodes_init)
-	{
-		if(i)
-		{
-			special_bbcodes_array['\\[('+ i +')]((?:.|[\r\n])*?)\\[/\\1]'] = function(match_0, match_1, match_2) { return bbcode_to_plain_regexp_replace(match_2, ''); };
-			special_bbcodes_array['\\[('+ i +')(.*?)]((?:.|[\r\n])*?)\\[/\\1]'] = function(match_0, match_1, match_2, match_3) { return bbcode_to_plain_regexp_replace(match_3, ''); };
-			special_bbcodes_array['\\[('+ i +')(\\=|\\s|)?(.*?)]((?:.|[\r\n])*?)\\[/\\1]'] = function(match_0, match_1, match_2, match_3) { return bbcode_to_plain_regexp_replace(match_3, ''); };
-		//	special_bbcodes_array['\\[('+ i +')=(.*?)]((?:.|[\r\n])*?)\\[/\\1]'] = function(match_0, match_1, match_2, match_3) { return bbcode_to_plain_regexp_replace(match_3, ''); };
-		}
-	}
-
-	/** Extra bbcodes **/
-	var	extra_bbcodes_array = {
-		'\\[\\*]' : ' ',
-		'\\[tabs]' : '',
-		'\\[tabs\\:(.*?)]' : ' $1',
-		'\\[/tabs]' : '',
-		'\\[(hr|tab(=[a-z0-9]*))]' : ''
-	};
-
-	return bbcode_to_plain_simple_replace(bbcode_to_plain_regexp_replace(bbcode_to_plain_regexp_replace(data, special_bbcodes_array), extra_bbcodes_array));
-}
-
-/**
-* Main function Apply bbcodes
-* based-of editor.js on function bbfontstyle(bbopen, bbclose)
-**/
-function bbstyle2(bbcode)
-{
-	theSelection = false;
-
-	var textarea = document.forms[form_name].elements[text_name];
-	textarea.focus();
-
-	var selLength, selStart, selEnd, s1, s2, s3;
-
-	if ((clientVer >= 4) && is_ie && is_win)
-	{
-		/** Get text selection **/
-		theSelection = document.selection.createRange().text;
-	}
-	else if (document.forms[form_name].elements[text_name].selectionEnd && (document.forms[form_name].elements[text_name].selectionEnd - document.forms[form_name].elements[text_name].selectionStart > 0))
-	{
-		selLength	= textarea.textLength;
-		selLength	= (typeof(selLength) == 'undefined' || selLength == '' || selLength === null) ? textarea.value.length : selLength;
-		selStart	= textarea.selectionStart;
-		selEnd		= textarea.selectionEnd;
-
-		if (selEnd == 1 || selEnd == 2)
-		{
-			selEnd = selLength;
-		}
-
-		s1 = (textarea.value).substring(0, selStart);
-		s2 = (textarea.value).substring(selStart, selEnd);
-		s3 = (textarea.value).substring(selEnd, selLength);
-		theSelection = s2;
-	}
-
-	var theSelectionLength = theSelection.length;
-	var bbcode_extra = " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}";
-
-	switch (bbcode)
-	{
-		case "abbc3_alignjustify" :
-			bbfontstyle("[align=justify]", "[/align]");
-			break;
-		case "abbc3_alignright":
-			bbfontstyle("[align=right]", "[/align]");
-			break;
-		case "abbc3_aligncenter" :
-			bbfontstyle("[align=center]", "[/align]");
-			break;
-		case "abbc3_alignleft" :
-			bbfontstyle("[align=left]", "[/align]");
-			break;
-		case "abbc3_sup" :
-			bbfontstyle("[sup]", "[/sup]");
-			break;
-		case "abbc3_sub" :
-			bbfontstyle("[sub]", "[/sub]");
-			break;
-		case "abbc3_b" :
-			bbfontstyle("[b]", "[/b]");
-			break;
-		case "abbc3_i" :
-			bbfontstyle("[i]", "[/i]");
-			break;
-		case "abbc3_u" :
-			bbfontstyle("[u]", "[/u]");
-			break;
-		case "abbc3_s" :
-			bbfontstyle("[s]", "[/s]");
-			break;
-		case "abbc3_pre" :
-			bbfontstyle("[pre]", "[/pre]");
-			break;
-		case "abbc3_tab" :
-			bbfontstyle("[tab=30]", "");
-			break;
-		case "abbc3_fade" :
-			bbfontstyle("[fade]", "[/fade]");
-			break;
-		case "abbc3_dirrtl" :
-			bbfontstyle("[dir=rtl]", "[/dir]");
-			break;
-		case "abbc3_dirltr" :
-			bbfontstyle("[dir=ltr]", "[/dir]");
-			break;
-		case "abbc3_marqdown" :
-			bbfontstyle("[marq=down]", "[/marq]");
-			break;
-		case "abbc3_marqup" :
-			bbfontstyle("[marq=up]", "[/marq]");
-			break;
-		case "abbc3_marqleft" :
-			bbfontstyle("[marq=left]", "[/marq]");
-			break;
-		case "abbc3_marqright" :
-			bbfontstyle("[marq=right]", "[/marq]");
-			break;
-		case "abbc3_html" :
-			bbfontstyle("[html]", "[/html]");
-			break;
-		case "abbc3_anchor" :
-			bbfontstyle("[anchor= goto=]", "[/anchor]");
-			break;
-		case "abbc3_code" :
-			bbfontstyle("[code]", "[/code]");
-			break;
-		case "abbc3_quote" :
-			bbfontstyle("[quote]", "[/quote]");
-			break;
-		case "abbc3_spoil" :
-			bbfontstyle("[spoil]", "[/spoil]");
-			break;
-		case "abbc3_hidden" :
-			bbfontstyle("[hidden]", "[/hidden]");
-			break;
-		case "abbc3_mod" :
-			bbfontstyle("[mod=\"{S_POST_AUTHOR}\"]", "[/mod]");
-			break;
-		case "abbc3_offtopic" :
-			bbfontstyle("[offtopic]", "[/offtopic]");
-			break;
-		case "abbc3_scrippet" :
-			bbfontstyle("[scrippet]", "[/scrippet]");
-			break;
-		case "abbc3_tabs" :
-			bbfontstyle("[tabs][tabs: ]", "[/tabs]");
-			break;
-		case "abbc3_listb" :
-			bbfontstyle("[list][*]", "[/list]");
-			break;
-		case "abbc3_listo" :
-			bbfontstyle("[list=1][*]", "[/list]");
-			break;
-		case "abbc3_listitem" :
-			bbfontstyle("[*]", "");
-			break;
-		case "abbc3_hr" :
-			bbfontstyle("[hr]", "");
-			break;
-		case "abbc3_imgshack" :
-			popup('http://imageshack.us/', popup_width, popup_height);
-		/*	popup('http://ipostimage.org/', popup_width, popup_height);	*/
-		/*	popup('http://www.imageposter.com/uploads/?mode=phpbb&forumurl=' + escape(document.location.href), '_imagehost', 'resizable=yes,width=500,height=400', popup_width, popup_height);	*/
-			break;
-
-/** Custom bbcodes - Start **/
-		case "abbc3_dm" :
-			bbfontstyle("[dm]", "[/dm]");
-			break;
-		case "abbc3_gamespot" :
-			bbfontstyle("[gamespot]", "[/gamespot]");
-			break;
-		case "abbc3_gametrailers" :
-			bbfontstyle("[gametrailers]", "[/gametrailers]");
-			break;
-		case "abbc3_ignvideo" :
-			bbfontstyle("[ignvideo]", "[/ignvideo]");
-			break;
-		case "abbc3_putfile" :
-			bbfontstyle("[Putfile]", "[/Putfile]");
-			break;
-		case "abbc3_liveleak" :
-			bbfontstyle("[liveleak]", "[/liveleak]");
-			break;
-		case "abbc3_nfo" :
-			bbfontstyle("[nfo]", "[/nfo]");
-			break;
-		case "abbc3_glow" :
-			bbfontstyle("[glow=red]", "[/glow]");
-			break;
-		case "abbc3_shadow" :
-			bbfontstyle("[shadow=blue]", "[/shadow]");
-			break;
-		case "abbc3_dropshadow" :
-			bbfontstyle("[dropshadow=blue]", "[/dropshadow]");
-			break;
-		case "abbc3_blur" :
-			bbfontstyle("[blur=blue]", "[/blur]");
-			break;
-		case "abbc3_wave" :
-			bbfontstyle("[wave=blue]", "[/wave]");
-			break;
-		case "abbc3_search" :
-			bbfontstyle("[search]", "[/search]");
-			break;
-
-/** Custom bbcodes - End **/
-
-/** This bbcodes needs wizard - Start **/
-		case "abbc3_url" :
-		case "abbc3_ed2k" :
-		case "abbc3_email" :
-		case "abbc3_web" :
-		case "abbc3_img" :
-		case "abbc3_thumbnail" :
-		case "abbc3_rapidshare" :
-		case "abbc3_testlink" :
-		case "abbc3_click" :
-		case "abbc3_table" :
-		/** This bbcodes needs extra data **/
-		case "abbc3_bbvideo" :
-		case "abbc3_flash" :
-		case "abbc3_flv" :
-		case "abbc3_video" :
-		case "abbc3_quicktime" :
-		case "abbc3_ram" :
-		/** Web videos bbcodes **/
-		case "abbc3_stream" :
-		case "abbc3_veoh" :
-		case "abbc3_collegehumor" :
-		case "abbc3_gvideo" :
-		case "abbc3_youtube" :
-		/** Gradient needs his own function **/
-		case "abbc3_grad" :
-		/** Extra Custom bbcodes - Start **/
-		case "deezer" :
-
-		/** Extra Custom bbcodes - End **/
-			if (bbcode == "abbc3_grad")
-			{
-				if (typeof(theSelection) == 'undefined' || theSelection === null || theSelection == '')
-				{
-					alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_GRAD_MIN_ERROR}");
-					return;
-				}
-
-				if (theSelectionLength > 120)
-				{
-					alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_GRAD_MAX_ERROR}" + theSelectionLength);
-					return;
-				}
-			}
-			else if (bbcode != "abbc3_table")
-			{
-				if (theSelection || !popup_wizards)
-				{
-					bbcode_extra = (bbcode == 'abbc3_bbvideo' || bbcode == 'abbc3_flash' || bbcode == 'abbc3_flv' || bbcode == 'abbc3_video' || bbcode == 'abbc3_quicktime' || bbcode == 'abbc3_ram') ? " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}" : ( bbcode == 'abbc3_web') ? ' 100%,100' : '';
-
-					if ( bbcode == "abbc3_ed2k")
-					{
-						bbcode = "abbc3_url";
-					}
-
-					bbcode = bbcode.replace("abbc3_" , "");
-					bbfontstyle( '[' + bbcode + bbcode_extra + ']', '[/' + bbcode + ']', '');
-					return;
-				}
-			}
-			else if (bbcode == "abbc3_table" && !popup_wizards)
-			{
-				bbfontstyle("[table=][tr=][td=]", "[/td][/tr][/table]");
-				return;
-			}
-
-			var popup_url = '{S_ABBC3_WIZARD_PAGE}' + '&amp;abbc3=' + bbcode + '&amp;form_name=' + form_name + '&amp;text_name=' + text_name;
-			popup(popup_url, popup_width, popup_height);
-			break;
-/** This bbcodes needs wizard - End **/
-
-		case "abbc3_plain" :
-			if (typeof(theSelection) == 'undefined' || theSelection == '' || theSelection === null)
-			{
-				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
-				return;
-			}
-			else
-			{
-				try {//	tempSelection = tempSelection.replace(/\[[^\]]*\]/gi,"");
-						var tempSelection = bbcode_to_plain(theSelection);
-
-						if ((clientVer >= 4) && is_ie && is_win)
-						{
-							document.selection.createRange().text = tempSelection;
-						}
-						else if (textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0))
-						{
-							textarea.value = s1 + tempSelection + s3;
-							selEnd = textarea.selectionEnd = (textarea.value).substring(0, selStart).length + tempSelection.length;
-						}
-				} catch (e) {}
-			}
-			break;
-		case "abbc3_cut" :
-			if (typeof(theSelection) == 'undefined' || theSelection === null || theSelection == '')
-			{
-				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
-				return;
-			}
-			else
-			{
-				if ((clientVer >= 4) && is_ie && is_win)
-				{
-					document.selection.createRange().text = '';
-				}
-				else if (textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0))
-				{
-					textarea.value = (textarea.value).substring(0, selStart) + (textarea.value).substring(selEnd, selLength);
-					selEnd = textarea.selectionEnd = (textarea.value).substring(0, selStart).length;
-				}
-			}
-			break;
-		case "abbc3_copy" :
-			if (typeof(theSelection) == 'undefined' || theSelection == '' || theSelection === null)
-			{
-				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
-				return;
-			}
-			else
-			{
-				copy_paste = theSelection;
-			}
-			break;
-		case "abbc3_paste" :
-			if (copy_paste)
-			{
-				bbfontstyle(copy_paste, '');
-			}
-			else
-			{
-				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_PASTE_ERROR}");
-			}
-			break;
-
-/** Else should be a phpbb3 custom bbcode from ACP, so let's phpbb3 take care of it **/
-		default :
-			bbfontstyle("["+bbcode+"]", "[/"+bbcode+"]");
-			break;
-	}
-
-	theSelection = '';
-}
-
-<!-- IF S_ABBC3_HIGHLIGHT or S_ABBC3_COLOR -->
-/**
-* Dropdown Color pallette for highlight text & colour text
-* Code from : http://www.mredkj.com/tutorials/tutorial005.html
-**/
-function ABBCcolorPalette(el)
-{
-	var elSel = document.forms[form_name].elements[el];
-	if (!elSel)
-	{
-		return;
-	}
-	var numberList = {
-		0 : '00',
-		1 : '40',
-		2 : '80',
-		3 : 'BF',
-		4 : 'FF'
-	};
-
-	for (var r = 4; r > -1; r--)
-	{
-		for (var g = 4; g > -1; g--)
-		{
-			for (var b = 4; b > -1; b--)
-			{
-				var color = String(numberList[r]) + String(numberList[g]) + String(numberList[b]);
-				var optn = document.createElement('option');
-					optn.text = '#' + color;
-					optn.value = color;
-
-				if (el == 'abbc3_color')
-				{
-					optn.style.color = '#' + color;
-				}
-				else
-				{
-					optn.style.backgroundColor = '#' + color;
-				}
-
-				elSel.options.add(optn);
-			}
-		}
-	}
-}
-<!-- ENDIF -->
-
-<!-- IF S_ABBC3_BOXRESIZE -->
-/**
-* Resize a textbox - START
-**/
-function textbox_resize(pix, el, cookie_name)
-{
-	if (typeof(el) == 'undefined')
-	{
-		el = text_name;
-	}
-	if (typeof(cookie_name) == 'undefined')
-	{
-		cookie_name = '{S_ABBC3_COOKIE_NAME}';
-	}
-
-	var cookie	= document.forms[form_name].elements[cookie_name];
-	var box		= document.forms[form_name].elements[el];
-	var new_height;
-
-	// Signature is expresed in "em" meanwhile post is expresed in "px"
-	if (box.style.height.indexOf('em') >= 0)
-	{
-		box.style.height = (parseInt(box.style.height, 10) / 10) + 'px';
-		new_height	 = (parseInt(box.style.height, 10)) ? parseInt(box.style.height, 10) + parseInt(pix, 10) : 120;
-	}
-	else
-	{
-		new_height	 = (parseInt(box.style.height, 10)) ? parseInt(box.style.height, 10) + parseInt(pix, 10) : 270;
-	}
-
-	if (parseInt(cookie.value, 10) !== 0 && typeof(pix) != 'number')
-	{
-		new_height = parseInt(cookie.value, 10) + 'px';
-	}
-
-	if (parseInt(new_height, 10) > 0)
-	{
-		box.style.height = parseInt(new_height, 10) + 'px';
-		cookie.value	 = parseInt(new_height, 10);
-	}
-	return false;
-}
-/** Resize a textbox - END **/
-<!-- ENDIF -->
-
-<!-- IF S_ABBC3_COMPACT -->
-/**
-javascript for Bubble Tooltips by Alessandro Fulciniti
-- http://pro.html.it - http://web-graphics.com 
-obtained from: http://web-graphics.com/mtarchive/001717.php
-
-MSSTI :
-	- added ability to perform tooltips on list elements
-**/
-function ABBCenable_tooltips_list(id, headline, sub_id, content_direction)
-{
-	var links, i, hold;
-
-	s_content_direction = (content_direction) ? content_direction : 'rtl';
-	head_text = headline;
-
-	if (!document.getElementById || !document.getElementsByTagName)
-	{
-		return;
-	}
-
-	hold = document.createElement('span');
-	hold.id = '_tooltip_container';
-	hold.setAttribute('id', '_tooltip_container');
-	hold.style.position = 'absolute';
-
-	document.getElementsByTagName('body')[0].appendChild(hold);
-
-	if (id === null)
-	{
-		links = document.getElementsByTagName('a');
-	}
-	else
-	{
-		links = document.getElementById(id).getElementsByTagName('a');
-	}
-
-	for (i = 0; i < links.length; i++)
-	{
-		if (sub_id)
-		{
-			if (links[i].id.substr(0, sub_id.length) == sub_id)
-			{
-				prepare(links[i]);
-			}
-		}
-		else
-		{
-			prepare(links[i]);
-		}
-	}
-}
-
-/**
-* Correct positioning of tooltip container
-*/
-function locate(e)
-{
-	var posx = 0;
-	var posy = 0;
-
-	e = e.parentNode;
-
-	if (e.offsetParent)
-	{
-		for (posx = 0, posy = 0; e.offsetParent; e = e.offsetParent)
-		{
-			posx += e.offsetLeft;
-			posy += e.offsetTop;
-		}
-	}
-	else
-	{
-		posx = e.offsetLeft;
-		posy = e.offsetTop;
-	}
-
-	var new_e = document.getElementById('bbcodes_selector');
-	if (new_e)
-	{
-		posx = new_e.offsetLeft;
-		posy = new_e.offsetTop;
-	}
-
-	document.getElementById('_tooltip_container').style.left=(s_content_direction == 'rtl' ? (posx-140) : (posx)) + 'px';
-	document.getElementById('_tooltip_container').style.top=(s_content_direction == 'rtl' ? (posy-90) : (posy-100)) + 'px';
-}
-<!-- ENDIF -->
-
-function ABBC3_init()
-{
-	<!-- IF S_ABBC3_COMPACT -->
-	ABBCenable_tooltips_list('bbcodes_selector', '{LA_ABBC3_HELP_DESC}', false, '{S_CONTENT_DIRECTION}');
-	<!-- ENDIF -->
-	<!-- IF S_ABBC3_HIGHLIGHT -->
-	ABBCcolorPalette('abbc3_highlight');
-	<!-- ENDIF -->
-	<!-- IF S_ABBC3_COLOR -->
-	ABBCcolorPalette('abbc3_color');
-	<!-- ENDIF -->
-	<!-- IF S_ABBC3_BOXRESIZE -->
-	textbox_resize();
-	<!-- ENDIF -->
-}
-
-/** Install the safety net - START **/
-if (window.onload_functions) // prosilver
-{//	onload_functions.push('ABBC3_init()');
-	onload_functions[onload_functions.length] = "ABBC3_init();";
-}
-else if (typeof(window.addEventListener) != "undefined") // DOM
-{
-	window.addEventListener("load", ABBC3_init, false);
-}
-else if (typeof(window.attachEvent) != "undefined") // MSIE
-{
-	window.attachEvent("onload", ABBC3_init);
-}
-/** Install the safety net - END **/
-
+<!-- INCLUDE {S_ABBC3_POSTING_JAVASCRIPT} -->
 // ]]>
 </script>
+
+	<!-- IF S_ABBC3_WIZARD_MODE eq '2' -->
+				</div>
+			</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<div id="ABBC3_Ajax_indicator">
+		<script type="text/javascript">
+		// <![CDATA[
+		<!-- INCLUDE {S_ABBC3_WIZARD_JAVASCRIPT} -->
+		// ]]>
+		</script>
+		<div id="ABBC3_Ajax_Wizards"></div>
+	</div>
+
+	<div class="panel" id="postingbox2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<fieldset class="fields1">
+				<div id="format-buttons2">
+	<!-- ENDIF -->
 
 	<noscript><div class="rules"><p style="text-align: center;"><strong>{L_ABBC3_NOSCRIPT}</strong><br />{L_ABBC3_NOSCRIPT_EXPLAIN}</p></div></noscript>
 	<table id="abbc3posttable" width="100%" border="1" cellspacing="0" cellpadding="0">
@@ -731,7 +45,7 @@ else if (typeof(window.attachEvent) != "undefined") // MSIE
 				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 				<!-- ENDIF -->
-
+				
 			<!-- IF S_ABBC3_BOXRESIZE -->
 				<input type="button" value=" + " class="button2" onclick="textbox_resize(10);" />&nbsp;<input type="button" value=" - " class="button2" onclick="textbox_resize(-10);" />
 				<!-- IF S_ABBC3_TAB -->
@@ -740,15 +54,15 @@ else if (typeof(window.attachEvent) != "undefined") // MSIE
 			<!-- ENDIF -->
 
 <!-- IF S_ABBC3_COMPACT -->
-				<ul id="_selector">
-					<li><span class="button2 header">{L_ABBC3_SHORT}</span>
-						<ul id="bbcodes_selector" class="panel">
+				<ul class="_selector">
+					<li class="li_selector"><span id="button_selector" class="button2">&nbsp;{L_ABBC3_SHORT}&nbsp;</span>
+						<ul id="ul_selector" class="panel ul_selector">
 						<!-- BEGIN abbc3_tags -->
 							<!-- IF abbc3_tags.S_ABBC3_BREAK or abbc3_tags.S_ABBC3_DIVISION -->
 								<!-- IF not abbc3_tags.S_FIRST_ROW --><li>------------------</li><!-- ENDIF -->
 							<!-- ELSE -->
-							<li id="{abbc3_tags.TAG_NAME}" style='background-image: url("{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}");'>
-								<a href="#" onclick="bbstyle2('{abbc3_tags.TAG_NAME}'); return false;" title="{abbc3_tags.TAG_MOVER}&lt;br /&gt;{abbc3_tags.TAG_TIP}&lt;br /&gt;{abbc3_tags.TAG_NOTE}&lt;br /&gt;{abbc3_tags.TAG_EXAMPLE}">{abbc3_tags.TAG_MOVER}</a>
+							<li id="abbcode_{abbc3_tags.TAG_ID}" style='background-image: url("{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}");'>
+								<a href="#abbcode_{abbc3_tags.TAG_ID}" onclick="bbstyle2('{abbc3_tags.TAG_NAME}'); return false;" title="{abbc3_tags.TAG_MOVER}&lt;br /&gt;{abbc3_tags.TAG_TIP}&lt;br /&gt;{abbc3_tags.TAG_NOTE}&lt;br /&gt;{abbc3_tags.TAG_EXAMPLE}">{abbc3_tags.TAG_MOVER}</a>
 							</li>
 							<!-- ENDIF -->
 						<!-- END abbc3_tags -->
@@ -756,8 +70,8 @@ else if (typeof(window.attachEvent) != "undefined") // MSIE
 						<!-- IF .custom_tags -->
 							<li>------------------</li>
 							<!-- BEGIN custom_tags -->
-							<li id="{custom_tags.BBCODE_ID}">
-								<a href="#" onclick="bbstyle({custom_tags.BBCODE_ID}); return false;" <!-- IF custom_tags.BBCODE_HELPLINE !== '' -->title="{custom_tags.BBCODE_TAG}&lt;br /&gt;{custom_tags.A_BBCODE_HELPLINE}"<!-- ENDIF -->>{custom_tags.BBCODE_TAG}</a>
+							<li id="abbcode_{custom_tags.BBCODE_ID}">
+								<a href="#abbcode_{custom_tags.BBCODE_ID}" onclick="bbstyle({custom_tags.BBCODE_ID}); return false;" <!-- IF custom_tags.BBCODE_HELPLINE !== '' -->title="{custom_tags.BBCODE_TAG}&lt;br /&gt;{custom_tags.A_BBCODE_HELPLINE}"<!-- ENDIF -->>{custom_tags.BBCODE_TAG}</a>
 							</li>
 							<!-- END custom_tags -->
 						<!-- ENDIF -->
@@ -765,6 +79,9 @@ else if (typeof(window.attachEvent) != "undefined") // MSIE
 						</ul>
 					</li>
 				</ul>
+				<!-- IF S_ABBC3_TAB -->
+				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
+				<!-- ENDIF -->
 <!-- ENDIF -->
 
 			<!-- IF S_ABBC3_FONT -->
@@ -833,28 +150,45 @@ else if (typeof(window.attachEvent) != "undefined") // MSIE
 				<!-- ENDIF -->
 			<!-- ENDIF -->
 
-			<!-- IF S_ABBC3_HIGHLIGHT -->
+		<!-- IF S_ABBC3_HIGHLIGHT -->
+			<!-- IF S_ABBC3_HIGHLIGHT_MODE eq 'dropdown' -->
 				<select id="abbc3_highlight" name="abbc3_highlight" onchange="bbfontstyle('[highlight=#' + this.form.abbc3_highlight.options[this.form.abbc3_highlight.selectedIndex].value + ']', '[/highlight]'); this.form.abbc3_highlight.selectedIndex = 0;" onmouseover="helpline2('abbc3_highlight')" onmouseout="helpline2()" title="{L_ABBC3_HIGHLIGHT_MOVER}">
 					<option selected="selected">- {L_ABBC3_HIGHLIGHT_MOVER} -</option>
 				</select>
+			<!-- ELSEIF S_ABBC3_HIGHLIGHT_MODE eq 'fancy' -->
+				<ul class="_selector">
+					<li class="li_selector"><span id="button_highlight" class="button2">&nbsp;{L_ABBC3_HIGHLIGHT_MOVER}&nbsp;</span>
+						<ul id="ul_highlight_selector" class="panel ul_selector"><li></li></ul>
+					</li>
+				</ul>
+			<!-- ELSEIF S_ABBC3_HIGHLIGHT_MODE eq 'tigra' -->
+				<img src="{S_ABBC3_PATH}/images/highlight.gif" class="btnbbcode3 editor_Button" onclick="javascript:TCP.popup('{S_ABBC3_TIGRA_PAGE}', 'highlight', 0)" onmouseover="helpline2('abbc3_highlight')" onmouseout="helpline2()" alt="{L_ABBC3_HIGHLIGHT_MOVER}" title="{L_ABBC3_HIGHLIGHT_MOVER}" id="{ABBC3_HIGHLIGHT_NAME}" />
+			<!-- ENDIF -->
 				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 				<!-- ENDIF -->
-			<!-- ENDIF -->
+		<!-- ENDIF -->
 
-			<!-- IF S_ABBC3_COLOR -->
+		<!-- IF S_ABBC3_COLOR -->
+			<!-- IF S_ABBC3_COLOR_MODE eq 'phpbb' -->
+				<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
+			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'dropdown' -->
 				<select id="abbc3_color" name="abbc3_color" onchange="bbfontstyle('[color=#' + this.form.abbc3_color.options[this.form.abbc3_color.selectedIndex].value + ']', '[/color]'); this.form.abbc3_color.selectedIndex = 0;" onmouseover="helpline2('abbc3_color')" onmouseout="helpline2()" title="{L_ABBC3_COLOR_MOVER}">
 					<option selected="selected">- {L_ABBC3_COLOR_MOVER} -</option>
 				</select>
-				<!-- IF S_ABBC3_TAB -->
-				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
-				<!-- ENDIF -->
-			<!-- ELSE -->
-				<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
-				<!-- IF S_ABBC3_TAB -->
-				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
-				<!-- ENDIF -->
+			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'fancy' -->
+				<ul class="_selector">
+					<li class="li_selector"><span id="button_colour" class="button2">&nbsp;{L_ABBC3_COLOR_MOVER}&nbsp;</span>
+						<ul id="ul_color_selector" class="panel ul_selector"><li></li></ul>
+					</li>
+				</ul>
+			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'tigra' -->
+				<img src="{S_ABBC3_PATH}/images/fontcolor.gif" class="btnbbcode3 editor_Button" onclick="javascript:TCP.popup('{S_ABBC3_TIGRA_PAGE}', 'color', 0)" onmouseover="helpline2('abbc3_color')" onmouseout="helpline2()" alt="{L_ABBC3_COLOR_MOVER}" title="{L_ABBC3_COLOR_MOVER}" id="{ABBC3_COLOR_NAME}" />
 			<!-- ENDIF -->
+				<!-- IF S_ABBC3_TAB -->
+				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
+				<!-- ENDIF -->
+		<!-- ENDIF -->
 
 <!-- IF S_ABBC3_COMPACT -->
 			</td>
@@ -915,5 +249,3 @@ else if (typeof(window.attachEvent) != "undefined") // MSIE
 		</tr>
 <!-- ENDIF -->
 	</table>
-
-	{S_ABBC3_HIDDEN_FIELDS}

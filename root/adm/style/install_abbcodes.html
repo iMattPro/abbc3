@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Language" content="{S_USER_LANG}" />
 <meta http-equiv="imagetoolbar" content="no" />
 <!-- IF META -->{META}<!-- ENDIF -->
-<title>{PAGE_TITLE}</title>
+<title>{PAGE_TITLE} - {MODE}</title>
 
 <link href="./adm/style/admin.css" rel="stylesheet" type="text/css" media="screen" />
 
@@ -88,7 +88,7 @@ function dE(n, s, type)
 	<!-- ENDIF -->
 <!-- ENDIF -->
 
-<!-- IF MODE eq 'install' or MODE eq 'update' -->
+<!-- IF MODE eq 'install' or MODE eq 'update' or MODE eq 'ucpPrefs'-->
 	<!-- IF STEP eq 0 -->
 		<fieldset>
 			<legend>{LEGEND}</legend>

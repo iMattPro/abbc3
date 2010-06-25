@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> install_abbc3
-* @version: $Id: install.php, v 3.0.7 2010/03/18 10:03:18 leviatan21 Exp $
+* @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> install_abbc3
+* @version: $Id: install_abbc3.php, v 3.0.8 2010/05/06 10:05:06 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -45,8 +45,12 @@ $ary_msg_ok	= array();
 $ary_msg_err= array();
 $error_ary['sql'][0] = '';
 
-$mod_version= '3.0.7';
+$mod_version= '3.0.8';
 $page_title = $user->lang['INSTALLER_TITLE'] . sprintf($user->lang['INSTALLER_VERSION'], $mod_version);
+
+// From oldest versions
+$deprecated_bbcodes = array('html', 'upload');
+$deprecated_configs = array('ABBC3_JAVASCRIPT', 'ABBC3_UPLOAD_MAX_SIZE', 'ABBC3_UPLOAD_EXTENSION');
 
 switch ($mode)
 {
@@ -68,28 +72,28 @@ switch ($mode)
 				add_log('admin', 'LOG_PURGE_CACHE');
 
 				$template->assign_vars(array(
-					'STEP'		=> $start_step,
-					'L_DELETE_END'	=> sprintf($user->lang['INSTALLER_DELETE_SUCCESSFUL'], $user->lang['INSTALLER_TITLE'] , $mod_version),
+					'STEP'			=> $start_step,
+					'L_DELETE_END'	=> sprintf($user->lang['INSTALLER_DELETE_SUCCESSFUL'], $user->lang['INSTALLER_TITLE'], $mod_version),
 				));
 			}
 			else
 			{
 				$template->assign_vars(array(
-					'STEP'		=> $start_step,
-					'L_DELETE_END'	=> sprintf($user->lang['INSTALLER_DELETE_UNSUCCESSFUL'], $user->lang['INSTALLER_TITLE'] , $mod_version),
-				));				
+					'STEP'			=> $start_step,
+					'L_DELETE_END'	=> sprintf($user->lang['INSTALLER_DELETE_UNSUCCESSFUL'], $user->lang['INSTALLER_TITLE'], $mod_version),
+				));
 			}
 		}
 		else
 		{
 			$template->assign_vars(array(
-				'TITLE'			=> $user->lang['INSTALLER_DELETE_WELCOME'],
-				'BODY'			=> $user->lang['INSTALLER_DELETE_WELCOME_NOTE'],
-				'WARNING'		=> (!isset($config['ABBC3_MOD'])) ? true : false,
+				'TITLE'				=> $user->lang['INSTALLER_DELETE_WELCOME'],
+				'BODY'				=> $user->lang['INSTALLER_DELETE_WELCOME_NOTE'],
+				'WARNING'			=> (!isset($config['ABBC3_MOD'])) ? true : false,
 				'INSTALLER_NOTE'	=> $user->lang['INSTALLER_DELETE_INFORMATION'],
-				'LEGEND'	=> $user->lang['INSTALLER_DELETE'],
-				'LABEL'		=> sprintf($user->lang['INSTALLER_DELETE_VERSION'], $mod_version),
-				'STEP'		=> 0,
+				'LEGEND'			=> $user->lang['INSTALLER_DELETE'],
+				'LABEL'				=> sprintf($user->lang['INSTALLER_DELETE_VERSION'], $mod_version),
+				'STEP'				=> 0,
 			));
 		}
 
@@ -97,7 +101,7 @@ switch ($mode)
 			'MODE'		=> $mode,
 			'STEP'		=> $start_step,
 			'DELETED'	=> $deleted,
-			'U_ACTION'	=> append_sid(ABBC3_INSTALL, "mode=$mode&amp;start_step=" .($start_step+1)),
+			'U_ACTION'	=> append_sid(ABBC3_INSTALL, "mode=$mode&amp;start_step=" . ($start_step+1)),
 		));
 
 	break;
@@ -115,23 +119,25 @@ switch ($mode)
 			));
 		}
 
-		// first of all try to delete deprecated bbcodes
+		// first of all try to delete deprecated bbcodes and deprecated configs
 		if ($start_step == 1)
 		{
-			$deprecated_bbcodes = array('html', 'upload');
-
 			$sql = 'DELETE FROM ' . BBCODES_TABLE . '
 				WHERE ' . $db->sql_in_set('bbcode_tag', $deprecated_bbcodes) . ' AND abbcode = 1';
-			$result = $db->sql_query($sql);
-			
+			$result = $db->sql_query($sql);		
 			$cache->destroy('sql', BBCODES_TABLE);
-		}
-	// no break;
 
+			$sql = 'DELETE FROM ' . CONFIG_TABLE . '
+				WHERE ' . $db->sql_in_set('config_name', $deprecated_configs);
+			$result = $db->sql_query($sql);
+			$cache->destroy('config');
+		}
+
+	// no break;
 	case 'install':
 		$installed = false;
 		$cache->purge();
-		
+
 		// Don't continue if answer ins't yes
 		$start_step = ($start_step == 1 && $install == 0) ? 0 : $start_step;
 
@@ -182,7 +188,9 @@ switch ($mode)
 
 			$db->sql_return_on_error(true);
 
-			$num_updates = 1;
+			$num_updates = 9;
+			$count_updates = 1;
+
 			foreach ($database_update_info as $version => $schema_changes)
 			{
 				// Add columns?
@@ -190,14 +198,13 @@ switch ($mode)
 				{
 					foreach ($schema_changes['add_columns'] as $table => $columns)
 					{
-						$sizeof_columns = sizeof($columns)+3;
 						foreach ($columns as $column_name => $column_data)
 						{
 							$result = $column_exists = false;
-							$msg	= sprintf($user->lang['STEP_PERCENT_COMPLETED'], $num_updates, $sizeof_columns) . ' ::  &raquo; [' . $column_name . '] ';
+							$msg	= sprintf($user->lang['STEP_PERCENT_COMPLETED'], $count_updates, $num_updates) . ' ::  &raquo; [' . $column_name . '] ';
 
 							$column_exists = $db_tools->sql_column_exists($table, $column_name);
-							
+
 							if (!$column_exists)
 							{
 								$result = $db_tools->sql_column_add($table, $column_name, $column_data);
@@ -211,20 +218,19 @@ switch ($mode)
 							{
 								$ary_msg_err[] = $msg . $user->lang['LINE_UNMODIFIED'];
 							}
-							$num_updates++;
+							$count_updates++;
 						}
 					}
 				}
-				
+
 				// Add indexes?
 				if (!empty($schema_changes['add_index']))
 				{
 					foreach ($schema_changes['add_index'] as $table => $index_array)
 					{
-						$sizeof_index = $sizeof_columns;
 						foreach ($index_array as $index_name => $column)
 						{
-							$msg	= sprintf($user->lang['STEP_PERCENT_COMPLETED'], $num_updates, $sizeof_index) . ' ::  &raquo; [' . $index_name . '] ';
+							$msg	= sprintf($user->lang['STEP_PERCENT_COMPLETED'], $count_updates, $num_updates) . ' ::  &raquo; [' . $index_name . '] ';
 
 							$indexes = $db_tools->sql_list_index($table);
 							if (!in_array($index_name, $indexes))
@@ -236,19 +242,19 @@ switch ($mode)
 							{
 								$ary_msg_err[] = "<hr />" . $msg . $user->lang['LINE_UNMODIFIED'];
 							}
-							$num_updates++;
+							$count_updates++;
 						}
 					}
 				}
+
 				// Change columns?
 				if (!empty($schema_changes['change_columns']))
 				{
 					foreach ($schema_changes['change_columns'] as $table => $columns)
 					{
-						$sizeof_changes = $sizeof_columns;
 						foreach ($columns as $column_name => $column_data)
 						{
-							$msg	= sprintf($user->lang['STEP_PERCENT_COMPLETED'], $num_updates, $sizeof_changes) . ' ::  &raquo; [' . $column_name . '] ';
+							$msg	= sprintf($user->lang['STEP_PERCENT_COMPLETED'], $count_updates, $num_updates) . ' ::  &raquo; [' . $column_name . '] ';
 
 							$result = $db_tools->sql_column_change($table, $column_name, $column_data);
 
@@ -260,20 +266,20 @@ switch ($mode)
 							{
 								$ary_msg_err[] = "<hr />" . $msg . $user->lang['LINE_UNMODIFIED'];
 							}
-							$num_updates++;
+							$count_updates++;
 						}
 					}
 				}
+
 				// Add table
 				if (!empty($schema_changes['add_table']))
 				{
 					foreach ($schema_changes['add_table'] as $table_name => $table_data)
 					{
-						$sizeof_changes = $sizeof_columns;
 						$table_name = preg_replace('#phpbb_#i', $table_prefix, $table_name);
 
-						$msg	= sprintf($user->lang['STEP_PERCENT_COMPLETED'], $num_updates, $sizeof_changes) . ' ::  &raquo; [' . $table_name . '] ';
-						
+						$msg	= sprintf($user->lang['STEP_PERCENT_COMPLETED'], $count_updates, $num_updates) . ' ::  &raquo; [' . $table_name . '] ';
+
 						$tables = $db_tools->sql_table_exists($table_name);
 						if (!$tables)
 						{
@@ -284,10 +290,9 @@ switch ($mode)
 						{
 							$ary_msg_err[] = "<hr />" . $msg . $user->lang['LINE_UNMODIFIED'];
 						}
-						$num_updates++;
+						$count_updates++;
 					}
 				}
-
 			}
 			$db->sql_return_on_error(false);
 
@@ -303,6 +308,7 @@ switch ($mode)
 				$template->assign_block_vars('install_block2', array('NOTE' => $msg_text));
 			}
 		}
+
 		// BBcodes add
 		else if ($start_step == 3)
 		{
@@ -367,7 +373,7 @@ switch ($mode)
 					'bbcode_group'			=> (isset($bbcode_values[15]) ? $bbcode_values[15] : 0),
 				);
 				$msg = sprintf($user->lang['STEP_PERCENT_COMPLETED'], $num_updates, sizeof($bbcode_data)) . ' ::  &raquo; [' . $bbcode_name . '] ';
-				
+
 				// Check if exist
 				$sql = 'SELECT * 
 						FROM ' . BBCODES_TABLE . "
@@ -394,7 +400,7 @@ switch ($mode)
 				// else add it
 				else
 				{
-					$sql_ary['bbcode_id']	 = ($bbcode_values[2]) ? $next_bbcode_id : $first_bbode_id;
+					$sql_ary['bbcode_id'] = ($bbcode_values[2]) ? $next_bbcode_id : $first_bbode_id;
 
 					$result = $db->sql_query('INSERT INTO ' . BBCODES_TABLE . $db->sql_build_array('INSERT', $sql_ary));
 
@@ -418,6 +424,7 @@ switch ($mode)
 				$template->assign_block_vars('install_block2', array('NOTE' => $msg_text));
 			}
 		}
+
 		// Synchronise BBcodes order
 		else if ($start_step == 4)
 		{
@@ -446,6 +453,7 @@ switch ($mode)
 				'NOTE'	=> $user->lang['ABBCODES_RESYNC_SUCCESS']
 			));
 		}
+
 		// add Modules
 		else if ($start_step == 5)
 		{
@@ -458,7 +466,7 @@ switch ($mode)
 				FROM ' . MODULES_TABLE . "
 				WHERE module_langname = '" . $acp_cat_parent_name . "'";
 			$result = $db->sql_query($sql);
-	
+
 			while ($row = $db->sql_fetchrow($result))
 			{
 				$acp_cat_parent_id = $row['module_id'];
@@ -477,7 +485,7 @@ switch ($mode)
 				{
 					$modules_values['parent_id'] = $acp_module_id;
 				}
-				
+
 				$result = add_abbc3_module($modules_values);
 
 				if ($result)
@@ -494,7 +502,7 @@ switch ($mode)
 					$ary_msg_err[] = $result;
 				}
 			}
-			
+
 			// Clear permissions
 			$auth->acl_clear_prefetch();
 			// Log what we did
@@ -526,14 +534,14 @@ switch ($mode)
 			'MODE'		=> $mode,
 			'STEP'		=> $start_step,
 			'INSTALLED'	=> $installed,
-			'U_ACTION'	=> append_sid(ABBC3_INSTALL, "mode=$mode&amp;start_step=" .($start_step+1)),
+			'U_ACTION'	=> append_sid(ABBC3_INSTALL, "mode=$mode&amp;start_step=" . ($start_step+1)),
 		));
 
 		if ($installed)
 		{
 			$template->assign_vars(array(
-				'INSTALLED'	=> true,
-				'UPDATED'	=> ($mode == 'update') ? true : false,
+				'INSTALLED'			=> true,
+				'UPDATED'			=> ($mode == 'update') ? true : false,
 				'L_INSTALLER_END'	=> sprintf($user->lang['INSTALLER_INSTALL_END'], $user->lang['INSTALLER_TITLE'], $mod_version),
 				'L_UPDATE_END'		=> ($mode == 'update') ? $user->lang['INSTALLER_UPDATE_END'] : '',
 			));
@@ -599,8 +607,14 @@ switch ($mode)
 		#	$db->sql_return_on_error(true);
 			while ($row = $db->sql_fetchrow($result))
 			{
-				if (in_array($row['post_id'], $skip_post)) { continue; }
-				if (in_array($row['forum_id'], $skip_forum)) { continue; }
+				if (in_array($row['post_id'], $skip_post))
+				{
+					continue;
+				}
+				if (in_array($row['forum_id'], $skip_forum))
+				{
+					continue;
+				}
 
 				// This should make the text the same as it would be coming from a new post submitted
 				decode_message($row['post_text'], $row['bbcode_uid']);
@@ -669,7 +683,7 @@ switch ($mode)
 						$sql_data = array(
 							'poll_option_text'      => str_replace($row['bbcode_uid'], $message_parser->bbcode_uid, $row2['poll_option_text']),
 						);
-					
+
 						$sql = 'UPDATE ' . POLL_OPTIONS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_data) . ' 
 							WHERE topic_id = ' . $row['topic_id'] . ' 
 							AND poll_option_id = ' . $row2['poll_option_id'];
@@ -697,13 +711,13 @@ switch ($mode)
 		else
 		{
 			$template->assign_vars(array(
-				'TITLE'		=> $user->lang['INSTALLER_REPARSE_WELCOME'],
-				'BODY'		=> $user->lang['INSTALLER_REPARSE_WELCOME_NOTE'],
-				'WARNING'	=> true,
+				'TITLE'				=> $user->lang['INSTALLER_REPARSE_WELCOME'],
+				'BODY'				=> $user->lang['INSTALLER_REPARSE_WELCOME_NOTE'],
+				'WARNING'			=> true,
 				'INSTALLER_NOTE'	=> $user->lang['INSTALLER_REPARSE_NOTE'] . '</p><p>' . $user->lang['INSTALLER_REPARSE_WARNING'],
-				'LEGEND'	=> $user->lang['INSTALLER_REPARSE'],
-				'LABEL'		=> $user->lang['INSTALLER_REPARSE_POST'],
-				'STEP'		=> 0,
+				'LEGEND'			=> $user->lang['INSTALLER_REPARSE'],
+				'LABEL'				=> $user->lang['INSTALLER_REPARSE_POST'],
+				'STEP'				=> 0,
 			));
 		}
 
@@ -723,7 +737,7 @@ switch ($mode)
 		));
 
 	break;
-	
+
 	case 'reparseSig':
 
 		// Don't continue if answer ins't yes
@@ -771,13 +785,15 @@ switch ($mode)
 
 			$sql = 'SELECT * FROM ' . USERS_TABLE . ' 
 				ORDER BY user_id ASC';
-
 			$result = $db->sql_query_limit($sql, $limit, $start);
 
 		#	$db->sql_return_on_error(true);
 			while ($row = $db->sql_fetchrow($result))
 			{
-				if (in_array($row['user_id'], $skip_post)) { continue; }
+				if (in_array($row['user_id'], $skip_post))
+				{
+					continue;
+				}
 
 				// This should make the text the same as it would be coming from a new post submitted
 				decode_message($row['user_sig'], $row['user_sig_bbcode_uid']);
@@ -798,7 +814,6 @@ switch ($mode)
 				$sql = 'UPDATE ' . USERS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_data) . ' 
 					WHERE user_id = ' . $row['user_id'];
 				$db->sql_query($sql);
-
 			}
 		#	$db->sql_return_on_error(false);
 			$db->sql_freeresult($result);
@@ -806,7 +821,7 @@ switch ($mode)
 			if ($post_count > $next_step)
 			{
 				$ary_msg_err[] = $user->lang['LONG_SCRIPT_EXECUTION'];
-				$ary_msg_err[] = sprintf($user->lang['STEP_PERCENT_COMPLETED'], $step, intval($post_count / $limit)) ;
+				$ary_msg_err[] = sprintf($user->lang['STEP_PERCENT_COMPLETED'], $step, intval($post_count / $limit));
 
 				$meta_url = "?mode=$mode&amp;start_step=2&amp;start=$next_step&step=$step";
 				$template->assign_vars(array('META' => '<meta http-equiv="refresh" content="1 ;url=' . $meta_url . '" />'));
@@ -820,13 +835,13 @@ switch ($mode)
 		else
 		{
 			$template->assign_vars(array(
-				'TITLE'		=> $user->lang['INSTALLER_REPARSE_WELCOME'],
-				'BODY'		=> $user->lang['INSTALLER_REPARSE_WELCOME_NOTE'],
-				'WARNING'	=> true,
+				'TITLE'				=> $user->lang['INSTALLER_REPARSE_WELCOME'],
+				'BODY'				=> $user->lang['INSTALLER_REPARSE_WELCOME_NOTE'],
+				'WARNING'			=> true,
 				'INSTALLER_NOTE'	=> $user->lang['INSTALLER_REPARSE_NOTE'] . '</p><p>' . $user->lang['INSTALLER_REPARSE_WARNING'],
-				'LEGEND'	=> $user->lang['INSTALLER_REPARSE'],
-				'LABEL'		=> $user->lang['INSTALLER_REPARSE_SIG'],
-				'STEP'		=> 0,
+				'LEGEND'			=> $user->lang['INSTALLER_REPARSE'],
+				'LABEL'				=> $user->lang['INSTALLER_REPARSE_SIG'],
+				'STEP'				=> 0,
 			));
 		}
 
@@ -848,7 +863,7 @@ switch ($mode)
 	break;
 
 	case 'reparsePM':
-	
+
 		// Don't continue if answer ins't yes
 		$start_step = ($start_step == 1 && $reparse == 0) ? 0 : $start_step;
 		$step		= request_var('step', 0);
@@ -899,7 +914,10 @@ switch ($mode)
 		#	$db->sql_return_on_error(true);
 			while ($row = $db->sql_fetchrow($result))
 			{
-				if (in_array($row['msg_id'], $skip_post)) { continue; }
+				if (in_array($row['msg_id'], $skip_post))
+				{
+					continue;
+				}
 
 				// This should make the text the same as it would be coming from a new post submitted
 				decode_message($row['message_text'], $row['bbcode_uid']);
@@ -912,9 +930,9 @@ switch ($mode)
 				$message_parser->parse((($bbcode_status) ? $row['enable_bbcode'] : false), $row['enable_magic_url'], $row['enable_smilies'], $img_status, $flash_status, true, true);
 
 				$sql_data = array(
-					'message_text'			=> $message_parser->message,
-					'bbcode_bitfield'		=> $message_parser->bbcode_bitfield,
-					'bbcode_uid'			=> $message_parser->bbcode_uid,
+					'message_text'		=> $message_parser->message,
+					'bbcode_bitfield'	=> $message_parser->bbcode_bitfield,
+					'bbcode_uid'		=> $message_parser->bbcode_uid,
 				);
 
 				$sql = 'UPDATE ' . PRIVMSGS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_data) . ' 
@@ -941,13 +959,13 @@ switch ($mode)
 		else
 		{
 			$template->assign_vars(array(
-				'TITLE'		=> $user->lang['INSTALLER_REPARSE_WELCOME'],
-				'BODY'		=> $user->lang['INSTALLER_REPARSE_WELCOME_NOTE'],
-				'WARNING'	=> true,
+				'TITLE'				=> $user->lang['INSTALLER_REPARSE_WELCOME'],
+				'BODY'				=> $user->lang['INSTALLER_REPARSE_WELCOME_NOTE'],
+				'WARNING'			=> true,
 				'INSTALLER_NOTE'	=> $user->lang['INSTALLER_REPARSE_NOTE'] . '</p><p>' . $user->lang['INSTALLER_REPARSE_WARNING'],
-				'LEGEND'	=> $user->lang['INSTALLER_REPARSE'],
-				'LABEL'		=> $user->lang['INSTALLER_REPARSE_POST'],
-				'STEP'		=> 0,
+				'LEGEND'			=> $user->lang['INSTALLER_REPARSE'],
+				'LABEL'				=> $user->lang['INSTALLER_REPARSE_POST'],
+				'STEP'				=> 0,
 			));
 		}
 
@@ -971,7 +989,7 @@ switch ($mode)
 		$template->assign_vars(array(
 			'TITLE'				=> sprintf($user->lang['INSTALLER_INTRO_WELCOME'], $user->lang['INSTALLER_TITLE']),
 			'BODY'				=> $user->lang['INSTALLER_INTRO_WELCOME_NOTE'],
-			'INSTALLER_NOTE'	=> $user->lang['INSTALLER_NOTE']
+			'INSTALLER_NOTE'	=> $user->lang['INSTALLER_NOTE'],
 		));
 	break;
 }
@@ -983,7 +1001,7 @@ $template->assign_block_vars('t_block1', array(
 ));
 
 $install_module = array(
-	'INSTALLER_INSTALL_MENU' => array('INSTALLER_INSTALL_VERSION' => 'install', 'INSTALLER_UPDATE_VERSION' => 'update', 'INSTALLER_DELETE_VERSION' => 'delete'), 
+	'INSTALLER_INSTALL_MENU' => array('INSTALLER_INSTALL_VERSION' => 'install', 'INSTALLER_UPDATE_VERSION' => 'update', 'INSTALLER_DELETE_VERSION' => 'delete'),
 	'INSTALLER_EXTRA_MENU'	 => array('INSTALLER_REPARSE_POST' => 'reparsePost', 'INSTALLER_REPARSE_SIG' => 'reparseSig' , 'INSTALLER_REPARSE_PM' => 'reparsePM')
 );
 
@@ -1067,37 +1085,38 @@ function get_abbc3_modules($id)
 function get_abbc3_config()
 {
 	global $config, $mod_version;
-
-	$max_filesize		 = ($config['max_filesize']			) ? $config['max_filesize']			: 0	;
-	$img_max_width		 = ($config['img_max_width']		) ? $config['img_max_width']		: 500 ;
-	$sig_img_max_width	 = ($config['max_sig_img_width']	) ? $config['max_sig_img_width']	: 200 ;
-	$img_max_thumb_width = ($config['img_max_thumb_width']	) ? $config['img_max_thumb_width']	: 300 ;
+	/** Set some default values so the user havn't to run any install - Start **/
+	$img_max_width		 = ($config['img_max_width']		) ? $config['img_max_width']		: 500;
+	$sig_img_max_width	 = ($config['max_sig_img_width']	) ? $config['max_sig_img_width']	: 200;
+	$img_max_thumb_width = ($config['img_max_thumb_width']	) ? $config['img_max_thumb_width']	: 300;
 
 	// Same default values as root/includes/acp/acp_abbcodes.php -> main()
 	$config_data = array(
-		'ABBC3_VERSION'				=> $mod_version ,
-		'ABBC3_MOD'					=> (isset($config['ABBC3_MOD'])					) ? $config['ABBC3_MOD']				: true ,
-		'ABBC3_PATH'				=> (isset($config['ABBC3_PATH'])				) ? $config['ABBC3_PATH']				: 'styles/abbcode' ,
-		'ABBC3_BG'					=> (isset($config['ABBC3_BG'])					) ? $config['ABBC3_BG']					: 'bg_abbc3.gif' ,
-		'ABBC3_TAB'					=> (isset($config['ABBC3_TAB'])					) ? $config['ABBC3_TAB']				: 1 ,
-		'ABBC3_BOXRESIZE'			=> (isset($config['ABBC3_BOXRESIZE'])			) ? $config['ABBC3_BOXRESIZE']			: 1 ,
-
-		'ABBC3_RESIZE'				=> (isset($config['ABBC3_RESIZE'])				) ? $config['ABBC3_RESIZE']				: 1 ,
-		'ABBC3_RESIZE_METHOD'		=> (isset($config['ABBC3_RESIZE_METHOD'])		) ? $config['ABBC3_RESIZE_METHOD']		: 'AdvancedBox' ,
-		'ABBC3_RESIZE_BAR'			=> (isset($config['ABBC3_RESIZE_BAR'])			) ? $config['ABBC3_RESIZE_BAR']			: 1 ,
-		'ABBC3_MAX_IMG_WIDTH'		=> (isset($config['ABBC3_MAX_IMG_WIDTH'])		) ? $config['ABBC3_MAX_IMG_WIDTH']		: $img_max_width ,
-		'ABBC3_MAX_IMG_HEIGHT'		=> (isset($config['ABBC3_MAX_IMG_HEIGHT'])		) ? $config['ABBC3_MAX_IMG_HEIGHT']		: 0 ,
-		'ABBC3_MAX_THUM_WIDTH'		=> (isset($config['ABBC3_MAX_THUM_WIDTH'])		) ? $config['ABBC3_MAX_THUM_WIDTH']		: $img_max_thumb_width ,
-		'ABBC3_RESIZE_SIGNATURE'	=> (isset($config['ABBC3_RESIZE_SIGNATURE'])	) ? $config['ABBC3_RESIZE_SIGNATURE']	: 0 ,
-		'ABBC3_MAX_SIG_WIDTH'		=> (isset($config['ABBC3_MAX_SIG_WIDTH'])		) ? $config['ABBC3_MAX_SIG_WIDTH']		: $sig_img_max_width ,
-		'ABBC3_MAX_SIG_HEIGHT'		=> (isset($config['ABBC3_MAX_SIG_HEIGHT'])		) ? $config['ABBC3_MAX_SIG_HEIGHT']		: 0 ,
-
-		'ABBC3_VIDEO_width'			=> (isset($config['ABBC3_VIDEO_width'])			) ? $config['ABBC3_VIDEO_width']		: 425 ,
-		'ABBC3_VIDEO_height'		=> (isset($config['ABBC3_VIDEO_height'])		) ? $config['ABBC3_VIDEO_height']		: 350 ,
-
-		'max_post_font_size'		=> 300 ,
-//		'ABBC3_UPLOAD_MAX_SIZE'		=> (isset($config['ABBC3_UPLOAD_MAX_SIZE'])		) ? $config['ABBC3_UPLOAD_MAX_SIZE']	: $max_filesize ,
-//		'ABBC3_UPLOAD_EXTENSION'	=> (isset($config['ABBC3_UPLOAD_EXTENSION'])	) ? $config['ABBC3_UPLOAD_EXTENSION']	: 'swf, gif, jpg, jpeg, png, psd, bmp, tif, tiff' ,
+		'ABBC3_VERSION'				=> $mod_version,
+		'ABBC3_MOD'					=> (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true,
+		'ABBC3_PATH'				=> (isset($config['ABBC3_PATH']))				? $config['ABBC3_PATH']				: 'styles/abbcode',
+		'ABBC3_RESIZE'				=> (isset($config['ABBC3_RESIZE']))				? $config['ABBC3_RESIZE']			: 1,
+		'ABBC3_RESIZE_METHOD'		=> (isset($config['ABBC3_RESIZE_METHOD']))		? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox',
+		'ABBC3_RESIZE_BAR'			=> (isset($config['ABBC3_RESIZE_BAR']))			? $config['ABBC3_RESIZE_BAR']		: 1,
+		'ABBC3_MAX_IMG_WIDTH'		=> (isset($config['ABBC3_MAX_IMG_WIDTH']))		? $config['ABBC3_MAX_IMG_WIDTH']	: $img_max_width,
+		'ABBC3_MAX_IMG_HEIGHT'		=> (isset($config['ABBC3_MAX_IMG_HEIGHT']))		? $config['ABBC3_MAX_IMG_HEIGHT']	: 0,
+		'ABBC3_RESIZE_SIGNATURE'	=> (isset($config['ABBC3_RESIZE_SIGNATURE']))	? $config['ABBC3_RESIZE_SIGNATURE']	: 0,
+		'ABBC3_MAX_SIG_WIDTH'		=> (isset($config['ABBC3_MAX_SIG_WIDTH']))		? $config['ABBC3_MAX_SIG_WIDTH']	: $sig_img_max_width,
+		'ABBC3_MAX_SIG_HEIGHT'		=> (isset($config['ABBC3_MAX_SIG_HEIGHT']))		? $config['ABBC3_MAX_SIG_HEIGHT']	: 0,
+		'ABBC3_MAX_THUM_WIDTH'		=> (isset($config['ABBC3_MAX_THUM_WIDTH']))		? $config['ABBC3_MAX_THUM_WIDTH']	: $img_max_thumb_width,
+		'max_post_font_size'		=> 300,
+		'ABBC3_BG'					=> (isset($config['ABBC3_BG']))					? $config['ABBC3_BG']				: 'bg_abbc3.gif',
+		'ABBC3_TAB'					=> (isset($config['ABBC3_TAB']))				? $config['ABBC3_TAB']				: 1,
+		'ABBC3_BOXRESIZE'			=> (isset($config['ABBC3_BOXRESIZE']))			? $config['ABBC3_BOXRESIZE']		: 1,
+		'ABBC3_VIDEO_width'			=> (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425,
+		'ABBC3_VIDEO_height'		=> (isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 350,
+		// V3.0.8
+		'ABBC3_COLOR_MODE'			=> (isset($config['ABBC3_COLOR_MODE']))			? $config['ABBC3_COLOR_MODE']		: 'phpbb',
+		'ABBC3_HIGHLIGHT_MODE'		=> (isset($config['ABBC3_HIGHLIGHT_MODE']))		? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown',
+		'ABBC3_WIZARD_MODE'			=> (isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 1,
+		'ABBC3_WIZARD_width'		=> (isset($config['ABBC3_WIZARD_width']))		? $config['ABBC3_WIZARD_width']		: 700,
+		'ABBC3_WIZARD_height'		=> (isset($config['ABBC3_WIZARD_height']))		? $config['ABBC3_WIZARD_height']	: 400,
+		'ABBC3_UCP_MODE'			=> (isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1,
 	);
 
 	return $config_data;
@@ -1112,7 +1131,7 @@ function get_abbc3_bbcodes()
 		'font'			=> array("font=",			 1,	1,	"ABBC3_FONT_TIP",		 "[font={TEXT1}]{TEXT2}[/font]", "<span style=\"font-family: {TEXT1};\">{TEXT2}</span>", "!\[font\=([a-zA-Z0-9-_ ]+)\](.*?)\[/font\]!ies", '\'[font=\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\':$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/font:$uid]\'', '!\[font\=([a-zA-Z0-9-_ ]+):$uid\](.*?)\[/font:$uid\]!s', '<span style="font-family: ${1};">${2}</span>', 1, 1, 1, 1, " ") ,
 		'size'			=> array("size",			 2,	0,	"ABBC3_SIZE_TIP",		 ".", ".", ".", ".", ".", ".", 1, 1, 1, 1, " ") ,
 		'highlight'		=> array("highlight=",		 3, 1,	"ABBC3_HIGHLIGHT_TIP",	 "[highlight={COLOR}]{TEXT}[/highlight]", "<span style=\"background-color: {COLOR};\">{TEXT}</span>", "!\[highlight=([a-z]+|#[0-9abcdef]+)\](.*?)\[/highlight\]!ies", '\'[highlight=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/highlight:$uid]\'', '!\[highlight\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/highlight:$uid\]!s', '<span style="background-color: ${1};">${2}</span>', 1, 1, 1, 1, " "),
-		'color'			=> array("color",			 4,	0,	"ABBC3_COLOR_TIP",		 ".", ".", ".", ".", ".", ".", 0, 0, 0, 1, " "),
+		'color'			=> array("color",			 4,	0,	"ABBC3_COLOR_TIP",		 ".", ".", ".", ".", ".", ".", 1, 1, 1, 1, " "),
 		'break1'		=> array("break1",			 5,	0,	"ABBC3_BREAK",			 ".", ".", ".", ".", ".", ".", 1, 1, 1, 1, "spacer.gif"),
 		'cut'			=> array("cut",				 6, 0,	"ABBC3_CUT_MOVER",		 ".", ".", ".", ".", ".", ".", 1, 1, 1, 1, "cut.gif"),
 		'copy'			=> array("copy",			 7,	0,	"ABBC3_COPY_MOVER",		 ".", ".", ".", ".", ".", ".", 1, 1, 1, 1, "copy.gif"),
@@ -1130,18 +1149,23 @@ function get_abbc3_bbcodes()
 		's'				=> array("s",				19, 1,	"ABBC3_STRIKE_TIP",		 "[s]{TEXT}[/s]", "<span style=\"text-decoration: line-through;\">{TEXT}</span>", "!\[s\](.*?)\[/s\]!ies", '\'[s:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/s:$uid]\'', '!\[s:$uid\](.*?)\[/s:$uid\]!s', '<span style="text-decoration: line-through;">${1}</span>', 1, 1, 1, 1, "strike.gif"),
 		'sup'			=> array("sup",				20, 1,	"ABBC3_SUP_TIP",		 "[sup]{TEXT}[/sup]", "<sup>{TEXT}</sup>", "!\[sup\](.*?)\[/sup\]!ies", '\'[sup:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/sup:$uid]\'', '!\[sup:$uid\](.*?)\[/sup:$uid\]!s', '<sup>${1}</sup>', 1, 1, 1, 1, "sup.gif"),
 		'sub'			=> array("sub",				21, 1,	"ABBC3_SUB_TIP",		 "[sub]{TEXT}[/sub]", "<sub>{TEXT}</sub>", "!\[sub\](.*?)\[/sub\]!ies", '\'[sub:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/sub:$uid]\'', '!\[sub:$uid\](.*?)\[/sub:$uid\]!s', '<sub>${1}</sub>', 1, 1, 1, 1, "sub.gif"),
-		'glow'			=> array("glow=",			22, 1,	"ABBC3_GLOW_TIP",		 "[glow={COLOR}]{TEXT}[/glow]", "<div style=\"filter:Glow(color={COLOR},strength=4);color:#ffffff;height:110%\">{TEXT}</div>", "!\[glow\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/glow\]!ies", '\'[glow=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/glow:$uid]\'', '!\[glow\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/glow:$uid\]!s', '<div style="filter:Glow(color=${1},strength=4);color:#ffffff;height:110%;">${2}</div>', 0, 0, 0, 1, "glow.gif"),
-		'shadow'		=> array("shadow=",			23, 1,	"ABBC3_SHADOW_TIP",		 "[shadow={COLOR}]{TEXT}[/shadow]", "<div style=\"filter:shadow(color=black,strength=4);color:{COLOR};height:110%\">{TEXT}</div>", "!\[shadow\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/shadow\]!ies", '\'[shadow=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/shadow:$uid]\'', '!\[shadow\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/shadow:$uid\]!s', '<div style="filter:shadow(color=black,strength=4);color:${1};height:110%;">${2}</div>', 0, 0, 0, 1, "shadow.gif"),
-		'dropshadow'	=> array("dropshadow=",		24, 1,	"ABBC3_DROPSHADOW_TIP",	 "[dropshadow={COLOR}]{TEXT}[/dropshadow]", "<div style=\"filter:dropshadow(color=#999999,strength=4);color:{COLOR};height:110%\">{TEXT}</div>", "!\[dropshadow\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/dropshadow\]!ies", '\'[dropshadow=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/dropshadow:$uid]\'', '!\[dropshadow\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/dropshadow:$uid\]!s', '<div style="filter:dropshadow(color=#999999,strength=4);color:${1};height:110%;">${2}</div>', 0, 0, 0, 1, "dropshadow.gif"),
-		'blur'			=> array("blur=",			25, 1,	"ABBC3_BLUR_TIP",		 "[blur={COLOR}]{TEXT}[/blur]", "<div style=\"filter:Blur(strength=7);color:{COLOR};height:110%\">{TEXT}</div>", "!\[blur\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/blur\]!ies", '\'[blur=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/blur:$uid]\'', '!\[blur\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/blur:$uid\]!s', '<div style="filter:Blur(strength=7);color:${1};height:110%;">${2}</div>', 0, 0, 0, 1, "blur.gif"),
-		'wave'			=> array("wave=",			26, 1,	"ABBC3_WAVE_TIP",		 "[wave={COLOR}]{TEXT}[/wave]", "<div style=\"filter:Wave(strength=2);color:{COLOR};height:110%\">{TEXT}</div>", "!\[wave\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/wave\]!ies", '\'[wave=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/wave:$uid]\'', '!\[wave\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/wave:$uid\]!s', '<div style="filter:Wave(strength=2);color:${1};height:110%;">${2}</div>', 0, 0, 0, 1, "wave.gif"),
+//	Updated in v3.0.8
+		'glow'			=> array("glow=",			22, 1,	"ABBC3_GLOW_TIP",		 "[glow={COLOR}]{TEXT}[/glow]", "<div style=\"filter:Glow(color={COLOR},strength=4);color:#ffffff;height:110%\">{TEXT}</div>", "!\[glow\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/glow\]!ies", '\'[glow=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/glow:$uid]\'', '!\[glow\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/glow:$uid\]!ies', '$this->Text_effect_pass(\'glow\', \'$1\', \'$2\')', 0, 0, 0, 1, "glow.gif"),
+//	Updated in v3.0.8
+		'shadow'		=> array("shadow=",			23, 1,	"ABBC3_SHADOW_TIP",		 "[shadow={COLOR}]{TEXT}[/shadow]", "<div style=\"filter:shadow(color=black,strength=4);color:{COLOR};height:110%\">{TEXT}</div>", "!\[shadow\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/shadow\]!ies", '\'[shadow=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/shadow:$uid]\'', '!\[shadow\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/shadow:$uid\]!ies', '$this->Text_effect_pass(\'shadow\', \'$1\', \'$2\')', 0, 0, 0, 1, "shadow.gif"),
+//	Updated in v3.0.8
+		'dropshadow'	=> array("dropshadow=",		24, 1,	"ABBC3_DROPSHADOW_TIP",	 "[dropshadow={COLOR}]{TEXT}[/dropshadow]", "<div style=\"filter:dropshadow(color=#999999,strength=4);color:{COLOR};height:110%\">{TEXT}</div>", "!\[dropshadow\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/dropshadow\]!ies", '\'[dropshadow=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/dropshadow:$uid]\'', '!\[dropshadow\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/dropshadow:$uid\]!ies', '$this->Text_effect_pass(\'dropshadow\', \'$1\', \'$2\')', 0, 0, 0, 1, "dropshadow.gif"),
+//	Updated in v3.0.8
+		'blur'			=> array("blur=",			25, 1,	"ABBC3_BLUR_TIP",		 "[blur={COLOR}]{TEXT}[/blur]", "<div style=\"filter:Blur(strength=7);color:{COLOR};height:110%\">{TEXT}</div>", "!\[blur\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/blur\]!ies", '\'[blur=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/blur:$uid]\'', '!\[blur\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/blur:$uid\]!ies', '$this->Text_effect_pass(\'blur\', \'$1\', \'$2\')', 0, 0, 0, 1, "blur.gif"),
+//	Updated in v3.0.8
+		'wave'			=> array("wave=",			26, 1,	"ABBC3_WAVE_TIP",		 "[wave={COLOR}]{TEXT}[/wave]", "<div style=\"filter:Wave(strength=2);color:{COLOR};height:110%\">{TEXT}</div>", "!\[wave\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/wave\]!ies", '\'[wave=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/wave:$uid]\'', '!\[wave\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/wave:$uid\]!ies', '$this->Text_effect_pass(\'wave\', \'$1\', \'$2\')', 0, 0, 0, 1, "wave.gif"),
 		'fade'			=> array("fade",			27, 1,	"ABBC3_FADE_TIP",		 "[fade]{TEXT}[/fade]", "<div class=\"fade_link\">{TEXT}</div> <script type=\"text/javascript\">fade_ontimer();</script>", "!\[fade\](.*?)\[/fade\]!ies", '\'[fade:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/fade:$uid]\'', '!\[fade:$uid\](.*?)\[/fade:$uid\]!s', '<div class="fade_link">${1}</div> <script type="text/javascript">fade_ontimer();</script>', 1, 1, 1, 1, "fade.gif"),
 		'grad'			=> array("grad",			28,	0,	"ABBC3_GRAD_TIP",		 ".", ".", ".", ".", ".", ".", 1, 1, 1, 1, "grad.gif"),
 		'division2'		=> array("division2",		29,	0,	"ABBC3_DIVISION",		 ".", ".", ".", ".", ".", ".", 1, 1, 1, 1, "dots.gif"),
 		'align justify'	=> array("align=justify",	30, 1,	"ABBC3_JUSTIFY_TIP",	 "[align=justify]{TEXT}[/align]", "<div style=\"text-align:justify\">{TEXT}</div>", "!\[align\=justify\](.*?)\[/align\]!ies", '\'[align=justify:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/align:$uid]\'', '!\[align\=justify:$uid\](.*?)\[/align:$uid\]!si', '<div style="text-align:justify;">${1}</div>', 1, 1, 1, 1, "justify.gif"),
 		'align left'	=> array("align=left"	,	31, 1,	"ABBC3_LEFT_TIP",		 "[align=left]{TEXT}[/align]", "<div style=\"text-align:left\">{TEXT}</div>", "!\[align\=left\](.*?)\[/align\]!ies", '\'[align=left:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/align:$uid]\'', '!\[align\=left:$uid\](.*?)\[/align:$uid\]!si', '<div style="text-align:left;">${1}</div>', 1, 1, 1, 1, "left.gif"),
 		'align center'	=> array("align=center",	32, 1,	"ABBC3_CENTER_TIP",		 "[align=center]{TEXT}[/align]", "<div style=\"text-align:center\">{TEXT}</div>", "!\[align\=center\](.*?)\[/align\]!ies", '\'[align=center:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/align:$uid]\'', '!\[align\=center:$uid\](.*?)\[/align:$uid\]!si', '<div style="text-align:center; display:table; margin-left:auto; margin-right:auto;">${1}</div>', 1, 1, 1, 1, "center.gif"),
-		'center'		=> array("center",			33, 1,	"[center]your text here[/center]", "[center]{TEXT}[/center]", "<center>{TEXT}</center>", "!\[center\](.*?)\[/center\]!ies", '\'[center:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/center:$uid]\'', '!\[center:$uid\](.*?)\[/center:$uid\]!s', '<center>${1}</center>', 1, 1, 1, 0, " "),
+		'center'		=> array("center",			33, 1,	"[center]your text here[/center]", "[center]{TEXT}[/center]", "<center>{TEXT}</center>", "!\[center\](.*?)\[/center\]!ies", '\'[center:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/center:$uid]\'', '!\[center:$uid\](.*?)\[/center:$uid\]!s', '<center>${1}</center>', 0, 0, 0, 0, " "),
 		'align right'	=> array("align=right",		34, 1,	"ABBC3_RIGHT_TIP",		 "[align=right]{TEXT}[/align]", "<div style=\"text-align:right\">{TEXT}</div>", "!\[align\=right\](.*?)\[/align\]!ies", '\'[align=right:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/align:$uid]\'', '!\[align\=right:$uid\](.*?)\[/align:$uid\]!si', '<div style="text-align:right;">${1}</div>', 1, 1, 1, 1, "right.gif"),
 		'pre'			=> array("pre",				35, 1,	"ABBC3_PRE_TIP",		 "[pre]{TEXT}[/pre]", "<pre>{TEXT}</pre>", "!\[pre\](.*?)\[/pre\]!ies", '\'[pre:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${1}\')).\'[/pre:$uid]\'', '!\[pre:$uid\](.*?)\[/pre:$uid\]!s', '<pre>${1}</pre>', 1, 1, 1, 1, "preformat.gif"),
 		'break2'		=> array("break2",			36,	0,	"ABBC3_BREAK",			 ".", ".", ".", ".", ".", ".", 0, 0, 0, 1, "spacer.gif"),
@@ -1168,8 +1192,12 @@ function get_abbc3_bbcodes()
 		'ed2k'			=> array("url=",			57,	0,	"ABBC3_ED2K_TIP",		 ".", ".", ".", ".",".", ".", 1, 1, 0, 1, "emule.gif"),
 //	Updated in v3.0.6
 //		'img'			=> array("img=",			58, 1,	"ABBC3_IMG_TIP",		 "[img{TEXT}]{URL}[/img]", "<img src=\"{URL}\" alt=\"{L_IMAGE}\" />", "!\[img(\\=| )?(left|center|right)?\](.*?)\[/img\]!ies", '\'[img${1}${2}:$uid]${3}[/img:$uid]\'', '!\[img(=| )?(left|center|right)?:$uid\](.*?)\[/img:$uid\]!ies', '$this->img_pass(\'$2\',\'$3\')', 1, 1, 1, 1, "img.gif"),
-		'img'			=> array("img=",			58, 1,	"ABBC3_IMG_TIP",		 "[img{TEXT}]{URL}[/img]", "<img src=\"{URL}\" alt=\"{L_IMAGE}\" />", "!\[img\\=(left|center|right)?\](.*?)\[/img\]!ies", '\'[img=${1}:$uid]${2}[/img:$uid]\'', '!\[img=(left|center|right)?:$uid\](.*?)\[/img:$uid\]!ies', '$this->img_pass(\'$1\',\'$2\')', 1, 1, 1, 1, "img.gif"),
-		'thumbnail'		=> array("thumbnail",		59, 1,	"ABBC3_THUMBNAIL_TIP",	 "[thumbnail{TEXT}]{URL}[/thumbnail]", "<img src=\"{URL}\" border=\"0\" align=\"{TEXT}\"/>", "!\[thumbnail(\\=(left|center|right))?\](.*?)\[/thumbnail\]!ies", '\'[thumbnail${1}:$uid]${3}[/thumbnail:$uid]\'', '!\[thumbnail(\\=(left|center|right))?:$uid\](.*?)\[/thumbnail:$uid\]!ies', '$this->thumb_pass(\'$2\',\'$3\')', 1, 1, 1, 1, "thumb.gif"),
+//	Updated in v3.0.7-PL1
+//		'img'			=> array("img=",			58, 1,	"ABBC3_IMG_TIP",		 "[img{TEXT}]{URL}[/img]", "<img src=\"{URL}\" alt=\"{L_IMAGE}\" />", "!\[img\\=(left|center|right)?\](.*?)\[/img\]!ies", '\'[img=${1}:$uid]${2}[/img:$uid]\'', '!\[img=(left|center|right)?:$uid\](.*?)\[/img:$uid\]!ies', '$this->img_pass(\'$1\',\'$2\')', 1, 1, 1, 1, "img.gif"),
+		'img'			=> array("img=",			58, 1,	"ABBC3_IMG_TIP",		 "[img{TEXT}]{URL}[/img]", "<img src=\"{URL}\" alt=\"{L_IMAGE}\" />", "!\[img\\=(left|center|right|float-left|float-center|float-right)?\](.*?)\[/img\]!ies", '\'[img=${1}:$uid]${2}[/img:$uid]\'', '!\[img\\=(left|center|right|float-left|float-center|float-right)?:$uid\](.*?)\[/img:$uid\]!ies', '$this->img_pass(\'$1\',\'$2\')', 1, 1, 1, 1, "img.gif"),
+//	Updated in v3.0.7-PL1
+//		'thumbnail'		=> array("thumbnail",		59, 1,	"ABBC3_THUMBNAIL_TIP",	 "[thumbnail{TEXT}]{URL}[/thumbnail]", "<img src=\"{URL}\" border=\"0\" align=\"{TEXT}\"/>", "!\[thumbnail(\\=(left|center|right))?\](.*?)\[/thumbnail\]!ies", '\'[thumbnail${1}:$uid]${3}[/thumbnail:$uid]\'', '!\[thumbnail(\\=(left|center|right))?:$uid\](.*?)\[/thumbnail:$uid\]!ies', '$this->thumb_pass(\'$2\',\'$3\')', 1, 1, 1, 1, "thumb.gif"),
+		'thumbnail'		=> array("thumbnail",		59, 1,	"ABBC3_THUMBNAIL_TIP",	 "[thumbnail{TEXT}]{URL}[/thumbnail]", "<img src=\"{URL}\" border=\"0\" align=\"{TEXT}\"/>", "!\[thumbnail(\\=| )?(left|center|right|float-left|float-center|float-right)?\](.*?)\[/thumbnail\]!ies", '\'[thumbnail${1}${2}:$uid]${3}[/thumbnail:$uid]\'', '!\[thumbnail(\\=| )?(left|center|right|float-left|float-center|float-right)?:$uid\](.*?)\[/thumbnail:$uid\]!ies', '$this->thumb_pass(\'$2\',\'$3\')', 1, 1, 1, 1, "thumb.gif"),
 		'imgshack'		=> array("imgshack",		60,	0,	"ABBC3_IMGSHACK_MOVER",	 ".", ".", ".", ".", ".", ".", 1, 1, 1, 1, "imgshack.gif"),
 		'rapidshare'	=> array("rapidshare",		61, 1,	"ABBC3_RAPIDSHARE_TIP",	 "[rapidshare]{URL}[/rapidshare]", "<a src=\"{URL}\">{URL}</a>", "!\[rapidshare\](.*?)\[/rapidshare\]!ies", '\'[rapidshare:$uid]${1}[/rapidshare:$uid]\'', '!\[rapidshare:$uid\](.*?)\[/rapidshare:$uid\]!ies', '$this->rapidshare_pass(\'$1\')', 0, 0, 0, 1, "rapidshare.gif"),
 		'testlink'		=> array("testlink",		62, 1,	"ABBC3_TESTLINK_TIP",	 "[testlink]{TEXT}[/testlink]", "<a src=\"{TEXT}\">{TEXT}</a>", "!\[testlink\](.*?)\[/testlink\]!ies", '\'[testlink:$uid]${1}[/testlink:$uid]\'', '!\[testlink:$uid\](.*?)\[/testlink:$uid\]!ies', '$this->testlink_pass(\'$1\')', 0, 0, 0, 1, "testlink.gif"),
@@ -1211,9 +1239,11 @@ function get_abbc3_bbcodes()
  */
 function get_abbc3_schema_changes()
 {
+	$database_update_info = array();
+
 	$database_update_info = array(
 		// Changes to version 1.0.12
-		'1012'	=> array(
+		'1.0.12'	=> array(
 			// Change the following columns
 			'change_columns'	=> array(
 				BBCODES_TABLE	=> array(
@@ -1240,31 +1270,60 @@ function get_abbc3_schema_changes()
 			// Add table
 			'add_table'			=> array(
 				'phpbb_clicks'	=> array(
-				'COLUMNS'	=> array(
-					'id'		=> array('UINT', NULL, 'auto_increment'),
-					'url'		=> array('VCHAR:255', ''),
-					'clicks'	=> array('UINT', '0'),
-				),
- 			   'PRIMARY_KEY'=> 'id',
-				'KEYS'		=> array(
-					'md5'			=> array('INDEX', array('url')),
+					'COLUMNS'	=> array(
+						'id'		=> array('UINT', NULL, 'auto_increment'),
+						'url'		=> array('VCHAR:255', ''),
+						'clicks'	=> array('UINT', '0'),
+					),
+					   'PRIMARY_KEY'=> 'id',
+					'KEYS'		=> array(
+						'md5'			=> array('INDEX', array('url')),
+					),
 				),
 			),
+		),
+		// Changes to version 3.0.8
+		'3.0.8'	=> array(
+			// Add the following columns
+			'add_columns'		=> array(
+				USERS_TABLE	=> array(
+					'user_abbcode_mod'		=> array('TINT:1' , 1),
+					'user_abbcode_compact'	=> array('TINT:1' , 0),
+				),
 			),
 		),
 	);
+
 	return $database_update_info;
 }
 
 function delete_abbc3()
 {
-	global $db, $cache, $auth, $db_tools, $user;
+	global $db, $cache, $auth, $db_tools, $user, $config, $deprecated_configs;
 
-	$abbce_configs = array('ABBC3_MOD', 'ABBC3_PATH', 'ABBC3_TAB', 'ABBC3_BG', 'ABBC3_BOXRESIZE', 'ABBC3_BOXRESIZE', 'ABBC3_MAX_IMG_HEIGHT', 'ABBC3_MAX_IMG_WIDTH', 'ABBC3_MAX_THUM_WIDTH', 'ABBC3_JAVASCRIPT', 'ABBC3_RESIZE', 'ABBC3_RESIZE_METHOD', 'ABBC3_VIDEO_height', 'ABBC3_VIDEO_width', 'ABBC3_UPLOAD_MAX_SIZE', 'ABBC3_UPLOAD_EXTENSION');
+	$abbc3_configs = array();
+
+	foreach ($deprecated_configs as $config_name)
+	{
+		if (isset($config[$config_name]))
+		{
+			$abbc3_configs[] = $config_name;
+		}
+	}
+
+	$config_data = get_abbc3_config();
+	foreach ($config_data as $config_name => $config_value)
+	{
+		if (isset($config[$config_name]) && $config_name != 'max_post_font_size')
+		{
+			$abbc3_configs[] = $config_name;
+		}
+	}
+
 
 	// remove ABBC3 from the config 
 	$sql = 'DELETE FROM ' . CONFIG_TABLE . '
-		WHERE ' . $db->sql_in_set('config_name', $abbce_configs);
+		WHERE ' . $db->sql_in_set('config_name', $abbc3_configs);
 	$result = $db->sql_query($sql);
 
 	// remove ABBC3 from the bbcodes
@@ -1273,7 +1332,27 @@ function delete_abbc3()
 	$result = $db->sql_query($sql);
 
 	// remove ABBC3 rows from the bbcodes
-	$database_update_info = get_abbc3_schema_changes();
+	$database_update_info = get_abbc3_schema_changes(false);
+	foreach ($database_update_info as $version => $schema_changes)
+	{
+		// Add columns?
+		if (!empty($schema_changes['add_columns']))
+		{
+			foreach ($schema_changes['add_columns'] as $table => $columns)
+			{
+				foreach ($columns as $column_name => $column_data)
+				{
+					if ($db_tools->sql_column_exists($table, $column_name))
+					{
+						$db_tools->sql_column_remove($table, $column_name);
+					}
+				}
+			}
+		}
+	}
+
+	// remove ABBC3 rows from the users table
+	$database_update_info = get_abbc3_schema_changes(true);
 	foreach ($database_update_info as $version => $schema_changes)
 	{
 		// Add columns?
@@ -1303,7 +1382,7 @@ function delete_abbc3()
 
 	// Grab global variables, re-cache if necessary
 	$config = $cache->obtain_config();
-	return true;	
+	return true;
 }
 
 function add_abbc3_module($array)

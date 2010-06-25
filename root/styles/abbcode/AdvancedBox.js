@@ -6,11 +6,9 @@
 
 /** Some css on-the-fly - Start **/
 document.write( "\n\r" + '<style type="text/css" media="all">'+ "\r" + '<!--' + "\r" );
-document.write( '.reimg {' + (ImageResizerMaxWidth_post > 0 ? ' width: ' + ImageResizerMaxWidth_post + 'px;' : '') + (ImageResizerMaxHeight_post > 0 ? ' height: ' + ImageResizerMaxHeight_post + 'px;' : '') + ' visibility: hidden; margin: 5px; border: 1px dotted #000000; }' );
-if (ImageResizerSignature == 1 && (ImageResizerMaxWidth_sig > 0 || ImageResizerMaxHeight_sig > 0))
-{
-	document.write( "\r" + '.signature .reimg {' + (ImageResizerMaxWidth_sig > 0 ? ' width: ' + ImageResizerMaxWidth_sig + 'px;' : '') + (ImageResizerMaxHeight_sig > 0 ? ' height: ' + ImageResizerMaxHeight_sig + 'px;' : '') + ' }' );
-}
+
+document.write( '.reimg { visibility: hidden; }' );
+
 /** Opera doesn't know URL cursor **/
 if ( !navigator.userAgent.match(/(^|\W)(Opera)\/(\d+)(\.\d+)?/) )
 {
@@ -560,7 +558,15 @@ function ImageResizerOn( ObjImage )
 		/** Calculate the re-size ratio **/
 		ResizerP = Math.ceil( parseInt( ObjImage.height / ResizerH * 100 ) );
 	}
-
+/**
+	if (ObjImage.parentNode.style.cssText.match(/float/gi) )
+	{
+		ObjImage.parentNode.style.height = ObjImage.height + 'px';
+		ObjImage.parentNode.style.width = ObjImage.width + 'px';
+		ObjImage.parentNode.style.border='3px solid red';
+		alert( ObjImage.height);
+	}
+**/
 	/**
 	* Use the image top bar for click or use the image instead ?
 	* Recomended true - Options  false | true
@@ -804,11 +810,11 @@ function ImgOnLoad()
 		ImageResizerMaxWidth = ImageResizerMaxWidth_post; ImageResizerMaxHeight = ImageResizerMaxHeight_post;
 		if ( exclude_signatures && sig_images_ary.length > 0 )
 		{
-			if( contains( img.src, sig_images_ary )[0] ) { continue; } 
+			if ( contains( img.src, sig_images_ary )[0] ) { continue; } 
 		}
 		else if ( !exclude_signatures && sig_images_ary.length > 0 )
 		{
-			if( contains( img.src, sig_images_ary )[0] ) { ImageResizerMaxWidth = ImageResizerMaxWidth_sig; ImageResizerMaxHeight = ImageResizerMaxHeight_sig; }
+			if ( contains( img.src, sig_images_ary )[0] ) { ImageResizerMaxWidth = ImageResizerMaxWidth_sig; ImageResizerMaxHeight = ImageResizerMaxHeight_sig; }
 		}
 
 		/** Check if this image will be resized **/

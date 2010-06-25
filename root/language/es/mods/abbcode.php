@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: abbcode.php, v 3.0.7 2010/04/20 10:04:20 leviatan21 Exp $
+* @package: phpBB 3.0.7-PL1 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
+* @version: $Id: abbcode.php, v 3.0.7-PL1 2010/05/02 10:05:02 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -58,6 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_NUMBER'		=> 'Imagen %1$s de %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Comenzar Proyector automático',
 	'ABBC3_RESIZE_PAUSE'		=> 'Detener Proyector automático',
+
 // Pop Box JS
 	'ABBC3_POPBOX_REVERSETEXT'	=> 'Clic en la imagen para reducirla.',
 
@@ -110,8 +111,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_EXAMPLE'				=> 'Ejemplo',
 	'ABBC3_EXAMPLES'			=> 'Ejemplos',
 	'ABBC3_SHORT'				=> 'Seleccione BBcode',
-	'ABBC3_UNAUTHORISED'		=> 'No está permitido usar ciertas palabras : <br /><strong> %s </strong>',
 	'ABBC3_DEPRECATED'			=> '<div class="error">El bbcode <em>%1$s</em> está obsoleto desde ABBC3 version <em>%2$s</em></div>',	
+	'ABBC3_UNAUTHORISED'		=> 'No está permitido usar ciertas palabras : <br /><strong> %s </strong>',
 	'ABBC3_NOSCRIPT'			=> 'Su navegador tiene desactivado scripts o no admite client-side scripting. <em>(JavaScript!)</em>',
 	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'La página que está viendo requiere el uso de JavaScript para un mejor funcionamiento.<br />Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.',
 	'SAMPLE_TEXT'				=> 'Esto es una muestra de texto', //	' . $lang['SAMPLE_TEXT'] . '
@@ -225,7 +226,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_NFO_TITLE'			=> 'Texto NFO',
 	'ABBC3_NFO_MOVER'			=> 'Texto NFO (Mejor vista en Internet explorer)',
 	'ABBC3_NFO_TIP'				=> '[nfo]Texto NFO[/nfo]',
-//	'ABBC3_NFO_VIEW'			=> '<dl class="codebox"><dt class="codetitle nfotitle">Texto NF : </dt><dd><div class="codecontent nfo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Uuml;&sup2;&Uuml;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&sup2;&sup2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&sup2;&sup2;&nbsp;&plusmn;</div></dd></dl>', //'[nfo]ܲ�  � ۲�     ����  � ����������������������������     ���� �  � ����� �� �[/nfo]',
 	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
 
 	// Justify Align
@@ -309,27 +309,27 @@ $lang = array_merge($lang, array(
 	'ABBC3_GRAD_ERROR'			=> 'Error: falla en el contrutor ColorCode()',
 
 	// Glow text
-	'ABBC3_GLOW_MOVER'			=> 'Texto Resplandor (Sólo en Internet explorer)',
+	'ABBC3_GLOW_MOVER'			=> 'Texto Resplandor',
 	'ABBC3_GLOW_TIP'			=> '[glow=(color)]texto[/glow]',
 	'ABBC3_GLOW_VIEW'			=> '[glow=red]' . $lang['SAMPLE_TEXT'] . '[/glow]',
 
 	// Shadow text
-	'ABBC3_SHADOW_MOVER'		=> 'Texto doble (Sólo en Internet explorer)',
+	'ABBC3_SHADOW_MOVER'		=> 'Texto doble',
 	'ABBC3_SHADOW_TIP'			=> '[shadow=(color)]texto[/shadow]',
 	'ABBC3_SHADOW_VIEW'			=> '[shadow=blue]' . $lang['SAMPLE_TEXT'] . '[/shadow]',
 
 	// Dropshadow text
-	'ABBC3_DROPSHADOW_MOVER'	=> 'Texto con sombra (Sólo en Internet explorer)',
+	'ABBC3_DROPSHADOW_MOVER'	=> 'Texto con sombra',
 	'ABBC3_DROPSHADOW_TIP'		=> '[dropshadow=(color)]texto[/dropshadow]',
 	'ABBC3_DROPSHADOW_VIEW'		=> '[dropshadow=blue]' . $lang['SAMPLE_TEXT'] . '[/dropshadow]',
 
 	// Blur text
-	'ABBC3_BLUR_MOVER'			=> 'Texto esfumado (Sólo en Internet explorer)',
+	'ABBC3_BLUR_MOVER'			=> 'Texto esfumado',
 	'ABBC3_BLUR_TIP'			=> '[blur=(color)]texto[/blur]',
 	'ABBC3_BLUR_VIEW'			=> '[blur=blue]' . $lang['SAMPLE_TEXT'] . '[/blur]',
 
 	// Wave text
-	'ABBC3_WAVE_MOVER'			=> 'Text ondeado(Sólo en Internet explorer)',
+	'ABBC3_WAVE_MOVER'			=> 'Text ondeado',
 	'ABBC3_WAVE_TIP'			=> '[wave=(color)]texto[/wave]',
 	'ABBC3_WAVE_VIEW'			=> '[wave=blue]' . $lang['SAMPLE_TEXT'] . '[/wave]',
 
@@ -444,18 +444,28 @@ $lang = array_merge($lang, array(
 	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL página[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.mssti.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.mssti.com[/web]',
+	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Nota:</strong> permitir que otros sitios web se incluyan en los mensajes, puede suponer un riesgo de seguridad. Utilícelo bajo su propio riesgo, o asignelo a grupos de confianza.',
 
-	// Image Wizard
+	// Image & Thumbnail Wizard
+	'ABBC3_ALIGN_LABEL'			=> 'Alinear Imagen',
+	'ABBC3_ALIGN_NONE'			=> 'Sin alinear',
+	'ABBC3_ALIGN_LEFT'			=> 'Izquierda',
+	'ABBC3_ALIGN_CENTER'		=> 'Centro',
+	'ABBC3_ALIGN_RIGHT'			=> 'Derecha',
+	'ABBC3_FLOAT_LEFT'			=> 'flotar a la izquierda',
+	'ABBC3_FLOAT_RIGHT'			=> 'flotar a la derecha',
+
+	// Image 
 	'ABBC3_IMG_TAG'				=> 'imagen',
 	'ABBC3_IMG_MOVER'			=> 'Insertar imagen',
-	'ABBC3_IMG_TIP'				=> '[img=(left|center|right)]http://...[/img]',
+	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
 	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'miniatura',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Insertar imagen miniatura',
-	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=left|right)]http://...[/thumbnail]',
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
 	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 

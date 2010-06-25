@@ -3,30 +3,28 @@
 <!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
-		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
-		
-		<title lang="en">Advanced BBCode Box 3 (aka ABBC3) Add-on : Compact View.</title>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 
-		<description lang="en">This file provides instructions to change the ABBC3 behaviour and get a compact view.
-		
-		See the main install file for any additional information about the MOD.</description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Add-on : Compact View.]]></title>
+
+		<description lang="en"><![CDATA[This file provides instructions to switch ABBC3 from it's default icon-based toolbar to ABBC3's Compact View. All ABBC3 BBcodes will be moved in to a neat drop-down menu for a much cleaner and compact appearance in the post editor. ABBC3's icons are still shown next to each BBcode in the menu, and BBcode helpful hints will be displayed in a compact tooltip when the mouse hovers over a BBcode.
+
+		See the main install file for any additional information about the MOD.]]></description>
 
 		<author-notes lang="en"><![CDATA[To read more about ABBC3, please read the contrib/docs/README.HTML file
 
 	-------------------------------------------------------------------
-	NOTE: This addition is optional - is display ABBC3 in "Compact View" instead "Full View"
+	NOTE: This addition is optional
 
-	Compact View means all bbcodes will be displayed as a list
-	To see the result compare screenshots :
+	To see example screenshots :
 		root/contrib/screenshots/Prosilver_posting_default.gif against root/contrib/screenshots/Prosilver_posting_compactview.gif
 	or
 		root/contrib/screenshots/Subsilver2_posting_default.gif against root/contrib/screenshots/Subsilver2_posting_compactview.gif
-		
+
 	-------------------------------------------------------------------
-	Also you can find usefully the "Custom Profile Fields" add-on
-	please read the contrib/add-on_MSSTI_ABBC3_Custom_Profile_Fields.xml
-	
-	]]></author-notes>
+	Also you can may find useful the "User Control Panel" add-on which will allow you to give your users the option to decide if they want to see ABBC3 Compact or ABBC3 default in their UCP Board Preferences.
+
+	Please read the contrib/add-on_MSSTI_ABBC3_User_Control_Panel.xml]]></author-notes>
 
 		<author-group>
 			<author>
@@ -39,8 +37,8 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		
-		<mod-version>3.0.7</mod-version>
+
+		<mod-version>3.0.7-PL1</mod-version>
 
 		<installation>
 			<level>easy</level>
@@ -49,7 +47,7 @@
 		</installation>
 
 		<link-group>
-			<link type="parent"  href="../install_ABBC3_v307.xml" lang="en">Code change</link>
+			<link type="parent"  href="../install_ABBC3.xml" lang="en">Code change</link>
 		</link-group>
 	</header>
 
@@ -77,7 +75,9 @@ B) Purge the cache :
 	B.2) look at Purge the cache
 	B.3) Click on "Run Now" button at right
 	B.4) in the next screen, click on "Yes"
-]]>
-		</diy-instructions>
+
+#####################################################################
+C) Enjoy it !.]]></diy-instructions>
+
 	</action-group>
 </mod>

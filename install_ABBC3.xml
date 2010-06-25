@@ -36,6 +36,10 @@
 		- Chrome 4.1
 		- Flock 2.5.6
 
+	Tested on Macintosh Browsers:
+		- Safari 4
+		- Firefox 3.6
+
 	-------------------------------------------------------------------
 
 	Before adding this MOD to your forum, you should back up all files and databases related to this MOD.]]></author-notes>
@@ -95,11 +99,11 @@
 		</history>
 
 		<link-group>
-			<link type="template" href="contrib/subsilver2.xml" lang="en">Template : Changes for Subsilver2 based off style</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v307_to_v307PL1.xml" lang="en">Update : ABBC3 MOD from 3.0.7 to 3.0.7-PL1</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v307_to_v307PL1.xml" lang="en">Update : Language Changes from 3.0.7 to 3.0.7-PL1</link>
+			<link type="template" href="contrib/subsilver2.xml" lang="en">Template : Changes for Subsilver2 based style</link>
+			<link type="contrib" href="contrib/update_v307PL1_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7-PL1 to 3.0.8</link>
+			<link type="contrib" href="contrib/update_v307PL1_with_UCPaddon_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7-PL1 with UCP add-on to 3.0.8 (Only for users who have installed the User Control Panel Add-On)</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v307PL1_to_v308.xml" lang="en">Update : Language Changes from 3.0.7-PL1 to 3.0.8</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_Compact_View.xml" lang="en">Add-on : Compact View.</link>
-			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_User_Control_Panel.xml" lang="en">Add-on : User Control Panel.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : quote behaviour.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
@@ -345,6 +349,8 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<action type="after-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
 	global $config, $mode, $abbcode;
+
+	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
 
 	if ($abbc3 && @$config['ABBC3_MOD'])
 	{

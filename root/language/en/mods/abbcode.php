@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: abbcode.php, v 3.0.7 2010/04/20 10:04:20 leviatan21 Exp $
+* @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
+* @version: $Id: abbcode.php, v 3.0.8 2010/05/06 10:05:06 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -38,6 +38,7 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
+
 $lang = array_merge($lang, array(
 // Help page
 	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode Box 3 :: Help Page',
@@ -58,6 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_NUMBER'		=> 'Image %1$s of %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Play slideshow',
 	'ABBC3_RESIZE_PAUSE'		=> 'Pause slideshow',
+
 // Pop Box JS
 	'ABBC3_POPBOX_REVERSETEXT'	=> 'Click the image to shrink it.',
 
@@ -114,6 +116,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_UNAUTHORISED'		=> 'You cannot use certain words : <br /><strong> %s </strong>',
 	'ABBC3_NOSCRIPT'			=> 'Your browser has disabled scripts or does not support client-side scripting. <em>( JavaScript! )</em>',
 	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'The page you are viewing requires the use of JavaScript for best performance.<br />If you have intentionally disabled JavaScript, please enable it.',
+	'ABBC3_FUNCTION_DISABLED'	=> 'This function is not available on this board.',
+	'ABBC3_SUBMIT'				=> 'Insert to post',
 	'SAMPLE_TEXT'				=> 'This is a text sample' //	' . $lang['SAMPLE_TEXT'] . '
 ));
 
@@ -153,7 +157,14 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLOR_TIP'			=> '[color=red]text[/color]',
 	'ABBC3_COLOR_NOTE'			=> 'Note: You can use html colors (color=#FF0000 or color=red)',
 	'ABBC3_COLOR_VIEW'			=> '[color=red]' . $lang['SAMPLE_TEXT'] . '[/color]',
-	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Note:</strong> Enable the ABBC3 Font colour menu or disable to use the standard phpBB3 Font colour picker.',
+//	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Note:</strong> Enable the ABBC3 Font colour menu or disable to use the standard phpBB3 Font colour picker.',
+
+	// Tigra Color & Highlight family Groups
+	'ABBC3_COLOUR_SAFE'			=> 'Web Safe Palette',
+	'ABBC3_COLOUR_WIN'			=> 'Windows System Palette',
+	'ABBC3_COLOUR_GREY'			=> 'Grey Scale Palette',
+	'ABBC3_COLOUR_MAC'			=> 'Mac OS Palette',
+	'ABBC3_SAMPLE'				=> 'sample',
 
 	// Cut selected text
 	'ABBC3_CUT_MOVER'			=> 'Removes selected text',
@@ -225,7 +236,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_NFO_TITLE'			=> 'NFO text',
 	'ABBC3_NFO_MOVER'			=> 'NFO text (Better on Internet explorer)',
 	'ABBC3_NFO_TIP'				=> '[nfo]NFO text[/nfo]',
-	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
+	'ABBC3_NFO_VIEW'			=> '[nfo]        Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
 
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Text justified',
@@ -308,27 +319,27 @@ $lang = array_merge($lang, array(
 	'ABBC3_GRAD_ERROR'			=> 'Error: ColorCode constructor failed',
 
 	// Glow text
-	'ABBC3_GLOW_MOVER'			=> 'Glow text (Only Internet Explorer)',
+	'ABBC3_GLOW_MOVER'			=> 'Glow text',
 	'ABBC3_GLOW_TIP'			=> '[glow=(color)]text[/glow]',
 	'ABBC3_GLOW_VIEW'			=> '[glow=red]' . $lang['SAMPLE_TEXT'] . '[/glow]',
 
 	// Shadow text
-	'ABBC3_SHADOW_MOVER'		=> 'Shadow text (Only Internet Explorer)',
+	'ABBC3_SHADOW_MOVER'		=> 'Shadow text',
 	'ABBC3_SHADOW_TIP'			=> '[shadow=(color)]text[/shadow]',
 	'ABBC3_SHADOW_VIEW'			=> '[shadow=blue]' . $lang['SAMPLE_TEXT'] . '[/shadow]',
 
 	// Dropshadow text
-	'ABBC3_DROPSHADOW_MOVER'	=> 'Dropshadow text (Only Internet Explorer)',
+	'ABBC3_DROPSHADOW_MOVER'	=> 'Dropshadow text',
 	'ABBC3_DROPSHADOW_TIP'		=> '[dropshadow=(color)]text[/dropshadow]',
 	'ABBC3_DROPSHADOW_VIEW'		=> '[dropshadow=blue]' . $lang['SAMPLE_TEXT'] . '[/dropshadow]',
 
 	// Blur text
-	'ABBC3_BLUR_MOVER'			=> 'Blur text (Only Internet Explorer)',
+	'ABBC3_BLUR_MOVER'			=> 'Blur text',
 	'ABBC3_BLUR_TIP'			=> '[blur=(color)]text[/blur]',
 	'ABBC3_BLUR_VIEW'			=> '[blur=blue]' . $lang['SAMPLE_TEXT'] . '[/blur]',
 
 	// Wave text
-	'ABBC3_WAVE_MOVER'			=> 'Wave text (Only Internet Explorer)',
+	'ABBC3_WAVE_MOVER'			=> 'Wave text',
 	'ABBC3_WAVE_TIP'			=> '[wave=(color)]text[/wave]',
 	'ABBC3_WAVE_VIEW'			=> '[wave=blue]' . $lang['SAMPLE_TEXT'] . '[/wave]',
 
@@ -419,6 +430,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.mssti.com',
 	'ABBC3_URL_VIEW'			=> '[url=http://www.mssti.com].:: MSSTI ::.[/url]',
 
+
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'email',
 	'ABBC3_EMAIL_MOVER'			=> 'Email',
@@ -443,18 +455,29 @@ $lang = array_merge($lang, array(
 	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.mssti.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.mssti.com[/web]',
+	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Note:</strong> allowing other websites to be inserted in posts, can pose a security risk. Use at your own risk, or assign to trusted groups.',
 
-	// Image Wizard
+	// Image & Thumbnail Wizard
+	'ABBC3_ALIGN_MODE'			=> 'Align image',
+##	For translate :							 Don't				Yes
+	'ABBC3_ALIGN_SELECTOR'		=> array(	'none'			=> 'Default',
+											'left'			=> 'Left',
+											'center'		=> 'Center',
+											'right'			=> 'Right',
+											'float-left'	=> 'Float-Left',
+											'float-right'	=> 'Float-Right'),
+
+	// Image 
 	'ABBC3_IMG_TAG'				=> 'image',
 	'ABBC3_IMG_MOVER'			=> 'Insert image',
-	'ABBC3_IMG_TIP'				=> '[img=(left|center|right)]http://...[/img]',
+	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
 	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'thumbnail',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Insert thumbnail',
-	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=left|right)]http://...[/thumbnail]',
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
 	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 
@@ -481,7 +504,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
 	'ABBC3_TESTLINK_NOTE'		=> 'Valid servers:rapidshare,megaupload,megarotic,depositfiles,megashares .',
 	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html',
-	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/testlink]',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'File found on server !',
 	'ABBC3_TESTLINK_WRONG'		=> 'File not found !',
 
