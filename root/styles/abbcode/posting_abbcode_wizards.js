@@ -1,6 +1,6 @@
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/styles/abbcode
-* @version: $Id: posting_abbcode_wizards.js, v 3.0.8 2010/05/18 10:05:18 leviatan21 Exp $
+* @version: $Id: posting_abbcode_wizards.js, v 3.0.8 2010/06/25 10:06:25 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -12,11 +12,11 @@ var form_name = '{FORM_NAME}';
 var text_name = '{TEXT_NAME}';
 <!-- ENDIF -->
 
-var popup = <!-- IF S_ABBC3_WIZARD_MODE eq '2' -->false<!-- ELSE -->true<!-- ENDIF -->;
+var in_popup = <!-- IF S_ABBC3_WIZARD_MODE eq '2' -->false<!-- ELSE -->true<!-- ENDIF -->;
 
 function win_close(text)
 {
-	if (is_ie && !popup)
+	if (is_ie && !in_popup)
 	{
 		var textarea = document.forms[form_name].elements[text_name];
 		textarea.focus();
@@ -26,17 +26,17 @@ function win_close(text)
 	if (text)
 	{
 		initInsertions();
-		insert_text(text, false, popup);
+		insert_text(text, false, in_popup);
 	}
 
-	if (popup)
+	if (in_popup)
 	{
 		window.close();
 	}
 	else
 	{
 		// The new position for the cursor after adding the bbcode
-		if (is_ie && !popup)
+		if (is_ie && !in_popup)
 		{
 			// dirty and slow IE way
 			var pos = textarea.innerHTML.indexOf(text);
@@ -273,7 +273,7 @@ function gradient_preview(submit)
 {
 	var doc;
 
-	if (popup)
+	if (in_popup)
 	{
 		doc = opener.document;
 	}
