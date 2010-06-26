@@ -758,7 +758,6 @@ class acp_abbcodes
 		foreach ($input_ary as $value => $title)
 		{
 			$value = strtolower($value);
-//			$id = strtolower($id);
 			
 			$selected = ($input_default !== false && $value == $input_default) ? ' checked="checked"' : '';
 			$html .= ' <label><input class="radio" type="radio" name="' . $name . '"' . (($id && !$id_assigned) ? ' id="' . $id . '"' : '') . ' value="' . $value . '"' . $selected . (($key) ? ' accesskey="' . $key . '"' : '') . ' />&nbsp;' . $title . '&nbsp;</label>';
