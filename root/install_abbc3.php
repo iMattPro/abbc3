@@ -1,6 +1,6 @@
 <?php
 /**
-* @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> install_abbc3
+* @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> install_abbc3.php
 * @version: $Id: install_abbc3.php, v 3.0.8 2010/06/26 10:06:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
