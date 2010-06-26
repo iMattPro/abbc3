@@ -353,24 +353,3 @@ a:active	{ color: #368AD2; }
 	clear: both;
 	margin-right: 1em;
 }
-
-#doc-description {
-	cursor: pointer;
-}
-#doc-description p {
-	font-size: 2em;
-	white-space: nowrap;
-	clear: left;
-}
-#doc-description #logo {
-	padding: 0 0 0 0 !important;
-	margin: 0 0 0 0 !important;
-	font-size : 1.3em;
-	font-weight: bolder;
-	color: silver;
-	direction: ltr;
-	unicode-bidi: embed;
-}
-#doc-description h1 {
-	clear: both;
-}

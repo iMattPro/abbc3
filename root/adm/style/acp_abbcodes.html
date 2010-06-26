@@ -1,5 +1,5 @@
 <!-- INCLUDE overall_header.html -->
-<!-- MOD : MSSTI ABBC3 {S_ABBC3_VERSION} - START //-->
+<!-- MOD : MSSTI ABBC3 (v3.0.6) - START //-->
 
 	<script type="text/javascript" defer="defer">
 	// <![CDATA[
@@ -32,31 +32,31 @@
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
-						if (resizer_option == 'LiteBox' && !{LITEBOX_EXIST})
+						if (resizer_option == 'LiteBox' &&!{LITEBOX_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
-						if (resizer_option == 'GreyBox' && !{GREYBOX_EXIST})
+						if (resizer_option == 'GreyBox' &&!{GREYBOX_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
-						if (resizer_option == 'Lightview' && !{LIGHTVIEW_EXIST})
+						if (resizer_option == 'Lightview' &&!{LIGHTVIEW_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
-						if (resizer_option == 'Ibox' && !{IBOX_EXIST})
+						if (resizer_option == 'Ibox' &&!{IBOX_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
-						if (resizer_option == 'PopBox' && !{POPBOX_EXIST})
+						if (resizer_option == 'PopBox' &&!{POPBOX_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
@@ -314,7 +314,7 @@
 					
 					<td>
 					<!-- IF items.IMG_SRC and not S_BBCODE_EDIT --><img src="{items.IMG_SRC}" title="{items.NAME}" alt="{items.NAME}" style="float:right;"/><!-- ENDIF -->
-					<span><!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}</strong>&nbsp;<!-- ENDIF -->{items.TAG_EXPLAIN}</span>
+					<span><!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}&nbsp;</strong><!-- ENDIF -->{items.TAG_EXPLAIN}</span>
 					<input type="hidden" name="id[{items.ID}]" value="{items.ID}" />
 					<input type="hidden" name="name[{items.ID}]" value="{items.NAME}" />
 					</td>
@@ -383,6 +383,6 @@
 
 <!-- ENDIF -->
 
-<!-- MOD : MSSTI ABBC3 {S_ABBC3_VERSION} - END //-->
+<!-- MOD : MSSTI ABBC3 (v3.0.6) - END //-->
 
 <!-- INCLUDE overall_footer.html -->

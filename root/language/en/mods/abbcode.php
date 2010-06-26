@@ -1,11 +1,11 @@
 <?php
 /**
-* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: abbcode.php, v 3.0.7 2010/04/20 10:04:20 leviatan21 Exp $
+* @package: phpBB 3.0.6 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
+* @version: $Id: abbcode.php, v 3.0.6 2010/01/10 10:01:10 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @translator: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
+* @translator: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 **/
 
 /**
@@ -40,10 +40,10 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 // Help page
-	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode Box 3 :: Help Page',
+	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode box 3 :: Help Page',
 	'ABBC3_HELP_DESC'			=> 'Description',
-	'ABBC3_HELP_WRITE'			=> 'BBcode usage format',
-	'ABBC3_HELP_VIEW'			=> 'BBcode example displays as',
+	'ABBC3_HELP_WRITE'			=> 'Your write format',
+	'ABBC3_HELP_VIEW'			=> 'Our show format',
 	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
 	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
@@ -52,8 +52,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_ZOOM_IN'		=> 'Zoom in (real dimensions: %1$s x %2$s)',
 	'ABBC3_RESIZE_CLOSE'		=> 'Close',
 	'ABBC3_RESIZE_ZOOM_OUT'		=> 'Zoom out',
-	'ABBC3_RESIZE_FILESIZE'		=> 'This image has been resized. The original image is %1$s x %2$s and weights %3$sKB.',
-	'ABBC3_RESIZE_NOFILESIZE'	=> 'This image has been resized. The original image is %1$s x %2$s.',
+	'ABBC3_RESIZE_FILESIZE'		=> 'This image has been resized. The original image is sized %1$s x %2$s and weights %3$sKB.',
+	'ABBC3_RESIZE_NOFILESIZE'	=> 'This image has been resized. The original image is sized %1$s x %2$s.',
 	'ABBC3_RESIZE_FULLSIZE'		=> 'Image resized to : %1$s % of its original size [ %2$s x %3$s ]',
 	'ABBC3_RESIZE_NUMBER'		=> 'Image %1$s of %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Play slideshow',
@@ -83,13 +83,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIGHSLIDE_PAUSETEXT'			=> 'Pause',
 	'ABBC3_HIGHSLIDE_PAUSETITLE'		=> 'Pause slideshow (spacebar)',
 	'ABBC3_HIGHSLIDE_NUMBER'			=> 'Image %1 of %2',
-	'ABBC3_HIGHSLIDE_RESTORETITLE'		=> 'Click to close image. Click and drag to move. Use arrow keys for next and previous.',
+	'ABBC3_HIGHSLIDE_RESTORETITLE'		=> 'Click to close image, click and drag to move. Use arrow keys for next and previous.',
 
 // Text to be applied to the helpline & mouseover & help page & Wizard texts
 	'BBCODE_STYLES_TIP'			=> 'Tip: Styles can be applied quickly to selected text.',
 
 	'ABBC3_ERROR'				=> 'Error : ',
-	'ABBC3_ERROR_TAG'			=> 'Unexpected error using tag : ',
+	'ABBC3_ERROR_TAG'			=> 'Unexpected Error using tag : ',
 	'ABBC3_NO_EXAMPLE'			=> 'No data example',
 
 	'ABBC3_ID'					=> 'Enter identifier :',
@@ -97,24 +97,20 @@ $lang = array_merge($lang, array(
 	'ABBC3_LINK'				=> 'Enter a link for ',
 	'ABBC3_DESC'				=> 'Enter a description for ',
 	'ABBC3_NAME'				=> 'Description',
-	'ABBC3_NOLINK'				=> 'You did not enter a link for ',
-	'ABBC3_NODESC'				=> 'You did not enter a description for ',
+	'ABBC3_NOLINK'				=> 'You did not write a link for ',
+	'ABBC3_NODESC'				=> 'You did not write a description for ',
 	'ABBC3_WIDTH'				=> 'Enter the width',
 	'ABBC3_WIDTH_NOTE'			=> 'Note: The value can be expressed as a percentage',
-	'ABBC3_NOWIDTH'				=> 'You did not enter the width',
+	'ABBC3_NOWIDTH'				=> 'You did not write the width',
 	'ABBC3_HEIGHT'				=> 'Enter the height',
 	'ABBC3_HEIGHT_NOTE'			=> 'Note: The value can be expressed as a percentage',
-	'ABBC3_NOHEIGHT'			=> 'You did not enter the height',
+	'ABBC3_NOHEIGHT'			=> 'You did not write the height',
 
 	'ABBC3_NOTE'				=> 'Note',
 	'ABBC3_EXAMPLE'				=> 'Example',
 	'ABBC3_EXAMPLES'			=> 'Examples',
-	'ABBC3_SHORT'				=> 'Select BBcode',
-	'ABBC3_DEPRECATED'			=> '<div class="error">The <em>%1$s</em> BBcode has been deprecated as of ABBC3 version <em>%2$s</em></div>',
 	'ABBC3_UNAUTHORISED'		=> 'You cannot use certain words : <br /><strong> %s </strong>',
-	'ABBC3_NOSCRIPT'			=> 'Your browser has disabled scripts or does not support client-side scripting. <em>( JavaScript! )</em>',
-	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'The page you are viewing requires the use of JavaScript for best performance.<br />If you have intentionally disabled JavaScript, please enable it.',
-	'SAMPLE_TEXT'				=> 'This is a text sample' //	' . $lang['SAMPLE_TEXT'] . '
+	'SAMPLE_TEXT'				=> 'This is a sample text' //	' . $lang['SAMPLE_TEXT'] . '
 ));
 
 /**
@@ -127,7 +123,7 @@ $lang = array_merge($lang, array(
 	// Font Type Dropdown
 	'ABBC3_FONT_MOVER'			=> 'Font type',
 	'ABBC3_FONT_TIP'			=> '[font=Comic Sans MS]text[/font]',
-	'ABBC3_FONT_NOTE'			=> 'Note: You can define additional font-families',
+	'ABBC3_FONT_NOTE'			=> 'Note: You can use your own font-family',
 	'ABBC3_FONT_VIEW'			=> '[font=Comic Sans MS]' . $lang['SAMPLE_TEXT'] . '[/font]',
 
 	// Font family Groups
@@ -153,7 +149,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLOR_TIP'			=> '[color=red]text[/color]',
 	'ABBC3_COLOR_NOTE'			=> 'Note: You can use html colors (color=#FF0000 or color=red)',
 	'ABBC3_COLOR_VIEW'			=> '[color=red]' . $lang['SAMPLE_TEXT'] . '[/color]',
-	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Note:</strong> Enable the ABBC3 Font colour menu or disable to use the standard phpBB3 Font colour picker.',
 
 	// Cut selected text
 	'ABBC3_CUT_MOVER'			=> 'Removes selected text',
@@ -161,10 +156,10 @@ $lang = array_merge($lang, array(
 	'ABBC3_COPY_MOVER'			=> 'Copy selected text',
 	// Paste previously copy text
 	'ABBC3_PASTE_MOVER'			=> 'Paste copied text',
-	'ABBC3_PASTE_ERROR'			=> 'You must first copy a selection of text, then paste it',
+	'ABBC3_PASTE_ERROR'			=> 'Please, first copy a text, them paste it ',
 	// Remove BBCode (Removes all BBCode tags from selected text)
-	'ABBC3_PLAIN_MOVER'			=> 'Remove all BBCodes from the selected text',
-	'ABBC3_NOSELECT_ERROR'		=> 'No text was seleted.',
+	'ABBC3_PLAIN_MOVER'			=> 'Remove labels BBCodes the selected text',
+	'ABBC3_NOSELECT_ERROR'		=> 'Please, first select the text ',
 
 	// Code
 	'ABBC3_CODE_MOVER'			=> 'Code',
@@ -176,6 +171,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_QUOTE_TIP'			=> '[quote]text[/quote] or [quote=“member”]text[/quote]',
 ##	For translate :                                                            yes              yes
 	'ABBC3_QUOTE_VIEW'			=> '[quote]' . $lang['SAMPLE_TEXT'] . '[/quote] or [quote=&quot;member&quot;]' . $lang['SAMPLE_TEXT'] . '[/quote]',
+
+	// html
+//	'ABBC3_HTML_MOVER'			=> 'HTML code',
+//	'ABBC3_HTML_TIP'			=> '[html]xhtml code[/html]',
+//	'ABBC3_HTML_EXAMPLE'		=> '[html]&lt;a href=\"http://www.mssti.com/phpbb3\"&gt;link to mssti&lt;/a&gt;[/html]',
+//	'ABBC3_HTML_VIEW'			=> '[html]<a href="http://www.mssti.com/phpbb3">link to mssti</a>[/html]',
 
 	// Spoiler
 	'ABBC3_SPOIL_MOVER'			=> 'Spoiler text',
@@ -190,7 +191,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_VIEW'			=> '[hidden]' . $lang['SAMPLE_TEXT'] . '[/hidden]',
 	'HIDDEN_OFF'				=> 'Hidden is OFF',
 	'HIDDEN_ON'					=> 'Hidden is ON',
-	'HIDDEN_EXPLAIN'			=> 'This board requires you to be registered and logged-in before you can view hidden messages',
+	'HIDDEN_EXPLAIN'			=> 'The board requires you to be registered and logged in before you can view the hidden message',
 
 	// Moderator tag
 	'ABBC3_MOD_MOVER'			=> 'Moderator message',
@@ -207,25 +208,20 @@ $lang = array_merge($lang, array(
 	// SCRIPPET
 	'ABBC3_SCRIPPET_MOVER'		=> 'Scrippet',
 	'ABBC3_SCRIPPET_TIP'		=> '[scrippet]Screenplay text[/scrippet]',
-##	For translate :                 don't change the "<br />" and don't join the lines in one !
-	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY<br />
-	ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />
-	ANTONIUS<br />
-	Do you think in a thousand years, anyone will remember our names?<br />
-	IPSUM<br />
-	Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
+##	For translate :                           yes                     <  don't  >yes                                                        <  don't  >yes     <don't    >yes                                                              <  don't  >yes  <  don't  >yes
+	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY <p>\r\n</p>ANTONIUS and IPSUM are walking down a tiny, crowded street.<p>\r\n</p>ANTONIUS<p>\r\n</p>Do you think in a thousand years, anyone will remember our names?<p>\r\n</p>IPSUM<p>\r\n</p>Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
 
 	// Tabs
 	'ABBC3_TABS_MOVER'			=> 'Tabs',
 	'ABBC3_TABS_TIP'			=> '[tabs] [tabs:Title]this tab text[tabs:Another]this tab text[/tabs]',
 ##	For translate :                              yes             yes                                                                                                                              yes               Yes
-	'ABBC3_TABS_VIEW'			=> '[tabs] [tabs:Tab Title]&nbsp;All the content below this tag will be displayed inside this tab, until another tab is declared with: &#91;tabs:XXX&#93;.[tabs:Another Tab]&nbsp;And so on...until the end of the page or optionally you can use &#91;/tabs&#93; to end the last tab and display normal text outside the tabs.[/tabs]',
+	'ABBC3_TABS_VIEW'			=> '[tabs] [tabs:Tab Title]&nbsp;All the content bellow this code will be inserted inside this tab, untill another tab is declared with: &#91;tabs:XXX&#93;.[tabs:Another Tab]&nbsp;And so on.. untill the end of the page or optionally you can add the code bellow to end the last tab and add more text outside the tabs: [/tabs]',
 
 	// NFO
 	'ABBC3_NFO_TITLE'			=> 'NFO text',
 	'ABBC3_NFO_MOVER'			=> 'NFO text (Better on Internet explorer)',
 	'ABBC3_NFO_TIP'				=> '[nfo]NFO text[/nfo]',
-	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
+	'ABBC3_NFO_VIEW'			=> '<dl class="codebox"><dt class="codetitle nfotitle">NFO text : </dt><dd><div class="codecontent nfo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Uuml;&sup2;&Uuml;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&sup2;&sup2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&sup2;&sup2;&nbsp;&plusmn;</div></dd></dl>', //'[nfo]ܲ�  � ۲�     ����  � ����������������������������     ���� �  � ����� �� �[/nfo]',
 
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Text justified',
@@ -256,20 +252,20 @@ $lang = array_merge($lang, array(
 	// Tab
 	'ABBC3_TAB_MOVER'			=> 'Creates a normal indent',
 	'ABBC3_TAB_TIP'				=> '[tab=nn]',
-	'ABBC3_TAB_NOTE'			=> 'Enter a number that will be the margin measured in pixels.',
+	'ABBC3_TAB_NOTE'			=> 'Enter a number that will be a margin measured in pixels.',
 	'ABBC3_TAB_VIEW'			=> '[tab=30]' . $lang['SAMPLE_TEXT'],
 
 	// Superscript
 	'ABBC3_SUP_MOVER'			=> 'Sets the text as superscripts',
 	'ABBC3_SUP_TIP'				=> '[sup]text[/sup]',
 ##	For translate :                 yes                                                           yes
-	'ABBC3_SUP_VIEW'			=> 'This is normal text [sup]' . $lang['SAMPLE_TEXT'] . '[/sup] this is normal text',
+	'ABBC3_SUP_VIEW'			=> 'This is a normal text [sup]' . $lang['SAMPLE_TEXT'] . '[/sup] this is a normal text',
 
 	// Subscript
 	'ABBC3_SUB_MOVER'			=> 'Sets the text as subscripts',
 	'ABBC3_SUB_TIP'				=> '[sub]text[/sub]',
 ##	For translate :                 yes                                                           yes
-	'ABBC3_SUB_VIEW'			=> 'This is normal text [sub]' . $lang['SAMPLE_TEXT'] . '[/sub] this is normal text',
+	'ABBC3_SUB_VIEW'			=> 'This is a normal text [sub]' . $lang['SAMPLE_TEXT'] . '[/sub] this is a normal text',
 
 	// Bold
 	'ABBC3_B_MOVER'				=> 'Text in bold',
@@ -292,7 +288,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_S_VIEW'				=> '[s]' . $lang['SAMPLE_TEXT'] . '[/s]',
 
 	// Text Fade
-	'ABBC3_FADE_MOVER'			=> 'Text fadein / fadeout',
+	'ABBC3_FADE_MOVER'			=> 'Text fadein fadeout',
 	'ABBC3_FADE_TIP'			=> '[fade]text[/fade]',
 	'ABBC3_FADE_VIEW'			=> '[fade]' . $lang['SAMPLE_TEXT'] . '[/fade]',
 
@@ -302,33 +298,33 @@ $lang = array_merge($lang, array(
 ##For translate (The separate words are "This is a sample text") 
 ##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',
-	'ABBC3_GRAD_MIN_ERROR'		=> 'No text was seleted.',
-	'ABBC3_GRAD_MAX_ERROR'		=> 'Only text selections less than 120 characters allowed.',
+	'ABBC3_GRAD_MIN_ERROR'		=> 'Please, first select the text : ',
+	'ABBC3_GRAD_MAX_ERROR'		=> 'Only allows less than 120 characters : ',
 	'ABBC3_GRAD_COLORS'			=> 'Pre Selected Colors',
 	'ABBC3_GRAD_ERROR'			=> 'Error: ColorCode constructor failed',
 
 	// Glow text
-	'ABBC3_GLOW_MOVER'			=> 'Glow text (Only Internet Explorer)',
+	'ABBC3_GLOW_MOVER'			=> 'Glow text (Only Internet explorer)',
 	'ABBC3_GLOW_TIP'			=> '[glow=(color)]text[/glow]',
 	'ABBC3_GLOW_VIEW'			=> '[glow=red]' . $lang['SAMPLE_TEXT'] . '[/glow]',
 
 	// Shadow text
-	'ABBC3_SHADOW_MOVER'		=> 'Shadow text (Only Internet Explorer)',
+	'ABBC3_SHADOW_MOVER'		=> 'Shadow text (Only Internet explorer)',
 	'ABBC3_SHADOW_TIP'			=> '[shadow=(color)]text[/shadow]',
 	'ABBC3_SHADOW_VIEW'			=> '[shadow=blue]' . $lang['SAMPLE_TEXT'] . '[/shadow]',
 
 	// Dropshadow text
-	'ABBC3_DROPSHADOW_MOVER'	=> 'Dropshadow text (Only Internet Explorer)',
+	'ABBC3_DROPSHADOW_MOVER'	=> 'Dropshadow text (Only Internet explorer)',
 	'ABBC3_DROPSHADOW_TIP'		=> '[dropshadow=(color)]text[/dropshadow]',
 	'ABBC3_DROPSHADOW_VIEW'		=> '[dropshadow=blue]' . $lang['SAMPLE_TEXT'] . '[/dropshadow]',
 
 	// Blur text
-	'ABBC3_BLUR_MOVER'			=> 'Blur text (Only Internet Explorer)',
+	'ABBC3_BLUR_MOVER'			=> 'Blur text (Only Internet explorer)',
 	'ABBC3_BLUR_TIP'			=> '[blur=(color)]text[/blur]',
 	'ABBC3_BLUR_VIEW'			=> '[blur=blue]' . $lang['SAMPLE_TEXT'] . '[/blur]',
 
 	// Wave text
-	'ABBC3_WAVE_MOVER'			=> 'Wave text (Only Internet Explorer)',
+	'ABBC3_WAVE_MOVER'			=> 'Wave text (Only Internet explorer)',
 	'ABBC3_WAVE_TIP'			=> '[wave=(color)]text[/wave]',
 	'ABBC3_WAVE_VIEW'			=> '[wave=blue]' . $lang['SAMPLE_TEXT'] . '[/wave]',
 
@@ -349,21 +345,21 @@ $lang = array_merge($lang, array(
 	// List item
 	'ABBC3_LISTITEM_MOVER'		=> 'List item',
 	'ABBC3_LISTITEM_TIP'		=> '[*]',
-	'ABBC3_LISTITEM_NOTE'		=> 'Note: Creates bullets inside list',
+	'ABBC3_LISTITEM_NOTE'		=> 'Note: Create bullets inside list',
 
 	// Line Break
-	'ABBC3_HR_MOVER'			=> 'Horizontal line',
+	'ABBC3_HR_MOVER'			=> 'Header',
 	'ABBC3_HR_TIP'				=> '[hr]',
-	'ABBC3_HR_NOTE'				=> 'Note: Creates a horizontal line to seperate text',
-	'ABBC3_HR_VIEW'				=> $lang['SAMPLE_TEXT'] . '[hr]' . $lang['SAMPLE_TEXT'],
+	'ABBC3_HR_NOTE'				=> 'Note: Creates a header line row to seperate text',
+	'ABBC3_HR_VIEW'				=> '[hr]',
 
 	// Message Box text direction right to Left
-	'ABBC3_DIRRTL_MOVER'		=> 'Text direction for reading right-to-left',
+	'ABBC3_DIRRTL_MOVER'		=> 'Text with reading right-to-left',
 	'ABBC3_DIRRTL_TIP'			=> '[dir=rtl]text[/dir]',
 	'ABBC3_DIRRTL_VIEW'			=> '[dir=rtl]' . $lang['SAMPLE_TEXT'] . '[/dir]',
 
 	// Message Box text direction Left to right
-	'ABBC3_DIRLTR_MOVER'		=> 'Text direction for reading left-to-right',
+	'ABBC3_DIRLTR_MOVER'		=> 'Text with reading left-to-right',
 	'ABBC3_DIRLTR_TIP'			=> '[dir=ltr]text[/dir]',
 	'ABBC3_DIRLTR_VIEW'			=> '[dir=ltr]' . $lang['SAMPLE_TEXT'] . '[/dir]',
 
@@ -378,12 +374,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_MARQUP_VIEW'			=> '[marq=up]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
 	// Marquee Right
-	'ABBC3_MARQRIGHT_MOVER'		=> 'Displace text to the right',
+	'ABBC3_MARQRIGHT_MOVER'		=> 'Displacement text to the right',
 	'ABBC3_MARQRIGHT_TIP'		=> '[marq=right]text[/marq]',
 	'ABBC3_MARQRIGHT_VIEW'		=> '[marq=right]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
 	// Marquee Left
-	'ABBC3_MARQLEFT_MOVER'		=> 'Displace text to the left',
+	'ABBC3_MARQLEFT_MOVER'		=> 'Displacement text to the left',
 	'ABBC3_MARQLEFT_TIP'		=> '[marq=left]text[/marq]',
 	'ABBC3_MARQLEFT_VIEW'		=> '[marq=left]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
@@ -392,18 +388,40 @@ $lang = array_merge($lang, array(
 	'ABBC3_TABLE_TIP'			=> '[table=(ccs style)][tr=(ccs style)][td=(ccs style)]text[/td][/tr][/table]',
 	'ABBC3_TABLE_VIEW'			=> '[table=width:50%;border:1px solid #cccccc][tr=text-align:center][td=border:1px solid #cccccc]' . $lang['SAMPLE_TEXT'] . '[/td][/tr][/table]',
 
-	'ABBC3_TABLE_STYLE'			=> 'Enter the table style',
+	'ABBC3_TABLE_STYLE'			=> 'Enter style table',
 	'ABBC3_TABLE_EXAMPLE'		=> 'width:50%;border:1px solid #cccccc;',
 
-	'ABBC3_ROW_NUMBER'			=> 'Enter number of table rows',
-	'ABBC3_ROW_ERROR'			=> 'You did not enter the number of rows',
-	'ABBC3_ROW_STYLE'			=> 'Enter the row style',
+	'ABBC3_ROW_NUMBER'			=> 'Enter number of rows',
+	'ABBC3_ROW_ERROR'			=> 'You did not write the number of rows',
+	'ABBC3_ROW_STYLE'			=> 'Enter style rows',
 	'ABBC3_ROW_EXAMPLE'			=> 'text-align:center;',
 
 	'ABBC3_CELL_NUMBER'			=> 'Enter number of cells',
-	'ABBC3_CELL_ERROR'			=> 'You did not enter the number of cells',
-	'ABBC3_CELL_STYLE'			=> 'Enter the cell style',
+	'ABBC3_CELL_ERROR'			=> 'You did not write the number of cells',
+	'ABBC3_CELL_STYLE'			=> 'Enter style cell',
 	'ABBC3_CELL_EXAMPLE'		=> 'border:1px solid #cccccc;',
+
+	// Simple upload files
+	'ABBC3_UPLOAD_TITLE'		=> 'Advanced BBCode box 3 :: Upload File Page',
+	'ABBC3_UPLOAD_MOVER'		=> 'Upload File',
+	'ABBC3_UPLOAD_LINK'			=> 'This is the link to your uploaded file',
+	'ABBC3_UPLOAD_UPLOADED'		=> 'Upload “%1$s” was successful!',
+	'ABBC3_UPLOAD_NOT_UPLOADED'	=> 'Upload “%1$s” could not be uploaded',
+	'ABBC3_UPLOAD_ALREADY'		=> 'The file “%1$s” already exist, please choose an alternative or rename your file and try again',
+	'ABBC3_UPLOAD_ERROR'		=> 'Could not upload file to “%1$s”. Return error code : “%2$s”',
+	'ABBC3_UPLOAD_EXTENSION'	=> 'Available extensions',
+	'ABBC3_UPLOAD_DISALLOWED'	=> 'You have no permission to Upload Files',
+	'ABBC3_UPLOAD_DISABLED'		=> 'The upload extension “%1$s” is not allowed',
+	'ABBC3_UPLOAD_SIZE'			=> 'The maximum size',
+	'ABBC3_UPLOAD_NOSIZE'		=> 'The upload filesize “%1$s” is too large. The maximum allowed upload size is “%2$s”',
+	'ABBC3_UPLOAD_EMPTY'		=> 'You did not specify a file to upload.<br />Please click the “browse” button and select a file before hitting “Add the file”.',
+	'ABBC3_UPLOAD_NO_FILE_SIZE'	=> 'The file you uploaded is 0 bytes in size.<br />Please select a file that contains data.',
+	'ABBC3_UPLOAD_ERR_INI_SIZE'	=> 'File was not uploaded because it is larger then the <em>upload_max_filesize</em> setting in the <em>php.ini</em> file.<br />Please contact the admin with this error and request that increase the setting in php.ini.',
+	'ABBC3_UPLOAD_ERR_PARTIAL'	=> 'The uploaded file was only partially uploaded, Please try again',
+	'ABBC3_UPLOAD_ERR_NO_TMPDIR'=> 'Missing a temporary folder. Please contact the admin with this error.',
+	'ABBC3_UPLOAD_ERR_CANTWRITE'=> 'Failed to write file to disk. Please contact the admin with this error.',
+	'ABBC3_UPLOAD_ERR_EXTENSION'=> 'File upload stopped by extension',
+	'ABBC3_UPLOAD_UPLOAD_ERROR'	=> 'Error Number : “%1$s” <br />File was not uploaded. Please contact the admin with this error if it persists after a second attempt.',
 
 	// Anchor
 	'ABBC3_ANCHOR_MOVER'		=> 'Anchor',
@@ -415,7 +433,7 @@ $lang = array_merge($lang, array(
 	// Hyperlink Wizard
 	'ABBC3_URL_TAG'				=> 'page',
 	'ABBC3_URL_MOVER'			=> 'Web address',	
-	'ABBC3_URL_TIP'				=> '[url]http://...[/url] or [url=http://...]Name of site[/url]',
+	'ABBC3_URL_TIP'				=> '[url]http://...[/url] or [url=http://...]Name Web[/url]',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.mssti.com',
 	'ABBC3_URL_VIEW'			=> '[url=http://www.mssti.com].:: MSSTI ::.[/url]',
 
@@ -439,7 +457,7 @@ $lang = array_merge($lang, array(
 
 	// Web included by iframe
 	'ABBC3_WEB_TAG'				=> 'web',
-	'ABBC3_WEB_MOVER'			=> 'Insert a website in your post',
+	'ABBC3_WEB_MOVER'			=> 'Insert site in the post',
 	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.mssti.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.mssti.com[/web]',
@@ -464,7 +482,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 
 	// Rapid share checker
-	'ABBC3_FOPEN_ERROR'			=> '<strong>Error : </strong> Sorry but it appears that <strong>allow_url_fopen</strong> is disabled. This function requires the PHP directive allow_url_fopen to be enabled.',
+	'ABBC3_FOPEN_ERROR'			=> '<strong>Error : </strong> Sorry but it appears that <strong>allow_url_fopen</strong> is disabled., this function requires the PHP directive allow_url_fopen to be enabled.',
 	'ABBC3_RAPIDSHARE_TAG'		=> 'rapidshare',
 	'ABBC3_RAPIDSHARE_MOVER'	=> 'Insert a file from rapidshare',
 	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...[/rapidshare]',
@@ -474,8 +492,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAPIDSHARE_WRONG'	=> 'File not found !',
 
 	// testlink
-	'ABBC3_CURL_ERROR'			=> '<strong>Error : </strong> Sorry but it appears that CURL is not loaded. Please install it to use this function.',
-	'ABBC3_LOGIN_EXPLAIN_VIEW'	=> 'This board requires you to be registered and logged-in to view links.',
+	'ABBC3_CURL_ERROR'			=> '<strong>Error : </strong> Sorry but it appears that CURL is not loaded, Please install it to use this function.',
+	'ABBC3_LOGIN_EXPLAIN_VIEW'	=> 'The board requires you to be registered and logged in to view links.',
 	'ABBC3_TESTLINK_TAG'		=> 'link checker',
 	'ABBC3_TESTLINK_MOVER'		=> 'Insert a file stored on public server',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
@@ -500,7 +518,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SEARCH_MOVER'		=> 'Insert search word',
 	'ABBC3_SEARCH_TIP'			=> '[search(=(msn|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
 ##	For translate :                                                              yes                                                 yes                                                   yes                                                    yes                                                       yes                                                   yes
-	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode Box 3[/search]<br /> or [search=msn]Advanced BBcode Box 3[/search]<br /> or [search=yahoo]Advanced BBcode Box 3[/search]<br /> or [search=google]Advanced BBcode Box 3[/search]<br /> or [search=altavista]Advanced BBcode Box 3[/search]<br /> or [search=lycos]Advanced BBcode Box 3[/search]<br /> or [search=wikipedia]Advanced BBcode Box 3[/search]',
+	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode box 3[/search]<br /> or [search=msn]Advanced BBcode box 3[/search]<br /> or [search=yahoo]Advanced BBcode box 3[/search]<br /> or [search=google]Advanced BBcode box 3[/search]<br /> or [search=altavista]Advanced BBcode box 3[/search]<br /> or [search=lycos]Advanced BBcode box 3[/search]<br /> or [search=wikipedia]Advanced BBcode box 3[/search]',
 
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
@@ -513,14 +531,14 @@ $lang = array_merge($lang, array(
 
 	// Flash (swf) Wizard
 	'ABBC3_FLASH_TAG'			=> 'flash',
-	'ABBC3_FLASH_MOVER'			=> 'Insert Flash file (swf)',
+	'ABBC3_FLASH_MOVER'			=> 'Insert flash file (swf)',
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] or [flash width,height]URL flash[/flash]',
 	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.adobe.com/support/flash/ts/documents/test_version/version.swf',
 	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.adobe.com/support/flash/ts/documents/test_version/version.swf[/flash]',
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
-	'ABBC3_FLV_MOVER'			=> 'Insert Flash video (flv)',
+	'ABBC3_FLV_MOVER'			=> 'Insert flash video (flv)',
 	'ABBC3_FLV_TIP'				=> '[flv width=# height=#]URL flash video[/flv] or [flv width,height]URL flash video[/flv]',
 	'ABBC3_FLV_EXAMPLE'			=> 'http://www.channel-ai.com/video/eyn/demo1.flv',
 	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.channel-ai.com/video/eyn/demo1.flv[/flv]',
@@ -540,9 +558,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_STREAM_VIEW'			=> '[stream]http://realdev1.realise.com/rossa/mov/demo.mp3[/stream]',
 
 	// Quick time
-	'ABBC3_QUICKTIME_TAG'		=> 'Quicktime',
-	'ABBC3_QUICKTIME_MOVER'		=> 'Insert Quicktime',
-	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quicktime[/quicktime]',
+	'ABBC3_QUICKTIME_TAG'		=> 'Quick time',
+	'ABBC3_QUICKTIME_MOVER'		=> 'Insert Quick time',
+	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quick time[/quicktime]',
 	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt' . ' | ' . 'http://www.carnivalmidways.com/images/Music/thisisatest.mp3',
 	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
 
@@ -600,8 +618,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/player/30461.html[/gametrailers]',
 
 	// IGN video
-	'ABBC3_IGNVIDEO_MOVER'		=> 'Insert video from IGN',
-	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]IGN video URL[/ignvideo]',
+	'ABBC3_IGNVIDEO_MOVER'		=> 'Insert video from Ign',
+	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]ING video URL[/ignvideo]',
 	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'object_ID=967025&downloadURL=http://tvmovies.ign.com/tv/video/article/850/850894/knightrider_trailer_020808_flvlow.flv',
 	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]object_ID=967025&downloadURL=http://tvmovies.ign.com/tv/video/article/850/850894/knightrider_trailer_020808_flvlow.flv[/ignvideo]',
 

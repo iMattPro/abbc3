@@ -1,24 +1,21 @@
 /**  phpBB 3.0 Style Sheet
 * --------------------------------------------------------------
 * @package: phpBB3 :: Advanced BBCode box 3 -> styles -> abbcode
-* @version: $Id: abbcode.css, v 3.0.7 2010/03/29 10:03:29 leviatan21 Exp $
+* @version: $Id: abbcode.css, v 1.0.11 2008/10/11 11:10:08 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * --------------------------------------------------------------
 **/
-
 .cat {
 	text-indent: 0;
 }
 
 .helpline { 
-	width: 100%;
 	overflow: hidden;
 	background-color: transparent !important;
 	border-style: none;
 	font-size: 10px;
-	resize: none; /* For Safari */
 }
 .helpline:hover {
 	border-style: none;
@@ -29,10 +26,14 @@ hr.hrdashed   { border: 0 none #cccccc; border-top: 1px dashed #cccccc; margin: 
 hr.hrdotted   { border: 0 none #cccccc; border-top: 1px dotted #cccccc; margin: 5px 0; clear: both; height: 1px; display: block; }
 /** IE7 Only **/ *:first-child+html hr    { margin: 0; }
 
-#message-box textarea.inputbox {
+#abbc3posttable textarea.inputbox, 
+#abbc3wysiwig textarea.inputbox{
 	width: 100%;
-	height: 270px;
-	resize: none; /* For Safari */
+	height: 300px;
+}
+#abbc3posttable textarea:hover, 
+#abbc3wysiwig textarea:hover {
+	border: 0;
 }
 #abbc3posttable, 
 #abbc3wysiwig {
@@ -42,14 +43,9 @@ hr.hrdotted   { border: 0 none #cccccc; border-top: 1px dotted #cccccc; margin: 
 }
 #abbc3posttable select, 
 #abbc3wysiwig select {
-/*	font-size: 1.0em;	*/
 	height: 20px;
 	margin: 3px 0;
 }
-#acp #abbc3posttable select {
-	font-size: 1.1em;
-}
-
 #abbc3posttable option, 
 #abbc3wysiwig option {
 	background-color: #eeeeee;
@@ -78,16 +74,10 @@ hr.hrdotted   { border: 0 none #cccccc; border-top: 1px dotted #cccccc; margin: 
 	background-color: transparent !important;
 	padding: 1px;
 }
-
 #abbc3posttable .button2, 
 #abbc3wysiwig .button2 {
-	margin: 5px 0 4px 0;
-	padding: 2px 5px;
-}
-#abbc3posttable .btnlite,
-#abbc3wysiwig .btnlite {
-	margin: 5px 0 4px 0;
-	padding: 2px 5px;
+	padding: 0;
+	margin: 0;
 }
 .abbc3_link {
 	float: right;
@@ -110,7 +100,7 @@ hr.hrdotted   { border: 0 none #cccccc; border-top: 1px dotted #cccccc; margin: 
 	background: #FCEEC1 url("images/bg/button_over.gif");
 	border: 1px solid #FFBD69;
 }
-DELETE ME 2 */
+/* DELETE ME 2
 /** MOD : add button over - END **/
 
 #abbc3posttable .dot, 
@@ -120,116 +110,6 @@ DELETE ME 2 */
 	cursor: default;
 	background-color: transparent !important;
 }
-
-/* abbcode_compact - Start */
-#_selector {
-	list-style: none;
-	display: inline-table !important;
-	margin: 6px 0 6px 0;
-	padding: 0;
-	vertical-align: middle;
-}
-#_selector span.header {
-	text-align: center;
-	text-decoration: none;
-	color: #000000;
-}
-#_selector span.button2 {
-	background-image: url("images/bg/bg_tabs.gif");
-	border: 1px solid #666666;
-}
-#_selector span.button2:hover {
-	background-position: 0 100%;
-	border-color: #BC2A4D;
-	color: #BC2A4D;
-}
-#_selector li:hover ul ul, 
-#_selector li:hover ul ul ul { 
-	left: -999em;
-}
-.rtl #_selector li:hover ul ul, 
-.rtl #_selector li:hover ul ul ul { 
-	left: -999em;
-}
-
-#_selector li:hover ul, 
-#_selector li li:hover ul, 
-#_selector li li li:hover ul {
-	left: auto;
-}
-.rtl #_selector li:hover ul, 
-.rtl #_selector li li:hover ul, 
-.rtl #_selector li li li:hover ul {
-	right: auto;
-}
-
-#bbcodes_selector {
-	list-style: none;
-	line-height: 120%;
-	border: 1px solid #666666;
-	margin: 1px 0 0 5px;
-	width: 250px;
-	height: 200px;
-	overflow-y: auto;
-	font-weight: normal;
-	padding: 0.5em;
-	position: absolute;
-	left: -999em;
-	z-index: 1000;
-}
-.rtl #bbcodes_selector {
-	right: -999em;
-}
-
-.ABBC3Help .gotimage, .ABBC3Help2 .gotimage, 
-#bbcodes_selector li {
-	background-image: none;
-	background-position: 0 0;
-	background-repeat: no-repeat;
-}
-.rtl .ABBC3Help .gotimage, .rtl .ABBC3Help2 .gotimage, 
-.rtl #bbcodes_selector li {
-	background-position: 100% 0;
-}
-
-.ABBC3Help .gotimage, .ABBC3Help2 .gotimage, 
-#bbcodes_selector li a {
-	line-height: 25px;
-	vertical-align: middle;
-	padding: 0 0 0 25px;
-}
-.rtl .ABBC3Help .gotimage,
-.rtl .ABBC3Help2 .gotimage, 
-.rtl #bbcodes_selector li a {
-	padding: 0 25px 0 0;
-}
-#bbcodes_selector li:hover {
-	background-color: #ffffff;
-}
-/* abbcode_compact - End */
-
-/* Tooltip - Start */
-#_tooltip_container {
-	z-index: 1000; 
-}
-.tooltip {
-	width: 400px;
-	color: #000;
-	text-align: center;
-	border: 1px solid #AAA;
-}
-.tooltip span.top {
-	background: #EFEFEF;
-	font-weight: bold;
-	padding: 2px;
-	background: #FAFAFA url("images/bg/bg_tabs.gif") 0 0;
-}
-.tooltip span.bottom {
-	padding: 5px;
-	color: #000000;
-	background: #FFFFFF;
-}
-/* Tooltip - End */
 
 /* wizards - Start */
 #abbcode_wizards {
@@ -283,6 +163,7 @@ dl.testlink {
 	color: #000000;
 	border: 1px solid #dbdbdb;
 	background-color: #ffffff;
+/*	font: 0.9em "Lucida Grande", "Trebuchet MS", Helvetica, Arial, sans-serif;	*/
 	line-height: 1.4em;
 }
 .spoiltitle {
@@ -307,9 +188,9 @@ dl.testlink {
 /** Spoiler - END **/
 
 /** Img - START **/
-div.abbc3-center { text-align: center; display: table; margin-left: auto; margin-right: auto; }
-div.abbc3-left   { float: left; padding:0 10px; clear:both; }
-div.abbc3-right  { float: right; padding:0 10px; clear:both; }
+div.center { text-align: center; display: table; margin-left: auto; margin-right: auto; }
+div.left   { float: left; padding:0 10px; clear:both; }
+div.right  { float: right; padding:0 10px; clear:both; }
 /** Img - END **/
 
 /** NFO bbcode - START **/
@@ -354,6 +235,11 @@ marquee {
 	display: inline-block; /* IE <8 needs this tripped back to display: inline; to make it work on block elements */
 }
 /** Marquee bbcode - End **/
+
+/** Code and quote - Start **/
+.codetitle, .codecontent      { overflow: auto; }
+.quotecontent, blockquote div { overflow: auto; max-height: 200px; }
+/** Code and quote - End **/
 
 /** thumbnails - START **/
 .hoverbox { cursor: pointer ; background:#eee; color: inherit; border-color: #ddd #bbb #aaa #ccc; border-style: solid; border-width: 1px; margin: 3px; padding: 5px; }

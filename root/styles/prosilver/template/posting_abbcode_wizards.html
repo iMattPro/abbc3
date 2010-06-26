@@ -1,5 +1,5 @@
 <!-- INCLUDE simple_header.html -->
-<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - START //-->
+<!-- MOD : MSSTI ABBC3 (v1.0.12) - START //-->
 
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
 
@@ -26,9 +26,9 @@ var theSelection = false;
 var tohex = new Array(256);
 var hex   = "0123456789ABCDEF";
 var count = 0;
-for (var x = 0; x < 16; x++)
+for (x = 0; x < 16; x++)
 {
-	for (var y = 0; y < 16; y++)
+	for (y = 0; y < 16; y++)
 	{
 		tohex[count] = hex.charAt(x) + hex.charAt(y);
 		count++;
@@ -61,14 +61,143 @@ if (isNaN(version))
 	version = 0;
 }
 
-if ((browser == "msie") && (version == 2))
+if ((browser == "msie")&&(version == 2))
 {
 	version = 3;
 }
 
-function getValue(clr_id)
+function gradient_template()
 {
-	var clr = document.getElementById(clr_id);
+	if (template = document.getElementById("clr0"))
+	{
+		var t = template.options[template.selectedIndex].value.split(",");
+
+		document.getElementById('clr1').options.selectedIndex = t[0];
+		document.getElementById('clr2').options.selectedIndex = t[1];
+		document.getElementById('clr3').options.selectedIndex = t[2];
+		document.getElementById('clr4').options.selectedIndex = t[3];
+		document.getElementById('clr5').options.selectedIndex = t[4];
+
+		gradient_preview();
+	}
+}
+
+function gradient_preview(submit)
+{
+	var txtarea = opener.document.forms["{FORM_NAME}"].elements["{TEXT_NAME}"];
+
+	if ((clientVer >= 4) && is_ie && is_win)
+	{
+		/** Get text selection **/
+		theSelection = opener.document.selection.createRange().text;
+		oSelectLength = theSelection.length;
+
+		if (submit)
+		{
+			var varreturn = gradient(theSelection, "add");
+			opener.document.selection.createRange().text = varreturn;
+			win_close();
+		}
+	}
+	else if (txtarea.selectionEnd && (txtarea.selectionEnd - txtarea.selectionStart > 0))
+	{
+		var selLength = txtarea.textLength;
+		var selStart = txtarea.selectionStart;
+		var selEnd = txtarea.selectionEnd;
+		var scrollTop = txtarea.scrollTop;
+
+		if (selEnd == 1 || selEnd == 2) 
+		{
+			selEnd = selLength;
+		}
+
+		var s1 = (txtarea.value).substring(0,selStart);
+		var s2 = (txtarea.value).substring(selStart, selEnd);
+		var s3 = (txtarea.value).substring(selEnd, selLength);
+
+		theSelection = s2;
+		oSelectLength = selEnd - selStart;
+
+		if (submit)
+		{
+			var varreturn = gradient(theSelection, "add"); //.replace(/<FONT /gi,"[").replace(/<\/FONT>/g,"[/COLOR]").replace(/>/g,"]","add");
+			txtarea.value = (txtarea.value).substring(0,selStart) + varreturn + (txtarea.value).substring(selEnd, selLength);
+			win_close();
+		}
+	}
+
+	document.getElementById("preview").innerHTML = gradient(theSelection, "priv");
+}
+
+function gradient(thetext, priv)
+{
+	var grad      = "";
+	var thecolors = getValue('clr1');
+	thecolors    += getValue('clr2');
+	thecolors    += getValue('clr3');
+	thecolors    += getValue('clr4');
+	thecolors    += getValue('clr5');
+	thecolors     = thecolors.substr(1);
+
+	if (((browser == "netscape") || (browser == "msie") || (browser == "opera")) && (version>=3.0))
+	{
+		var colors = new ColorList(thecolors);
+
+		if (colors.len < 2)
+		{
+			return  thetext;
+		}
+
+		var numcolors = colors.len;
+		var numchars = theSelection.length;
+		var rr = 0;
+		var gg = 0;
+		var bb = 0;
+		var lci = 0; /** lower color index **/
+		var hci = 0; /** high color index **/
+
+		for (i=0; i<numchars; ++i)
+		{
+			lci = lowcolorindex(i, numchars, numcolors);
+			hci = hicolorindex(i, numchars, numcolors, lci);
+			rr = Math.round(interpolate(lci/(numcolors-1), colors.codes[lci].r, hci/(numcolors-1), colors.codes[hci].r, i/(numchars-1)));
+			gg = Math.round(interpolate(lci/(numcolors-1), colors.codes[lci].g, hci/(numcolors-1), colors.codes[hci].g, i/(numchars-1)));
+			bb = Math.round(interpolate(lci/(numcolors-1), colors.codes[lci].b, hci/(numcolors-1), colors.codes[hci].b, i/(numchars-1)));
+
+			if (browser == "opera")
+			{
+				rr = 255 - rr;
+				gg = 255 - gg;
+				bb = 255 - bb;
+			}
+
+			if (thetext.charAt(i) != ' ')
+			{
+				if (priv == "priv")
+				{
+					grad += "<font color=#" + tohex[rr] + tohex[gg] + tohex[bb] + ">" + thetext.charAt(i) + "</font>";
+				}
+				else
+				{
+					grad += "[color=#" + tohex[rr] + tohex[gg] + tohex[bb] + "]" + thetext.charAt(i) + "[/color]";
+				}
+			}
+			else
+			{
+				grad+=' ';
+			}
+		}
+	}
+	else
+	{
+		grad = thetext;
+	}
+	return grad;
+}
+
+function getValue(clr)
+{
+	var clr = document.getElementById(clr);
 
 	if (clr.options[clr.selectedIndex].value == "")
 	{
@@ -78,6 +207,28 @@ function getValue(clr_id)
 	{
 		return " " + clr.options[clr.selectedIndex].value;
 	}
+}
+
+function ColorList(hexcodes)
+{
+	var i = 0;
+	var c = 0;
+	this.codes = new Array(Math.round(hexcodes.length/7));
+
+	while (i < hexcodes.length)
+	{
+		if (isNaN(parseInt(hexcodes.substring(i,i+6),16)))
+		{
+			++i;
+		}
+		else
+		{
+			this.codes[c] = new ColorCode(hexcodes.substring(i,i+6));
+			i += 7;
+			++c;
+		}
+	}
+	this.len = c;
 }
 
 function ColorCode(hexcode)
@@ -106,28 +257,6 @@ function ColorCode(hexcode)
 	}
 }
 
-function ColorList(hexcodes)
-{
-	var i = 0;
-	var c = 0;
-	this.codes = new Array(Math.round(hexcodes.length/7));
-
-	while (i < hexcodes.length)
-	{
-		if (isNaN(parseInt(hexcodes.substring(i,i+6),16)))
-		{
-			++i;
-		}
-		else
-		{
-			this.codes[c] = new ColorCode(hexcodes.substring(i,i+6));
-			i += 7;
-			++c;
-		}
-	}
-	this.len = c;
-}
-
 function lowcolorindex(x, y, z)
 {
 	if (y == 1)
@@ -136,7 +265,7 @@ function lowcolorindex(x, y, z)
 	}
 	else
 	{
-		return Math.floor((x * (z - 1)) / (y - 1));
+		return Math.floor(x * (z - 1)) / (y - 1));
 	}
 }
 
@@ -168,221 +297,52 @@ function interpolate(x1, y1, x3, y3, x2)
 	}
 }
 
-function gradient(thetext, priv)
+function ABBCcolorPalette(bbcode)
 {
-	var grad      = "";
-	var thecolors = getValue('clr1');
-	thecolors    += getValue('clr2');
-	thecolors    += getValue('clr3');
-	thecolors    += getValue('clr4');
-	thecolors    += getValue('clr5');
-	thecolors     = thecolors.substr(1);
+	var r = 4, g = 4, b = 4;
+	var numberList = new Array(6);
+	var color = '';
 
-	if (((browser == "netscape") || (browser == "msie") || (browser == "opera")) && (version >= 3.0))
+	numberList[0] = '00';
+	numberList[1] = '40';
+	numberList[2] = '80';
+	numberList[3] = 'BF';
+	numberList[4] = 'FF';
+
+	for (r = 4; r > -1; r--)
 	{
-		var colors = new ColorList(thecolors);
-
-		if (colors.len < 2)
+		for (g = 4; g > -1; g--)
 		{
-			return  thetext;
-		}
-
-		var numcolors = colors.len;
-		var numchars = theSelection.length;
-		var rr = 0;
-		var gg = 0;
-		var bb = 0;
-		var lci = 0; /** lower color index **/
-		var hci = 0; /** high color index **/
-
-		for ( var i = 0; i < numchars; ++i)
-		{
-			lci = lowcolorindex(i, numchars, numcolors);
-			hci = hicolorindex(i, numchars, numcolors, lci);
-			rr = Math.round(interpolate(lci/(numcolors-1), colors.codes[lci].r, hci/(numcolors-1), colors.codes[hci].r, i/(numchars-1)));
-			gg = Math.round(interpolate(lci/(numcolors-1), colors.codes[lci].g, hci/(numcolors-1), colors.codes[hci].g, i/(numchars-1)));
-			bb = Math.round(interpolate(lci/(numcolors-1), colors.codes[lci].b, hci/(numcolors-1), colors.codes[hci].b, i/(numchars-1)));
-
-			if (browser == "opera")
+			for (b = 4; b > -1; b--)
 			{
-				rr = 255 - rr;
-				gg = 255 - gg;
-				bb = 255 - bb;
-			}
-
-			if (thetext.charAt(i) !== ' ')
-			{
-				if (priv == "priv")
+				color = String(numberList[r]) + String(numberList[g]) + String(numberList[b]);
+				if (bbcode == 'abbc3_fontcolor')
 				{
-					grad += "<font color=#" + tohex[rr] + tohex[gg] + tohex[bb] + ">" + thetext.charAt(i) + "</font>";
+					document.write('<option style="color:#' + color + '" value="' + color + '" >#' + color + '</option>');
 				}
 				else
 				{
-					grad += "[color=#" + tohex[rr] + tohex[gg] + tohex[bb] + "]" + thetext.charAt(i) + "[/color]";
+					document.write('<option style="background-color:#' + color + '" value="' + color + '" >#' + color + '</option>');
 				}
 			}
-			else
-			{
-				grad+=' ';
-			}
-		}
-	}
-	else
-	{
-		grad = thetext;
-	}
-	return grad;
-}
-
-function gradient_preview(submit)
-{
-	var txtarea = opener.document.forms[form_name].elements[text_name];
-	var selLength, selStart, selEnd, s1, s2, s3, varreturn;
-
-	if ((clientVer >= 4) && is_ie && is_win)
-	{
-		/** Get text selection **/
-		theSelection = opener.document.selection.createRange().text;
-		oSelectLength = theSelection.length;
-
-		if (submit)
-		{
-			varreturn = gradient(theSelection, "add");
-			opener.document.selection.createRange().text = varreturn;
-			win_close();
-		}
-	}
-	else if (txtarea.selectionEnd && (txtarea.selectionEnd - txtarea.selectionStart > 0))
-	{
-		selLength = txtarea.textLength;
-		selStart = txtarea.selectionStart;
-		selEnd = txtarea.selectionEnd;
-
-		if (selEnd == 1 || selEnd == 2) 
-		{
-			selEnd = selLength;
-		}
-
-		s1 = (txtarea.value).substring(0, selStart);
-		s2 = (txtarea.value).substring(selStart, selEnd);
-		s3 = (txtarea.value).substring(selEnd, selLength);
-
-		theSelection = s2;
-		oSelectLength = selEnd - selStart;
-
-		if (submit)
-		{
-			varreturn = gradient(theSelection, "add");
-			txtarea.value = (txtarea.value).substring(0, selStart) + varreturn + (txtarea.value).substring(selEnd, selLength);
-			win_close();
-		}
-	}
-
-	document.getElementById("preview").innerHTML = gradient(theSelection, "priv");
-}
-
-function gradient_template()
-{
-	var template = document.getElementById("clr0");
-	if (template)
-	{
-		var t = template.options[template.selectedIndex].value.split(",");
-
-		document.getElementById('clr1').options.selectedIndex = t[0];
-		document.getElementById('clr2').options.selectedIndex = t[1];
-		document.getElementById('clr3').options.selectedIndex = t[2];
-		document.getElementById('clr4').options.selectedIndex = t[3];
-		document.getElementById('clr5').options.selectedIndex = t[4];
-
-		gradient_preview();
-	}
-}
-
-/**
-* Dropdown Color pallette for colour selector
-* Code from : http://www.mredkj.com/tutorials/tutorial005.html
-**/
-function gradient_colorPalette(el_id, form_id)
-{
-	if (!form_id)
-	{
-		form_id = 'abbcode_wizards';
-	}
-
-	var elSel = document.forms[form_id].elements[el_id];
-	if (!elSel)
-	{
-		return;
-	}
-	var numberList = {
-		0 : '00',
-		1 : '40',
-		2 : '80',
-		3 : 'BF',
-		4 : 'FF'
-	};
-
-	for (var r = 4; r > -1; r--)
-	{
-		for (var g = 4; g > -1; g--)
-		{
-			for (var b = 4; b > -1; b--)
-			{
-				var color = String(numberList[r]) + String(numberList[g]) + String(numberList[b]);
-				var optn = document.createElement('option');
-					optn.text = '#' + color;
-					optn.value = color;
-					optn.style.backgroundColor = '#' + color;
-
-				elSel.options.add(optn);
-			}
 		}
 	}
 }
-
-function gradient_init()
-{
-	gradient_colorPalette('clr1');
-	gradient_colorPalette('clr2');
-	gradient_colorPalette('clr3');
-	gradient_colorPalette('clr4');
-	gradient_colorPalette('clr5');
-
-	gradient_template();
-}
-
-/**
-* Install the safety net  - START
-**/
-if (window.onload_functions) // prosilver
-{
-	onload_functions[onload_functions.length] = "gradient_init();";
-}
-else if (typeof(window.addEventListener) != "undefined") // DOM
-{
-	window.addEventListener("load", gradient_init, false);
-}
-else if (typeof(window.attachEvent) != "undefined") // MSIE
-{
-	window.attachEvent("onload", gradient_init);
-}
-/** Install the safety net - END **/
 
 <!-- ELSE -->
 
 function win_accept(tag, atcaret_pos)
 {
-	var FoundErrors = '';
-	var tag_bbcode;
-	var tag_open = '{ABBC3_OPEN}';
-	var tag_close = '{ABBC3_CLOSE}';
+		var FoundErrors 	= '';
+		var tag_open		= '{ABBC3_OPEN}';
+		var tag_close		= '{ABBC3_CLOSE}';
 
 	if (tag === 'table')
 	{
 		var styleT			= (document.getElementById("promptbox1")	) ? document.getElementById("promptbox1").value	: '';
 
 		var enterR			= (document.getElementById("promptbox2")	) ? document.getElementById("promptbox2").value	: '';
-		var enterR_error	= (document.getElementById("errorbox2")		) ? document.getElementById("errorbox2").value	: '';
+		var enterR_error	= (document.getElementById("errorbox2")	) ? document.getElementById("errorbox2").value	: '';
 		if (!enterR && enterR_error)
 		{
 			FoundErrors += '\n' + enterR_error;
@@ -391,7 +351,7 @@ function win_accept(tag, atcaret_pos)
 		var styleR			= (document.getElementById("promptbox3")	) ? document.getElementById("promptbox3").value	: '';
 
 		var enterC			= (document.getElementById("promptbox4")	) ? document.getElementById("promptbox4").value	: '';
-		var enterC_error	= (document.getElementById("errorbox4")		) ? document.getElementById("errorbox4").value	: '';
+		var enterC_error	= (document.getElementById("errorbox4")	) ? document.getElementById("errorbox4").value	: '';
 		if (!enterC && enterC_error)
 		{
 			FoundErrors += '\n' + enterC_error;
@@ -406,39 +366,39 @@ function win_accept(tag, atcaret_pos)
 		}
 
 		var Row = '';
-		for (var R = 0; R < parseInt(enterR, 10); R++)
+		for (var R = 0; R < parseInt (enterR); R++)
 		{
 			Col = '';
-			for (var C = 0; C < parseInt(enterC, 10); C++)
+			for (var C = 0; C < parseInt (enterC); C++)
 			{
 				Col += "[td=" + styleC + "]" + "[/td]";
 			}
 			Row += "[tr=" + styleR + "]" + Col + "[/tr]\n";
 		}
 
-		tag_bbcode = '[' + tag_open + '=' + styleT + "]\n" + Row + '[' + tag_close + ']';
+		var tag_bbcode = '[' + tag_open + '=' + styleT + "]\n" + Row + '[' + tag_close + ']';
 	}
 	else
 	{
 
 		var tag_url			= (document.getElementById("promptbox1")	) ? document.getElementById("promptbox1").value			: '';
-		var tag_url_error	= (document.getElementById("errorbox1")		) ? document.getElementById("errorbox1").value			: '';
+		var tag_url_error	= (document.getElementById("errorbox1")	) ? document.getElementById("errorbox1").value			: '';
 		if (!tag_url && tag_url_error)
 		{
 			FoundErrors += '\n' + tag_url_error;
 		}
 
 		var tag_desc		= (document.getElementById("promptbox2")	) ? document.getElementById("promptbox2").value			: '';
-		var tag_desc_error	= (document.getElementById("errorbox2")		) ? document.getElementById("errorbox2").value			: '';
+		var tag_desc_error	= (document.getElementById("errorbox2")	) ? document.getElementById("errorbox2").value			: '';
 		var tag_width		= (document.getElementById("promptbox3")	) ? " " + document.getElementById("promptbox3").value	: '';
-		var tag_width_error	= (document.getElementById("errorbox3")		) ? document.getElementById("errorbox3").value			: '';
-		if (tag_width === " " && tag_width_error)
+		var tag_width_error	= (document.getElementById("errorbox3")	) ? document.getElementById("errorbox3").value			: '';
+		if (tag_width == " " && tag_width_error)
 		{
 			FoundErrors += '\n' + tag_width_error;
 		}
 
 		var tag_height		= (document.getElementById("promptbox4")	) ? "," + document.getElementById("promptbox4").value	: '';
-		var tag_height_error= (document.getElementById("errorbox4")		) ? document.getElementById("errorbox4").value			: '';
+		var tag_height_error= (document.getElementById("errorbox4")	) ? document.getElementById("errorbox4").value			: '';
 		if (tag_height == "," && tag_height_error)
 		{
 			FoundErrors += '\n' + tag_height_error;
@@ -454,7 +414,7 @@ function win_accept(tag, atcaret_pos)
 		close2 = (tag_desc || tag_desc) ? ']' : '' ;
 		tag_open += (tag_desc || tag_desc) ? '=' : '' ;
 
-		tag_bbcode = '[' + tag_open + tag_width + tag_height + close1 + tag_url + close2 + tag_desc + '[' + tag_close + ']';
+		var tag_bbcode = '[' + tag_open + tag_width + tag_height + close1 + tag_url + close2 + tag_desc + '[' + tag_close + ']';
 	}
 	win_close(tag_bbcode);
 }
@@ -464,9 +424,59 @@ function win_accept(tag, atcaret_pos)
 // ]]>
 </script>
 
-<form id="abbcode_wizards" action="{S_ABBC3_WIZARD_PAGE}" method="post" enctype="multipart/form-data">
+<form id="abbcode_wizards" action="{ABBC3_UPLOAD_PAGE}" method="post" enctype="multipart/form-data">
 
-<!-- IF S_WIZARD_TABLE -->
+<!-- IF S_UPLOAD -->
+	<div class="panel">
+		<div class="inner">
+			<span class="corners-top"><span></span></span>
+			<div class="content">
+				<fieldset class="fields1">
+				<h2>{L_ABBC3_UPLOAD_MOVER}</h2>
+					<!-- IF ERROR -->
+						<div class="error">{ERROR}</div>
+					<!-- ENDIF -->
+					<dl>
+						<dt><label for="promptbox1">{L_FILENAME}:</label></dt>
+						<dd>
+							<input type="file"   id="promptbox1" name="promptbox1" value="" maxlength="{ABBC3_UPLOAD_FILESIZE}" class="inputbox autowidth" />
+							<input type='hidden' id='added_file' name='added_file' value='{ADDED_FILE_NAME}'/>
+						</dd>
+					</dl>
+					<dl>
+						<dt><label for="promptbox1">{L_ABBC3_UPLOAD_SIZE}:</label></dt>
+						<dd>{ABBC3_UPLOAD_FILESIZE} {ABBC3_UPLOAD_SIZEFORMAT}</dd>
+					</dl>
+					<dl>
+						<dt><label for="promptbox1">{L_ABBC3_UPLOAD_EXTENSION}:</label></dt>
+						<dd>{ABBC3_UPLOAD_EXTENSION}</dd>
+					</dl>
+				</fieldset>
+			</div>
+			<span class="corners-bottom"><span></span></span>
+		</div>
+	</div>
+
+	<div class="panel bg2">
+		<div class="inner">
+			<span class="corners-top"><span></span></span>
+			<fieldset class="submit-buttons">
+				<input type="submit" id="add_file"		name="add_file"		value="{L_ADD_FILE}" class="button2" onclick="upload = true;" />
+				<input type="submit" id="cancel_file"	name="cancel_file"	value="{L_CANCEL}"	 class="button2" onclick="win_close(false);" />
+			<!-- IF ADDED_FILE -->
+				<hr/>
+				<div class="error">
+					{L_ABBC3_UPLOAD_LINK}:
+					<input type='text'   id='posttext'   name='posttext'   value="{OPEN_TAG}{ADDED_FILE_NAME}{CLOSE_TAG}" size="90" />
+				<input type="button" id="{L_SUBMIT}" name="{L_SUBMIT}" value="{L_SUBMIT}" class="button2" onclick="win_close(this.form.posttext.value)" />
+				</div>
+			<!-- ENDIF -->
+			</fieldset>
+			<span class="corners-bottom"><span></span></span>
+		</div>
+	</div>
+
+<!-- ELSEIF S_WIZARD_TABLE -->
 
 	<div class="panel">
 		<div class="inner">
@@ -482,7 +492,7 @@ function win_accept(tag, atcaret_pos)
 						<dt><label>{L_ABBC3_EXAMPLE}:</label></dt>
 						<dd>{L_ABBC3_TABLE_TIP}</dd>
 					</dl>
-					<hr />
+					<hr/>
 					<!-- ENDIF -->
 					<dl>
 						<dt><label>{L_ABBC3_TABLE_STYLE}:</label></dt>
@@ -552,24 +562,44 @@ function win_accept(tag, atcaret_pos)
 					<!-- ENDIF -->
 					<select id="clr1" name="clr1" onchange="gradient_preview();">
 						<option value=""> x </option>
+						<script type="text/javascript">
+						// <![CDATA[
+							ABBCcolorPalette('clr1');
+						// ]]>
+						</script>
 					</select>
-					&nbsp;
 					<select id="clr2" name="clr2" onchange="gradient_preview();">
 						<option value="" selected="selected"> x </option>
+						<script type="text/javascript">
+						// <![CDATA[
+							ABBCcolorPalette('clr2');
+						// ]]>
+						</script>
 					</select>
-					&nbsp;
 					<select id="clr3" name="clr3" onchange="gradient_preview();">
 					<option value="" selected="selected"> x </option>
+						<script type="text/javascript">
+						// <![CDATA[
+							ABBCcolorPalette('clr3');
+						// ]]>
+						</script>
 					</select>
-					&nbsp;
 					<select id="clr4" name="clr4" onchange="gradient_preview();">
 						<option value="" selected="selected"> x </option>
+						<script type="text/javascript">
+						// <![CDATA[
+							ABBCcolorPalette('clr4');
+						// ]]>
+						</script>
 					</select>
-					&nbsp;
 					<select id="clr5" name="clr5" onchange="gradient_preview();">
 						<option value=""> x </option>
-					</select>&nbsp;
-					&nbsp;
+						<script type="text/javascript">
+						// <![CDATA[
+							ABBCcolorPalette('clr5');
+						// ]]>
+						</script>
+					</select>
 					<select id="clr0" name="clr0" onchange="gradient_template();">
 						<option value="80,5,43,36,91" selected="selected">{L_ABBC3_GRAD_COLORS}</option>
 						<option value="25,0,0,0,118">1</option>
@@ -605,6 +635,12 @@ function win_accept(tag, atcaret_pos)
 			<span class="corners-bottom"><span></span></span>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		// <![CDATA[
+		gradient_template();
+		// ]]>
+	</script>
 
 <!-- ELSEIF S_WIZARD_GENERAL -->
 
@@ -643,7 +679,7 @@ function win_accept(tag, atcaret_pos)
 							<input type='text' id='posttext' name='posttext' readonly='readonly' value="{ABBC3_EXAMPLE}" size="70" class="inputbox autowidth" />
 						</dd>
 					</dl>
-					<hr />
+					<hr/>
 					<!-- ENDIF -->
 
 					<!-- IF ABBC3_NOTE -->
@@ -653,7 +689,7 @@ function win_accept(tag, atcaret_pos)
 							{ABBC3_NOTE}
 						</dd>
 					</dl>
-					<hr />
+					<hr/>
 					<!-- ENDIF -->
 
 					<dl>
@@ -715,6 +751,6 @@ function win_accept(tag, atcaret_pos)
 <div id="page-footer">
 	<div class="copyright">{L_ABBC3_HELP_ABOUT}</div>
 </div>
-<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - END //-->
+<!-- MOD : MSSTI ABBC3 (v1.0.12) - END //-->
 </body>
 </html>
