@@ -196,7 +196,7 @@ function abbcode_show_help()
 				{
 					$template->assign_block_vars('bbc_row', array(
 						'ABBC3_HELP_DESC'		=> $user->lang[$abbcode_name . '_MOVER'],
-						'ABBC3_HELP_WRITE'		=> $user->lang[$abbcode_name . '_TIP'] . '<br />' . $user->lang[$abbcode_name . '_NOTE'],
+						'ABBC3_HELP_WRITE'		=> $user->lang[$abbcode_name . '_TIP'] . '<br/>' . $user->lang[$abbcode_name . '_NOTE'],
 						'ABBC3_HELP_VIEW'		=> $user->lang[$abbcode_name . '_VIEW'],
 					));
 				}
@@ -332,7 +332,7 @@ styles/prosilver/template/posting_abbcodes_help_body.html
 #
 #-----[ IN LINE, AFTER ADD ]-----------------------------------------
 #
-<br />{bbc_row.ABBC3_HELP_NOTE}
+<br/>{bbc_row.ABBC3_HELP_NOTE}
 
 #
 #-----[ FIND ]-------------------------------------------------------
@@ -342,7 +342,7 @@ styles/prosilver/template/posting_abbcodes_help_body.html
 #
 #-----[ IN LINE, AFTER ADD ]-----------------------------------------
 #
-<br />{bbc_custom_row.ABBC3_HELP_NOTE}
+<br/>{bbc_custom_row.ABBC3_HELP_NOTE}
 
 #
 #-----[DIY]----------------------------------------------------------

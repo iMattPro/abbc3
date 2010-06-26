@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.7-PL1 :: Advanced BBCode box 3 mod version check -> root/adm/mods
-* @version: $Id: abbc3_mod_version.php,  v 3.0.7-PL1 2010/05/02 10:05:02 leviatan21 Exp $
+* @package: phpBB 3.0.6 :: Advanced BBCode box 3 mod version check -> root/adm/mods
+* @version: $Id: abbc3_mod_version.php,  v 3.0.6 2010/01/10 10:01:10 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -24,7 +24,7 @@ class abbc3_mod_version
 			'author'	=> 'leviatan21',
 			'title'		=> 'Advanced BBCode Box 3 (aka ABBC3)',
 			'tag'		=> 'abbc3',
-			'version'	=> '3.0.7-pl1',
+			'version'	=> '3.0.6',
 			'file'		=> array('mssti.com', 'phpbb3', 'mssti_phpbb3x_mods.xml'),
 		);
 	}

@@ -24,15 +24,8 @@
 	<div id="page-header">
 		<div class="headerbar">
 			<div class="inner"><span class="corners-top"><span></span></span>
-			<div id="doc-description" onclick="window.location.href='http://www.mssti.com/phpbb3'; return false;">
-				<!--<a href="http://www.mssti.com/phpbb3" id="logo"><img src="./images/mssti_logo.gif" alt=".:: MSSTI ::." /></a>-->
-				<div id="logo"><pre>
- _ __ ___   _____ _____ _____  _       ___   ___   _ __ ___  
-| '_ ' _ \ / ___// ___/|__ __||_|     / __| / _ \ | '_ ' _ \ 
-| | | | | |\___ \\___ \  | |  | |  _ | |__ | |_| || | | | | |
-|_| |_| |_|/____//____/  |_|  |_| |_| \___| \___/ |_| |_| |_|
-
-</pre></div>
+			<div id="doc-description">
+				<a href="http://www.mssti.com/phpbb3" id="logo"><img src="./images/mssti_logo.gif" alt=".:: MSSTI ::." /></a>
 				<h1>Advanced BBCode Box 3 (aka ABBC3) Document</h1>
 				<p style="display: none;"><a href="#start_here">Skip</a></p>
 			</div>
@@ -55,9 +48,6 @@
 					<li><a href="#Notes">Author notes</a></li>
 					<li><a href="#changelog">Changelog</a>
 						<ol style="list-style-type: square;">
-							<li><a href="#abbc3_v308">Changes in 3.0.8</a></li>
-							<li><a href="#abbc3_v307PL1">Changes in 3.0.7-PL1</a></li>
-							<li><a href="#abbc3_v307">Changes in 3.0.7</a></li>
 							<li><a href="#abbc3_v306">Changes in 3.0.6</a></li>
 							<li><a href="#abbc3_v1012">Changes in 1.0.12</a></li>
 							<li><a href="#abbc3_v1011">Changes in 1.0.11</a></li>
@@ -101,7 +91,7 @@
 					<li> Tested on Windows Browsers:
 						<ul>
 							<li>Internet Explorer 8.0</li>
-							<li>Mozilla Firefox 3.6</li>
+							<li>Mozilla Firefox 3.0</li>
 							<li>Opera 9.60</li>
 							<li>Safari 3.0</li>
 							<li>Netscape 8.1</li>
@@ -139,80 +129,6 @@
 		<div class="paragraph">
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div class="content">
-				<a name="abbc3_v308"></a><h3>Changes in 3.0.8</h3>
-				<ul>
-					<li> [Change] BBcode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</li>
-				</ul>
-				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
-			</div>
-			<span class="corners-bottom"><span></span></span></div>
-		</div>
-
-		<div class="paragraph">
-			<div class="inner"><span class="corners-top"><span></span></span>
-			<div class="content">
-				<a name="abbc3_v307PL1"></a><h3>Changes in 3.0.7-PL1</h3>
-				<ul>
-					<li> [Feature] Added alignment for image and thumbnail in the wizard </li>
-					<li> [Feature] Do not display images and flash content, if the user do not want it </li>
-
-					<li> [Change] The old "Add-On : Custom User Profile Options" now is "Add-on : User Control Panel" </li>
-					<li> [Change] Improve bbcode permission and status </li>
-					<li> [Change] Text Box Resize :
-						<ul>
-							<li>It use real cookies inside the JavaScript </li>
-							<li>the size will be saved immediately the user push [ + ] / [ - ] button </li>
-							<li>each size will be independent for signature and post ( PM & post use the same ) </li>
-						</ul>
-					</li>
-
-					<li> [Fix] Prevent language error in session.php </li>
-					<li> [Fix] Compact view </li>
-					<li> [Fix] BBvideo from kyte.tv, gametrailers.com </li>
-				</ul>
-				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
-			</div>
-			<span class="corners-bottom"><span></span></span></div>
-		</div>
-
-		<div class="paragraph">
-			<div class="inner"><span class="corners-top"><span></span></span>
-			<div class="content">
-				<a name="abbc3_v307"></a><h3>Changes in 3.0.7</h3>
-				<ul>
-					<li> [Feature] Updated to phpbb version 3.0.7-PL1 </li>
-					<li> [Feature] Add-On : Compact ABBC3 Mode option displays all BBcodes in a drop-down menu (Instructions in the contrib folder) </li>
-					<li> [Feature] Add-On : Custom User Profile Options (Create ABBC3 on/off and ABBC3 Compact Mode on/off options for your user's preferences. Instructions in the contrib folder.) </li>
-
-					<li> <span class="bad">[Sec] Deleted "Simple upload" function, suggested by MOD Team</span> </li>
-					<li> <span class="bad">[Sec] Changed font bbcode, suggested by MOD Team</span> </li>
-
-					<li> [Change] Now fade bbcode really faded instead "whited" ( Thanks to Senky from MOD Team ) </li>
-					<li> [Change] Quoted post message boxes are no longer fixed in size. Instructions to make Quoted posts display in a fixed-height message box similar to the Code message boxes are now included as an Add-On in the contrib folder </li>
-					<li> [Change] Cleaned up ABBC3's English language text </li>
-					<li> [Change] Updated instructions to MODX 1.2.5 format <li/>
-					
-					<li> [Fix] Remove BBCodes from the selected text </li>
-					<li> [Fix] Insert function using IE8 and wizards ( Ticket #43 Thanks to JuanLUX ) </li>
-					<li> [Fix] Update video links for feeds </li>
-					<li> [Fix] ABBC3 works again in forum rules </li>
-					<li> [Fix] Using ABBC3 in php version 4.4x ( Ticket #16 Thanks to cisco007 ) </li>
-					<li> [Fix] Tabs bbcode and Linebreaks ( Ticket #25 Thanks to HMH ) </li>
-					<li> [Fix] SEO MOD and anchor bbcode ( Ticket #26 Thanks to Kharon ) </li>
-					<li> [Fix] Spoiler bbcode ( Ticket #32 Thanks to Autinhyeu ) </li>
-					<li> [Fix] flv Videos ( Ticket #34 Thanks to maf ) </li>
-					<li> [Fix] Videos from photobucket.com ( Ticket #36 Thanks to TheAbunai ) </li>
-					<li> [Fix] Text Box Resize in signatures ( Ticket #37 Thanks to maf ) </li>
-					<li> [Fix] Various XHTML, JavaScript and CSS mistakes ( Thanks to maf ) </li>
-				</ul>
-				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
-			</div>
-			<span class="corners-bottom"><span></span></span></div>
-		</div>
-
-		<div class="paragraph">
-			<div class="inner"><span class="corners-top"><span></span></span>
-			<div class="content">
 				<a name="abbc3_v306"></a><h3>Changes in 3.0.6</h3>
 				<ul>
 					<li> [Change] From now ABBC3 will follow the phpbb Version numbering.</li>
@@ -226,7 +142,7 @@
 					<li> [Feature] Added the README.HTML document into the contrib/docs folder (this document)</li>
 					<li> [Feature] Install Compatible with <a href="http://www.phpbb.com/mods/automod/" onclick="window.open(this.href);return false;">AutoMOD</a></li>
 					<li> [Feature] Added new Web video to bbvideo bbcode : badr.tv</li>
-					<li> [Feature] Add-On : Hide image when using the Image Resizer (instructions in the contrib folder)</li>
+					<li> [Feature] Added Add-on : Hide image when resize.</li>
 
 					<li> [Fix] Several minor bugs </li>
 					<li> [Fix] Follow coding-guidelines </li>
@@ -312,7 +228,7 @@
 					<li> [Fix] Install script </li>
 					<li> [Fix] Button to add more divisions or line break in ACP </li>
 					<li> [Fix] Severals issues reported by MOD Team </li>
-					<li> <span class="bad">[Sec] Deleted [html] bbcode suggested by MOD Team</span> </li>
+					<li> [Sec] Deleted [html] bbcode suggested by MOD Team </li>
 					<li> [Feature] Added a button to reorder bbcodes in ACP </li>
 					<li> [Feature] Added 3 search options for search bbcode 
 						<ul>
@@ -588,12 +504,12 @@
 						Also you can use ABBC3 with other's script : <br />				
 							This modifications are totally optionals. Each script have his own support. I'm not responsible about it. I will not answer question/problem/bug or any kind of issues about them.
 							<ul style="list-style-type: decimal;">
-								<li>Highslide <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Highslide</strong> for use of the library.</span></li>
-								<li>Lite Box <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Lite Box</strong> for use of the library.</span></li>
-								<li>Grey Box <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Grey Box</strong> for use of the library.</span></li>
-								<li>Light view <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Light view</strong> for use of the library.</span></li>
-								<li>Shadow Box with Ibox <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Shadow Box with Ibox</strong> for use of the library.</span></li>
-								<li>Pop Box <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must pay <strong>Pop Box</strong> for use of the library.</span></li>
+								<li>Highslide <span class="bad">( Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Highslide</strong> for use of the library.)</span></li>
+								<li>Lite Box <span class="bad">( Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Lite Box</strong> for use of the library.)</span></li>
+								<li>Grey Box <span class="bad">( Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Grey Box</strong> for use of the library.)</span></li>
+								<li>Light view <span class="bad">( Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Light view</strong> for use of the library.)</span></li>
+								<li>Shadow Box with Ibox <span class="bad">( Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Shadow Box with Ibox</strong> for use of the library.)</span></li>
+								<li>Pop Box <span class="bad">( Requires that the site be NON-Commercial. If it's a commercial site you must pay <strong>Pop Box</strong> for use of the library.)</span></li>
 								<li>Pop-up window</li>
 								<li>Enlarge</li>
 								<li>Same window</li>
@@ -659,6 +575,7 @@
 							<li>NFO text <span class="good">(Better on Internet explorer)</span></li>
 							<li>Table row cell wizard</li>
 							<li>---------------------</li>
+							<li>Simple upload files <span class="good">( Use restricted to moderators and / or administrators )</span>&nbsp;<span class="bad">( Disable by default )</span></li>
 							<li>Anchor</li>
 							<li>Hyperlink Wizard</li>
 							<li>Email Wizard</li>

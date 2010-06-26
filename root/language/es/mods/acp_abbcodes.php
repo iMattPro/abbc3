@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.7-PL1 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.7-PL1 2010/05/02 10:05:02 leviatan21 Exp $
+* @package: phpBB 3.0.6 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
+* @version: $Id: acp_abbcode.php, v 3.0.6 2010/01/10 10:01:10 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -50,15 +50,6 @@ $lang = array_merge($lang, array(
 	'LOG_DELETE_ABBCODES'		=> '<strong>Borrado: MOD ABBC3 de la base de datos</strong>',
 ));
 
-// This lines are for the UCP
-$lang = array_merge($lang, array(
-	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
-	'UCP_ABBC3_SETTINGS'			=> 'Configurar ABBC3',
-	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> '¿ Habilitar la barra “Advanced BBodes Box 3” o usar la botonera por defecto de phpbb3 ?',
-	'UCP_ABBC3_BBCODES'				=> 'Componentes ABBC3',
-	'UCP_ABBC3_BBCODES_EXPLAIN'		=> 'Si la barra “Advanced BBodes Box 3” está habilitada, desea verla en “Vista Compacta” o en “Vista Completa” ?',
-));
-
 // abbc3_details
 $lang = array_merge($lang, array(
 	'ACP_ABBCODES'						=> 'Advanced BBcodes Box 3',
@@ -68,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_PATH'						=> 'Ruta del script',
 	'ABBCODES_PATH_EXPLAIN'				=> 'La ruta dónde está ubicado ABBC3 relativa al nombre de dominio, ej. <samp>styles/abbcode</samp>',
 	'ABBCODES_BG'						=> 'Imagen de fondo',
-	'ABBCODES_BG_EXPLAIN'				=> 'Aquí puede cambiar la imagen de fondo para la barra de iconos.<br />Utilice <em>No hay imágenes</em> para ajustar a su estilo.',
+	'ABBCODES_BG_EXPLAIN'				=> 'Aquí puede cambiar la imagen de fondo para la barra de iconos.<br/>Utilice <em>No hay imágenes</em> para ajustar a su estilo.',
 	'ABBCODES_TAB'						=> 'Mostrar la división entre etiquetas',
 	'ABBCODES_BOXRESIZE'				=> 'Redimensionar el area de texto',
 	'ABBCODES_BOXRESIZE_EXPLAIN'		=> 'Mostrar los botones para cambiar el tamaño de el area de texto.',
@@ -141,7 +132,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SYNC'						=> 'Sincronizar orden',
 	'ABBCODES_RESYNC_SUCCESS'			=> 'El orden de los bbcodes ha sido resincronizado.',
 	
-	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBcodes Box 3</strong> está desabilitado.<br />',
+	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBcodes Box 3</strong> está desabilitado.<br/>',
 	'ABBCODES_STATUS'					=> 'Estado',
 	'ABBCODES_ACTIVATED'				=> 'activado',
 	'ABBCODES_DEACTIVATED'				=> 'deactivado',
@@ -185,16 +176,6 @@ $lang = array_merge($lang, array(
 	'INSTALLER_DELETE_NOTE'				=> 'Borrar',
 	'INSTALLER_DELETE_SUCCESSFUL'		=> 'Borrada la versión <strong>%1$s  : %2$s</strong> ha concluido con éxito.<br />Ahora debe proceder al borrado de los ficheros.',
 	'INSTALLER_DELETE_UNSUCCESSFUL'		=> '<strong>No</strong> se pudo borrar la versión  %1$s :%2$s .',
-
-	// UCP ADD-ON
-	'INSTALLER_UCP'						=> 'PCU',
-	'INSTALLER_UCP_PREFS'				=> 'Panel de Control de Usuario',
-	'INSTALLER_UCP_WELCOME'				=> 'Bienvenido al menú <strong>ABBC3</strong> PCU',
-	'INSTALLER_UCP_WELCOME_NOTE'		=> 'Si usted elige instalar ABBC3 PCU, dos nuevos valores serán agregados a la tabla de usuarios “phpbb_users”.
-	<br /> La primera es para permitir que los usuarios elijan entre la barra ABBC3 o usar la botonera por defecto de phpbb3 (Valor por defecto sí)
-	<br /> La segunda es para permitir que los usuarios elijan entre el modo ABBC3 “Vista Compacta” o en “Vista Completa” (el valor predeterminado no )',
-	'INSTALLER_UCP_END'					=> 'La instalacición de <strong>%1$s : %2$s</strong>  ha concluido con éxito. <br /> <p>Ahora usted debería <a href="../index.php">entrar en su foro</a> y verificar que todo trabaja correctamente. <br />¡ No olvide borrar, renombrar o mover el archivo <strong>install_abbc3</strong> !</p>',
-	'INSTALLER_UCP_END_NOTE'			=> 'Tenga en cuenta que estos pasos sólo modifican la base de datos, no se olvide de aplicar los cambios de código y de plantillas según las instrucciones.',
 
 	// Re-parse
 	'INSTALLER_REPARSE'					=> 'Re-Analizar',

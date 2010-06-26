@@ -1,46 +1,568 @@
 
-<!-- IF S_ABBC3_COMPACT -->
-<script type="text/javascript" src="{ROOT_PATH}adm/style/tooltip.js"></script>
-<!-- ENDIF -->
-
-<!-- IF (S_ABBC3_COLOR_MODE eq 'tigra' or S_ABBC3_HIGHLIGHT_MODE eq 'tigra') -->
-<script type="text/javascript" src="{S_ABBC3_PATH}/posting_abbcode_picker.js"></script>
-<!-- ENDIF -->
-
 <script type="text/javascript">
 // <![CDATA[
-<!-- INCLUDE {S_ABBC3_POSTING_JAVASCRIPT} -->
+
+var copy_paste = '';
+/**
+* Default values for width and height values for the wizard pop-up window
+**/
+var popup_width		= 700;
+var popup_height	= 400;
+var popup_wizards	= true; //(typeof mkportalurl == 'undefined' || mkportalurl == null || mkportalurl == '') ? true : false;
+
+/**
+* Help line tips values
+**/
+var help_line2 = {
+
+<!-- BEGIN abbc3_help -->
+	'{abbc3_help.TAG_NAME}'	: ("{abbc3_help.TAG_MOVER}" ? "{abbc3_help.TAG_MOVER}" : "") + (("{abbc3_help.TAG_TIP}" || "{abbc3_help.TAG_NOTE}") ? " :" : "") + (("{abbc3_help.TAG_TIP}") ? " {abbc3_help.TAG_TIP}" : "") + (("{abbc3_help.TAG_NOTE}") ? " {abbc3_help.TAG_NOTE}" : "") + (("{abbc3_help.TAG_EXAMPLE}") ? "\n{L_ABBC3_EXAMPLE} : {abbc3_help.TAG_EXAMPLE}" : ""),
+<!-- END abbc3_help -->
+	
+	'abbc3_font'			: "{LA_ABBC3_FONT_MOVER}" + "{LA_ABBC3_FONT_TIP}" + '\n' + "{LA_ABBC3_FONT_NOTE}",
+	'abbc3_size'			: "{LA_ABBC3_SIZE_MOVER}" + "{LA_ABBC3_SIZE_TIP}" + '\n' + "{LA_ABBC3_SIZE_NOTE}",
+	'abbc3_highlight'		: "{LA_ABBC3_HIGHLIGHT_MOVER}" + "{LA_ABBC3_HIGHLIGHT_TIP}" + '\n' + "{LA_ABBC3_HIGHLIGHT_NOTE}",
+	'abbc3_color'			: "{LA_ABBC3_COLOR_MOVER}" + "{LA_ABBC3_COLOR_TIP}" + '\n' + "{LA_ABBC3_COLOR_NOTE}",
+
+	'abbc3_tip'				: "{LA_BBCODE_STYLES_TIP}"
+}
+
+/**
+* Show help line tips
+**/
+function helpline2(help)
+{
+	if (!help)
+	{
+		help = 'abbc3_tip';
+	}
+
+	if (helpbox = document.forms[form_name].helpbox)
+	{
+		helpbox.value = (help_line2[help]) ? help_line2[help] : help_line[help];
+	}
+}
+
+/**
+* Main function Apply bbcodes
+* based-of editor.js on function bbfontstyle(bbopen, bbclose)
+**/
+function bbstyle2(bbcode)
+{
+	theSelection = false;
+
+	var textarea = document.forms[form_name].elements[text_name];
+
+	textarea.focus();
+
+	if ((clientVer >= 4) && is_ie && is_win)
+	{
+		/** Get text selection **/
+		theSelection = document.selection.createRange().text;
+	}
+	else if (document.forms[form_name].elements[text_name].selectionEnd && (document.forms[form_name].elements[text_name].selectionEnd - document.forms[form_name].elements[text_name].selectionStart > 0))
+	{
+		var selLength	= textarea.textLength;
+		    selLength	= (typeof selLength == 'undefined' || selLength == null || selLength == '') ? txtarea.value.length : selLength;
+		var selStart	= textarea.selectionStart;
+		var selEnd		= textarea.selectionEnd;
+		var scrollTop	= textarea.scrollTop;
+		
+		if (selEnd == 1 || selEnd == 2) 
+		{
+			selEnd = selLength;
+		}
+
+		var s1 = (textarea.value).substring(0,selStart);
+		var s2 = (textarea.value).substring(selStart, selEnd)
+		var s3 = (textarea.value).substring(selEnd, selLength);
+
+		theSelection = s2
+	}
+
+	var theSelectionLength = theSelection.length;
+
+/** wizards are disabled ?  - Start **/
+	if (!popup_wizards)
+	{
+		switch (bbcode)
+		{
+			case "abbc3_url" :
+				bbfontstyle("[url]", "[/url]");
+				break;
+			case "abbc3_ed2k" :
+				bbfontstyle("[url]", "[/url]");
+				break;
+			case "abbc3_email" :
+				bbfontstyle("[email]", "[/email]");
+				break;
+			case "abbc3_web" :
+				bbcode_extra = ' 100%,100';
+				bbfontstyle("[web" + bbcode_extra + "]", "[/web]");
+				break;
+			case "abbc3_img" :
+				bbfontstyle("[img]", "[/img]");
+				break;
+			case "abbc3_thumbnail" :
+				bbfontstyle("[thumbnail]", "[/thumbnail]");
+				break;
+	//		case "abbc3_upload" :
+	//		case "abbc3_rapidshare" :
+			case "abbc3_testlink" :
+				bbfontstyle("[testlink]", "[/testlink]");
+				break;
+			case "abbc3_click" :
+				bbfontstyle("[click=]", "[/click]");
+				break;
+			case "abbc3_table" :
+				bbfontstyle("[table=][tr=][td=]", "[/td][/tr][/table]");
+				break;
+			case "deezer" :
+				bbfontstyle("[deezer]", "[/deezer]");
+				break;
+			case "abbc3_bbvideo" :
+				bbcode_extra = " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}";
+				bbfontstyle("[bbvideo" + bbcode_extra + "]", "[/bbvideo]");
+				break;
+			case "abbc3_flash" :
+				bbcode_extra = " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}";
+				bbfontstyle("[flash" + bbcode_extra + "]", "[/flash]");
+				break;
+			case "abbc3_flv" :
+				bbcode_extra = " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}";
+				bbfontstyle("[flv" + bbcode_extra + "]", "[/flv]");
+				break;
+			case "abbc3_video" :
+				bbcode_extra = " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}";
+				bbfontstyle("[video" + bbcode_extra + "]", "[/video]");
+				break;
+			case "abbc3_quicktime" :
+				bbcode_extra = " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}";
+				bbfontstyle("[quicktime" + bbcode_extra + "]", "[/quicktime]");
+				break;
+			case "abbc3_ram" :
+				bbcode_extra = " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}";
+				bbfontstyle("[ram" + bbcode_extra + "]", "[/ram]");
+				break;
+			/** Web videos bbcodes **/
+			case "abbc3_stream" :
+				bbfontstyle("stream]", "[/stream]");
+				break;
+			case "abbc3_stage6" :
+				bbfontstyle("[stage6" + bbcode_extra + "]", "[/stage6]");
+				break;
+			case "abbc3_veoh" :
+				bbfontstyle("[veoh]", "[/veoh]");
+				break;
+			case "abbc3_collegehumor" :
+				bbfontstyle("[collegehumor]", "[/collegehumor]");
+				break;
+			case "abbc3_gvideo" :
+				bbfontstyle("[gvideo]", "[/gvideo]");
+				break;
+			case "abbc3_youtube" :
+				bbfontstyle("[youtube]", "[/youtube]");
+				break;
+	//	case "abbc3_grad" :
+		}
+		return true;
+	}
+/** wizards are disabled ?  - End **/
+
+	switch (bbcode)
+	{
+		case "abbc3_alignjustify" :
+			bbfontstyle("[align=justify]", "[/align]");
+			break;
+		case "abbc3_alignright":
+			bbfontstyle("[align=right]", "[/align]");
+			break;
+		case "abbc3_aligncenter" :
+			bbfontstyle("[align=center]", "[/align]");
+			break;
+		case "abbc3_alignleft" :
+			bbfontstyle("[align=left]", "[/align]");
+			break;
+		case "abbc3_sup" :
+			bbfontstyle("[sup]", "[/sup]");
+			break;
+		case "abbc3_sub" :
+			bbfontstyle("[sub]", "[/sub]");
+			break;
+		case "abbc3_b" :
+			bbfontstyle("[b]", "[/b]");
+			break;
+		case "abbc3_i" :
+			bbfontstyle("[i]", "[/i]");
+			break;
+		case "abbc3_u" :
+			bbfontstyle("[u]", "[/u]");
+			break;
+		case "abbc3_s" :
+			bbfontstyle("[s]", "[/s]");
+			break;
+		case "abbc3_pre" :
+			bbfontstyle("[pre]", "[/pre]");
+			break;
+		case "abbc3_tab" :
+			bbfontstyle("[tab=30]", "");
+			break;
+		case "abbc3_fade" :
+			bbfontstyle("[fade]", "[/fade]");
+			break;
+		case "abbc3_dirrtl" :
+			bbfontstyle("[dir=rtl]", "[/dir]");
+			break;
+		case "abbc3_dirltr" :
+			bbfontstyle("[dir=ltr]", "[/dir]");
+			break;
+		case "abbc3_marqdown" :
+			bbfontstyle("[marq=down]", "[/marq]");
+			break;
+		case "abbc3_marqup" :
+			bbfontstyle("[marq=up]", "[/marq]");
+			break;
+		case "abbc3_marqleft" :
+			bbfontstyle("[marq=left]", "[/marq]");
+			break;
+		case "abbc3_marqright" :
+			bbfontstyle("[marq=right]", "[/marq]");
+			break;
+		case "abbc3_html" :
+			bbfontstyle("[html]", "[/html]");
+			break;
+		case "abbc3_anchor" :
+			bbfontstyle("[anchor= goto=]", "[/anchor]");
+			break;
+		case "abbc3_code" :
+			bbfontstyle("[code]", "[/code]");
+			break;
+		case "abbc3_quote" :
+			bbfontstyle("[quote]", "[/quote]");
+			break;
+		case "abbc3_spoil" :
+			bbfontstyle("[spoil]", "[/spoil]");
+			break;
+		case "abbc3_hidden" :
+			bbfontstyle("[hidden]", "[/hidden]");
+			break;
+		case "abbc3_mod" :
+			bbfontstyle("[mod=\"{S_POST_AUTHOR}\"]", "[/mod]");
+			break;
+		case "abbc3_offtopic" :
+			bbfontstyle("[offtopic]", "[/offtopic]");
+			break;
+		case "abbc3_scrippet" :
+			bbfontstyle("[scrippet]", "[/scrippet]");
+			break;
+		case "abbc3_tabs" :
+			bbfontstyle("[tabs][tabs: ]", "[/tabs]");
+			break;
+		case "abbc3_listb" :
+			bbfontstyle("[list][*]", "[/list]");
+			break;
+		case "abbc3_listo" :
+			bbfontstyle("[list=1][*]", "[/list]");
+			break;
+		case "abbc3_listitem" :
+			bbfontstyle("[*]", "");
+			break;
+		case "abbc3_hr" :
+			bbfontstyle("[hr]", "");
+			break;
+		case "abbc3_imgshack" :
+			popup('http://imageshack.us/', popup_width, popup_height);
+		/*	popup('http://ipostimage.org/', popup_width, popup_height);	*/
+		/*	popup('http://www.imageposter.com/uploads/?mode=phpbb&forumurl=' + escape(document.location.href), '_imagehost', 'resizable=yes,width=500,height=400', popup_width, popup_height);	*/
+			break;
+
+/** Custom bbcodes - Start **/
+		case "abbc3_dm" :
+			bbfontstyle("[dm]", "[/dm]");
+			break;
+		case "abbc3_gamespot" :
+			bbfontstyle("[gamespot]", "[/gamespot]");
+			break;
+		case "abbc3_gametrailers" :
+			bbfontstyle("[gametrailers]", "[/gametrailers]");
+			break;
+		case "abbc3_ignvideo" :
+			bbfontstyle("[ignvideo]", "[/ignvideo]");
+			break;
+		case "abbc3_putfile" :
+			bbfontstyle("[Putfile]", "[/Putfile]");
+			break;
+		case "abbc3_liveleak" :
+			bbfontstyle("[liveleak]", "[/liveleak]");
+			break;
+		case "abbc3_nfo" :
+			bbfontstyle("[nfo]", "[/nfo]");
+			break;
+		case "abbc3_glow" :
+			bbfontstyle("[glow=red]", "[/glow]");
+			break;
+		case "abbc3_shadow" :
+			bbfontstyle("[shadow=blue]", "[/shadow]");
+			break;
+		case "abbc3_dropshadow" :
+			bbfontstyle("[dropshadow=blue]", "[/dropshadow]");
+			break;
+		case "abbc3_blur" :
+			bbfontstyle("[blur=blue]", "[/blur]");
+			break;
+		case "abbc3_wave" :
+			bbfontstyle("[wave=blue]", "[/wave]");
+			break;
+		case "abbc3_search" :
+			bbfontstyle("[search]", "[/search]");
+			break;
+
+/** Custom bbcodes - End **/
+
+/** This bbcodes needs wizard - Start **/
+		case "abbc3_url" :
+		case "abbc3_ed2k" :
+		case "abbc3_email" :
+		case "abbc3_web" :
+		case "abbc3_img" :
+		case "abbc3_thumbnail" :
+		case "abbc3_upload" :
+		case "abbc3_rapidshare" :
+		case "abbc3_testlink" :
+		case "abbc3_click" :
+		case "abbc3_table" :
+		/** This bbcodes needs extra data **/
+		case "abbc3_bbvideo" :
+		case "abbc3_flash" :
+		case "abbc3_flv" :
+		case "abbc3_video" :
+		case "abbc3_quicktime" :
+		case "abbc3_ram" :
+		/** Web videos bbcodes **/
+		case "abbc3_stream" :
+		case "abbc3_stage6" :
+		case "abbc3_veoh" :
+		case "abbc3_collegehumor" :
+		case "abbc3_gvideo" :
+		case "abbc3_youtube" :
+		/** Gradient needs his own function **/
+		case "abbc3_grad" :
+
+		/** Extra Custom bbcodes - Start **/
+		case "deezer" :
+
+		/** Extra Custom bbcodes - End **/
+			if (bbcode == "abbc3_grad")
+			{
+				if (typeof theSelection == 'undefined' || theSelection == null || theSelection == '')
+				{
+					alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_GRAD_MIN_ERROR}");
+					return;
+				}
+
+				if (theSelectionLength > 120)
+				{
+					alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_GRAD_MAX_ERROR}" + theSelectionLength);
+					return;
+				}
+			}
+			else if ( (bbcode != "abbc3_table") && (bbcode != "abbc3_upload") )
+			{
+				if (theSelection)
+				{
+					bbcode_extra = ( bbcode == 'abbc3_bbvideo' 
+								  || bbcode == 'abbc3_flash' 
+								  || bbcode == 'abbc3_flv'
+								  || bbcode == 'abbc3_video'
+								  || bbcode == 'abbc3_quicktime'
+								  || bbcode == 'abbc3_ram'
+								  )	? " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}" : ( bbcode == 'abbc3_web') ? ' 100%,100' : '';
+					
+					if ( bbcode == "abbc3_ed2k")
+					{
+						bbcode = "abbc3_url";
+					}
+					
+					bbcode = bbcode.replace("abbc3_" , "");
+					bbfontstyle( '[' + bbcode + bbcode_extra + ']', '[/' + bbcode + ']', '');
+					return ;
+				}
+			}
+
+			var popup_url = '{S_ABBC3_WIZARD_PAGE}' + '&amp;abbc3=' + bbcode + '&amp;form_name=' + form_name + '&amp;text_name=' + text_name;
+			popup( popup_url, popup_width, popup_height );
+			break;
+/** This bbcodes needs wizard - End **/
+
+		case "abbc3_plain" :
+			if (typeof theSelection == 'undefined' || theSelection == null || theSelection == '')
+			{
+				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
+				return;
+			}
+			else
+			{
+				try {
+						var tempSelection =  theSelection.replace(/\[(url|email|click)=(.*?)\].*\[\/(url|email|click)\]/gi,"$2");
+						    tempSelection = tempSelection.replace(/\[[^\]]*\]/gi,"");
+
+						if ((clientVer >= 4) && is_ie && is_win)
+						{
+							document.selection.createRange().text = tempSelection;
+						}
+						else if ( textarea.selectionEnd && ( textarea.selectionEnd - textarea.selectionStart > 0 ) )
+						{
+							textarea.value = s1 + tempSelection + s3;
+							var selEnd = textarea.selectionEnd = (textarea.value).substring(0,selStart).length + tempSelection.length;
+						}
+				} catch (e) {}
+			}
+			break;
+		case "abbc3_cut" :
+			if (typeof theSelection == 'undefined' || theSelection == null || theSelection == '')
+			{
+				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
+				return;
+			}
+			else
+			{
+				if ((clientVer >= 4) && is_ie && is_win)
+				{
+					document.selection.createRange().text = '';
+				}
+				else if (textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0))
+				{
+					textarea.value = (textarea.value).substring(0,selStart) + (textarea.value).substring( selEnd, selLength );
+					var selEnd = textarea.selectionEnd = (textarea.value).substring(0,selStart).length;
+				}
+			}
+			break;
+		case "abbc3_copy" :
+			if (typeof theSelection == 'undefined' || theSelection == null || theSelection == '')
+			{
+				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
+				return;
+			}
+			else
+			{
+				copy_paste = theSelection;
+			}
+			break;
+		case "abbc3_paste" :
+			if (copy_paste)
+			{
+				bbfontstyle(copy_paste, '');
+			}
+			else
+			{
+				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_PASTE_ERROR}");
+			}
+			break;
+
+/** Else should be a phpbb3 custom bbcode from ACP, so let's phpbb3 take care of it **/
+		default :
+			bbfontstyle("["+bbcode+"]", "[/"+bbcode+"]");
+			break;
+	}
+
+	theSelection = '';
+}
+
+/**
+* Dropdown Color pallette for highlight text & font text
+**/
+function ABBCcolorPalette(bbcode)
+{
+	var r = 4, g = 4, b = 4;
+	var numberList = new Array(6);
+	var color = '';
+
+	numberList[0] = '00';
+	numberList[1] = '40';
+	numberList[2] = '80';
+	numberList[3] = 'BF';
+	numberList[4] = 'FF';
+
+	for (r = 4; r > -1; r--)
+	{
+		for (g = 4; g > -1; g--)
+		{
+			for (b = 4; b > -1; b--)
+			{
+				color = String(numberList[r]) + String(numberList[g]) + String(numberList[b]);
+				if (bbcode == 'abbc3_color')
+				{
+					document.write('<option style="color:#' + color + ';" value="' + color + '" >#' + color + '</option>');
+				}
+				else
+				{
+					document.write('<option style="background-color:#' + color + ';" value="' + color + '" >#' + color + '</option>');
+				}
+			}
+		}
+	}
+}
+
+/**
+* Resize a textbox - START
+* Original function by Disturbed One (http://www.hvmdesign.com/)
+**/
+function textbox_resize(pix, el)
+{
+	if (!'{S_ABBC3_BOXRESIZE}')
+	{
+		return false;
+	}
+
+	if (typeof el == 'undefined')
+	{
+		var el = text_name;
+	}
+
+	var cookie		= document.forms[form_name].elements['{S_ABBC3_COOKIE_NAME}'];
+	var box			= document.forms[form_name].elements[el]; //document.getElementById(el);
+	var new_height	= (parseInt(box.style.height) ? parseInt(box.style.height) : 300) + pix;
+
+	if (parseInt(cookie.value) !== 0 && (typeof pix != 'number' || parseInt(pix) === 0))
+	{
+		new_height = parseInt(cookie.value) + 'px';
+	}
+
+	if (parseInt(new_height) > 0)
+	{
+		box.style.height = parseInt(new_height) + 'px';
+		cookie.value	 = parseInt(new_height);
+	}
+	return false;
+}
+/** Resize a textbox - END **/
+
+/**
+* Install the safety net  - START
+**/
+if (window.onload_functions) // prosilver
+{
+	onload_functions[onload_functions.length] = "textbox_resize();";
+}
+else if (typeof(window.addEventListener) != "undefined") // DOM
+{
+	window.addEventListener("load", textbox_resize, false);
+}
+else if (typeof(window.attachEvent) != "undefined") // MSIE
+{
+	window.attachEvent("onload", textbox_resize);
+}
+/** Install the safety net - END **/
+
 // ]]>
 </script>
 
-	<!-- IF S_ABBC3_WIZARD_MODE eq '2' -->
-
-
-
-
-
-	<div id="ABBC3_Ajax_indicator">
-		<script type="text/javascript">
-		// <![CDATA[
-		<!-- INCLUDE {S_ABBC3_WIZARD_JAVASCRIPT} -->
-		// ]]>
-		</script>
-		<div id="ABBC3_Ajax_Wizards"></div>
-	</div>
-
-
-
-
-
-	<!-- ENDIF -->
-
-	<noscript><div class="forumrules" style="text-align: center;"><h3>{L_ABBC3_NOSCRIPT}</h3><br />{L_ABBC3_NOSCRIPT_EXPLAIN}</div></noscript>
 	<table id="abbc3posttable" width="100%" border="1" cellspacing="0" cellpadding="0">
 		<tr align="{S_CONTENT_FLOW_BEGIN}">
 			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="cat"<!-- ENDIF --> valign="middle" colspan="2">
 				<span class="abbc3_link">
-					<a href="{S_ABBC3_HELP_PAGE}"          rel="external" onclick="window.open(this.href);return false;" title="{L_ABBC3_HELP_TITLE}"><img src="{S_ABBC3_PATH}/images/help.gif" alt="{L_ABBC3_HELP_TITLE}" title="{L_ABBC3_HELP_TITLE}" /></a>
-					<a href="http://www.mssti.com/phpbb3/" rel="external" onclick="window.open(this.href);return false;" title="{L_ABBC3_HELP_ALT}"><img src="{S_ABBC3_PATH}/images/info.gif" alt="{L_ABBC3_HELP_ALT}" title="{L_ABBC3_HELP_ALT}" /></a>
+					<a href="{S_ABBC3_HELP_PAGE}"          rel="external" onclick="window.open(this.href);return false;" title="{L_ABBC3_HELP_TITLE}" ><img src="{S_ABBC3_PATH}/images/help.gif" alt="{L_ABBC3_HELP_TITLE}" title="{L_ABBC3_HELP_TITLE}" /></a>
+					<a href="http://www.mssti.com/phpbb3/" rel="external" onclick="window.open(this.href);return false;" title="{L_ABBC3_HELP_ALT}"   ><img src="{S_ABBC3_PATH}/images/info.gif" alt="{L_ABBC3_HELP_ALT}"   title="{L_ABBC3_HELP_ALT}"   /></a>
 				</span>
 				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
@@ -53,37 +575,6 @@
 				<!-- ENDIF -->
 			<!-- ENDIF -->
 			
-<!-- IF S_ABBC3_COMPACT -->
-				<ul class="_selector">
-					<li class="li_selector"><span id="button_selector" class="btnlite">&nbsp;{L_ABBC3_SHORT}&nbsp;</span>
-						<ul id="ul_selector" class="row1 ul_selector">
-						<!-- BEGIN abbc3_tags -->
-							<!-- IF abbc3_tags.S_ABBC3_BREAK or abbc3_tags.S_ABBC3_DIVISION -->
-								<!-- IF not abbc3_tags.S_FIRST_ROW --><li>------------------</li><!-- ENDIF -->
-							<!-- ELSE -->
-							<li id="abbcode_{abbc3_tags.TAG_ID}" style='background-image: url("{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}");'>
-								<a href="#abbcode_{abbc3_tags.TAG_ID}" onclick="bbstyle2('{abbc3_tags.TAG_NAME}'); return false;" title="{abbc3_tags.TAG_MOVER}&lt;br /&gt;{abbc3_tags.TAG_TIP}&lt;br /&gt;{abbc3_tags.TAG_NOTE}&lt;br /&gt;{abbc3_tags.TAG_EXAMPLE}">{abbc3_tags.TAG_MOVER}</a>
-							</li>
-							<!-- ENDIF -->
-						<!-- END abbc3_tags -->
-
-						<!-- IF .custom_tags -->
-							<li>------------------</li>
-							<!-- BEGIN custom_tags -->
-							<li id="abbcode_{custom_tags.BBCODE_ID}">
-								<a href="#abbcode_{custom_tags.BBCODE_ID}" onclick="bbstyle({custom_tags.BBCODE_ID}); return false;" <!-- IF custom_tags.BBCODE_HELPLINE !== '' -->title="{custom_tags.BBCODE_TAG}&lt;br /&gt;{custom_tags.A_BBCODE_HELPLINE}"<!-- ENDIF -->>{custom_tags.BBCODE_TAG}</a>
-							</li>
-							<!-- END custom_tags -->
-						<!-- ENDIF -->
-
-						</ul>
-					</li>
-				</ul>
-				<!-- IF S_ABBC3_TAB -->
-				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
-				<!-- ENDIF -->
-<!-- ENDIF -->
-
 			<!-- IF S_ABBC3_FONT -->
 				<select id="abbc3_font" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" onmouseover="helpline2('abbc3_font')" onmouseout="helpline2()" title="{L_ABBC3_FONT_MOVER}">
 					<option selected="selected" >- {L_ABBC3_FONT_MOVER} -</option>
@@ -134,13 +625,13 @@
 					<option selected="selected" >- {L_ABBC3_SIZE_MOVER} -</option>
 					<option style="font-size: 50%;"	value="50">{L_FONT_TINY}</option>
 					<option style="font-size: 85%;"	value="85">{L_FONT_SMALL}</option>
-					<option style="font-size: 100%;" value="100">{L_FONT_NORMAL}</option>
+					<option style="font-size: 100%;"	value="100">{L_FONT_NORMAL}</option>
 					<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 -->
-						<option style="font-size: 150%;" value="150">{L_FONT_LARGE}</option>
+						<option style="font-size: 150%;"	value="150">{L_FONT_LARGE}</option>
 						<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 -->
-							<option style="font-size: 200%;" value="200">{L_FONT_HUGE}</option>
+							<option style="font-size: 200%;"	value="200">{L_FONT_HUGE}</option>
 							<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 300 -->
-								<option style="font-size: 300%;" value="300">{L_ABBC3_FONT_GIANT}</option>
+								<option style="font-size: 300%;"	value="300">{L_ABBC3_FONT_GIANT}</option>
 							<!-- ENDIF -->
 						<!-- ENDIF -->
 					<!-- ENDIF -->
@@ -150,51 +641,36 @@
 				<!-- ENDIF -->
 			<!-- ENDIF -->
 
-		<!-- IF S_ABBC3_HIGHLIGHT -->
-			<!-- IF S_ABBC3_HIGHLIGHT_MODE eq 'dropdown' -->
+			<!-- IF S_ABBC3_HIGHLIGHT -->
 				<select id="abbc3_highlight" name="abbc3_highlight" onchange="bbfontstyle('[highlight=#' + this.form.abbc3_highlight.options[this.form.abbc3_highlight.selectedIndex].value + ']', '[/highlight]'); this.form.abbc3_highlight.selectedIndex = 0;" onmouseover="helpline2('abbc3_highlight')" onmouseout="helpline2()" title="{L_ABBC3_HIGHLIGHT_MOVER}">
-					<option selected="selected">- {L_ABBC3_HIGHLIGHT_MOVER} -</option>
+					<option selected="selected" >- {L_ABBC3_HIGHLIGHT_MOVER} -</option>
+					<script type="text/javascript">
+					// <![CDATA[
+						ABBCcolorPalette('abbc3_highlight');
+					// ]]>
+					</script>
 				</select>
-			<!-- ELSEIF S_ABBC3_HIGHLIGHT_MODE eq 'fancy' -->
-				<ul class="_selector">
-					<li class="li_selector"><span id="button_highlight" class="btnlite">&nbsp;{L_ABBC3_HIGHLIGHT_MOVER}&nbsp;</span>
-						<ul id="ul_highlight_selector" class="row1 ul_selector"><li></li></ul>
-					</li>
-				</ul>
-			<!-- ELSEIF S_ABBC3_HIGHLIGHT_MODE eq 'tigra' -->
-				<img src="{S_ABBC3_PATH}/images/highlight.gif" class="btnbbcode3 editor_Button" onclick="javascript:TCP.popup('{S_ABBC3_TIGRA_PAGE}', 'highlight', 0)" onmouseover="helpline2('abbc3_highlight')" onmouseout="helpline2()" alt="{L_ABBC3_HIGHLIGHT_MOVER}" title="{L_ABBC3_HIGHLIGHT_MOVER}" id="{ABBC3_HIGHLIGHT_NAME}" />
-			<!-- ENDIF -->
 				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 				<!-- ENDIF -->
-		<!-- ENDIF -->
-			
-		<!-- IF S_ABBC3_COLOR -->
-			<!-- IF S_ABBC3_COLOR_MODE eq 'phpbb' -->
-		
-			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'dropdown' -->
-				<select id="abbc3_color" name="abbc3_color" onchange="bbfontstyle('[color=#' + this.form.abbc3_color.options[this.form.abbc3_color.selectedIndex].value + ']', '[/color]'); this.form.abbc3_color.selectedIndex = 0;" onmouseover="helpline2('abbc3_color')" onmouseout="helpline2()" title="{L_ABBC3_COLOR_MOVER}">
-					<option selected="selected">- {L_ABBC3_COLOR_MOVER} -</option>
-				</select>
-			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'fancy' -->
-				<ul class="_selector">
-					<li class="li_selector"><span id="button_colour" class="btnlite">&nbsp;{L_ABBC3_COLOR_MOVER}&nbsp;</span>
-						<ul id="ul_color_selector" class="row1 ul_selector"><li></li></ul>
-					</li>
-				</ul>
-			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'tigra' -->
-				<img src="{S_ABBC3_PATH}/images/fontcolor.gif" class="btnbbcode3 editor_Button" onclick="javascript:TCP.popup('{S_ABBC3_TIGRA_PAGE}', 'color', 0)" onmouseover="helpline2('abbc3_color')" onmouseout="helpline2()" alt="{L_ABBC3_COLOR_MOVER}" title="{L_ABBC3_COLOR_MOVER}" id="{ABBC3_COLOR_NAME}" />
 			<!-- ENDIF -->
-				<!-- IF S_ABBC3_TAB and S_ABBC3_COLOR_MODE != 'phpbb'-->
+			
+			<!-- IF S_ABBC3_COLOR -->
+				<select id="abbc3_color" name="abbc3_color" onchange="bbfontstyle('[color=#' + this.form.abbc3_color.options[this.form.abbc3_color.selectedIndex].value + ']', '[/color]'); this.form.abbc3_color.selectedIndex = 0;" onmouseover="helpline2('abbc3_color')" onmouseout="helpline2()" title="{L_ABBC3_COLOR_MOVER}">
+					<option selected="selected" >- {L_ABBC3_COLOR_MOVER}- </option>
+					<script type="text/javascript">
+					// <![CDATA[
+						ABBCcolorPalette('abbc3_color');
+					// ]]>
+					</script>
+				</select>
+
+				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 				<!-- ENDIF -->
-		<!-- ENDIF -->
+			<!-- ENDIF -->
 
-<!-- IF S_ABBC3_COMPACT -->
-			</td>
-		</tr>
-<!-- ELSE -->
-	<!-- BEGIN abbc3_tags -->
+<!-- BEGIN abbc3_tags -->
 		<!-- IF abbc3_tags.S_ABBC3_BREAK -->
 			<!-- IF S_ABBC3_TAB and not abbc3_tags.S_FIRST_ROW -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
@@ -206,21 +682,22 @@
 			<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 			<!-- ENDIF -->
-		<!-- ELSEIF abbc3_tags.S_ABBC3_DIVISION -->
-			<!-- IF S_ABBC3_TAB and not abbc3_tags.S_LAST_ROW -->
+		<!-- ELSEIF abbc3_tags.S_ABBC3_DIVISION-->
+			<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 			<!-- ENDIF -->
 		<!-- ELSE -->
-				<img src="{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}" class="btnbbcode3 editor_Button" onclick="bbstyle2('{abbc3_tags.TAG_NAME}')" onmouseover="helpline2('{abbc3_tags.TAG_NAME}')" onmouseout="helpline2()" alt="{abbc3_tags.TAG_MOVER}" title="{abbc3_tags.TAG_MOVER}" id="{abbc3_tags.TAG_NAME}" />
-		<!-- ENDIF -->
-	<!-- END abbc3_tags -->
+			<img src="{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}" class="btnbbcode3 editor_Button" onclick="bbstyle2('{abbc3_tags.TAG_NAME}')" onmouseover="helpline2('{abbc3_tags.TAG_NAME}')" onmouseout="helpline2()" alt="{abbc3_tags.TAG_MOVER}" title="{abbc3_tags.TAG_MOVER}" id="{abbc3_tags.TAG_NAME}" />
+		<!-- ENDIF -->	
+<!-- END abbc3_tags -->
 
 				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 				<!-- ENDIF -->
 			</td>
 		</tr>
-	<!-- IF .custom_tags -->
+
+		<!-- IF .custom_tags -->
 		<tr align="{S_CONTENT_FLOW_BEGIN}">
 			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="cat"<!-- ENDIF --> valign="middle" colspan="2">
 				<!-- IF S_ABBC3_TAB -->
@@ -228,7 +705,7 @@
 				<!-- ENDIF -->
 
 				<!-- BEGIN custom_tags -->
-				<input type="button" class="btnlite" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.A_BBCODE_HELPLINE}"<!-- IF custom_tags.BBCODE_HELPLINE !== '' --> onmouseover="helpline('cb_{custom_tags.BBCODE_ID}')" onmouseout="helpline2()"<!-- ENDIF --> />
+				<input style="margin:6px 0 4px 0;" type="button" class="btnlite" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_TIPLINE}"<!-- IF custom_tags.BBCODE_HELPLINE !== '' --> onmouseover="helpline('cb_{custom_tags.BBCODE_ID}')" onmouseout="helpline2()"<!-- ENDIF --> />
 				<!-- END custom_tags -->
 
 				<!-- IF S_ABBC3_TAB -->
@@ -236,16 +713,15 @@
 				<!-- ENDIF -->
 			</td>
 		</tr>
-	<!-- ENDIF -->
-<!-- ENDIF -->
+		<!-- ENDIF -->
 
 		<tr>
-			<td<!-- IF S_ABBC3_COLOR_MODE != 'phpbb' and not ($S_SIGNATURE or S_EDIT_DRAFT) --> colspan="2"<!-- ENDIF -->  style="width: 100%;">
-				<textarea readonly="readonly" id="helpbox" name="helpbox" rows="3" cols="76" class="helpline">{L_STYLES_TIP}</textarea>
-			</td>
-			<!-- IF S_ABBC3_COLOR_MODE eq 'phpbb' and not ($S_SIGNATURE or S_EDIT_DRAFT) -->
+			<td<!-- IF S_ABBC3_COLOR and not ($S_SIGNATURE and not S_EDIT_DRAFT) --> colspan="2"<!-- ENDIF -->  style="width: 100%;"><textarea readonly="readonly" id="helpbox" name="helpbox" rows="4" cols="110" class="helpline">{L_STYLES_TIP}</textarea></td>
+			<!-- IF not S_ABBC3_COLOR and not ($S_SIGNATURE and not S_EDIT_DRAFT) -->
 			<td class="genmed" align="center" style="white-space: nowrap;">{L_FONT_COLOR}</td>
 			<!-- ENDIF -->
 		</tr>
 
 	</table>
+
+	{S_ABBC3_HIDDEN_FIELDS}

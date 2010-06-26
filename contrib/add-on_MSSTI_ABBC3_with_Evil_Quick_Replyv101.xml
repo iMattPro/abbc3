@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+<!--For security purposes, please check: http
+://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
 	<header>
-		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Advanced BBCode Box 3 (aka ABBC3) - Add-on : This file provides instructions for use Evil Quick Reply v1.0.1 with ABBC3</title>
 
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Add-on : ABBC3 with Evil Quick Reply v1.0.1]]></title>
-
-		<description lang="en"><![CDATA[This file provides instructions for using ABBC3 with Evil Quick Reply v1.0.1. It allows you to use the ABBC3 BBcodes toolbar within the Quick Reply window.
-		See the main install file for any additional information about the MOD.]]></description>
+		<description lang="en">This file provides instructions for use Evil Quick Reply v1.0.1 with ABBC3
+		See the main install file for any additional information about the MOD.</description>
 
 		<author-notes lang="en"><![CDATA[You will have to make this change to ALL themes you have installed, based off Prosilver and Subsilver2.
 	-------------------------------------------------------------------
 	IMPORTANT !
-
-	Before you make any changes, make sure your template is stored into the "filesystem"
+	
+	Before made any changes, makes sure your template is stored into "filesystem"
 	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Details
-
+	
 	If you do not want to change from "Database" to "Filesystem",
-	you must do the following style changes within your ACP here:
+	you must do next changes within your ACP :
 	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Edit
-
+	
 	-------------------------------------------------------------------
-
+	
 EQR have several step for install.
 
     * 1) install.xml
@@ -32,9 +33,9 @@ EQR have several step for install.
     * 5) contrib/addons/smilies_bbcodes/templates/prosilver.xml
 
 Once you install all, apply this add-on.
-
-	-------------------------------------------------------------------]]></author-notes>
-
+]]>
+		</author-notes>
+	
 		<author-group>
 			<author>
 				<realname>Gabriel</realname>
@@ -46,35 +47,35 @@ Once you install all, apply this add-on.
 				</contributions-group>
 			</author>
 		</author-group>
-
-		<mod-version>3.0.7-PL1</mod-version>
+		
+		<mod-version>3.0.6</mod-version>
 
 		<installation>
 			<level>easy</level>
 			<time>120</time>
-			<target-version>3.0.7-PL1</target-version>
+			<target-version>3.0.6</target-version>
 		</installation>
 
 		<link-group>
-			<link type="parent"  href="../install_ABBC3.xml" lang="en">Code change</link>
+			<link type="parent"  href="../install_ABBC3_v306.xml" lang="en">Code change</link>
 		</link-group>
 	</header>
 
 	<action-group>
-
+		
 		<open src="includes/functions_quick_reply.php">
 			<edit>
 				<find><![CDATA[			$template->assign_var('S_BBCODE_ALLOWED', true);]]></find>
 				<action type="after-add"><![CDATA[
-// MOD : MSSTI ABBC3 add-on : EQR - START
+// MOD : MSSTI ABBC3 (V3.0.6) add-on : EQR - START
 			global $mode;
 			// Use Signature settings      : $mode = 'signature'
 			// Use Post settings           : $mode = 'post'
 			// Use Private message setting : $mode = ''
 			$mode = '';
 			// If you don't want ABBC3 in EQR change true with false
-			display_custom_bbcodes(true);
-// MOD : MSSTI ABBC3 add-on : EQR - End
+			display_custom_bbcodes( true );
+// MOD : MSSTI ABBC3 (V3.0.6) add-on : EQR - End
 ]]></action>
 			</edit>
 		</open>
@@ -157,27 +158,9 @@ Once you install all, apply this add-on.
 
 		<diy-instructions lang="en"><![CDATA[IMPORTANT !
 
-#####################################################################
-Log on to Administration Control Panel
-
-#####################################################################
-A) Purge the cache :
-
-	A.1) Navigate to General Tab
-	A.2) look at Purge the cache
-	A.3) Click on "Run Now" button at right
-	A.4) in the next screen, click on "Yes"
-
-#####################################################################
-B) Refresh the templates :
-
-	B.1) Navigate to "Styles" Tab.
-	B.2) Under "Style components " click on "Templates".
-	B.3) Under "Actions" click on "Refresh".
-	B.4) in the next screen, click on "Yes" ( Repeat last 2 steps to each instaled style ).
-
-#####################################################################
-C) Enjoy it !.]]></diy-instructions>
+After installation, make sure you purge the cache and refresh all the styles through the ACP to get everything to show up correctly.
+]]>
+		</diy-instructions>
 
 	</action-group>
 </mod>

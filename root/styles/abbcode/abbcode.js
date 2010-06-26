@@ -344,10 +344,10 @@ function HighlightAll( theField )
 	tempval.focus();
 	tempval.select();
 	
-	if (document.all && copytoclip == 1)
+	if (document.all&&copytoclip==1)
 	{
-		therange=tempval.createTextRange();
-		therange.execCommand("Copy");
+		therange=tempval.createTextRange()
+		therange.execCommand("Copy")
 	}
 }
 /** Funtion copy to clipboard - END **/
