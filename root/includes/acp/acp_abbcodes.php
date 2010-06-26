@@ -1,11 +1,12 @@
 <?php
 /**
-* @package: phpBB 3.0.6 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.6 2010/01/10 10:01:10 leviatan21 Exp $
+* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> root/includes/acp
+* @version: $Id: acp_abbcode.php, v 3.0.7 2010/03/18 10:03:18 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * 
+* @todo add compact_mode option : enabled/disabled, wizzard options : enabled/disabled, height, width
 **/
 
 /**
@@ -59,8 +60,8 @@ class acp_abbcodes
 		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		 ? $config['ABBC3_VIDEO_width']			: 425;
 		$config['ABBC3_VIDEO_height']		= (isset($config['ABBC3_VIDEO_height']))	 ? $config['ABBC3_VIDEO_height']		: 350;
 
-		$config['ABBC3_UPLOAD_MAX_SIZE']	= (isset($config['ABBC3_UPLOAD_MAX_SIZE']))	 ? $config['ABBC3_UPLOAD_MAX_SIZE']		: $max_filesize;
-		$config['ABBC3_UPLOAD_EXTENSION']	= (isset($config['ABBC3_UPLOAD_EXTENSION'])) ? $config['ABBC3_UPLOAD_EXTENSION']	: 'swf, gif, jpg, jpeg, png, psd, bmp, tif, tiff';
+//		$config['ABBC3_UPLOAD_MAX_SIZE']	= (isset($config['ABBC3_UPLOAD_MAX_SIZE']))	 ? $config['ABBC3_UPLOAD_MAX_SIZE']		: $max_filesize;
+//		$config['ABBC3_UPLOAD_EXTENSION']	= (isset($config['ABBC3_UPLOAD_EXTENSION'])) ? $config['ABBC3_UPLOAD_EXTENSION']	: 'swf, gif, jpg, jpeg, png, psd, bmp, tif, tiff';
 /** Set some default values so the user havn't to run any install - End **/
 
 		// Set up general vars
@@ -145,7 +146,7 @@ class acp_abbcodes
 
 	/**
 	* Build Frontend with supplied options
-	* @version 1.0.12
+	* @version 3.0.7
 	**/
 	function abbc3_details()
 	{
@@ -182,10 +183,10 @@ class acp_abbcodes
 				'ABBC3_VIDEO_width'		=> false,
 				'ABBC3_VIDEO_height'	=> false,
 
-				'legend4'				=> 'ABBC3_UPLOAD_MOVER',
-				'upload_path'			=> array('lang'	=> 'UPLOAD_DIR',										'type' => 'string',			'explain'	=> true, 'append' => ' <span id="upload_path">' . $config['upload_path'] . '/</span>'),
-				'ABBC3_UPLOAD_MAX_SIZE'	=> array('lang'	=> 'ATTACH_MAX_FILESIZE',		'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' ' . $user->lang['BYTES']),
-				'ABBC3_UPLOAD_EXTENSION'=> array('lang'	=> 'ABBCODES_UPLOAD_EXTENSION',	'validate' => 'string',	'type' => 'textarea:5:40',	'explain'	=> true),
+//				'legend4'				=> 'ABBC3_UPLOAD_MOVER',
+//				'upload_path'			=> array('lang'	=> 'UPLOAD_DIR',										'type' => 'string',			'explain'	=> true, 'append' => ' <span id="upload_path">' . $config['upload_path'] . '/</span>'),
+//				'ABBC3_UPLOAD_MAX_SIZE'	=> array('lang'	=> 'ATTACH_MAX_FILESIZE',		'validate' => 'int',	'type' => 'text:7:15',		'explain'	=> true, 'append' => ' ' . $user->lang['BYTES']),
+//				'ABBC3_UPLOAD_EXTENSION'=> array('lang'	=> 'ABBCODES_UPLOAD_EXTENSION',	'validate' => 'string',	'type' => 'textarea:5:40',	'explain'	=> true),
 			)
 		);
 
@@ -584,6 +585,7 @@ class acp_abbcodes
 			}
 
 			$abbcode_explain = (isset($user->lang[$abbcode_name . '_MOVER'])) ? $user->lang[$abbcode_name . '_MOVER'] : '';
+			$abbcode_explain.= (isset($user->lang[$abbcode_name . '_EXPLAIN'])) ? '<br />' . $user->lang[$abbcode_name . '_EXPLAIN'] : '';
 
 			$bbcode_tagname = '';
 			if (!$abbcode)
