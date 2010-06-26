@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8 2010/05/18 10:05:18 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8 2010/06/26 10:06:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -1468,14 +1468,10 @@ class abbcode
 		$effect = ucfirst(strtolower(trim($effect)));
 		$colour = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($colour));
 		$in	 	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in));
-
-		$shadow_colour = '#999999'; // Text shadow color. You can change to another colour if desired. Default #999999
+		$style	= "display: inline-block; padding: 0 0.2em;";
 		// IE manage this at his own way
 		$is_ie	= (strpos(strtolower($user->browser), 'msie') !== false);
-		$style	= ($is_ie) ? "height: 110%; padding: 0 0.2em;" : "display: inline;";
-		// Try to avoid new lines in IE. It need filter to applied into a div with a fixed width
-		$in_len	= (int) strlen($in);
-		$style	= ($is_ie && $in_len < 100) ? "width: ". ($in_len * 5.9) . "px; display: inline-table; $style" : $style;
+		$shadow_colour = '#999999'; //  Default text shadow color #999999. You can change to another colour if desired.
 
 		switch ($effect)
 		{
@@ -1492,7 +1488,7 @@ class abbcode
 			break;
 
 			case 'Blur' :
-				$style	= ($is_ie) ? "filter: blur(strength=7); color:$colour; $style; " : "color: $colour; text-shadow : -0.1em 0.0em 0.1em $colour, 0.1em 0.0em 0.1em $colour; $style";
+				$style	= ($is_ie) ? "filter: blur(strength=7); color:$colour; $style;" : "color: $colour; text-shadow : -0.1em 0.0em 0.1em $colour, 0.1em 0.0em 0.1em $colour; $style";
 			break;
 
 			case 'Wave' :
