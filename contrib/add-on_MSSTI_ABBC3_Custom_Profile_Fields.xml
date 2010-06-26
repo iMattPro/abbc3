@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		
+		<title lang="en">Advanced BBCode Box 3 (aka ABBC3) Add-on : Custom Profile Fields.</title>
+
+		<description lang="en">This file provides instructions to change two of the ABBC3 settings, acording users preferences..
+		
+		See the main install file for any additional information about the MOD.</description>
+
+		<author-notes lang="en"><![CDATA[To read more about ABBC3, please read the contrib/docs/README.HTML file
+
+	-------------------------------------------------------------------
+	NOTE: This addition is optional - 
+	
+	Step B) Is to create the option to allow users to choose disable ABBC3 and use the regular posting tollbar, in the "UCP -> PROFILE -> Edit Profile" settings
+	Step C) Is to create the option to allow users to choose between "Full Mode" and "Compact Mode", in the "UCP -> PROFILE -> Edit Profile" settings
+	]]></author-notes>
+
+		<author-group>
+			<author>
+				<realname>Gabriel</realname>
+				<username>leviatan21</username>
+				<email>info@mssti.com</email>
+				<homepage>http://www.mssti.com/phpbb3/</homepage>
+				<contributions-group>
+					<contributions status="current" from="2008-01-10" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+		
+		<mod-version>3.0.7</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>120</time>
+			<target-version>3.0.7-PL1</target-version>
+		</installation>
+
+		<link-group>
+			<link type="parent"  href="../install_ABBC3_v307.xml" lang="en">Code change</link>
+		</link-group>
+	</header>
+
+	<action-group>
+
+		<open src="includes/function_display.php">
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+	global $config, $mode, $abbcode;]]></find>
+				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 (custom profile fields) - Start
+	if ($abbc3 && @$config['ABBC3_MOD'])
+	{
+		// Load custom profile fields
+		if (!class_exists('custom_profile'))
+		{
+			global $phpbb_root_path, $phpEx;
+			include($phpbb_root_path . 'includes/functions_profile_fields.' . $phpEx);
+		}
+		$abbcode_cp = new custom_profile();
+
+		// Grab all profile fields from users in id cache for later use - similar to the poster cache
+		$abbcode_cpf = $abbcode_cp->generate_profile_fields_template('grab', $user->data['user_id']);
+
+		// Redefine the use of ABBC3 according this user preferences
+		$abbc3 = (isset($abbcode_cpf[$user->data['user_id']]['abbc_mod']['value'])) ? (($abbcode_cpf[$user->data['user_id']]['abbc_mod']['value'] == 1) ? true : false ) : $abbc3;
+
+		// Define the ABBC3 view, according this user preferences
+		global $abbcode_compact;
+		$abbcode_compact = (isset($abbcode_cpf[$user->data['user_id']]['abbc_short']['value'])) ? (($abbcode_cpf[$user->data['user_id']]['abbc_short']['value'] == 1) ? true : false ) : false;
+	}
+// MOD : MSSTI ABBC3 (custom profile fields) - End]]></action>
+			</edit>
+		</open>
+
+		<diy-instructions lang="en"><![CDATA[IMPORTANT !
+
+#####################################################################
+A) Log on to Administration Control Panel
+
+#####################################################################
+B) Create the "Custom profile fields" to allow users to choose between "ABBC3" or "Regular posting toolbatr" Mode
+	If you don't want this feature, skip to step C
+
+	B.1) go to USERS AND GROUPS tab
+	B.2) at the left menu, click on Custom profile fields
+	B.3) In the input field, write abbc_mod ( Important must be lower-case )
+	B.4) in the selector search and select Boolean (Yes/No)
+	B.5) click in the Create a new field button
+
+In the new screen you will get this :
+Field type: Boolean (Yes/No)
+Field identification: abbc_mod ( Important do not change this )
+Display profile field: Yes ( Do not change it )
+Display in user control panel: Selected ( Do not change it )
+Display at registration screen: Not selected ( Change to your likes )
+Required field: Not selected ( Change to your likes )
+Hide profile field: Not selected ( Important do not change this )
+
+Field name/title presented to the user: ABBC3 MOD ( Change to your likes )
+Field description: Enable the "Advanced BBodes Box 3" or use the default phpbb3 buttons. ( Change to your likes )
+Entries: Yes First option, No Second option
+
+Click in the Profile type specific options button.
+Field type: Radio buttons ( Do not change it )
+Default value: Yes ( Change to your likes )
+
+Click in the Language type specific options button.
+Check all, and click on Save button.
+
+#####################################################################
+C) Create the "Custom profile fields" to allow users to choose between "Full" or "Compact" Mode
+Continue with this instructions, otherwise skip to step D
+
+	C.1) go to USERS AND GROUPS tab
+	C.2) at the left menu, click on Custom profile fields
+	C.3) In the input field, write abbc_short ( Important must be lower-case )
+	C.4) in the selector search and select Boolean (Yes/No)
+	C.5) click in the Create a new field button
+
+In the new screen you will get this :
+Field type: Boolean (Yes/No)
+Field identification: abbc_short ( Important do not change this )
+Display profile field: Yes ( Important do not change this )
+Display in user control panel: Selected ( Do not change it )
+Display at registration screen: Not selected ( Change to your likes )
+Required field: Not selected ( Change to your likes )
+Hide profile field: Not selected ( Important do not change this )
+
+Field name/title presented to the user: ABBC3 Mode ( Change to your likes )
+Field description: If ABBC3 MOD is enabled, do you want to see the compact view or the full view ? ( Change to your likes )
+Entries: Yes First option, No Second option
+
+Click in the Profile type specific options button.
+Field type: Radio buttons ( Do not change it )
+Default value: No ( Change to your likes )
+
+Click in the Language type specific options button.
+Check all, and click on Save button.
+
+#####################################################################
+D) Purge the cache :
+
+	D.1) Navigate to General Tab
+	D.2) look at Purge the cache
+	D.3) Click on "Run Now" button at right
+	D.4) in the next screen, click on "Yes"
+
+#####################################################################
+E) Enjoy it !.]]>
+		</diy-instructions>
+	</action-group>
+</mod>

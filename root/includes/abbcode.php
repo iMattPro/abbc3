@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.6 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.6 2010/01/10 10:01:10 leviatan21 Exp $
+* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> root/includes
+* @version: $Id: abbcode.php, v 3.0.7 2010/04/12 10:04:12 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -16,10 +16,6 @@
 * 		http://www.phpbb.com/community/viewtopic.php?f=46&t=579376
 * 	Adding Custom BBCodes in phpBB3
 * 		http://www.phpbb.com/kb/article/adding-custom-bbcodes-in-phpbb3/
-* 	When pushing BBCode button, text remains selected (solved)
-* 		http://www.phpbb.com/community/viewtopic.php?f=72&t=1190795
-*	[BETA] BBCode Retain Selection 0.1.0
-* 		http://www.startrekguide.com/community/viewtopic.php?f=82&t=2587
 * 
 * If you are using phpBB2, you can find compatible BBCode MODs in the BBCode section of the MOD database.
 * 	http://www.phpbb.com/mods/db/index.php?i=browse&mode=group:category&sub=bbcode
@@ -34,50 +30,73 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
+global $abbcode;
+$abbcode = new abbcode();
+
 /**
 * Advanced BBCode Box 3 class
 * @package phpBB3
-* @version 1.0.12
 **/
 class abbcode
 {
+	// If ABBC3 MOD is enabled, do you want to see full view or the compact view ?
+	var $abbcode_compact	= false;	// Options true=compact view / false=full view, default false
+
 	var $abbcode_config		= array();
 	var $abbcode_video_ary	= array();
 	var $need_permissions	= array();
 	var $abbc3_unique_id	= 0;
-	// Hide [testlinks] and [rapidshare] link/s to guest and bots ?	
-	var $hide_links			= false;	// Options true=yes / false=no, default no
-	var $img_links			= true;
-	// If you don't like the way to align the thumbnail images you can change
-	var $thumb_float		= true;		// Options true=yes / false=no, default yes
-	// If you don't like the way to align images you can change
-	var $image_float		= false;	// Options true=yes / false=no, default no
-	
+
+	// [testlinks] and [rapidshare] Hide link/s to guest and bots ?	
+	var $hide_links			= false;	// Options true=hide / false=display, default false
+	// [testlinks] and [rapidshare] Display the OK/WRONG image or use text ?
+	var $img_links			= true;		// Options true=use image / false=use text, default true
+
+	/**
+	* Constructor
+	*/
+	function abbcode()
+	{
+		global $user;
+		
+		$user->add_lang('mods/abbcode');
+
+		$this->abbcode_init();
+	}
+
 	/**
 	* Initializate config vars...
 	*
 	* @return unknown
-	* @version 1.0.12
+	* @version 3.0.7
 	**/
 	function abbcode_init()
 	{
-		global $phpbb_root_path, $phpEx, $template, $config, $user;
+		global $phpbb_root_path, $phpEx, $template, $config, $user, $abbcode_compact;
 
 		/* ABBC3 can be disabed in-line - Start */
-		if (!$enable = request_var('abbc3disable', 1))
+		if ($enable = request_var('abbc3disable', 0))
 		{
 			$config['ABBC3_MOD'] = false; 
 			return false;
 		}
 		/* ABBC3 can be disabed in-line - End */
 
-		$user->add_lang('mods/abbcode');
-
-		/* HTML was deprecated sine v1.0.11 */
+		/* HTML was deprecated since v1.0.11 */
 		$this->need_permissions = array('ABBC3_QUOTE', /*'ABBC3_URL',*/ 'ABBC3_IMG', 'ABBC3_THUMBNAIL', 'ABBC3_FLASH', 'ABBC3_FLV');
 
+		// Redefine the ABBC3 view, according this user preferences
+		if (isset($abbcode_compact))
+		{
+			$this->abbcode_compact = $abbcode_compact;
+		}
+		else
+		{
+			$this->abbcode_compact = (isset($config['ABBC3_COMPACT'])) ? $config['ABBC3_COMPACT'] : $this->abbcode_compact;
+		}
+
 		$this->abbcode_config = array(
-			'ABBC3_VERSION'			=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.6' ,
+			'ABBC3_VERSION'			=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.7' ,
 			// Display ABBC3 ?
 			'ABBC3_MOD'				=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
 			// Where the files are stored
@@ -112,8 +131,6 @@ class abbcode
 			'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 350,
 			// Link to ABBC3 help page
 			'ABBC3_HELP_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=help'),
-			// Link to ABBC3 upload page
-			'ABBC3_UPLOAD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=upload'),
 			// Link to ABBC3 wizards page
 			'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=wizards"),
 			// Cookie
@@ -133,13 +150,11 @@ class abbcode
 	* Display posting page
 	*
 	* @param string $mode
-	* @version 1.0.12
+	* @version 3.0.7
 	**/
 	function abbcode_display($mode)
 	{
-		global $config, $db, $template, $user ;
-
-		$user->add_lang('mods/abbcode');
+		global $db, $template, $user ;
 
 		/**
 		* Get proper auth
@@ -150,7 +165,7 @@ class abbcode
 		**/
 		$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : (($mode == 'post' || $mode == 'edit' || $mode == 'quote' || $mode == 'reply') ? 'display_on_posting' : 'display_on_pm');
 
-		/* HTML was deprecated sine v1.0.11 */
+		/* HTML was deprecated since v1.0.11 */
 		$need_permissions  = array('ABBC3_QUOTE', /*'ABBC3_URL',*/ 'ABBC3_IMG', 'ABBC3_THUMBNAIL', 'ABBC3_FLASH', 'ABBC3_FLV');
 
 		$sql = "SELECT abbcode, bbcode_order, bbcode_id, bbcode_group, bbcode_tag, bbcode_helpline, bbcode_image, display_on_posting 
@@ -207,7 +222,7 @@ class abbcode
 			{
 				switch ($abbcode_name)
 				{
-					// Is a Line break ?
+					// Is a Line break ? -> abbc3_break(n)
 					case (substr($abbcode_name,0,11) == 'ABBC3_BREAK') :
 						$template->assign_block_vars('abbc3_tags', array(
 							'S_ABBC3_BREAK'		=> true,
@@ -224,14 +239,6 @@ class abbcode
 						break;
 
 					default:
-						$template->assign_block_vars('abbc3_help', array(
-							'TAG_SRC'		=> $abbcode_image,
-							'TAG_NAME'		=> strtolower($abbcode_name),
-							'TAG_MOVER'		=> $abbcode_mover,
-							'TAG_TIP'		=> $abbcode_tip,
-							'TAG_NOTE'		=> $abbcode_note,
-							'TAG_EXAMPLE'	=> $abbcode_example,
-						));
 						$template->assign_block_vars('abbc3_tags', array(
 							'TAG_SRC'		=> $abbcode_image,
 							'TAG_NAME'		=> strtolower($abbcode_name),
@@ -249,7 +256,9 @@ class abbcode
 		$abbc3_cookie_value	= request_var($this->abbcode_config['ABBC3_COOKIE_NAME'], 0, false);
 		$abbc3_cookie_value	= ($abbc3_cookie_value) ? $abbc3_cookie_value : request_var($this->abbcode_config['ABBC3_COOKIE_NAME'], 0, false, true);
 
-		$template->assign_vars(array(		
+		$template->assign_vars(array(
+			// Define the ABBC3 view, according this user preferences
+			'S_ABBC3_COMPACT'		=> $this->abbcode_compact,
 			'S_ABBC3_HIDDEN_FIELDS'	=> build_hidden_fields(array(
 				$this->abbcode_config['ABBC3_COOKIE_NAME'] => $abbc3_cookie_value,
 			)),
@@ -267,7 +276,7 @@ class abbcode
 	**/
 	function abbode_phpbb_auth($bbcode_groups)
 	{
-		global $user, $db ;
+		global $user, $db;
 
 		$sql = 'SELECT * 
 				FROM ' . USER_GROUP_TABLE . ' 
@@ -612,16 +621,16 @@ class abbcode
 		{
 			case 'msn' :
 			case 'msnlive':
-				$search_link = 'http://search.live.com/results.aspx?q=' . str_replace(' ', '+',$search);
+				$search_link = 'http://search.live.com/results.aspx?q=' . str_replace(' ', '+', $search);
 				break;
 			case 'yahoo' :
-				$search_link = 'http://search.yahoo.com/search?p=' . str_replace(' ', '+',$search);
+				$search_link = 'http://search.yahoo.com/search?p=' . str_replace(' ', '+', $search);
 				break;
 			case 'google' :
-				$search_link = 'http://www.google.com/search?q=' . str_replace(' ', '+',$search);
+				$search_link = 'http://www.google.com/search?q=' . str_replace(' ', '+', $search);
 				break;
 			case 'altavista':
-				$search_link = 'http://www.altavista.com/web/results?itag=ody&amp;q=' . str_replace(' ', '+',$search); //&amp;mkt=tr-TR&amp;lf=1
+				$search_link = 'http://www.altavista.com/web/results?itag=ody&amp;q=' . str_replace(' ', '+', $search); //&amp;mkt=tr-TR&amp;lf=1
 				break;
 			case 'wikipedia':
 				// by default the search is in English language, but you can customize it,
@@ -629,11 +638,11 @@ class abbcode
 				$search_link = 'http://en.wikipedia.org/wiki/Spezial:Search?search=' . $search;
 				break;
 			case 'lycos':
-				$search_link = 'http://search.lycos.com/?query=' . str_replace(' ', '+',$search);
+				$search_link = 'http://search.lycos.com/?query=' . str_replace(' ', '+', $search);
 				break;
 			default :
 				global $config, $phpEx;
-				$search_link = 'search.' . $phpEx . '?keywords=' . $search;
+				$search_link = 'search.' . $phpEx . '?keywords=' . str_replace(' ', '%20', $search);
 				$in = $config['sitename'];
 				break;
 		}
@@ -646,7 +655,7 @@ class abbcode
 	* @param string		$stx	align (right|center|left)
 	* @param string		$in		URL = post text between [thumbnail=(right|center|left)] & [/thumbnail]
 	* @return string	image
-	* @version 1.0.12
+	* @version 3.0.7
 	**/
 	function thumb_pass($stx, $in)
 	{
@@ -675,12 +684,6 @@ class abbcode
 			@ini_set('default_socket_timeout', $timeout);
 		}
 
-		// Wrap text for thumbnail ?
-		if (!$this->thumb_float)
-		{
-			return str_replace(array('{ALIGN_TYPE}', '{URL}' ,'{WIDTH}'), array($stx, $in, $w), $this->bbcode_tpl('thumb_aligned'));
-		}
-
 		switch (strtolower($stx))
 		{
 			case 'left':
@@ -702,18 +705,12 @@ class abbcode
 	* @param string		$stx	align (right|center|left)
 	* @param string		$in		post text between [img=(right|center|left)] & [/img]
 	* @return string	image
-	* @version 1.0.12
+	* @version 3.0.7
 	**/
 	function img_pass($stx, $in)
 	{
 		$stx = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($stx));
 		$in	 = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in)) ;
-
-		// Wrap text for images ?
-		if (!$this->image_float)
-		{
-			return str_replace(array('{ALIGN_TYPE}', '{URL}'), array($stx, $in), $this->bbcode_tpl('img_aligned'));
-		}
 
 		switch (strtolower($stx))
 		{
@@ -787,7 +784,8 @@ class abbcode
 		}
 		else
 		{
-			$in	= make_clickable(trim(str_replace('\"', '',preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3',$in))));
+		//	$in	= make_clickable(trim(str_replace('\"', '',preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3',$in))));
+			$in	= make_clickable(trim(preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3', $in)));
 			$in	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in)) ;
 			return str_replace(array('{HIDDEN_OFF}', '{UNHIDDEN_TEXT}'), array($user->lang['HIDDEN_OFF'], $in), $this->bbcode_tpl('unhidden'));
 		}
@@ -806,6 +804,22 @@ class abbcode
 
 		$in = htmlentities($in, ENT_NOQUOTES, 'UTF-8');	
 		return str_replace(array('{NFO_TITLE}', '{NFO_TEXT}'), array($user->lang['ABBC3_NFO_TITLE'], str_replace(" ", "&nbsp;", $in)), $this->bbcode_tpl('nfo'));
+	}
+
+	/**
+	* Parsing the (x)HTML - Second pass.
+	*
+	* @param string		$in		post text between [html] & [/html]
+	* @return string	(x)HTML data
+	*
+	* THIS FUNTION IS DEPRECATED SINCE VERSION 1.0.11 ! suggested by MOD Team 
+	* So warn the user about this if he is still using the old database
+	**/
+	function html_pass($in)
+	{
+		global $user;
+
+		return sprintf($user->lang['ABBC3_DEPRECATED'], 'html', '1.0.11');
 	}
 
 	/**
@@ -1226,7 +1240,7 @@ class abbcode
 	* @param string		$width	value for video width
 	* @param string		$height value for video Height
 	* @return string	$link	value for video url
-	* @version 1.0.12
+	* @version 3.0.7
 	**/
 	function flash_pass($width = 0, $height = 0, $link = '')
 	{
@@ -1245,7 +1259,7 @@ class abbcode
 
 	/**
 	* Initialize Video array
-	* @version 1.0.12
+	* @version 3.0.7
 	**/
 	function video_init()
 	{
@@ -1271,21 +1285,21 @@ class abbcode
 			'aniboom.com'					=> array ('display' => true	,'image' => 'aniboom.gif'		,'example' => "http://www.aniboom.com/video/302103/Rassa-Park/"																					,'found' => '#http://(?:www\.|api\.)?aniboom\.com/(?:Player.aspx\?(?:[^"]*?)?v=|video/|e/)([0-9]{1,10})([^[]*)#si'						,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://api.aniboom.com/e/$1" /><param name="allowScriptAccess" value="sameDomain" /><param name="quality" value="high" /><embed src="http://api.aniboom.com/e/$1" quality="high"  width="{WIDTH}"  height="{HEIGHT}" allowscriptaccess="sameDomain" type="application/x-shockwave-flash"></embed></object><br />0=($0)<br />1=($1)<br />2=($2)<br />3=($3)<br />4=($4)<br />5=($5)<br />6=($6)<br />'),
 /** http://autoembed.com/demos/ - End **/
 
-			'uncutvideo.aol.com'			=> array ('display' => true	,'image' => 'aol.gif'			,'example' => "http://uncutvideo.aol.com/categories/News/month/007c338a423704ba813dadd72fb75408?index=0"										,'found' => "#http://uncutvideo.aol.com/([^[]*\/([0-9A-Za-z-_]*)?)?([^[]*)?#si"							,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="wmode" value="opaque" /><param name="movie" value="http://uncutvideo.aol.com/v7.0017/en-US/uc_videoplayer.swf" /><param name="FlashVars" value="aID=1$2&site=http://uncutvideo.aol.com/"/><embed src="http://uncutvideo.aol.com/v7.0017/en-US/uc_videoplayer.swf" wmode="opaque" FlashVars="aID=1$2&site=http://uncutvideo.aol.com/" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash"></embed></object>'),
-			'badr.tv'						=> array ('display' => true	,'image' => 'badrtv.gif'		,'example' => "http://www.badr.tv/video/8d0cbedc973445af2da"																					,'found' => "#http://www.badr.tv/video/([0-9A-Za-z]+)?([^[]*)?#is"										,'regexp' => '<embed width="{WIDTH}" height="{HEIGHT}" quality="high" bgcolor="#000000" name="main" id="main" src="http://www.badr.tv/modules/vPlayer/vPlayer.swf?f=http://www.badr.tv/modules/vPlayer/vPlayercfg.php?fid=$1" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash"/></embed>'),
+			'uncutvideo.aol.com'			=> array ('display' => true	,'image' => 'aol.gif'			,'example' => "http://uncutvideo.aol.com/categories/News/month/007c338a423704ba813dadd72fb75408?index=0"										,'found' => "#http://uncutvideo.aol.com/([^[]*\/([0-9A-Za-z-_]*)?)?([^[]*)?#si"							,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="wmode" value="opaque" /><param name="movie" value="http://uncutvideo.aol.com/v7.0017/en-US/uc_videoplayer.swf" /><param name="FlashVars" value="aID=1$2&site=http://uncutvideo.aol.com/" /><embed src="http://uncutvideo.aol.com/v7.0017/en-US/uc_videoplayer.swf" wmode="opaque" FlashVars="aID=1$2&site=http://uncutvideo.aol.com/" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash"></embed></object>'),
+			'badr.tv'						=> array ('display' => true	,'image' => 'badrtv.gif'		,'example' => "http://www.badr.tv/video/8d0cbedc973445af2da"																					,'found' => "#http://www.badr.tv/video/([0-9A-Za-z]+)?([^[]*)?#is"										,'regexp' => '<embed width="{WIDTH}" height="{HEIGHT}" quality="high" bgcolor="#000000" name="main" id="main" src="http://www.badr.tv/modules/vPlayer/vPlayer.swf?f=http://www.badr.tv/modules/vPlayer/vPlayercfg.php?fid=$1" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" /></embed>'),
 			'comedycentral.com'				=> array ('display' => true	,'image' => 'comedycentral.gif'	,'example' => "http://www.comedycentral.com/videos/index.jhtml?videoId=185763&title=weekly-evil-six-reasons-alaska"								,'found' =>	"#http://www.comedycentral.com/videos/index.jhtml\?videoId=([0-9]+)([^[]*\w=([^[]*)?)?#si"	,'regexp' => '<embed src="http://media.mtvnservices.com/mgid:cms:item:comedycentral.com:$1" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" wmode="window" allowFullscreen="true" flashvars="autoPlay=false" allowscriptaccess="always" allownetworking="all" bgcolor="#000000"></embed>'),
 			'comedians.comedycentral.com'	=> array ('display' => true	,'image' => 'comedians.gif'		,'example' => "http://comedians.comedycentral.com/bert-kreischer/videos/bert-kreischer---twelve-words"											,'found' =>	"#http://comedians.comedycentral.com/([^[]*)?#sie"											,'regexp' => "\$this->external_video('\$0', 'embed')"),
 			'www.clipfish'					=> array ('display' => true	,'image' => 'clipfish.gif'		,'example' => "http://www.clipfish.de/player.php?videoid=NTU2Mzd8MTk5NTM1Nw=="																	,'found' => "#http://www.clipfish.(.*?)/([^[]*)?#sie"													,'regexp' => "\$this->external_video('\$0', 'object')"),
 			'clipmoon.com'					=> array ('display' => true	,'image' => 'clipmoon.gif'		,'example' => "http://www.clipmoon.com/videos/9194d9/animation-versus-animator.html"															,'found' => "#http://www.clipmoon.com/(.*?)/(([0-9]+)([\w])(.*))/([^[]*)#si"							,'regexp' => '<embed src="http://www.clipmoon.com/flvplayer.swf" FlashVars="config=http://www.clipmoon.com/flvplayer.php?viewkey=$2&external=no&vimg=http://www.clipmoon.com/thumb/$3.jpg" quality="high" bgcolor="#000000" wmode="transparent" width="{WIDTH}" height="{HEIGHT}" loop="false" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" scale="exactfit" allowFullScreen="true" ></embed>'),
 			'clipser.com'					=> array ('display' => true	,'image' => 'clipser.gif'		,'example' => "http://www.clipser.com/watch_video/933155"																						,'found' => "#http://www.clipser.com/watch_video/([^[]*)?#is"											,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.clipser.com/Play?vid=$1"></param><param name="wmode" value="transparent"></param><embed src="http://www.clipser.com/Play?vid=$1" type="application/x-shockwave-flash" wmode="transparent" width="{WIDTH}" height="{HEIGHT}"></embed></object>'),
 			'collegehumor.com'				=> array ('display' => true	,'image' => 'collegehumor.gif'	,'example' => "http://www.collegehumor.com/video:1802097"																						,'found' => "#http://www.collegehumor.com/video:([0-9]+)#si"											,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.collegehumor.com/moogaloop/moogaloop.swf?clip_id=$1&fullscreen=1" width="{WIDTH}" height="{HEIGHT}" ><param name="movie" quality="best" value="http://www.collegehumor.com/moogaloop/moogaloop.swf?clip_id=$1&fullscreen=1" /><param name="allowfullscreen" value="true" /></object>'),
-			'crackle.com'					=> array ('display' => true	,'image' => 'crackle.gif'		,'example' => "http://crackle.com/c/High_Wire/Fall_Out_Boy_Songs/2185986"																		,'found' => "#http://crackle.com/([A-Za-z-_/]+)?([0-9]+)?([^[]*)?#is"									,'regexp' => '<embed src="http://crackle.com/flash/ReferrerRedirect.ashx" quality="high" bgcolor="#869ca7" width="{WIDTH}" height="{HEIGHT}" name="mtgPlayer" align="middle" play="false" loop="false" allowFullScreen="true" flashvars="mu=0&ap=0&ml=o%3D12%26fi%3D%26fpl%3D2839&id=$2" quality="high" allowScriptAccess="never" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer"/>'),
-			'dailymotion.com'				=> array ('display' => true	,'image' => 'dailymotion.gif'	,'example' => "http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport"													,'found' => "#http://www.dailymotion.com(.*?)/video/([^[]*)?#si"										,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.dailymotion.com/swf/$2&v3=1&related=1"/><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><embed src="http://www.dailymotion.com/swf/$2&v3=1&related=1" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}" allowFullScreen="true" allowScriptAccess="always"></embed></object>'),
+			'crackle.com'					=> array ('display' => true	,'image' => 'crackle.gif'		,'example' => "http://crackle.com/c/High_Wire/Fall_Out_Boy_Songs/2185986"																		,'found' => "#http://crackle.com/([A-Za-z-_/]+)?([0-9]+)?([^[]*)?#is"									,'regexp' => '<embed src="http://crackle.com/flash/ReferrerRedirect.ashx" quality="high" bgcolor="#869ca7" width="{WIDTH}" height="{HEIGHT}" name="mtgPlayer" align="middle" play="false" loop="false" allowFullScreen="true" flashvars="mu=0&ap=0&ml=o%3D12%26fi%3D%26fpl%3D2839&id=$2" quality="high" allowScriptAccess="never" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer" />'),
+			'dailymotion.com'				=> array ('display' => true	,'image' => 'dailymotion.gif'	,'example' => "http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport"													,'found' => "#http://www.dailymotion.com(.*?)/video/([^[]*)?#si"										,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.dailymotion.com/swf/$2&v3=1&related=1" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><embed src="http://www.dailymotion.com/swf/$2&v3=1&related=1" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}" allowFullScreen="true" allowScriptAccess="always"></embed></object>'),
 			'deviantart.com'				=> array ('display' => true	,'image' => 'deviantart.gif'	,'example' => "http://bossk.deviantart.com/art/COLLEGE-FRIES-trailer-106469587"																	,'found' => "#http://(.*?).deviantart.com/([^[]*)?#sie"													,'regexp' => "\$this->external_video('\$0', 'object')"),
 			'g4tv.com'						=> array ('display' => true	,'image' => 'g4tv.gif'			,'example' => "http://www.g4tv.com/xplay/videos/29265/Infamous_All_Access.html"																	,'found' => "#http://((.*?)?)g4tv.com/(.*?)/(.*?)/(.*?)/([^[]*)?#si"									,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}" id="VideoPlayer"><param name="movie" value="http://www.g4tv.com/lv3/$5" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed src="http://www.g4tv.com/lv3/$5" type="application/x-shockwave-flash" name="VideoPlayer" width="{WIDTH}" height="{HEIGHT}" allowScriptAccess="always" allowFullScreen="true" /></object>'),
 			'gamepro.com'					=> array ('display' => true	,'image' => 'gamepro.gif'		,'example' => "http://www.gamepro.com/video/trailers/132252/punchout-debut-trailer/"															,'found' => "#http://www.gamepro.com/video/trailers/(.*?)/([^[]*)?#is"									,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}" ><param name="movie" value="http://www.gamepro.com/bin/vid-bin/octPlayer.swf?vId=$1&p=e&ae=d"></param><param name="allowFullScreen" value="false"></param><embed src="http://www.gamepro.com/bin/vid-bin/octPlayer.swf?vId=$1&p=e&ae=d" type="application/x-shockwave-flash" allowfullscreen="false" width="{WIDTH}" height="{HEIGHT}" ></embed></object>'),
-			'gameprotv.com'					=> array ('display' => true	,'image' => 'gameprotv.gif'		,'example' => "http://www.gameprotv.com/left-4-dead-anlisis-video-5553.html"																	,'found' => "#http://www.gameprotv.com/(.*)-video-([0-9]+)?.([^[]*)?#is"								,'regexp' => '<object id="WMPlay" width={WIDTH} height={HEIGHT} classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject"><param name="url" value="http://www.gameprotv.com/playlistwmv.php?id=$2"><param name="autoStart" value="0"/><param name="AnimationatStart" value="0" /><param name="showdisplay" value="1" /><param name="TransparentAtStart" value="0" /><param name="ShowControls" value="1" /><param name="ShowStatusBar" value="1" /><param name="ClickToPlay" value="0" /><param name="bgcolor" value="#000000" /><param name="volume" value="100%" /><param name="InvokeURLs" value="0" /><param name="loop" value="0" /><embed width="{WIDTH}" height="400" type="video/x-ms-wmv" pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/" src="http://www.gameprotv.com/playlistwmv.php?id=$2" Name="GameproTV" ShowControls="1" AutoStart="0" ShowDisplay="0" ShowStatusBar="1"></embed></object>'),
-			'gamespot.com'					=> array ('display' => true	,'image' => 'gamespot.gif'		,'example' => "http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8"													,'found' => "#http://www.gamespot.com(.*?)/video/(.*?)(\d{7}?)(/[^/]+)?#si"								,'regexp' => '<embed id="mymovie" width="{WIDTH}" height="{HEIGHT}" flashvars="playerMode=embedded&movieAspect=4.3&flavor=EmbeddedPlayerVersion&skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$3%26mode%3Dembedded%26width%3D432%26height%3D362" wmode="transparent" allowscriptaccess="always" quality="high" name="mymovie" src="http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf" type="application/x-shockwave-flash"/>'),
+			'gameprotv.com'					=> array ('display' => true	,'image' => 'gameprotv.gif'		,'example' => "http://www.gameprotv.com/left-4-dead-anlisis-video-5553.html"																	,'found' => "#http://www.gameprotv.com/(.*)-video-([0-9]+)?.([^[]*)?#is"								,'regexp' => '<object id="WMPlay" width={WIDTH} height={HEIGHT} classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject"><param name="url" value="http://www.gameprotv.com/playlistwmv.php?id=$2"><param name="autoStart" value="0" /><param name="AnimationatStart" value="0" /><param name="showdisplay" value="1" /><param name="TransparentAtStart" value="0" /><param name="ShowControls" value="1" /><param name="ShowStatusBar" value="1" /><param name="ClickToPlay" value="0" /><param name="bgcolor" value="#000000" /><param name="volume" value="100%" /><param name="InvokeURLs" value="0" /><param name="loop" value="0" /><embed width="{WIDTH}" height="400" type="video/x-ms-wmv" pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/" src="http://www.gameprotv.com/playlistwmv.php?id=$2" Name="GameproTV" ShowControls="1" AutoStart="0" ShowDisplay="0" ShowStatusBar="1"></embed></object>'),
+			'gamespot.com'					=> array ('display' => true	,'image' => 'gamespot.gif'		,'example' => "http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8"													,'found' => "#http://www.gamespot.com(.*?)/video/(.*?)(\d{7}?)(/[^/]+)?#si"								,'regexp' => '<embed id="mymovie" width="{WIDTH}" height="{HEIGHT}" flashvars="playerMode=embedded&movieAspect=4.3&flavor=EmbeddedPlayerVersion&skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$3%26mode%3Dembedded%26width%3D432%26height%3D362" wmode="transparent" allowscriptaccess="always" quality="high" name="mymovie" src="http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf" type="application/x-shockwave-flash" />'),
 			'gametrailers.com'				=> array ('display' => true	,'image' => 'gametrailers.gif'	,'example' => "http://www.gametrailers.com/player/30461.html"																					,'found' => "#http://www.gametrailers.com/player/([0-9]+).html#si"										,'regexp' => '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" id="gtembed" width="{WIDTH}" height="{HEIGHT}"><param name="allowScriptAccess" value="sameDomain" /><param name="allowFullScreen" value="true" /><param name="movie" value="http://www.gametrailers.com/remote_wrap.php?mid=$1"  /><param name="quality" value="high" /><embed src="http://www.gametrailers.com/remote_wrap.php?mid=$1"  swLiveConnect="true" name="gtembed" align="middle" allowScriptAccess="sameDomain" allowFullScreen="true" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}"></embed></object>'),
 			'gametrailers.com'				=> array ('display' => true	,'image' => 'gametrailers.gif'	,'example' => "http://www.gametrailers.com/player/usermovies/268358.html"																		,'found' => "#http://www.gametrailers.com/player/usermovies/([0-9]+).html#si"							,'regexp' => '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" id="gtembed" width="{WIDTH}" height="{HEIGHT}"><param name="allowScriptAccess" value="sameDomain" /><param name="allowFullScreen" value="true" /><param name="movie" value="http://www.gametrailers.com/remote_wrap.php?umid=$1" /><param name="quality" value="high" /><embed src="http://www.gametrailers.com/remote_wrap.php?umid=$1" swLiveConnect="true" name="gtembed" align="middle" allowScriptAccess="sameDomain" allowFullScreen="true" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}"></embed></object>'),
 			'www.gamevideos'				=> array ('display' => true	,'image' => 'gamevideos.gif'	,'example' => "http://www.gamevideos.com/video/id/17766"																						,'found' => "#http://(.*?)gamevideos(.*?).com/video/id/([^[]*)?#si"										,'regexp' => '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{WIDTH}" height="{HEIGHT}" id="gamevideos" align="middle"><param name="quality" value="high" /><param name="play" value="true" /><param name="loop" value="true" /><param name="scale" value="showall" /><param name="wmode" value="window" /><param name="devicefont" value="false" /><param name="bgcolor" value="#000000" /><param name="menu" value="true" /><param name="allowScriptAccess" value="sameDomain" /><param name="allowFullScreen" value="true" /><param name="salign" value="" /><param name="movie" value="http://gamevideos.1up.com/swf/gamevideos12.swf?embedded=1&fullscreen=1&autoplay=0&src=http://$1gamevideos$2.com/video/videoListXML%3Fid%3D$3%26ordinal%3D%26adPlay%3Dfalse" /><param name="quality" value="high" /><param name="bgcolor" value="#000000" /><embed src="http://gamevideos.1up.com/swf/gamevideos12.swf?embedded=1&fullscreen=1&autoplay=0&src=http://$1gamevideos$2.com/video/videoListXML%3Fid%3D$3%26ordinal%3D%26adPlay%3Dfalse" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" play="true" loop="true" scale="showall" wmode="window" devicefont="false" id="gamevideos" bgcolor="#000000" name="gamevideos6" menu="true" allowscriptaccess="sameDomain" allowFullScreen="true" type="application/x-shockwave-flash" align="middle" height="{HEIGHT}" width="{WIDTH}" /></object>'),
@@ -1293,11 +1307,11 @@ class abbcode
 			'imeem.com'						=> array ('display' => true	,'image' => 'imeem.gif'			,'example' => "http://www.imeem.com/yurakazi/music/JBj7qeCH/globus_preliator/"																	,'found' => "#http://www.imeem.com/([^[]*)?#sie"														,'regexp' => "\$this->external_video('\$0', 'object')"),
 			'kyte.tv'						=> array ('display' => true	,'image' => 'kyte.gif'			,'example' => "http://www.kyte.tv/ch/182864"																									,'found' => "#http://www.kyte.tv/ch/([^[]*)?#si"														,'regexp' => '<embed type="application/x-shockwave-flash" allowScriptAccess="always" allowFullScreen="true" style="display:block;margin:0" width="{WIDTH}" height="{HEIGHT}" src="http://www.kyte.tv/flash.swf?appKey=MarbachViewerEmbedded&uri=channels/57114/$1" bgcolor="#333333"></embed><embed type="application/x-shockwave-flash" allowScriptAccess="always" style="display:block;margin:0" width="{WIDTH}" height="20" src="http://media01.kyte.tv/images/updatenotice.swf" flashvars="requiredversion=9.0.28" wmode="transparent"></embed>'),
 			// Simple song
-			'lala.com'						=> array ('display' => true	,'image' => 'lala.gif'			,'example' => "http://www.lala.com/song/360569449463383108"																						,'found' => "#http://www.lala.com/song/([^[]*)?#si"														,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.lala.com/external/flash/SingleSongWidget.swf" id="lalaSongEmbed" width="{WIDTH}" height="70"><param name="movie" value="http://www.lala.com/external/flash/SingleSongWidget.swf"/><param name="wmode" value="transparent"/><param name="allowNetworking" value="all"/><param name="allowScriptAccess" value="always"/><param name="flashvars" value="songLalaId=$1&host=www.lala.com&partnerId=membersong"/><embed id="lalaSongEmbed" name="lalaSongEmbed" src="http://www.lala.com/external/flash/SingleSongWidget.swf" width="{WIDTH}" height="70" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" allowNetworking="all" allowScriptAccess="always" flashvars="songLalaId=$1&host=www.lala.com&partnerId=membersong"></embed></object>'),
+			'lala.com'						=> array ('display' => true	,'image' => 'lala.gif'			,'example' => "http://www.lala.com/song/360569449463383108"																						,'found' => "#http://www.lala.com/song/([^[]*)?#si"														,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.lala.com/external/flash/SingleSongWidget.swf" id="lalaSongEmbed" width="{WIDTH}" height="70"><param name="movie" value="http://www.lala.com/external/flash/SingleSongWidget.swf" /><param name="wmode" value="transparent" /><param name="allowNetworking" value="all" /><param name="allowScriptAccess" value="always" /><param name="flashvars" value="songLalaId=$1&host=www.lala.com&partnerId=membersong" /><embed id="lalaSongEmbed" name="lalaSongEmbed" src="http://www.lala.com/external/flash/SingleSongWidget.swf" width="{WIDTH}" height="70" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" allowNetworking="all" allowScriptAccess="always" flashvars="songLalaId=$1&host=www.lala.com&partnerId=membersong"></embed></object>'),
 			// album
-			'lala.com/\#album'				=> array ('display' => true	,'image' => 'lala.gif'			,'example' => "http://www.lala.com/#album/360569445168415812"																					,'found' => "#http://www.lala.com/\#album/([^[]*)?#si"													,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.lala.com/external/flash/PlaylistWidget.swf" id="lalaAlbumEmbed" width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.lala.com/external/flash/PlaylistWidget.swf"/><param name="wmode" value="transparent"/><param name="allowNetworking" value="all"/><param name="allowScriptAccess" value="always"/><param name="flashvars" value="albumId=$1&host=www.lala.com&partnerId=memberalbum"/><embed id="lalaAlbumEmbed" name="lalaAlbumEmbed" src="http://www.lala.com/external/flash/PlaylistWidget.swf" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" allowNetworking="all" allowScriptAccess="always" flashvars="albumId=$1&host=www.lala.com&partnerId=memberalbum"></embed></object>'),
+			'lala.com/\#album'				=> array ('display' => true	,'image' => 'lala.gif'			,'example' => "http://www.lala.com/#album/360569445168415812"																					,'found' => "#http://www.lala.com/\#album/([^[]*)?#si"													,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.lala.com/external/flash/PlaylistWidget.swf" id="lalaAlbumEmbed" width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.lala.com/external/flash/PlaylistWidget.swf" /><param name="wmode" value="transparent" /><param name="allowNetworking" value="all" /><param name="allowScriptAccess" value="always" /><param name="flashvars" value="albumId=$1&host=www.lala.com&partnerId=memberalbum" /><embed id="lalaAlbumEmbed" name="lalaAlbumEmbed" src="http://www.lala.com/external/flash/PlaylistWidget.swf" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" allowNetworking="all" allowScriptAccess="always" flashvars="albumId=$1&host=www.lala.com&partnerId=memberalbum"></embed></object>'),
 			// playlist
-			'lala.com/\#memberplaylis'		=> array ('display' => true	,'image' => 'lala.gif'			,'example' => "http://www.lala.com/#memberplaylist/2458P24912"																					,'found' => "#http://www.lala.com/\#memberplaylist/([^[]*)?#si"											,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.lala.com/external/flash/PlaylistWidget.swf" id="lalaPlaylistEmbed" width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.lala.com/external/flash/PlaylistWidget.swf"/><param name="wmode" value="transparent"/><param name="allowNetworking" value="all"/><param name="allowScriptAccess" value="always"/><param name="flashvars" value="playlistId=$1&host=www.lala.com&partnerId=memberplaylist"/><embed id="lalaPlaylistEmbed" name="lalaPlaylistEmbed" src="http://www.lala.com/external/flash/PlaylistWidget.swf" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" allowNetworking="all" allowScriptAccess="always" flashvars="playlistId=$1&host=www.lala.com&partnerId=memberplaylist"></embed></object>'),
+			'lala.com/\#memberplaylis'		=> array ('display' => true	,'image' => 'lala.gif'			,'example' => "http://www.lala.com/#memberplaylist/2458P24912"																					,'found' => "#http://www.lala.com/\#memberplaylist/([^[]*)?#si"											,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.lala.com/external/flash/PlaylistWidget.swf" id="lalaPlaylistEmbed" width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.lala.com/external/flash/PlaylistWidget.swf" /><param name="wmode" value="transparent" /><param name="allowNetworking" value="all" /><param name="allowScriptAccess" value="always" /><param name="flashvars" value="playlistId=$1&host=www.lala.com&partnerId=memberplaylist" /><embed id="lalaPlaylistEmbed" name="lalaPlaylistEmbed" src="http://www.lala.com/external/flash/PlaylistWidget.swf" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" allowNetworking="all" allowScriptAccess="always" flashvars="playlistId=$1&host=www.lala.com&partnerId=memberplaylist"></embed></object>'),
 			'liveleak.com'					=> array ('display' => true	,'image' => 'liveleak.gif'		,'example' => "http://www.liveleak.com/view?i=2ac_1203907789&p=1"																				,'found' => "#http://www.liveleak.com/view\?i=([0-9A-Za-z-_]+)?(\&[^/]+)?#si"							,'regexp' => '<object width="{WIDTH}" height="{HEIGHT"><param name="movie" value="http://www.liveleak.com/e/$1"></param><param name="wmode" value="transparent"></param><embed src="http://www.liveleak.com/e/$1" type="application/x-shockwave-flash" wmode="transparent" width="{WIDTH}" height="{HEIGHT}"></embed></object>'),
 			'livevideo.com'					=> array ('display' => true	,'image' => 'livevideo.gif'		,'example' => "http://www.livevideo.com/video/UKUFO/D930AEB5460D4707B2F6DC0CD8D3C258/haiti-and-the-dominican-republ.aspx"						,'found' => "#http://www.livevideo.com/video/([^[]*)/([^[]*)/([^[]*)#is"								,'regexp' => '<embed src="http://www.livevideo.com/flvplayer/embed/$2&autoStart=0" type="application/x-shockwave-flash" quality="high" width="{WIDTH}" height="{HEIGHT}" wmode="transparent"></embed>'),
 			'machinima.com'					=> array ('display' => true	,'image' => 'machinima.gif'		,'example' => "http://www.machinima.com:80/film/view&id=281"																					,'found' => "#http://www.machinima.com(:80)?/film/view&amp;id=([^[]*)?#si"								,'regexp' => '<embed src="http://www.machinima.com$1/_flash_media_player/mediaplayer.swf" width="{WIDTH}" height="{HEIGHT}" flashvars="&file=http://www.machinima.com$1/p/$2&height={HEIGHT}&width={WIDTH}" />'),
@@ -1315,7 +1329,7 @@ class abbcode
 			'rutube.ru'						=> array ('display' => true	,'image' => 'rutube.gif'		,'example' => "http://rutube.ru/tracks/1415928.html?v=67eb8c2fcd74fddb722ce4cd820195da"															,'found' => "#http://rutube.ru/([^[]*)?#sie"															,'regexp' => "\$this->external_video('\$0', 'lj-embed')"),
 			'sapo.pt'						=> array ('display' => true	,'image' => 'sapo.gif'			,'example' => "http://videos.sapo.pt/LguPabwSWikK0wzBmU1o"																						,'found' => "#http://(.*?)sapo.pt/(\?v\=)?([^[]*)?#is"													,'regexp' => '<embed src="http://rd3.videos.sapo.pt/play?file=http://rd3.videos.sapo.pt/$3/mov/1" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}"></embed>'),
 			'scribd.com'					=> array ('display' => true	,'image' => 'scribd.gif'		,'example' => "http://www.scribd.com/docinfo/2568988?access_key=key-8j0yfc1gkwpjwdwkhde"														,'found' => "#http://www.scribd.com/docinfo/(.*?)\?access_key=([^[]*)?#is"								,'regexp' => '<object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" id="doc_899296978639571" name="doc_899296978639571$1" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" align="middle" width="{WIDTH}" height="{HEIGHT}" ><param name="movie" value="http://documents.scribd.com/ScribdViewer.swf?document_id=$1&access_key=$2&page=&version=1&auto_size=false&viewMode="><param name="quality" value="high"><param name="play" value="true"><param name="loop" value="true"><param name="scale" value="showall"><param name="wmode" value="opaque"><param name="devicefont" value="false"><param name="bgcolor" value="#ffffff"><param name="menu" value="true"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><param name="salign" value=""><embed src="http://documents.scribd.com/ScribdViewer.swf?document_id=$1&access_key=$2&page=&version=1&auto_size=false&viewMode=" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" play="true" loop="true" scale="showall" wmode="opaque" devicefont="false" bgcolor="#ffffff" name="doc_899296978639571$1_object" menu="true" allowfullscreen="true" allowscriptaccess="always" salign="" type="application/x-shockwave-flash" align="middle" width="{WIDTH}" height="{HEIGHT}" ></embed></object>'),
-			'sevenload.com'					=> array ('display' => true	,'image' => 'sevenload.gif'		,'example' => "http://en.sevenload.com/videos/Cf6wyZr/Zoom"																						,'found' => "#http://(.*?).sevenload.com/(.*?)/([0-9A-Za-z]+)?([^[]*)?#is"								,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="FlashVars" value="apiHost=api.sevenload.com"/><param name="AllowScriptAccess" value="always"/><param name="movie" value="http://en.sevenload.com/pl/$3/425x350/swf" /><embed src="http://en.sevenload.com/pl/$3/425x350/swf" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}" allowfullscreen="true" AllowScriptAccess="always" FlashVars="apiHost=api.sevenload.com"></embed></object>'),
+			'sevenload.com'					=> array ('display' => true	,'image' => 'sevenload.gif'		,'example' => "http://en.sevenload.com/videos/Cf6wyZr/Zoom"																						,'found' => "#http://(.*?).sevenload.com/(.*?)/([0-9A-Za-z]+)?([^[]*)?#is"								,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="FlashVars" value="apiHost=api.sevenload.com" /><param name="AllowScriptAccess" value="always" /><param name="movie" value="http://en.sevenload.com/pl/$3/425x350/swf" /><embed src="http://en.sevenload.com/pl/$3/425x350/swf" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}" allowfullscreen="true" AllowScriptAccess="always" FlashVars="apiHost=api.sevenload.com"></embed></object>'),
 			'slideshare.net'				=> array ('display' => true	,'image' => 'slideshare.gif'	,'example' => "http://www.slideshare.net/chrisbrogan/social-media-for-publishers-presentation"													,'found' => "#http://www.slideshare.net/(.*?)/([^[]*)?#sie"												,'regexp' => "\$this->external_video('\$0', 'object')"),
 			'spike.com'						=> array ('display' => true	,'image' => 'spike.gif'			,'example' => "http://www.spike.com/video/2946505"																								,'found' => "#http://www.spike.com/video/([0-9]+)[^[]*#si"												,'regexp' => '<embed width="{WIDTH}" height="{HEIGHT}" src="http://www.spike.com/efp" quality="high" bgcolor="000000" name="efp" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="flvbaseclip=$1&"></embed>'),
 			'spike.com'						=> array ('display' => true	,'image' => 'spike.gif'			,'example' => "http://www.spike.com/video/2946505"																								,'found' => "#http://www.spike.com/video/([A-Za-z-_\-/]+)?([0-9]+)?([^[]*)?#is"							,'regexp' => '<embed width="{WIDTH}" height="{HEIGHT}" src="http://www.spike.com/efp" quality="high" bgcolor="000000" name="efp" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="flvbaseclip=$2&"></embed>'),
@@ -1336,7 +1350,8 @@ class abbcode
 			'vsocial.com'					=> array ('display' => true	,'image' => 'vsocial.gif'		,'example' => "http://www.vsocial.com/video/?d=2893"																							,'found' => "#http://www.vsocial.com/video/\?d=([^[]*)#is"												,'regexp' => '<embed allowScriptAccess="always" id="flash_player" name="flash_player" width="{WIDTH}" height="{HEIGHT}" src="http://static.vsocial.com/flash/upsl3.0.2/ups3.0.2.swf?d=$1&a=1&s=false&url=http://www.vsocial.com/xml/upsl/vsocial/template.php"></embed>'),
 			'wat.tv'						=> array ('display' => true	,'image' => 'wattv.gif'			,'example' => "http://www.wat.tv/playlist/564333"																								,'found' => "#http://(.*?).wat.tv/playlist/([^[]*)?#is"													,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.wat.tv/images/v2.5/flash/loaderexport.swf?revision=2.5.108&mediaID=$2&baseUrl=www.wat.tv&referer=www.wat.tv&request=/playlist/$2" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed src="http://www.wat.tv/images/v2.5/flash/loaderexport.swf?revision=2.5.108&mediaID=$2&baseUrl=www.wat.tv&referer=www.wat.tv&request=/playlist/$2" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}" allowScriptAccess="always" allowFullScreen="true"></embed></object>'),
 			'wegame.com'					=> array ('display' => true	,'image' => 'wegame.gif'		,'example' => "http://www.wegame.com/watch/jRi_Clan_Rolling_in_Action/"																			,'found' => "#http://www.wegame.com/watch/(.*?)/([^[]*)?#is"											,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}" ><param name="movie" value="http://www.wegame.com/static/flash/player2.swf?tag=$1"></param><param name="wmode" value="transparent"></param><embed src="http://www.wegame.com/static/flash/player2.swf?tag=$1" type="application/x-shockwave-flash" wmode="transparent" width="{WIDTH}" height="{HEIGHT}" ></embed></object>'),
-			'youtube.com'					=> array ('display' => true	,'image' => 'youtube.gif'		,'example' => "http://www.youtube.com/watch?v=PDGxfsf-xwQ"																						,'found' => "#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#is"					,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://$2youtube.com/v/$5&hl=en&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="allowFullScreen" value="true" /><param name="wmode" value="transparent"/><embed src="http://$2youtube.com/v/$5&hl=en&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999" type="application/x-shockwave-flash" wmode="transparent" width="{WIDTH}" height="{HEIGHT}" allowFullScreen="true"></embed></object>'),
+//			'youtube.com'					=> array ('display' => true	,'image' => 'youtube.gif'		,'example' => "http://www.youtube.com/watch?v=PDGxfsf-xwQ"																						,'found' => "#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#is"					,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://$2youtube.com/v/$5&amp;hl=en&amp;fs=1&amp;rel=0&amp;color1=0x3a3a3a&amp;color2=0x999999" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="transparent" /><embed src="http://$2youtube.com/v/$5&hl=en&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999" type="application/x-shockwave-flash" wmode="transparent" width="{WIDTH}" height="{HEIGHT}" allowFullScreen="true"></embed></object>'),
+			'youtube.com'					=> array ('display' => true	,'image' => 'youtube.gif'		,'example' => "http://www.youtube.com/watch?v=PDGxfsf-xwQ"																						,'found' => "#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#is"					,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" data="http://$2youtube.com/v/$5&amp;hl=en&amp;fs=1&amp;rel=0&amp;color1=0x3a3a3a&amp;color2=0x999999" ><param name="movie" value="http://$2youtube.com/v/$5&amp;hl=en&amp;fs=1&amp;rel=0&amp;color1=0x3a3a3a&amp;color2=0x999999" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="transparent" /></object>'),
 			'xfire.com'						=> array ('display' => true	,'image' => 'xfire.gif'			,'example' => "http://www.xfire.com/video/24c86/"																								,'found' => "#http://www.xfire.com/video/(.*?)/#si"														,'regexp' => '<object width="{WIDTH}" height="{HEIGHT}"><param name="movie" value=http://media.xfire.com/swf/vplayer><embed src="http://media.xfire.com/swf/vplayer.swf" quality="high" flashvars="videoid=$1" type="application/x-shockwave-flash" wmode="transparent" width="{WIDTH}" height="{HEIGHT}" allowfullscreen="true"></object>'),
 
 			'scribd'						=> array ('display' => true	,'image' => 'scribd.gif'		,'example' => "[scribd id=2568988 key=key-8j0yfc1gkwpjwdwkhde]"																					,'found' => "#(|\[)scribd(.*)id=(.*?)(.*)key=([0-9A-Za-z-_]+)?([^[]*)?#si"								,'regexp' => '<object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" id="doc_$4" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" align="middle" width="{WIDTH}" height="{HEIGHT}" ><param name="movie" value="http://documents.scribd.com/ScribdViewer.swf?document_id=$4&access_key=$5&page=1&version=1&viewMode="><param name="quality" value="high"><param name="play" value="true"><param name="loop" value="true"><param name="scale" value="showall"><param name="wmode" value="opaque"><param name="devicefont" value="false"><param name="bgcolor" value="#ffffff"><param name="menu" value="true"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><param name="salign" value=""><embed src="http://documents.scribd.com/ScribdViewer.swf?document_id=$4&access_key=$5&page=1&version=1&viewMode=" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" play="true" loop="true" scale="showall" wmode="opaque" devicefont="false" bgcolor="#ffffff" name="doc_$4_object" menu="true" allowfullscreen="true" allowscriptaccess="always" salign="" type="application/x-shockwave-flash" align="middle" width="{WIDTH}" height="{HEIGHT}"></embed></object>'),
@@ -1348,10 +1363,10 @@ class abbcode
 			'ram'							=> array ('display' => true	,'image' => 'ram.gif'			,'example' => "http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram"																,'found' => "#([^[]+)?.ram#si"																			,'regexp' => '<object id="rmstream" classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_' . $this->abbc3_unique_id . '" /><param name="prefetch" value="false" /><embed name="rmstream_' . $this->abbc3_unique_id . '" type="audio/x-pn-realaudio-plugin" src="$0" width="{WIDTH}" height="{HEIGHT}" autostart="false" controls="ImageWindow" console="ctrls_' . $this->abbc3_unique_id . '" prefetch="false"></embed></object><br /><object id="ctrls" classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_' . $this->abbc3_unique_id . '" /><embed name="ctrls_' . $this->abbc3_unique_id . '" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36" controls="ControlPanel" console="ctrls_' . $this->abbc3_unique_id . '"></embed></object>'),
 
 // Not available, no more
-//			'stage6.com'					=> array ('display' => false,'image' => 'stage6.gif'		,'example' => "http://www.stage6.com/user/TheNelAware/video/2217443/Indiana-Jones-4-Trailer.."													,'found' => "#http://www.stage6.com/user/TheNelAware/video/([0-9]+)/([0-9]+)?(/[^/]+)?#si"				,'regexp' => '<object codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab" height="{HEIGHT}" width="{WIDTH}" classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616"><param name="autoplay" value="false"/><param name="src" value="http://video.stage6.com/$1/.divx" /><param name="custommode" value="Stage6" /><param name="showpostplaybackad" value="false" /><embed type="video/divx" src="http://video.stage6.com/$1/.divx" pluginspage="http://go.divx.com/plugin/download/" showpostplaybackad="false" custommode="Stage6" autoplay="false" height="{HEIGHT}" width="{WIDTH}" /></object>'),
-//			'gamevee.com'					=> array ('display' => false,'image' => 'gamevee.gif'		,'example' => "http://www.gamevee.com/viewVideo/_HALO3/XBox_360/what_is_going_on/1225806"														,'found' => "#http://www.gamevee.com/(.*?)/(.*?)/(.*?)/(.*?)/([^[]*)?#si"								,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.gamevee.com/public/gameveeplayer.swf?video_id=$5&embed=on&vidview=on" width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.gamevee.com/public/gameveeplayer.swf?video_id=$5&embed=on&vidview=on" /><param name="allowfullscreen" value="true"/><param name="bgcolor" value="#FFFFFF"/></object>'),
+//			'stage6.com'					=> array ('display' => false,'image' => 'stage6.gif'		,'example' => "http://www.stage6.com/user/TheNelAware/video/2217443/Indiana-Jones-4-Trailer.."													,'found' => "#http://www.stage6.com/user/TheNelAware/video/([0-9]+)/([0-9]+)?(/[^/]+)?#si"				,'regexp' => '<object codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab" height="{HEIGHT}" width="{WIDTH}" classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616"><param name="autoplay" value="false" /><param name="src" value="http://video.stage6.com/$1/.divx" /><param name="custommode" value="Stage6" /><param name="showpostplaybackad" value="false" /><embed type="video/divx" src="http://video.stage6.com/$1/.divx" pluginspage="http://go.divx.com/plugin/download/" showpostplaybackad="false" custommode="Stage6" autoplay="false" height="{HEIGHT}" width="{WIDTH}" /></object>'),
+//			'gamevee.com'					=> array ('display' => false,'image' => 'gamevee.gif'		,'example' => "http://www.gamevee.com/viewVideo/_HALO3/XBox_360/what_is_going_on/1225806"														,'found' => "#http://www.gamevee.com/(.*?)/(.*?)/(.*?)/(.*?)/([^[]*)?#si"								,'regexp' => '<object type="application/x-shockwave-flash" data="http://www.gamevee.com/public/gameveeplayer.swf?video_id=$5&embed=on&vidview=on" width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://www.gamevee.com/public/gameveeplayer.swf?video_id=$5&embed=on&vidview=on" /><param name="allowfullscreen" value="true" /><param name="bgcolor" value="#FFFFFF" /></object>'),
 //			'godtube.com'					=> array ('display' => false,'image' => 'godtube.gif'		,'example' => "http://www.godtube.com/view_video.php?viewkey=25ec0b736884cda85a16"																,'found' => "#http://www.godtube.com/view_video.php\?viewkey=([^[]*)?#si"								,'regexp' => '<embed src="http://godtube.com/flvplayer.swf" FlashVars="viewkey=$1" wmode="transparent" quality="high" width="{WIDTH}" height="{HEIGHT}" name="godtube" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" /></embed>'),
-//			'gotgame.com'					=> array ('display' => false,'image' => 'gotgame.gif'		,'example' => "http://video.gotgame.com/index.php/video/view/4516"																				,'found' => "#http://video.gotgame.com/index.php/video/view/([^[]*)?#si"								,'regexp' => '<embed src="http://video.gotgame.com/public/flash/flash_gordon.swf?vid=$1" width="{WIDTH}" height="{HEIGHT}" allowscriptaccess="always" allowfullscreen="true"/>'),
+//			'gotgame.com'					=> array ('display' => false,'image' => 'gotgame.gif'		,'example' => "http://video.gotgame.com/index.php/video/view/4516"																				,'found' => "#http://video.gotgame.com/index.php/video/view/([^[]*)?#si"								,'regexp' => '<embed src="http://video.gotgame.com/public/flash/flash_gordon.swf?vid=$1" width="{WIDTH}" height="{HEIGHT}" allowscriptaccess="always" allowfullscreen="true" />'),
 //			'gotgame.com'					=> array ('display' => true ,'image' => 'gotgame.gif'		,'example' => "http://video.gotgame.com/index.php/video/view/4516"																				,'found' => "#http://video.gotgame.com/index.php/video/view/([^[]*)?#si"								,'regexp' => '<object classid="CLSID:D27CDB6E-AE6D-11CF-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,115,0" type="application/x-shockwave-flash" width="{WIDTH}" height="{HEIGHT}"><param name="movie" value="http://video.gotgame.com/public/flash/flash_gordon.swf?vid=$1" /><param name="wmode" value="transparent" /><param name="quality" value="high" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="pluginspage" value="http://www.macromedia.com/go/getflashplayer" /><param name="autoplay" value="false" /><param name="autostart" value="false" /> <embed type="application/x-shockwave-flash" src="http://video.gotgame.com/public/flash/flash_gordon.swf?vid=$1" width="{WIDTH}" height="{HEIGHT}" wmode="transparent" quality="high" allowFullScreen="true" allowScriptAccess="always" pluginspage="http://www.macromedia.com/go/getflashplayer" autoplay="false" autostart="false" flashvars="" /> <!-- Generated by AutoEmbed (http://autoembed.com) --> </object>'),
 //			'hdshare.tv'					=> array ('display' => false,'image' => 'hdshare.gif'		,'example' => "http://www.hdshare.tv/video/90/Air-Glaciers-entre-passe-et-present"																,'found' => "#http://www.hdshare.tv/video/(.*?)(/([^[]*)?)#si"											,'regexp' => '<embed src="http://www.hdshare.tv/jwembed/player.swf" width="{WIDTH}" height="{HEIGHT}" allowscriptaccess="always" allowfullscreen="true" flashvars="width={WIDTH}&height={HEIGHT}&file=http://www.hdshare.tv/videofiles/$1.flv" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" />'),
 //			'filefront.com'					=> array ('display' => false,'image' => 'filefront.gif'		,'example' => "http://www.filefront.com/14284133/Batman-Arkham-Asylum-Gadgets-Trailer/"															,'found' => "#http://www.filefront.com/(.*?)/([^[]*)?#sie"												,'regexp' => "\$this->external_video('\$0', 'SWFObject')"),
@@ -1370,7 +1385,7 @@ class abbcode
 	* @param string		$w		value for video width
 	* @param string		$h		value for video Height
 	* @return embed video
-	* @version 1.0.12
+	* @version 3.0.7
 	**/
 	function BBvideo_pass($in, $w, $h)
 	{
@@ -1510,7 +1525,7 @@ class abbcode
 					}
 					$SWFObject_var	= substr($addVariable, 0 , strlen($addVariable)-1);
 					unset($file_contents, $video_SWFObject, $SWFObject, $matches, $match);
-				//			<embed type="application/x-shockwave-flash" src="http://static.videogamer.com/videogamer/flash/source/player.swf?191008" width="656" height="368" style="undefined" id="vgtv" name="vgtv" bgcolor="#000000" quality="high" allowScriptAccess="always" allowFullScreen="true" loop="false" flashvars="xmlurl=http://feeds.videogamer.com/siteflash/&vid=2368&type=hi"/>
+				//			<embed type="application/x-shockwave-flash" src="http://static.videogamer.com/videogamer/flash/source/player.swf?191008" width="656" height="368" style="undefined" id="vgtv" name="vgtv" bgcolor="#000000" quality="high" allowScriptAccess="always" allowFullScreen="true" loop="false" flashvars="xmlurl=http://feeds.videogamer.com/siteflash/&vid=2368&type=hi" />
 				//			<object id="vgtv" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="656" height="368" style="undefined"><param name="movie" value="http://static.videogamer.com/videogamer/flash/source/player.swf?191008" /><param name="bgcolor" value="#000000" /><param name="quality" value="high" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><param name="loop" value="false" /><param name="flashvars" value="xmlurl=http://feeds.videogamer.com/siteflash/&vid=2368&type=hi" /></object>
 					$this->video_width  = $SWFObject_width;
 					$this->video_height = $SWFObject_height;
@@ -1533,7 +1548,7 @@ class abbcode
 			if ($search == 'embed' && (!$last || $last < $ini))
 			{
 				$padr = 2;
-				$last = strpos($file_contents, "/>", $ini);
+				$last = strpos($file_contents, " />", $ini);
 			}
 
 			if ($search == 'object')

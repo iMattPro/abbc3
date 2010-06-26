@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.6 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: abbcode.php, v 3.0.6 2010/01/10 10:01:10 leviatan21 Exp $
+* @package: phpBB 3.0.7 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
+* @version: $Id: abbcode.php, v 3.0.7 2010/04/20 10:04:20 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -109,7 +109,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOTE'				=> 'Nota',
 	'ABBC3_EXAMPLE'				=> 'Ejemplo',
 	'ABBC3_EXAMPLES'			=> 'Ejemplos',
+	'ABBC3_SHORT'				=> 'Seleccione BBcode',
 	'ABBC3_UNAUTHORISED'		=> 'No está permitido usar ciertas palabras : <br /><strong> %s </strong>',
+	'ABBC3_DEPRECATED'			=> '<div class="error">El bbcode <em>%1$s</em> está obsoleto desde ABBC3 version <em>%2$s</em></div>',	
+	'ABBC3_NOSCRIPT'			=> 'Su navegador tiene desactivado scripts o no admite client-side scripting. <em>(JavaScript!)</em>',
+	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'La página que está viendo requiere el uso de JavaScript para un mejor funcionamiento.<br />Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.',
 	'SAMPLE_TEXT'				=> 'Esto es una muestra de texto', //	' . $lang['SAMPLE_TEXT'] . '
 ));
 
@@ -149,6 +153,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLOR_TIP'			=> '[color=red]texto[/color]',
 	'ABBC3_COLOR_NOTE'			=> 'Nota: puede usar colores HTML (color=#FF0000 o color=red)',
 	'ABBC3_COLOR_VIEW'			=> '[color=red]' . $lang['SAMPLE_TEXT'] . '[/color]',
+	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Nota:</strong> Activar o desactivar el color de fuente ABBC3 a los usuarios, y/o utilizar la opción estándar de color phpbb3.',
 
 	// Cut selected text
 	'ABBC3_CUT_MOVER'			=> 'Borrar el texto seleccionado',
@@ -171,12 +176,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_QUOTE_TIP'			=> '[quote]texto[/quote] o [quote=“usuario”]texto[/quote]',
 ##	For translate :                                                             yes            yes
 	'ABBC3_QUOTE_VIEW'			=> '[quote]' . $lang['SAMPLE_TEXT'] . '[/quote] o [quote=&quot;usuario&quot;]' . $lang['SAMPLE_TEXT'] . '[/quote]',
-
-	// html
-//	'ABBC3_HTML_MOVER'			=> 'HTML code',
-//	'ABBC3_HTML_TIP'			=> '[html]xhtml code[/html]',
-//	'ABBC3_HTML_EXAMPLE'		=> '[html]&lt;a href=\"http://www.mssti.com/phpbb3\"&gt;link to mssti&lt;/a&gt;[/html]',
-//	'ABBC3_HTML_VIEW'			=> '<a href="http://www.mssti.com/phpbb3">link to mssti</a>',
 
 	// Spoiler
 	'ABBC3_SPOIL_MOVER'			=> 'Ocultar texto',
@@ -208,8 +207,13 @@ $lang = array_merge($lang, array(
 	// SCRIPPET
 	'ABBC3_SCRIPPET_MOVER'		=> 'Scrippet',
 	'ABBC3_SCRIPPET_TIP'		=> '[scrippet]Texto del guión[/scrippet]',
-##	For translate :                           yes                    <  don't  >yes                                                      <  don't  >yes    <don't    >yes                                                               <  don't  >yes  <  don't  >yes
-	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANTIGUA ROMA - DIA<p>\r\n</p>ANTONIO e IPSUM estan caminando por las calles atestadas.<p>\r\n</p>ANTONIO<p>\r\n</p>¿Cree usted que en mil años, alguien recordará nuestros nombres?<p>\r\n</p>IPSUM<p>\r\n</p>No el suyo. Pero ellos recordaran el mio. Porque tengo la intención de escribir algo tan profundo que será recordado por los tiempos. Los diseñadores en el siglo 20 utilizarán Lorem Ipsum, siempre que necesitan para cubrir los bloques de texto.[/scrippet]',
+##	For translate :                 don't change the "<br />" and don't join the lines in one !
+	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANTIGUA ROMA - DIA<br />
+	ANTONIO e IPSUM estan caminando por las calles atestadas.<br />
+	ANTONIO<br />
+	¿Cree usted que en mil años, alguien recordará nuestros nombres?<br />
+	IPSUM<br />
+	No el suyo. Pero ellos recordaran el mio. Porque tengo la intención de escribir algo tan profundo que será recordado por los tiempos. Los diseñadores en el siglo 20 utilizarán Lorem Ipsum, siempre que necesitan para cubrir los bloques de texto.[/scrippet]',
 
 	// Tabs
 	'ABBC3_TABS_MOVER'			=> 'Tabs',
@@ -221,7 +225,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_NFO_TITLE'			=> 'Texto NFO',
 	'ABBC3_NFO_MOVER'			=> 'Texto NFO (Mejor vista en Internet explorer)',
 	'ABBC3_NFO_TIP'				=> '[nfo]Texto NFO[/nfo]',
-	'ABBC3_NFO_VIEW'			=> '<dl class="codebox"><dt class="codetitle nfotitle">Texto NF : </dt><dd><div class="codecontent nfo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Uuml;&sup2;&Uuml;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&sup2;&sup2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&sup2;&sup2;&nbsp;&plusmn;</div></dd></dl>', //'[nfo]ܲ�  � ۲�     ����  � ����������������������������     ���� �  � ����� �� �[/nfo]',
+//	'ABBC3_NFO_VIEW'			=> '<dl class="codebox"><dt class="codetitle nfotitle">Texto NF : </dt><dd><div class="codecontent nfo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Uuml;&sup2;&Uuml;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&sup2;&sup2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&sup2;&sup2;&nbsp;&plusmn;</div></dd></dl>', //'[nfo]ܲ�  � ۲�     ����  � ����������������������������     ���� �  � ����� �� �[/nfo]',
+	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
 
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Texto justificado',
@@ -247,7 +252,7 @@ $lang = array_merge($lang, array(
 	// Preformat
 	'ABBC3_PRE_MOVER'			=> 'Texto preformateado',
 	'ABBC3_PRE_TIP'				=> '[pre]texto[/pre]',
-	'ABBC3_PRE_VIEW'			=> '<pre>' . $lang['SAMPLE_TEXT'] . '</pre>',
+	'ABBC3_PRE_VIEW'			=> '[pre]' . $lang['SAMPLE_TEXT'] . '<br />		' . $lang['SAMPLE_TEXT'] . '[/pre]',
 
 	// Tab
 	'ABBC3_TAB_MOVER'			=> 'Insertar tabulación',
@@ -351,7 +356,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HR_MOVER'			=> 'Línea divisoria',
 	'ABBC3_HR_TIP'				=> '[hr]',
 	'ABBC3_HR_NOTE'				=> 'Nota: Crea una línea para separar texto.',
-	'ABBC3_HR_VIEW'				=> '[hr]',
+	'ABBC3_HR_VIEW'				=> $lang['SAMPLE_TEXT'] . '[hr]' . $lang['SAMPLE_TEXT'],
 
 	// Message Box text direction Left to Light
 	'ABBC3_DIRRTL_MOVER'		=> 'Texto con lectura derecha a izquierda',
@@ -400,28 +405,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_CELL_ERROR'			=> 'Usted no escribió la cantidad de columnas',
 	'ABBC3_CELL_STYLE'			=> 'Introduzca estilo de filas',
 	'ABBC3_CELL_EXAMPLE'		=> 'border: 1px solid #cccccc;',
-
-	// Simple upload files
-	'ABBC3_UPLOAD_TITLE'		=> 'Advanced BBCode box 3 :: Subir archivo',
-	'ABBC3_UPLOAD_MOVER'		=> 'Subir archivo',
-	'ABBC3_UPLOAD_LINK'			=> 'Este es el enlace a su archivo subido',
-	'ABBC3_UPLOAD_UPLOADED'		=> 'Archivo “%1$s” subido con éxito!',
-	'ABBC3_UPLOAD_NOT_UPLOADED'	=> 'El archivo “%1$s” no pudo ser subido.',
-	'ABBC3_UPLOAD_ALREADY'		=> 'El archivo “%1$s” ya existe, por favor elija otro o renombre su archivo e intente nuevamente',
-	'ABBC3_UPLOAD_ERROR'		=> 'No se pudo subir el archivo “%1$s”. Código de error : “%2$s”',
-	'ABBC3_UPLOAD_EXTENSION'	=> 'Extensiones disponibles',
-	'ABBC3_UPLOAD_DISALLOWED'	=> 'Usted no tiene permiso para subir archivos',
-	'ABBC3_UPLOAD_DISABLED'		=> 'La extensión subida “%1$s” no está permitida.',
-	'ABBC3_UPLOAD_SIZE'			=> 'Tamaño máximo.',
-	'ABBC3_UPLOAD_NOSIZE'		=> 'El tamaño del archivo “%1$s” es muy grande. El máximo permitido es “%2$s”.',
-	'ABBC3_UPLOAD_EMPTY'		=> 'Usted no ha indicado un archivo para cargar.<br /> Por favor, haga clic en el botón “browse” y seleccione un archivo antes de hacer click en “Agregar archivo”.',
-	'ABBC3_UPLOAD_NO_FILE_SIZE'	=> 'El archivo que ha subido es de 0 bytes de tamaño.<br /> Por favor seleccione un archivo que contenga datos',
-	'ABBC3_UPLOAD_ERR_INI_SIZE'	=> 'Archivo no se ha subido porque es más grande que el permitido por <em>upload_max_filesize</em> en el archivo <em>php.ini</em>.<br /> Por favor, contáctese con el administrador con este error y pídale que aumente la configuración en php.ini.',
-	'ABBC3_UPLOAD_ERR_PARTIAL'	=> 'El archivo se ha subido parcialmente. Por favor, inténtelo de nuevo',
-	'ABBC3_UPLOAD_ERR_NO_TMPDIR'=> 'Falta una carpeta temporal. Póngase en contacto con el administrador por este error.',
-	'ABBC3_UPLOAD_ERR_CANTWRITE'=> 'No se pudo escribir el archivo en el disco. Póngase en contacto con el administrador por este error.',
-	'ABBC3_UPLOAD_ERR_EXTENSION'=> 'No se pudo subir el archivo, detenido por extensión',
-	'ABBC3_UPLOAD_UPLOAD_ERROR'	=> 'Error número: “%1$s” <br /> archivo no se ha cargado. Póngase en contacto con el administrador por este error, si después de un segundo intento persiste .',
 
 	// Anchor
 	'ABBC3_ANCHOR_MOVER'		=> 'Ancla',
