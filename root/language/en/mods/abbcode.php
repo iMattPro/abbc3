@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: abbcode.php, v 3.0.8 2010/06/26 10:06:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8 2010/06/28 10:06:28 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -37,6 +37,7 @@ if (empty($lang) || !is_array($lang))
 // Some characters you may want to copy&paste:
 // ’ » “ ” …
 //
+
 
 $lang = array_merge($lang, array(
 // Help page
@@ -116,13 +117,14 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOSCRIPT'			=> 'Your browser has disabled scripts or does not support client-side scripting. <em>( JavaScript! )</em>',
 	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'The page you are viewing requires the use of JavaScript for best performance.<br />If you have intentionally disabled JavaScript, please enable it.',
 	'ABBC3_FUNCTION_DISABLED'	=> 'This function is not available on this board.',
-	'ABBC3_SUBMIT'				=> 'Insert into post',
+	'ABBC3_SUBMIT'				=> 'Insert into message',
+	'ABBC3_SUBMIT_SIG'			=> 'Insert into signature',
 	'SAMPLE_TEXT'				=> 'This is a text sample' //	' . $lang['SAMPLE_TEXT'] . '
 ));
 
 /**
 * TRANSLATORS PLEASE NOTE 
-*	Several lines have an special note like "##	For translate : " follow for one or more "yes" 
+*	Several lines have an special note like "##	For translate : " followed for one or more "yes" 
 *	These means that you can/have to translate the word under
 **/
 $lang = array_merge($lang, array(
@@ -146,7 +148,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SIZE_VIEW'			=> '[size=150]' . $lang['SAMPLE_TEXT'] . '[/size]',
 
 	// Highlight Font Color Dropdown
-	'ABBC3_HIGHLIGHT_MOVER'		=> 'Highlight text',
+	'ABBC3_HIGHLIGHT_MOVER'		=> 'Text highlighted',
 	'ABBC3_HIGHLIGHT_TIP'		=> '[highlight=yellow]text[/highlight]',
 	'ABBC3_HIGHLIGHT_NOTE'		=> 'Note: You can use html colors (color=#FF0000 or color=red)',
 	'ABBC3_HIGHLIGHT_VIEW'		=> '[highlight=yellow]' . $lang['SAMPLE_TEXT'] . '[/highlight]',
@@ -235,7 +237,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_NFO_TITLE'			=> 'NFO text',
 	'ABBC3_NFO_MOVER'			=> 'NFO text (Better on Internet explorer)',
 	'ABBC3_NFO_TIP'				=> '[nfo]NFO text[/nfo]',
-	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
+	'ABBC3_NFO_VIEW'			=> '[nfo]        Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
 
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Text justified',
@@ -428,6 +430,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_TIP'				=> '[url]http://...[/url] or [url=http://...]Name of site[/url]',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.mssti.com',
 	'ABBC3_URL_VIEW'			=> '[url=http://www.mssti.com].:: MSSTI ::.[/url]',
+
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'email',

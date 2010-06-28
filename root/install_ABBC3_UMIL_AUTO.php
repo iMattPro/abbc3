@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.8 2010/06/26 10:06:26 leviatan21 Exp $
+* @version: $Id: install_abbc3_umil_auto.php, v 3.0.8 2010/06/27 10:06:27 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -264,7 +264,7 @@ function abbc3_update($action, $version)
 {
 	if ($action == 'update')
 	{
-		global $user;
+		global $user, $template;
 
 		// Deprecated config variables
 		if ($result = abbc3_clear_config())
@@ -398,7 +398,7 @@ function abbc3_end($action, $version)
 **/
 function abbc3_remove_bbcodes()
 {
-	global $db;
+	global $db, $template, $user;
 
 	$sql = 'DELETE FROM ' . BBCODES_TABLE . '
 		WHERE abbcode = 1';
@@ -406,7 +406,7 @@ function abbc3_remove_bbcodes()
 
 	$template->assign_block_vars('results', array(
 		'COMMAND'	=> $user->lang['INSTALLER_BBCODES_ADD'],
-		'RESULT'	=> $msg . $user->lang['LINE_ADDED'],
+		'RESULT'	=> $user->lang['LINE_ADDED'],
 		'S_SUCCESS'	=> ($result) ? true : false,
 	));
 }

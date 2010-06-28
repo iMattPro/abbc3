@@ -1,6 +1,6 @@
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/styles/abbcode
-* @version: $Id: posting_abbcode_buttons.js, v 3.0.8 2010/05/18 10:05:18 leviatan21 Exp $
+* @version: $Id: posting_abbcode_buttons.js, v 3.0.8 2010/06/28 10:06:28 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -537,7 +537,7 @@ function ABBC3_palette(el, mode)
 	{
 		return;
 	}
-	if(!mode)
+	if (!mode)
 	{
 		mode = 'dropdown';
 	}
@@ -551,6 +551,13 @@ function ABBC3_palette(el, mode)
 		3 : 'BF',
 		4 : 'FF'
 	};
+
+	var topic_cur_post_id = document.forms[form_name].elements['topic_cur_post_id'];
+	topic_cur_post_id = (!topic_cur_post_id) ? parseInt('{S_POST_ID}', 10) : topic_cur_post_id.value + 1;
+	if (mode == 'fancy')
+	{
+		el.className = el.className + (isEven(topic_cur_post_id)) ? ' bg2 row1' : ' bg1 row2';
+	}
 
 	for (var r = 4; r > -1; r--)
 	{
@@ -568,13 +575,11 @@ function ABBC3_palette(el, mode)
 					if (el == 'ul_color_selector')
 					{
 						item.setAttribute("onclick", "bbfontstyle('[color=#" + color + "]', '[/color]')");
-					//	item.onclick = new Function("bbfontstyle('[color=#" + color + "]', '[/color]')");
 						item.style.color = '#' + color;
 					}
 					else
 					{
 						item.setAttribute("onclick", "bbfontstyle('[highlight=#" + color + "]', '[/highlight]')");
-					//	item.onclick = new Function("bbfontstyle('[highlight=#" + color + "]', '[/highlight]')");
 						item.style.backgroundColor = '#' + color;
 					}
 					elSel.appendChild(item);
@@ -586,6 +591,7 @@ function ABBC3_palette(el, mode)
 					optn = document.createElement('option');
 					optn.text = '#' + color;
 					optn.value = color;
+					optn.className = (isEven(topic_cur_post_id)) ? 'bg1 row2' : 'bg2 row1';
 
 					if (el == 'abbc3_color')
 					{
@@ -600,6 +606,11 @@ function ABBC3_palette(el, mode)
 			}
 		}
 	}
+}
+
+function isEven(someNumber)
+{
+	return (someNumber%2 == 0) ? true : false;
 }
 <!-- ENDIF -->
 

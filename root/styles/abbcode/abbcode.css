@@ -1,7 +1,7 @@
 /*  phpBB 3.0 Style Sheet
  * --------------------------------------------------------------
  * @package: phpBB3 :: Advanced BBCode box 3 -> styles -> abbcode
- * @version: $Id: abbcode.css, v 3.0.7-PL1 2010/05/02 10:05:02 leviatan21 Exp $
+ * @version: $Id: abbcode.css, v 3.0.7-PL1 2010/06/28 10:06:28 leviatan21 Exp $
  * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
  * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
  * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -83,8 +83,10 @@ hr.hrdotted {
 
 #abbc3posttable option, 
 #abbc3wysiwig option {
-	background-color : #eeeeee;
+/*	background-color : #eeeeee;	*/
 	color : black;
+	padding-top: 1px;
+	padding-bottom: 1px;
 }
 
 #abbc3posttable option.selected, 

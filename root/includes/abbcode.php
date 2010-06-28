@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8 2010/06/26 10:06:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8 2010/06/28 10:06:28 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -262,6 +262,7 @@ class abbcode
 		$db->sql_freeresult($result);
 
 		$template->assign_vars(array(
+			'S_POST_ID'					=> request_var('p', 0),
 			'S_ABBC3_IN_WIZARD'			=> false,
 			'S_ABBC3_IN_ADMIN'			=> (isset($phpbb_admin_path)) ? true : false,
 			'S_ABBC3_BG'				=> $this->abbcode_config['ABBC3_BG'],

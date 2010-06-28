@@ -153,12 +153,12 @@
 		<!-- IF S_ABBC3_HIGHLIGHT -->
 			<!-- IF S_ABBC3_HIGHLIGHT_MODE eq 'dropdown' -->
 				<select id="abbc3_highlight" name="abbc3_highlight" onchange="bbfontstyle('[highlight=#' + this.form.abbc3_highlight.options[this.form.abbc3_highlight.selectedIndex].value + ']', '[/highlight]'); this.form.abbc3_highlight.selectedIndex = 0;" onmouseover="helpline2('abbc3_highlight')" onmouseout="helpline2()" title="{L_ABBC3_HIGHLIGHT_MOVER}">
-					<option selected="selected">- {L_ABBC3_HIGHLIGHT_MOVER} -</option>
+					<option selected="selected" class="selected">- {L_ABBC3_HIGHLIGHT_MOVER} -</option>
 				</select>
 			<!-- ELSEIF S_ABBC3_HIGHLIGHT_MODE eq 'fancy' -->
 				<ul class="_selector">
 					<li class="li_selector"><span id="button_highlight" class="btnlite">&nbsp;{L_ABBC3_HIGHLIGHT_MOVER}&nbsp;</span>
-						<ul id="ul_highlight_selector" class="row1 ul_selector"><li></li></ul>
+						<ul id="ul_highlight_selector" class="<!-- IF S_POST_ID is even -->row2<!-- ELSE -->row1<!-- ENDIF --> ul_selector"><li></li></ul>
 					</li>
 				</ul>
 			<!-- ELSEIF S_ABBC3_HIGHLIGHT_MODE eq 'tigra' -->
@@ -174,12 +174,12 @@
 		
 			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'dropdown' -->
 				<select id="abbc3_color" name="abbc3_color" onchange="bbfontstyle('[color=#' + this.form.abbc3_color.options[this.form.abbc3_color.selectedIndex].value + ']', '[/color]'); this.form.abbc3_color.selectedIndex = 0;" onmouseover="helpline2('abbc3_color')" onmouseout="helpline2()" title="{L_ABBC3_COLOR_MOVER}">
-					<option selected="selected">- {L_ABBC3_COLOR_MOVER} -</option>
+					<option selected="selected" class="selected">- {L_ABBC3_COLOR_MOVER} -</option>
 				</select>
 			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'fancy' -->
 				<ul class="_selector">
 					<li class="li_selector"><span id="button_colour" class="btnlite">&nbsp;{L_ABBC3_COLOR_MOVER}&nbsp;</span>
-						<ul id="ul_color_selector" class="row1 ul_selector"><li></li></ul>
+						<ul id="ul_color_selector" class="<!-- IF S_POST_ID is even -->row2<!-- ELSE -->row1<!-- ENDIF --> ul_selector"><li></li></ul>
 					</li>
 				</ul>
 			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'tigra' -->
