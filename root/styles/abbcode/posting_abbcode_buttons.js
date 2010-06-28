@@ -552,8 +552,12 @@ function ABBC3_palette(el, mode)
 		4 : 'FF'
 	};
 
-	var topic_cur_post_id = document.forms[form_name].elements['topic_cur_post_id'];
-	topic_cur_post_id = (!topic_cur_post_id) ? parseInt('{S_POST_ID}', 10) : topic_cur_post_id.value + 1;
+	if (mode == 'dropdown' && el == 'abbc3_color')
+	{
+		var topic_cur_post_id = document.forms[form_name].elements['topic_cur_post_id'];
+			topic_cur_post_id = (topic_cur_post_id) ? parseInt(topic_cur_post_id.value) + 1 : parseInt('{S_POST_ID}', 10);
+		var optn_className = (isEven(topic_cur_post_id)) ? 'bg2 row1' : 'bg1 row2';
+	}
 
 	for (var r = 4; r > -1; r--)
 	{
@@ -587,10 +591,10 @@ function ABBC3_palette(el, mode)
 					optn = document.createElement('option');
 					optn.text = '#' + color;
 					optn.value = color;
-					optn.className = (isEven(topic_cur_post_id)) ? 'bg1 row2' : 'bg2 row1';
 
 					if (el == 'abbc3_color')
 					{
+						optn.className = optn_className;
 						optn.style.color = '#' + color;
 					}
 					else
@@ -603,10 +607,12 @@ function ABBC3_palette(el, mode)
 		}
 	}
 }
-
-function isEven(someNumber)
+/**
+* The given number is even or odd ?
+**/
+function isEven(Number)
 {
-	return (someNumber%2 == 0) ? true : false;
+	return (Number%2 == 0) ? true : false;
 }
 <!-- ENDIF -->
 

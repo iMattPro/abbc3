@@ -174,7 +174,7 @@ class abbcode
 	**/
 	function abbcode_display($mode)
 	{
-		global $db, $template, $user, $phpbb_admin_path, $phpbb_root_path;
+		global $db, $template, $user, $phpbb_admin_path, $phpbb_root_path, $post_id;
 
 		$user->add_lang('mods/abbcode');
 
@@ -262,7 +262,7 @@ class abbcode
 		$db->sql_freeresult($result);
 
 		$template->assign_vars(array(
-			'S_POST_ID'					=> request_var('p', 0),
+			'S_POST_ID'					=> ($post_id) ? $post_id : 0, //request_var('p', 0),
 			'S_ABBC3_IN_WIZARD'			=> false,
 			'S_ABBC3_IN_ADMIN'			=> (isset($phpbb_admin_path)) ? true : false,
 			'S_ABBC3_BG'				=> $this->abbcode_config['ABBC3_BG'],
