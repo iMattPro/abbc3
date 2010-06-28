@@ -148,7 +148,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SIZE_VIEW'			=> '[size=150]' . $lang['SAMPLE_TEXT'] . '[/size]',
 
 	// Highlight Font Color Dropdown
-	'ABBC3_HIGHLIGHT_MOVER'		=> 'Text highlighted',
+	'ABBC3_HIGHLIGHT_MOVER'		=> 'Highlight text',
 	'ABBC3_HIGHLIGHT_TIP'		=> '[highlight=yellow]text[/highlight]',
 	'ABBC3_HIGHLIGHT_NOTE'		=> 'Note: You can use html colors (color=#FF0000 or color=red)',
 	'ABBC3_HIGHLIGHT_VIEW'		=> '[highlight=yellow]' . $lang['SAMPLE_TEXT'] . '[/highlight]',
