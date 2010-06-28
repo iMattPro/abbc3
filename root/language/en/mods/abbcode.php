@@ -237,7 +237,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_NFO_TITLE'			=> 'NFO text',
 	'ABBC3_NFO_MOVER'			=> 'NFO text (Better on Internet explorer)',
 	'ABBC3_NFO_TIP'				=> '[nfo]NFO text[/nfo]',
-	'ABBC3_NFO_VIEW'			=> '[nfo]        Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
+	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
 
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Text justified',

@@ -554,10 +554,6 @@ function ABBC3_palette(el, mode)
 
 	var topic_cur_post_id = document.forms[form_name].elements['topic_cur_post_id'];
 	topic_cur_post_id = (!topic_cur_post_id) ? parseInt('{S_POST_ID}', 10) : topic_cur_post_id.value + 1;
-	if (mode == 'fancy')
-	{
-		el.className = el.className + (isEven(topic_cur_post_id)) ? ' bg2 row1' : ' bg1 row2';
-	}
 
 	for (var r = 4; r > -1; r--)
 	{
