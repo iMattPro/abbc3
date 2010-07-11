@@ -116,6 +116,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOSCRIPT'			=> 'Su navegador tiene desactivado scripts o no admite client-side scripting. <em>(JavaScript!)</em>',
 	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'La página que está viendo requiere el uso de JavaScript para un mejor funcionamiento.<br />Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.',
 	'ABBC3_FUNCTION_DISABLED'	=> 'Esta función no está disponible en este foro.',
+	'ABBC3_AJAX_DISABLED'		=> 'Su navegador no es compatible con AJAX (XMLHttpRequest) y no es posible procesar esta solicitud.',
 	'ABBC3_SUBMIT'				=> 'Insertar en el mensaje',
 	'ABBC3_SUBMIT_SIG'			=> 'Insertar en la firma',
 	'SAMPLE_TEXT'				=> 'Esto es una muestra de texto', //	' . $lang['SAMPLE_TEXT'] . '
