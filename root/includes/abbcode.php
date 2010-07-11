@@ -1986,7 +1986,7 @@ class abbcode
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/calmate.wmv",
 				'found'		=> "#([^[]+)?\.(wmv|mpg)#si",
 				'regexp'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0"><param name="Showcontrols" value="true"><param name="autoStart" value="false"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
-				<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}"><param name="controller" value="true" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="true" /><param name="autosize" value="true" /><param name="autostart" value="false" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" /></embed></object>',
+				<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
 			),
 			'(qt|mov)' => array(
 				'display'	=> true,
