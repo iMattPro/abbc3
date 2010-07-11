@@ -298,7 +298,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 					if ($video_name == 'file' || $video_name == 'external')
 					{
-					$video_options .= '</optgroup><optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">';
+						$video_options .= '</optgroup><optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">';
 					}
 					else
 					{
