@@ -568,7 +568,7 @@ function ABBC3_palette(el, mode)
 				if (mode == 'fancy')
 				{
 					color = String(numberList[r]) + String(numberList[g]) + String(numberList[b]);
-					color = color.toLowerCase()
+					color = color.toLowerCase();
 					item = document.createElement('li');
 					item.innerHTML = '{LA_SAMPLE_TEXT}' + '&nbsp;(#' + color + ')';
 
@@ -587,7 +587,7 @@ function ABBC3_palette(el, mode)
 				else if (mode == 'dropdown')
 				{
 					color = String(numberList[r]) + String(numberList[g]) + String(numberList[b]);
-					color = color.toLowerCase()
+					color = color.toLowerCase();
 					optn = document.createElement('option');
 					optn.text = '#' + color;
 					optn.value = color;
@@ -666,7 +666,7 @@ function textbox_resize(height, el, cookie_name)
 		/* resize the textarea */
 		editor.rows = height;
 		/* store the cookie */
-		createCookie(cookie_name, editor.rows, 365)
+		createCookie(cookie_name, editor.rows, 365);
 	}
 }
 

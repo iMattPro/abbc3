@@ -292,20 +292,22 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 			$video_options = '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' --">';
 			foreach ($abbcode->abbcode_video_ary as $video_name => $video_data)
 			{
-				if ($video_data['display'])
+				// Fisrt check that this video is enabled and have data for search and replace
+				if (!$video_data['display'] || (!isset($video_data['match']) || $video_data['match'] == '') || (!isset($video_data['replace']) || $video_data['replace'] == ''))
 				{
-					$video_name = stripslashes($video_name);
+					continue;
+				}
+				$video_name = stripslashes($video_name);
 
-					if ($video_name == 'file' || $video_name == 'external')
-					{
-						$video_options .= '</optgroup><optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">';
-					}
-					else
-					{
-						$example = (isset($video_data['example']) ? $video_data['example'] : $user->lang['ABBC3_NO_EXAMPLE']);
-						$selected = ($video_name == 'youtube.com') ? ' selected="selected"' : '';
-						$video_options .= '<option value="' . $example . '"' . $selected . '>' . $video_name . '</option>';
-					}
+				if ($video_name == 'file' || $video_name == 'external')
+				{
+					$video_options .= '</optgroup><optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">';
+				}
+				else
+				{
+					$example = (isset($video_data['example']) ? $video_data['example'] : $user->lang['ABBC3_NO_EXAMPLE']);
+					$selected = ($video_name == 'youtube.com') ? ' selected="selected"' : '';
+					$video_options .= '<option value="' . $example . '"' . $selected . '>' . $video_name . '</option>';
 				}
 			}
 			$video_options .= '</optgroup>';
