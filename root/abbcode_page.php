@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root
-* @version: $Id: abbcode_page.php, v 3.0.8 2010/05/18 10:05:18 leviatan21 Exp $
+* @version: $Id: abbcode_page.php, v 3.0.8 2010/07/11 10:07:11 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -289,18 +289,26 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 		$abbcode->video_init();
 		if (sizeof($abbcode->abbcode_video_ary))
 		{
-			$video_options = '';
+			$video_options = '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' --">';
 			foreach ($abbcode->abbcode_video_ary as $video_name => $video_data)
 			{
 				if ($video_data['display'])
 				{
 					$video_name = stripslashes($video_name);
 
-					$example = (isset($video_data['example']) ? $video_data['example'] : $user->lang['ABBC3_NO_EXAMPLE']);
-					$selected = ($video_name == 'youtube.com') ? ' selected="selected"' : '';
-					$video_options .= '<option value="' . $example . '"' . $selected . '>' . $video_name . '</option>';
+					if ($video_name == 'file' || $video_name == 'external')
+					{
+					$video_options .= '</optgroup><optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">';
+					}
+					else
+					{
+						$example = (isset($video_data['example']) ? $video_data['example'] : $user->lang['ABBC3_NO_EXAMPLE']);
+						$selected = ($video_name == 'youtube.com') ? ' selected="selected"' : '';
+						$video_options .= '<option value="' . $example . '"' . $selected . '>' . $video_name . '</option>';
+					}
 				}
 			}
+			$video_options .= '</optgroup>';
 		}
 	}
 

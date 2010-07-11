@@ -532,8 +532,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
-	'ABBC3_BBVIDEO_FILE'		=> 'Video format',
+	'ABBC3_BBVIDEO_FILE'		=> 'File format',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',
+	'ABBC3_BBVIDEO_EXTERNAL'	=> 'External Video from',
 
 	// Flash (swf) Wizard
 	'ABBC3_FLASH_TAG'			=> 'flash',

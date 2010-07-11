@@ -868,7 +868,7 @@ function ABBC3_Ajax_send(url, parameters, bbcode, container_id)
 			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
 		} catch (e){
 			// oldest versions
-			try{
+			try {
 				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			} catch (e) {
 				xmlhttp = false;
@@ -881,7 +881,7 @@ function ABBC3_Ajax_send(url, parameters, bbcode, container_id)
 	* XMLHttpRequest if it already exists.
 	* If native XMLHTTP has been disabled, developers can override the XMLHttpRequest property of the window object with the MSXML-XMLHTTP control, unless ActiveX has also been disabled, as in the following example.
 	**/
-	else if (typeof XMLHttpRequest == "undefined")
+	else if (typeof(XMLHttpRequest) == "undefined")
 	{
 		xmlhttp = function ()
 		{
@@ -892,13 +892,14 @@ function ABBC3_Ajax_send(url, parameters, bbcode, container_id)
 	}
 	else
 	{
-		document.getElementById(container_id).innerHTML = "This browser does not support XMLHttpRequest."; //"Su Browser (navegador) no soporta esta función.";
+		document.getElementById(container_id).innerHTML = "{LA_ABBC3_AJAX_DISABLED}";
 		return false;
 	}
 
 	if (xmlhttp)
 	{
 		ABBC3_Ajax_indicator('on');
+		url = url.replace(/&amp;/g, '&');
 		parameters = parameters.replace(/&amp;/g, '&') + '&ajax=true';
 		// Event handler for an event that fires at every state change
 		xmlhttp.onreadystatechange = function(){ ABBC3_Ajax_handler(xmlhttp, container_id, bbcode); }
