@@ -1739,13 +1739,6 @@ class abbcode
 				'found'		=> "#http://(.*?)sapo.pt/(.*/)?([^[]*)?#ise",
 				'regexp'	=> "\$this->auto_embed_video('http://rd3.videos.sapo.pt/play?file=http://rd3.videos.sapo.pt/$3/mov/1', '{WIDTH}', '{HEIGHT}')",
 			),
-			'scribd.com' => array(
-				'display'	=> true,
-				'image'		=> 'scribd.gif',
-				'example'	=> "http://www.scribd.com/docinfo/2568988?access_key=key-8j0yfc1gkwpjwdwkhde",
-				'found'		=> "#http://www.scribd.com/docinfo/(.*?)\?access_key=([^[]*)?#ise",
-				'regexp'	=> "\$this->auto_embed_video('http://documents.scribd.com/ScribdViewer.swf?document_id=$1&access_key=$2&page=&version=1&auto_size=false&viewMode=', '{WIDTH}', '{HEIGHT}')",
-			),
 			'sevenload.com' => array(
 				'display'	=> true,
 				'image'		=> 'sevenload.gif',
