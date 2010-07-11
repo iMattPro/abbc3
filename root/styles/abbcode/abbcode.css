@@ -630,7 +630,7 @@ span.anchor {
 	padding : 5px;
 	background-color : #ffffff;
 	border : 1px solid #555555;
-	border-bottom : none;
+/*	border-bottom : none; */
 	text-transform : uppercase;
 	font-size : 11px;
 	font-weight : bold;
