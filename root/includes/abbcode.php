@@ -1885,14 +1885,14 @@ class abbcode
 				'replace'	=> 'external',
 			),
 			'slideshare.net' => array(
-				'display'	=> true,
+				'display'	=> false,
 				'image'		=> 'slideshare.gif',
 				'example'	=> "http://www.slideshare.net/chrisbrogan/social-media-for-publishers-presentation",
 				'match'		=> "#http://www.slideshare.net/(.*?)/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'streetfire.net' => array(
-				'display'	=> true,
+				'display'	=> false,
 				'image'		=> 'streetfire.gif',
 				'example'	=> "http://videos.streetfire.net/video/Top-Gear-Lorry-truck-12_196610.htm",
 				'match'		=> "#http://videos.streetfire.net/video/([^[]*)?#si",
