@@ -162,73 +162,20 @@ $lang = array_merge($lang, array(
 	'ABBCODES_DEACTIVATED'				=> 'deactivated',
 ));
 
-// Installer 
+// UMIL Installer 
 $lang = array_merge($lang, array(
-	// Main
-	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
-	'INSTALLER_VERSION'					=> ' version : %1$s',
-
-	'INSTALLER_INTRO'					=> 'Intro',
-	'INSTALLER_INTRO_WELCOME'			=> 'Welcome to the <strong>%1$s</strong> Installation',
-	'INSTALLER_INTRO_WELCOME_NOTE'		=> 'Please choose what you want to do.',
-	'INSTALLER_INSTALL_MENU'			=> 'Menu',
-	'INSTALLER_EXTRA_MENU'				=> 'Extras',
-
-	// Install
-	'INSTALLER_INSTALL'					=> 'Install',
-	'INSTALLER_INSTALL_WELCOME'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
-	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
-	'INSTALLER_INSTALL_SUCCESSFUL'		=> 'Installation of ABBC3 was successful.',
-	'INSTALLER_INSTALL_UNSUCCESSFUL'	=> 'Installation of ABBC3 was <strong>not</strong> successful.',
-	'INSTALLER_INSTALL_VERSION'			=> 'Install version : %1$s',
-	'INSTALLER_INSTALL_END'				=> 'Installation of <strong>%1$s version : %2$s</strong> was successful. <br /> <p>You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move your <strong>install_abbc3.php</strong> file!</p>',
-
-	// Update
-	'INSTALLER_UPDATE'					=> 'Update',
-	'INSTALLER_UPDATE_WELCOME'			=> 'Welcome to the <strong>ABBC3</strong> Update menu',
-	'INSTALLER_UPDATE_WELCOME_NOTE'		=> 'When you choose to Update ABBC3, any database of previous versions will be dropped.',
-	'INSTALLER_UPDATE_SUCCESSFUL'		=> 'Update of ABBC3 was successful.',
-	'INSTALLER_UPDATE_UNSUCCESSFUL'		=> 'Update of ABBC3 was <strong>not</strong> successful.',
-	'INSTALLER_UPDATE_VERSION'			=> 'Update to version : %1$s',
-	'INSTALLER_UPDATE_END'				=> 'Please be advised that some BBCodes might <strong>not</strong> display correctly due to the changes introduced in BBCodes. If you experience problems please run the <strong>Extras » Re-parse</strong> steps.',
-
-	// Uninstall
-	'INSTALLER_DELETE'					=> 'Delete',
-	'INSTALLER_DELETE_WELCOME'			=> 'Welcome to the <strong>ABBC3</strong> Delete menu',
-	'INSTALLER_DELETE_WELCOME_NOTE'		=> 'When you choose to delete the MOD, we remove all SQL-data insert by the installation.',
-	'INSTALLER_DELETE_VERSION'			=> 'Delete version : %1$s',
-	'INSTALLER_DELETE_NOTE'				=> 'Delete',
-	'INSTALLER_DELETE_SUCCESSFUL'		=> 'Deleted the <strong>%1$s version : %2$s</strong> was successfully.<br />Now delete all files.',
-	'INSTALLER_DELETE_UNSUCCESSFUL'		=> 'Could <strong>not</strong> delete %1$s version :%2$s .',
-
-	// UCP ADD-ON
-	'INSTALLER_UCP'						=> 'UCP',
-	'INSTALLER_UCP_PREFS'				=> 'User Control Panel',
-	'INSTALLER_UCP_WELCOME'				=> 'Welcome to the <strong>ABBC3</strong> UCP menu',
-	'INSTALLER_UCP_WELCOME_NOTE'		=> 'When you choose to install the ABBC3 UCP, two new values will be added to the “phpbb_users” table.
-	<br /> The first is for allow users to switch between ABBC3 toolbar or use the default phpbb3 buttons ( Default value yes )
-	<br /> The second is for allow users to switch between ABBC3 compact view or full view ( Default value no )',
-	'INSTALLER_UCP_END'					=> 'Installation of <strong>%1$s : %2$s</strong> was successful. <br /> <p>You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move your <strong>install_abbc3.php</strong> file!</p>',
-	'INSTALLER_UCP_END_NOTE'			=> 'Please be advised that this steps only modify the database, do not forget to follow the code and template changes instructions.',
-
-	// Re-parse
-	'INSTALLER_REPARSE'					=> 'Re-parse',
-	'INSTALLER_REPARSE_WELCOME'			=> 'Welcome to the Re-parse menu',
-	'INSTALLER_REPARSE_WELCOME_NOTE'	=> '<strong>Re-parse</strong> simply reparses all BBCodes -- it is useful if you have changed the syntax of a BBCode, and they have stopped working correctly.',
-	'INSTALLER_REPARSE_NOTE'			=> 'Please note that while the chance of any database damage is unlikely, you are running it at your own risk and I am not responsible if something goes wrong.',
-	'INSTALLER_REPARSE_WARNING'			=> 'You should make a backup of your users, posts and privmsgs tables in case something goes wrong.',
-	'INSTALLER_REPARSE_POST'			=> 'Re-parse post content',
-	'INSTALLER_REPARSE_SIG'				=> 'Re-parse signatures',
-	'INSTALLER_REPARSE_PM'				=> 'Re-parse private messages',
-	'INSTALLER_REPARSE_SUCCESSFUL'		=> '%1$s was successful.',
-	'INSTALLER_REPARSE_UNSUCCESSFUL'	=> 'Could <strong>not</strong> %1$s.',
-
-	'STEP_PERCENT_COMPLETED'			=> 'Step <strong>%d</strong> of <strong>%d</strong>',
-	'INSTALLER_NOTE'					=> '<strong>Note :</strong> Before adding this MOD to your forum, you should backup the database and all files related to this MOD!',
-	'INSTALLER_DELETE_INFORMATION'		=> 'Could <strong>not</strong> find ABBC3 installed!',
-	'INSTALLER_NEEDS_FOUNDER'			=> 'You must be logged in as a founder.',
-	'MISSING_PARENT_MODULE'				=> 'Module #%1$s is missing as a parent module for "%2$s".',
-	'WARNING'							=> 'Warning',
+// Main
+	'INSTALLER_WELCOME'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
+	'INSTALLER_WELCOME_NOTE'	=> 'Please be advised that some BBCodes might <strong>not</strong> display correctly due to the changes introduced in BBCodes.
+	<br />If you experience problems use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
+	<br /><br />Before adding this MOD to your board, you should back up files and database first.',
+	'INSTALLER_WELCOME_EXPLAIN'	=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
+//	'INSTALLER_INSTALL_END'		=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
+// Stages
+	'INSTALLER_TITLE'			=> 'Advanced BBcodes Box 3',
+	'INSTALLER_TITLE_EXPLAIN'	=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
+	'INSTALLER_CONFIGS_ADD'		=> 'ABBC3 config',
+	'INSTALLER_BBCODES_ADD'		=> 'ABBC3 bbcodes',
 ));
 
 ?>

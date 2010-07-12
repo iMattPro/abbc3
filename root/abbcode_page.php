@@ -292,8 +292,8 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 			$video_options = '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' --">';
 			foreach ($abbcode->abbcode_video_ary as $video_name => $video_data)
 			{
-				// Fisrt check that this video is enabled and have data for search and replace
-				if (!$video_data['display'] || (!isset($video_data['match']) || $video_data['match'] == '') || (!isset($video_data['replace']) || $video_data['replace'] == ''))
+				// First check that this video is enabled
+				if (!$video_data['display'])
 				{
 					continue;
 				}
@@ -303,11 +303,17 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 				{
 					$video_options .= '</optgroup><optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">';
 				}
-				else
+				// Now check that this video is has data for search and replace
+				else if ((isset($video_data['match']) && $video_data['match'] != '') && (isset($video_data['replace']) && $video_data['replace'] != ''))
 				{
-					$example = (isset($video_data['example']) ? $video_data['example'] : $user->lang['ABBC3_NO_EXAMPLE']);
+				//	$example = (isset($video_data['example']) ? $video_data['example'] : $user->lang['ABBC3_NO_EXAMPLE']);
+					$example = (isset($video_data['example']) ? str_replace('&', '&amp;', $video_data['example']) : $user->lang['ABBC3_NO_EXAMPLE']);
 					$selected = ($video_name == 'youtube.com') ? ' selected="selected"' : '';
 					$video_options .= '<option value="' . $example . '"' . $selected . '>' . $video_name . '</option>';
+				}
+				else
+				{
+					continue;
 				}
 			}
 			$video_options .= '</optgroup>';

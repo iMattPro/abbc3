@@ -63,7 +63,7 @@ $logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.gif';
 // Options to display to the user
 $options = array(
 	'legend2'	=> 'WARNING',
-	'welcome'	=> array('lang' => 'INSTALLER_INTRO_WELCOME', 'type' => 'custom', 'function' => 'display_message', 'params' => array('INSTALLER_WELCOME_NOTE', 'error'), 'explain' => true),
+	'welcome'	=> array('lang' => 'INSTALLER_WELCOME', 'type' => 'custom', 'function' => 'display_message', 'params' => array('INSTALLER_WELCOME_NOTE', 'error'), 'explain' => true),
 	'legend3'	=> 'ACP_SUBMIT_CHANGES',
 );
 $user->lang['INSTALLER_INSTALL_WELCOME_NOTE'] = $user->lang['INSTALLER_INSTALL_WELCOME_NOTE'] . '<br /><br /><br />' . $user->lang['ABBC3_HELP_ABOUT'];
@@ -303,7 +303,7 @@ function abbc3_clear_config()
 	global $db, $config;
 
 	// tracking different version 
-	$config_data = array(			//Create	Depreated
+	$config_data = array(			//Create	Deprecated
 		'ABBC3_GREYBOX',			// v1.0.9	v1.0.10
 		'ABBC3_JAVASCRIPT',			// v1.0.10	v1.0.11
 	//	'ABBC3_RESIZE_SIGNATURE',	// v1.0.11
