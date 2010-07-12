@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: abbcode.php, v 3.0.8 2010/06/28 10:06:28 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8 2010/07/12 10:07:12 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -37,7 +37,6 @@ if (empty($lang) || !is_array($lang))
 // Some characters you may want to copy&paste:
 // ’ » “ ” …
 //
-
 
 $lang = array_merge($lang, array(
 // Help page
@@ -275,13 +274,13 @@ $lang = array_merge($lang, array(
 	// Superscript
 	'ABBC3_SUP_MOVER'			=> 'Sets the text as superscripts',
 	'ABBC3_SUP_TIP'				=> '[sup]text[/sup]',
-##	For translate :                 yes                                                           yes
+##	For translate :                 yes                                                         yes
 	'ABBC3_SUP_VIEW'			=> 'This is normal text [sup]' . $lang['SAMPLE_TEXT'] . '[/sup] this is normal text',
 
 	// Subscript
 	'ABBC3_SUB_MOVER'			=> 'Sets the text as subscripts',
 	'ABBC3_SUB_TIP'				=> '[sub]text[/sub]',
-##	For translate :                 yes                                                           yes
+##	For translate :                 yes                                                         yes
 	'ABBC3_SUB_VIEW'			=> 'This is normal text [sub]' . $lang['SAMPLE_TEXT'] . '[/sub] this is normal text',
 
 	// Bold
@@ -431,7 +430,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_TIP'				=> '[url]http://...[/url] or [url=http://...]Name of site[/url]',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.mssti.com',
 	'ABBC3_URL_VIEW'			=> '[url=http://www.mssti.com].:: MSSTI ::.[/url]',
-
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'email',

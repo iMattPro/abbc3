@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: abbcode.php, v 3.0.8 2010/06/28 10:06:28 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8 2010/07/12 10:07:12 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -116,7 +116,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOSCRIPT'			=> 'Su navegador tiene desactivado scripts o no admite client-side scripting. <em>(JavaScript!)</em>',
 	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'La página que está viendo requiere el uso de JavaScript para un mejor funcionamiento.<br />Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.',
 	'ABBC3_FUNCTION_DISABLED'	=> 'Esta función no está disponible en este foro.',
-	'ABBC3_AJAX_DISABLED'		=> 'Su navegador no es compatible con AJAX (XMLHttpRequest) y no es posible procesar esta solicitud.',
+	'ABBC3_AJAX_DISABLED'		=> 'Su navegador no es compatible con AJAX (XMLHttpRequest) y es incapaz de procesar esta solicitud.',
 	'ABBC3_SUBMIT'				=> 'Insertar en el mensaje',
 	'ABBC3_SUBMIT_SIG'			=> 'Insertar en la firma',
 	'SAMPLE_TEXT'				=> 'Esto es una muestra de texto', //	' . $lang['SAMPLE_TEXT'] . '
@@ -539,43 +539,43 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TAG'			=> 'flash',
 	'ABBC3_FLASH_MOVER'			=> 'Insertar video de flash (swf)',
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] o [flash width,height]URL flash[/flash]',
-	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.adobe.com/support/flash/ts/documents/test_version/version.swf',
-	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.adobe.com/support/flash/ts/documents/test_version/version.swf[/flash]',
+	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/relojanalogo.swf',
+	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.mssti.com/phpbb3/images/media/relojanalogo.swf[/flash]',
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
 	'ABBC3_FLV_MOVER'			=> 'Insertar video de flash (flv)',
 	'ABBC3_FLV_TIP'				=> '[flv width=# height=#]URL flash video[/flv] o [flv width,height]URL flash video[/flv]',
-	'ABBC3_FLV_EXAMPLE'			=> 'http://www.channel-ai.com/video/eyn/demo1.flv',
-	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.channel-ai.com/video/eyn/demo1.flv[/flv]',
+	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Demo.flv',
+	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mssti.com/phpbb3/images/media/Demo.flv[/flv]',
 
 	// Streaming Video Wizard
 	'ABBC3_VIDEO_TAG'			=> 'video',
 	'ABBC3_VIDEO_MOVER'			=> 'Insertar video',
 	'ABBC3_VIDEO_TIP'			=> '[video width=# height=#]URL video[/video]',
-	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.sarahsnotecards.com/catalunyalive/fishstore.wmv',
-	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.sarahsnotecards.com/catalunyalive/fishstore.wmv[/video]',
+	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/calmate.wmv',
+	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mssti.com/phpbb3/images/media/calmate.wmv[/video]',
 
 	// Streaming Audio Wizard
 	'ABBC3_STREAM_TAG'			=> 'sonido',
 	'ABBC3_STREAM_MOVER'		=> 'Insertar sonido',
 	'ABBC3_STREAM_TIP'			=> '[stream]URL Archivo[/stream]',
-	'ABBC3_STREAM_EXAMPLE'		=> 'http://realdev1.realise.com/rossa/mov/demo.mp3',
-	'ABBC3_STREAM_VIEW'			=> '[stream]http://realdev1.realise.com/rossa/mov/demo.mp3[/stream]',
+	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3',
+	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3[/stream]',
 
 	// Quick time
 	'ABBC3_QUICKTIME_TAG'		=> 'Quick time',
 	'ABBC3_QUICKTIME_MOVER'		=> 'Insertar Quick time',
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quick time[/quicktime]',
-	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt' . ' | ' . 'http://www.carnivalmidways.com/images/Music/thisisatest.mp3',
-	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
+	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt',
+	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt[/quicktime]',
 
 	// Real Media Wizard
 	'ABBC3_RAM_TAG'				=> 'Real Media',
 	'ABBC3_RAM_MOVER'			=> 'Insertar Real Media',
 	'ABBC3_RAM_TIP'				=> '[ram]URL Real Media[/ram]',
-	'ABBC3_RAM_EXAMPLE'			=> 'http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram',
-	'ABBC3_RAM_VIEW'			=> '[ram]http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram[/ram]',
+	'ABBC3_RAM_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Dr_Who.ram',
+	'ABBC3_RAM_VIEW'			=> '[ram]http://www.mssti.com/phpbb3/images/media/Dr_Who.ram[/ram]',
 
 	// Google video Wizard
 	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
@@ -595,8 +595,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_VEOH_TAG'			=> 'Veoh',
 	'ABBC3_VEOH_MOVER'			=> 'Insertar video desde Veoh',
 	'ABBC3_VEOH_TIP'			=> '[veoh]URL video[/veoh].',
-	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/videos/v1409404EqT5SJjM',
-	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/videos/v1409404EqT5SJjM[/veoh]',
+	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J',
+	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J[/veoh]',
 
 	// Collegehumor video
 	'ABBC3_COLLEGEHUMOR_TAG'	=> 'collegehumor',
@@ -608,32 +608,32 @@ $lang = array_merge($lang, array(
 	// Dailymotion video
 	'ABBC3_DM_MOVER'			=> 'Insertar video desde dailymotion', // from http://www.dailymotion.com/
 	'ABBC3_DM_TIP'				=> '[dm]Dailymotion ID[/dm]',
-	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/swf/x3hm7o',
-	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/swf/x3hm7o[/dm]',
+	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport',
+	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport[/dm]',
 
 	// Gamespot video
 	'ABBC3_GAMESPOT_MOVER'		=> 'Insertar video desde Gamespot',
 	'ABBC3_GAMESPOT_TIP'		=> '[gamespot]Gamespot video URL [gamespot]',
-	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/944074/6185798/tom-clancys-rainbow-six-vegas-2-official-trailer-3',
-	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/944074/6185798/tom-clancys-rainbow-six-vegas-2-official-trailer-3[gamespot]',
+	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
+	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[gamespot]',
 
 	// Gametrailers video
 	'ABBC3_GAMETRAILERS_MOVER'	=> 'Insertar video desde Gametrailers',
 	'ABBC3_GAMETRAILERS_TIP'	=> '[gametrailers]Gametrailers video URL[/gametrailers]',
 	'ABBC3_GAMETRAILERS_EXAMPLE'=> 'http://www.gametrailers.com/player/30461.html',
-	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/player/30461.html[/gametrailers]',
+	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/video/game-of-best-of-e3/701407[/gametrailers]',
 
 	// IGN video
 	'ABBC3_IGNVIDEO_MOVER'		=> 'Insertar video desde Ign',
 	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]ING video URL[/ignvideo]',
-	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'object_ID=967025&downloadURL=http://tvmovies.ign.com/tv/video/article/850/850894/knightrider_trailer_020808_flvlow.flv',
-	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]object_ID=967025&downloadURL=http://tvmovies.ign.com/tv/video/article/850/850894/knightrider_trailer_020808_flvlow.flv[/ignvideo]',
+	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html',
+	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html[/ignvideo]',
 
 	// LiveLeak video
 	'ABBC3_LIVELEAK_MOVER'		=> 'Insertar video desde Liveleak',
 	'ABBC3_LIVELEAK_TIP'		=> '[liveleak]Liveleak video URL[/liveleak]',
-	'ABBC3_LIVELEAK_EXAMPLE'	=> 'http://www.liveleak.com/view?i=413_1202590393',
-	'ABBC3_LIVELEAK_VIEW'		=> '[liveleak]http://www.liveleak.com/view?i=413_1202590393[/liveleak]',
+	'ABBC3_LIVELEAK_EXAMPLE'	=> 'http://www.liveleak.com/view?i=166_1194290849',
+	'ABBC3_LIVELEAK_VIEW'		=> '[liveleak]http://www.liveleak.com/view?i=166_1194290849[/liveleak]',
 
 // Custom BBcodes
 	// Deezer audio
