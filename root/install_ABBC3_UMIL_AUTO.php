@@ -58,7 +58,7 @@ if (isset($mod_data['language']))
 $user->lang['TRANSLATION_INFO'] = (!empty($user->lang['TRANSLATION_INFO'])) ? $user->lang['TRANSLATION_INFO'] . '<br />' . $user->lang['ABBC3_HELP_ABOUT'] : $user->lang['ABBC3_HELP_ABOUT'];
 
 // Logo Image
-$logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.gif';
+$logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.png';
 
 // Options to display to the user
 $options = array(
