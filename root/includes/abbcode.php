@@ -1970,7 +1970,7 @@ class abbcode
 				'image'		=> 'flashflv.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Demo.flv",
 				'match'		=> "#([^[]+)?\.flv#sie",
-				'replace'	=> "\$this->auto_embed_video('./images/player.swf?movie=$0&fgcolor=0xff0000&autoload=off&volume=70', '{WIDTH}', '{HEIGHT}')",
+				'replace'	=> "\$this->auto_embed_video('./images/player.swf', '{WIDTH}', '{HEIGHT}', 'movie=$0&fgcolor=0xff0000&autoload=off&volume=70')",
 			),
 			'(wmv|mpg)' => array(
 				'display'	=> true,
