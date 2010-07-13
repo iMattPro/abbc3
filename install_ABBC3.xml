@@ -127,6 +127,7 @@
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
 			<file from="root/styles/abbcode/*.*" to="styles/abbcode/*.*"/>
 			<file from="root/styles/prosilver/template/*.*" to="styles/prosilver/template/*.*"/>
+			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>

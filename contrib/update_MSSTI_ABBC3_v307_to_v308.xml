@@ -46,6 +46,7 @@
 			<file from="root/styles/abbcode/*.*" to="styles/abbcode/*.*"/>
 			<file from="root/styles/prosilver/template/*.*" to="styles/prosilver/template/*.*"/>
 			<file from="root/styles/subsilver2/template/*.*" to="styles/subsilver2/template/*.*"/>
+			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
 			<file name="adm/style/abbcode_header.html"/>
