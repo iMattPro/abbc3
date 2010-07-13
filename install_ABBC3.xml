@@ -100,7 +100,8 @@
 		</history>
 
 		<link-group>
-			<link type="template" href="contrib/subsilver2.xml" lang="en">Template : Changes for Subsilver2 based style</link>
+			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
+			<link type="language" href="contrib/install_spanish_es.xml" lang="en">Install Spanish language pack</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v307_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v1012_to_v308.xml" lang="en">Update : ABBC3 MOD from 1.0.12 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v307_to_v308.xml" lang="en">Update : Language Changes from 3.0.7 to 3.0.8</link>
@@ -110,7 +111,7 @@
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_embossed_button_effect.xml" lang="en">Add-on : This file provides instructions on how to change ABBC3's icons to look like embossed buttons</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_ED2K.xml" lang="en">Add-on : ED2K links in post.</link>
-			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_how-to-add-a-new-bbcode-icon.xml" lang="en">How to add : ABBC3 and Custom bbcodes with icon</link>
+			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_how-to-add-a-new-bbcode-icon.xml" lang="en">How to : Add ABBC3 and Custom BBcodes with icons</link>
 		</link-group>
 	</header>
 
