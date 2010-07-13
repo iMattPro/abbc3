@@ -1638,8 +1638,8 @@ class abbcode
 				'display'	=> true,
 				'image'		=> 'ign.gif',
 				'example'	=> "http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html",
-				'match'		=> "#http://(.*?)ign\.com/(?:.*?)/objects/([0-9]+)(/[^[]*)?#ise",
-				'replace'	=> "\$this->auto_embed_video('http://videomedia.ign.com/ev/ev.swf?object_ID=$2', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> "#http://(.*?)ign\.com/(?:.*?)/objects/([0-9]+)/([^/]*)/([^/]*)/([^\.]*)?([^[]*)?#ise",
+				'replace'	=> "\$this->auto_embed_video('http://media.ign.com/ev/embed.swf', '{WIDTH}', '{HEIGHT}', 'vgroup=$5&object=$2')",
 			),
 			'kyte.tv' => array(
 				'display'	=> true,

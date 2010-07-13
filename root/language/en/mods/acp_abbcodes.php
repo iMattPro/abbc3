@@ -165,17 +165,17 @@ $lang = array_merge($lang, array(
 // UMIL Installer 
 $lang = array_merge($lang, array(
 // Main
-	'INSTALLER_WELCOME'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
-	'INSTALLER_WELCOME_NOTE'	=> 'Please be advised that some BBCodes might <strong>not</strong> display correctly due to the changes introduced in BBCodes.
+	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
+	'INSTALLER_TITLE_EXPLAIN'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
+
+	'INSTALLER_INSTALL_WELCOME'			=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
+	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Please be advised that some BBCodes might <strong>not</strong> display correctly due to the changes introduced in BBCodes.
 	<br />If you experience problems use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
 	<br /><br />Before adding this MOD to your board, you should back up files and database first.',
-	'INSTALLER_WELCOME_EXPLAIN'	=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
-//	'INSTALLER_INSTALL_END'		=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
+	'INSTALLER_INSTALL_END'				=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
 // Stages
-	'INSTALLER_TITLE'			=> 'Advanced BBcodes Box 3',
-	'INSTALLER_TITLE_EXPLAIN'	=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
-	'INSTALLER_CONFIGS_ADD'		=> 'ABBC3 config',
-	'INSTALLER_BBCODES_ADD'		=> 'ABBC3 bbcodes',
+	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 config',
+	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
 ));
 
 ?>
