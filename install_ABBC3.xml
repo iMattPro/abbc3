@@ -68,7 +68,7 @@
 		<installation>
 			<level>intermediate</level>
 			<time>1200</time>
-			<target-version>3.0.8</target-version>
+			<target-version>3.0.7-PL1</target-version>
 		</installation>
 
 		<history>
@@ -87,6 +87,7 @@
 								* Tigra color picker</change>
 					<change> [Feature] Wizards can be disabled, use pop up window, or in-post</change>
 					<change> [Change] BBcode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</change>
+					<change> [Change] BBcode : BBvideo : Now uses XHTML compliant code for all videos embedded from other Video sharing sites.</change>
 				</changelog>
 			</entry>
 			<entry>
@@ -100,9 +101,9 @@
 
 		<link-group>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Template : Changes for Subsilver2 based style</link>
-			<link type="contrib" href="contrib/update_v307PL1_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7-PL1 to 3.0.8</link>
-			<link type="contrib" href="contrib/update_v307PL1_with_UCPaddon_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7-PL1 with UCP add-on to 3.0.8 (Only for users who have installed the User Control Panel Add-On)</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v307PL1_to_v308.xml" lang="en">Update : Language Changes from 3.0.7-PL1 to 3.0.8</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v307_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7 to 3.0.8</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v1012_to_v308.xml" lang="en">Update : ABBC3 MOD from 1.0.12 to 3.0.8</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v307_to_v308.xml" lang="en">Update : Language Changes from 3.0.7 to 3.0.8</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_Compact_View.xml" lang="en">Add-on : Compact View.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : quote behaviour.</link>
