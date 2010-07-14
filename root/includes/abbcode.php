@@ -1778,7 +1778,7 @@ class abbcode
 				'display'	=> true,
 				'image'		=> 'veoh.gif',
 				'example'	=> "http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J",
-				'match'		=> "#http://(.*?).veoh.com(/.*?)+/([0-9A-Za-z-_]+)#sie",
+				'match'		=> "#http://(.*?).veoh.com/([0-9A-Za-z-_\-/]+)?/([0-9A-Za-z-_]+)#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.veoh.com/static/swf/webplayer/WebPlayer.swf?version=AFrontend.5.5.2.1030&permalinkId=$3&player=videodetailsembedded&videoAutoPlay=0&id=anonymous', '{WIDTH}', '{HEIGHT}')",
 			),
 			'videu.de' => array(
