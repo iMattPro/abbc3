@@ -86,8 +86,11 @@
 								* “fancy” selector
 								* Tigra color picker</change>
 					<change> [Feature] Wizards can be disabled, use pop up window, or in-post</change>
+					<change> [Feature] Added ACP option to define the content allowed in BBvideo</change>
+					<change> [Change] Switched over to UMIL based installation</change>
 					<change> [Change] BBcode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</change>
 					<change> [Change] BBcode : BBvideo : Now uses XHTML compliant code for all videos embedded from other Video sharing sites.</change>
+					<change> [Fix] Several XHTML and language fixes.</change>
 				</changelog>
 			</entry>
 			<entry>
