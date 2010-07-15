@@ -531,7 +531,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Please select a video type',
-	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBcode.',
+	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBcode.',
 	'ABBC3_BBVIDEO_FILE'		=> 'File format',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',
 	'ABBC3_BBVIDEO_EXTERNAL'	=> 'External Video from',
