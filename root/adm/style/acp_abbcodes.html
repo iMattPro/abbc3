@@ -127,6 +127,19 @@
 				}
 			}
 		}
+
+		function selector(bool, id)
+		{
+			var dropdown = document.getElementById(id);
+
+			if (dropdown)
+			{
+				for (var i = 0; i < dropdown.options.length; i++)
+				{
+					dropdown.options[i].selected = bool;
+				}
+			}
+		}
 <!-- ENDIF -->
 
 <!-- IF S_BBCODES -->

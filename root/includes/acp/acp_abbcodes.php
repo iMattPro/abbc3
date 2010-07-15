@@ -1,13 +1,11 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/05/22 10:05:22 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-* 
-* @todo
 **/
 
 /**
@@ -36,6 +34,9 @@ class acp_abbcodes
 		
 		$user->add_lang(array('acp/styles', 'mods/acp_abbcodes', 'mods/abbcode'));
 
+		// Include files
+		require($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+
 		$radio_ary = array(1 => 'ORDER_ALLOW_DENY', 0 => 'ORDER_DENY_ALLOW');
 
 		/** Set some default values so the user havn't to run any install - Start **/
@@ -62,6 +63,7 @@ class acp_abbcodes
 		$config['ABBC3_BOXRESIZE']			= (isset($config['ABBC3_BOXRESIZE']))		 ? $config['ABBC3_BOXRESIZE']			: 1;
 		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		 ? $config['ABBC3_VIDEO_width']			: 425;
 		$config['ABBC3_VIDEO_height']		= (isset($config['ABBC3_VIDEO_height']))	 ? $config['ABBC3_VIDEO_height']		: 350;
+		$config['ABBC3_VIDEO_OPTIONS']		= (isset($config['ABBC3_VIDEO_OPTIONS']))	 ? $config['ABBC3_VIDEO_OPTIONS']		: '';
 
 		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		 ? $config['ABBC3_COLOR_MODE']			: 'phpbb';
 		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	 ? $config['ABBC3_HIGHLIGHT_MODE']		: 'phpbb';
@@ -196,6 +198,7 @@ class acp_abbcodes
 				'ABBC3_VIDEO'			=> array('lang' => 'ABBCODES_VIDEO_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true, 'append' => ' ' . $user->lang['PIXEL']),
 				'ABBC3_VIDEO_width'		=> false,
 				'ABBC3_VIDEO_height'	=> false,
+				'ABBC3_VIDEO_OPTIONS'	=> array('lang' => 'ABBCODES_VIDEO_ALLOWED',	'validate' => 'string',	'type' => 'custom',			'function'	=> 'video_select', 'params' => array('{CONFIG_VALUE}', 'allowed_videos[]', $this->u_action, 'ABBC3_VIDEO_OPTIONS'), 'explain' => true),
 			)
 		);
 
@@ -230,7 +233,6 @@ class acp_abbcodes
 			{
 				continue;
 			}
-
 			$this->new_config[$config_name] = $config_value = $cfg_array[$config_name];
 
 			if ($this->submit)
@@ -243,6 +245,9 @@ class acp_abbcodes
 
 		if ($this->submit)
 		{
+			$allowed_videos	= request_var('allowed_videos', array(0));
+			set_config('ABBC3_VIDEO_OPTIONS', video_serialize($allowed_videos, true));
+
 			add_log('admin', 'LOG_CONFIG_ABBCODES');
 
 			if (!sizeof($error))
@@ -718,6 +723,51 @@ class acp_abbcodes
 			$icons_list .= '</select>'. (($show) ? '&nbsp; <label>' . $user->lang['CURRENT_IMAGE'] . '</label><span><img src="' . $dir . '/' . $current .'" id="newimg" alt="" width="80" height="30" /></span>' : '');
 		}
 		return $icons_list;
+	}
+
+	/**
+	* Select list of BBvideos
+	**/
+	function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
+	{
+		global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
+
+		$abbcode_video_ary = abbcode::video_init();
+		// The video_serialize function is at root/includes/abbcode.php after the abbcode class
+		$allowed_videos = (!$current) ? array() : video_serialize($current, false);
+
+		if (sizeof($abbcode_video_ary))
+		{
+			$video_options = '';
+			$video_optgroup = false;
+
+			foreach ($abbcode_video_ary as $video_name => $video_data)
+			{
+				$video_name = stripslashes($video_name);
+			
+				if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
+				{
+					$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
+					$video_options .= '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">' . "\n";
+					$video_optgroup = true;
+				}
+				// Now check that this video is has data for search and replace
+				else if ((isset($video_data['match']) && $video_data['match'] != '') && (isset($video_data['replace']) && $video_data['replace'] != ''))
+				{
+					$selected = (in_array($video_data['id'], $allowed_videos)) ? ' selected="selected"' : '';
+					$video_options .= '<option value="' . $video_data['id'] . '"' . $selected . '>' . $video_name . '</option>' . "\n";
+				}
+				else
+				{
+					continue;
+				}
+			}
+			$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
+		}
+		
+		return '<select id="' . $ide .'" name="' . $name . '" multiple="multiple" size="10">' . "\n" . $video_options . '</select>
+		<br /><a href="#" onclick="selector(true, \'' . $ide . '\'); return false;">' . $user->lang['ABBCODES_SELECT_ALL'] . '</a> :: <a href="#" onclick="selector(false, \'' . $ide . '\'); return false;">' . $user->lang['ABBCODES_DESELECT_ALL'] . '</a>
+		<br /><br />' . $user->lang['ABBCODES_VIDEO_ALLOWED_NOTE'];
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/13 11:07:02 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/15 11:07:15 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -112,9 +112,32 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_VIDEO_SIZE'				=> 'Dimensiones de videos',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Por defecto la anchura y la altura de videos.',
+	'ABBCODES_VIDEO_OPTION'				=> 'Seleccione el tipo de vídeo',
+	'ABBCODES_VIDEO_ALLOWED'			=> 'Tipos de vídeo permitidos',
+	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Seleccione los sitios y/o formatos de vídeo que le gustaría que los usuarios puedan integrar en sus mensajes cuando el BBcode BBvideo está habilitado <em class="error">(*)</em>',
+	'ABBCODES_VIDEO_ERROR'				=> 'Actualmente no hay vídeos permitidos. Por favor contacte con La Administración del Sitio%s si el problema persiste.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBcode URL.',
+	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> Para selecionar (o eliminar la seleción) de multiples items, debe hacer CTRL+CLICK (o CMD-CLICK en Mac) sobre cada item para agregar. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un item, toda seleción previa sera eliminada.',
 
-	'ABBCODES_UPLOAD_EXTENSION'			=> 'Extensiones disponibles',
-	'ABBCODES_UPLOAD_EXTENSION_EXPLAIN'	=> 'Puede añadir/modificar/eliminar formatos permitidos. Separe las extensiones con una coma(,)<br /><strong>Nota : </strong> Estos valores sobreescribirán la configuración de los Adjuntos.',
+	'ABBCODES_COLOUR_MODE'				=> 'Elija el modo de seleccionar colores',
+##	For translate :                                	 Don't			Yes
+	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'El propio del estilo',
+													'dropdown'	=> 'Menú desplegable',
+													'fancy'		=> 'Selector de “Fancy”',
+													'tigra'		=> 'selector de “Tigra”'),
+	'ABBCODES_WIZARD_MODE'				=> 'Elija el modo del asistentes',
+##	For translate :                                	Don't			Yes
+	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Deshabilitar asistentes',
+													'1'			=> 'En ventana emergente',
+													'2'			=> 'En página'),
+	'ABBCODES_UCP_MODE'					=> 'PCU Opciones',
+	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Permitir a los usuarios seleccionar la vista de ABBC3?',
+
+	'ABBCODES_WIZARD'					=> 'Asistente',
+	'ABBCODES_WIZARD_SIZE'				=> 'Dimensiones del asistente',
+	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Alto y ancho de la ventana para el sistente emergente.',
+
+	'ABBCODES_DESELECT_ALL'				=> 'Desmarcar todo',
+	'ABBCODES_SELECT_ALL'				=> 'Seleccionar todo',
 ));
 
 // bbcodes_edit
@@ -144,76 +167,23 @@ $lang = array_merge($lang, array(
 	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBcodes Box 3</strong> está desabilitado.<br />',
 	'ABBCODES_STATUS'					=> 'Estado',
 	'ABBCODES_ACTIVATED'				=> 'activado',
-	'ABBCODES_DEACTIVATED'				=> 'deactivado',
+	'ABBCODES_DEACTIVATED'				=> 'desactivado',
 ));
 
-// Installer 
+// UMIL Installer 
 $lang = array_merge($lang, array(
-	// Main
+// Main
 	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
-	'INSTALLER_VERSION'					=> ' version : %1$s',
+	'INSTALLER_TITLE_EXPLAIN'			=> 'Bienvenido a la instalación de <strong>%1$s</strong>',
 
-	'INSTALLER_INTRO'					=> 'Página inicial',
-	'INSTALLER_INTRO_WELCOME'			=> 'Bienvenido a la instalación de <strong>%1$s</strong>',
-	'INSTALLER_INTRO_WELCOME_NOTE'		=> 'Por favor, eliga cual acción quiere realizar.',
-	'INSTALLER_INSTALL_MENU'			=> 'Menú',
-	'INSTALLER_EXTRA_MENU'				=> 'Extras',
-
-	// Install
-	'INSTALLER_INSTALL'					=> 'Instalar',
-	'INSTALLER_INSTALL_WELCOME'			=> 'Bienvenido al menú de instalacición de <strong>ABBC3</strong>',
-	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Si usted elige instalar ABBC3, cualquier versión previa de este MOD en la base de datos será eliminada.',
-	'INSTALLER_INSTALL_SUCCESSFUL'		=> 'La instalacición de ABBC3 ha concluido exitosamente.',
-	'INSTALLER_INSTALL_UNSUCCESSFUL'	=> 'La instalacición de ABBC3 <strong>no</strong> ha concluido exitosamente.',
-	'INSTALLER_INSTALL_VERSION'			=> 'Instalar la versión: %1$s',
-	'INSTALLER_INSTALL_END'				=> 'La instalacición de <strong>%1$s versión : %2$s</strong> ha concluido con éxito. <br /> <p>Ahora usted debería <a href="../index.php">entrar en su foro</a> y verificar que todo trabaja correctamente. <br />¡ No olvide borrar, renombrar o mover el archivo <strong>install_abbc3</strong> !</p>',
-
-	// Update
-	'INSTALLER_UPDATE'					=> 'Actualizar',
-	'INSTALLER_UPDATE_WELCOME'			=> 'Bienvenido al menú de actualización de <strong>ABBC3</strong>',
-	'INSTALLER_UPDATE_WELCOME_NOTE'		=> 'Si usted elige actualizar ABBC3, cualquier versión previa de este MOD en la base de datos será eliminada.',
-	'INSTALLER_UPDATE_SUCCESSFUL'		=> 'La actualización de ABBC3 ha concluido con éxito.',
-	'INSTALLER_UPDATE_UNSUCCESSFUL'		=> 'La actualización de ABBC3 <strong>no</strong> ha concluido con éxito.',
-	'INSTALLER_UPDATE_VERSION'			=> 'Actualizar a versión: %1$s',
-	'INSTALLER_UPDATE_END'				=> 'Por favor, tenga en cuenta que algunos BBCodes pueden <strong>no</strong> mostrarse como en la versión anterior. Eso es consecuencia de algunos cambios introducidos en la definicion de los mismos. Si usted encuentra este tipo de problemasas ejecute los pasos <strong>Extras » Re-parse</strong>',
-
-	// Uninstall
-	'INSTALLER_DELETE'					=> 'Borrar',
-	'INSTALLER_DELETE_WELCOME'			=> 'Bienvenido al menú de borrado de <strong>ABBC3</strong>',
-	'INSTALLER_DELETE_WELCOME_NOTE'		=> 'Si usted elige borrar el MOD, todas las modificaciones realizadas en su base de datos sql insertadas en la instalación serán eliminadas.',
-	'INSTALLER_DELETE_VERSION'			=> 'Elinimar versión: %1$s',
-	'INSTALLER_DELETE_NOTE'				=> 'Borrar',
-	'INSTALLER_DELETE_SUCCESSFUL'		=> 'Borrada la versión <strong>%1$s  : %2$s</strong> ha concluido con éxito.<br />Ahora debe proceder al borrado de los ficheros.',
-	'INSTALLER_DELETE_UNSUCCESSFUL'		=> '<strong>No</strong> se pudo borrar la versión  %1$s :%2$s .',
-
-	// UCP ADD-ON
-	'INSTALLER_UCP'						=> 'PCU',
-	'INSTALLER_UCP_PREFS'				=> 'Panel de Control de Usuario',
-	'INSTALLER_UCP_WELCOME'				=> 'Bienvenido al menú <strong>ABBC3</strong> PCU',
-	'INSTALLER_UCP_WELCOME_NOTE'		=> 'Si usted elige instalar ABBC3 PCU, dos nuevos valores serán agregados a la tabla de usuarios “phpbb_users”.
-	<br /> La primera es para permitir que los usuarios elijan entre la barra ABBC3 o usar la botonera por defecto de phpbb3 (Valor por defecto sí)
-	<br /> La segunda es para permitir que los usuarios elijan entre el modo ABBC3 “Vista Compacta” o en “Vista Completa” (el valor predeterminado no )',
-	'INSTALLER_UCP_END'					=> 'La instalacición de <strong>%1$s : %2$s</strong>  ha concluido con éxito. <br /> <p>Ahora usted debería <a href="../index.php">entrar en su foro</a> y verificar que todo trabaja correctamente. <br />¡ No olvide borrar, renombrar o mover el archivo <strong>install_abbc3</strong> !</p>',
-	'INSTALLER_UCP_END_NOTE'			=> 'Tenga en cuenta que estos pasos sólo modifican la base de datos, no se olvide de aplicar los cambios de código y de plantillas según las instrucciones.',
-
-	// Re-parse
-	'INSTALLER_REPARSE'					=> 'Re-Analizar',
-	'INSTALLER_REPARSE_WELCOME'			=> 'Bienvenido al menú Re-analizar ',
-	'INSTALLER_REPARSE_WELCOME_NOTE'	=> 'Cuando usted elije <strong>Re-analizar</strong> simplemente se analizan los BBCodes: es útil por si se ha cambiando la sintaxis de un BBCode, lo que da lugar a que no se vea un mensaje escrito igual que en las versiones precedentes. Esta función sólo ajusta algunos valores, no reescribe el texto...',
-	'INSTALLER_REPARSE_NOTE'			=> 'Por favor, tenga en cuenta que aunque los riesgos de daños en la base de datos de su foro son poco probables, la instalación de este MOD corre bajo su cuenta y riesgo, por lo que el autor del MOD no se rsponsabiliza por posibles daños: perdida de datos, etc.',
-	'INSTALLER_REPARSE_WARNING'			=> 'Usted debe hacer una copia de seguridad de las tablas de la base de datos que contienen los usurios, mensajes y mensajes privados de su foro por si algo no va bien.',
-	'INSTALLER_REPARSE_POST'			=> 'Re-analizar el contenido de los mensajes',
-	'INSTALLER_REPARSE_SIG'				=> 'Re-analizar firmas',
-	'INSTALLER_REPARSE_PM'				=> 'Re-analizar mensajes privados',
-	'INSTALLER_REPARSE_SUCCESSFUL'		=> '%1$s ha concluido con éxito.',
-	'INSTALLER_REPARSE_UNSUCCESSFUL'	=> '<strong>No</strong> se pudo %1$s.',
-	
-	'STEP_PERCENT_COMPLETED'			=> 'Paso <strong>%d</strong> de <strong>%d</strong>',
-	'INSTALLER_NOTE'					=> '<strong>Nota:</strong> ¡ Antes de añadir este MOD a su foro, debe hacer una copia de seguridad de la base de datos y de todos los archivos de su foro !',
-	'INSTALLER_DELETE_INFORMATION'		=> '¡ <strong>No</strong> se pudo encontrar ABBC3 instalado !.',
-	'INSTALLER_NEEDS_FOUNDER'			=> 'Usted debe estar identificado en su foro como el administrador/fundador.',
-	'MISSING_PARENT_MODULE'				=> 'Módulo #%1$s no está como módulo padre de "%2$s".',
-	'WARNING'							=> 'Advertencia',
+	'INSTALLER_INSTALL_WELCOME'			=> 'Si usted elige actualizar ABBC3, cualquier versión previa de este MOD en la base de datos será eliminada.',
+	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Por favor, tenga en cuenta que algunos BBCodes pueden <strong>no</strong> mostrarse correctamente, en consecuencia de algunos cambios introducidos en la definicion de los mismos.
+	<br />Si usted encuentra este tipo de problemasas utilice el <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong>.
+	<br /><br />Antes de añadir este MOD a su foro, debería hacer una copia de seguridad de los archivos y de la base de datos.',
+	'INSTALLER_INSTALL_END'				=> 'Ahora usted debería <a href="../index.php">entrar en su foro</a> y verificar que todo funciona correctamente. <br />¡ No olvide borrar, renombrar o mover el archivo <strong><em>install_abbc3.php</em></strong>',
+// Stages
+	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 configuración',
+	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
 ));
 
 ?>

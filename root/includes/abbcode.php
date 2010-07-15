@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8 2010/07/11 10:07:11 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -736,7 +736,7 @@ class abbcode
 			case 'wikipedia':
 				// by default the search is in English language, but you can customize it,
 				// simply replace    ->en<-     with your language prefix for wikipedia :)
-				$search_link = 'http://en.wikipedia.org/wiki/Spezial:Search?search=' . $search;
+				$search_link = 'http://en.wikipedia.org/wiki/Spezial:Search?search=' . str_replace(' ', '%20', $search);
 			break;
 
 			case 'lycos':
@@ -1217,7 +1217,7 @@ class abbcode
 		}
 
 		// If img_links is enabled use images, else use string
-		$rapidshare_echo .= '<a href="' . $in . '" title="' . $in . '" alt="' . $in . '" onclick="window.open(this.href);return false;">' . $in . '</a>' . (($this->img_links) ? '&nbsp;' . $rapidshare_pic : '&nbsp;' . $rapidshare_msg) . "<br />";
+		$rapidshare_echo .= '<a href="' . $in . '" title="' . $in . '" onclick="window.open(this.href);return false;">' . $in . '</a>' . (($this->img_links) ? '&nbsp;' . $rapidshare_pic : '&nbsp;' . $rapidshare_msg) . "<br />";
 
 		return '<dl class="testlink"><dd>'. $rapidshare_echo . '</dd></dl>';
 	}
@@ -1525,313 +1525,312 @@ class abbcode
 		**/
 
 		/** Patterns and replacements for BBVIDEO bbcode processing **/
-		$this->abbcode_video_ary = array(
+		return array(
 			'video' => array(
-				'display'	=> true,
 			),
 			'comedycentral.com' => array(
-				'display'	=> true,
+				'id'		=> 1,
 				'image'		=> 'comedycentral.gif',
 				'example'	=> "http://www.comedycentral.com/videos/index.jhtml?videoId=185763&title=weekly-evil-six-reasons-alaska",
 				'match'		=> "#http://www.comedycentral.com/videos/index.jhtml\?videoId=([0-9]+)([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://media.mtvnservices.com/mgid:cms:item:comedycentral.com:$1', '{WIDTH}', '{HEIGHT}', 'autoPlay=false')",
 			),
 			'www.clipfish' => array(
-				'display'	=> true,
+				'id'		=> 2,
 				'image'		=> 'clipfish.gif',
 				'example'	=> "http://www.clipfish.de/video/1856437/ac-dc-tnt/",
 				'match'		=> "#http://www.clipfish.(.*?)/video/([0-9]+)([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.clipfish.de/cfng/flash/clipfish_player_3.swf?as=0&vid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'clipmoon.com' => array(
-				'display'	=> true,
+				'id'		=> 3,
 				'image'		=> 'clipmoon.gif',
 				'example'	=> "http://www.clipmoon.com/videos/9194d9/animation-versus-animator.html",
 				'match'		=> "#http://www.clipmoon.com/(.*?)/(([0-9A-Za-z-_]+)([0-9A-Za-z-_]{2}))/([^[]*)#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.clipmoon.com/flvplayer.swf?config=http://www.clipmoon.com/flvplayer.php?viewkey=$2&external=yes&vimg=http://www.clipmoon.com/thumb/$3.jpg', '{WIDTH}', '{HEIGHT}')",
 			),
 			'collegehumor.com' => array(
-				'display'	=> true,
+				'id'		=> 4,
 				'image'		=> 'collegehumor.gif',
 				'example'	=> "http://www.collegehumor.com/video:1802097",
 				'match'		=> "#http://www.collegehumor.com/video:([0-9]+)#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.collegehumor.com/moogaloop/moogaloop.swf?clip_id=$1&fullscreen=1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'crackle.com' => array(	
-				'display'	=> true,
+				'id'		=> 5,
 				'image'		=> 'crackle.gif',
 				'example'	=> "http://crackle.com/c/High_Wire/Fall_Out_Boy_Songs/2185986",
 				'match'		=> "#http://((.*?)?)crackle.com/([A-Za-z-_/]+)?([0-9]+)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://crackle.com/flash/ReferrerRedirect.ashx', '{WIDTH}', '{HEIGHT}', 'mu=0&ap=0&ml=o%3D12%26fi%3D%26fpl%3D2839&id=$2')",
 			),
 			'dailymotion.com' => array(
-				'display'	=> true,
+				'id'		=> 6,
 				'image'		=> 'dailymotion.gif',
 				'example'	=> "http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport",
 				'match'		=> "#http://www.dailymotion.com(.*?)/video/(([^[_]*)?([^[]*)?)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.dailymotion.com/swf/video/$3', '{WIDTH}', '{HEIGHT}')",
 			),
 			'g4tv.com' => array(
-				'display'	=> true,
+				'id'		=> 7,
 				'image'		=> 'g4tv.gif',
 				'example'	=> "http://g4tv.com/videos/29265/Infamous-All-Access/",
 				'match'		=> "#http://(?:www\.)?g4tv.com/(.*?videos)/([0-9]+)/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.g4tv.com/lv3/$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gamepro.com' => array(
-				'display'	=> true,
+				'id'		=> 8,
 				'image'		=> 'gamepro.gif',
 				'example'	=> "http://www.gamepro.com/video/trailers/132252/punchout-debut-trailer/",
 				'match'		=> "#http://www.gamepro.com/video/trailers/(.*?)/([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://www.gamepro.com/bin/vid-bin/octPlayer.swf?vId=$1&p=e&ae=d', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gameprotv.com' => array(
-				'display'	=> true,
+				'id'		=> 9,
 				'image'		=> 'gameprotv.gif',
 				'example'	=> "http://www.gameprotv.com/socom-4-us-navy-seals-trailer-video-6923.html",
 				'match'		=> "#http://www.gameprotv.com/(.*)-video-([0-9]+)?.([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://www.idg.es/player-viral.swf', '{WIDTH}', '{HEIGHT}', 'image=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.jpg&file=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.flv&plugins=adtonomy,viral-1')",
 			),
 			'gamespot.com' => array(
-				'display'	=> true,
+				'id'		=> 10,
 				'image'		=> 'gamespot.gif',
 				'example'	=> "http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8",
 				'match'		=> "#http://www.gamespot.com(.*?)/video/(.*?)/(\d{7}?)(/[^/]+)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$3%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
 			),
 			'gamespot.com/showcases' => array(
-				'display'	=> true,
+				'id'		=> 11,
 				'image'		=> 'gamespot.gif',
 				'example'	=> "http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8",
 				'match'		=> "#http://www.gamespot.com/showcases/(.*?)\?sid=([0-9]+)([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$2%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
 			),
 			'gametrailers.com/user-movie' => array(
-				'display'	=> true,
+				'id'		=> 12,
 				'image'		=> 'gametrailers.gif',
 				'example'	=> "http://www.gametrailers.com/user-movie/first-gta-cw-screens/268358",
 				'match'		=> "#http://www.gametrailers.com/user-movie/(.*?)/([0-9]+)([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?umid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gametrailers.com/player/usermovies' => array(
-				'display'	=> true,
+				'id'		=> 13,
 				'image'		=> 'gametrailers.gif',
 				'example'	=> "http://www.gametrailers.com/player/usermovies/268358.html",
 				'match'		=> "#http://www.gametrailers.com/player/usermovies/([0-9]+)([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?umid=$1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gametrailers.com' => array(
-				'display'	=> true,
+				'id'		=> 14,
 				'image'		=> 'gametrailers.gif',
 				'example'	=> "http://www.gametrailers.com/video/game-of-best-of-e3/701407", // http://www.gametrailers.com/player/30461.html
 				'match'		=> "#http://www.gametrailers.com/(.*?)/([0-9]+)([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?mid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'www.gamevideos' => array(
-				'display'	=> true,
+				'id'		=> 15,
 				'image'		=> 'gamevideos.gif',
 				'example'	=> "http://www.gamevideos.com/video/id/17766",
 				'match'		=> "#http://www.gamevideos(.*?).com/video/id/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://gamevideos.1up.com/swf/gamevideos12.swf?embedded=1&fullscreen=1&autoplay=0&src=http://www.gamevideos.com/video/videoListXML%3Fid%3D$2%26ordinal%3D%26adPlay%3Dfalse', '{WIDTH}', '{HEIGHT}')",
 			),
 			'ign.com' => array(
-				'display'	=> true,
+				'id'		=> 16,
 				'image'		=> 'ign.gif',
 				'example'	=> "http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html",
 				'match'		=> "#http://(.*?)ign\.com/(?:.*?)/objects/([0-9]+)/([^/]*)/([^/]*)/([^\.]*)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://media.ign.com/ev/embed.swf', '{WIDTH}', '{HEIGHT}', 'vgroup=$5&object=$2')",
 			),
 			'kyte.tv' => array(
-				'display'	=> true,
+				'id'		=> 17,
 				'image'		=> 'kyte.gif',
 				'example'	=> "http://www.kyte.tv/ch/182864",
 				'match'		=> "#http://www.kyte.tv/ch/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.kyte.tv/f/', '{WIDTH}', '{HEIGHT}', 'p=s&c=$1&tbid=1')",
 			),
 			'liveleak.com' => array(
-				'display'	=> true,
+				'id'		=> 18,
 				'image'		=> 'liveleak.gif',
 				'example'	=> "http://www.liveleak.com/view?i=166_1194290849",
 				'match'		=> "#http://www.liveleak.com/view\?i=([0-9A-Za-z-_]+)?(\&[^/]+)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.liveleak.com/e/$1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'livevideo.com' => array(
-				'display'	=> true,
+				'id'		=> 19,
 				'image'		=> 'livevideo.gif',
 				'example'	=> "http://www.livevideo.com/video/UKUFO/D930AEB5460D4707B2F6DC0CD8D3C258/haiti-and-the-dominican-republ.aspx",
 				'match'		=> "#http://www.livevideo.com/video/([^[]*)/([^[]*)/([^[]*)#ise",
 				'replace'	=> "\$this->auto_embed_video('http://www.livevideo.com/flvplayer/embed/$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'machinima.com' => array(
-				'display'	=> true,
+				'id'		=> 20,
 				'image'		=> 'machinima.gif',
 				'example'	=> "http://www.machinima.com:80/film/view&id=281",
 				'match'		=> "#http://www.machinima.com(:80)?/film/view&amp;id=([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.machinima.com/_flash_media_player/mediaplayer.swf?file=http://www.machinima.com/p/$2', '{WIDTH}', '{HEIGHT}', 'file=http://www.machinima.com/p/$2&height={HEIGHT}&width={WIDTH}')",
 			),
 			'megavideo.com' => array(
-				'display'	=> true,
+				'id'		=> 21,
 				'image'		=> 'megavideo.gif',
 				'example'	=> "http://www.megavideo.com/?v=0Q8S7E29",
 				'match'		=> "#http://(.*?)megavideo.com/\?v=([^[]*)#ise",
 				'replace'	=> "\$this->auto_embed_video('http://www.megavideo.com/v/$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'metacafe.com' => array(
-				'display'	=> true,
+				'id'		=> 22,
 				'image'		=> 'metacafe.gif',
 				'example'	=> "http://www.metacafe.com/watch/966360/merry_christmas_with_crazy_frog/",
 				'match'		=> "#http://www.metacafe.com/watch/([0-9]+)?((/[^/]+)/?)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.metacafe.com/fplayer/$1/metacafe.swf', '{WIDTH}', '{HEIGHT}')",
 			),
 			'myspacetv.com' => array(
-				'display'	=> true,
+				'id'		=> 23,
 				'image'		=> 'vidsmyspace.gif',
 				'example'	=> "http://myspacetv.com/index.cfm?fuseaction=vids.individual&videoid=25769593",
 				'match'		=> "#http://(vids.)?myspace(?:tv)?.com/index.cfm([^[]*)?videoid=([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://mediaservices.myspace.com/services/media/embed.aspx/m=$3', '{WIDTH}', '{HEIGHT}')",
 			),
 			'vids.myspace.com' => array(
-				'display'	=> true,
+				'id'		=> 24,
 				'image'		=> 'vidsmyspace.gif',
 				'example'	=> "http://vids.myspace.com/index.cfm?fuseaction=vids.individual&VideoID=49776296",
 				'match'		=> "#http://(vids.)?myspace(?:tv)?.com/index.cfm([^[]*)?videoid=([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://mediaservices.myspace.com/services/media/embed.aspx/m=$3', '{WIDTH}', '{HEIGHT}')",
 			),
 			'www.myvideo' => array(
-				'display'	=> true,
+				'id'		=> 25,
 				'image'		=> 'myvideo.gif',
 				'example'	=> "http://www.myvideo.de/watch/2668372",
 				'match'		=> "#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.myvideo.$1/movie/$3', '{WIDTH}', '{HEIGHT}')",
 			),
 			'photobucket.com/albums' => array(
-				'display'	=> true,
+				'id'		=> 26,
 				'image'		=> 'photobucket.gif',
 				'example'	=> "http://s0006.photobucket.com/albums/0006/pbhomepage/Ice%20Age/?action=view&current=TFEIT301100-H264_Oct27.flv",
 				'match'		=> "#http://s(.*?).photobucket.com/(albums/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5', '{WIDTH}', '{HEIGHT}')",
 			),
 			'www.porkolt' => array(
-				'display'	=> true,
+				'id'		=> 27,
 				'image'		=> 'porkolt.gif',
 				'example'	=> "http://www.porkolt.com/Avatar---Trailer-1-274678.html",
 				'match'		=> "#http://www.porkolt.(.*)/(.*?)-([0-9]{5,}).(.*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://content3.porkolt.com/player/own/porkoltplayer.swf?parameters=http://datas.porkolt.com/datas/h/$3', '{WIDTH}', '{HEIGHT}', '')",
 			),
 			'revver.com' => array(
-				'display'	=> true,
+				'id'		=> 28,
 				'image'		=> 'revver.gif',
 				'example'	=> "http://revver.com/video/1217076/shouting-news-palin-vs-pitbull/",
 				'match'		=> "#http://(.*?)revver.com/video/(.*?)/([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://flash.revver.com/player/1.0/player.swf?mediaId=$2', '{WIDTH}', '{HEIGHT}', 'allowFullScreen=true')",
 			),
 			'rutube.ru' => array(
-				'display'	=> true,
+				'id'		=> 29,
 				'image'		=> 'rutube.gif',
 				'example'	=> "http://rutube.ru/tracks/1415928.html?v=67eb8c2fcd74fddb722ce4cd820195da",
 				'match'		=> "#http://rutube.ru/(.*?)/(.*?).html\?v=([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://video.rutube.ru/$3', '{WIDTH}', '{HEIGHT}')",
 			),
 			'sapo.pt' => array(
-				'display'	=> true,
+				'id'		=> 30,
 				'image'		=> 'sapo.gif',
 				'example'	=> "http://videos.sapo.pt/LguPabwSWikK0wzBmU1o",
 				'match'		=> "#http://(.*?)sapo.pt/(.*/)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://rd3.videos.sapo.pt/play?file=http://rd3.videos.sapo.pt/$3/mov/1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'sevenload.com' => array(
-				'display'	=> true,
+				'id'		=> 31,
 				'image'		=> 'sevenload.gif',
 				'example'	=> "http://en.sevenload.com/shows/Tekzilla/episodes/hMbjjr3-Windows-7-Enhancements-for-Power-Users-Tekzilla-Daily-Tip",
 				'match'		=> "#http://(.*?).sevenload.com/(?:.*?)(episodes|videos)/([^/[-]*)?([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://en.sevenload.com/pl/$3/{WIDTH}x{HEIGHT}/swf', '{WIDTH}', '{HEIGHT}')",
 			),
 			'spike.com' => array(
-				'display'	=> true,
+				'id'		=> 32,
 				'image'		=> 'spike.gif',
 				'example'	=> "http://www.spike.com/video/winter-passing/2696820",
 				'match'		=> "#http://www.spike.com/video/([A-Za-z-_\-/]+)?([0-9]+)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://www.spike.com/efp?flvbaseclip=$2&', '{WIDTH}', '{HEIGHT}')",
 			),
 			'tangle.com' => array(
-				'display'	=> true,
+				'id'		=> 33,
 				'image'		=> 'tangle.gif',
 				'example'	=> "http://www.tangle.com/view_video?viewkey=cd77b1f92626e136f9b5",
 				'match'		=> "#http://www.tangle.com/view_video\?viewkey=([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.tangle.com/flash/swf/flvplayer.swf', '{WIDTH}', '{HEIGHT}', 'viewkey=$1')",
 			),
 			'tinypic.com' => array(
-				'display'	=> true,
+				'id'		=> 34,
 				'image'		=> 'tinypic.gif',
 				'example'	=> "http://tinypic.com/player.php?v=dgqv6u&s=5",
 				'match'		=> "#http://((.*?)?)tinypic.com/player.php\?v=([0-9A-Za-z]+)(&|&amp;)s=([0-9]+)#ise",
 				'replace'	=> "\$this->auto_embed_video('http://v$5.tinypic.com/player.swf?file=$3', '{WIDTH}', '{HEIGHT}')",
 			),
 			'vbox7.com' => array(
-				'display'	=> true,
+				'id'		=> 35,
 				'image'		=> 'vbox7.gif',
 				'example'	=> "http://www.vbox7.com/play:93ab2ba5",
 				'match'		=> "#http://www.vbox7.com/play:([^[]+)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://i47.vbox7.com/player/ext.swf?vid=$1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'veoh.com' => array(
-				'display'	=> true,
+				'id'		=> 36,
 				'image'		=> 'veoh.gif',
 				'example'	=> "http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J",
 				'match'		=> "#http://(.*?).veoh.com/([0-9A-Za-z-_\-/]+)?/([0-9A-Za-z-_]+)#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.veoh.com/static/swf/webplayer/WebPlayer.swf?version=AFrontend.5.5.2.1030&permalinkId=$3&player=videodetailsembedded&videoAutoPlay=0&id=anonymous', '{WIDTH}', '{HEIGHT}')",
 			),
 			'videu.de' => array(
-				'display'	=> true,
+				'id'		=> 37,
 				'image'		=> 'videu.gif',
 				'example'	=> "http://www.videu.de/video/38",
 				'match'		=> "#http://www.videu.de/video/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.videu.de/flv/player2.swf?iid=$1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'vimeo.com' => array(
-				'display'	=> true,
+				'id'		=> 38,
 				'image'		=> 'vimeo.gif',
 				'example'	=> "http://vimeo.com/725441",
 				'match'		=> "#http://((.*?))vimeo.com/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://vimeo.com/moogaloop.swf?clip_id=$3&server=vimeo.com&fullscreen=1&show_title=1&show_byline=1&show_portrait=0&color=', '{WIDTH}', '{HEIGHT}')",
 			),
 			'video.google' => array(
-				'display'	=> true,
+				'id'		=> 39,
 				'image'		=> 'googlevid.gif',
 				'example'	=> "http://video.google.com/videoplay?docid=-8351924403384451128",
 				'match'		=> "#http://video.google.(.*?)/(videoplay|googleplayer.swf)\?docid=([0-9A-Za-z-_]+)([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://video.google.\$1/googleplayer.swf?docId=\$3', '{WIDTH}', '{HEIGHT}')",
 			),
 			'video.yahoo' => array(
-				'display'	=> true,
+				'id'		=> 40,
 				'image'		=> 'yahoovid.gif',
 				'example'	=> "http://video.yahoo.com/watch/2057334/6491459?v=2057334",
 				'match'		=> "#http://video.yahoo.com/watch/([0-9]+)/([0-9]+)[^[]*#sie",
 				'replace'	=> "\$this->auto_embed_video('http://d.yimg.com/static.video.yahoo.com/yep/YV_YEP.swf?ver=2.2.46', '{WIDTH}', '{HEIGHT}', 'id=$2&vid=$2&lang=en-US&intl=us')",
 			),
 			'vsocial.com' => array(
-				'display'	=> true,
+				'id'		=> 41,
 				'image'		=> 'vsocial.gif',
 				'example'	=> "http://www.vsocial.com/video/?d=2893",
 				'match'		=> "#http://www.vsocial.com/video/\?d=([^[]*)#ise",
 				'replace'	=> "\$this->auto_embed_video('http://static.vsocial.com/flash/ups.swf?d=$1&a=0', '{WIDTH}', '{HEIGHT}')",
 			),
 			'wegame.com' => array(
-				'display'	=> true,
+				'id'		=> 42,
 				'image'		=> 'wegame.gif',
 				'example'	=> "http://www.wegame.com/watch/Clarity_Darkspear_VS_Heigan/",
 				'match'		=> "#http://www.wegame.com/watch/(.*?)/([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://www.wegame.com/static/flash/player.swf?xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true', '{WIDTH}', '{HEIGHT}', 'xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true')",
 			),
 			'youtube.com' => array(
-				'display'	=> true,
+				'id'		=> 43,
 				'image'		=> 'youtube.gif',
 				'example'	=> "http://www.youtube.com/watch?v=PDGxfsf-xwQ",
 				'match'		=> "#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0&color1=0x3a3a3a&color2=0x999999', '{WIDTH}', '{HEIGHT}')",
 			),
 			'xfire.com' => array(
-				'display'	=> true,
+				'id'		=> 44,
 				'image'		=> 'xfire.gif',
 				'example'	=> "http://www.xfire.com/video/24c86/",
 				'match'		=> "#http://www.xfire.com/video/(.*?)/#sie",
@@ -1839,7 +1838,7 @@ class abbcode
 			),
 
 			'scribd' => array(
-				'display'	=> true,
+				'id'		=> 45,
 				'image'		=> 'scribd.gif',
 				'example'	=> "[scribd id=33988557 key=key-2l5cezbnj6qttpbzb75d mode=list]",
 				'match'		=> "#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#sie",
@@ -1847,101 +1846,100 @@ class abbcode
 			),
 
 			'external' => array(
-				'display'	=> false,
 			),
 			'badr.tv' => array(
-				'display'	=> false,
+				'id'		=> 101,
 				'image'		=> 'badrtv.gif',
 				'example'	=> "http://www.badr.tv/video/8d0cbedc973445af2da",
 				'match'		=> "#http://www.badr.tv/video/([^[]*)?#is",
 				'replace'	=> 'external',
 			),
 			'comedians.jokes.com' => array(
-				'display'	=> false,
-				'image'		=> 'comedycentral.gif',
+				'id'		=> 102,
+				'image'		=> 'comedians.gif',
 				'example'	=> "http://comedians.jokes.com/bert-kreischer/videos/bert-kreischer---twelve-words",
 				'match'		=> "#http://comedians.jokes.com/(.*?)/videos/([^[]*)#sie",
 				'replace'	=> 'external',
 			),
 			'comedians.comedycentral.com' => array(
-				'display'	=> false,
+				'id'		=> 103,
 				'image'		=> 'comedians.gif',
 				'example'	=> "http://comedians.comedycentral.com/bert-kreischer/videos/bert-kreischer---twelve-words",
 				'match'		=> "#http://comedians.comedycentral.com/(.*?)videos/([^[]*)?#sie",
 				'replace'	=> 'external',
 			),
 			'moddb.com' => array(
-				'display'	=> false,
+				'id'		=> 104,
 				'image'		=> 'moddb.gif',
 				'example'	=> "http://www.moddb.com/groups/tv/videos/noesis-presents-forgotten-hope-2-interview",
 				'match'		=> "#http://www.moddb.com/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'revision3.com' => array(
-				'display'	=> false,
+				'id'		=> 105,
 				'image'		=> 'revision3.gif',
 				'example'	=> "http://revision3.com/scamschool/fortheladies2",
 				'match'		=> "#http://revision3.com/(.*?)/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'slideshare.net' => array(
-				'display'	=> false,
+				'id'		=> 106,
 				'image'		=> 'slideshare.gif',
 				'example'	=> "http://www.slideshare.net/chrisbrogan/social-media-for-publishers-presentation",
 				'match'		=> "#http://www.slideshare.net/(.*?)/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'streetfire.net' => array(
-				'display'	=> false,
+				'id'		=> 107,
 				'image'		=> 'streetfire.gif',
 				'example'	=> "http://videos.streetfire.net/video/Top-Gear-Lorry-truck-12_196610.htm",
 				'match'		=> "#http://videos.streetfire.net/video/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'tu.tv' => array(
-				'display'	=> false,
+				'id'		=> 108,
 				'image'		=> 'tutv.gif',
 				'example'	=> "http://tu.tv/videos/el-gato-boxeador",
 				'match'		=> "#http://((.*?)?)tu.tv/videos/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'videogamer.com' => array(
-				'display'	=> false,
+				'id'		=> 109,
 				'image'		=> 'videogamer.gif',
 				'example'	=> "http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html",
 				'match'		=> "#http://www.videogamer.com/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'vidilife.com' => array(
-				'display'	=> false,
+				'id'		=> 110,
 				'image'		=> 'vidilife.gif',
 				'example'	=> "http://www.vidiLife.com/video_play_1136791_Really_Bad_Driver_Drives_Off_Parking_Garage.htm",
 				'match'		=> "#http://www.vidiLife.com/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'gotgame.com' => array(
-				'display'	=> false,
+				'id'		=> 111,
 				'image'		=> 'gotgame.gif',
 				'example'	=> "http://video.gotgame.com/index.php/video/view/10554",
 				'match'		=> "#http://video.gotgame.com/index.php/video/view/([^[]*)?#si",
 				'replace'	=> 'external',
 			),
 			'filefront.com' => array(
-				'display'	=> false,
+				'id'		=> 112,
 				'image'		=> 'filefront.gif',
 				'example'	=> "http://www.filefront.com/14284133/Batman-Arkham-Asylum-Gadgets-Trailer/",
 				'match'		=> "#http://www.filefront.com/(.*?)/([^[]*)?#si",
 				'replace'	=> "external",
 			),
 			'deviantart.com' => array(
-				'display'	=> false,
+				'id'		=> 113,
 				'image'		=> 'deviantart.gif',
 				'example'	=> "http://bossk.deviantart.com/art/COLLEGE-FRIES-trailer-106469587",
 				'match'		=> "#http://(.*?).deviantart.com/([^[]*)?#si",
 				'replace'	=> "external",
 			),
 			'wat.tv' => array(
-				'display'	=> false,
+				'id'		=> 114,
 				'image'		=> 'wattv.gif',
 				'example'	=> "http://www.wat.tv/video/mords-moi-sans-hesitation-2ykhj_2g5h3_.html",
 				'match'		=> "#http://(.*?).wat.tv/video/([^[]*)?#is",
@@ -1949,31 +1947,30 @@ class abbcode
 			),
 
 			'file' => array(
-				'display'	=> true,
 			),
 			'(avi|divx|mkv)' => array(
-				'display'	=> false,
+				'id'		=> 201,
 				'image'		=> 'divx.gif',
 				'example'	=> "http://download.divx.com/divxlabs/Apples_and_Oranges_Trailer_720-12Mbps.divx",
 				'match'		=> "#([^[]+)?\.(avi|divx|mkv)#sie",
 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}', '', array('type' => 'video/divx'), array('pluginspage' => 'http://go.divx.com/plugin/download/', 'custommode' => 'none'))",
 			),
 			'swf' => array(
-				'display'	=> true,
+				'id'		=> 202,
 				'image'		=> 'flash.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/relojanalogo.swf",
 				'match'		=> "#([^[]+)?\.swf#sie",
 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}')",
 			),
 			'flv' => array(
-				'display'	=> true,
+				'id'		=> 203,
 				'image'		=> 'flashflv.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Demo.flv",
 				'match'		=> "#([^[]+)?\.flv#sie",
 				'replace'	=> "\$this->auto_embed_video('./images/player.swf', '{WIDTH}', '{HEIGHT}', 'movie=$0&fgcolor=0xff0000&autoload=off&volume=70')",
 			),
 			'(wmv|mpg)' => array(
-				'display'	=> true,
+				'id'		=> 204,
 				'image'		=> 'video.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/calmate.wmv",
 				'match'		=> "#([^[]+)?\.(wmv|mpg)#si",
@@ -1981,7 +1978,7 @@ class abbcode
 				<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
 			),
 			'(qt|mov)' => array(
-				'display'	=> true,
+				'id'		=> 205,
 				'image'		=> 'quicktime.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt",
 				'match'		=> "#([^[]+)?\.(qt|mov)#si",
@@ -1989,7 +1986,7 @@ class abbcode
 				<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" type="video/quicktime" autoplay="false"></embed></object>'
 			),
 			'(mid|midi)' => array(
-				'display'	=> true,
+				'id'		=> 206,
 				'image'		=> 'quicktime.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Adams_Family_Theme.mid",
 				'match'		=> "#([^[]+)?\.(mid|midi)#si",
@@ -1997,7 +1994,7 @@ class abbcode
 				<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" type="audio/x-midi" autoplay="false"></embed></object>'
 			),
 			'mp3' => array(
-				'display'	=> true,
+				'id'		=> 207,
 				'image'		=> 'quicktime.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3",
 				'match'		=> "#([^[]+)?\.mp3#si",
@@ -2005,7 +2002,7 @@ class abbcode
 				<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
 			),
 			'ram' => array(
-				'display'	=> true,
+				'id'		=> 208,
 				'image'		=> 'ram.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Dr_Who.ram",
 				'match'		=> "#([^[]+)?\.ram#si",
@@ -2085,9 +2082,21 @@ class abbcode
 			$this->abbcode_init(false);
 		}
 
-		if (empty($this->abbcode_video_ary))
+		static $abbcode_video_ary = array();
+		if (empty($abbcode_video_ary))
 		{
-			$this->video_init();
+			$abbcode_video_ary = abbcode::video_init();
+			$allowed_videos = video_serialize($config['ABBC3_VIDEO_OPTIONS'], false);
+			foreach ($abbcode_video_ary as $video_name => $video_data)
+			{
+				if (!isset($video_data['id']))
+				{
+					$abbcode_video_ary[$video_name]['display'] = false;
+					continue;
+				}
+
+				$abbcode_video_ary[$video_name]['display'] = (in_array($video_data['id'], $allowed_videos)) ? true : false;
+			}
 		}
 
 		$video_unique_id	= substr(base_convert(unique_id(), 16, 36), 0, 8);
@@ -2101,21 +2110,29 @@ class abbcode
 		$video_link			= '';
 		$video_content		= '';
 		$video_image		= '';
+		$out				= '';
 
-		foreach ($this->abbcode_video_ary as $video_name => $video_data)
+		foreach ($abbcode_video_ary as $video_name => $video_data)
 		{
 			// Fisrt check that this video is enabled and have data for search and replace
-			if (!$video_data['display'] || (!isset($video_data['match']) || $video_data['match'] == '') || (!isset($video_data['replace']) || $video_data['replace'] == ''))
+			if (!isset($video_data['match']) || $video_data['match'] == '' || !isset($video_data['replace']) || $video_data['replace'] == '')
 			{
 				continue;
 			}
-
 			// Second check that video url is one on the list and it's on the post text
 			if (preg_match('#' . $video_name . '#si', $in) && preg_match($video_data['match'], $in))
 			{
+				// if the video is not allowed, return a link 
+				if (!$video_data['display'])
+				{
+					$out = make_clickable($in);
+					break;
+				}
+
 				if (!$user->optionget('viewflash'))
 				{
-					return str_replace(array('$1', '$2'), array($in, '[ flash ]'), $this->bbcode_tpl('url', -1, true));
+					$out = str_replace(array('$1', '$2'), array($in, '[ flash ]'), $this->bbcode_tpl('url', -1, true));
+					break;
 				}
 
 				if (preg_match('#\.#si', $video_name))
@@ -2145,7 +2162,8 @@ class abbcode
 
 				if ($video_data['replace'] === 'external')
 				{
-					return str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '<div class="bbvideocontent">{BBVIDEO_VIDEO}</div>'), array($video_width + 10, $video_image, $video_link, ''), $this->bbcode_tpl('bbvideo'));
+					$out = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '<div class="bbvideocontent">{BBVIDEO_VIDEO}</div>'), array($video_width + 10, $video_image, $video_link, ''), $this->bbcode_tpl('bbvideo'));
+					break;
 				}
 
 				$video_content = preg_replace($video_data['match'], $video_data['replace'], $in);
@@ -2153,14 +2171,47 @@ class abbcode
 				// Resize acording the video settings, and perform some code clearance
 				$video_content = str_replace(array ('{WIDTH}', '{HEIGHT}', '{ID}') , array ($video_width, $video_height, $video_unique_id) , $video_content);
 
-				return str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width + 10, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
+				$out = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width + 10, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
+				break;
 			}
 		}
 		// if nothig have being found correctly, return without changes
-		return '[BBvideo' . (($w && $h) ? " $w,$h" : '') . ']' . $in . '[/BBvideo]' ;
+		$out = ($out) ? $out : '[BBvideo' . (($w && $h) ? " $w,$h" : '') . ']' . $in . '[/BBvideo]';
+		return $out;
 	}
 }
 // Advanced BBCode Box 3 class End
+
+// Advanced BBCode Box 3 functions - Start
+	/**
+	* Transform an array into a serialized format
+	* Because serialize a large array ( almost 70 key ) 
+	* will return a large string to store into the config value
+	* we need another way to manage it.
+	*
+	* @param mixed	$input	array or string to transform
+	* @param bool	$mode	array to string or string to array
+	* @version 3.0.8
+	**/
+	function video_serialize($input, $mode = true)
+	{
+		$out = '';
+		if ($mode)
+		{
+			foreach ($input as $key => $value)
+			{
+				$out .= $value . ';';
+			}
+		}
+		else
+		{
+			$out = explode(";", $input);
+		//	array_pop($out);
+		}
+
+		return $out;
+	}
+// Advanced BBCode Box 3 functions - End
 
 // MOD : eD2k links - START
 	/**

@@ -1,7 +1,7 @@
 /*  phpBB 3.0 Style Sheet
  * --------------------------------------------------------------
  * @package: phpBB3 :: Advanced BBCode box 3 -> styles -> abbcode
- * @version: $Id: abbcode.css, v 3.0.8 2010/07/13 11:06:28 leviatan21 Exp $
+ * @version: $Id: abbcode.css, v 3.0.8 2010/07/15 11:07:15 leviatan21 Exp $
  * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
  * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
  * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -95,7 +95,6 @@ hr.hrdotted {
 	font-weight : bold;
 	font-style : italic;
 }
-
 #abbc3posttable tr, #abbc3posttable td, #abbc3posttable div, 
 #abbc3wysiwig tr, #abbc3wysiwig td, #abbc3wysiwig div {
 	height : 26px;
@@ -303,7 +302,10 @@ DELETE ME 2 */
 #abbcode_wizards {
 	font-size: inherit;
 }
-
+#abbcode_wizards option.disabled-options {
+	color: graytext;
+	background-color: gray;
+}
 #abbcode_wizards #grad_preview {
 	text-align : center;
 	height : 100%;

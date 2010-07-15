@@ -240,6 +240,16 @@ $lang = array_merge($lang, array(
 			</edit>
 
 			<edit>
+				<find><![CDATA[	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.',]]></find>
+				<action type="after-add"><![CDATA[	'ABBCODES_VIDEO_OPTION'				=> 'Please Select the video types',
+	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
+	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Select the video sites and/or formats you would like to allow users to embed in their posts when the BBvideo BBcode is enabled <em class="error">(*)</em>',
+	'ABBCODES_VIDEO_ERROR'				=> 'There are no embedded video links currently allowed. Please contact the %sBoard Administrator%s if this problem persists.<br />In the meantime, you may post your video links using the standard URL BBcode.',
+	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> In order to select (or deselect) multiple items, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
+]]></action>
+			</edit>
+
+			<edit>
 				<find><![CDATA[//	'ABBCODES_UPLOAD_EXTENSION'			=> 'Available extensions',
 //	'ABBCODES_UPLOAD_EXTENSION_EXPLAIN'	=> 'You can add/change/delete allowed datatypes. Separate extensions with a comma (,)<br /><strong>Note : </strong> These values will overwrite the Attachments Manage extensions setings.',]]></find>
 				<action type="replace-with"><![CDATA[	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
@@ -258,7 +268,15 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_WIZARD'					=> 'Wizard',
 	'ABBCODES_WIZARD_SIZE'				=> 'Wizard dimensions',
-	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Default width and height for pop-up wizard window.',]]></action>
+	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Default width and height for pop-up wizard window.',
+
+	'ABBCODES_DESELECT_ALL'				=> 'Deselect all',
+	'ABBCODES_SELECT_ALL'				=> 'Select all',]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups : </strong>If there are no selected groups then all users can use this BBcode.<br />In order to select (or un-select) multiple groups, you must use Ctrl-Click (or Cmd-Click on Mac) items to add them. If you forget to hold down Ctrl/Cmd when clicking an item, then all the previously selected items will be deselected.',]]></find>
+				<action type="replace-with"><![CDATA[	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups : </strong>If there are no selected groups then all users can use this BBcode.<br />In order to select (or deselect) multiple groups, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',]]></action>
 			</edit>
 
 			<edit>

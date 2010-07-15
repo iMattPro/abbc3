@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root
-* @version: $Id: abbcode_page.php, v 3.0.8 2010/07/11 10:07:11 leviatan21 Exp $
+* @version: $Id: abbcode_page.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -259,7 +259,7 @@ function abbcode_tigra_color_picker()
 **/
 function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 {
-	global $template, $user, $abbcode, $phpbb_admin_path, $phpbb_root_path, $phpEx;
+	global $template, $user, $config, $abbcode, $phpbb_admin_path, $phpbb_root_path, $phpEx;
 
 	if (!class_exists('abbcode'))
 	{
@@ -286,11 +286,45 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 	if ($abbcode_bbcode == 'abbc3_bbvideo')
 	{
-		$abbcode->video_init();
-		if (sizeof($abbcode->abbcode_video_ary))
+		static $abbcode_video_ary = array();
+		if (empty($abbcode_video_ary))
 		{
-			$video_options = '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' --">';
-			foreach ($abbcode->abbcode_video_ary as $video_name => $video_data)
+			$abbcode_video_ary = abbcode::video_init();
+			// The video_serialize function is at root/includes/abbcode.php after the abbcode class
+			$allowed_videos = video_serialize($config['ABBC3_VIDEO_OPTIONS'], false);
+
+			foreach ($abbcode_video_ary as $video_name => $video_data)
+			{
+				if (!isset($video_data['id']))
+				{
+					$abbcode_video_ary[$video_name]['display'] = false;
+					continue;
+				}
+
+				$abbcode_video_ary[$video_name]['display'] = (in_array($video_data['id'], $allowed_videos)) ? true : false;
+
+				// Now clear video optgroup
+				if (($video_data['id'] >= 1 && $video_data['id'] <= 100) && $abbcode_video_ary[$video_name]['display'])
+				{
+					$abbcode_video_ary['video']['display'] = true;
+				}
+				else if (($video_data['id'] >= 101 && $video_data['id'] <= 200) && $abbcode_video_ary[$video_name]['display'])
+				{
+					$abbcode_video_ary['external']['display'] = true;
+				}
+				else if (($video_data['id'] >= 201 && $video_data['id'] <= 300) && $abbcode_video_ary[$video_name]['display'])
+				{
+					$abbcode_video_ary['file']['display'] = true;
+				}
+			}
+		}
+
+		if (sizeof($abbcode_video_ary))
+		{
+			$video_options = '<option value="-1" class="disabled-options">-- ' . $user->lang['ABBCODES_VIDEO_OPTION'] . ' --</option>' . "\n";
+			$video_optgroup = false;
+			$video_selected = false;
+			foreach ($abbcode_video_ary as $video_name => $video_data)
 			{
 				// First check that this video is enabled
 				if (!$video_data['display'])
@@ -299,24 +333,39 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 				}
 				$video_name = stripslashes($video_name);
 
-				if ($video_name == 'file' || $video_name == 'external')
+				if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
 				{
-					$video_options .= '</optgroup><optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">';
+					$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
+					$video_options .= '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">' . "\n";
+					$video_optgroup = true;
 				}
 				// Now check that this video is has data for search and replace
 				else if ((isset($video_data['match']) && $video_data['match'] != '') && (isset($video_data['replace']) && $video_data['replace'] != ''))
 				{
-				//	$example = (isset($video_data['example']) ? $video_data['example'] : $user->lang['ABBC3_NO_EXAMPLE']);
 					$example = (isset($video_data['example']) ? str_replace('&', '&amp;', $video_data['example']) : $user->lang['ABBC3_NO_EXAMPLE']);
-					$selected = ($video_name == 'youtube.com') ? ' selected="selected"' : '';
-					$video_options .= '<option value="' . $example . '"' . $selected . '>' . $video_name . '</option>';
+					if ($video_name == 'youtube.com')
+					{
+						$selected = ' selected="selected"';
+						$video_selected = true;
+					}
+					else
+					{
+						$selected = '';
+					}
+					$video_options .= '<option value="' . $example . '"' . $selected . '>' . $video_name . '</option>' . "\n";
 				}
 				else
 				{
 					continue;
 				}
 			}
-			$video_options .= '</optgroup>';
+			$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
+
+			if (!$video_optgroup)
+			{
+				$template->assign_var('L_BBVIDEO_ERROR', sprintf($user->lang['ABBCODES_VIDEO_ERROR'], '<a href="mailto:' . $config['board_contact'] . '">', '</a>'));
+			}
+			$user->lang['ABBC3_BBVIDEO_EXAMPLE'] = ($video_selected) ? $user->lang['ABBC3_BBVIDEO_EXAMPLE'] : '&nbsp;';
 		}
 	}
 
@@ -331,9 +380,6 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 	$need_description		= array('url', 'email', 'click');
 	$need_width_height		= array('web', 'flash', 'flv', 'video', 'quicktime', 'ram', 'bbvideo');
-
-	// Output page ...
-	page_header($user->lang[$abbcode_name . '_MOVER']);
 
 	// General setings
 	$template->assign_vars(array(
@@ -362,6 +408,16 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 		'S_BBVIDEO_OPTIONS'	=> ($abbcode_bbcode == 'abbc3_bbvideo') ? $video_options : '',
 		'S_ABBC3_ALIGN'		=> ($abbcode_bbcode == 'abbc3_img' || $abbcode_bbcode == 'abbc3_thumbnail') ? radio_select('image_align', $user->lang['ABBC3_ALIGN_SELECTOR'], 'none', 'image_align') : '',
 	));
+
+	// $phpbb_admin_path need to be defined previously initialize abbcode
+	if ($in_admin)
+	{
+		$phpbb_admin_path = "{$phpbb_root_path}adm/";
+		$template->set_custom_template($phpbb_admin_path . 'style', 'admin');
+	}
+
+	// Output page ...
+	page_header($user->lang[$abbcode_name . '_MOVER']);
 
 	if ($in_admin)
 	{

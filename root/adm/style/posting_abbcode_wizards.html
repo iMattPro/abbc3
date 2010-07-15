@@ -169,9 +169,10 @@
 			<tr>
 				<td><label>{L_ABBC3_EXAMPLE}</label></td>
 				<td>
-					<select id="abbc3_video" name="abbc3_video" onchange="this.form.posttext.value=this.form.abbc3_video.options[this.form.abbc3_video.selectedIndex].value">
+					<select id="abbc3_video" name="abbc3_video" onchange="if(this.options[this.selectedIndex].value != -1){this.form.posttext.value=this.form.abbc3_video.options[this.form.abbc3_video.selectedIndex].value;}">
 						{S_BBVIDEO_OPTIONS}
 					</select>
+					<!-- IF L_BBVIDEO_ERROR --><div class="error">{L_BBVIDEO_ERROR}</div><!-- ENDIF -->
 				</td>
 			</tr>
 			<!-- ENDIF -->

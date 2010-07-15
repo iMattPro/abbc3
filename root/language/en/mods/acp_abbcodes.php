@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/05/18 10:05:18 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -112,6 +112,11 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_VIDEO_SIZE'				=> 'Video dimensions',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.',
+	'ABBCODES_VIDEO_OPTION'				=> 'Please Select the video types',
+	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
+	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Select the video sites and/or formats you would like to allow users to embed in their posts when the BBvideo BBcode is enabled <em class="error">(*)</em>',
+	'ABBCODES_VIDEO_ERROR'				=> 'There are no embedded video links currently allowed. Please contact the %sBoard Administrator%s if this problem persists.<br />In the meantime, you may post your video links using the standard URL BBcode.',
+	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> In order to select (or deselect) multiple items, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
 ##	For translate :                                	 Don't			Yes
@@ -130,6 +135,9 @@ $lang = array_merge($lang, array(
 	'ABBCODES_WIZARD'					=> 'Wizard',
 	'ABBCODES_WIZARD_SIZE'				=> 'Wizard dimensions',
 	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Default width and height for pop-up wizard window.',
+
+	'ABBCODES_DESELECT_ALL'				=> 'Deselect all',
+	'ABBCODES_SELECT_ALL'				=> 'Select all',
 ));
 
 // bbcodes_edit
@@ -142,7 +150,7 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_CONFIG'					=> 'ABBC3 Component config',
 	'ABBCODES_CONFIG_EXPLAIN'			=> 'From this page you can alter the order of the BBcode tags on the posting page and edit the BBcodes tags.',
-	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups : </strong>If there are no selected groups then all users can use this BBcode.<br />In order to select (or un-select) multiple groups, you must use Ctrl-Click (or Cmd-Click on Mac) items to add them. If you forget to hold down Ctrl/Cmd when clicking an item, then all the previously selected items will be deselected.',
+	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups : </strong>If there are no selected groups then all users can use this BBcode.<br />In order to select (or deselect) multiple groups, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
 
 	'ABBCODES_TIP'						=> 'Tag tip',
 	'ABBCODES_NAME'						=> 'BBcode tag',
