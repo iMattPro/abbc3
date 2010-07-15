@@ -48,10 +48,17 @@
 		<open src="language/en/mods/abbcode.php">
 			<edit>
 				<find><![CDATA[	'SAMPLE_TEXT'				=> 'This is a text sample' //	' . $lang['SAMPLE_TEXT'] . ']]></find>
-				<action type="before-add"><![CDATA[	'ABBC3_FUNCTION_DISABLED'	=> 'This function is not available on this board.',
+				<action type="replace-with"><![CDATA[	'ABBC3_FUNCTION_DISABLED'	=> 'This function is not available on this board.',
 	'ABBC3_AJAX_DISABLED'		=> 'Your browser does not support AJAX (XMLHttpRequest) and was unable to process this request.',
 	'ABBC3_SUBMIT'				=> 'Insert into message',
-	'ABBC3_SUBMIT_SIG'			=> 'Insert into signature',]]></action>
+	'ABBC3_SUBMIT_SIG'			=> 'Insert into signature',
+	'SAMPLE_TEXT'				=> 'This is a text sample',
+]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[*	Several lines have an special note like "##	For translate : " follow for one or more "yes"]]></find>
+				<action type="replace-with"><![CDATA[*	Several lines have an special note like "##	For translate : " followed for one or more "yes"]]></action>
 			</edit>
 
 			<edit>
@@ -61,7 +68,8 @@
 
 			<edit>
 				<find><![CDATA[	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Note:</strong> Enable the ABBC3 Font colour menu or disable to use the standard phpBB3 Font colour picker.',]]></find>
-				<action type="replace-with"><![CDATA[	// Tigra Color & Highlight family Groups
+				<action type="replace-with"><![CDATA[
+	// Tigra Color & Highlight family Groups
 	'ABBC3_COLOUR_SAFE'			=> 'Web Safe Palette',
 	'ABBC3_COLOUR_WIN'			=> 'Windows System Palette',
 	'ABBC3_COLOUR_GREY'			=> 'Grey Scale Palette',
@@ -127,13 +135,13 @@
 			</edit>
 
 			<edit>
-				<find><![CDATA[	'ABBC3_BBVIDEO_FILE'		=> 'Video format',]]></find>
-				<action type="replace-with"><![CDATA[	'ABBC3_BBVIDEO_FILE'		=> 'File format',]]></action>
-			</edit>
-
-			<edit>
-				<find><![CDATA[	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',]]></find>
-				<action type="after-add"><![CDATA[	'ABBC3_BBVIDEO_EXTERNAL'	=> 'External Video from',]]></action>
+				<find><![CDATA[	'ABBC3_BBVIDEO_FILE'		=> 'Video format',
+	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',]]></find>
+				<action type="replace-with"><![CDATA[	'ABBC3_BBVIDEO_SELECT'		=> 'Please select a video type',
+	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please contact the %sBoard Administrator%s if this problem persists.<br />In the meantime, you may post your video links using the standard URL BBcode.',
+	'ABBC3_BBVIDEO_FILE'		=> 'File format',
+	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',
+	'ABBC3_BBVIDEO_EXTERNAL'	=> 'External Video from',]]></action>
 			</edit>
 
 			<edit>
@@ -222,7 +230,8 @@
 		<open src="language/en/mods/acp_abbcodes.php">
 			<edit>
 				<find><![CDATA[// abbc3_details]]></find>
-				<action type="before-add"><![CDATA[// This lines are for the UCP
+				<action type="before-add"><![CDATA[
+// This lines are for the UCP
 $lang = array_merge($lang, array(
 	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
 	'UCP_ABBC3_SETTINGS'			=> 'ABBC3 Settings',
@@ -252,7 +261,11 @@ $lang = array_merge($lang, array(
 			<edit>
 				<find><![CDATA[//	'ABBCODES_UPLOAD_EXTENSION'			=> 'Available extensions',
 //	'ABBCODES_UPLOAD_EXTENSION_EXPLAIN'	=> 'You can add/change/delete allowed datatypes. Separate extensions with a comma (,)<br /><strong>Note : </strong> These values will overwrite the Attachments Manage extensions setings.',]]></find>
-				<action type="replace-with"><![CDATA[	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
+				<action type="replace-with"><![CDATA[	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
+	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Select the video sites and/or formats you would like to allow users to embed in their posts when the BBvideo BBcode is enabled <em class="error">(*)</em>',
+	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> In order to select (or deselect) multiple items, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
+
+	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
 ##	For translate :                                	 Don't			Yes
 	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'phpBB style Default',
 													'dropdown'	=> 'Drop Down Menu',
@@ -342,7 +355,7 @@ $lang = array_merge($lang, array(
 	'INSTALLER_NEEDS_FOUNDER'			=> 'You must be logged in as a founder.',
 	'MISSING_PARENT_MODULE'				=> 'Module #%1$s is missing as a parent module for "%2$s".',
 	'WARNING'							=> 'Warning',
-));]]></find>
+]]></find>
 				<action type="replace-with"><![CDATA[// UMIL Installer 
 $lang = array_merge($lang, array(
 // Main
@@ -357,7 +370,7 @@ $lang = array_merge($lang, array(
 // Stages
 	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 config',
 	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
-));]]></action>
+]]></action>
 			</edit>
 
 		</open>

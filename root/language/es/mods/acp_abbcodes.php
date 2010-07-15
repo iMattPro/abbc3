@@ -112,10 +112,8 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_VIDEO_SIZE'				=> 'Dimensiones de videos',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Por defecto la anchura y la altura de videos.',
-	'ABBCODES_VIDEO_OPTION'				=> 'Seleccione el tipo de vídeo',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Tipos de vídeo permitidos',
 	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Seleccione los sitios y/o formatos de vídeo que le gustaría que los usuarios puedan integrar en sus mensajes cuando el BBcode BBvideo está habilitado <em class="error">(*)</em>',
-	'ABBCODES_VIDEO_ERROR'				=> 'Actualmente no hay vídeos permitidos. Por favor contacte con La Administración del Sitio%s si el problema persiste.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBcode URL.',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> Para selecionar (o eliminar la seleción) de multiples items, debe hacer CTRL+CLICK (o CMD-CLICK en Mac) sobre cada item para agregar. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un item, toda seleción previa sera eliminada.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Elija el modo de seleccionar colores',

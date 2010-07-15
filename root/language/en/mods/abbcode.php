@@ -124,7 +124,7 @@ $lang = array_merge($lang, array(
 
 /**
 * TRANSLATORS PLEASE NOTE 
-*	Several lines have an special note like "##	For translate : " followed for one or more "yes" 
+*	Several lines have an special note like "##	For translate : " followed for one or more "yes"
 *	These means that you can/have to translate the word under
 **/
 $lang = array_merge($lang, array(
@@ -158,7 +158,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLOR_TIP'			=> '[color=red]text[/color]',
 	'ABBC3_COLOR_NOTE'			=> 'Note: You can use html colors (color=#FF0000 or color=red)',
 	'ABBC3_COLOR_VIEW'			=> '[color=red]' . $lang['SAMPLE_TEXT'] . '[/color]',
-//	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Note:</strong> Enable the ABBC3 Font colour menu or disable to use the standard phpBB3 Font colour picker.',
 
 	// Tigra Color & Highlight family Groups
 	'ABBC3_COLOUR_SAFE'			=> 'Web Safe Palette',
@@ -467,7 +466,7 @@ $lang = array_merge($lang, array(
 											'float-left'	=> 'Float-Left',
 											'float-right'	=> 'Float-Right'),
 
-	// Image 
+	// Image
 	'ABBC3_IMG_TAG'				=> 'image',
 	'ABBC3_IMG_MOVER'			=> 'Insert image',
 	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
@@ -531,6 +530,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
+	'ABBC3_BBVIDEO_SELECT'		=> 'Please select a video type',
+	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBcode.',
 	'ABBC3_BBVIDEO_FILE'		=> 'File format',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',
 	'ABBC3_BBVIDEO_EXTERNAL'	=> 'External Video from',

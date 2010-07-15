@@ -275,7 +275,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 	$abbcode->abbcode_init();
 
-	$user->add_lang(array('posting', 'mods/abbcode', 'mods/acp_abbcodes'));
+	$user->add_lang(array('posting', 'mods/abbcode'));
 
 	if (!$abbcode->abbcode_config['ABBC3_WIZARD_MODE'])
 	{
@@ -321,7 +321,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 		if (sizeof($abbcode_video_ary))
 		{
-			$video_options = '<option value="-1" class="disabled-options">-- ' . $user->lang['ABBCODES_VIDEO_OPTION'] . ' --</option>' . "\n";
+			$video_options = '<option value="-1" class="disabled-options">-- ' . $user->lang['ABBC3_BBVIDEO_SELECT'] . ' --</option>' . "\n";
 			$video_optgroup = false;
 			$video_selected = false;
 			foreach ($abbcode_video_ary as $video_name => $video_data)
@@ -363,7 +363,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 			if (!$video_optgroup)
 			{
-				$template->assign_var('L_BBVIDEO_ERROR', sprintf($user->lang['ABBCODES_VIDEO_ERROR'], '<a href="mailto:' . $config['board_contact'] . '">', '</a>'));
+				$template->assign_var('L_BBVIDEO_ERROR', sprintf($user->lang['ABBC3_BBVIDEO_SELECT_ERROR'], '<a href="mailto:' . $config['board_contact'] . '">', '</a>'));
 			}
 			$user->lang['ABBC3_BBVIDEO_EXAMPLE'] = ($video_selected) ? $user->lang['ABBC3_BBVIDEO_EXAMPLE'] : '&nbsp;';
 		}

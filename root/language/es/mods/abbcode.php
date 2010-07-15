@@ -124,7 +124,7 @@ $lang = array_merge($lang, array(
 
 /**
 * TRANSLATORS PLEASE NOTE 
-*	Several lines have an special note like "##	For translate : " follow for one or more "yes" 
+*	Several lines have an special note like "##	For translate : " followed for one or more "yes"
 *	These means that you can/have to translate the word under
 **/
 $lang = array_merge($lang, array(
@@ -158,7 +158,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLOR_TIP'			=> '[color=red]texto[/color]',
 	'ABBC3_COLOR_NOTE'			=> 'Nota: puede usar colores HTML (color=#FF0000 o color=red)',
 	'ABBC3_COLOR_VIEW'			=> '[color=red]' . $lang['SAMPLE_TEXT'] . '[/color]',
-//	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Nota:</strong> Activar o desactivar el color de fuente ABBC3 a los usuarios, y/o utilizar la opción estándar de color phpbb3.',
 
 	// Tigra Color & Highlight family Groups
 	'ABBC3_COLOUR_SAFE'			=> 'Paleta segura para la Web',
@@ -467,7 +466,7 @@ $lang = array_merge($lang, array(
 											'float-left'	=> 'Flotar a la izquierda',
 											'float-right'	=> 'Flotar a la derecha'),
 
-	// Image 
+	// Image
 	'ABBC3_IMG_TAG'				=> 'imagen',
 	'ABBC3_IMG_MOVER'			=> 'Insertar imagen',
 	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
@@ -531,6 +530,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
+	'ABBC3_BBVIDEO_SELECT'		=> 'Seleccione un tipo de vídeo',
+	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Actualmente no hay vídeos permitidos. Por favor notifique al %sAdministrador del Sitio%s acerca de este problema.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBcode URL.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Formato del archivo',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Video desde',
 	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Video externo desde',

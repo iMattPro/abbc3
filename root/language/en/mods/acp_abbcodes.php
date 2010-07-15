@@ -112,10 +112,8 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_VIDEO_SIZE'				=> 'Video dimensions',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.',
-	'ABBCODES_VIDEO_OPTION'				=> 'Please Select the video types',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
 	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Select the video sites and/or formats you would like to allow users to embed in their posts when the BBvideo BBcode is enabled <em class="error">(*)</em>',
-	'ABBCODES_VIDEO_ERROR'				=> 'There are no embedded video links currently allowed. Please contact the %sBoard Administrator%s if this problem persists.<br />In the meantime, you may post your video links using the standard URL BBcode.',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> In order to select (or deselect) multiple items, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
