@@ -39,11 +39,7 @@ $abbcode = new abbcode();
 **/
 class abbcode
 {
-	// If ABBC3 MOD is enabled, do you want to see full view or the compact view ?
-	var $abbcode_compact	= false;	// Options true=compact view / false=full view, default false
-
 	var $abbcode_config		= array();
-	var $abbcode_video_ary	= array();
 
 	/* HTML was deprecated in v1.0.11 */
 	/* UPLOAD was was deprecated in v3.0.7 */
@@ -296,7 +292,7 @@ class abbcode
 			// Cookie
 			'S_ABBC3_COOKIE_NAME'		=> $this->abbcode_config['ABBC3_COOKIE_NAME'],
 			// Define the ABBC3 view, according this user preferences
-			'S_ABBC3_COMPACT'			=> (isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : $this->abbcode_compact,
+			'S_ABBC3_COMPACT'			=> (isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false,
 		));
 	}
 
