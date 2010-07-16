@@ -167,7 +167,7 @@
 
 			<!-- IF S_BBVIDEO_OPTIONS -->
 			<tr>
-				<td><label>{L_ABBC3_BBVIDEO_VIDEO}</label></td>
+				<td><label>{L_ABBC3_EXAMPLE}</label></td>
 				<td>
 					<select id="abbc3_video" name="abbc3_video" onchange="if(this.options[this.selectedIndex].value != -1){this.form.posttext.value=this.form.abbc3_video.options[this.form.abbc3_video.selectedIndex].value;}">
 						{S_BBVIDEO_OPTIONS}
@@ -224,14 +224,14 @@
 
 			<!-- IF ABBC3_W_H -->
 			<tr>
-				<td><label>{L_ABBC3_WIDTH} {ABBC3_TAG}:</label></td>
+				<td><label>{L_ABBC3_WIDTH}:</label></td>
 				<td>
 					<input type="text"   id="promptbox3" name="promptbox3" value="{ABBC3_WIDTH}" class="promptbox" size="4"  />
 					<input type="hidden" id="errorbox3"  name="errorbox3"  value="{L_ABBC3_NOWIDTH}{ABBC3_TAG}" />
 				</td>
 			</tr>
 			<tr>
-				<td><label>{L_ABBC3_HEIGHT} {ABBC3_TAG}:</label></td>
+				<td><label>{L_ABBC3_HEIGHT}:</label></td>
 				<td>
 					<input type="text"   id="promptbox4" name="promptbox4" value="{ABBC3_HEIGHT}" class="promptbox" size="4"  />
 					<input type="hidden" id="errorbox4"  name="errorbox3"  value="{ABBC3_NOHEIGHT}{ABBC3_TAG}"  />

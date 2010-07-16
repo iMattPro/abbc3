@@ -12,10 +12,11 @@ var form_name = '{FORM_NAME}';
 var text_name = '{TEXT_NAME}';
 <!-- ENDIF -->
 
-var in_popup = <!-- IF S_ABBC3_WIZARD_MODE eq '2' -->false<!-- ELSE -->true<!-- ENDIF -->;
 
 function win_close(text)
 {
+	var in_popup = <!-- IF S_ABBC3_WIZARD_MODE eq '2' -->false<!-- ELSE -->true<!-- ENDIF -->;
+
 	if (is_ie && !in_popup)
 	{
 		var textarea = document.forms[form_name].elements[text_name];
@@ -272,6 +273,7 @@ function gradient(thetext, priv)
 function gradient_preview(submit)
 {
 	var doc;
+	var in_popup = <!-- IF S_ABBC3_WIZARD_MODE eq '2' -->false<!-- ELSE -->true<!-- ENDIF -->;
 
 	if (in_popup)
 	{
