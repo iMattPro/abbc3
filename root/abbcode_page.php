@@ -101,7 +101,7 @@ function abbcode_show_help()
 			$count++;
 			$template->assign_block_vars('bbc_row', array(
 				'ABBC3_HELP_TAG'	=> '[' . str_replace('=', '', trim($row['bbcode_tag'])) . ']',
-				'ABBC3_HELP_SRC'	=> (isset($row['bbcode_image'])) ? $row['bbcode_image'] : '',
+				'ABBC3_HELP_SRC'	=> (isset($row['bbcode_image']) && trim($row['bbcode_image']) != '') ? $row['bbcode_image'] : false,
 				'ABBC3_HELP_DESC'	=> (isset($user->lang[$abbcode_name . '_MOVER']	)) ? $user->lang[$abbcode_name . '_MOVER'] : '',
 				'ABBC3_HELP_WRITE'	=> (isset($user->lang[$abbcode_name . '_TIP']	)) ? str_replace('\"','"', $user->lang[$abbcode_name . '_TIP']) : '',
 				'ABBC3_HELP_NOTE'	=> (isset($user->lang[$abbcode_name . '_NOTE']	)) ? $user->lang[$abbcode_name . '_NOTE'] : '' ,
