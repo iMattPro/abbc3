@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.8 2010/07/12 10:07:12 leviatan21 Exp $
+* @version: $Id: install_abbc3.php, v 3.0.8 2010/07/18 10:07:18 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -37,12 +37,15 @@ $mod_data = array(
 	'config'				=> 'ABBC3_VERSION',
 	'name'					=> 'INSTALLER_TITLE',
 	'version'				=> '3.0.8',
-	'language'				=> array('mods/acp_abbcodes', 'mods/abbcode', 'install', 'acp/common', 'acp/modules', 'posting'),
+	'language'				=> array('mods/acp_abbcodes', 'mods/abbcode', 'posting', 'install'),
 	/** Set some default values so the user havn't to run any install - Start **/
 	'img_max_width'			=> ($config['img_max_width']		) ? $config['img_max_width']		: 500,
 	'sig_img_max_width'		=> ($config['max_sig_img_width']	) ? $config['max_sig_img_width']	: 200,
-	'img_max_thumb_width'	=> ($config['img_max_thumb_width']	) ? $config['img_max_thumb_width']	: 300,
+	'img_max_thumb_width'	=> ($config['img_max_thumb_width']	) ? $config['img_max_thumb_width']/2: 200,
 );
+
+// Logo Image
+$logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.png';
 
 // The name of the mod to be displayed during installation.
 $mod_name = $mod_data['name'];
@@ -55,11 +58,6 @@ if (isset($mod_data['language']))
 {
 	$user->add_lang($mod_data['language']);
 }
-
-$user->lang['TRANSLATION_INFO'] = (!empty($user->lang['TRANSLATION_INFO'])) ? $user->lang['TRANSLATION_INFO'] . '<br />' . $user->lang['ABBC3_HELP_ABOUT'] : $user->lang['ABBC3_HELP_ABOUT'];
-
-// Logo Image
-$logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.png';
 
 // Options to display to the user
 $user->lang['INSTALLER_INSTALL_WELCOME_NOTE'] = $user->lang['INSTALLER_INSTALL_WELCOME_NOTE'] . '<br /><br /><br />' . $user->lang['ABBC3_HELP_ABOUT'];
@@ -87,11 +85,12 @@ $versions = array(
 //	'1.0.10'	=> array(),
 //	'1.0.11'	=> array(),
 //	'1.0.12'	=> array(),
+//	'3.0.6'		=> array(),	// Never released
 //	'3.0.7'		=> array(),
-//	'3.0.7-PL1'	=> array(),
+//	'3.0.7-PL1'	=> array(),	// Never released
 	'3.0.8'		=> array(
 		// Modules
-		'module_add'	=> array(
+		'module_add' => array(
 			// First, lets add a new category named ACP_ABBCODES to ACP_CAT_POSTING
 			array('acp', 'ACP_CAT_POSTING', 'ACP_ABBCODES'),
 			// Frontend Module
@@ -113,7 +112,7 @@ $versions = array(
 		),
 
 		// Config
-		'config_add'	=> array(
+		'config_add' => array(
 			array('ABBC3_MOD',				(isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true),
 			array('ABBC3_PATH',				(isset($config['ABBC3_PATH']))				? $config['ABBC3_PATH']				: 'styles/abbcode'),
 			array('ABBC3_RESIZE',			(isset($config['ABBC3_RESIZE']))			? $config['ABBC3_RESIZE']			: 1),
@@ -141,24 +140,24 @@ $versions = array(
 
 		// Lets change the max font size
 		'config_update'	=> array(
-			array('max_post_font_size', 	300),
+			array('max_post_font_size', 300),
 		),
 
 		// Change the following columns
 		'table_column_update' => array(
-			array('phpbb_bbcodes', 'bbcode_id',			array('INT:4', 0)),
+			array('phpbb_bbcodes', 'bbcode_id', array('INT:4', 0)),
 		),
 
 		// Add the following columns
 		'table_column_add' => array(
-			array('phpbb_bbcodes', 'display_on_pm',		array('TINT:1',	1)),
-			array('phpbb_bbcodes', 'display_on_sig',	array('TINT:1',	1)),
-			array('phpbb_bbcodes', 'abbcode',			array('TINT:1',	0)),
-			array('phpbb_bbcodes', 'bbcode_image',		array('VCHAR',	'')),
-			array('phpbb_bbcodes', 'bbcode_order',		array('USINT',	0)),
-			array('phpbb_bbcodes', 'bbcode_group',		array('VCHAR',	'0')),
-			array('phpbb_users', 'user_abbcode_mod',	 array('TINT:1', 1)),
-			array('phpbb_users', 'user_abbcode_compact', array('TINT:1', 0)),
+			array('phpbb_bbcodes', 'display_on_pm', array('TINT:1', 1)),
+			array('phpbb_bbcodes', 'display_on_sig', array('TINT:1', 1)),
+			array('phpbb_bbcodes', 'abbcode', array('TINT:1', 0)),
+			array('phpbb_bbcodes', 'bbcode_image', array('VCHAR', '')),
+			array('phpbb_bbcodes', 'bbcode_order', array('USINT', 0)),
+			array('phpbb_bbcodes', 'bbcode_group', array('VCHAR', '0')),
+			array('phpbb_users', 'user_abbcode_mod', array('TINT:1', 1)),
+			array('phpbb_users', 'user_abbcode_compact',array('TINT:1', 0)),
 		),
 
 		// Add indexes
@@ -166,34 +165,28 @@ $versions = array(
 			array('phpbb_bbcodes', 'display_order',		'bbcode_order'),
 		),
 
-		/**
-		* If we are uninstalling, need to delete bbcodes after the table_column_remove remove the 'abbcode' column
-		* during uninstall this list is reversed
-		**/
-		'custom' => 'abbc3_bbcodes_uninstall',
-
 		// Add table
 		'table_add'	=> array(
 			array('phpbb_clicks', array(
 				'COLUMNS'		=> array(
-					'id'		=> array('UINT',		NULL,	'auto_increment'),
-					'url'		=> array('VCHAR:255',	''),
-					'clicks'	=> array('UINT',		0),
+					'id'		=> array('UINT', NULL, 'auto_increment'),
+					'url'		=> array('VCHAR:255', ''),
+					'clicks'	=> array('UINT', 0),
 				),
 				'PRIMARY_KEY'	=> 'id',
 				'KEYS'			=> array(
-					'md5'		=> array('INDEX',		array('url')),
+					'md5'		=> array('INDEX', array('url')),
 					),
 				),
 			),
 		),
 
 		/**
-		* After all add/update bbcodes 
+		* Do some important tasks
+		* Tip : during uninstall this list is reversed
 		**/
-		'custom' => 'abbc3_end',
+		'custom' => 'abbc3_general_tasks',
 	),
-
 );
 
 // Include the UMIF Auto file and everything else will be handled automatically.
@@ -221,13 +214,27 @@ function display_message($lang_string, $class)
 }
 
 /**
-* Remove ABBC3 bbcodes when uninstall
+* Do some important tasks
 *
 * @param string		$action
 * @param string		$version
 **/
-function abbc3_bbcodes_uninstall($action, $version)
+function abbc3_general_tasks($action, $version)
 {
+	// If we are installing or updating, 
+	if ($action == 'install' || $action == 'update')
+	{
+		// Remove deprecated configs from previous ABBC3 installations
+		abbc3_clear_config();
+		// Remove deprecated bbcodes from previous ABBC3 installations
+		abbc3_clear_bbcodes();
+		// Add/update ABBC3 bbcodes
+		abbc3_add_bbcodes();
+		// Synchronise bbcode order
+		abbc3_sync_bbcodes();
+	}
+
+	// If we are uninstalling, need to delete bbcodes after the table_column_remove remove the 'abbcode' column
 	if ($action == 'uninstall')
 	{
 		abbc3_remove_bbcodes();
@@ -236,13 +243,12 @@ function abbc3_bbcodes_uninstall($action, $version)
 	* Return a string
 	* 	The string will be shown as the action performed (command).  It will show any SQL errors as a failure, otherwise success
 	**/
-	return 'INSTALLER_BBCODES_ADD';
+	return 'INSTALLER_INSTALL_END';
 }
 
 /**
 * Remove some deprecated config variables
-*
-*/
+**/
 function abbc3_clear_config()
 {
 	global $umil;
@@ -273,7 +279,7 @@ function abbc3_clear_config()
 * Check some deprecated bbcodes
 *
 * @return int		$num_updates	amount of changes
-*/
+**/
 function abbc3_clear_bbcodes()
 {
 	global $db, $config;
@@ -310,49 +316,7 @@ function abbc3_clear_bbcodes()
 }
 
 /**
-* If we are installing or updating, do some bbcodes tasks
-*
-* @param string		$action
-* @param string		$version
-**/
-function abbc3_end($action, $version)
-{
-	if ($action == 'install' || $action == 'update')
-	{
-		abbc3_clear_config(); //Remove deprecated configs from previous ABBC3 installations
-		abbc3_clear_bbcodes(); // remove deprecated bbcodes from previous ABBC3 installations
-		abbc3_add_bbcodes();
-		abbc3_sync_bbcodes();
-	}
-	/**
-	* Return a string
-	* 	The string will be shown as the action performed (command).  It will show any SQL errors as a failure, otherwise success
-	**/
-	return 'INSTALLER_INSTALL_END';
-}
-
-/**
-* Remove ABBC3 bbcodes from the bbcodes table
-*
-**/
-function abbc3_remove_bbcodes()
-{
-	global $db, $template, $user;
-
-	$sql = 'DELETE FROM ' . BBCODES_TABLE . '
-		WHERE abbcode = 1';
-	$result = $db->sql_query($sql);
-
-	$template->assign_block_vars('results', array(
-		'COMMAND'	=> $user->lang['INSTALLER_BBCODES_ADD'],
-		'RESULT'	=> $user->lang['LINE_ADDED'],
-		'S_SUCCESS'	=> ($result) ? true : false,
-	));
-}
-
-/**
 * Add ABBC3 bbcodes to the bbcodes table
-*
 **/
 function abbc3_add_bbcodes()
 {
@@ -490,7 +454,6 @@ function abbc3_add_bbcodes()
 
 /**
 * Synchronise bbcode order
-*
 **/
 function abbc3_sync_bbcodes()
 {
@@ -527,7 +490,7 @@ function abbc3_sync_bbcodes()
 /**
 * Enter description here...
 *
-* @return array		$bbcode_data	all bbcodes	to add
+* @return array		$bbcode_data	all bbcodes	to add/update
 **/
 function get_abbc3_bbcodes()
 {
@@ -622,6 +585,24 @@ function get_abbc3_bbcodes()
 // Deprecated in v3.0.11
 //		'html'			=> array("html",			84, 1,	"ABBC3_HTML_TIP",		 "[html]{TEXT}[/html]", "<code>{TEXT}</code>", "!\[html\](.*?)\[/html\]!ies", '\'[html:$uid]${1}[/html:$uid]\'', '!\[html:$uid\](.*?)\[/html:$uid\]!ies', 'str_replace(array("\r\n", "\n", "<br />", "<br />"), "\r", htmlspecialchars_decode(\'$1\'))', 0, 0, 0, 1, "html.gif", "5"),
 	);
+}
+
+/**
+* Remove ABBC3 bbcodes from the bbcodes table
+**/
+function abbc3_remove_bbcodes()
+{
+	global $db, $template, $user;
+
+	$sql = 'DELETE FROM ' . BBCODES_TABLE . '
+		WHERE abbcode = 1';
+	$result = $db->sql_query($sql);
+
+	$template->assign_block_vars('results', array(
+		'COMMAND'	=> $user->lang['INSTALLER_BBCODES_ADD'],
+		'RESULT'	=> $user->lang['LINE_ADDED'],
+		'S_SUCCESS'	=> ($result) ? true : false,
+	));
 }
 
 ?>
