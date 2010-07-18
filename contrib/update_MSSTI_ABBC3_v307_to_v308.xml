@@ -127,39 +127,66 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
-	global $config, $mode, $abbcode;]]></find>
-				<action type="after-add"><![CDATA[
-	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></action>
-			</edit>
+	global $config, $mode, $abbcode;
 
+	if ($abbc3 && @$config['ABBC3_MOD'])
+	{
+		// We need to check if ABBC3 is property initialized
+		if (!class_exists('abbcode'))
+		{
+			global $phpbb_root_path, $phpEx;
 
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		}
 
-			<edit>
-				<find><![CDATA[		$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
+		$abbcode->abbcode_init();
+		$abbcode->abbcode_display($mode);
+
+		$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
 			FROM ' . BBCODES_TABLE . '
 			WHERE display_on_posting = 1 AND abbcode = 0 AND bbcode_image = "" 
 			ORDER BY bbcode_tag';
 	}
 	else
 	{
+		$template->assign_vars(array('S_ABBC3_DISABLED' => true));]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+	global $config, $mode, $abbcode;
+
+	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+
+	$sql_where = ' AND abbcode = 0';
+	if ($abbc3 && @$config['ABBC3_MOD'])
+	{
+		// We need to check if ABBC3 is property initialized
+		if (!class_exists('abbcode'))
+		{
+			global $phpbb_root_path, $phpEx;
+
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		}
+
+		$abbcode->abbcode_init();
+		$abbcode->abbcode_display($mode);
+
+		$sql_where = ' AND (abbcode = 0 AND bbcode_image = "")';
+	}
+	else
+	{
 		$template->assign_vars(array('S_ABBC3_DISABLED' => true));
-
-	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
-		FROM ' . BBCODES_TABLE . '
-		WHERE display_on_posting = 1 AND abbcode = 0 
-		ORDER BY bbcode_tag';
-
 	}
-// MOD : MSSTI ABBC3 - End]]></find>
-				<action type="replace-with"><![CDATA[		return;
-	}
-	$template->assign_vars(array('S_ABBC3_DISABLED' => true));
-// MOD : MSSTI ABBC3 - End
-
-	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
-		FROM ' . BBCODES_TABLE . '
-		WHERE display_on_posting = 1 AND abbcode = 0 
-		ORDER BY bbcode_tag';]]></action>
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		WHERE display_on_posting = 1]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[AND abbcode = 0]]></inline-find>
+					<inline-action type="replace-with"><![CDATA[' . $sql_where . ']]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<remove><![CDATA[	}
+// MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
 		</open>
 		<open src="includes/functions.php">
