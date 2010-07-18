@@ -34,7 +34,7 @@ if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 }
 
 $mod_data = array(
-	'config'				=> 'ABBC3',
+	'config'				=> 'ABBC3_VERSION',
 	'name'					=> 'INSTALLER_TITLE',
 	'version'				=> '3.0.8',
 	'language'				=> array('mods/acp_abbcodes', 'mods/abbcode', 'install', 'acp/common', 'acp/modules', 'posting'),
@@ -71,8 +71,25 @@ $options = array(
 
 // The array of versions and actions within each.
 $versions = array(
-	// Version 1.0.0
-	'1.0.0'		=> array(
+//	'1.0.0'		=> array(),
+//	'1.0.1'		=> array(),
+//	'1.0.2'		=> array(),
+//	'1.0.3'		=> array(),
+//	'1.0.4'		=> array(),
+//	'1.0.5'		=> array(),
+//	'1.0.6'		=> array(),
+//	'1.0.6-b'	=> array(),
+//	'1.0.7'		=> array(),
+//	'1.0.7-b'	=> array(),
+//	'1.0.8'		=> array(),
+//	'1.0.9'		=> array(),
+//	'1.0.9-b'	=> array(),
+//	'1.0.10'	=> array(),
+//	'1.0.11'	=> array(),
+//	'1.0.12'	=> array(),
+//	'3.0.7'		=> array(),
+//	'3.0.7-PL1'	=> array(),
+	'3.0.8'		=> array(
 		// Modules
 		'module_add'	=> array(
 			// First, lets add a new category named ACP_ABBCODES to ACP_CAT_POSTING
@@ -98,7 +115,6 @@ $versions = array(
 		// Config
 		'config_add'	=> array(
 			array('ABBC3_MOD',				(isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true),
-			array('ABBC3_VERSION',			$mod_data['version']),
 			array('ABBC3_PATH',				(isset($config['ABBC3_PATH']))				? $config['ABBC3_PATH']				: 'styles/abbcode'),
 			array('ABBC3_RESIZE',			(isset($config['ABBC3_RESIZE']))			? $config['ABBC3_RESIZE']			: 1),
 			array('ABBC3_RESIZE_METHOD',	(isset($config['ABBC3_RESIZE_METHOD']))		? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox'),
@@ -114,6 +130,13 @@ $versions = array(
 			array('ABBC3_BOXRESIZE',		(isset($config['ABBC3_BOXRESIZE']))			? $config['ABBC3_BOXRESIZE']		: 1),
 			array('ABBC3_VIDEO_width',		(isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425),
 			array('ABBC3_VIDEO_height',		(isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 350),
+			array('ABBC3_COLOR_MODE',		(isset($config['ABBC3_COLOR_MODE']))		? $config['ABBC3_COLOR_MODE']		: 'phpbb'),
+			array('ABBC3_HIGHLIGHT_MODE',	(isset($config['ABBC3_HIGHLIGHT_MODE']))	? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown'),
+			array('ABBC3_WIZARD_MODE',		(isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 1),
+			array('ABBC3_WIZARD_width',		(isset($config['ABBC3_WIZARD_width']))		? $config['ABBC3_WIZARD_width']		: 700),
+			array('ABBC3_WIZARD_height',	(isset($config['ABBC3_WIZARD_height']))		? $config['ABBC3_WIZARD_height']	: 400),
+			array('ABBC3_UCP_MODE',			(isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1),
+			array('ABBC3_VIDEO_OPTIONS',	(isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;201;202;203;204;205;206;207;208;'),
 		),
 
 		// Lets change the max font size
@@ -134,6 +157,8 @@ $versions = array(
 			array('phpbb_bbcodes', 'bbcode_image',		array('VCHAR',	'')),
 			array('phpbb_bbcodes', 'bbcode_order',		array('USINT',	0)),
 			array('phpbb_bbcodes', 'bbcode_group',		array('VCHAR',	'0')),
+			array('phpbb_users', 'user_abbcode_mod',	 array('TINT:1', 1)),
+			array('phpbb_users', 'user_abbcode_compact', array('TINT:1', 0)),
 		),
 
 		// Add indexes
@@ -162,55 +187,13 @@ $versions = array(
 				),
 			),
 		),
-	),
-
-	'1.0.1'		=> array(),
-	'1.0.2'		=> array(),
-	'1.0.3'		=> array(),
-	'1.0.4'		=> array(),
-	'1.0.5'		=> array(),
-	'1.0.6'		=> array(),
-	'1.0.6-b'	=> array(),
-	'1.0.7'		=> array(),
-	'1.0.7-b'	=> array(),
-	'1.0.8'		=> array(),
-	'1.0.9'		=> array(),
-	'1.0.9-b'	=> array(),
-	'1.0.10'	=> array(),
-	'1.0.11'	=> array(),
-	'1.0.12'	=> array(),
-	'3.0.7'		=> array(),
-	'3.0.7-PL1'	=> array(
-		/**
-		* Before continue made some checks if we are updating
-		**/
-		'custom' => 'abbc3_update',
-	),
-
-	// Changes to version 3.0.8
-	'3.0.8'	=> array(
-		// Config
-		'config_add'	=> array(
-			array('ABBC3_COLOR_MODE',		(isset($config['ABBC3_COLOR_MODE']))		? $config['ABBC3_COLOR_MODE']		: 'phpbb'),
-			array('ABBC3_HIGHLIGHT_MODE',	(isset($config['ABBC3_HIGHLIGHT_MODE']))	? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown'),
-			array('ABBC3_WIZARD_MODE',		(isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 1),
-			array('ABBC3_WIZARD_width',		(isset($config['ABBC3_WIZARD_width']))		? $config['ABBC3_WIZARD_width']		: 700),
-			array('ABBC3_WIZARD_height',	(isset($config['ABBC3_WIZARD_height']))		? $config['ABBC3_WIZARD_height']	: 400),
-			array('ABBC3_UCP_MODE',			(isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1),
-			array('ABBC3_VIDEO_OPTIONS',	(isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;201;202;203;204;205;206;207;208;'),
-		),
-
-		// Add the following columns
-		'table_column_add' => array(
-			array('phpbb_users', 'user_abbcode_mod',	 array('TINT:1',	1)),
-			array('phpbb_users', 'user_abbcode_compact', array('TINT:1',	0)),
-		),
 
 		/**
 		* After all add/update bbcodes 
 		**/
 		'custom' => 'abbc3_end',
 	),
+
 );
 
 // Include the UMIF Auto file and everything else will be handled automatically.
@@ -257,52 +240,12 @@ function abbc3_bbcodes_uninstall($action, $version)
 }
 
 /**
-* If we are updating, need to check some deprecated config variables and bbcodes
+* Remove some deprecated config variables
 *
-* @param string		$action
-* @param string		$version
-**/
-function abbc3_update($action, $version)
-{
-	if ($action == 'update')
-	{
-		global $user, $template;
-
-		// Deprecated config variables
-		if ($result = abbc3_clear_config())
-		{
-			$template->assign_block_vars('results', array(
-				'COMMAND'	=> sprintf($user->lang['UPDATE_MOD'], $user->lang['INSTALLER_CONFIGS_ADD']),
-				'RESULT'	=> $user->lang['SUCCESS'],
-				'S_SUCCESS'	=> true,
-			));
-		}
-
-		// Deprecated bbcodes
-		if ($result = abbc3_clear_bbcodes())
-		{
-			$template->assign_block_vars('results', array(
-				'COMMAND'	=> sprintf($user->lang['UPDATE_MOD'], $user->lang['INSTALLER_BBCODES_ADD']),
-				'RESULT'	=> $user->lang['SUCCESS'],
-				'S_SUCCESS'	=> true,
-			));
-		}
-	}
-	/**
-	* Return a string
-	* 	The string will be shown as the action performed (command).  It will show any SQL errors as a failure, otherwise success
-	**/
-	return 'INSTALLER_BBCODES_ADD';
-}
-
-/**
-* Check some deprecated config variables
-*
-* @return int		$num_updates	amount of changes
 */
 function abbc3_clear_config()
 {
-	global $db, $config;
+	global $umil;
 
 	// tracking different version 
 	$config_data = array(			//Create	Deprecated
@@ -317,21 +260,13 @@ function abbc3_clear_config()
 		'ABBC3_UPLOAD_EXTENSION',	// v1.0.9	v3.0.7
 	);
 
-	$num_updates = 0;
 	foreach ($config_data as $config_name)
 	{
-		if (isset($config[$config_name]))
+		if ($umil->config_exists($config_name))
 		{
-			$result = $sql = 'DELETE FROM ' . CONFIG_TABLE . " WHERE config_name = '" . $db->sql_escape($config_name) . "'";
-			$db->sql_query($sql);
-
-			if ($result)
-			{
-				$num_updates++;
-			}
+			$umil->config_remove($config_name);
 		}
 	}
-	return $num_updates;
 }
 
 /**
@@ -344,7 +279,7 @@ function abbc3_clear_bbcodes()
 	global $db, $config;
 
 	// tracking different version 
-	$bbcodes_data = array(			//Create	Depreated
+	$bbcodes_data = array(			//Create	Deprecated
 		'upload', 					// v1.0.9	v3.0.7
 		'html',						// v1.0.10	v1.0.11
 	);
@@ -384,6 +319,8 @@ function abbc3_end($action, $version)
 {
 	if ($action == 'install' || $action == 'update')
 	{
+		abbc3_clear_config(); //Remove deprecated configs from previous ABBC3 installations
+		abbc3_clear_bbcodes(); // remove deprecated bbcodes from previous ABBC3 installations
 		abbc3_add_bbcodes();
 		abbc3_sync_bbcodes();
 	}
