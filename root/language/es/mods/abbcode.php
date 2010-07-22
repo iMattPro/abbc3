@@ -520,7 +520,7 @@ $lang = array_merge($lang, array(
 
 	// Search tag
 	'ABBC3_SEARCH_MOVER'		=> 'Insertar enlace a buscador ',
-	'ABBC3_SEARCH_TIP'			=> '[search(=(msn|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
+	'ABBC3_SEARCH_TIP'			=> '[search(=(msn|yahoo|google|altavista|lycos|wikipedia))]texto[/search]',
 ##	For translate :                                                              yes                                                yes                                                  yes                                                   yes                                                      yes                                                  yes
 	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode box 3[/search]<br /> o [search=msn]Advanced BBcode box 3[/search]<br /> o [search=yahoo]Advanced BBcode box 3[/search]<br /> o [search=google]Advanced BBcode box 3[/search]<br /> o [search=altavista]Advanced BBcode box 3[/search]<br /> o [search=lycos]Advanced BBcode box 3[/search]<br /> o [search=wikipedia]Advanced BBcode box 3[/search]',
 
