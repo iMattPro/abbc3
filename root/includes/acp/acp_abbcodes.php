@@ -587,13 +587,10 @@ class acp_abbcodes
 
 			$is_a_bbcode	= true;
 			// is a breack line or division ?
-			if ((substr($abbcode_name,0,11) == 'ABBC3_BREAK')
-			  || (substr($abbcode_name,0,14) == 'ABBC3_DIVISION')
-			  || in_array($row['bbcode_tag'], array('imgshack', 'cut', 'copy', 'paste', 'plain'))
-			)
+			if ((strpos($abbcode_name, 'ABBC3_DIVISION') !== false) || (strpos($abbcode_name, 'ABBC3_BREAK') !== false) || in_array($row['bbcode_tag'], array('imgshack', 'cut', 'copy', 'paste', 'plain')))
 			{
 				$is_a_bbcode	= false;
-				if (substr($abbcode_name,0,14) == 'ABBC3_DIVISION')
+				if (strpos($abbcode_name, 'ABBC3_DIVISION') !== false)
 				{
 					if ($config['ABBC3_TAB'])
 					{
@@ -604,7 +601,7 @@ class acp_abbcodes
 						continue;
 					}
 				}
-				else if (substr($abbcode_name,0,11) == 'ABBC3_BREAK')
+				else if (strpos($abbcode_name, 'ABBC3_BREAK') !== false)
 				{
 						$abbcode_name = 'ABBCODES_BREAK';
 				}
