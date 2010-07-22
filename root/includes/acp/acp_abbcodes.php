@@ -501,15 +501,11 @@ class acp_abbcodes
 				if ($abbc3_color_mode = request_var('abbc3_color', ''))
 				{
 					set_config('ABBC3_COLOR_MODE', $abbc3_color_mode);
-				//	set_config('ABBC3_COLOR_MODE', $abbc3_color_mode, true);
-				//	$cache->destroy('config');
 				}
 
 				if ($abbc3_highlight_mode = request_var('abbc3_highlight', ''))
 				{
 					set_config('ABBC3_HIGHLIGHT_MODE', $abbc3_highlight_mode);
-				//	set_config('ABBC3_HIGHLIGHT_MODE', $abbc3_highlight_mode, true);
-				//	$cache->destroy('config');
 				}
 			}
 
@@ -612,39 +608,40 @@ class acp_abbcodes
 				$first_row_to_move = $row['bbcode_order'] + 1;
 			}
 
-			$abbcode_explain = (isset($user->lang[$abbcode_name . '_MOVER'])) ? $user->lang[$abbcode_name . '_MOVER'] : '';
-			$abbcode_explain.= (isset($user->lang[$abbcode_name . '_EXPLAIN'])) ? '<br />' . $user->lang[$abbcode_name . '_EXPLAIN'] : '';
-
+			$abbcode_explain = '';
 			$bbcode_tagname = '';
 			if (!$abbcode)
 			{
-				$bbcode_tagname = $abbcode_explain;
+				$bbcode_tagname = '[' . $abbcode_tag . ']';
+				$abbcode_explain = $user->lang['ABBCODES_CUSTOM'] . '&nbsp;<strong>' . $bbcode_tagname . '</strong>'; //$row['bbcode_helpline'];
 			}
 			else
 			{
-				$bbcode_tagname  = (!$is_a_bbcode) ? '' : '[' . str_replace(array('listo', 'listb', 'listitem'), array('list=', 'list', '*'), trim($row['bbcode_tag'])) .']';
+				$bbcode_tagname  = (!$is_a_bbcode) ? '' : '[' . str_replace(array('listo', 'listb', 'listitem'), array('list=', 'list', '*'), $abbcode_tag) .']';
+				$abbcode_explain = (isset($user->lang[$abbcode_name . '_MOVER'])) ? $user->lang[$abbcode_name . '_MOVER'] : '';
+				$abbcode_explain.= (isset($user->lang[$abbcode_name . '_EXPLAIN'])) ? '<br />' . $user->lang[$abbcode_name . '_EXPLAIN'] : '';
 			}
 
 			if ($action != 'edit')
 			{
 				$template->assign_block_vars('items', array(
-					'ID'					=> $bbcode_id,
-					'ORDER'					=> $row['bbcode_order'],
-					'NAME'					=> str_replace('=', '', trim($row['bbcode_tag'])),
-					'TAG_NAME'				=> ($abbcode) ? $bbcode_tagname : '[' . $abbcode_tag . ']',
-					'TAG_EXPLAIN'			=> ($abbcode) ? $abbcode_explain : '<strong>[' . $abbcode_tag .']</strong>',
- 					'IMG_SRC'				=> ($abbcode_image && $abbcode_image != $img_spacer) ? $this->dir . '/images/' . $abbcode_image : '',
+					'ID'				=> $bbcode_id,
+					'ORDER'				=> $row['bbcode_order'],
+					'NAME'				=> str_replace('=', '', trim($row['bbcode_tag'])),
+					'TAG_NAME'			=> $bbcode_tagname,
+					'TAG_EXPLAIN'		=> $abbcode_explain,
+					'IMG_SRC'			=> ($abbcode_image && $abbcode_image != $img_spacer) ? $this->dir . '/images/' . $abbcode_image : '',
 
-					'ON_POST'				=> ($row['display_on_posting'])	? $user->lang['ENABLED'] : $user->lang['DISABLED'],
-					'ON_PM'					=> ($row['display_on_pm'])		? $user->lang['ENABLED'] : $user->lang['DISABLED'],
-					'ON_SIG'				=> ($row['display_on_sig'])		? $user->lang['ENABLED'] : $user->lang['DISABLED'],
+					'ON_POST'			=> ($row['display_on_posting'])	? $user->lang['ENABLED'] : $user->lang['DISABLED'],
+					'ON_PM'				=> ($row['display_on_pm'])		? $user->lang['ENABLED'] : $user->lang['DISABLED'],
+					'ON_SIG'			=> ($row['display_on_sig'])		? $user->lang['ENABLED'] : $user->lang['DISABLED'],
 
-					'S_NOMOVE'				=> (in_array($abbcode_name, $no_move)) ? true : false,
-					'S_FIRST_ROW'			=> ($row['bbcode_order'] == $first_row_to_move) ? true : false,
+					'S_NOMOVE'			=> (in_array($abbcode_name, $no_move)) ? true : false,
+					'S_FIRST_ROW'		=> ($row['bbcode_order'] == $first_row_to_move) ? true : false,
 
-					'U_EDIT'				=> $this->u_action . '&amp;mode=bbcodes&amp;action=edit&amp;bbcode_id=' . $row['bbcode_id'],
-					'U_MOVE_UP'				=> $this->u_action . '&amp;mode=bbcodes&amp;action=move_up&amp;bbcode_id=' . $row['bbcode_id'],
-					'U_MOVE_DOWN'			=> $this->u_action . '&amp;mode=bbcodes&amp;action=move_down&amp;bbcode_id=' . $row['bbcode_id'],
+					'U_EDIT'			=> $this->u_action . '&amp;mode=bbcodes&amp;action=edit&amp;bbcode_id=' . $row['bbcode_id'],
+					'U_MOVE_UP'			=> $this->u_action . '&amp;mode=bbcodes&amp;action=move_up&amp;bbcode_id=' . $row['bbcode_id'],
+					'U_MOVE_DOWN'		=> $this->u_action . '&amp;mode=bbcodes&amp;action=move_down&amp;bbcode_id=' . $row['bbcode_id'],
 				));
 			}
 			else if ($action == 'edit' && $row['bbcode_id'] == $bbcode)
@@ -656,20 +653,20 @@ class acp_abbcodes
 				}
 
 				$template->assign_block_vars('items', array(
-					'ID'					=> $bbcode_id,
-					'NAME'					=> $abbcode_name,
-					'TAG_NAME'				=> ($bbcode_tagname) ? $bbcode_tagname . '<br />' : '',
-					'TAG_EXPLAIN'			=> ($abbcode) ? $abbcode_explain : '<strong>[' . $abbcode_tag .']</strong><br />' . $row['bbcode_helpline'],
-					'IMG_SRC'				=> ($abbcode_image) ? ($abbcode_image != $img_spacer) ? $this->dir . '/images/' . $abbcode_image : '' : $this->dir . '/images/' . $img_noimg,
+					'ID'				=> $bbcode_id,
+					'NAME'				=> $abbcode_name,
+					'TAG_NAME'			=> $bbcode_tagname,
+					'TAG_EXPLAIN'		=> ($abbcode) ? $abbcode_explain : $row['bbcode_helpline'],
+					'IMG_SRC'			=> ($abbcode_image) ? ($abbcode_image != $img_spacer) ? $this->dir . '/images/' . $abbcode_image : '' : $this->dir . '/images/' . $img_noimg,
 
- 					'S_NOMOVE'				=> (in_array($abbcode_name, $no_move)) ? true : null,
-					'S_NEW_IMG'				=> image_select($this->dir . '/images', $abbcode_image, 'image[' . $bbcode_id . ']', false, $this->u_action),
-					'POSTING_CHECKED'		=> ($row['display_on_posting']) ? ' checked="checked"' : '',
-					'PM_CHECKED'			=> ($row['display_on_pm'])		? ' checked="checked"' : '',
-					'SIG_CHECKED'			=> ($row['display_on_sig'])		? ' checked="checked"' : '',
+ 					'S_NOMOVE'			=> (in_array($abbcode_name, $no_move)) ? true : null,
+					'S_NEW_IMG'			=> image_select($this->dir . '/images', $abbcode_image, 'image[' . $bbcode_id . ']', false, $this->u_action),
+					'POSTING_CHECKED'	=> ($row['display_on_posting']) ? ' checked="checked"' : '',
+					'PM_CHECKED'		=> ($row['display_on_pm'])		? ' checked="checked"' : '',
+					'SIG_CHECKED'		=> ($row['display_on_sig'])		? ' checked="checked"' : '',
 
-					'S_GROUP_OPTIONS'		=> groups_select_options(explode(',', $row['bbcode_group']), $exclude),
-					'S_RADIO_BUTTONS'		=> ($radio) ? $radio : '',
+					'S_GROUP_OPTIONS'	=> groups_select_options(explode(',', $row['bbcode_group']), $exclude),
+					'S_RADIO_BUTTONS'	=> ($radio) ? $radio : '',
 				));
 			}
 		}

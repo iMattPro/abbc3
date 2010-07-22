@@ -329,7 +329,7 @@
 					<!-- IF not S_BBCODE_EDIT --><td><!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}</strong><!-- ENDIF --></td><!-- ENDIF -->
 					<td>
 					<!-- IF items.IMG_SRC and not S_BBCODE_EDIT --><img src="{items.IMG_SRC}" title="{items.NAME}" alt="{items.NAME}" style="float: right;"/><!-- ENDIF -->
-					<!-- IF items.TAG_NAME and S_BBCODE_EDIT --><strong>{items.TAG_NAME}</strong><br /><!-- ENDIF -->{items.TAG_EXPLAIN}
+					<!-- IF items.TAG_NAME and S_BBCODE_EDIT --><strong>{items.TAG_NAME}</strong><!-- ELSE -->{items.TAG_EXPLAIN}<!-- ENDIF -->
 					<input type="hidden" name="id[{items.ID}]" value="{items.ID}" />
 					<input type="hidden" name="name[{items.ID}]" value="{items.NAME}" />
 					</td>
@@ -362,6 +362,12 @@
 						<select id="group" name="group_id[]" multiple="multiple" size="10">{items.S_GROUP_OPTIONS}</select>
 					</td>
 				</tr>
+				<!-- IF items.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+					<td colspan="{$COLSPAN}">
+						<strong>{L_BBCODE_HELPLINE} :</strong> {items.TAG_EXPLAIN}
+					</td>
+				</tr>
+
 			<!-- IF items.S_RADIO_BUTTONS -->
 				<!-- IF items.S_ROW_COUNT is even --><tr class="row2"><!-- ELSE --><tr class="row1"><!-- ENDIF -->
 					<td colspan="{$COLSPAN}">

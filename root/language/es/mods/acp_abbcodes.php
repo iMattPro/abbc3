@@ -154,6 +154,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_NAME'						=> 'Nombre de etiqueta',
 	'ABBCODES_TAG'						=> 'Imagen de etiqueta',
 	'ABBCODES_ORDER'					=> 'Orden de etiqueta',
+	'ABBCODES_CUSTOM'					=> 'BBcode personalizado',
 
 	'ABBCODES_BREAK_MOVER'				=> '<strong><i>Salto de línea</i></strong>',
 	'ABBCODES_DIVISION_MOVER'			=> '<strong><i>División</i></strong>',
