@@ -229,12 +229,12 @@ class abbcode
 				switch ($abbcode_name)
 				{
 					// Is a Line break ? -> abbc3_break(n)
-					case (substr($abbcode_name,0,11) == 'ABBC3_BREAK') :
+					case (strpos($abbcode_name, 'ABBC3_BREAK') !== false) :
 						$template->assign_block_vars('abbc3_tags', array('S_ABBC3_BREAK' => true));
 					break;
 
 					// Is a Division line ? -> abbc3_division(n)
-					case (substr($abbcode_name,0,14) == 'ABBC3_DIVISION') :
+					case (strpos($abbcode_name, 'ABBC3_DIVISION') !== false) :
 						$template->assign_block_vars('abbc3_tags', array('S_ABBC3_DIVISION' => true));
 					break;
 
