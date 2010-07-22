@@ -101,6 +101,12 @@
 							<li>Chrome 1.0</li>
 						</ul>
 					</li>
+					<li> Tested on Macintosh Browsers:
+						<ul>
+							<li>Safari 4</li>
+							<li>Firefox 3.6</li>
+						</ul>
+					</li>
 					<li> Need Translation ? : Please visit <a href="http://www.mssti.com/phpbb3/viewtopic.php?f=39&amp;t=383#Translation" onclick="window.open(this.href);return false;">ABBC3 Translation</a></li>
 					<li> Need extra support ? : You can contact me at <a href="http://www.mssti.com/phpbb3/viewforum.php?f=68" onclick="window.open(this.href);return false;">Advanced Bbcode Box 3 Support</a></li>
 					<li> Found a bug ? : Report it at <a href="http://www.mssti.com/phpbb3/tracker.php?c=1" onclick="window.open(this.href);return false;">Tracker : Advanced Bbcode Box 3</a></li>
@@ -133,7 +139,26 @@
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div class="content">
 				<a name="abbc3_v308"></a><h3>Changes in 3.0.8</h3>
-				<ul>
+				<strong>General:</strong><ul>
+					<li>[Change] Separated JavaScript code from .html files : Common files are now style independent 
+						<ul>
+							<li><em>abbcode_header.html</em></li>
+							<li><em>posting_abbcode_buttons.js</em></li>
+							<li><em>posting_abbcode_wizards.js</em></li>
+						</ul>
+					</li>
+					<li>[Change] Optimized code : 
+						<ul>
+							<li>Don't load unnecessary language files and template variables all time, just when they are needed</li>
+							<li>Don't run unnecessary DB query when display custom bbcodes</li>
+						</ul>
+					</li>
+					<li> [Change] Switched over to UMIL based installation</li>
+					<li> [Change] BBcode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</li>
+					<li> [Change] BBcode : BBvideo : Now uses XHTML compliant code for all videos embedded from other Video sharing sites.</li>
+					<li> [Fix] Several XHTML and language fixes.</li>
+				</ul>
+				<strong>ACP:</strong><ul>
 					<li> [Feature] Color bbcode : Colour picker : Now we have 4 options:
 						<ul>
 							<li> phpBB style Default</li>
@@ -147,12 +172,21 @@
 							<li> “fancy” selector</li>
 							<li> Tigra color picker</li>
 						</ul>
-					<li> [Feature] Wizards can be disabled, use pop up window, or in-post</li>
+					<li> [Feature] Wizards mode :
+						<ul>
+							<li>Disable wizards</li>
+							<li>Pop-up window</li>
+							<li>In-post (trough Ajax)</li>
+						</ul>
+					</li>
+					<li>[Feature] Wizards pop-up window size</li>
+					<li>[Feature] UCP Control options : Allow users to select their own editor mode
+						<ul>
+							<li>Use standard phpBB3 BBcode buttons</li>
+							<li>ABBC3 “Extended” view</li>
+							<li>ABBC3 “Compact” view</li>
+						</ul>
 					<li> [Feature] Added ACP option to define the content allowed in BBvideo</li>
-					<li> [Change] Switched over to UMIL based installation</li>
-					<li> [Change] BBcode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</li>
-					<li> [Change] BBcode : BBvideo : Now uses XHTML compliant code for all videos embedded from other Video sharing sites.</li>
-					<li> [Fix] Several XHTML and language fixes.</li>
 				</ul>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 			</div>
