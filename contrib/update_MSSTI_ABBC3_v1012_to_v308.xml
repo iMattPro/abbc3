@@ -517,7 +517,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA[<fieldset class="submit-buttons">]]></find>
 				<action type="before-add"><![CDATA[
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<!-- IF S_ABBC3_MOD -->
+<!-- IF S_ABBC3_MOD and S_ABBC3_UCP_MODE -->
 <h2>{L_UCP_ABBCODES}</h2>
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
@@ -530,7 +530,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			<label for="abbcode_mod0"><input type="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
-	<!-- IF S_ABBC3_UCP_MODE -->
 	<dl>
 		<dt><label for="abbcode_compact0">{L_UCP_ABBC3_BBCODES}:</label><br /><span>{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></dt>
 		<dd>
@@ -538,7 +537,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			<label for="abbcode_compact0"><input type="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
-	<!-- ENDIF -->
 	</fieldset>
 	
 	<span class="corners-bottom"><span></span></span></div>
@@ -550,13 +548,11 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 		</open>
 		<open src="styles/prosilver/theme/stylesheet.css">
 			<edit>
-				<find><![CDATA[/** MOD : MSSTI ABBC3 (V1.0.12) Quote block fix - Start **/
+				<remove><![CDATA[/** MOD : MSSTI ABBC3 (V1.0.12) Quote block fix - Start **/
 blockquote { background-image: none; }
 blockquote div cite { margin-left: 0px; padding-left: 20px; background-image: url("{T_THEME_PATH}/images/quote.gif"); background-position: 0 3px; background-repeat: no-repeat; }
 blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); background-position: 6px 8px; background-repeat: no-repeat; }
-/** MOD : MSSTI ABBC3 (V1.0.12) Quote block fix - End **/]]></find>
-				<action type="replace-with"><![CDATA[]]></action>
-				<comment lang="en">Just delete this lines, and see the root/contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml file</comment>
+/** MOD : MSSTI ABBC3 (V1.0.12) Quote block fix - End **/]]></remove>
 			</edit>
 		</open>
 		<open src="styles/subsilver2/template/overall_header.html">
@@ -651,7 +647,7 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 	<td class="cat" colspan="2" align="center">{S_HIDDEN_FIELDS}<input class="btnmain" type="submit" name="submit" value="{L_SUBMIT}" />&nbsp;&nbsp;<input class="btnlite" type="reset" value="{L_RESET}" name="reset" /></td>]]></find>
 				<action type="before-add"><![CDATA[
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<!-- IF S_ABBC3_MOD -->
+<!-- IF S_ABBC3_MOD and S_ABBC3_UCP_MODE -->
 <tr>
 	<th colspan="2">{L_UCP_ABBCODES}</th>
 
@@ -660,12 +656,10 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 	<td class="row1" width="35%"><b class="genmed">{L_UCP_ABBC3_SETTINGS}:</b><br /><span class="gensmall">{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></td>
 	<td class="row2"><input type="radio" class="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
 </tr>
-<!-- IF S_ABBC3_UCP_MODE -->
 <tr>
 	<td class="row1" width="35%"><b class="genmed">{L_UCP_ABBC3_BBCODES}:</b><br /><span class="gensmall">{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></td>
 	<td class="row2"><input type="radio" class="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
 </tr>
-<!-- ENDIF -->
 <!-- ENDIF -->
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
 ]]></action>

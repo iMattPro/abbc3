@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/15 11:07:15 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/22 10:07:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -128,7 +128,7 @@ $lang = array_merge($lang, array(
 													'1'			=> 'En ventana emergente',
 													'2'			=> 'En página'),
 	'ABBCODES_UCP_MODE'					=> 'PCU Opciones',
-	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Permitir a los usuarios seleccionar la vista de ABBC3?',
+	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Permitir a los usuarios seleccionar su propio modo del editor, eligiendo entre la botonera de phpBB3, ABBC3 “Vista Completa” o en “Vista Compacta”',
 
 	'ABBCODES_WIZARD'					=> 'Asistente',
 	'ABBCODES_WIZARD_SIZE'				=> 'Dimensiones del asistente',
@@ -148,7 +148,7 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_CONFIG'					=> 'ABBC3 Componentes',
 	'ABBCODES_CONFIG_EXPLAIN'			=> 'En esta esta página puede alterar el orden de las etiquetas o editar los iconos,',
-	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Administrar grupos : </strong>Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br />Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse <em>Ctrl</em> y mientras mantiene pulsada esta tecla haga <em>Clic</em> (o mantenga pulsada <em>Cmd</em> y haga <em>Clic</em> en un Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla <em>Ctrl</em> (<em>Cmd</em> en un Mac) cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
+	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Administrar grupos : </strong>Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br />Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse CTRL+CLICK (o CMD-CLICK en Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
 	
 	'ABBCODES_TIP'						=> 'Ayuda de etiqueta',
 	'ABBCODES_NAME'						=> 'Nombre de etiqueta',

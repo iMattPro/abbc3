@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8 2010/07/22 10:07:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -151,8 +151,6 @@ class abbcode
 				'ABBC3_WIZARD_WIDTH'	=> (isset($config['ABBC3_WIZARD_width'])) ? $config['ABBC3_WIZARD_width'] : 700,
 				// Height for pop-up wizard window ?
 				'ABBC3_WIZARD_HEIGHT'	=> (isset($config['ABBC3_WIZARD_height'])) ? $config['ABBC3_WIZARD_height'] : 400,
-				//
-				'ABBC3_UCP_MODE'		=> (isset($config['ABBC3_UCP_MODE'])) ? (int) $config['ABBC3_UCP_MODE'] : 1,
 				// Link to ABBC3 tigra color picker page
 				'ABBC3_TIGRA_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=tigra"),
 				// Cookie
@@ -283,8 +281,6 @@ class abbcode
 			'S_ABBC3_WIZARD_WIDTH'		=> $this->abbcode_config['ABBC3_WIZARD_WIDTH'],
 			// Height for pop-up wizard window ?
 			'S_ABBC3_WIZARD_HEIGHT'		=> $this->abbcode_config['ABBC3_WIZARD_HEIGHT'],
-			// User Control Panel
-			'S_ABBC3_UCP_MODE'			=> $this->abbcode_config['ABBC3_UCP_MODE'],
 			// Color picker
 			'S_ABBC3_COLOR_MODE'		=> $this->abbcode_config['ABBC3_COLOR_MODE'],
 			// Highlight picker

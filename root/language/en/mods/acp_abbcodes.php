@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/22 10:07:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -128,7 +128,7 @@ $lang = array_merge($lang, array(
 													'1'			=> 'Pop Up window',
 													'2'			=> 'In post'),
 	'ABBCODES_UCP_MODE'					=> 'UCP Control options',
-	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Allow users to select their owm ABBC3 view modes?',
+	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Allow users to select their own editor mode, by choosing between the standard phpBB3 BBcode buttons, ABBC3 “Extended” or ABBC3 “Compact” view.',
 
 	'ABBCODES_WIZARD'					=> 'Wizard',
 	'ABBCODES_WIZARD_SIZE'				=> 'Wizard dimensions',

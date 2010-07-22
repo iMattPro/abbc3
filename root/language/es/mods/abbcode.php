@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: abbcode.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8 2010/07/22 10:07:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -490,8 +490,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAPIDSHARE_TAG'		=> 'rapidshare',
 	'ABBC3_RAPIDSHARE_MOVER'	=> 'Insertar un archivo desde rapidshare',
 	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...][/rapidshare]',
-	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v108.zip.html',
-	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/rapidshare]',
+	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
 	'ABBC3_RAPIDSHARE_GOOD'		=> 'Archivo encontrado el servidor !',
 	'ABBC3_RAPIDSHARE_WRONG'	=> 'Archivo no encontrado !',
 
@@ -502,8 +502,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_MOVER'		=> 'Comprobar la validez de un archivo almacenado en el servidor público',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
 	'ABBC3_TESTLINK_NOTE'		=> 'Servidores validos:rapidshare,megaupload,megarotic,depositfiles,megashares.',
-	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v108.zip.html',
-	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/testlink]',
+	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'Archivo encontrado el servidor !',
 	'ABBC3_TESTLINK_WRONG'		=> 'Archivo no encontrado !',
 
@@ -513,14 +513,14 @@ $lang = array_merge($lang, array(
 	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] o [click=http://...]Nombre Web[/click] o [click][img]http://...[/img][/click]',
 	'ABBC3_CLICK_EXAMPLE'		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
 ##	For translate :                                                                     yes
-	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] o [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] o [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
 	'ABBC3_CLICK_TIME'			=> '( Clickeado %d vez )',
 	'ABBC3_CLICK_TIMES'			=> '( Clickeado %d veces )',
 	'ABBC3_CLICK_ERROR'			=> '<strong>ERROR:</strong> Por favor ingrese in ID válido',
 
 	// Search tag
 	'ABBC3_SEARCH_MOVER'		=> 'Insertar enlace a buscador ',
-	'ABBC3_SEARCH_TIP'			=> '[search(=(msn|yahoo|google))]texto[/search]',
+	'ABBC3_SEARCH_TIP'			=> '[search(=(msn|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
 ##	For translate :                                                              yes                                                yes                                                  yes                                                   yes                                                      yes                                                  yes
 	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode box 3[/search]<br /> o [search=msn]Advanced BBcode box 3[/search]<br /> o [search=yahoo]Advanced BBcode box 3[/search]<br /> o [search=google]Advanced BBcode box 3[/search]<br /> o [search=altavista]Advanced BBcode box 3[/search]<br /> o [search=lycos]Advanced BBcode box 3[/search]<br /> o [search=wikipedia]Advanced BBcode box 3[/search]',
 
@@ -576,7 +576,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAM_MOVER'			=> 'Insertar Real Media',
 	'ABBC3_RAM_TIP'				=> '[ram]URL Real Media[/ram]',
 	'ABBC3_RAM_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Dr_Who.ram',
-	'ABBC3_RAM_VIEW'			=> '[ram]http://www.mssti.com/phpbb3/images/media/Dr_Who.ram[/ram]',
+	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://www.mssti.com/phpbb3/images/media/Dr_Who.ram[/ram]',
 
 	// Google video Wizard
 	'ABBC3_GVIDEO_TAG'			=> 'Google Video',

@@ -665,7 +665,7 @@ $lang = array_merge($lang, array(
 				<action type="before-add"><![CDATA[
 
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<!-- IF S_ABBC3_MOD -->
+<!-- IF S_ABBC3_MOD and S_ABBC3_UCP_MODE -->
 <h2>{L_UCP_ABBCODES}</h2>
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
@@ -678,7 +678,6 @@ $lang = array_merge($lang, array(
 			<label for="abbcode_mod0"><input type="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
-	<!-- IF S_ABBC3_UCP_MODE -->
 	<dl>
 		<dt><label for="abbcode_compact0">{L_UCP_ABBC3_BBCODES}:</label><br /><span>{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></dt>
 		<dd>
@@ -686,7 +685,6 @@ $lang = array_merge($lang, array(
 			<label for="abbcode_compact0"><input type="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
-	<!-- ENDIF -->
 	</fieldset>
 	
 	<span class="corners-bottom"><span></span></span></div>
@@ -695,7 +693,6 @@ $lang = array_merge($lang, array(
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
 ]]></action>
 			</edit>
-
 		</open>
 
 		<open src="styles/prosilver/template/ucp_profile_signature.html">
