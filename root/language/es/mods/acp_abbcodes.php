@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/22 10:07:22 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/24 10:07:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -58,8 +58,6 @@ $lang = array_merge($lang, array(
 
 // abbc3_details
 $lang = array_merge($lang, array(
-	'ACP_ABBCODES'						=> 'Advanced BBcodes Box 3',
-
 	'ABBCODES_DISABLE'					=> 'ABBC3',
 	'ABBCODES_DISABLE_EXPLAIN'			=> 'Habilitar o deshabilitar <strong>Advanced BBodes Box 3</strong> a usuarios, y/o usar la botonera por defecto de phpbb3.',
 	'ABBCODES_PATH'						=> 'Ruta del script',

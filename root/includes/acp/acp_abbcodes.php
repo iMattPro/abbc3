@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/24 10:07:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -316,6 +316,9 @@ class acp_abbcodes
 
 			'U_ABBC3'			=> $user->lang['ABBC3_HELP_ABOUT'],
 			'U_ACTION'			=> $this->u_action,
+
+			'ABBC3_VERSION'				=> $config['ABBC3_VERSION'],
+			'S_VERSION_UP_TO_DATE'		=> $this->abbc3_version_compare($config['ABBC3_VERSION']),
 
 			// Check which options can be used for the resize method
 			'ADVANCEDBOX_EXIST'					=> (@file_exists("$abb3_path/AdvancedBox.js")) ? 1 : 0,
@@ -668,6 +671,49 @@ class acp_abbcodes
 			}
 		}
 	}
+
+	/**
+	* Obtains the latest version information
+	* @param string 	$current_version 	version information
+	* @param int 		$ttl 				Cache version information for $ttl seconds. Defaults to 86400 (24 hours).
+	* 
+	* @return string 	false Version info on success, false on failure.
+	**/
+	function abbc3_version_compare($current_version, $ttl = 86400)
+	{
+		global $cache, $template;
+
+		$info = $cache->get('abbc3_versioncheck');
+
+		if ($info === false)
+		{
+			$errstr = '';
+			$errno = 0;
+
+			$info = get_remote_file('www.mssti.com', '/phpbb3/store/updatecheck', 'abbc3.txt', $errstr, $errno);
+
+			if ($info === false)
+			{
+				$cache->destroy('abbc3_versioncheck');
+			}
+			else
+			{
+				$cache->put('abbc3_versioncheck', $info, $ttl);
+			}
+		}
+
+		if ($info !== false)
+		{
+			$latest_version_info = explode("\n", $info);
+
+			$latest_version = $latest_version_info[0];
+
+			$template->assign_vars(array(
+				'U_VERSIONCHECK'	=> version_compare($current_version, $latest_version, '<') ? $latest_version_info[1] : false,
+			));
+		}
+		return ($info) ? true : false;
+	}
 }
 
 	/**
@@ -827,4 +873,5 @@ class acp_abbcodes
 		$db->sql_freeresult($result);
 		return $group_options;
 	}
+
 ?>

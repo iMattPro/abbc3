@@ -242,6 +242,9 @@
 		<!-- ENDIF -->
 
 	<!-- ELSE -->
+		<!-- IF options.S_ROW_COUNT eq 1 -->
+			<dl><dt><label>{L_ACP_ABBCODES}:</label></dt><dd><strong <!-- IF S_VERSION_UP_TO_DATE -->style="color: #228822;"<!-- ENDIF --> ><!-- IF not S_VERSION_UP_TO_DATE --><a href="{U_VERSIONCHECK}" title="{L_MORE_INFORMATION}" style="color: #BC2A4D;" onclick="window.open(this.href);return false;"><!-- ENDIF -->{ABBC3_VERSION}<!-- IF not S_VERSION_UP_TO_DATE --></a><!-- ENDIF --></strong></dd></dl>
+		<!-- ENDIF -->
 			<dl>
 				<dt><label for="{options.KEY}"><!-- {options.S_ROW_COUNT}) //-->{options.TITLE}:</label><!-- IF options.S_EXPLAIN --><br /><span>{options.TITLE_EXPLAIN}</span><!-- ENDIF --></dt>
 				<dd>{options.CONTENT}</dd>
