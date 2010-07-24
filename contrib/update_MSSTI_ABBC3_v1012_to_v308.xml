@@ -48,12 +48,16 @@
 			<file from="root/styles/subsilver2/template/*.*" to="styles/subsilver2/template/*.*"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
+
 		<delete>
 			<file name="adm/style/abbcode_header.html"/>
 			<file name="adm/style/install_abbcodes.html"/>
 			<file name="styles/prosilver/template/abbcode_header.html"/>
 			<file name="styles/subsilver2/template/abbcode_header.html"/>
 		</delete>
+
+		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
+
 		<open src="adm/style/acp_users_signature.html">
 			<edit>
 				<find><![CDATA[			<p>{SIGNATURE_PREVIEW}</p>]]></find>
@@ -86,6 +90,7 @@
 				<action type="replace-with"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="adm/style/overall_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
@@ -96,6 +101,7 @@
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="adm/style/simple_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->]]></find>
@@ -106,6 +112,7 @@
 				<action type="replace-with"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="includes/bbcode.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) - Start
@@ -228,6 +235,7 @@ class bbcode extends abbcode
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 		</open>
+
 		<open src="includes/constants.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) Clicks Counter feature - Start
@@ -238,6 +246,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 Clicks Counter - End]]></action>
 			</edit>
 		</open>
+
 		<open src="includes/functions.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) - Start
@@ -260,6 +269,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 		</open>
+
 		<open src="includes/functions_display.php">
 			<edit>
 				<find><![CDATA[function display_custom_bbcodes( $abbc3 = true )]]></find>
@@ -327,6 +337,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 (V1.0.12) - End]]></remove>
 			</edit>
 		</open>
+
 		<open src="includes/message_parser.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) - Start
@@ -374,8 +385,8 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 		}
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 		</open>
+
 		<open src="includes/acp/acp_bbcodes.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) - Start
@@ -403,6 +414,19 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<action type="replace-with"><![CDATA[			WHERE abbcode = 0 ORDER BY bbcode_tag';]]></action>
 			</edit>
 		</open>
+
+		<open src="language/en/acp/common.php">
+			<edit>
+				<find><![CDATA[	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while save ABBC3 settings</strong>',
+	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
+	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
+	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted MOD ABBC3 from database</strong>',
+));]]></find>
+				<action type="replace-with"><![CDATA[	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
+));]]></action>
+			</edit>
+		</open>
+
 		<open src="includes/ucp/ucp_prefs.php">
 			<edit>
 				<find><![CDATA['notify'	=> request_var('notify', (bool) $user->data['user_notify']),]]></find>
@@ -440,6 +464,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 ]]></action>
 			</edit>
 		</open>
+
 		<open src="language/en/acp/common.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) - Start]]></find>
@@ -451,6 +476,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/prosilver/template/overall_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
@@ -461,6 +487,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/prosilver/template/posting_buttons.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
@@ -484,6 +511,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/prosilver/template/posting_preview.html">
 			<edit>
 				<find><![CDATA[<!-- IF PREVIEW_SIGNATURE --><div class="signature">{PREVIEW_SIGNATURE}</div><!-- ENDIF -->]]></find>
@@ -493,6 +521,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				</inline-edit>
 			</edit>
 		</open>
+
 		<open src="styles/prosilver/template/ucp_profile_signature.html">
 			<edit>
 				<find><![CDATA[<div class="signature" style="border-top:none; margin-top: 0; ">{SIGNATURE_PREVIEW}</div>]]></find>
@@ -502,6 +531,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				</inline-edit>
 			</edit>
 		</open>
+
 		<open src="styles/prosilver/template/simple_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->]]></find>
@@ -512,6 +542,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<action type="replace-with"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/prosilver/template/ucp_prefs_post.html">
 			<edit>
 				<find><![CDATA[<fieldset class="submit-buttons">]]></find>
@@ -546,6 +577,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 ]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/prosilver/theme/stylesheet.css">
 			<edit>
 				<remove><![CDATA[/** MOD : MSSTI ABBC3 (V1.0.12) Quote block fix - Start **/
@@ -555,6 +587,7 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 /** MOD : MSSTI ABBC3 (V1.0.12) Quote block fix - End **/]]></remove>
 			</edit>
 		</open>
+
 		<open src="styles/subsilver2/template/overall_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
@@ -565,12 +598,14 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/subsilver2/template/posting_body.html">
 			<edit>
 				<find><![CDATA[			<!-- IF S_BBCODE_ALLOWED and not S_ABBC3_COLOR  -->]]></find>
 				<action type="replace-with"><![CDATA[			<!-- IF S_BBCODE_ALLOWED and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb') -->]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/subsilver2/template/posting_buttons.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
@@ -611,6 +646,7 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/subsilver2/template/posting_preview.html">
 			<edit>
 				<find><![CDATA[<!-- IF PREVIEW_SIGNATURE -->]]></find>
@@ -621,6 +657,7 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 				</inline-edit>
 			</edit>
 		</open>
+
 		<open src="styles/subsilver2/template/simple_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->]]></find>
@@ -631,6 +668,7 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 				<action type="replace-with"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/subsilver2/template/ucp_pm_viewmessage.html">
 			<edit>
 				<find><![CDATA[				<!-- IF SIGNATURE -->]]></find>
@@ -641,6 +679,7 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 				</inline-edit>				
 			</edit>
 		</open>
+
 		<open src="styles/subsilver2/template/ucp_prefs_post.html">
 			<edit>
 				<find><![CDATA[<tr>
@@ -665,6 +704,7 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 ]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/subsilver2/template/ucp_profile_signature.html">
 			<edit>
 				<find><![CDATA[		<!-- IF S_BBCODE_ALLOWED and not S_ABBC3_COLOR  -->]]></find>
@@ -678,6 +718,6 @@ blockquote.uncited { background-image: url("{T_THEME_PATH}/images/quote.gif"); b
 				</inline-edit>
 			</edit>
 		</open>
-		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
+
 	</action-group>
 </mod>

@@ -564,7 +564,7 @@ $lang = array_merge($lang, array(
 	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
 	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
-	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while save ABBC3 settings</strong>',
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
 ));
 // MOD : MSSTI ABBC3 - End]]></action>
 				<comment lang="en">See root/language folder for availables transtations</comment>
