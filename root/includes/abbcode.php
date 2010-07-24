@@ -1510,12 +1510,11 @@ class abbcode
 		/**
 		* Not available, no more
 		*	stage6.com, gamevee.com, godtube.com, hdshare.tv, imeem.com, lala.com, uncutvideo.aol.com, starclips.net, clipser.com
+		*	vidiac.com ( almost death )
 		* Not available yet
 		* 	bbc.co, video.msn.com, tm-tube.com
 		* Not possible
 		* 	youporn.com, dotsub.com, probetv.com, blip.tv, gamevideos.1up.com
-		* Will not us it anymore
-		* 	vidiac.com ( almost death )
 		**/
 
 		/** Patterns and replacements for BBVIDEO bbcode processing **/
