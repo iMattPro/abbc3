@@ -167,7 +167,7 @@ class acp_abbcodes
 
 		$display_vars = array(
 			'title'	=> 'ABBCODES_SETINGS',
-			'lang'	=> array('mods/abbcode', 'mods/acp_abbcodes', 'acp/attachments'),
+			'lang'	=> array('mods/abbcode', 'mods/acp_abbcodes'),
 			'vars'	=> array(
 				'legend1'				=> 'GENERAL_OPTIONS',
 				'ABBC3_MOD'				=> array('lang' => 'ABBCODES_DISABLE',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
@@ -183,7 +183,7 @@ class acp_abbcodes
 				'ABBC3_WIZARD'			=> array('lang' => 'ABBCODES_WIZARD_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true,  'append'  => ' ' . $user->lang['PIXEL']),
 				'ABBC3_WIZARD_MODE'		=> array('lang'	=> 'ABBCODES_WIZARD_MODE',		'validate' => 'int',	'type' => 'custom',			'function'	=> 'get_radio', 'params' => array('config[ABBC3_WIZARD_MODE]', $user->lang['ABBCODES_WIZARD_SELECTOR'], $config['ABBC3_WIZARD_MODE'], 'ABBC3_WIZARD_MODE'), 'explain' => false),
 
-				'legend3'				=> 'CAT_IMAGES',
+				'legend3'				=> 'ABBCODES_RESIZER',
 				'ABBC3_RESIZE'			=> array('lang' => 'ABBCODES_RESIZE',									'type' => 'string',			'explain'	=> true, 'append' => ' <span id="ABBC3_RESIZE">' . $user->lang['ABBCODES_JAVASCRIPT_EXPLAIN'] . '</span>'),
 				'ABBC3_RESIZE_METHOD'	=> array('lang' => 'ABBCODES_RESIZE_METHOD',	'validate' => 'string',	'type' => 'custom',			'function'	=> 'method_select', 'params' => array('{CONFIG_VALUE}', 'config[ABBC3_RESIZE_METHOD]', 'ABBC3_RESIZE_METHOD'), 'explain' => true),
 				'ABBC3_RESIZE_BAR'		=> array('lang' => 'ABBCODES_RESIZE_BAR',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
@@ -238,8 +238,6 @@ class acp_abbcodes
 			if ($this->submit)
 			{
 				set_config($config_name, $config_value);
-			//	set_config($config_name, $config_value, true);
-			//	$cache->destroy('config');
 			}
 		}
 

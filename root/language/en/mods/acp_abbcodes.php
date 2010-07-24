@@ -45,9 +45,6 @@ $lang = array_merge($lang, array(
 	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
 	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
-	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
-	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
-	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted ABBC3 MOD from database</strong>',
 ));
 
 // This lines are for the UCP
@@ -73,6 +70,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_BOXRESIZE'				=> 'Resize post editors',
 	'ABBCODES_BOXRESIZE_EXPLAIN'		=> 'Display +/- buttons to resize the post editor textarea.',
 
+	'ABBCODES_RESIZER'					=> 'Image Resizer',
 	'ABBCODES_RESIZE'					=> 'Resize large images',
 	'ABBCODES_RESIZE_EXPLAIN'			=> 'This will resize images posted using the [img] BBcode when someone publishes a picture that exceeds the width of your forum.',
 	'ABBCODES_JAVASCRIPT_EXPLAIN'		=> '<strong>Note : </strong> <em>AdvancedBox JS</em> is a JavaScript application used to display images in full size.<br />You can also use <strong>ABBC3</strong> with any of the other included scripts. These modifications are totally optional. Each script has its own support. I’m not responsible for it. I will not answer questions/problems/bugs or any other issues about them.',
