@@ -189,12 +189,13 @@ class abbcode
 		while ($row = $db->sql_fetchrow($result))
 		{
 			/** Some fixes **/
+			$is_abbcode		= ($row['abbcode']) ? true : false;
 			$abbcode_name	= (($row['abbcode']) ? 'ABBC3_' : '') . strtoupper(str_replace('=', '', trim($row['bbcode_tag'])));
 			$abbcode_name	= ($row['bbcode_helpline'] == 'ABBC3_ED2K_TIP') ? 'ABBC3_ED2K' : $abbcode_name;
 
 			$abbcode_image	= trim($row['bbcode_image']);
 			$abbcode_mover	= (isset($user->lang[$abbcode_name . '_MOVER'] )) ? $user->lang[$abbcode_name . '_MOVER']	: $abbcode_name;
-			$abbcode_tip	= (isset($user->lang[$abbcode_name . '_TIP']   )) ? $user->lang[$abbcode_name . '_TIP']     : (($row['abbcode']) ? '' : $row['bbcode_helpline']);
+			$abbcode_tip	= (isset($user->lang[$abbcode_name . '_TIP']   )) ? $user->lang[$abbcode_name . '_TIP']     : (($is_abbcode) ? '' : $row['bbcode_helpline']);
 			$abbcode_note	= (isset($user->lang[$abbcode_name . '_NOTE']  )) ? $user->lang[$abbcode_name . '_NOTE']    : '';
 			$abbcode_example= (isset($user->lang[$abbcode_name . '_EXAMPLE'])) ? $user->lang[$abbcode_name . '_EXAMPLE'] : '';
 
@@ -213,7 +214,7 @@ class abbcode
 			// Haven't image ? Should be a dropdown...
 			if (!$abbcode_image)
 			{
-				if ($row['abbcode'])
+				if ($is_abbcode)
 				{
 					$template->assign_vars(array(
 						'S_' . $abbcode_name	=> true,
@@ -240,9 +241,10 @@ class abbcode
 
 					default:
 						$template->assign_block_vars('abbc3_tags', array(
+							'TAG_ABBC'		=> ($is_abbcode) ? true : false,
 							'TAG_ID'		=> $row['bbcode_id'],
 							'TAG_SRC'		=> $abbcode_image,
-							'TAG_NAME'		=> strtolower($abbcode_name),
+							'TAG_NAME'		=> ($is_abbcode) ? strtolower($abbcode_name) : "'[{$row['bbcode_tag']}]', '[/" . str_replace('=', '', $row['bbcode_tag']) . "]'",
 							'TAG_MOVER'		=> $abbcode_mover,
 							'TAG_TIP'		=> $abbcode_tip,
 							'TAG_NOTE'		=> $abbcode_note,

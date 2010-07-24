@@ -147,7 +147,7 @@ function bbcode_to_plain(data)
 **/
 var help_line2 = {
 <!-- BEGIN abbc3_tags -->
-	<!-- IF abbc3_tags.TAG_ABBC and (abbc3_tags.TAG_MOVER or abbc3_tags.TAG_TIP or abbc3_tags.TAG_NOTE or abbc3_tags.TAG_EXAMPLE) -->
+	<!-- IF (abbc3_tags.TAG_MOVER or abbc3_tags.TAG_TIP or abbc3_tags.TAG_NOTE or abbc3_tags.TAG_EXAMPLE ) -->
 	'{abbc3_tags.TAG_NAME}'	: ("{abbc3_tags.TAG_MOVER}" ? "{abbc3_tags.TAG_MOVER}" : "") + (("{abbc3_tags.TAG_TIP}" || "{abbc3_tags.TAG_NOTE}") ? " :" : "") + (("{abbc3_tags.TAG_TIP}") ? " {abbc3_tags.TAG_TIP}" : "") + (("{abbc3_tags.TAG_NOTE}") ? " {abbc3_tags.TAG_NOTE}" : "") + (("{abbc3_tags.TAG_EXAMPLE}") ? "\n{L_ABBC3_EXAMPLE} : {abbc3_tags.TAG_EXAMPLE}" : ""),
 	<!-- ENDIF -->
 <!-- END abbc3_tags -->
@@ -177,7 +177,7 @@ function helpline2(help, help_box)
 	var helpbox = document.forms[form_name].elements[help_box];
 	if (helpbox)
 	{
-		helpbox.value = (help_line2[help]) ? help_line2[help] : help;
+		helpbox.value = (help_line2[help]) ? help_line2[help] : help_line[help];
 	}
 }
 

@@ -1,6 +1,6 @@
 
 <!-- IF S_ABBC3_COMPACT -->
-<script type="text/javascript" src="{ROOT_PATH}adm/style/tooltip.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}/tooltip.js"></script>
 <!-- ENDIF -->
 
 <!-- IF (S_ABBC3_COLOR_MODE eq 'tigra' or S_ABBC3_HIGHLIGHT_MODE eq 'tigra') -->
@@ -14,12 +14,12 @@
 </script>
 
 	<!-- IF S_ABBC3_WIZARD_MODE eq '2' -->
-				</div>
-			</fieldset>
-		<span class="corners-bottom"><span></span></span></div>
-	</div>
 
-	<div id="ABBC3_Ajax_indicator">
+
+
+
+
+	<div class="inner" id="ABBC3_Ajax_indicator">
 		<script type="text/javascript">
 		// <![CDATA[
 		<!-- INCLUDE {S_ABBC3_WIZARD_JAVASCRIPT} -->
@@ -28,13 +28,13 @@
 		<div id="ABBC3_Ajax_Wizards"></div>
 	</div>
 
-	<div class="panel" id="postingbox2">
-		<div class="inner"><span class="corners-top"><span></span></span>
-			<fieldset class="fields1">
-				<div id="format-buttons2">
+
+
+
+
 	<!-- ENDIF -->
 
-	<noscript><div class="rules"><p style="text-align: center;"><strong>{L_ABBC3_NOSCRIPT}</strong><br />{L_ABBC3_NOSCRIPT_EXPLAIN}</p></div></noscript>
+	<noscript><div class="errorbox"><p style="text-align: center;"><strong>{L_ABBC3_NOSCRIPT}</strong><br />{L_ABBC3_NOSCRIPT_EXPLAIN}</p></div></noscript>
 	<table id="abbc3posttable" width="100%" border="1" cellspacing="0" cellpadding="0">
 		<tr align="{S_CONTENT_FLOW_BEGIN}">
 			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="bg3"<!-- ENDIF --> valign="middle" colspan="2">
@@ -62,7 +62,7 @@
 								<!-- IF not abbc3_tags.S_FIRST_ROW --><li>------------------</li><!-- ENDIF -->
 							<!-- ELSE -->
 							<li id="abbcode_{abbc3_tags.TAG_ID}" style='background-image: url("{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}");'>
-								<a href="#abbcode_{abbc3_tags.TAG_ID}" onclick="<!-- IF abbc3_tags.TAG_ABBC -->bbstyle2('{abbc3_tags.TAG_NAME}')<!-- ELSE -->bbfontstyle({abbc3_tags.TAG_NAME})<!-- ENDIF -->; return false;" title="{abbc3_tags.TAG_MOVER}&lt;br /&gt;{abbc3_tags.TAG_TIP}&lt;br /&gt;{abbc3_tags.TAG_NOTE}&lt;br /&gt;{abbc3_tags.TAG_EXAMPLE}">{abbc3_tags.TAG_MOVER}</a>
+								<a href="#abbcode_{abbc3_tags.TAG_ID}" onclick="bbstyle2('{abbc3_tags.TAG_NAME}'); return false;" title="{abbc3_tags.TAG_MOVER}&lt;br /&gt;{abbc3_tags.TAG_TIP}&lt;br /&gt;{abbc3_tags.TAG_NOTE}&lt;br /&gt;{abbc3_tags.TAG_EXAMPLE}">{abbc3_tags.TAG_MOVER}</a>
 							</li>
 							<!-- ENDIF -->
 						<!-- END abbc3_tags -->
@@ -153,12 +153,12 @@
 		<!-- IF S_ABBC3_HIGHLIGHT -->
 			<!-- IF S_ABBC3_HIGHLIGHT_MODE eq 'dropdown' -->
 				<select id="abbc3_highlight" name="abbc3_highlight" onchange="bbfontstyle('[highlight=#' + this.form.abbc3_highlight.options[this.form.abbc3_highlight.selectedIndex].value + ']', '[/highlight]'); this.form.abbc3_highlight.selectedIndex = 0;" onmouseover="helpline2('abbc3_highlight')" onmouseout="helpline2()" title="{L_ABBC3_HIGHLIGHT_MOVER}">
-					<option selected="selected" class="selected">- {L_ABBC3_HIGHLIGHT_MOVER} -</option>
+					<option selected="selected">- {L_ABBC3_HIGHLIGHT_MOVER} -</option>
 				</select>
 			<!-- ELSEIF S_ABBC3_HIGHLIGHT_MODE eq 'fancy' -->
 				<ul class="_selector">
 					<li class="li_selector"><span id="button_highlight" class="button2">&nbsp;{L_ABBC3_HIGHLIGHT_MOVER}&nbsp;</span>
-						<ul id="ul_highlight_selector" class="<!-- IF S_POST_ID is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --> ul_selector"><li></li></ul>
+						<ul id="ul_highlight_selector" class="panel ul_selector"></ul>
 					</li>
 				</ul>
 			<!-- ELSEIF S_ABBC3_HIGHLIGHT_MODE eq 'tigra' -->
@@ -171,21 +171,21 @@
 
 		<!-- IF S_ABBC3_COLOR -->
 			<!-- IF S_ABBC3_COLOR_MODE eq 'phpbb' -->
-				<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
+
 			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'dropdown' -->
 				<select id="abbc3_color" name="abbc3_color" onchange="bbfontstyle('[color=#' + this.form.abbc3_color.options[this.form.abbc3_color.selectedIndex].value + ']', '[/color]'); this.form.abbc3_color.selectedIndex = 0;" onmouseover="helpline2('abbc3_color')" onmouseout="helpline2()" title="{L_ABBC3_COLOR_MOVER}">
-					<option selected="selected" class="selected">- {L_ABBC3_COLOR_MOVER} -</option>
+					<option selected="selected">- {L_ABBC3_COLOR_MOVER} -</option>
 				</select>
 			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'fancy' -->
 				<ul class="_selector">
 					<li class="li_selector"><span id="button_colour" class="button2">&nbsp;{L_ABBC3_COLOR_MOVER}&nbsp;</span>
-						<ul id="ul_color_selector" class="<!-- IF S_POST_ID is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --> ul_selector"><li></li></ul>
+						<ul id="ul_color_selector" class="panel ul_selector"></ul>
 					</li>
 				</ul>
 			<!-- ELSEIF S_ABBC3_COLOR_MODE eq 'tigra' -->
 				<img src="{S_ABBC3_PATH}/images/fontcolor.gif" class="btnbbcode3 editor_Button" onclick="javascript:TCP.popup('{S_ABBC3_TIGRA_PAGE}', 'color', 0)" onmouseover="helpline2('abbc3_color')" onmouseout="helpline2()" alt="{L_ABBC3_COLOR_MOVER}" title="{L_ABBC3_COLOR_MOVER}" id="{ABBC3_COLOR_NAME}" />
 			<!-- ENDIF -->
-				<!-- IF S_ABBC3_TAB -->
+				<!-- IF S_ABBC3_TAB and S_ABBC3_COLOR_MODE != 'phpbb'-->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 				<!-- ENDIF -->
 		<!-- ENDIF -->
@@ -211,7 +211,7 @@
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 			<!-- ENDIF -->
 		<!-- ELSE -->
-				<img src="{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}" class="btnbbcode3 editor_Button" onclick="<!-- IF abbc3_tags.TAG_ABBC -->bbstyle2('{abbc3_tags.TAG_NAME}')<!-- ELSE -->bbfontstyle({abbc3_tags.TAG_NAME})<!-- ENDIF -->" onmouseover="<!-- IF abbc3_tags.TAG_ABBC -->helpline2('{abbc3_tags.TAG_NAME}')<!-- ELSE -->helpline2('{abbc3_tags.TAG_TIP}')<!-- ENDIF -->" onmouseout="helpline2()" alt="{abbc3_tags.TAG_MOVER}" title="{abbc3_tags.TAG_MOVER}" id="<!-- IF abbc3_tags.TAG_ABBC -->{abbc3_tags.TAG_NAME}<!-- ELSE -->{abbc3_tags.TAG_MOVER}<!-- ENDIF -->" />
+				<img src="{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}" class="btnbbcode3 editor_Button" onclick="bbstyle2('{abbc3_tags.TAG_NAME}')" onmouseover="helpline2('{abbc3_tags.TAG_NAME}')" onmouseout="helpline2()" alt="{abbc3_tags.TAG_MOVER}" title="{abbc3_tags.TAG_MOVER}" id="{abbc3_tags.TAG_NAME}" />
 		<!-- ENDIF -->
 	<!-- END abbc3_tags -->
 
@@ -241,7 +241,7 @@
 
 		<tr>
 			<td colspan="2">
-				<textarea readonly="readonly" id="helpbox" name="helpbox" rows="3" cols="76" class="helpline">{L_STYLES_TIP}</textarea>
+				<textarea readonly="readonly" id="helpbox" name="helpbox" rows="3" cols="76" class="helpline" style="border: 0; background: none;">{L_STYLES_TIP}</textarea>
 			</td>
 
 
