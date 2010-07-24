@@ -40,37 +40,36 @@ class acp_abbcodes
 		$radio_ary = array(1 => 'ORDER_ALLOW_DENY', 0 => 'ORDER_DENY_ALLOW');
 
 		/** Set some default values so the user havn't to run any install - Start **/
-		$img_max_width		 = ($config['img_max_width'])		? $config['img_max_width']			: 500 ;
-		$sig_img_max_width	 = ($config['max_sig_img_width'])	? $config['max_sig_img_width']		: 300 ;
-		$img_max_thumb_width = ($config['img_max_thumb_width']) ? $config['img_max_thumb_width']	: 200 ;
-
-		// Same default values as root/install_abbc3.php -> get_abbc3_config()
+		// Same default values as root/install_abbc3.php -> abbc3_308()
 		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			 ? $config['ABBC3_VERSION']				: '3.0.8';
-		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				 ? $config['ABBC3_MOD']					: true;
-		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			 ? $config['ABBC3_PATH']				: 'styles/abbcode';
-		$config['ABBC3_RESIZE']				= (isset($config['ABBC3_RESIZE']))			 ? $config['ABBC3_RESIZE']				: 1;
-		$config['ABBC3_RESIZE_METHOD']		= (isset($config['ABBC3_RESIZE_METHOD']))	 ? $config['ABBC3_RESIZE_METHOD']		: 'AdvancedBox';
-		$config['ABBC3_RESIZE_BAR']			= (isset($config['ABBC3_RESIZE_BAR']))		 ? $config['ABBC3_RESIZE_BAR']			: 1;
-		$config['ABBC3_MAX_IMG_WIDTH']		= (isset($config['ABBC3_MAX_IMG_WIDTH']))	 ? $config['ABBC3_MAX_IMG_WIDTH']		: $img_max_width;
-		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	 ? $config['ABBC3_MAX_IMG_HEIGHT']		: 0;
-		$config['ABBC3_RESIZE_SIGNATURE']	= (isset($config['ABBC3_RESIZE_SIGNATURE'])) ? $config['ABBC3_RESIZE_SIGNATURE']	: 0;
-		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	 ? $config['ABBC3_MAX_SIG_WIDTH']		: $sig_img_max_width;
-		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	 ? $config['ABBC3_MAX_SIG_HEIGHT']		: 0;
-		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	 ? $config['ABBC3_MAX_THUM_WIDTH']		: $img_max_thumb_width;
+		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
+		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			? $config['ABBC3_PATH']				: 'styles/abbcode';
+		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';
+		$config['ABBC3_TAB']				= (isset($config['ABBC3_TAB']))				? $config['ABBC3_TAB']				: 1;
 
-		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				 ? $config['ABBC3_BG']					: 'bg_abbc3.gif';
-		$config['ABBC3_TAB']				= (isset($config['ABBC3_TAB']))				 ? $config['ABBC3_TAB']					: 1;
-		$config['ABBC3_BOXRESIZE']			= (isset($config['ABBC3_BOXRESIZE']))		 ? $config['ABBC3_BOXRESIZE']			: 1;
-		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		 ? $config['ABBC3_VIDEO_width']			: 425;
-		$config['ABBC3_VIDEO_height']		= (isset($config['ABBC3_VIDEO_height']))	 ? $config['ABBC3_VIDEO_height']		: 350;
-		$config['ABBC3_VIDEO_OPTIONS']		= (isset($config['ABBC3_VIDEO_OPTIONS']))	 ? $config['ABBC3_VIDEO_OPTIONS']		: '';
+		$config['ABBC3_BOXRESIZE']			= (isset($config['ABBC3_BOXRESIZE']))		? $config['ABBC3_BOXRESIZE']		: 1;
+		$config['ABBC3_RESIZE']				= (isset($config['ABBC3_RESIZE']))			? $config['ABBC3_RESIZE']			: 1;
+		$config['ABBC3_RESIZE_METHOD']		= (isset($config['ABBC3_RESIZE_METHOD']))	? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox';
+		$config['ABBC3_RESIZE_BAR']			= (isset($config['ABBC3_RESIZE_BAR']))		? $config['ABBC3_RESIZE_BAR']		: 1;
+		$config['ABBC3_MAX_IMG_WIDTH']		= (isset($config['ABBC3_MAX_IMG_WIDTH']))	? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width'])		? $config['img_max_width']			: 500;
+		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'])		? $config['img_max_height']			: 0;
+		$config['ABBC3_RESIZE_SIGNATURE']	= (isset($config['ABBC3_RESIZE_SIGNATURE']))? $config['ABBC3_RESIZE_SIGNATURE']	: 0;
+		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'])	? $config['max_sig_img_width']		: 200;
+		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	? $config['ABBC3_MAX_SIG_HEIGHT']	: 0;
+		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'])	? $config['img_max_thumb_width']/2	: 200;
 
-		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		 ? $config['ABBC3_COLOR_MODE']			: 'phpbb';
-		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	 ? $config['ABBC3_HIGHLIGHT_MODE']		: 'phpbb';
-		$config['ABBC3_WIZARD_MODE']		= (isset($config['ABBC3_WIZARD_MODE']))		 ? $config['ABBC3_WIZARD_MODE']			: 1;
-		$config['ABBC3_WIZARD_width']		= (isset($config['ABBC3_WIZARD_width']))	 ? $config['ABBC3_WIZARD_width']		: 700;
-		$config['ABBC3_WIZARD_height']		= (isset($config['ABBC3_WIZARD_height']))	 ? $config['ABBC3_WIZARD_height']		: 400;
-		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		 ? $config['ABBC3_UCP_MODE']			: 1;
+		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		? $config['ABBC3_COLOR_MODE']		: 'phpbb';
+		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown';
+
+		$config['ABBC3_WIZARD_MODE']		= (isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 1;
+		$config['ABBC3_WIZARD_width']		= (isset($config['ABBC3_WIZARD_width']))	? $config['ABBC3_WIZARD_width']		: 700;
+		$config['ABBC3_WIZARD_height']		= (isset($config['ABBC3_WIZARD_height']))	? $config['ABBC3_WIZARD_height']	: 400;
+
+		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425;
+		$config['ABBC3_VIDEO_height']		= (isset($config['ABBC3_VIDEO_height']))	? $config['ABBC3_VIDEO_height']		: 350;
+		$config['ABBC3_VIDEO_OPTIONS']		= (isset($config['ABBC3_VIDEO_OPTIONS']))	? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;201;202;203;204;205;206;207;208;';
+
+		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		? $config['ABBC3_UCP_MODE']			: 1;
 		/** Set some default values so the user havn't to run any install - End **/
 
 		// Set up general vars
