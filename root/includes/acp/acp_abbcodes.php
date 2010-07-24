@@ -677,42 +677,40 @@ class acp_abbcodes
 	* @param string 	$current_version 	version information
 	* @param int 		$ttl 				Cache version information for $ttl seconds. Defaults to 86400 (24 hours).
 	* 
-	* @return string 	false Version info on success, false on failure.
+	* @return bool 		false on failure.
 	**/
 	function abbc3_version_compare($current_version, $ttl = 86400)
 	{
 		global $cache, $template;
 
+		$version_up_to_date = true;
 		$info = $cache->get('abbc3_versioncheck');
 
 		if ($info === false)
 		{
-			$errstr = '';
-			$errno = 0;
-
-			$info = get_remote_file('www.mssti.com', '/phpbb3/store/updatecheck', 'abbc3.txt', $errstr, $errno);
-
+			$info = get_remote_file('www.mssti.com', '/phpbb3/store/updatecheck', 'abbc3.txt', '', 0);
 			if ($info === false)
 			{
+				$template->assign_var('S_VERSIONCHECK_FAIL', true);
 				$cache->destroy('abbc3_versioncheck');
-			}
-			else
-			{
-				$cache->put('abbc3_versioncheck', $info, $ttl);
 			}
 		}
 
 		if ($info !== false)
 		{
+			$cache->put('abbc3_versioncheck', $info, $ttl);
 			$latest_version_info = explode("\n", $info);
 
-			$latest_version = $latest_version_info[0];
+			$latest_version = strtolower(trim($latest_version_info[0]));
+			$current_version = strtolower(trim($current_version));
+			$version_up_to_date = version_compare($current_version, $latest_version, '<') ? false : true;
 
 			$template->assign_vars(array(
-				'U_VERSIONCHECK'	=> version_compare($current_version, $latest_version, '<') ? $latest_version_info[1] : false,
+				'U_VERSIONCHECK'	=> ($version_up_to_date) ? false : $latest_version_info[1],
 			));
 		}
-		return ($info) ? true : false;
+
+		return $version_up_to_date;
 	}
 }
 
