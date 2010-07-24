@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 	'ACP_ABBC3_SETTINGS'		=> 'Configurar ABBC3',
 	'ACP_ABBC3_BBCODES'			=> 'Componentes ABBC3',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Modificado: configuración de ABBC3</strong>',
-	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error mientras se guardaba la configuración de ABBC3</strong>',
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error al guardar la configuración de ABBC3</strong>',
 ));
 
 // This lines are for the UCP

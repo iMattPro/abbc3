@@ -679,16 +679,18 @@ class acp_abbcodes
 	* 
 	* @return bool 		false on failure.
 	**/
-	function abbc3_version_compare($current_version, $ttl = 86400)
+	function abbc3_version_compare($current_version = '', $version_up_to_date = true, $ttl = 86400)
 	{
 		global $cache, $template;
-
-		$version_up_to_date = true;
+		
 		$info = $cache->get('abbc3_versioncheck');
 
 		if ($info === false)
 		{
-			$info = get_remote_file('www.mssti.com', '/phpbb3/store/updatecheck', 'abbc3.txt', '', 0);
+			$errstr = '';
+			$errno = 0;
+
+			$info = get_remote_file('www.mssti.com', '/phpbb3/store/updatecheck', 'abbc3.txt', $errstr, $errno);
 			if ($info === false)
 			{
 				$template->assign_var('S_VERSIONCHECK_FAIL', true);
