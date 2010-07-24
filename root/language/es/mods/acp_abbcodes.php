@@ -45,9 +45,6 @@ $lang = array_merge($lang, array(
 	'ACP_ABBC3_BBCODES'			=> 'Componentes ABBC3',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Modificado: configuración de ABBC3</strong>',
 	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error mientras se guardaba la configuración de ABBC3</strong>',
-	'LOG_CONFIG_ADD'			=> '<strong>Añadido: configuración al foro</strong><br />» %s',
-	'LOG_DATABASE_SCHEMA'		=> '<strong>Actualizando la estructura de la base de datos</strong><br />» %s',
-	'LOG_DELETE_ABBCODES'		=> '<strong>Borrado: MOD ABBC3 de la base de datos</strong>',
 ));
 
 // This lines are for the UCP
@@ -73,7 +70,8 @@ $lang = array_merge($lang, array(
 	'ABBCODES_BOXRESIZE'				=> 'Redimensionar el area de texto',
 	'ABBCODES_BOXRESIZE_EXPLAIN'		=> 'Mostrar los botones para cambiar el tamaño de el area de texto.',
 
-	'ABBCODES_RESIZE'					=> 'Redimensionar imágenes grandes',
+	'ABBCODES_RESIZER'					=> 'Redimensionar Imágenes',
+	'ABBCODES_RESIZE'					=> 'Cambiar el tamaño de imágenes grandes',
 	'ABBCODES_RESIZE_EXPLAIN'			=> 'Esto corrige el error de la etiqueta [img] cuando alguien publica una imagen que supera el ancho de su foro.',
 	'ABBCODES_JAVASCRIPT_EXPLAIN'		=> '<strong>Nota : </strong> <em>AdvancedBox JS</em> es una aplicación JavaScript usado para visualizar imágenes en tamaño completo.<br />En la carpeta <em>contrib</em> encontrará la manera de utilizar ABBC3 con Highslide JS | LiteBox | GreyBox.<br />Estas modificaciones son totalmente opcionales. Cada script tiene su propio apoyo. Yo no soy responsable de ello. No voy a responder preguntas/problemas/bug o cualquier tipo de cuestiones acerca de ellos.<br />Lamentablemente Internet Explorer no entiende cómo manejar algunas imágenes adjuntas con esas aplicaciones.',
 	'ABBCODES_RESIZE_METHOD'			=> 'Método de redimensión',
