@@ -147,7 +147,7 @@ function abbc3_308($action, $version)
 	/* All related to the phpbb_config table - Start */
 	// Config entries
 	$abbc3_config_data = array(
-		'ABBC3_MOD'				=> (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true,
+		'ABBC3_MOD'				=> (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: 1,
 		'ABBC3_PATH'			=> (isset($config['ABBC3_PATH']))				? $config['ABBC3_PATH']				: 'styles/abbcode',
 		'ABBC3_BG'				=> (isset($config['ABBC3_BG']))					? $config['ABBC3_BG']				: 'bg_abbc3.gif',
 		'ABBC3_TAB'				=> (isset($config['ABBC3_TAB']))				? $config['ABBC3_TAB']				: 1,
