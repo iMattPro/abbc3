@@ -1467,7 +1467,7 @@ class abbcode
 		$is_ie	= (strpos(strtolower($user->browser), 'msie') !== false);
 		$shadow_colour = '#999999'; //  Default text shadow color #999999. You can change to another colour if desired.
 
-		switch (strtolower($effect))
+		switch (strtoupper($effect))
 		{
 			case 'GLOW' :
 				$style .= ($is_ie) ? "filter: glow(color=$colour, strength=4); color: #ffffff;" : "color: #ffffff; text-shadow: 0 0 1.0em $colour, 0 0 1.0em $colour, 0 0 1.2em $colour;";
