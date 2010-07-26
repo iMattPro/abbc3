@@ -139,6 +139,8 @@ class abbcode
 				'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 350,
 				// Link to ABBC3 help page
 				'ABBC3_HELP_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=help'),
+				// ABBC3 mode 
+				'ABBC3_COMPACT'			=> (isset($config['ABBC3_UCP_MODE'])) ? $config['ABBC3_UCP_MODE'] : false,
 				// Color picker
 				'ABBC3_COLOR_MODE'		=> (isset($config['ABBC3_COLOR_MODE'])) ? $config['ABBC3_COLOR_MODE'] : 'phpbb',
 				// Highlight picker
@@ -190,13 +192,13 @@ class abbcode
 		{
 			/** Some fixes **/
 			$is_abbcode		= ($row['abbcode']) ? true : false;
-			$abbcode_name	= (($row['abbcode']) ? 'ABBC3_' : '') . strtoupper(str_replace('=', '', trim($row['bbcode_tag'])));
+			$abbcode_name	= (($is_abbcode) ? 'ABBC3_' : '') . strtoupper(str_replace('=', '', trim($row['bbcode_tag'])));
 			$abbcode_name	= ($row['bbcode_helpline'] == 'ABBC3_ED2K_TIP') ? 'ABBC3_ED2K' : $abbcode_name;
 
 			$abbcode_image	= trim($row['bbcode_image']);
-			$abbcode_mover	= (isset($user->lang[$abbcode_name . '_MOVER'] )) ? $user->lang[$abbcode_name . '_MOVER']	: $abbcode_name;
-			$abbcode_tip	= (isset($user->lang[$abbcode_name . '_TIP']   )) ? $user->lang[$abbcode_name . '_TIP']     : (($is_abbcode) ? '' : $row['bbcode_helpline']);
-			$abbcode_note	= (isset($user->lang[$abbcode_name . '_NOTE']  )) ? $user->lang[$abbcode_name . '_NOTE']    : '';
+			$abbcode_mover	= (isset($user->lang[$abbcode_name . '_MOVER']	)) ? $user->lang[$abbcode_name . '_MOVER']   : $abbcode_name;
+			$abbcode_tip	= (isset($user->lang[$abbcode_name . '_TIP']	)) ? $user->lang[$abbcode_name . '_TIP']     : (($is_abbcode) ? '' : $row['bbcode_helpline']);
+			$abbcode_note	= (isset($user->lang[$abbcode_name . '_NOTE']	)) ? $user->lang[$abbcode_name . '_NOTE']    : '';
 			$abbcode_example= (isset($user->lang[$abbcode_name . '_EXAMPLE'])) ? $user->lang[$abbcode_name . '_EXAMPLE'] : '';
 
 			// Check phpbb permissions status
@@ -211,11 +213,12 @@ class abbcode
 				}
 			}
 
-			// Haven't image ? Should be a dropdown...
-			if (!$abbcode_image)
+			switch ($abbcode_name)
 			{
-				if ($is_abbcode)
-				{
+				case 'ABBC3_FONT':
+				case 'ABBC3_SIZE':
+				case 'ABBC3_HIGHLIGHT':
+				case 'ABBC3_COLOR':
 					$template->assign_vars(array(
 						'S_' . $abbcode_name	=> true,
 						$abbcode_name . '_NAME'	=> strtolower($abbcode_name),
@@ -223,35 +226,37 @@ class abbcode
 						$abbcode_name . '_TIP'	=> $abbcode_tip,
 						$abbcode_name . '_NOTE'	=> $abbcode_note,
 					));
-				}
-			}
-			else
-			{
-				switch ($abbcode_name)
-				{
-					// Is a Line break ? -> abbc3_break(n)
-					case (strpos($abbcode_name, 'ABBC3_BREAK') !== false) :
-						$template->assign_block_vars('abbc3_tags', array('S_ABBC3_BREAK' => true));
-					break;
 
-					// Is a Division line ? -> abbc3_division(n)
-					case (strpos($abbcode_name, 'ABBC3_DIVISION') !== false) :
-						$template->assign_block_vars('abbc3_tags', array('S_ABBC3_DIVISION' => true));
-					break;
+				break;
 
-					default:
-						$template->assign_block_vars('abbc3_tags', array(
-							'TAG_ABBC'		=> ($is_abbcode) ? true : false,
-							'TAG_ID'		=> $row['bbcode_id'],
-							'TAG_SRC'		=> $abbcode_image,
-							'TAG_NAME'		=> ($is_abbcode) ? strtolower($abbcode_name) : "'[{$row['bbcode_tag']}]', '[/" . str_replace('=', '', $row['bbcode_tag']) . "]'",
-							'TAG_MOVER'		=> $abbcode_mover,
-							'TAG_TIP'		=> $abbcode_tip,
-							'TAG_NOTE'		=> $abbcode_note,
-							'TAG_EXAMPLE'	=> $abbcode_example,
-						));
-					break;
-				}
+				// Is a Line break ? -> abbc3_break(n)
+				case (strpos($abbcode_name, 'ABBC3_BREAK') !== false) :
+					$template->assign_block_vars('abbc3_tags', array('S_ABBC3_BREAK' => true));
+				break;
+
+				// Is a Division line ? -> abbc3_division(n)
+				case (strpos($abbcode_name, 'ABBC3_DIVISION') !== false) :
+					$template->assign_block_vars('abbc3_tags', array('S_ABBC3_DIVISION' => true));
+				break;
+
+				default:
+					// Haven't image ? should be a phpbb3 custom bbcode from ACP, so let's phpbb3 take care of it
+					if (!$abbcode_image)
+					{
+						break;
+					}
+					$template->assign_block_vars('abbc3_tags', array(
+						'BBCODE_ABBC3'		=> ($is_abbcode) ? '1' : '0',
+						'BBCODE_ID'			=> $row['bbcode_id'],
+						'BBCODE_IMG'		=> $abbcode_image,
+						'BBCODE_NAME'		=> strtolower($abbcode_name),
+						'BBCODE_TAG'		=> "'[{$row['bbcode_tag']}]', '[/" . preg_replace('/(=.*)/i', '', $row['bbcode_tag']) . "]'",
+						'BBCODE_MOVER'		=> $abbcode_mover,
+						'BBCODE_TIP'		=> $abbcode_tip,
+						'BBCODE_NOTE'		=> $abbcode_note,
+						'BBCODE_EXAMPLE'	=> $abbcode_example,
+					));
+				break;
 			}
 		}
 		$db->sql_freeresult($result);
@@ -290,7 +295,7 @@ class abbcode
 			// Cookie
 			'S_ABBC3_COOKIE_NAME'		=> $this->abbcode_config['ABBC3_COOKIE_NAME'],
 			// Define the ABBC3 view, according this user preferences
-			'S_ABBC3_COMPACT'			=> (isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false,
+			'S_ABBC3_COMPACT'			=> ($this->abbcode_config['ABBC3_COMPACT'] && isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false,
 		));
 	}
 

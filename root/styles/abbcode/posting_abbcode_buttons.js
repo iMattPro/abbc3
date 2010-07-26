@@ -147,14 +147,14 @@ function bbcode_to_plain(data)
 **/
 var help_line2 = {
 <!-- BEGIN abbc3_tags -->
-	<!-- IF abbc3_tags.TAG_ABBC and (abbc3_tags.TAG_MOVER or abbc3_tags.TAG_TIP or abbc3_tags.TAG_NOTE or abbc3_tags.TAG_EXAMPLE) -->
-	'{abbc3_tags.TAG_NAME}'	: ("{abbc3_tags.TAG_MOVER}" ? "{abbc3_tags.TAG_MOVER}" : "") + (("{abbc3_tags.TAG_TIP}" || "{abbc3_tags.TAG_NOTE}") ? " :" : "") + (("{abbc3_tags.TAG_TIP}") ? " {abbc3_tags.TAG_TIP}" : "") + (("{abbc3_tags.TAG_NOTE}") ? " {abbc3_tags.TAG_NOTE}" : "") + (("{abbc3_tags.TAG_EXAMPLE}") ? "\n{L_ABBC3_EXAMPLE} : {abbc3_tags.TAG_EXAMPLE}" : ""),
+	<!-- IF abbc3_tags.BBCODE_ABBC3 and (abbc3_tags.BBCODE_MOVER or abbc3_tags.BBCODE_TIP or abbc3_tags.BBCODE_NOTE or abbc3_tags.BBCODE_EXAMPLE) -->
+	'{abbc3_tags.BBCODE_NAME}' : ("{abbc3_tags.BBCODE_MOVER}" ? "{abbc3_tags.BBCODE_MOVER}" : "") + (("{abbc3_tags.BBCODE_TIP}" || "{abbc3_tags.BBCODE_NOTE}") ? " :" : "") + (("{abbc3_tags.BBCODE_TIP}") ? " {abbc3_tags.BBCODE_TIP}" : "") + (("{abbc3_tags.BBCODE_NOTE}") ? " {abbc3_tags.BBCODE_NOTE}" : "") + (("{abbc3_tags.BBCODE_EXAMPLE}") ? "\n{L_ABBC3_EXAMPLE} : {abbc3_tags.BBCODE_EXAMPLE}" : ""),
 	<!-- ENDIF -->
 <!-- END abbc3_tags -->
-	'abbc3_font'			: "{LA_ABBC3_FONT_MOVER}" + "{LA_ABBC3_FONT_TIP}" + '\n' + "{LA_ABBC3_FONT_NOTE}",
-	'abbc3_size'			: "{LA_ABBC3_SIZE_MOVER}" + "{LA_ABBC3_SIZE_TIP}" + '\n' + "{LA_ABBC3_SIZE_NOTE}",
-	'abbc3_highlight'		: "{LA_ABBC3_HIGHLIGHT_MOVER}" + "{LA_ABBC3_HIGHLIGHT_TIP}" + '\n' + "{LA_ABBC3_HIGHLIGHT_NOTE}",
-	'abbc3_color'			: "{LA_ABBC3_COLOR_MOVER}" + "{LA_ABBC3_COLOR_TIP}" + '\n' + "{LA_ABBC3_COLOR_NOTE}",
+	'abbc3_font'			: "{LA_ABBC3_FONT_MOVER} : " + "{LA_ABBC3_FONT_TIP}\n{LA_ABBC3_FONT_NOTE}",
+	'abbc3_size'			: "{LA_ABBC3_SIZE_MOVER} : " + "{LA_ABBC3_SIZE_TIP}\n{LA_ABBC3_SIZE_NOTE}",
+	'abbc3_highlight'		: "{LA_ABBC3_HIGHLIGHT_MOVER} : " + "{LA_ABBC3_HIGHLIGHT_TIP}\n{LA_ABBC3_HIGHLIGHT_NOTE}",
+	'abbc3_color'			: "{LA_ABBC3_COLOR_MOVER} : " + "{LA_ABBC3_COLOR_TIP}\n{LA_ABBC3_COLOR_NOTE}",
 	'abbc3_tip'				: "{LA_BBCODE_STYLES_TIP}"
 };
 
@@ -177,20 +177,31 @@ function helpline2(help, help_box)
 	var helpbox = document.forms[form_name].elements[help_box];
 	if (helpbox)
 	{
-		helpbox.value = (help_line2[help]) ? help_line2[help] : help;
+		helpbox.value = (help_line2[help]) ? help_line2[help] : ((help_line[help]) ? help_line[help] : help);
 	}
 }
 
 /**
 * Main function Apply bbcodes
 * based-of editor.js -> function bbfontstyle()
-* @param string		bbcode		Apply bbcodes
+* @param string		bbcode		bbcode name
+* @param string		bbopen		The open tag
+* @param string		bbclose		The close tag
+* @param bool		is_abbcode	is a custom bbcode or not
 **/
-function bbstyle2(bbcode)
+function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 {
+	// If this is a regular custom bbcode, just do it quicly in the regolar way
+	if (!is_abbcode)
+	{
+		bbfontstyle(bbopen, bbclose);
+		return;
+	}
+
 	theSelection = false;
 
 	var textarea = document.forms[form_name].elements[text_name];
+
 	textarea.focus();
 
 	var selLength, selStart, selEnd, s1, s2, s3;
@@ -219,93 +230,18 @@ function bbstyle2(bbcode)
 	}
 
 	var theSelectionLength = theSelection.length;
-	var bbcode_extra = " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}";
 
 	switch (bbcode)
 	{
-		case "abbc3_alignjustify" :
-			bbfontstyle("[align=justify]", "[/align]");
-			break;
-		case "abbc3_alignright":
-			bbfontstyle("[align=right]", "[/align]");
-			break;
-		case "abbc3_aligncenter" :
-			bbfontstyle("[align=center]", "[/align]");
-			break;
-		case "abbc3_alignleft" :
-			bbfontstyle("[align=left]", "[/align]");
-			break;
-		case "abbc3_sup" :
-			bbfontstyle("[sup]", "[/sup]");
-			break;
-		case "abbc3_sub" :
-			bbfontstyle("[sub]", "[/sub]");
-			break;
-		case "abbc3_b" :
-			bbfontstyle("[b]", "[/b]");
-			break;
-		case "abbc3_i" :
-			bbfontstyle("[i]", "[/i]");
-			break;
-		case "abbc3_u" :
-			bbfontstyle("[u]", "[/u]");
-			break;
-		case "abbc3_s" :
-			bbfontstyle("[s]", "[/s]");
-			break;
-		case "abbc3_pre" :
-			bbfontstyle("[pre]", "[/pre]");
-			break;
+	/** We make the life easyer for some bbcodes - Start **/	
 		case "abbc3_tab" :
 			bbfontstyle("[tab=30]", "");
-			break;
-		case "abbc3_fade" :
-			bbfontstyle("[fade]", "[/fade]");
-			break;
-		case "abbc3_dirrtl" :
-			bbfontstyle("[dir=rtl]", "[/dir]");
-			break;
-		case "abbc3_dirltr" :
-			bbfontstyle("[dir=ltr]", "[/dir]");
-			break;
-		case "abbc3_marqdown" :
-			bbfontstyle("[marq=down]", "[/marq]");
-			break;
-		case "abbc3_marqup" :
-			bbfontstyle("[marq=up]", "[/marq]");
-			break;
-		case "abbc3_marqleft" :
-			bbfontstyle("[marq=left]", "[/marq]");
-			break;
-		case "abbc3_marqright" :
-			bbfontstyle("[marq=right]", "[/marq]");
-			break;
-		case "abbc3_html" :
-			bbfontstyle("[html]", "[/html]");
 			break;
 		case "abbc3_anchor" :
 			bbfontstyle("[anchor= goto=]", "[/anchor]");
 			break;
-		case "abbc3_code" :
-			bbfontstyle("[code]", "[/code]");
-			break;
-		case "abbc3_quote" :
-			bbfontstyle("[quote]", "[/quote]");
-			break;
-		case "abbc3_spoil" :
-			bbfontstyle("[spoil]", "[/spoil]");
-			break;
-		case "abbc3_hidden" :
-			bbfontstyle("[hidden]", "[/hidden]");
-			break;
 		case "abbc3_mod" :
 			bbfontstyle("[mod=\"{S_POST_AUTHOR}\"]", "[/mod]");
-			break;
-		case "abbc3_offtopic" :
-			bbfontstyle("[offtopic]", "[/offtopic]");
-			break;
-		case "abbc3_scrippet" :
-			bbfontstyle("[scrippet]", "[/scrippet]");
 			break;
 		case "abbc3_tabs" :
 			bbfontstyle("[tabs][tabs: ]", "[/tabs]");
@@ -322,34 +258,6 @@ function bbstyle2(bbcode)
 		case "abbc3_hr" :
 			bbfontstyle("[hr]", "");
 			break;
-		case "abbc3_imgshack" :
-			popup('http://imageshack.us/', popup_width, popup_height);
-		/*	popup('http://ipostimage.org/', popup_width, popup_height);	*/
-		/*	popup('http://www.imageposter.com/uploads/?mode=phpbb&forumurl=' + escape(document.location.href), '_imagehost', 'resizable=yes,width=500,height=400', popup_width, popup_height);	*/
-			break;
-
-/** Custom bbcodes - Start **/
-		case "abbc3_dm" :
-			bbfontstyle("[dm]", "[/dm]");
-			break;
-		case "abbc3_gamespot" :
-			bbfontstyle("[gamespot]", "[/gamespot]");
-			break;
-		case "abbc3_gametrailers" :
-			bbfontstyle("[gametrailers]", "[/gametrailers]");
-			break;
-		case "abbc3_ignvideo" :
-			bbfontstyle("[ignvideo]", "[/ignvideo]");
-			break;
-		case "abbc3_putfile" :
-			bbfontstyle("[Putfile]", "[/Putfile]");
-			break;
-		case "abbc3_liveleak" :
-			bbfontstyle("[liveleak]", "[/liveleak]");
-			break;
-		case "abbc3_nfo" :
-			bbfontstyle("[nfo]", "[/nfo]");
-			break;
 		case "abbc3_glow" :
 			bbfontstyle("[glow=red]", "[/glow]");
 			break;
@@ -365,19 +273,20 @@ function bbstyle2(bbcode)
 		case "abbc3_wave" :
 			bbfontstyle("[wave=blue]", "[/wave]");
 			break;
-		case "abbc3_search" :
-			bbfontstyle("[search]", "[/search]");
+		case "abbc3_imgshack" :
+			popup('http://imageshack.us/', popup_width, popup_height);
+		//	tinypic ¿?
+		//	popup('http://ipostimage.org/', popup_width, popup_height);
+		//	popup('http://www.imageposter.com/uploads/?mode=phpbb&forumurl=' + escape(document.location.href), '_imagehost', 'resizable=yes,width=500,height=400', popup_width, popup_height);	*/
 			break;
-/** Custom bbcodes - End **/
+	/** We make the life easyer for some bbcodes - End **/	
 
-/** This bbcodes needs wizard - Start **/
+	/** This bbcodes use wizard - Start **/
 		/** This bbcodes was deprecated in v3.0.7 **/
 		case "abbc3_upload" :
-
 		case "abbc3_url" :
 		case "abbc3_ed2k" :
 		case "abbc3_email" :
-		case "abbc3_web" :
 		case "abbc3_img" :
 		case "abbc3_thumbnail" :
 		case "abbc3_rapidshare" :
@@ -391,6 +300,7 @@ function bbstyle2(bbcode)
 		case "abbc3_video" :
 		case "abbc3_quicktime" :
 		case "abbc3_ram" :
+		case "abbc3_web" :
 		/** Web videos bbcodes **/
 		case "abbc3_stream" :
 		case "abbc3_veoh" :
@@ -401,41 +311,38 @@ function bbstyle2(bbcode)
 		case "abbc3_grad" :
 		/** Extra Custom bbcodes - Start **/
 		case "deezer" :
-
 		/** Extra Custom bbcodes - End **/
+
 			if (bbcode == "abbc3_grad")
 			{
 				if (typeof(theSelection) == 'undefined' || theSelection === null || theSelection == '')
 				{
-					alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_GRAD_MIN_ERROR}");
+					alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_GRAD_MIN_ERROR}");
 					return;
 				}
 
 				if (theSelectionLength > 120)
 				{
-					alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_GRAD_MAX_ERROR}" + theSelectionLength);
+					alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_GRAD_MAX_ERROR}" + theSelectionLength);
 					return;
 				}
 			}
-			else if (bbcode != "abbc3_table")
-			{
-				if (theSelection || !popup_wizards)
-				{
-					bbcode_extra = (bbcode == 'abbc3_bbvideo' || bbcode == 'abbc3_flash' || bbcode == 'abbc3_flv' || bbcode == 'abbc3_video' || bbcode == 'abbc3_quicktime' || bbcode == 'abbc3_ram') ? " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}" : ( bbcode == 'abbc3_web') ? ' 100%,100' : '';
-
-					if ( bbcode == "abbc3_ed2k")
-					{
-						bbcode = "abbc3_url";
-					}
-
-					bbcode = bbcode.replace("abbc3_" , "");
-					bbfontstyle('[' + bbcode + bbcode_extra + ']', '[/' + bbcode + ']', '');
-					return;
-				}
-			}
-			else if (bbcode == "abbc3_table" && !popup_wizards)
+			if (bbcode == "abbc3_table" && (theSelection || !popup_wizards))
 			{
 				bbfontstyle("[table=][tr=][td=]", "[/td][/tr][/table]");
+				return;
+			}
+			if (theSelection || !popup_wizards)
+			{
+				bbcode_extra = (bbcode == 'abbc3_bbvideo' || bbcode == 'abbc3_flash' || bbcode == 'abbc3_flv' || bbcode == 'abbc3_video' || bbcode == 'abbc3_quicktime' || bbcode == 'abbc3_ram') ? " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}" : (bbcode == 'abbc3_web') ? ' 100%,100' : '';
+
+				if ( bbcode == "abbc3_ed2k")
+				{
+					bbcode = "abbc3_url";
+				}
+
+				bbcode = bbcode.replace("abbc3_" , "");
+				bbfontstyle('[' + bbcode + bbcode_extra + ']', '[/' + bbcode + ']');
 				return;
 			}
 
@@ -447,12 +354,12 @@ function bbstyle2(bbcode)
 			popup(wizards_url + wizards_params, popup_width, popup_height);
 		<!-- ENDIF -->
 			break;
-/** This bbcodes needs wizard - End **/
+	/** This bbcodes needs wizard - End **/
 
 		case "abbc3_plain" :
 			if (typeof(theSelection) == 'undefined' || theSelection == '' || theSelection === null)
 			{
-				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
+				alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_NOSELECT_ERROR}");
 				return;
 			}
 			else
@@ -475,7 +382,7 @@ function bbstyle2(bbcode)
 		case "abbc3_cut" :
 			if (typeof(theSelection) == 'undefined' || theSelection === null || theSelection == '')
 			{
-				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
+				alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_NOSELECT_ERROR}");
 				return;
 			}
 			else
@@ -494,7 +401,7 @@ function bbstyle2(bbcode)
 		case "abbc3_copy" :
 			if (typeof(theSelection) == 'undefined' || theSelection == '' || theSelection === null)
 			{
-				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_NOSELECT_ERROR}");
+				alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_NOSELECT_ERROR}");
 				return;
 			}
 			else
@@ -509,13 +416,13 @@ function bbstyle2(bbcode)
 			}
 			else
 			{
-				alert("{LA_ABBC3_ERROR}" + '\n' + "{LA_ABBC3_PASTE_ERROR}");
+				alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_PASTE_ERROR}");
 			}
 			break;
 
-/** Else should be a phpbb3 custom bbcode from ACP, so let's phpbb3 take care of it **/
+		/** This should never happens, just in case, let's phpbb3 take care of it **/
 		default :
-			bbfontstyle("["+bbcode+"]", "[/"+bbcode+"]");
+			bbfontstyle(bbopen, bbclose);
 			break;
 	}
 

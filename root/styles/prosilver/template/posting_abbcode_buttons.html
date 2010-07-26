@@ -45,7 +45,7 @@
 				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 				<!-- ENDIF -->
-				
+
 			<!-- IF S_ABBC3_BOXRESIZE -->
 				<input type="button" value=" + " class="button2" onclick="textbox_resize(10);" />&nbsp;<input type="button" value=" - " class="button2" onclick="textbox_resize(-10);" />
 				<!-- IF S_ABBC3_TAB -->
@@ -61,8 +61,8 @@
 							<!-- IF abbc3_tags.S_ABBC3_BREAK or abbc3_tags.S_ABBC3_DIVISION -->
 								<!-- IF not abbc3_tags.S_FIRST_ROW --><li>------------------</li><!-- ENDIF -->
 							<!-- ELSE -->
-							<li id="abbcode_{abbc3_tags.TAG_ID}" style='background-image: url("{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}");'>
-								<a href="#abbcode_{abbc3_tags.TAG_ID}" onclick="<!-- IF abbc3_tags.TAG_ABBC -->bbstyle2('{abbc3_tags.TAG_NAME}')<!-- ELSE -->bbfontstyle({abbc3_tags.TAG_NAME})<!-- ENDIF -->; return false;" title="{abbc3_tags.TAG_MOVER}&lt;br /&gt;{abbc3_tags.TAG_TIP}&lt;br /&gt;{abbc3_tags.TAG_NOTE}&lt;br /&gt;{abbc3_tags.TAG_EXAMPLE}">{abbc3_tags.TAG_MOVER}</a>
+							<li id="abbcode_{abbc3_tags.BBCODE_ID}"<!-- IF abbc3_tags.BBCODE_IMG --> style='background-image: url("{S_ABBC3_PATH}/images/{abbc3_tags.BBCODE_IMG}");'<!-- ENDIF -->>
+								<a href="#abbcode_{abbc3_tags.BBCODE_ID}" onclick="bbstyle2('{abbc3_tags.BBCODE_NAME}', {abbc3_tags.BBCODE_TAG}, {abbc3_tags.BBCODE_ABBC3}); return false;" title="{abbc3_tags.BBCODE_MOVER}&lt;br /&gt;{abbc3_tags.BBCODE_TIP}&lt;br /&gt;{abbc3_tags.BBCODE_NOTE}&lt;br /&gt;{abbc3_tags.BBCODE_EXAMPLE}">{abbc3_tags.BBCODE_MOVER}</a>
 							</li>
 							<!-- ENDIF -->
 						<!-- END abbc3_tags -->
@@ -211,7 +211,7 @@
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 			<!-- ENDIF -->
 		<!-- ELSE -->
-				<img src="{S_ABBC3_PATH}/images/{abbc3_tags.TAG_SRC}" class="btnbbcode3 editor_Button" onclick="<!-- IF abbc3_tags.TAG_ABBC -->bbstyle2('{abbc3_tags.TAG_NAME}')<!-- ELSE -->bbfontstyle({abbc3_tags.TAG_NAME})<!-- ENDIF -->" onmouseover="<!-- IF abbc3_tags.TAG_ABBC -->helpline2('{abbc3_tags.TAG_NAME}')<!-- ELSE -->helpline2('{abbc3_tags.TAG_TIP}')<!-- ENDIF -->" onmouseout="helpline2()" alt="{abbc3_tags.TAG_MOVER}" title="{abbc3_tags.TAG_MOVER}" id="<!-- IF abbc3_tags.TAG_ABBC -->{abbc3_tags.TAG_NAME}<!-- ELSE -->{abbc3_tags.TAG_MOVER}<!-- ENDIF -->" />
+				<img src="{S_ABBC3_PATH}/images/{abbc3_tags.BBCODE_IMG}" class="btnbbcode3 editor_Button" onclick="bbstyle2('{abbc3_tags.BBCODE_NAME}', {abbc3_tags.BBCODE_TAG}, {abbc3_tags.BBCODE_ABBC3}); return false;" onmouseover="helpline2('<!-- IF abbc3_tags.BBCODE_ABBC3 -->{abbc3_tags.BBCODE_NAME}<!-- ELSE -->{abbc3_tags.BBCODE_TIP}<!-- ENDIF -->')" onmouseout="helpline2()" alt="{abbc3_tags.BBCODE_MOVER}" title="{abbc3_tags.BBCODE_MOVER}" id="abbcode_{abbc3_tags.BBCODE_ID}" />
 		<!-- ENDIF -->
 	<!-- END abbc3_tags -->
 
