@@ -380,7 +380,7 @@ class abbcode
 				break;
 
 				case 'FLV' :
-			// Commented out, because we think bbvideo should not follow flash restrictions ;)
+			//	Commented out, because we think bbvideo should not follow flash restrictions ;)
 			//	case 'BBVIDEO' :
 					$auth_tag = 'FLASH';
 				break;
@@ -1462,31 +1462,31 @@ class abbcode
 		$effect = ucfirst(strtolower(trim($effect)));
 		$colour = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($colour));
 		$in	 	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in));
-		$style	= "display: inline-block; padding: 0 0.2em;";
+		$style	= "display: inline-block; padding: 0 0.2em; ";
 		// IE manage this at his own way
 		$is_ie	= (strpos(strtolower($user->browser), 'msie') !== false);
 		$shadow_colour = '#999999'; //  Default text shadow color #999999. You can change to another colour if desired.
 
-		switch ($effect)
+		switch (strtolower($effect))
 		{
-			case 'Glow' :
-				$style	= ($is_ie) ? "filter: glow(color=$colour, strength=4); color: #ffffff; $style" : "color: #ffffff; text-shadow: 0 0 1.0em $colour, 0 0 1.0em $colour, 0 0 1.2em $colour; $style";
+			case 'GLOW' :
+				$style .= ($is_ie) ? "filter: glow(color=$colour, strength=4); color: #ffffff;" : "color: #ffffff; text-shadow: 0 0 1.0em $colour, 0 0 1.0em $colour, 0 0 1.2em $colour;";
 			break;
 
-			case 'Shadow' :
-				$style	= ($is_ie) ? "filter: shadow(color=$shadow_colour, strength=4); color:$colour; $style" : "color : $colour; text-shadow : -0.2em 0.2em 0.2em $shadow_colour; $style";
+			case 'SHADOW' :
+				$style .= ($is_ie) ? "filter: shadow(color=$shadow_colour, strength=4); color:$colour;" : "color : $colour; text-shadow: -0.2em 0.2em 0.2em $shadow_colour;";
 			break;
 
-			case 'Dropshadow' :
-				$style	= ($is_ie) ? "filter: dropshadow(color=$shadow_colour, strength=4); color:$colour; $style" : "color : $colour; text-shadow : 0.2em 0.2em 0.05em $shadow_colour; $style";
+			case 'DROPSHADOW' :
+				$style .= ($is_ie) ? "filter: dropshadow(color=$shadow_colour, strength=4); color:$colour;" : "color : $colour; text-shadow: 0.2em 0.2em 0.05em $shadow_colour;";
 			break;
 
-			case 'Blur' :
-				$style	= ($is_ie) ? "filter: blur(strength=7); color:$colour; $style;" : "color: $colour; text-shadow : -0.1em 0.0em 0.1em $colour, 0.1em 0.0em 0.1em $colour; $style";
+			case 'BLUR' :
+				$style .= ($is_ie) ? "filter: blur(strength=7); color:$colour;" : "color: $colour; text-shadow: -0.1em 0.0em 0.1em $colour, 0.1em 0.0em 0.1em $colour;";
 			break;
 
-			case 'Wave' :
-				$style	= ($is_ie) ? "filter: wave(strength=2); color: $colour; $style" : "text-shadow : 0.2em 0.5em 0.1em $colour, -0.2em 0.1em 0.1em $colour, 0.2em -0.3em 0.1em $colour; font-weight : bold; font-style : italic; $style";
+			case 'WAVE' :
+				$style .= ($is_ie) ? "filter: wave(strength=2); color: $colour;" : "text-shadow: 0.2em 0.5em 0.1em $colour, -0.2em 0.1em 0.1em $colour, 0.2em -0.3em 0.1em $colour; font-weight: bold; font-style: italic;";
 			break;
 
 			default:
@@ -1692,7 +1692,7 @@ class abbcode
 			'www.myvideo' => array(
 				'id'		=> 25,
 				'image'		=> 'myvideo.gif',
-				'example'	=> "http://www.myvideo.de/watch/2668372",
+				'example'	=> "http://vimeo.com/3759030",
 				'match'		=> "#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.myvideo.$1/movie/$3', '{WIDTH}', '{HEIGHT}')",
 			),
@@ -2199,7 +2199,6 @@ class abbcode
 		else
 		{
 			$out = explode(";", $input);
-		//	array_pop($out);
 		}
 
 		return $out;
