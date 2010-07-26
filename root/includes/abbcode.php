@@ -1692,7 +1692,7 @@ class abbcode
 			'www.myvideo' => array(
 				'id'		=> 25,
 				'image'		=> 'myvideo.gif',
-				'example'	=> "http://vimeo.com/3759030",
+				'example'	=> "http://www.myvideo.de/watch/2668372",
 				'match'		=> "#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.myvideo.$1/movie/$3', '{WIDTH}', '{HEIGHT}')",
 			),
@@ -1783,7 +1783,7 @@ class abbcode
 			'vimeo.com' => array(
 				'id'		=> 38,
 				'image'		=> 'vimeo.gif',
-				'example'	=> "http://vimeo.com/725441",
+				'example'	=> "http://vimeo.com/3759030",
 				'match'		=> "#http://((.*?))vimeo.com/([^[]*)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://vimeo.com/moogaloop.swf?clip_id=$3&server=vimeo.com&fullscreen=1&show_title=1&show_byline=1&show_portrait=0&color=', '{WIDTH}', '{HEIGHT}')",
 			),
