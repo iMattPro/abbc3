@@ -1467,9 +1467,9 @@ class abbcode
 		$effect = ucfirst(strtolower(trim($effect)));
 		$colour = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($colour));
 		$in	 	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in));
-		$style	= "display: inline-block; padding: 0 0.2em; ";
 		// IE manage this at his own way
 		$is_ie	= (strpos(strtolower($user->browser), 'msie') !== false);
+		$style	= "display: inline-block; padding: " . (($is_ie) ? "0 0.2em; " : "0 0.5em; ");
 		$shadow_colour = '#999999'; //  Default text shadow color #999999. You can change to another colour if desired.
 
 		switch (strtoupper($effect))
