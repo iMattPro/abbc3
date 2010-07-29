@@ -513,9 +513,7 @@ class abbcode
 		}
 
 		$stx = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($stx));
-		$in	 = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in)) ;
-
-		$in = str_replace(array ('<br />', "\n", "\r", "\t"), array ("", "", "", ""), $in);
+		$in	= str_replace(array("]\r\n", "]\r", "]\n", "\r\n[", "\r[", "\n[", '\"', '\'', '(', ')'), array("]\n", ']', ']', "\n[", '[', '[', '"', '&#39;', '&#40;', '&#41;'), trim($in));
 
 		$table_ary = array(
 		//	"#\[table=(.*?)\](.*?)\[/table\]#is"	=> '<table style="$1" cellspacing="0" cellpadding="0">$2</table>',
