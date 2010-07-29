@@ -104,7 +104,7 @@
 
 		<link-group>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
-			<link type="language" href="contrib/install_spanish_es.xml" lang="en">Install Spanish language pack</link>
+			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v307_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v1012_to_v308.xml" lang="en">Update : ABBC3 MOD from 1.0.12 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v307_to_v308.xml" lang="en">Update : Language Changes from 3.0.7 to 3.0.8</link>
