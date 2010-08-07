@@ -37,7 +37,7 @@
 
 		<open src="language/en/mods/abbcode.php">
 			<edit>
-				<find><![CDATA[	'ABBC3_UNAUTHORISED'		=> 'You cannot use certain words : <br /><strong> %s </strong>',]]></find>
+				<find><![CDATA[	"ABBC3_UNAUTHORISED"		=> "You cannot use certain words : <br /><strong> %s </strong>",]]></find>
 				<action type="before-add"><![CDATA[	'ABBC3_SHORT'				=> 'Select BBcode',
 	'ABBC3_DEPRECATED'			=> '<div class="error">The <em>%1$s</em> bbcode is deprecated since ABBC3 version <em>%2$s</em></div>',
 	'ABBC3_NOSCRIPT'			=> 'Your browser have disabled scripts or doesn’t support client-side scripting. <em>( JavaScript! )</em>',
@@ -45,12 +45,20 @@
 			</edit>
 
 			<edit>
-				<find><![CDATA[	'ABBC3_COLOR_VIEW'			=> '[color=red]' . $lang['SAMPLE_TEXT'] . '[/color]',]]></find>
+				<find><![CDATA[	"ABBC3_COLOR_VIEW"			=> "[color=red]" . $lang["SAMPLE_TEXT"] . "[/color]",]]></find>
 				<action type="after-add"><![CDATA[	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Note:</strong> Enable or disable the ABBC3 Font colour to users, and/or use standard phpbb3 colour option.',]]></action>
 			</edit>
 
 			<edit>
-				<find><![CDATA[	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY <p>\r\n</p>ANTONIUS and IPSUM are walking down a tiny, crowded street.<p>\r\n</p>ANTONIUS<p>\r\n</p>Do you think in a thousand years, anyone will remember our names?<p>\r\n</p>IPSUM<p>\r\n</p>Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',]]></find>
+				<remove><![CDATA[	// html
+//	"ABBC3_HTML_MOVER"			=> "HTML code",
+//	"ABBC3_HTML_TIP"			=> "[html]xhtml code[/html]",
+//	"ABBC3_HTML_EXAMPLE"		=> "[html]&lt;a href=\"http://www.mssti.com/phpbb3\"&gt;link to mssti&lt;/a&gt;[/html]",
+//	"ABBC3_HTML_VIEW"			=> "[html]<a href="http://www.mssti.com/phpbb3">link to mssti</a>[/html]",]]></remove>
+			</edit>
+
+			<edit>
+				<find><![CDATA[	"ABBC3_SCRIPPET_VIEW"		=> "[scrippet]EXT. ANCIENT ROME - DAY <p>\r\n</p>ANTONIUS and IPSUM are walking down a tiny, crowded street.<p>\r\n</p>ANTONIUS<p>\r\n</p>Do you think in a thousand years, anyone will remember our names?<p>\r\n</p>IPSUM<p>\r\n</p>Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]",]]></find>
 				<action type="replace-with"><![CDATA[##	For translate :                 don't change the "<br />" and don't join the lines in one !
 	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY<br />
 	ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />
@@ -61,16 +69,8 @@
 			</edit>
 
 			<edit>
-				<find><![CDATA['ABBC3_NFO_VIEW'			=> '<dl class="codebox"><dt class="codetitle nfotitle">NFO text : </dt><dd><div class="codecontent nfo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Uuml;&sup2;&Uuml;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&sup2;&sup2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&sup2;&sup2;&nbsp;&plusmn;</div></dd></dl>', //'[nfo]ܲ�  � ۲�     ����  � ����������������������������     ���� �  � ����� �� �[/nfo]',]]></find>
+				<find><![CDATA["ABBC3_NFO_VIEW"			=> '<dl class="codebox"><dt class="codetitle nfotitle">NFO text : </dt><dd><div class="codecontent nfo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Uuml;&sup2;&Uuml;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&sup2;&sup2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&Ucirc;&nbsp;&nbsp;&Ucirc;&nbsp;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&Ucirc;&nbsp;&sup2;&sup2;&nbsp;&plusmn;</div></dd></dl>', //'[nfo]ܲ�  � ۲�     ����  � ����������������������������     ���� �  � ����� �� �[/nfo]',]]></find>
 				<action type="replace-with"><![CDATA['ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',]]></action>
-			</edit>
-
-			<edit>
-				<remove><![CDATA[	// html
-//	"ABBC3_HTML_MOVER"			=> "HTML code",
-//	"ABBC3_HTML_TIP"			=> "[html]xhtml code[/html]",
-//	"ABBC3_HTML_EXAMPLE"		=> "[html]&lt;a href=\"http://www.mssti.com/phpbb3\"&gt;link to mssti&lt;/a&gt;[/html]",
-//	"ABBC3_HTML_VIEW"			=> "[html]<a href="http://www.mssti.com/phpbb3">link to mssti</a>[/html]",]]></remove>
 			</edit>
 
 			<edit>

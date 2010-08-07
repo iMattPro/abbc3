@@ -7,9 +7,10 @@
 		
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update : This file describes the changes in language files from version 3.0.7 to 3.0.8]]></title>
 		
-		<description lang="en"><![CDATA[This file describes the changes in language files from version 3.0.7 to 3.0.8]]></description>
+		<description lang="en"><![CDATA[This file describes the changes in language files from version 3.0.7 to 3.0.8 (for custom language translations)]]></description>
 
-		<author-notes lang="en"><![CDATA[See the main install file for any additional information about the MOD.]]></author-notes>
+		<author-notes lang="en"><![CDATA[This file is for users who have translated or edited these language files to something not included in the original MOD package.
+		See the main install file for any additional information about the MOD.]]></author-notes>
 	
 		<author-group>
 			<author>
@@ -130,8 +131,22 @@
 			</edit>
 
 			<edit>
-				<find><![CDATA[	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/testlink]',]]></find>
-				<action type="replace-with"><![CDATA[	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',]]></action>
+				<find><![CDATA[	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/rapidshare]',]]></find>
+				<action type="replace-with"><![CDATA[	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/testlink]',]]></find>
+				<action type="replace-with"><![CDATA[	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] or [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',]]></find>
+				<action type="replace-with"><![CDATA[	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] or [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',]]></action>
 			</edit>
 
 			<edit>
@@ -183,7 +198,7 @@
 				<find><![CDATA[	'ABBC3_RAM_EXAMPLE'			=> 'http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram',
 	'ABBC3_RAM_VIEW'			=> '[ram]http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram[/ram]',]]></find>
 				<action type="replace-with"><![CDATA[	'ABBC3_RAM_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Dr_Who.ram',
-	'ABBC3_RAM_VIEW'			=> '[ram]http://www.mssti.com/phpbb3/images/media/Dr_Who.ram[/ram]',]]></action>
+	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://www.mssti.com/phpbb3/images/media/Dr_Who.ram[/ram]',]]></action>
 			</edit>
 
 			<edit>
@@ -229,6 +244,14 @@
 
 		<open src="language/en/mods/acp_abbcodes.php">
 			<edit>
+				<find><![CDATA[	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
+	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
+	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
+	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted ABBC3 MOD from database</strong>',]]></find>
+				<action type="replace-with"><![CDATA[	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',]]></action>
+			</edit>
+
+			<edit>
 				<find><![CDATA[// abbc3_details]]></find>
 				<action type="before-add"><![CDATA[
 // This lines are for the UCP
@@ -244,18 +267,19 @@ $lang = array_merge($lang, array(
 			</edit>
 
 			<edit>
+				<remove><![CDATA[	'ACP_ABBCODES'						=> 'Advanced BBcodes Box 3',
+	
+]]></remove>
+			</edit>
+
+			<edit>
 				<find><![CDATA[	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',]]></find>
 				<action type="replace-with"><![CDATA[	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBcodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',]]></action>
 			</edit>
 
 			<edit>
-				<find><![CDATA[	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.',]]></find>
-				<action type="after-add"><![CDATA[	'ABBCODES_VIDEO_OPTION'				=> 'Please Select the video types',
-	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
-	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Select the video sites and/or formats you would like to allow users to embed in their posts when the BBvideo BBcode is enabled <em class="error">(*)</em>',
-	'ABBCODES_VIDEO_ERROR'				=> 'There are no embedded video links currently allowed. Please contact the %sBoard Administrator%s if this problem persists.<br />In the meantime, you may post your video links using the standard URL BBcode.',
-	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> In order to select (or deselect) multiple items, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
-]]></action>
+				<find><![CDATA[	'ABBCODES_RESIZE'					=> 'Resize large images',]]></find>
+				<action type="before-add"><![CDATA[	'ABBCODES_RESIZER'					=> 'Image Resizer',]]></action>
 			</edit>
 
 			<edit>
@@ -277,7 +301,7 @@ $lang = array_merge($lang, array(
 													'1'			=> 'Pop Up window',
 													'2'			=> 'In post'),
 	'ABBCODES_UCP_MODE'					=> 'UCP Control options',
-	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Allow users to select their owm ABBC3 view modes?',
+	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Allow users to select their own editor mode, by choosing between the standard phpBB3 BBcode buttons, ABBC3 “Extended” or ABBC3 “Compact” view.',
 
 	'ABBCODES_WIZARD'					=> 'Wizard',
 	'ABBCODES_WIZARD_SIZE'				=> 'Wizard dimensions',
@@ -295,6 +319,11 @@ $lang = array_merge($lang, array(
 			<edit>
 				<find><![CDATA[	'ABBCODES_NAME'						=> 'Tag name',]]></find>
 				<action type="replace-with"><![CDATA[	'ABBCODES_NAME'						=> 'BBcode tag',]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[	'ABBCODES_ORDER'					=> 'Tag order',]]></find>
+				<action type="after-add"><![CDATA[	'ABBCODES_CUSTOM'					=> 'Custom BBcode',]]></action>
 			</edit>
 
 			<edit>
