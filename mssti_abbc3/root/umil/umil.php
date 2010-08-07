@@ -2984,30 +2984,14 @@ class umil
 
 	/**
 	* Get the real table name
-	* By A_Jelly_Doughnut
 	*
-	* @param string $table_name The table name to get the real table name from
+	* @param mixed $table_name
 	*/
 	function get_table_name(&$table_name)
 	{
 		global $table_prefix;
-		static $constants = NULL;
 
-		if (is_null($constants))
-		{
-			$constants = get_defined_constants();
-		}
-
-		/**
-		* only do the replace if the table prefix is not already present
-		* this is required since UMIL supports specifying a table via phpbb_foo
-		* (where a replace would be needed)
-		* or by FOO_TABLE (where a replace is already done at constant-define time)
-		*/
-		if (!preg_match('#^' . preg_quote($table_prefix, '#') . '#', $table_name) || !in_array($table_name, $constants, true))
-		{
-			$table_name = preg_replace('#^phpbb_#i', $table_prefix, $table_name);
-		}
+		$table_name = preg_replace('#phpbb_#i', $table_prefix, $table_name);
 	}
 }
 
