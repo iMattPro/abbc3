@@ -5,7 +5,7 @@
  * @author David Lewis (Highway of Life) highwayoflife@gmail.com
  * @package umil
  * @phpBB source Id: umil.php 202 2010-03-11 02:19:30Z exreaction $
- * @version $Id: umil.php 207 2010-03-14 16:27:00Z exreaction $
+ * @version $Id: umil.php 222 2010-05-27 20:06:33Z exreaction $
  * @copyright (c) 2008 phpBB Group
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @translated by Olympus DK Team
@@ -94,7 +94,7 @@ $lang = array_merge($lang, array(
 	'PERMISSION_UNSET_GROUP'		=> 'Fjerner tilladelser for gruppen %s.',
 	'PERMISSION_UNSET_ROLE'			=> 'Fjerner tilladelser for rollen %s.',
 
-	'ROLE_ALREADY_EXISTS' => 'Tilladelserolle eksisterer allerede.'
+	'ROLE_ALREADY_EXISTS' => 'Tilladelserolle eksisterer allerede.',
 	'ROLE_NOT_EXIST'				=> 'Tilladelserolle eksisterer ikke.',
 
 	'SUCCESS'						=> 'Udført',
