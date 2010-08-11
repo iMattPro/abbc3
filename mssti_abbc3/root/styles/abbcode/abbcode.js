@@ -386,8 +386,10 @@ var kmrSimpleTabs = {
 
 	init: function()
 	{
-		if(!document.getElementsByTagName) return false;
-		if(!document.getElementById) return false;
+		if (!document.getElementsByTagName) return false;
+		if (!document.getElementById) return false;
+		if (!getElementsByClassName("simpleTabs").length) return false;
+
 		var containerDiv = document.getElementsByTagName("div");
 
 		var Tabber_id = 1;
@@ -545,27 +547,21 @@ var kmrSimpleTabs = {
 	eraseCookie: function(name)
 	{
 		this.createCookie(name,"",-1);
-	},
-
-	// Loader
-	addLoadEvent: function( )
-	{
-		/** Install the safety net to run once the main function - START **/
-		if (window.onload_functions) // prosilver
-		{
-			onload_functions[onload_functions.length] = "kmrSimpleTabs.init();";
-		}
-		else if (typeof(window.addEventListener) != "undefined") // DOM
-		{
-			window.addEventListener( "load", kmrSimpleTabs.init, false);
-		}
-		else if (typeof(window.attachEvent) != "undefined") // MSIE
-		{
-			window.attachEvent( "onload", kmrSimpleTabs.init);
-		}
-		/** Install the safety net to run once the main function - END **/
 	}
-	// END
 };
 
+/** Install the safety net to run once the main function - START **/
+if (window.onload_functions) // prosilver
+{
+	onload_functions[onload_functions.length] = "kmrSimpleTabs.init();";
+}
+else if (typeof(window.addEventListener) != "undefined") // DOM
+{
+	window.addEventListener( "load", kmrSimpleTabs.init, false);
+}
+else if (typeof(window.attachEvent) != "undefined") // MSIE
+{
+	window.attachEvent( "onload", kmrSimpleTabs.init);
+}
+/** Install the safety net to run once the main function - END **/
 // ]]>
