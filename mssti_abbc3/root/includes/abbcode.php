@@ -1404,14 +1404,6 @@ class abbcode
 			}
 			$output .= '</div>';
 
-			/**
-			* Only run the javascript for the first tabs in this page ;)
-			**/
-			if ($postTabs_pass == 1)
-			{
-				$output_rest .= '<script type="text/javascript">kmrSimpleTabs.addLoadEvent();</script>';
-			}
-
 			return $output_start . $output . $output_rest;
 		}
 		else
