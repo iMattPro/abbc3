@@ -478,7 +478,7 @@ class abbcode
 	* @param string		$stx	table style
 	* @param string		$in 	post text between [table] & [/table]
 	* @return string	table
-	* @version 1.0.11
+	* @version 3.0.8
 	* @todo: 
 	* 	root/includes/funtions_content.php -> strip_bbcode()
 	* 	$table_ary = array(
@@ -516,19 +516,23 @@ class abbcode
 		$in	= str_replace(array("]\r\n", "]\r", "]\n", "\r\n[", "\r[", "\n[", '\"', '\'', '(', ')'), array("]\n", ']', ']', "\n[", '[', '[', '"', '&#39;', '&#40;', '&#41;'), trim($in));
 
 		$table_ary = array(
-		//	"#\[table=(.*?)\](.*?)\[/table\]#is"	=> '<table style="$1" cellspacing="0" cellpadding="0">$2</table>',
-			"#\[tr=(.*?)\](.*?)\[/tr\]#is"			=> '<tr style="$1">$2</tr>',
-			"#\[td=(.*?)\](.*?)\[/td\]#is"			=> '<td style="$1">$2</td>',
+			"#\[tr\](.*?)\[/tr\]#ies"			=> "'<tr>' . trim('\$1') . '</tr>'",
+			"#\[tr\=(.*?)\](.*?)\[/tr\]#ies"	=> "'<tr style=\"' . trim('\$1') . '\">' . trim('\$2') . '</tr>'",
+			"#\[td\](.*?)\[/td\]#ies"			=> "'<td>' . trim('\$1') . '</td>'",
+			"#\[td\=(.*?)\](.*?)\[/td\]#ies"	=> "'<td style=\"' . trim('\$1') . '\">' . trim('\$2') . '</td>'",
 		);
 
 		foreach ($table_ary as $abbcode_found => $abbcode_replace)
 		{
 			if (preg_match($abbcode_found, $in))
 			{
-				$in = preg_replace($abbcode_found, $abbcode_replace, $in);
+				// when using the /e modifier, preg_replace slashes double-quotes but does not
+				// seem to slash anything else
+				$in = str_replace('\"', '"', preg_replace($abbcode_found, $abbcode_replace, $in));
 			}
 		}
-		return '<table style="' . $stx . '" cellspacing="0" cellpadding="0">' . $in .'</table>';
+
+		return '<table ' . (($stx) ? 'style="' . $stx . '" ' : '') . 'cellspacing="0" cellpadding="0">' . $in .'</table>';
 	}
 
 	/**
