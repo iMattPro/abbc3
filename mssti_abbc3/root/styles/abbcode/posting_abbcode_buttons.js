@@ -481,12 +481,12 @@ function ABBC3_palette(el, mode)
 
 					if (el == 'ul_color_selector')
 					{
-						item.setAttribute("onclick", "bbfontstyle('[color=#" + color + "]', '[/color]')");
+						item.onclick = function() { bbfontstyle('[color=#' + color + ']', '[/color]'); };
 						item.style.color = '#' + color;
 					}
 					else
 					{
-						item.setAttribute("onclick", "bbfontstyle('[highlight=#" + color + "]', '[/highlight]')");
+						item.onclick = function() { bbfontstyle('[highlight=#' + color + ']', '[/highlight]'); };
 						item.style.backgroundColor = '#' + color;
 					}
 					elSel.appendChild(item);
