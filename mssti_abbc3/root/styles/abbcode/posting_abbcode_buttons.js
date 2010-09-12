@@ -332,7 +332,7 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 				bbfontstyle("[table=][tr=][td=]", "[/td][/tr][/table]");
 				return;
 			}
-			if (theSelection || !popup_wizards)
+			if ((theSelection || !popup_wizards) && bbcode != "abbc3_grad")
 			{
 				bbcode_extra = (bbcode == 'abbc3_bbvideo' || bbcode == 'abbc3_flash' || bbcode == 'abbc3_flv' || bbcode == 'abbc3_video' || bbcode == 'abbc3_quicktime' || bbcode == 'abbc3_ram') ? " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}" : (bbcode == 'abbc3_web') ? ' 100%,100' : '';
 

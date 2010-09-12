@@ -277,6 +277,10 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 	$user->add_lang(array('posting', 'mods/abbcode'));
 
+	if ($abbcode_bbcode == 'abbc3_grad')
+	{
+		$abbcode->abbcode_config['ABBC3_WIZARD_MODE'] = 1;
+	}
 	if (!$abbcode->abbcode_config['ABBC3_WIZARD_MODE'])
 	{
 		trigger_error('ABBC3_FUNCTION_DISABLED');
