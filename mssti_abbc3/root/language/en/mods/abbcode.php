@@ -309,7 +309,7 @@ $lang = array_merge($lang, array(
 
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Text gradient',
-	'ABBC3_GRAD_TIP'			=> 'Select the text, first',
+	'ABBC3_GRAD_TIP'			=> 'Select some text first',
 ##For translate (The separate words are "This is a sample text") 
 ##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',

@@ -52,7 +52,7 @@ $lang = array_merge($lang, array(
 	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
 	'UCP_ABBC3_SETTINGS'			=> 'ABBC3 Settings',
 	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Enable the “Advanced BBcodes Box 3” toolbar instead of the regular BBcode buttons?',
-	'UCP_ABBC3_BBCODES'				=> 'ABBC3 View',
+	'UCP_ABBC3_BBCODES'				=> 'ABBC3 Mode',
 	'UCP_ABBC3_BBCODES_EXPLAIN'		=> 'If the “Advanced BBcodes Box 3” toolbar is enabled, do you want to use the “Compact view” instead of the ABBC3 buttons?',
 ));
 
