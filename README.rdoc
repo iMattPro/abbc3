@@ -1,0 +1,41 @@
+= Advanced BBCode Box 3 (aka ABBC3) - (Developer Version 3.0.8)
+
+The source code, issue tracker and wiki can be found at:
+
+* http://github.com/mssti/Advanced-BBCode-Box-3
+
+== DESCRIPTION:
+
+ABBC3 MOD adds lots of useful BBCode features and makes the bbcode buttons look just like Microsoft Office.
+
+== FEATURES/PROBLEMS:
+
+ABBC3 currently features the following:
+
+* Icon-based BBcode toolbar
+* Several new BBcodes are included
+* Improves the functions of phpBB's BBCode function.
+* It adds the BBcode exactly where the cursor is, inserts smilies where the cursor is, and adds more ways to customize posts.
+* The MOD is very fast loading, and is a sleek addition to your phpBB bulletin board.
+
+== REQUIREMENTS:
+
+* phpBB 3.0.7-PL1
+* You must have javascript enabled to use this MOD.
+
+== DOCUMENTATION:
+
+Complete README documentation and changelog are included in the MODs contrib folder.
+
+== DEPLOYMENT:
+
+Please keep in mind that this version is still in development, so not everything may be in place or working.
+
+* It is not recommended that you install this version on a live forum.
+* Report any bugs or problems you encounter to our issue tracker http://github.com/mssti/Advanced-BBCode-Box-3/issues
+* Also, good ideas and bug reports are always welcome.
+* Before adding this MOD to your forum, you should back up all files related to this MOD.
+
+== LICENSE:
+
+GNU General Public License v2
