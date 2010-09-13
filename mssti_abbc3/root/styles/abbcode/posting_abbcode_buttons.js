@@ -1,6 +1,6 @@
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/styles/abbcode
-* @version: $Id: posting_abbcode_buttons.js, v 3.0.8 2010/06/28 10:06:28 leviatan21 Exp $
+* @version: $Id: posting_abbcode_buttons.js, v 3.0.8-PL1 2010/09/13 10:06:28 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -481,12 +481,12 @@ function ABBC3_palette(el, mode)
 
 					if (el == 'ul_color_selector')
 					{
-						item.onclick = function() { bbfontstyle('[color=#' + color + ']', '[/color]'); };
+						item['onclick']=new Function('bbfontstyle("[color=#'+color+']", "[/color]"); return false;');
 						item.style.color = '#' + color;
 					}
 					else
 					{
-						item.onclick = function() { bbfontstyle('[highlight=#' + color + ']', '[/highlight]'); };
+						item['onclick']=new Function('bbfontstyle("[highlight=#'+color+']", "[/highlight]"); return false;');
 						item.style.backgroundColor = '#' + color;
 					}
 					elSel.appendChild(item);
