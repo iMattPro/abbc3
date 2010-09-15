@@ -520,9 +520,9 @@ $lang = array_merge($lang, array(
 
 	// Search tag
 	'ABBC3_SEARCH_MOVER'		=> 'Insert search word',
-	'ABBC3_SEARCH_TIP'			=> '[search(=(msn|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
+	'ABBC3_SEARCH_TIP'			=> '[search(=(bing|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
 ##	For translate :                                                              yes                                                 yes                                                   yes                                                    yes                                                       yes                                                   yes
-	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode Box 3[/search]<br /> or [search=msn]Advanced BBcode Box 3[/search]<br /> or [search=yahoo]Advanced BBcode Box 3[/search]<br /> or [search=google]Advanced BBcode Box 3[/search]<br /> or [search=altavista]Advanced BBcode Box 3[/search]<br /> or [search=lycos]Advanced BBcode Box 3[/search]<br /> or [search=wikipedia]Advanced BBcode Box 3[/search]',
+	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode Box 3[/search]<br /> or [search=bing]Advanced BBcode Box 3[/search]<br /> or [search=yahoo]Advanced BBcode Box 3[/search]<br /> or [search=google]Advanced BBcode Box 3[/search]<br /> or [search=altavista]Advanced BBcode Box 3[/search]<br /> or [search=lycos]Advanced BBcode Box 3[/search]<br /> or [search=wikipedia]Advanced BBcode Box 3[/search]',
 
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',

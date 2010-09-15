@@ -704,7 +704,7 @@ class abbcode
 	*
 	* @param string		$stx	have search name param?
 	* @param string		$in		post text between [search] & [/search]
-	* @param string		$search (msn|msnlive|yahoo|google|altavista|wikipedia|lycos)
+	* @param string		$search (bing|yahoo|google|altavista|wikipedia|lycos)
 	* @return string	link
 	* @version 1.0.12
 	**/
@@ -717,9 +717,8 @@ class abbcode
 
 		switch ($in)
 		{
-			case 'msn' :
-			case 'msnlive':
-				$search_link = 'http://search.live.com/results.aspx?q=' . str_replace(' ', '+', $search);
+			case 'bing' :
+				$search_link = 'http://www.bing.com/search?q=' . str_replace(' ', '+', $search);
 			break;
 
 			case 'yahoo' :
