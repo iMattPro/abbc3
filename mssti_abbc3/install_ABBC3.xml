@@ -63,7 +63,7 @@
 			</author>
 		</author-group>
 
-		<mod-version>3.0.8</mod-version>
+		<mod-version>3.0.8-pl1</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -72,6 +72,18 @@
 		</installation>
 
 		<history>
+			<entry>
+				<date>2010-09-15</date>
+				<rev-version>3.0.8-pl1</rev-version>
+				<changelog lang="en">
+					<change> [Change] Changed name of "ABBC3 View" in the UCP options to "ABBC3 Mode"</change>
+					<change> [Fix] Minor XHTML issues fixed in the ACP pages.</change>
+					<change> [Fix] ACP Settings for Image Resizer now display correct values when configured.</change>
+					<change> [Fix] Font Color and Text Highlight BBcodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</change>
+					<change> [Fix] BBcode : Gradient : Gradient wizard works now.</change>
+					<change> [Fix] BBcode : Search : Replaced MSN with Bing.</change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2010-05-20</date>
 				<rev-version>3.0.8</rev-version>
@@ -105,8 +117,9 @@
 		<link-group>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v307_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7 to 3.0.8</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v308-pl1.xml" lang="en">Update : ABBC3 MOD from 3.0.8 to 3.0.8-pl1</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v1012_to_v308.xml" lang="en">Update : ABBC3 MOD from 1.0.12 to 3.0.8</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v307_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v307_to_v308.xml" lang="en">Update : Language Changes from 3.0.7 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v1012_to_v308.xml" lang="en">Update : Language Changes from 1.0.12 to 3.0.8</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>
@@ -356,7 +369,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 - Start
 	global $config, $mode, $abbcode;
 
-	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+	$abbc3 = (isset($user->data['user_abbcode_mod']) && $config['ABBC3_UCP_MODE']) ? $user->data['user_abbcode_mod'] : $abbc3;
 
 	$sql_where = ' AND abbcode = 0';
 	if ($abbc3 && @$config['ABBC3_MOD'])
