@@ -28,7 +28,7 @@
 		<mod-version>3.0.8-pl1</mod-version>
 		<installation>
 			<level>intermediate</level>
-			<time>1200</time>
+			<time>120</time>
 			<target-version>3.0.7-PL1</target-version>
 		</installation>
 		<link-group>
@@ -42,6 +42,7 @@
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
+			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>

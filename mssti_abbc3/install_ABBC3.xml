@@ -73,13 +73,14 @@
 
 		<history>
 			<entry>
-				<date>2010-09-15</date>
+				<date>2010-09-18</date>
 				<rev-version>3.0.8-pl1</rev-version>
 				<changelog lang="en">
 					<change> [Change] Changed name of "ABBC3 View" in the UCP options to "ABBC3 Mode"</change>
 					<change> [Fix] Minor XHTML issues fixed in the ACP pages.</change>
 					<change> [Fix] ACP Settings for Image Resizer now display correct values when configured.</change>
 					<change> [Fix] Font Color and Text Highlight BBcodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</change>
+					<change> [Fix] BBcode : Fade : Fade effect now works in Internet Explorer.</change>
 					<change> [Fix] BBcode : Gradient : Gradient wizard works now.</change>
 					<change> [Fix] BBcode : Search : Replaced MSN with Bing.</change>
 				</changelog>
