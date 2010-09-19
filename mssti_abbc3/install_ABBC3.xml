@@ -73,13 +73,14 @@
 
 		<history>
 			<entry>
-				<date>2010-09-18</date>
+				<date>2010-09-19</date>
 				<rev-version>3.0.8-pl1</rev-version>
 				<changelog lang="en">
 					<change> [Change] Changed name of "ABBC3 View" in the UCP options to "ABBC3 Mode"</change>
 					<change> [Fix] Minor XHTML issues fixed in the ACP pages.</change>
 					<change> [Fix] ACP Settings for Image Resizer now display correct values when configured.</change>
 					<change> [Fix] Font Color and Text Highlight BBcodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</change>
+					<change> [Fix] Custom BBcode buttons without an image/icon will correctly display when assigned only to signature and PM pages.</change>
 					<change> [Fix] BBcode : Fade : Fade effect now works in Internet Explorer.</change>
 					<change> [Fix] BBcode : Gradient : Gradient wizard works now.</change>
 					<change> [Fix] BBcode : Search : Replaced MSN with Bing.</change>
@@ -370,9 +371,10 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 - Start
 	global $config, $mode, $abbcode;
 
-	$abbc3 = (isset($user->data['user_abbcode_mod']) && $config['ABBC3_UCP_MODE']) ? $user->data['user_abbcode_mod'] : $abbc3;
+	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
 
-	$sql_where = ' AND abbcode = 0';
+	$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : ($mode == 'compose' ? 'display_on_pm' : 'display_on_posting');
+
 	if ($abbc3 && @$config['ABBC3_MOD'])
 	{
 		// We need to check if ABBC3 is property initialized
@@ -386,10 +388,12 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 		$abbcode->abbcode_init();
 		$abbcode->abbcode_display($mode);
 
-		$sql_where = ' AND (abbcode = 0 AND bbcode_image = "")';
+		$sql_where = " $display = 1 AND (abbcode = 0 AND bbcode_image = '')";
 	}
 	else
 	{
+		$sql_where = " $display = 1 AND abbcode = 0";
+
 		$template->assign_vars(array('S_ABBC3_DISABLED' => true));
 	}
 // MOD : MSSTI ABBC3 - End
@@ -400,7 +404,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA[		WHERE display_on_posting = 1]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[display_on_posting = 1]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ ' . $sql_where . ']]></inline-action>
+					<inline-action type="replace-with"><![CDATA[' . $sql_where . ']]></inline-action>
 				</inline-edit>
 			</edit>
 		</open>

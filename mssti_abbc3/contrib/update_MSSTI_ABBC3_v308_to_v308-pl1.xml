@@ -28,7 +28,7 @@
 		<mod-version>3.0.8-pl1</mod-version>
 		<installation>
 			<level>intermediate</level>
-			<time>120</time>
+			<time>180</time>
 			<target-version>3.0.7-PL1</target-version>
 		</installation>
 		<link-group>
@@ -53,8 +53,32 @@
 
 			<edit>
 				<find><![CDATA[	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></find>
-				<action type="replace-with"><![CDATA[	$abbc3 = (isset($user->data['user_abbcode_mod']) && $config['ABBC3_UCP_MODE']) ? $user->data['user_abbcode_mod'] : $abbc3;]]></action>
+				<action type="replace-with"><![CDATA[	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+
+	$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : ($mode == 'compose' ? 'display_on_pm' : 'display_on_posting');]]></action>
 			</edit>
+
+			<edit>
+				<find><![CDATA[	$sql_where = ' AND abbcode = 0';
+	if ($abbc3 && @$config['ABBC3_MOD'])]]></find>
+				<action type="replace-with"><![CDATA[	if ($abbc3 && @$config['ABBC3_MOD'])]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[		$sql_where = ' AND (abbcode = 0 AND bbcode_image = "")';]]></find>
+				<action type="replace-with"><![CDATA[		$sql_where = " $display = 1 AND (abbcode = 0 AND bbcode_image = '')";]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[		$template->assign_vars(array('S_ABBC3_DISABLED' => true));]]></find>
+				<action type="before-add"><![CDATA[		$sql_where = " $display = 1 AND abbcode = 0";]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[		WHERE display_on_posting = 1 ' . $sql_where . ']]></find>
+				<action type="replace-with"><![CDATA[		WHERE ' . $sql_where . ']]></action>
+			</edit>
+
 		</open>
 
 	</action-group>
