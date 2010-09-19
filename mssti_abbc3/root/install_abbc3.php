@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/15 11:23:22 leviatan21 Exp $
+* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/18 06:02:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -2181,6 +2181,26 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 		**/
 		),
+		'3.0.8-pl1' => array(
+			'search'		=> array(
+				'bbcode_tag'			=> 'search',
+				'bbcode_order'			=> 64,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_SEARCH_TIP',
+				'bbcode_match'			=> '[search{TEXT1}]{TEXT2}[/search]',
+				'bbcode_tpl'			=> '<a src="{TEXT1}">{TEXT2}</a>',
+				'first_pass_match'		=> '!\[search(\=(bing|yahoo|google|altavista|lycos|wikipedia))?\](.*?)\[/search\]!ies',
+				'first_pass_replace'	=> '\'[search${1}:$uid]\' . str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${3}\')) . \'[/search:$uid]\'',
+				'second_pass_match'		=> '!\[search(\=(.*?))?:$uid\](.*?)\[/search:$uid\]!ies',
+				'second_pass_replace'	=> "\$this->search_pass('$1', '$2', '$3')",
+				'display_on_posting'	=> 1,
+				'display_on_pm'			=> 1,
+				'display_on_sig'		=> 1,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'search.gif',
+				'bbcode_group'			=> '0',
+			),
+		),
 		/**
 		'3.0.9' => array(
 			'bbcode_name' => array(
@@ -2203,46 +2223,9 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 		),
 		**/
-		'3.0.8-pl1' => array(
-			'search'		=> array(
-				'bbcode_tag'			=> 'search',
-				'bbcode_order'			=> 64,
-				'bbcode_id'				=> 1,
-				'bbcode_helpline'		=> 'ABBC3_SEARCH_TIP',
-				'bbcode_match'			=> '[search{TEXT1}]{TEXT2}[/search]',
-				'bbcode_tpl'			=> '<a src="{TEXT1}">{TEXT2}</a>',
-				'first_pass_match'		=> '!\[search(\=(bing|yahoo|google|altavista|lycos|wikipedia))?\](.*?)\[/search\]!ies',
-				'first_pass_replace'	=> '\'[search${1}:$uid]\' . str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${3}\')) . \'[/search:$uid]\'',
-				'second_pass_match'		=> '!\[search(\=(.*?))?:$uid\](.*?)\[/search:$uid\]!ies',
-				'second_pass_replace'	=> "\$this->search_pass('$1', '$2', '$3')",
-				'display_on_posting'	=> 1,
-				'display_on_pm'			=> 1,
-				'display_on_sig'		=> 1,
-				'abbcode'				=> 1,
-				'bbcode_image'			=> 'search.gif',
-				'bbcode_group'			=> '0',
-			),
-		),
 	);
 
-	if (version_compare($version, '3.0.8', '<='))
-	{
-		$bbcodes = $bbcode_data['3.0.8'];
-	}
-	if (version_compare($version, '3.0.8-pl1', '<='))
-	{
-		$bbcodes = $bbcode_data['3.0.8-pl1'];
-	}
-	/**
-	* For future reference :
-	* 	This is the way we will do it in the next version
-	if (version_compare($version, '3.0.9', '<='))
-	{
-		$bbcodes = $bbcode_data['3.0.9'];
-	}
-	**/
-
-	return $bbcodes;
+	return $bbcode_data[$version];
 
 }
 
