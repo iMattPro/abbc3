@@ -46,21 +46,22 @@
 
 		<author-group>
 			<author>
+				<username><![CDATA[VSE]]></username>
+				<contributions-group>
+					<contributions status="current" from="2010-03-02" position="Developer"/>
+				</contributions-group>
+			</author>
+
+			<author>
 				<realname><![CDATA[Gabriel]]></realname>
 				<username><![CDATA[leviatan21]]></username>
 				<homepage><![CDATA[http://www.mssti.com/phpbb3/]]></homepage>
 				<email><![CDATA[info@mssti.com]]></email>
 				<contributions-group>
-					<contributions status="current" from="2008-01-10" position="Developer"/>
+					<contributions status="current" from="2008-01-10" position="Contributor"/>
 				</contributions-group>
 			</author>
 
-			<author>
-				<username><![CDATA[VSE]]></username>
-				<contributions-group>
-					<contributions status="current" from="2010-03-02" position="Contributor"/>
-				</contributions-group>
-			</author>
 		</author-group>
 
 		<mod-version>3.0.8-pl1</mod-version>
