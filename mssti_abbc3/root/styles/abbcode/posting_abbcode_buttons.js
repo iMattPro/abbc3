@@ -148,7 +148,7 @@ function bbcode_to_plain(data)
 var help_line2 = {
 <!-- BEGIN abbc3_tags -->
 	<!-- IF abbc3_tags.BBCODE_ABBC3 and (abbc3_tags.BBCODE_MOVER or abbc3_tags.BBCODE_TIP or abbc3_tags.BBCODE_NOTE or abbc3_tags.BBCODE_EXAMPLE) -->
-	'{abbc3_tags.BBCODE_NAME}' : ("{abbc3_tags.BBCODE_MOVER}" ? "{abbc3_tags.BBCODE_MOVER}" : "") + (("{abbc3_tags.BBCODE_TIP}" || "{abbc3_tags.BBCODE_NOTE}") ? " :" : "") + (("{abbc3_tags.BBCODE_TIP}") ? " {abbc3_tags.BBCODE_TIP}" : "") + (("{abbc3_tags.BBCODE_NOTE}") ? " {abbc3_tags.BBCODE_NOTE}" : "") + (("{abbc3_tags.BBCODE_EXAMPLE}") ? "\n{L_ABBC3_EXAMPLE} : {abbc3_tags.BBCODE_EXAMPLE}" : ""),
+	'{abbc3_tags.BBCODE_NAME}' : ("{abbc3_tags.BBCODE_MOVER}" ? "{abbc3_tags.BBCODE_MOVER}" : "") + (("{abbc3_tags.BBCODE_TIP}" || "{abbc3_tags.BBCODE_NOTE}") ? " :" : "") + (("{abbc3_tags.BBCODE_TIP}") ? " {abbc3_tags.BBCODE_TIP}" : "") + (("{abbc3_tags.BBCODE_NOTE}") ? " {abbc3_tags.BBCODE_NOTE}" : "") + (("{abbc3_tags.BBCODE_EXAMPLE}") ? "\n{LA_ABBC3_EXAMPLE} : {abbc3_tags.BBCODE_EXAMPLE}" : ""),
 	<!-- ENDIF -->
 <!-- END abbc3_tags -->
 	'abbc3_font'			: "{LA_ABBC3_FONT_MOVER} : " + "{LA_ABBC3_FONT_TIP}\n{LA_ABBC3_FONT_NOTE}",
