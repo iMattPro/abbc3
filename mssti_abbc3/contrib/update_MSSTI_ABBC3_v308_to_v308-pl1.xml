@@ -81,5 +81,108 @@
 
 		</open>
 
+		<open src="includes/ucp/ucp_prefs.php">
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+					'abbcode_mod'		=> request_var('abbcode_mod', (bool) (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : true),
+					'abbcode_compact'	=> request_var('abbcode_compact', (bool) (isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false),
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+					'abbcode_mod'	=> request_var('abbcode_mod', (($user->data['user_abbcode_mod']) ? ($user->data['user_abbcode_compact'] ? 'compact' : 'standard') : 'limited')),
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+							'user_abbcode_mod'		=> $data['abbcode_mod'],
+							'user_abbcode_compact'	=> $data['abbcode_compact'],
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+							'user_abbcode_mod'		=> (($data['abbcode_mod'] == 'limited') ? 0 : 1),
+							'user_abbcode_compact'	=> (($data['abbcode_mod'] == 'compact') ? 1 : 0),
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+				$user->add_lang('mods/acp_abbcodes');
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+				$user->add_lang('mods/acp_abbcodes');
+
+				$abbc3_options = '';
+				$abbc3_modes = array('standard' => $user->lang['UCP_ABBC3_STANDARD'], 'compact' => $user->lang['UCP_ABBC3_COMPACT'], 'limited' => $user->lang['UCP_ABBC3_LIMITED']);
+
+				foreach ($abbc3_modes as $abbc3_mode => $abbc3_lang)
+				{
+					$abbc3_options .= '<option value="' . $abbc3_mode . '"' . (($data['abbcode_mod'] == $abbc3_mode) ? ' selected="selected"' : '') . '>';
+					$abbc3_options .= $abbc3_lang;
+					$abbc3_options .= '</option>';
+				}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+					'S_ABBC3_VERSION'	=> @$config['ABBC3_VERSION'],
+					'S_ABBC3_MOD'		=> @$config['ABBC3_MOD'],
+					'S_ABBCODE_MOD'		=> $data['abbcode_mod'],
+					'S_ABBC3_UCP_MODE'	=> @$config['ABBC3_UCP_MODE'],
+					'S_ABBCODE_COMPACT'	=> $data['abbcode_compact'],
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+					'S_ABBC3_VERSION'	=> @$config['ABBC3_VERSION'],
+					'S_ABBC3_MOD'		=> @$config['ABBC3_MOD'],
+					'S_ABBC3_UCP_MODE'	=> @$config['ABBC3_UCP_MODE'],
+					'S_ABBCODE_OPTIONS'	=> $abbc3_options,
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+		</open>
+
+		<open src="styles/prosilver/template/ucp_prefs_post.html">
+			<edit>
+				<find><![CDATA[	<fieldset>
+	<dl>
+		<dt><label for="abbcode_mod1">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
+		<dd>
+			<label for="abbcode_mod1"><input type="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="abbcode_mod0"><input type="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="abbcode_compact0">{L_UCP_ABBC3_BBCODES}:</label><br /><span>{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></dt>
+		<dd>
+			<label for="abbcode_compact1"><input type="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="abbcode_compact0"><input type="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+	</fieldset>]]></find>
+				<action type="replace-with"><![CDATA[	<fieldset>
+	<dl>
+		<dt><label for="abbcode_mod">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
+		<dd><select name="abbcode_mod" id="abbcode_mod">{S_ABBCODE_OPTIONS}</select></dd>
+	</dl>
+	</fieldset>]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/subsilver2/template/ucp_prefs_post.html">
+			<edit>
+				<find><![CDATA[<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_ABBC3_SETTINGS}:</b><br /><span class="gensmall">{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></td>
+	<td class="row2"><input type="radio" class="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+</tr>
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_ABBC3_BBCODES}:</b><br /><span class="gensmall">{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></td>
+	<td class="row2"><input type="radio" class="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+</tr>]]></find>
+				<action type="replace-with"><![CDATA[<tr>
+	<td class="row1" width="50%"><b class="genmed">{L_UCP_ABBC3_SETTINGS}:</b><br /><span class="gensmall">{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></td>
+	<td class="row2"><select name="abbcode_mod" id="abbcode_mod">{S_ABBCODE_OPTIONS}</select></td>
+</tr>]]></action>
+			</edit>
+		</open>
+
 	</action-group>
 </mod>

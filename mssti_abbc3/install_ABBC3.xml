@@ -76,7 +76,7 @@
 				<date>2010-09-19</date>
 				<rev-version>3.0.8-pl1</rev-version>
 				<changelog lang="en">
-					<change> [Change] Changed name of "ABBC3 View" in the UCP options to "ABBC3 Mode"</change>
+					<change> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</change>
 					<change> [Fix] Minor XHTML issues fixed in the ACP pages.</change>
 					<change> [Fix] ACP Settings for Image Resizer now display correct values when configured.</change>
 					<change> [Fix] Font Color and Text Highlight BBcodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</change>
@@ -533,8 +533,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA['notify'	=> request_var('notify', (bool) $user->data['user_notify']),]]></find>
 				<action type="after-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
-					'abbcode_mod'		=> request_var('abbcode_mod', (bool) (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : true),
-					'abbcode_compact'	=> request_var('abbcode_compact', (bool) (isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false),
+					'abbcode_mod'	=> request_var('abbcode_mod', (($user->data['user_abbcode_mod']) ? ($user->data['user_abbcode_compact'] ? 'compact' : 'standard') : 'limited')),
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>
@@ -543,8 +542,8 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA['user_notify'	=> $data['notify'],]]></find>
 				<action type="after-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
-							'user_abbcode_mod'		=> $data['abbcode_mod'],
-							'user_abbcode_compact'	=> $data['abbcode_compact'],
+							'user_abbcode_mod'		=> (($data['abbcode_mod'] == 'limited') ? 0 : 1),
+							'user_abbcode_compact'	=> (($data['abbcode_mod'] == 'compact') ? 1 : 0),
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>
@@ -555,6 +554,16 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<action type="before-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
 				$user->add_lang('mods/acp_abbcodes');
+
+				$abbc3_options = '';
+				$abbc3_modes = array('standard' => $user->lang['UCP_ABBC3_STANDARD'], 'compact' => $user->lang['UCP_ABBC3_COMPACT'], 'limited' => $user->lang['UCP_ABBC3_LIMITED']);
+
+				foreach ($abbc3_modes as $abbc3_mode => $abbc3_lang)
+				{
+					$abbc3_options .= '<option value="' . $abbc3_mode . '"' . (($data['abbcode_mod'] == $abbc3_mode) ? ' selected="selected"' : '') . '>';
+					$abbc3_options .= $abbc3_lang;
+					$abbc3_options .= '</option>';
+				}
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>
@@ -565,9 +574,8 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 - Start
 					'S_ABBC3_VERSION'	=> @$config['ABBC3_VERSION'],
 					'S_ABBC3_MOD'		=> @$config['ABBC3_MOD'],
-					'S_ABBCODE_MOD'		=> $data['abbcode_mod'],
 					'S_ABBC3_UCP_MODE'	=> @$config['ABBC3_UCP_MODE'],
-					'S_ABBCODE_COMPACT'	=> $data['abbcode_compact'],
+					'S_ABBCODE_OPTIONS'	=> $abbc3_options,
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>
@@ -688,18 +696,8 @@ $lang = array_merge($lang, array(
 
 	<fieldset>
 	<dl>
-		<dt><label for="abbcode_mod1">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
-		<dd>
-			<label for="abbcode_mod1"><input type="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
-			<label for="abbcode_mod0"><input type="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
-		</dd>
-	</dl>
-	<dl>
-		<dt><label for="abbcode_compact0">{L_UCP_ABBC3_BBCODES}:</label><br /><span>{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></dt>
-		<dd>
-			<label for="abbcode_compact1"><input type="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
-			<label for="abbcode_compact0"><input type="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
-		</dd>
+		<dt><label for="abbcode_mod">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
+		<dd><select name="abbcode_mod" id="abbcode_mod">{S_ABBCODE_OPTIONS}</select></dd>
 	</dl>
 	</fieldset>
 	

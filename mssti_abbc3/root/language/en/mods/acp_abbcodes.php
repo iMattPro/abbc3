@@ -50,10 +50,11 @@ $lang = array_merge($lang, array(
 // This lines are for the UCP
 $lang = array_merge($lang, array(
 	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
-	'UCP_ABBC3_SETTINGS'			=> 'ABBC3 Settings',
-	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Enable the “Advanced BBcodes Box 3” toolbar instead of the regular BBcode buttons?',
-	'UCP_ABBC3_BBCODES'				=> 'ABBC3 Mode',
-	'UCP_ABBC3_BBCODES_EXPLAIN'		=> 'If the “Advanced BBcodes Box 3” toolbar is enabled, do you want to use the “Compact view” instead of the ABBC3 buttons?',
+	'UCP_ABBC3_SETTINGS'			=> 'Message editor BBcode interface',
+	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Note that in <i>Limited</i> mode, not all BBcodes will be available and must be typed in manually.',
+	'UCP_ABBC3_LIMITED'				=> 'Limited - Basic BBcodes only with no icons',
+	'UCP_ABBC3_COMPACT'				=> 'Compact - All BBcodes in a compact drop menu',
+	'UCP_ABBC3_STANDARD'			=> 'Standard - Full BBcodes toolbar',
 ));
 
 // abbc3_details
