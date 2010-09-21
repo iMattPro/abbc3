@@ -58,7 +58,7 @@
 				<homepage><![CDATA[http://www.mssti.com/phpbb3/]]></homepage>
 				<email><![CDATA[info@mssti.com]]></email>
 				<contributions-group>
-					<contributions status="current" from="2008-01-10" position="Contributor"/>
+					<contributions status="current" from="2008-01-10" position="Developer"/>
 				</contributions-group>
 			</author>
 
@@ -78,6 +78,7 @@
 				<rev-version>3.0.8-pl1</rev-version>
 				<changelog lang="en">
 					<change> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</change>
+					<change> [Fix] Updated the included Flash player.</change>
 					<change> [Fix] Minor XHTML issues fixed in the ACP pages.</change>
 					<change> [Fix] ACP Settings for Image Resizer now display correct values when configured.</change>
 					<change> [Fix] Font Color and Text Highlight BBcodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</change>
