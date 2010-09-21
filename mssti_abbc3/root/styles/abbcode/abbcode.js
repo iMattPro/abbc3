@@ -563,15 +563,15 @@ var kmrSimpleTabs = {
 /** Install the safety net to run once the main function - START **/
 if (window.onload_functions) // prosilver
 {
-	onload_functions[onload_functions.length] = "kmrSimpleTabs.init();";
+	onload_functions.push('kmrSimpleTabs.init()');
 }
 else if (typeof(window.addEventListener) != "undefined") // DOM
 {
-	window.addEventListener( "load", kmrSimpleTabs.init, false);
+	window.addEventListener("load", kmrSimpleTabs.init, false);
 }
 else if (typeof(window.attachEvent) != "undefined") // MSIE
 {
-	window.attachEvent( "onload", kmrSimpleTabs.init);
+	window.attachEvent("onload", kmrSimpleTabs.init);
 }
 /** Install the safety net to run once the main function - END **/
 // ]]>
