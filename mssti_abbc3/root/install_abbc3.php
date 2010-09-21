@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/20 06:02:22 leviatan21 Exp $
+* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/21 04:23:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -2216,6 +2216,24 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'display_on_sig'		=> 0,
 				'abbcode'				=> 1,
 				'bbcode_image'			=> 'flashflv.gif',
+				'bbcode_group'			=> '0',
+			),
+			'ignvideo'		=> array(
+				'bbcode_tag'			=> 'ignvideo',
+				'bbcode_order'			=> 81,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_IGNVIDEO_TIP',
+				'bbcode_match'			=> '[ignvideo]{URL}[/ignvideo]',
+				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
+				'first_pass_match'		=> '!\[ignvideo\](.*?)objects/(.*?)/(.*?)\[/ignvideo\]!ies',
+				'first_pass_replace'	=> '\'[ignvideo:$uid]${1}objects/${2}/${3}[/ignvideo:$uid]\'',
+				'second_pass_match'		=> '!\[ignvideo:$uid\](.*?)objects/(.*?)/(.*?)\[/ignvideo:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('http://videomedia.ign.com/ev/ev.swf?object_ID=\${2}', '433', '360')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'ign.gif',
 				'bbcode_group'			=> '0',
 			),
 		),
