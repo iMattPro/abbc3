@@ -655,7 +655,7 @@ function abbc3_sync_bbcodes()
 }
 
 /**
-* Enter description here...
+* Define all of ABBC3's custom BBcodes
 *
 * @return array		$bbcode_data	all bbcodes	to add
 **/
