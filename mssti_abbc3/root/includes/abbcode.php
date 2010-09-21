@@ -2022,6 +2022,7 @@ class abbcode
 		}
 
 		$object_attribs_ary = array_merge(array(
+			'id'				=> 'mov' . substr(base_convert(unique_id(), 16, 36), 0, 8),
 			'width'				=> $width,
 			'height'			=> $height,
 			'type'				=> 'application/x-shockwave-flash',
