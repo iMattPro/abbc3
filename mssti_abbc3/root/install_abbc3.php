@@ -97,7 +97,7 @@ $versions = array(
 	),
 	'3.0.8-pl1'		=> array(
 		// We have some BBcodes to update
-		'custom' => 'abbc3_add_bbcodes',
+		'custom' => 'abbc3_bbcode_handler',
 	),
 );
 $cache->destroy('config');
