@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/18 06:02:22 leviatan21 Exp $
+* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/20 06:02:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -2198,6 +2198,24 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'display_on_sig'		=> 1,
 				'abbcode'				=> 1,
 				'bbcode_image'			=> 'search.gif',
+				'bbcode_group'			=> '0',
+			),
+			'flv'		=> array(
+				'bbcode_tag'			=> 'flv',
+				'bbcode_order'			=> 69,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_FLV_TIP',
+				'bbcode_match'			=> '[flv{TEXT}]{URL}[/flv]',
+				'bbcode_tpl'			=> '<a src="{URL}">{TEXT}</a>',
+				'first_pass_match'		=> '!\[flv(\=| )?(.*?)\](.*?)\[/flv\]!ies',
+				'first_pass_replace'	=> '\'[flv${1}${2}:$uid]\' . trim(\'${3}\') . \'[/flv:$uid]\'',
+				'second_pass_match'		=> '!\[flv((\=| )?(width\=)?([0-9]?[0-9]?[0-9])(,| )(height\=)?([0-9]?[0-9]?[0-9]))?:$uid\](.*?)\[/flv:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('./images/player.swf', '\${4}', '\${7}', 'movie=\${8}&bgcolor=0x666666&fgcolor=0x000000&autoload=off&volume=70')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'flashflv.gif',
 				'bbcode_group'			=> '0',
 			),
 		),
