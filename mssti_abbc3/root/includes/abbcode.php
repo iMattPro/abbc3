@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/21 09:24:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/22 00:21:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -90,7 +90,7 @@ class abbcode
 				// Display ABBC3 ?
 				'S_ABBC3_MOD'			=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
 				// Where the files are stored
-				'S_ABBC3_PATH'			=> $phpbb_root_path . ((isset($config['ABBC3_PATH'])) ? $config['ABBC3_PATH'] : 'styles/abbcode'),
+				'S_ABBC3_PATH'			=> $phpbb_root_path . 'styles/abbcode',
 				// Resize larger images ?
 				'S_ABBC3_RESIZE'		=> (isset($config['ABBC3_RESIZE_METHOD'])) ? ($config['ABBC3_RESIZE_METHOD'] != 'none' ? true : false) : true,
 				// Options are : AdvancedBox | HighslideBox | LiteBox | GreyBox | Lightview | Ibox | PopBox | pop-up | enlarge | samewindow | newwindow | none	
@@ -2251,8 +2251,8 @@ class abbcode
 	{
 		global $user, $config, $phpbb_root_path;
 
-		$ed2k_icon = $phpbb_root_path . ((isset($config['ABBC3_MOD'])) ? $config['ABBC3_PATH'] : 'styles/abbcode') . '/images/emule.gif';
-		$ed2k_stat = $phpbb_root_path . ((isset($config['ABBC3_MOD'])) ? $config['ABBC3_PATH'] : 'styles/abbcode') . '/images/stats.gif';
+		$ed2k_icon = $this->abbcode_config['S_ABBC3_PATH'] . '/images/emule.gif';
+		$ed2k_stat = $this->abbcode_config['S_ABBC3_PATH'] . '/images/stats.gif';
 
 		$matches = preg_match_all("#(^|(?<=[^\w\"']))(ed2k://\|(file|server|friend)\|([^\\/\|:<>\*\?\"]+?)\|(\d+?)\|([a-f0-9]{32})\|(.*?)/?)(?![\"'])(?=([,\.]*?[\s<\[])|[,\.]*?$)#i", $link, $match);
 

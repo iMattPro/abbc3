@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/19 08:22:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/22 01:03:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -61,8 +61,8 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
 	'ABBCODES_DISABLE'					=> 'ABBC3',
 	'ABBCODES_DISABLE_EXPLAIN'			=> 'Habilitar o deshabilitar <strong>Advanced BBodes Box 3</strong> a usuarios, y/o usar la botonera por defecto de phpbb3.',
-	'ABBCODES_PATH'						=> 'Ruta del script',
-	'ABBCODES_PATH_EXPLAIN'				=> 'La ruta dónde está ubicado ABBC3 relativa al nombre de dominio, ej. <samp>styles/abbcode</samp>',
+//	'ABBCODES_PATH'						=> 'Ruta del script',
+//	'ABBCODES_PATH_EXPLAIN'				=> 'La ruta dónde está ubicado ABBC3 relativa al nombre de dominio, ej. <samp>styles/abbcode</samp>',
 	'ABBCODES_BG'						=> 'Imagen de fondo',
 	'ABBCODES_BG_EXPLAIN'				=> 'Aquí puede cambiar la imagen de fondo para la barra de iconos.<br />Utilice <em>No hay imágenes</em> para ajustar a su estilo.',
 	'ABBCODES_TAB'						=> 'Mostrar la división entre etiquetas',

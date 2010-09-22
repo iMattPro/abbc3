@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/14 10:07:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/22 01:03:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -43,7 +43,7 @@ class acp_abbcodes
 		// Same default values as root/install_abbc3.php -> abbc3_308()
 		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.8-pl1';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
-		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			? $config['ABBC3_PATH']				: 'styles/abbcode';
+//		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			? $config['ABBC3_PATH']				: 'styles/abbcode';
 		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';
 		$config['ABBC3_TAB']				= (isset($config['ABBC3_TAB']))				? $config['ABBC3_TAB']				: 1;
 
@@ -85,7 +85,7 @@ class acp_abbcodes
 		$this->u_back 		= $this->u_action;
 		$this->submit		= (isset($_POST['submit'])) ? true : false;
 		$abbc3_root_path	= ($phpbb_admin_path) ? $phpbb_admin_path : $phpbb_root_path ;
-		$this->dir 			= $phpbb_root_path . $config['ABBC3_PATH'] ;
+		$this->dir 			= $phpbb_root_path . 'styles/abbcode' ;
 
 		// Execute overall actions
 		switch ($mode)
@@ -298,8 +298,7 @@ class acp_abbcodes
 			unset($display_vars['vars'][$config_key]);
 		}
 
-		$abb3_path = $phpbb_root_path . $config['ABBC3_PATH'];
-		$board_path = generate_board_url() . "/" . $config['ABBC3_PATH'] . "/";
+		$board_path = generate_board_url() . '/' . str_replace($phpbb_root_path, '', $this->dir) . '/';
 	
 		$template->assign_vars(array(
 			'S_EDIT'			=> true,
@@ -321,25 +320,25 @@ class acp_abbcodes
 			'S_VERSION_UP_TO_DATE'		=> $this->abbc3_version_compare($config['ABBC3_VERSION']),
 
 			// Check which options can be used for the resize method
-			'ADVANCEDBOX_EXIST'					=> (@file_exists("$abb3_path/AdvancedBox.js")) ? 1 : 0,
+			'ADVANCEDBOX_EXIST'					=> (@file_exists("$this->dir/AdvancedBox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_ADVANCEDBOX'	=> sprintf($user->lang['NO_EXIST_EXPLAIN_ADVANCEDBOX'], $board_path),
 
-			'HIGHSLIDE_EXIST'					=> (@file_exists("$abb3_path/highslide/highslide-full.js")) ? 1 : 0,
+			'HIGHSLIDE_EXIST'					=> (@file_exists("$this->dir/highslide/highslide-full.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.0.1", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
 
-			'LITEBOX_EXIST'						=> (@file_exists("$abb3_path/lightbox/lightbox.js")) ? 1 : 0,
+			'LITEBOX_EXIST'						=> (@file_exists("$this->dir/lightbox/lightbox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_LITEBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightbox.js", "2.04", "{$board_path}lightbox/", "Lightbox JS", "http://www.huddletogether.com/projects/lightbox/"),
 
-			'GREYBOX_EXIST'						=> (@file_exists("$abb3_path/greybox/gb_scripts.js")) ? 1 : 0,
+			'GREYBOX_EXIST'						=> (@file_exists("$this->dir/greybox/gb_scripts.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_GREYBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "gb_scripts.js", "5.53", "{$board_path}greybox/", "GreyBox", "http://orangoo.com/labs/GreyBox/Download/"),
 
-			'LIGHTVIEW_EXIST'					=> (@file_exists("$abb3_path/lightview/js/lightview.js")) ? 1 : 0,
+			'LIGHTVIEW_EXIST'					=> (@file_exists("$this->dir/lightview/js/lightview.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.5", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
 
-			'IBOX_EXIST'						=> (@file_exists("$abb3_path/ibox/ibox.js")) ? 1 : 0,
+			'IBOX_EXIST'						=> (@file_exists("$this->dir/ibox/ibox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_IBOX'			=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "ibox.js", "2.18", "{$board_path}ibox/", "iBox", "http://www.ibegin.com/labs/ibox/"),
 
-			'POPBOX_EXIST'						=> (@file_exists("$abb3_path/PopBox/PopBox.js")) ? 1 : 0,
+			'POPBOX_EXIST'						=> (@file_exists("$this->dir/PopBox/PopBox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_POPBOX'			=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "PopBox.js", "2.6b", "{$board_path}PopBox/", "PopBox", "http://www.c6software.com/Products/PopBox/"),
 		));
 

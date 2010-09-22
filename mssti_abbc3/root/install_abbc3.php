@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/21 04:23:22 leviatan21 Exp $
+* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/22 00:21:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -96,6 +96,10 @@ $versions = array(
 		'custom' => 'abbc3_308',
 	),
 	'3.0.8-pl1'		=> array(
+		// Lets remove deprecated configs
+		'config_remove' => array(
+			array('ABBC3_PATH'),
+		),
 		// We have some BBcodes to update
 		'custom' => 'abbc3_bbcode_handler',
 	),

@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/14 10:07:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/22 01:03:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -61,8 +61,8 @@ $lang = array_merge($lang, array(
 $lang = array_merge($lang, array(
 	'ABBCODES_DISABLE'					=> 'ABBC3',
 	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBcodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
-	'ABBCODES_PATH'						=> 'Script path',
-	'ABBCODES_PATH_EXPLAIN'				=> 'Path to ABBC3 files in your phpBB root directory, e.g. <samp>styles/abbcode</samp>',
+//	'ABBCODES_PATH'						=> 'Script path',
+//	'ABBCODES_PATH_EXPLAIN'				=> 'Path to ABBC3 files in your phpBB root directory, e.g. <samp>styles/abbcode</samp>',
 	'ABBCODES_BG'						=> 'Background image',
 	'ABBCODES_BG_EXPLAIN'				=> 'This will set the background image for icons.<br />Set to <em>no image</em> to use your default style.',
 	'ABBCODES_TAB'						=> 'Display icon divisions between tags',
