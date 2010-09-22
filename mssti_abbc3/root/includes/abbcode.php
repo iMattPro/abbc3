@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/20 10:07:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/21 09:24:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -1965,7 +1965,7 @@ class abbcode
 				'image'		=> 'video.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/calmate.wmv",
 				'match'		=> "#([^[]+)?\.(wmv|mpg)#si",
-				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0"><param name="Showcontrols" value="true"><param name="autoStart" value="false"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
+				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0" /><param name="Showcontrols" value="true" /><param name="autoStart" value="false" /><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
 				<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
 			),
 			'(qt|mov)' => array(
@@ -1989,7 +1989,7 @@ class abbcode
 				'image'		=> 'quicktime.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3",
 				'match'		=> "#([^[]+)?\.mp3#si",
-				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0"><param name="autoplay" value="false"><param name="controller" value="true">
+				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
 				<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
 			),
 			'ram' => array(
