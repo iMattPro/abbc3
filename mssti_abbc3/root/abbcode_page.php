@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root
-* @version: $Id: abbcode_page.php, v 3.0.8 2010/07/15 10:07:15 leviatan21 Exp $
+* @version: $Id: abbcode_page.php, v 3.0.8-pl1 2010/09/18 10:27:15 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -277,6 +277,11 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 	$user->add_lang(array('posting', 'mods/abbcode'));
 
+	// We only allow to the grdient bbcodes use pop-up wizard ;)
+	if ($abbcode_bbcode == 'abbc3_grad' && $abbcode->abbcode_config['ABBC3_WIZARD_MODE'] == 0)
+	{
+		$abbcode->abbcode_config['ABBC3_WIZARD_MODE'] = 1;
+	}
 	if (!$abbcode->abbcode_config['ABBC3_WIZARD_MODE'])
 	{
 		trigger_error('ABBC3_FUNCTION_DISABLED');

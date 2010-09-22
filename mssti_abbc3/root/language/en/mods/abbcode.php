@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: abbcode.php, v 3.0.8 2010/07/22 10:07:22 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/15 11:25:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -309,7 +309,7 @@ $lang = array_merge($lang, array(
 
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Text gradient',
-	'ABBC3_GRAD_TIP'			=> 'Select the text, first',
+	'ABBC3_GRAD_TIP'			=> 'Select some text first',
 ##For translate (The separate words are "This is a sample text") 
 ##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',
@@ -520,9 +520,9 @@ $lang = array_merge($lang, array(
 
 	// Search tag
 	'ABBC3_SEARCH_MOVER'		=> 'Insert search word',
-	'ABBC3_SEARCH_TIP'			=> '[search(=(msn|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
+	'ABBC3_SEARCH_TIP'			=> '[search(=(bing|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
 ##	For translate :                                                              yes                                                 yes                                                   yes                                                    yes                                                       yes                                                   yes
-	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode Box 3[/search]<br /> or [search=msn]Advanced BBcode Box 3[/search]<br /> or [search=yahoo]Advanced BBcode Box 3[/search]<br /> or [search=google]Advanced BBcode Box 3[/search]<br /> or [search=altavista]Advanced BBcode Box 3[/search]<br /> or [search=lycos]Advanced BBcode Box 3[/search]<br /> or [search=wikipedia]Advanced BBcode Box 3[/search]',
+	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode Box 3[/search]<br /> or [search=bing]Advanced BBcode Box 3[/search]<br /> or [search=yahoo]Advanced BBcode Box 3[/search]<br /> or [search=google]Advanced BBcode Box 3[/search]<br /> or [search=altavista]Advanced BBcode Box 3[/search]<br /> or [search=lycos]Advanced BBcode Box 3[/search]<br /> or [search=wikipedia]Advanced BBcode Box 3[/search]',
 
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',

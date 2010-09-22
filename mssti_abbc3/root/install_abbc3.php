@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.8 2010/07/22 10:07:22 leviatan21 Exp $
+* @version: $Id: install_abbc3.php, v 3.0.8-pl1 2010/09/21 04:23:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -95,6 +95,10 @@ $versions = array(
 	'3.0.8'		=> array(
 		'custom' => 'abbc3_308',
 	),
+	'3.0.8-pl1'		=> array(
+		// We have some BBcodes to update
+		'custom' => 'abbc3_bbcode_handler',
+	),
 );
 $cache->destroy('config');
 $cache->destroy('_modules_acp');
@@ -156,12 +160,12 @@ function abbc3_308($action, $version)
 		'ABBC3_RESIZE'			=> (isset($config['ABBC3_RESIZE']))				? $config['ABBC3_RESIZE']			: 1,
 		'ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD']))		? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox',
 		'ABBC3_RESIZE_BAR'		=> (isset($config['ABBC3_RESIZE_BAR']))			? $config['ABBC3_RESIZE_BAR']		: 1,
-		'ABBC3_MAX_IMG_WIDTH'	=> (isset($config['ABBC3_MAX_IMG_WIDTH']))		? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width'])		? $config['img_max_width']			: 500,
-		'ABBC3_MAX_IMG_HEIGHT'	=> (isset($config['ABBC3_MAX_IMG_HEIGHT']))		? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'])		? $config['img_max_height']			: 0,
+		'ABBC3_MAX_IMG_WIDTH'	=> (isset($config['ABBC3_MAX_IMG_WIDTH']))		? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width']		? $config['img_max_width']			: 500),
+		'ABBC3_MAX_IMG_HEIGHT'	=> (isset($config['ABBC3_MAX_IMG_HEIGHT']))		? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height']		? $config['img_max_height']			: 0),
 		'ABBC3_RESIZE_SIGNATURE'=> (isset($config['ABBC3_RESIZE_SIGNATURE']))	? $config['ABBC3_RESIZE_SIGNATURE']	: 0,
-		'ABBC3_MAX_SIG_WIDTH'	=> (isset($config['ABBC3_MAX_SIG_WIDTH']))		? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'])	? $config['max_sig_img_width']		: 200,
+		'ABBC3_MAX_SIG_WIDTH'	=> (isset($config['ABBC3_MAX_SIG_WIDTH']))		? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width']	? $config['max_sig_img_width']		: 200),
 		'ABBC3_MAX_SIG_HEIGHT'	=> (isset($config['ABBC3_MAX_SIG_HEIGHT']))		? $config['ABBC3_MAX_SIG_HEIGHT']	: 0,
-		'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH']))		? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'])	? $config['img_max_thumb_width']/2	: 200,
+		'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH']))		? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width']	? $config['img_max_thumb_width']/2	: 200),
 
 		'ABBC3_COLOR_MODE'		=> (isset($config['ABBC3_COLOR_MODE']))			? $config['ABBC3_COLOR_MODE']		: 'phpbb',
 		'ABBC3_HIGHLIGHT_MODE'	=> (isset($config['ABBC3_HIGHLIGHT_MODE']))		? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown',
@@ -651,7 +655,7 @@ function abbc3_sync_bbcodes()
 }
 
 /**
-* Enter description here...
+* Define all of ABBC3's custom BBcodes
 *
 * @return array		$bbcode_data	all bbcodes	to add
 **/
@@ -2177,6 +2181,62 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 		**/
 		),
+		'3.0.8-pl1' => array(
+			'search'		=> array(
+				'bbcode_tag'			=> 'search',
+				'bbcode_order'			=> 64,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_SEARCH_TIP',
+				'bbcode_match'			=> '[search{TEXT1}]{TEXT2}[/search]',
+				'bbcode_tpl'			=> '<a src="{TEXT1}">{TEXT2}</a>',
+				'first_pass_match'		=> '!\[search(\=(bing|yahoo|google|altavista|lycos|wikipedia))?\](.*?)\[/search\]!ies',
+				'first_pass_replace'	=> '\'[search${1}:$uid]\' . str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${3}\')) . \'[/search:$uid]\'',
+				'second_pass_match'		=> '!\[search(\=(.*?))?:$uid\](.*?)\[/search:$uid\]!ies',
+				'second_pass_replace'	=> "\$this->search_pass('$1', '$2', '$3')",
+				'display_on_posting'	=> 1,
+				'display_on_pm'			=> 1,
+				'display_on_sig'		=> 1,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'search.gif',
+				'bbcode_group'			=> '0',
+			),
+			'flv'		=> array(
+				'bbcode_tag'			=> 'flv',
+				'bbcode_order'			=> 69,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_FLV_TIP',
+				'bbcode_match'			=> '[flv{TEXT}]{URL}[/flv]',
+				'bbcode_tpl'			=> '<a src="{URL}">{TEXT}</a>',
+				'first_pass_match'		=> '!\[flv(\=| )?(.*?)\](.*?)\[/flv\]!ies',
+				'first_pass_replace'	=> '\'[flv${1}${2}:$uid]\' . trim(\'${3}\') . \'[/flv:$uid]\'',
+				'second_pass_match'		=> '!\[flv((\=| )?(width\=)?([0-9]?[0-9]?[0-9])(,| )(height\=)?([0-9]?[0-9]?[0-9]))?:$uid\](.*?)\[/flv:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('./images/player.swf', '\${4}', '\${7}', 'movie=\${8}&bgcolor=0x666666&fgcolor=0x000000&autoload=off&volume=70')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'flashflv.gif',
+				'bbcode_group'			=> '0',
+			),
+			'ignvideo'		=> array(
+				'bbcode_tag'			=> 'ignvideo',
+				'bbcode_order'			=> 81,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_IGNVIDEO_TIP',
+				'bbcode_match'			=> '[ignvideo]{URL}[/ignvideo]',
+				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
+				'first_pass_match'		=> '!\[ignvideo\](.*?)objects/(.*?)/(.*?)\[/ignvideo\]!ies',
+				'first_pass_replace'	=> '\'[ignvideo:$uid]${1}objects/${2}/${3}[/ignvideo:$uid]\'',
+				'second_pass_match'		=> '!\[ignvideo:$uid\](.*?)objects/(.*?)/(.*?)\[/ignvideo:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('http://videomedia.ign.com/ev/ev.swf?object_ID=\${2}', '433', '360')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'ign.gif',
+				'bbcode_group'			=> '0',
+			),
+		),
 		/**
 		'3.0.9' => array(
 			'bbcode_name' => array(
@@ -2201,20 +2261,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 		**/
 	);
 
-	if (version_compare($version, '3.0.8',  '<='))
-	{
-		$bbcodes = $bbcode_data['3.0.8'];
-	}
-	/**
-	* For future refference :
-	* 	This is the way we will do it in the next version
-	if (version_compare($version, '3.0.9',  '<='))
-	{
-		$bbcodes = $bbcode_data['3.0.9'];
-	}
-	**/
-
-	return $bbcodes;
+	return $bbcode_data[$version];
 
 }
 

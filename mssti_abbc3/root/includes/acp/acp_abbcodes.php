@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/24 10:07:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/14 10:07:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -41,7 +41,7 @@ class acp_abbcodes
 
 		/** Set some default values so the user havn't to run any install - Start **/
 		// Same default values as root/install_abbc3.php -> abbc3_308()
-		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			 ? $config['ABBC3_VERSION']				: '3.0.8';
+		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.8-pl1';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
 		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			? $config['ABBC3_PATH']				: 'styles/abbcode';
 		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';
@@ -51,12 +51,12 @@ class acp_abbcodes
 		$config['ABBC3_RESIZE']				= (isset($config['ABBC3_RESIZE']))			? $config['ABBC3_RESIZE']			: 1;
 		$config['ABBC3_RESIZE_METHOD']		= (isset($config['ABBC3_RESIZE_METHOD']))	? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox';
 		$config['ABBC3_RESIZE_BAR']			= (isset($config['ABBC3_RESIZE_BAR']))		? $config['ABBC3_RESIZE_BAR']		: 1;
-		$config['ABBC3_MAX_IMG_WIDTH']		= (isset($config['ABBC3_MAX_IMG_WIDTH']))	? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width'])		? $config['img_max_width']			: 500;
-		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'])		? $config['img_max_height']			: 0;
+		$config['ABBC3_MAX_IMG_WIDTH']		= (isset($config['ABBC3_MAX_IMG_WIDTH']))	? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width']		? $config['img_max_width']			: 500);
+		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height']		? $config['img_max_height']			: 0);
 		$config['ABBC3_RESIZE_SIGNATURE']	= (isset($config['ABBC3_RESIZE_SIGNATURE']))? $config['ABBC3_RESIZE_SIGNATURE']	: 0;
-		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'])	? $config['max_sig_img_width']		: 200;
+		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width']	? $config['max_sig_img_width']		: 200);
 		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	? $config['ABBC3_MAX_SIG_HEIGHT']	: 0;
-		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'])	? $config['img_max_thumb_width']/2	: 200;
+		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width']	? $config['img_max_thumb_width']/2	: 200);
 
 		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		? $config['ABBC3_COLOR_MODE']		: 'phpbb';
 		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown';

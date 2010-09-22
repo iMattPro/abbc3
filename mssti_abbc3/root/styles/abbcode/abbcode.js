@@ -101,9 +101,19 @@ var FadeStep = 10; // 20;
 var FadeInt	 = 100;
 var FadeInterval;
 
+var fade_IE = ( window.navigator.userAgent.match(/(^|\W)(MSIE)\s+(\d+)(\.\d+)?/) ) ? true : false;
+
+/** Some css on-the-fly - Start **/
+if (fade_IE)
+{
+	document.write( "\n\r" + '<style type="text/css" media="all">'+ "\r" + '<!--' + "\r" );
+	document.write( '.fade_link { filter:alpha(opacity=50); width:100%; height:100%; }' );
+	document.write( "\r" + '-->' + "\r" + '</style>' + "\n\r");
+}
+/** Some css on-the-fly - End **/
+
 function fade_ontimer()
 {
-	var IE = ( window.navigator.userAgent.match(/(^|\W)(MSIE)\s+(\d+)(\.\d+)?/) ) ? true : false;
 	if ( FadeOut )
 	{
 		FadePas += FadeStep;
@@ -128,7 +138,7 @@ function fade_ontimer()
 		for (var i=0; i < elem.length; i++)
 		{
 		/**	elem[i].style.color="rgb(" + FadePas + "," + FadePas + "," + FadePas + ")"; **/
-			if (IE) { elem[i].style.filter = 'alpha(opacity=' + FadePas + ')'; } else { elem[i].style.opacity = elem[i].style.MozOpacity = elem[i].style.KHTMLOpacity = (FadePas/100); }
+			if (fade_IE) { elem[i].style.filter = 'alpha(opacity=' + FadePas + ')'; } else { elem[i].style.opacity = elem[i].style.MozOpacity = elem[i].style.KHTMLOpacity = (FadePas/100); }
 		}
 	}
 	FadeInterval = setTimeout( 'fade_ontimer()', FadeInt );
@@ -553,15 +563,15 @@ var kmrSimpleTabs = {
 /** Install the safety net to run once the main function - START **/
 if (window.onload_functions) // prosilver
 {
-	onload_functions[onload_functions.length] = "kmrSimpleTabs.init();";
+	onload_functions.push('kmrSimpleTabs.init()');
 }
 else if (typeof(window.addEventListener) != "undefined") // DOM
 {
-	window.addEventListener( "load", kmrSimpleTabs.init, false);
+	window.addEventListener("load", kmrSimpleTabs.init, false);
 }
 else if (typeof(window.attachEvent) != "undefined") // MSIE
 {
-	window.attachEvent( "onload", kmrSimpleTabs.init);
+	window.attachEvent("onload", kmrSimpleTabs.init);
 }
 /** Install the safety net to run once the main function - END **/
 // ]]>

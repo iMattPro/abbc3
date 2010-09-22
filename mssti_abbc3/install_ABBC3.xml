@@ -46,6 +46,13 @@
 
 		<author-group>
 			<author>
+				<username><![CDATA[VSE]]></username>
+				<contributions-group>
+					<contributions status="current" from="2010-03-02" position="Developer"/>
+				</contributions-group>
+			</author>
+
+			<author>
 				<realname><![CDATA[Gabriel]]></realname>
 				<username><![CDATA[leviatan21]]></username>
 				<homepage><![CDATA[http://www.mssti.com/phpbb3/]]></homepage>
@@ -55,15 +62,9 @@
 				</contributions-group>
 			</author>
 
-			<author>
-				<username><![CDATA[VSE]]></username>
-				<contributions-group>
-					<contributions status="current" from="2010-03-02" position="Contributor"/>
-				</contributions-group>
-			</author>
 		</author-group>
 
-		<mod-version>3.0.8</mod-version>
+		<mod-version>3.0.8-pl1</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -72,6 +73,21 @@
 		</installation>
 
 		<history>
+			<entry>
+				<date>2010-09-19</date>
+				<rev-version>3.0.8-pl1</rev-version>
+				<changelog lang="en">
+					<change> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</change>
+					<change> [Fix] Updated the included Flash player.</change>
+					<change> [Fix] Minor XHTML issues fixed in the ACP pages.</change>
+					<change> [Fix] ACP Settings for Image Resizer now display correct values when configured.</change>
+					<change> [Fix] Font Color and Text Highlight BBcodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</change>
+					<change> [Fix] Custom BBcode buttons without an image/icon will correctly display when assigned only to signature and PM pages.</change>
+					<change> [Fix] BBcode : Fade : Fade effect now works in Internet Explorer.</change>
+					<change> [Fix] BBcode : Gradient : Gradient wizard works now.</change>
+					<change> [Fix] BBcode : Search : Replaced MSN with Bing.</change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2010-05-20</date>
 				<rev-version>3.0.8</rev-version>
@@ -105,14 +121,16 @@
 		<link-group>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v308-pl1.xml" lang="en">Update : ABBC3 MOD from 3.0.8 to 3.0.8-pl1</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v307_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v1012_to_v308.xml" lang="en">Update : ABBC3 MOD from 1.0.12 to 3.0.8</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v308_to_v308pl1.xml" lang="en">Update : Language Changes from 3.0.8 to 3.0.8-pl1</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v307_to_v308.xml" lang="en">Update : Language Changes from 3.0.7 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v1012_to_v308.xml" lang="en">Update : Language Changes from 1.0.12 to 3.0.8</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>
-			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : quote behaviour.</link>
+			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : Quote behaviour.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
-			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_embossed_button_effect.xml" lang="en">Add-on : This file provides instructions on how to change ABBC3's icons to look like embossed buttons</link>
+			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_embossed_button_effect.xml" lang="en">Add-on : Embossed buttons for ABBC3</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_ED2K.xml" lang="en">Add-on : ED2K links in post.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_how-to-add-a-new-bbcode-icon.xml" lang="en">How to : Add ABBC3 and Custom BBcodes with icons</link>
 		</link-group>
@@ -356,9 +374,10 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 - Start
 	global $config, $mode, $abbcode;
 
-	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
 
-	$sql_where = ' AND abbcode = 0';
+	$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : ($mode == 'compose' ? 'display_on_pm' : 'display_on_posting');
+
 	if ($abbc3 && @$config['ABBC3_MOD'])
 	{
 		// We need to check if ABBC3 is property initialized
@@ -372,10 +391,12 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 		$abbcode->abbcode_init();
 		$abbcode->abbcode_display($mode);
 
-		$sql_where = ' AND (abbcode = 0 AND bbcode_image = "")';
+		$sql_where = " $display = 1 AND (abbcode = 0 AND bbcode_image = '')";
 	}
 	else
 	{
+		$sql_where = " $display = 1 AND abbcode = 0";
+
 		$template->assign_vars(array('S_ABBC3_DISABLED' => true));
 	}
 // MOD : MSSTI ABBC3 - End
@@ -386,7 +407,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA[		WHERE display_on_posting = 1]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[display_on_posting = 1]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ ' . $sql_where . ']]></inline-action>
+					<inline-action type="replace-with"><![CDATA[' . $sql_where . ']]></inline-action>
 				</inline-edit>
 			</edit>
 		</open>
@@ -515,8 +536,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA['notify'	=> request_var('notify', (bool) $user->data['user_notify']),]]></find>
 				<action type="after-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
-					'abbcode_mod'		=> request_var('abbcode_mod', (bool) (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : true),
-					'abbcode_compact'	=> request_var('abbcode_compact', (bool) (isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false),
+					'abbcode_mod'	=> request_var('abbcode_mod', (($user->data['user_abbcode_mod']) ? ($user->data['user_abbcode_compact'] ? 'compact' : 'standard') : 'limited')),
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>
@@ -525,8 +545,8 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA['user_notify'	=> $data['notify'],]]></find>
 				<action type="after-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
-							'user_abbcode_mod'		=> $data['abbcode_mod'],
-							'user_abbcode_compact'	=> $data['abbcode_compact'],
+							'user_abbcode_mod'		=> (($data['abbcode_mod'] == 'limited') ? 0 : 1),
+							'user_abbcode_compact'	=> (($data['abbcode_mod'] == 'compact') ? 1 : 0),
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>
@@ -537,6 +557,16 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<action type="before-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
 				$user->add_lang('mods/acp_abbcodes');
+
+				$abbc3_options = '';
+				$abbc3_modes = array('standard' => $user->lang['UCP_ABBC3_STANDARD'], 'compact' => $user->lang['UCP_ABBC3_COMPACT'], 'limited' => $user->lang['UCP_ABBC3_LIMITED']);
+
+				foreach ($abbc3_modes as $abbc3_mode => $abbc3_lang)
+				{
+					$abbc3_options .= '<option value="' . $abbc3_mode . '"' . (($data['abbcode_mod'] == $abbc3_mode) ? ' selected="selected"' : '') . '>';
+					$abbc3_options .= $abbc3_lang;
+					$abbc3_options .= '</option>';
+				}
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>
@@ -547,9 +577,8 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 - Start
 					'S_ABBC3_VERSION'	=> @$config['ABBC3_VERSION'],
 					'S_ABBC3_MOD'		=> @$config['ABBC3_MOD'],
-					'S_ABBCODE_MOD'		=> $data['abbcode_mod'],
 					'S_ABBC3_UCP_MODE'	=> @$config['ABBC3_UCP_MODE'],
-					'S_ABBCODE_COMPACT'	=> $data['abbcode_compact'],
+					'S_ABBCODE_OPTIONS'	=> $abbc3_options,
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>
@@ -670,18 +699,8 @@ $lang = array_merge($lang, array(
 
 	<fieldset>
 	<dl>
-		<dt><label for="abbcode_mod1">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
-		<dd>
-			<label for="abbcode_mod1"><input type="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
-			<label for="abbcode_mod0"><input type="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
-		</dd>
-	</dl>
-	<dl>
-		<dt><label for="abbcode_compact0">{L_UCP_ABBC3_BBCODES}:</label><br /><span>{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></dt>
-		<dd>
-			<label for="abbcode_compact1"><input type="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
-			<label for="abbcode_compact0"><input type="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
-		</dd>
+		<dt><label for="abbcode_mod">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
+		<dd><select name="abbcode_mod" id="abbcode_mod">{S_ABBCODE_OPTIONS}</select></dd>
 	</dl>
 	</fieldset>
 	

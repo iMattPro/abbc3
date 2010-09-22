@@ -1,6 +1,6 @@
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/styles/abbcode
-* @version: $Id: posting_abbcode_buttons.js, v 3.0.8 2010/06/28 10:06:28 leviatan21 Exp $
+* @version: $Id: posting_abbcode_buttons.js, v 3.0.8-pl1 2010/09/13 10:06:28 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -148,7 +148,7 @@ function bbcode_to_plain(data)
 var help_line2 = {
 <!-- BEGIN abbc3_tags -->
 	<!-- IF abbc3_tags.BBCODE_ABBC3 and (abbc3_tags.BBCODE_MOVER or abbc3_tags.BBCODE_TIP or abbc3_tags.BBCODE_NOTE or abbc3_tags.BBCODE_EXAMPLE) -->
-	'{abbc3_tags.BBCODE_NAME}' : ("{abbc3_tags.BBCODE_MOVER}" ? "{abbc3_tags.BBCODE_MOVER}" : "") + (("{abbc3_tags.BBCODE_TIP}" || "{abbc3_tags.BBCODE_NOTE}") ? " :" : "") + (("{abbc3_tags.BBCODE_TIP}") ? " {abbc3_tags.BBCODE_TIP}" : "") + (("{abbc3_tags.BBCODE_NOTE}") ? " {abbc3_tags.BBCODE_NOTE}" : "") + (("{abbc3_tags.BBCODE_EXAMPLE}") ? "\n{L_ABBC3_EXAMPLE} : {abbc3_tags.BBCODE_EXAMPLE}" : ""),
+	'{abbc3_tags.BBCODE_NAME}' : ("{abbc3_tags.BBCODE_MOVER}" ? "{abbc3_tags.BBCODE_MOVER}" : "") + (("{abbc3_tags.BBCODE_TIP}" || "{abbc3_tags.BBCODE_NOTE}") ? " :" : "") + (("{abbc3_tags.BBCODE_TIP}") ? " {abbc3_tags.BBCODE_TIP}" : "") + (("{abbc3_tags.BBCODE_NOTE}") ? " {abbc3_tags.BBCODE_NOTE}" : "") + (("{abbc3_tags.BBCODE_EXAMPLE}") ? "\n{LA_ABBC3_EXAMPLE} : {abbc3_tags.BBCODE_EXAMPLE}" : ""),
 	<!-- ENDIF -->
 <!-- END abbc3_tags -->
 	'abbc3_font'			: "{LA_ABBC3_FONT_MOVER} : " + "{LA_ABBC3_FONT_TIP}\n{LA_ABBC3_FONT_NOTE}",
@@ -332,7 +332,7 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 				bbfontstyle("[table=][tr=][td=]", "[/td][/tr][/table]");
 				return;
 			}
-			if (theSelection || !popup_wizards)
+			if ((theSelection || !popup_wizards) && bbcode != "abbc3_grad")
 			{
 				bbcode_extra = (bbcode == 'abbc3_bbvideo' || bbcode == 'abbc3_flash' || bbcode == 'abbc3_flv' || bbcode == 'abbc3_video' || bbcode == 'abbc3_quicktime' || bbcode == 'abbc3_ram') ? " {S_ABBC3_VIDEO_WIDTH},{S_ABBC3_VIDEO_HEIGHT}" : (bbcode == 'abbc3_web') ? ' 100%,100' : '';
 
@@ -481,12 +481,12 @@ function ABBC3_palette(el, mode)
 
 					if (el == 'ul_color_selector')
 					{
-						item.setAttribute("onclick", "bbfontstyle('[color=#" + color + "]', '[/color]')");
+						item['onclick']=new Function('bbfontstyle("[color=#'+color+']", "[/color]"); return false;');
 						item.style.color = '#' + color;
 					}
 					else
 					{
-						item.setAttribute("onclick", "bbfontstyle('[highlight=#" + color + "]', '[/highlight]')");
+						item['onclick']=new Function('bbfontstyle("[highlight=#'+color+']", "[/highlight]"); return false;');
 						item.style.backgroundColor = '#' + color;
 					}
 					elSel.appendChild(item);

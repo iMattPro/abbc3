@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.8 2010/07/24 10:07:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/19 08:22:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -50,10 +50,11 @@ $lang = array_merge($lang, array(
 // This lines are for the UCP
 $lang = array_merge($lang, array(
 	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
-	'UCP_ABBC3_SETTINGS'			=> 'Configurar ABBC3',
-	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> '¿ Habilitar la barra “Advanced BBodes Box 3” o usar la botonera por defecto de phpbb3 ?',
-	'UCP_ABBC3_BBCODES'				=> 'Componentes ABBC3',
-	'UCP_ABBC3_BBCODES_EXPLAIN'		=> 'Si la barra “Advanced BBodes Box 3” está habilitada, desea verla en “Vista Compacta” o en “Vista Completa” ?',
+	'UCP_ABBC3_SETTINGS'			=> 'Interfaz del editor BBcode de mensajes',
+	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Note que en modo <i>Limitado</i>, no todos los BBcodes estarán disponibles y deberá escribirlos a mano.',
+	'UCP_ABBC3_LIMITED'				=> 'Limitado - Solamente BBcodes básicos sin íconos',
+	'UCP_ABBC3_COMPACT'				=> 'Compacto - Todos los BBcodes en un compacto menú desplegable',
+	'UCP_ABBC3_STANDARD'			=> 'Estándar - Barra de BBcodes completa',
 ));
 
 // abbc3_details

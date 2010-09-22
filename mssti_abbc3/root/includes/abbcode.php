@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8 2010/07/26 10:07:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/21 09:24:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -86,7 +86,7 @@ class abbcode
 	//	{
 			// For overall_header.html
 			$this->abbcode_config = array(
-				'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.8',
+				'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.8-pl1',
 				// Display ABBC3 ?
 				'S_ABBC3_MOD'			=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
 				// Where the files are stored
@@ -704,7 +704,7 @@ class abbcode
 	*
 	* @param string		$stx	have search name param?
 	* @param string		$in		post text between [search] & [/search]
-	* @param string		$search (msn|msnlive|yahoo|google|altavista|wikipedia|lycos)
+	* @param string		$search (bing|yahoo|google|altavista|wikipedia|lycos)
 	* @return string	link
 	* @version 1.0.12
 	**/
@@ -717,9 +717,8 @@ class abbcode
 
 		switch ($in)
 		{
-			case 'msn' :
-			case 'msnlive':
-				$search_link = 'http://search.live.com/results.aspx?q=' . str_replace(' ', '+', $search);
+			case 'bing' :
+				$search_link = 'http://www.bing.com/search?q=' . str_replace(' ', '+', $search);
 			break;
 
 			case 'yahoo' :
@@ -1959,14 +1958,14 @@ class abbcode
 				'image'		=> 'flashflv.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Demo.flv",
 				'match'		=> "#([^[]+)?\.flv#sie",
-				'replace'	=> "\$this->auto_embed_video('./images/player.swf', '{WIDTH}', '{HEIGHT}', 'movie=$0&fgcolor=0xff0000&autoload=off&volume=70')",
+				'replace'	=> "\$this->auto_embed_video('./images/player.swf', '{WIDTH}', '{HEIGHT}', 'movie=$0&bgcolor=0x666666&fgcolor=0x000000&autoload=off&volume=70')",
 			),
 			'(wmv|mpg)' => array(
 				'id'		=> 204,
 				'image'		=> 'video.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/calmate.wmv",
 				'match'		=> "#([^[]+)?\.(wmv|mpg)#si",
-				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0"><param name="Showcontrols" value="true"><param name="autoStart" value="false"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
+				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0" /><param name="Showcontrols" value="true" /><param name="autoStart" value="false" /><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
 				<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
 			),
 			'(qt|mov)' => array(
@@ -1990,7 +1989,7 @@ class abbcode
 				'image'		=> 'quicktime.gif',
 				'example'	=> "http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3",
 				'match'		=> "#([^[]+)?\.mp3#si",
-				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0"><param name="autoplay" value="false"><param name="controller" value="true">
+				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
 				<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
 			),
 			'ram' => array(
@@ -2023,6 +2022,7 @@ class abbcode
 		}
 
 		$object_attribs_ary = array_merge(array(
+			'id'				=> 'mov' . substr(base_convert(unique_id(), 16, 36), 0, 8),
 			'width'				=> $width,
 			'height'			=> $height,
 			'type'				=> 'application/x-shockwave-flash',
