@@ -87,6 +87,7 @@
 					<change> [Fix] BBcode : Fade : Fade effect now works in Internet Explorer.</change>
 					<change> [Fix] BBcode : Gradient : Gradient wizard works now.</change>
 					<change> [Fix] BBcode : Search : Replaced MSN with Bing.</change>
+					<change> [New] Added German language pack.</change>
 				</changelog>
 			</entry>
 			<entry>
@@ -122,6 +123,7 @@
 		<link-group>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
+			<link type="language" href="contrib/de.xml" lang="en">Install German language pack</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v308-pl1.xml" lang="en">Update : ABBC3 MOD from 3.0.8 to 3.0.8-pl1</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v307_to_v308.xml" lang="en">Update : ABBC3 MOD from 3.0.7 to 3.0.8</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v1012_to_v308.xml" lang="en">Update : ABBC3 MOD from 1.0.12 to 3.0.8</link>
