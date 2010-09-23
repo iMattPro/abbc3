@@ -74,10 +74,11 @@
 
 		<history>
 			<entry>
-				<date>2010-09-19</date>
+				<date>2010-09-23</date>
 				<rev-version>3.0.8-pl1</rev-version>
 				<changelog lang="en">
 					<change> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</change>
+					<change> [Fix] Hard coded paths to included abbc3 html files in order to prevent potential conflicts with other MODs.</change>
 					<change> [Fix] Updated the included Flash player.</change>
 					<change> [Fix] Minor XHTML issues fixed in the ACP pages.</change>
 					<change> [Fix] ACP Settings for Image Resizer now display correct values when configured.</change>
@@ -198,7 +199,7 @@
 			<edit>
 				<find><![CDATA[</head>]]></find>
 				<action type="before-add"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->
+<!-- INCLUDE ./../../styles/abbcode/abbcode_header.html -->
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
 ]]></action>
 			</edit>
@@ -642,7 +643,7 @@ $lang = array_merge($lang, array(
 			<edit>
 				<find><![CDATA[</head>]]></find>
 				<action type="before-add"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->
+<!-- INCLUDE ./../../abbcode/abbcode_header.html -->
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
 ]]></action>
 			</edit>

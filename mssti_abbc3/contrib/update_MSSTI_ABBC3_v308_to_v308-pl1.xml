@@ -28,7 +28,7 @@
 		<mod-version>3.0.8-pl1</mod-version>
 		<installation>
 			<level>intermediate</level>
-			<time>180</time>
+			<time>300</time>
 			<target-version>3.0.7-PL1</target-version>
 		</installation>
 		<link-group>
@@ -38,13 +38,17 @@
 	<action-group>
 		<copy>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
-			<file from="root/adm/style/acp_abbcodes.html" to="adm/style/acp_abbcodes.html"/>
+			<file from="root/adm/style/*.*" to="adm/style/*.*"/>
 			<file from="root/images/player.swf" to="images/player.swf"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
 			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
+			<file from="root/styles/prosilver/template/posting_abbcode_buttons.html" to="styles/prosilver/template/posting_abbcode_buttons.html"/>
+			<file from="root/styles/prosilver/template/posting_abbcode_wizards.html" to="styles/prosilver/template/posting_abbcode_wizards.html"/>
+			<file from="root/styles/subsilver2/template/posting_abbcode_buttons.html" to="styles/subsilver2/template/posting_abbcode_buttons.html"/>
+			<file from="root/styles/subsilver2/template/posting_abbcode_wizards.html" to="styles/subsilver2/template/posting_abbcode_wizards.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 
@@ -141,6 +145,20 @@
 
 		</open>
 
+		<open src="adm/style/overall_header.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../styles/abbcode/abbcode_header.html -->]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../abbcode/abbcode_header.html -->]]></action>
+			</edit>
+		</open>
+
 		<open src="styles/prosilver/template/ucp_prefs_post.html">
 			<edit>
 				<find><![CDATA[	<fieldset>
@@ -165,6 +183,13 @@
 		<dd><select name="abbcode_mod" id="abbcode_mod">{S_ABBCODE_OPTIONS}</select></dd>
 	</dl>
 	</fieldset>]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../abbcode/abbcode_header.html -->]]></action>
 			</edit>
 		</open>
 

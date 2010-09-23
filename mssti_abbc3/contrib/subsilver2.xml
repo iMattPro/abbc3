@@ -88,7 +88,7 @@
 			<edit>
 				<find><![CDATA[</head>]]></find>
 				<action type="before-add"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->
+<!-- INCLUDE ./../../abbcode/abbcode_header.html -->
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
 ]]></action>
 			</edit>

@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root
-* @version: $Id: abbcode_page.php, v 3.0.8-pl1 2010/09/18 10:27:15 leviatan21 Exp $
+* @version: $Id: abbcode_page.php, v 3.0.8-pl1 2010/09/23 00:27:15 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -390,8 +390,8 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 	$template->assign_vars(array(
 		'S_ABBC3_IN_WIZARD'			=> true,
 		// path from the very forum root
-		'S_ABBC3_POSTING_JAVASCRIPT'=> $abbcode->abbcode_config['S_ABBC3_POSTING_JAVASCRIPT'],
-		'S_ABBC3_WIZARD_JAVASCRIPT'	=> $abbcode->abbcode_config['S_ABBC3_WIZARD_JAVASCRIPT'],
+//		'S_ABBC3_POSTING_JAVASCRIPT'=> $abbcode->abbcode_config['S_ABBC3_POSTING_JAVASCRIPT'],
+//		'S_ABBC3_WIZARD_JAVASCRIPT'	=> $abbcode->abbcode_config['S_ABBC3_WIZARD_JAVASCRIPT'],
 		// 0=Disable wizards | 1=Pop Up window | 2=In post (Ajax)
 		'S_ABBC3_WIZARD_MODE'		=> $abbcode->abbcode_config['ABBC3_WIZARD_MODE'],
 
