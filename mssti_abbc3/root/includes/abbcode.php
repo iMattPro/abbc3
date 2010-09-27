@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/23 00:29:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/27 03:33:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -305,7 +305,7 @@ class abbcode
 	* @param string		$abbcode_name
 	* @param mix		$bbcode_group
 	* @return boolean	true / false
-	* @version 3.0.7-PL1
+	* @version 3.0.8-PL1
 	**/
 	function abbcode_permissions($auth_tag = '', $bbcode_group = '')
 	{
@@ -356,8 +356,8 @@ class abbcode
 				}
 			}
 
-			// If this bbcode is allowed, do not continue checking
-			if ($return_value)
+			// If this bbcode is not allowed, do not continue checking
+			if (!$return_value)
 			{
 				return $return_value;
 			}
