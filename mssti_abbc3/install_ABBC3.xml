@@ -74,10 +74,11 @@
 
 		<history>
 			<entry>
-				<date>2010-09-27</date>
+				<date>2010-09-28</date>
 				<rev-version>3.0.8-pl1</rev-version>
 				<changelog lang="en">
 					<change> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</change>
+					<change> [Change] Resize Post Area now increases post area in larger increments.</change>
 					<change> [Fix] Assigning BBcode permissions to specific user groups fixed.</change>
 					<change> [Fix] Hard coded paths to included abbc3 html files in order to prevent potential conflicts with other MODs.</change>
 					<change> [Fix] Updated the included Flash player.</change>
