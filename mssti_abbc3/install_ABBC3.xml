@@ -15,6 +15,12 @@
 		<author-notes lang="en"><![CDATA[To read more about ABBC3, please read the contrib/docs/README.HTML file
 
 	-------------------------------------------------------------------
+	WARNING: Please be advised that this MOD might overwrite some custom BBcodes 
+	you already have and as a result, those BBcodes might not display correctly 
+	due to the changes introduced by ABBC3's BBcodes. If you are using custom BBcodes,
+	please read the contrib/docs/README.HTML file for more information before you proceed.
+
+	-------------------------------------------------------------------
 	Please do not remove the copyright notices and the link to www.mssti.com
 	If you refuse to this, will not get support from me.
 

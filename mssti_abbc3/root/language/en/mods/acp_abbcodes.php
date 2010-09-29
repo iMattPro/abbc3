@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/22 01:03:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.8-pl1 2010/09/28 08:06:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -173,7 +173,7 @@ $lang = array_merge($lang, array(
 	'INSTALLER_TITLE_EXPLAIN'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
 
 	'INSTALLER_INSTALL_WELCOME'			=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
-	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Please be advised that some BBCodes might <strong>not</strong> display correctly due to the changes introduced in BBCodes.
+	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Please be advised that this process might overwrite existing custom BBcodes and as a result, those BBcodes might not display correctly due to the changes introduced by ABBC3’s BBcodes.
 	<br />If you experience problems use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
 	<br /><br />Before adding this MOD to your board, you should back up files and database first.',
 	'INSTALLER_INSTALL_END'				=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',

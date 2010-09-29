@@ -69,6 +69,7 @@
 						</ol>
 					</li>
 					<li><a href="#feature">Feature list</a></li>
+					<li><a href="#custombbcodes">Custom BBcodes Conflicts</a></li>
 				</ol>
 			</div>
 
@@ -856,6 +857,109 @@
 				</ul>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 
+			</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		<hr />
+		<a name="custombbcodes"></a><h2>Custom BBcodes Conflicts</h2>
+		<div class="paragraph">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<div class="content">
+				<ul>
+					<li>ABBC3 will overwrite any custom BBcodes your board may already have if they have the exact same name. If this happens, your older posts using your original custom BBcodes may not appear to work any more. There is a way to prevent this from happening.</li>
+					<li> First, compare your custom bbcode's [tag] names against this list of ABBC3's bbcode [tag] names. If you have any matches you should read further, otherwise you are good to go ahead and install ABBC3 with no custom BBcode conflicts.
+						<ul>
+							<li>align=center</li>
+							<li>align=justify</li>
+							<li>align=left</li>
+							<li>align=right</li>
+							<li>anchor=</li>
+							<li>b</li>
+							<li>BBvideo</li>
+							<li>blur=</li>
+							<li>center</li>
+							<li>click</li>
+							<li>code</li>
+							<li>collegehumor</li>
+							<li>color</li>
+							<li>copy</li>
+							<li>cut</li>
+							<li>dir=ltr</li>
+							<li>dir=rtl</li>
+							<li>dm</li>
+							<li>dropshadow=</li>
+							<li>email</li>
+							<li>fade</li>
+							<li>flash</li>
+							<li>flv</li>
+							<li>font=</li>
+							<li>gamespot</li>
+							<li>gametrailers</li>
+							<li>glow=</li>
+							<li>grad</li>
+							<li>gvideo</li>
+							<li>hidden</li>
+							<li>highlight=</li>
+							<li>hr</li>
+							<li>i</li>
+							<li>ignvideo</li>
+							<li>img=</li>
+							<li>imgshack</li>
+							<li>listb</li>
+							<li>listitem</li>
+							<li>listo</li>
+							<li>liveleak</li>
+							<li>marq=down</li>
+							<li>marq=left</li>
+							<li>marq=right</li>
+							<li>marq=up</li>
+							<li>mod=</li>
+							<li>nfo</li>
+							<li>offtopic</li>
+							<li>paste</li>
+							<li>plain</li>
+							<li>pre</li>
+							<li>quicktime</li>
+							<li>quote</li>
+							<li>ram</li>
+							<li>rapidshare</li>
+							<li>s</li>
+							<li>scrippet</li>
+							<li>search</li>
+							<li>shadow=</li>
+							<li>size</li>
+							<li>spoil</li>
+							<li>stream</li>
+							<li>sub</li>
+							<li>sup</li>
+							<li>tab=</li>
+							<li>table=</li>
+							<li>tabs</li>
+							<li>testlink</li>
+							<li>thumbnail</li>
+							<li>u</li>
+							<li>url</li>
+							<li>url=</li>
+							<li>veoh</li>
+							<li>video</li>
+							<li>wave=</li>
+							<li>web</li>
+							<li>youtube</li>
+						</ul>
+					</li>
+					<li>If you have custom BBcodes that use the same names as any of the above, you will have a conflict. If you want to use your custom BBcode instead of ABBC3's do the following:</li>
+					<ul>
+						<li>Go to the Custom BBcodes page in the ACP and write down the settings for the custom BBcodes you want to keep</li>
+						<li>Install ABBC3</li>
+						<li>If you have phpMyAdmin, go to your database -> phpbb_bbcodes -> Browse.</li>
+						<li>Find the item with the bbcode_tag youtube and click the pencil icon to edit it</li>
+						<li>Locate the field "abbcode" and change that value to 0, and click the go/submit button</li>
+						<li>Go to the Custom BBcodes screen in the ACP and you should see your custom bbcode in the list. Click it to edit it, and put back your original settings in all fields (including the help line, and also click Display on posting page).</li>
+						<li>You can also go to ABBC3 BBcode settings in the ACP, and assign an image to your Custom BBcode.</li>
+					</ul>
+				</ul>
+				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 			</div>
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
