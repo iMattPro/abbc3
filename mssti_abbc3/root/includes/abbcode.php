@@ -402,11 +402,11 @@ class abbcode
 				case 'edit' :
 				case 'quote':
 				case 'reply':
-					$bbcode_status	= ($config['allow_bbcode'] && $auth->acl_get('f_bbcode', $forum_id)) ? true : false;
+					$bbcode_status	= ($config['allow_bbcode'] && (($forum_id) ? $auth->acl_get('f_bbcode', $forum_id) : true)) ? true : false;
 					$status_ary  = array(
-						'IMG'		=> ($bbcode_status && $auth->acl_get('f_img', $forum_id)) ? true : false,
+						'IMG'		=> ($bbcode_status && (($forum_id) ? $auth->acl_get('f_img', $forum_id) : true)) ? true : false,
 						'URL'		=> ($config['allow_post_links']) ? true : false,
-						'FLASH'		=> ($bbcode_status && $auth->acl_get('f_flash', $forum_id) && $config['allow_post_flash']) ? true : false,
+						'FLASH'		=> ($bbcode_status && (($forum_id) ? $auth->acl_get('f_flash', $forum_id) : true) && $config['allow_post_flash']) ? true : false,
 					//	'QUOTE'		=> ($auth->acl_get('f_reply', $forum_id)) ? true : false,
 						'MOD'		=> ($auth->acl_get('a_') || $auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? true : false,
 					);
