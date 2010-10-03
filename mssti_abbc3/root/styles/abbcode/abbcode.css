@@ -318,7 +318,7 @@ DELETE ME 2 */
 /* wizards - End */
 
 .fade_link {
-	display : inline-table !important;
+	display : inline-block !important;
 }
 
 /** Testlink Start **/
