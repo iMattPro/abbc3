@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0. :: Advanced BBcode Box 3 -> root/language/de/mods :: [de][German]
-* @version: $Id: abbcode.php, v 3.0.8 2010/07/22 10:07:22 femu Exp $
+* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/10/04 19:11:22 femu Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -319,17 +319,17 @@ $lang = array_merge($lang, array(
 	'ABBC3_GRAD_ERROR'			=> 'Fehler: Der ColorCode Generator ist fehlgeschlagen',
 
 	// Glow text
-	'ABBC3_GLOW_MOVER'			=> 'Glühender Text (nur Internet Explorer)',
+	'ABBC3_GLOW_MOVER'			=> 'Glühender Text',
 	'ABBC3_GLOW_TIP'			=> '[glow=(color)]Text[/glow]',
 	'ABBC3_GLOW_VIEW'			=> '[glow=red]' . $lang['SAMPLE_TEXT'] . '[/glow]',
 
 	// Shadow text
-	'ABBC3_SHADOW_MOVER'		=> 'Text mit Schatten (nur Internet Explorer)',
+	'ABBC3_SHADOW_MOVER'		=> 'Text mit Schatten',
 	'ABBC3_SHADOW_TIP'			=> '[shadow=(color)]Text[/shadow]',
 	'ABBC3_SHADOW_VIEW'			=> '[shadow=blue]' . $lang['SAMPLE_TEXT'] . '[/shadow]',
 
 	// Dropshadow text
-	'ABBC3_DROPSHADOW_MOVER'	=> 'Text mit Schattenfall (nur Internet Explorer)',
+	'ABBC3_DROPSHADOW_MOVER'	=> 'Text mit Schattenfall',
 	'ABBC3_DROPSHADOW_TIP'		=> '[dropshadow=(color)]Text[/dropshadow]',
 	'ABBC3_DROPSHADOW_VIEW'		=> '[dropshadow=blue]' . $lang['SAMPLE_TEXT'] . '[/dropshadow]',
 

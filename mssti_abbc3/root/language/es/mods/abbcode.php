@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/09/19 11:15:22 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/10/04 19:12:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -334,12 +334,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_DROPSHADOW_VIEW'		=> '[dropshadow=blue]' . $lang['SAMPLE_TEXT'] . '[/dropshadow]',
 
 	// Blur text
-	'ABBC3_BLUR_MOVER'			=> 'Texto esfumado',
+	'ABBC3_BLUR_MOVER'			=> 'Texto esfumado (Mejor vista en Internet explorer)',
 	'ABBC3_BLUR_TIP'			=> '[blur=(color)]texto[/blur]',
 	'ABBC3_BLUR_VIEW'			=> '[blur=blue]' . $lang['SAMPLE_TEXT'] . '[/blur]',
 
 	// Wave text
-	'ABBC3_WAVE_MOVER'			=> 'Text ondeado',
+	'ABBC3_WAVE_MOVER'			=> 'Text ondeado (Mejor vista en Internet explorer)',
 	'ABBC3_WAVE_TIP'			=> '[wave=(color)]texto[/wave]',
 	'ABBC3_WAVE_VIEW'			=> '[wave=blue]' . $lang['SAMPLE_TEXT'] . '[/wave]',
 
