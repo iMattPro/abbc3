@@ -113,6 +113,34 @@
 			</edit>
 		</open>
 
+		<open src="includes/acp/acp_bbcodes.php">
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) - Start
+					$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
+						FROM ' . BBCODES_TABLE;
+					$result = $db->sql_query($sql);
+					$row = $db->sql_fetchrow($result);
+					$db->sql_freeresult($result);
+					$bbcode_order = $row['max_bbcode_order'] + 1;
+					$sql_ary['bbcode_order'] = (int) $bbcode_order;
+// MOD : MSSTI ABBC3 (V1.0.12) - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+						$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
+							FROM ' . BBCODES_TABLE;
+						$result = $db->sql_query($sql);
+						$row = $db->sql_fetchrow($result);
+						$db->sql_freeresult($result);
+						$bbcode_order = $row['max_bbcode_order'] + 1;
+						$sql_ary['bbcode_order'] = (int) $bbcode_order;
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[						WHERE abbcode = 0 ORDER BY bbcode_tag';]]></find>
+				<action type="replace-with"><![CDATA[			WHERE abbcode = 0 ORDER BY bbcode_tag';]]></action>
+			</edit>
+		</open>
+
 		<open src="includes/bbcode.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) - Start
@@ -387,33 +415,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 
-		<open src="includes/acp/acp_bbcodes.php">
-			<edit>
-				<find><![CDATA[// MOD : MSSTI ABBC3 (V1.0.12) - Start
-					$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
-						FROM ' . BBCODES_TABLE;
-					$result = $db->sql_query($sql);
-					$row = $db->sql_fetchrow($result);
-					$db->sql_freeresult($result);
-					$bbcode_order = $row['max_bbcode_order'] + 1;
-					$sql_ary['bbcode_order'] = (int) $bbcode_order;
-// MOD : MSSTI ABBC3 (V1.0.12) - End]]></find>
-				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
-						$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
-							FROM ' . BBCODES_TABLE;
-						$result = $db->sql_query($sql);
-						$row = $db->sql_fetchrow($result);
-						$db->sql_freeresult($result);
-						$bbcode_order = $row['max_bbcode_order'] + 1;
-						$sql_ary['bbcode_order'] = (int) $bbcode_order;
-// MOD : MSSTI ABBC3 - End]]></action>
-			</edit>
-
-			<edit>
-				<find><![CDATA[						WHERE abbcode = 0 ORDER BY bbcode_tag';]]></find>
-				<action type="replace-with"><![CDATA[			WHERE abbcode = 0 ORDER BY bbcode_tag';]]></action>
-			</edit>
-		</open>
 		<open src="includes/ucp/ucp_prefs.php">
 			<edit>
 				<find><![CDATA['notify'	=> request_var('notify', (bool) $user->data['user_notify']),]]></find>
@@ -523,16 +524,6 @@ $lang = array_merge($lang, array(
 			</edit>
 		</open>
 
-		<open src="styles/prosilver/template/ucp_profile_signature.html">
-			<edit>
-				<find><![CDATA[<div class="signature" style="border-top:none; margin-top: 0; ">{SIGNATURE_PREVIEW}</div>]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[ class="signature"]]></inline-find>
-					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
-				</inline-edit>
-			</edit>
-		</open>
-
 		<open src="styles/prosilver/template/simple_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->]]></find>
@@ -576,6 +567,16 @@ $lang = array_merge($lang, array(
 <!-- ENDIF -->
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
 ]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/prosilver/template/ucp_profile_signature.html">
+			<edit>
+				<find><![CDATA[<div class="signature" style="border-top:none; margin-top: 0; ">{SIGNATURE_PREVIEW}</div>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[ class="signature"]]></inline-find>
+					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
+				</inline-edit>
 			</edit>
 		</open>
 

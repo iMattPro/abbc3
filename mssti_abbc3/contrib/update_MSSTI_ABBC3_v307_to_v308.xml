@@ -132,6 +132,18 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[	// The following assigns all _common_ variables that may be used at any point in a template.]]></find>
+				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+	if (defined('IN_ABBC3'))
+	{
+		$user->add_lang('mods/abbcode');
+	}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+		</open>
+
 		<open src="includes/functions_display.php">
 
 			<edit>
@@ -199,18 +211,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 
-		<open src="includes/functions.php">
-			<edit>
-				<find><![CDATA[	// The following assigns all _common_ variables that may be used at any point in a template.]]></find>
-				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-	if (defined('IN_ABBC3'))
-	{
-		$user->add_lang('mods/abbcode');
-	}
-// MOD : MSSTI ABBC3 - End]]></action>
-			</edit>
-		</open>
-
 		<open src="includes/message_parser.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
@@ -239,18 +239,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			}
 		}
 // MOD : MSSTI ABBC3 - End]]></action>
-			</edit>
-		</open>
-
-		<open src="language/en/acp/common.php">
-			<edit>
-				<find><![CDATA[	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while save ABBC3 settings</strong>',
-	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
-	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
-	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted MOD ABBC3 from database</strong>',
-));]]></find>
-				<action type="replace-with"><![CDATA[	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
-));]]></action>
 			</edit>
 		</open>
 
@@ -292,6 +280,18 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 
+		<open src="language/en/acp/common.php">
+			<edit>
+				<find><![CDATA[	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while save ABBC3 settings</strong>',
+	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
+	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
+	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted MOD ABBC3 from database</strong>',
+));]]></find>
+				<action type="replace-with"><![CDATA[	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
+));]]></action>
+			</edit>
+		</open>
+
 		<open src="styles/prosilver/template/overall_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 {S_ABBC3_VERSION} - Start //-->
@@ -325,16 +325,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 		<open src="styles/prosilver/template/posting_preview.html">
 			<edit>
 				<find><![CDATA[<!-- IF PREVIEW_SIGNATURE --><div class="signature">{PREVIEW_SIGNATURE}</div><!-- ENDIF -->]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[ class="signature"]]></inline-find>
-					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
-				</inline-edit>
-			</edit>
-		</open>
-
-		<open src="styles/prosilver/template/ucp_profile_signature.html">
-			<edit>
-				<find><![CDATA[<div class="signature" style="border-top:none; margin-top: 0; ">{SIGNATURE_PREVIEW}</div>]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[ class="signature"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
@@ -385,6 +375,16 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 <!-- ENDIF -->
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
 ]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/prosilver/template/ucp_profile_signature.html">
+			<edit>
+				<find><![CDATA[<div class="signature" style="border-top:none; margin-top: 0; ">{SIGNATURE_PREVIEW}</div>]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[ class="signature"]]></inline-find>
+					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
+				</inline-edit>
 			</edit>
 		</open>
 
@@ -444,17 +444,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 
-		<open src="styles/subsilver2/template/ucp_pm_viewmessage.html">
-			<edit>
-				<find><![CDATA[				<!-- IF SIGNATURE -->]]></find>
-				<find><![CDATA[					<span class="postbody">]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[ class="postbody"]]></inline-find>
-					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
-				</inline-edit>				
-			</edit>
-		</open>
-
 		<open src="styles/subsilver2/template/simple_header.html">
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 {S_ABBC3_VERSION} - Start //-->]]></find>
@@ -463,6 +452,17 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			<edit>
 				<find><![CDATA[<!-- MOD : MSSTI ABBC3 {S_ABBC3_VERSION} - End //-->]]></find>
 				<action type="replace-with"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/subsilver2/template/ucp_pm_viewmessage.html">
+			<edit>
+				<find><![CDATA[				<!-- IF SIGNATURE -->]]></find>
+				<find><![CDATA[					<span class="postbody">]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[ class="postbody"]]></inline-find>
+					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
+				</inline-edit>				
 			</edit>
 		</open>
 
@@ -501,13 +501,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 					<inline-find><![CDATA[ class="postbody"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
 				</inline-edit>
-			</edit>
-		</open>
-
-		<open src="styles/subsilver2/template/posting_body.html">
-			<edit>
-				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED and not S_ABBC3_COLOR -->]]></find>
-				<action type="replace-with"><![CDATA[<!-- IF S_BBCODE_ALLOWED and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb') -->]]></action>
 			</edit>
 		</open>
 

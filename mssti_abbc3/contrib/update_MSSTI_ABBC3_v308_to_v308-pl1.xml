@@ -55,6 +55,13 @@
 
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 
+		<open src="adm/style/overall_header.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../styles/abbcode/abbcode_header.html -->]]></action>
+			</edit>
+		</open>
+
 		<open src="includes/functions_display.php">
 
 			<edit>
@@ -144,13 +151,6 @@
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 
-		</open>
-
-		<open src="adm/style/overall_header.html">
-			<edit>
-				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
-				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../styles/abbcode/abbcode_header.html -->]]></action>
-			</edit>
 		</open>
 
 		<open src="styles/prosilver/template/overall_header.html">
