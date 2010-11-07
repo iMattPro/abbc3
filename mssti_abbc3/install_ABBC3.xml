@@ -80,12 +80,11 @@
 
 		<history>
 			<entry>
-				<date>2010-11-06</date>
+				<date>2010-10-03</date>
 				<rev-version>3.0.8-pl1</rev-version>
 				<changelog lang="en">
 					<change> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</change>
 					<change> [Change] Resize Post Area now increases post area in larger increments.</change>
-					<change> [Fix] ABBC3 can be disabled by adding the "false" parameter to display_custom_bbcodes().</change>
 					<change> [Fix] Assigning BBcode permissions to specific user groups fixed.</change>
 					<change> [Fix] Fixed BBcode permission checks to prevent potential conflicts with other MODs.</change>
 					<change> [Fix] Hard coded paths to included abbc3 html files in order to prevent potential conflicts with other MODs.</change>
@@ -387,7 +386,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 - Start
 	global $config, $mode, $abbcode;
 
-	$abbc3 = ($abbc3 && @$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
 
 	$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : ($mode == 'compose' ? 'display_on_pm' : 'display_on_posting');
 
