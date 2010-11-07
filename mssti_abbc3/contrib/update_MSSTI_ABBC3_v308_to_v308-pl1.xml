@@ -66,7 +66,7 @@
 
 			<edit>
 				<find><![CDATA[	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></find>
-				<action type="replace-with"><![CDATA[	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+				<action type="replace-with"><![CDATA[	$abbc3 = ($abbc3 && @$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
 
 	$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : ($mode == 'compose' ? 'display_on_pm' : 'display_on_posting');]]></action>
 			</edit>
