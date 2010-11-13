@@ -43,5 +43,14 @@
 
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 
+		<open src="includes/functions_display.php">
+
+			<edit>
+				<find><![CDATA[	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></find>
+				<action type="replace-with"><![CDATA[	$abbc3 = ($abbc3 && @$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></action>
+			</edit>
+
+		</open>
+
 	</action-group>
 </mod>

@@ -84,6 +84,7 @@
 				<date>2010-11-12</date>
 				<rev-version>3.0.9</rev-version>
 				<changelog lang="en">
+					<change> [Fix] ABBC3 can be disabled by adding the "false" parameter to display_custom_bbcodes().</change>
 					<change> [Change] Updated for campatibility with phpBB 3.0.8.</change>
 				</changelog>
 			</entry>
@@ -391,7 +392,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 // MOD : MSSTI ABBC3 - Start
 	global $config, $mode, $abbcode;
 
-	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+	$abbc3 = ($abbc3 && @$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
 
 	$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : ($mode == 'compose' ? 'display_on_pm' : 'display_on_posting');
 
