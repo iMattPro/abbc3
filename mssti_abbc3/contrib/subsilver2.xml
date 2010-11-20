@@ -37,7 +37,7 @@
 			</author>
 		</author-group>
 		
-		<mod-version>3.0.9</mod-version>
+		<mod-version>3.0.8-pl2</mod-version>
 		
 		<installation>
 			<level>easy</level>
@@ -236,7 +236,7 @@
 		<open src="styles/subsilver2/template/viewtopic_body.html">
 			<edit>
 				<find><![CDATA[					<!-- IF postrow.SIGNATURE -->]]></find>
-				<find><![CDATA[<span class="postbody">]]></find>
+				<find><![CDATA[<div class="postbody">]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[ class="postbody"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="sig{postrow.POST_ID}"]]></inline-action>

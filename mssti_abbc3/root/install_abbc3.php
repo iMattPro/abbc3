@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.9 11/12/10 8:20 PM VSE Exp $
+* @version: $Id: install_abbc3.php, v 3.0.8-pl2 11/20/10 1:27 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -103,7 +103,7 @@ $versions = array(
 		// We have some BBcodes to update
 		'custom' => 'abbc3_bbcode_handler',
 	),
-	'3.0.9'		=> array(
+	'3.0.8-pl2'		=> array(
 		// No new database changes (so far)
 	),
 );

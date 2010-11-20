@@ -71,7 +71,7 @@
 
 		</author-group>
 
-		<mod-version>3.0.9</mod-version>
+		<mod-version>3.0.8-pl2</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -82,7 +82,7 @@
 		<history>
 			<entry>
 				<date>2010-11-12</date>
-				<rev-version>3.0.9</rev-version>
+				<rev-version>3.0.8-pl2</rev-version>
 				<changelog lang="en">
 					<change> [Fix] ABBC3 can be disabled by adding the "false" parameter to display_custom_bbcodes().</change>
 					<change> [Change] Updated for campatibility with phpBB 3.0.8.</change>
@@ -143,7 +143,7 @@
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">Install German language pack</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-pl1_to_v309.xml" lang="en">Update : ABBC3 MOD from 3.0.8-pl1 to 3.0.9</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-pl1_to_v308-pl2.xml" lang="en">Update : ABBC3 MOD from 3.0.8-pl1 to 3.0.8-pl2</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v308-pl1.xml" lang="en">Update : ABBC3 MOD from 3.0.8 to 3.0.8-pl1</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v308_to_v308pl1.xml" lang="en">Update : Language Changes from 3.0.8 to 3.0.8-pl1</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>

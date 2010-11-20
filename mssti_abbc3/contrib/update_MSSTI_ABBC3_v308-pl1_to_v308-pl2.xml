@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8-pl1 to 3.0.9]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-pl1 to version 3.0.9]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8-pl1 to 3.0.8-pl2]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-pl1 to version 3.0.8-pl2]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Gabriel]]></realname>
@@ -25,7 +25,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.9</mod-version>
+		<mod-version>3.0.8-pl2</mod-version>
 		<installation>
 			<level>intermediate</level>
 			<time>300</time>
