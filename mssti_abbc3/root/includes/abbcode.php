@@ -1846,8 +1846,14 @@ class abbcode
 				'image'		=> 'cnbc.gif',
 				'example'	=> "http://www.cnbc.com/id/15840232?video=1548022077&play=1",
 				'match'		=> "#http://www.cnbc.com/id/(\d+)\?video=(\d+)?([^[]*)?#ise",
-			//	'replace'	=> "\$this->auto_embed_video('http://plus.cnbc.com/rssvideosearch/action/player/id/$2/code/cnbcpermalink/play/1/module/videoModule', '{WIDTH}', '{HEIGHT}')",
 				'replace'	=> "\$this->auto_embed_video('http://plus.cnbc.com/rssvideosearch/action/player/id/$2/code/cnbcplayershare', '{WIDTH}', '{HEIGHT}')",
+			),
+			'msnbc.msn.com' => array(
+				'id'		=> 48,
+				'image'		=> 'cnbc.gif',
+				'example'	=> "http://www.msnbc.msn.com/id/21134540/vp/41172078#41190910",
+				'match'		=> "#http://www.msnbc.msn.com/id/(\d+)?/vp/(\d+)?\#(\d+)?([^[]*)?#ise",
+				'replace'	=> "\$this->auto_embed_video('http://www.msnbc.msn.com/id/32545640', '{WIDTH}', '{HEIGHT}', 'launch=$3&width={WIDTH}&height={HEIGHT}')",
 			),
 
 			'external' => array(
