@@ -1,6 +1,6 @@
 = Advanced BBCode Box 3 (aka ABBC3)
-* Release Version 3.0.8-PL1
-* Developer Version 3.0.8-PL2
+* Release Version 3.0.8-PL2
+* Developer Version 3.0.9
 
 The source code, issue tracker and wiki can be found at:
 
@@ -22,7 +22,7 @@ ABBC3 currently features the following:
 
 == REQUIREMENTS:
 
-* phpBB 3.0.7-PL1
+* phpBB 3.0.8
 * You must have javascript enabled to use this MOD.
 
 == DOCUMENTATION:
