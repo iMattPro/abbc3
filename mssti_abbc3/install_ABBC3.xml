@@ -86,6 +86,7 @@
 				<changelog lang="en">
 					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
+					<change> [Change] Update to UMIL v 1.0.4</change>
 				</changelog>
 			</entry>
 			<entry>
