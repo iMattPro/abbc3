@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.8-pl1 2010/10/03 10:19:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.9 2011/05/12 01:05:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -1819,6 +1819,13 @@ class abbcode
 				'example'	=> "http://www.youtube.com/watch?v=PDGxfsf-xwQ",
 				'match'		=> "#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0&color1=0x3a3a3a&color2=0x999999', '{WIDTH}', '{HEIGHT}')",
+			),
+			'youtu.be' => array(
+				'id'		=> 49,
+				'image'		=> 'youtube.gif',
+				'example'	=> "http://youtu.be/PDGxfsf-xwQ",
+				'match'		=> "#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#ise",
+				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0&color1=0x3a3a3a&color2=0x999999', '{WIDTH}', '{HEIGHT}')",
 			),
 			'xfire.com' => array(
 				'id'		=> 44,

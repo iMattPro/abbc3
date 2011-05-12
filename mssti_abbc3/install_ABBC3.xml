@@ -71,7 +71,7 @@
 
 		</author-group>
 
-		<mod-version>3.0.8-pl2</mod-version>
+		<mod-version>3.0.9</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -80,6 +80,16 @@
 		</installation>
 
 		<history>
+			<entry>
+				<date>2011-05-12</date>
+				<rev-version>3.0.9</rev-version>
+				<changelog lang="en">
+					<change> [New] Add support for youtu.be links to BBvideo BBcode</change>
+					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
+					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
+					<change> [Change] Update to UMIL v 1.0.4</change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2010-11-12</date>
 				<rev-version>3.0.8-pl2</rev-version>
@@ -143,9 +153,8 @@
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">Install German language pack</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-pl2_to_v309.xml" lang="en">Update : ABBC3 MOD from 3.0.8-pl2 to 3.0.9</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-pl1_to_v308-pl2.xml" lang="en">Update : ABBC3 MOD from 3.0.8-pl1 to 3.0.8-pl2</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v308-pl1.xml" lang="en">Update : ABBC3 MOD from 3.0.8 to 3.0.8-pl1</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_language_v308_to_v308pl1.xml" lang="en">Update : Language Changes from 3.0.8 to 3.0.8-pl1</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : Quote behaviour.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
@@ -257,9 +266,9 @@ class bbcode extends abbcode
 				<find><![CDATA[		$undid_bbcode_specialchars = false;]]></find>
 				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
 		// Try to avoid duplicates anchor ID's inside quotes
-		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)?\[anchor(=(.*?)([\s]?))?#is', $message))
+		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)\[anchor=(.*?)?\sgoto=(.*?)?:' . $this->bbcode_uid . '\](.*?)\[/anchor:' . $this->bbcode_uid . '\](.*?)\[/quote:' . $this->bbcode_uid . '\]#is', $message))
 		{
-			$message = preg_replace('#(\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?))?\[anchor((=|)(.*?)([\s]))?#is',"$1[anchor$5quoted$6$7", $message);
+			$message = preg_replace('#(\[anchor=(.*?)(\s)goto=(.*?):' . $this->bbcode_uid . '\](.*?)\[/anchor:' . $this->bbcode_uid . '\]?)#is', "[anchor=quoted$2 goto=quoted$4:" . $this->bbcode_uid . "]$5[/anchor:" . $this->bbcode_uid . "]", $message);
 		}
 // MOD : MSSTI ABBC3 - End
 ]]></action>
@@ -307,7 +316,7 @@ class bbcode extends abbcode
 				FROM ' . BBCODES_TABLE . '
 				WHERE ' . $db->sql_in_set('bbcode_id', $sql);]]></find>
 				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-			$sql .= ' AND bbcode_match <> "." ';
+			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 
@@ -435,7 +444,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA[			$sql = 'SELECT *
 				FROM ' . BBCODES_TABLE;]]></find>
 				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-			$sql .= ' WHERE bbcode_match <> "." ';
+			$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 
