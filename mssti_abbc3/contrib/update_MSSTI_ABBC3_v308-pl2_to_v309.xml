@@ -37,6 +37,7 @@
 	</header>
 	<action-group>
 		<copy>
+			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
