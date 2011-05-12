@@ -84,6 +84,7 @@
 				<date>2011-05-12</date>
 				<rev-version>3.0.9</rev-version>
 				<changelog lang="en">
+					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
 				</changelog>
 			</entry>
@@ -263,9 +264,9 @@ class bbcode extends abbcode
 				<find><![CDATA[		$undid_bbcode_specialchars = false;]]></find>
 				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
 		// Try to avoid duplicates anchor ID's inside quotes
-		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)?\[anchor(=(.*?)([\s]?))?#is', $message))
+		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)\[anchor=(.*?)?\sgoto=(.*?)?:' . $this->bbcode_uid . '\](.*?)\[/anchor:' . $this->bbcode_uid . '\](.*?)\[/quote:' . $this->bbcode_uid . '\]#is', $message))
 		{
-			$message = preg_replace('#(\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?))?\[anchor((=|)(.*?)([\s]))?#is',"$1[anchor$5quoted$6$7", $message);
+			$message = preg_replace('#(\[anchor=(.*?)(\s)goto=(.*?):' . $this->bbcode_uid . '\](.*?)\[/anchor:' . $this->bbcode_uid . '\]?)#is', "[anchor=quoted$2 goto=quoted$4:" . $this->bbcode_uid . "]$5[/anchor:" . $this->bbcode_uid . "]", $message);
 		}
 // MOD : MSSTI ABBC3 - End
 ]]></action>

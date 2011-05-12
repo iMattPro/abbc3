@@ -46,6 +46,23 @@
 		<open src="includes/bbcode.php">
 
 			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+		// Try to avoid duplicates anchor ID's inside quotes
+		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)?\[anchor(=(.*?)([\s]?))?#is', $message))
+		{
+			$message = preg_replace('#(\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?))?\[anchor((=|)(.*?)([\s]))?#is',"$1[anchor$5quoted$6$7", $message);
+		}
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+		// Try to avoid duplicates anchor ID's inside quotes
+		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)\[anchor=(.*?)?\sgoto=(.*?)?:' . $this->bbcode_uid . '\](.*?)\[/anchor:' . $this->bbcode_uid . '\](.*?)\[/quote:' . $this->bbcode_uid . '\]#is', $message))
+		{
+			$message = preg_replace('#(\[anchor=(.*?)(\s)goto=(.*?):' . $this->bbcode_uid . '\](.*?)\[/anchor:' . $this->bbcode_uid . '\]?)#is', "[anchor=quoted$2 goto=quoted$4:" . $this->bbcode_uid . "]$5[/anchor:" . $this->bbcode_uid . "]", $message);
+		}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+			<edit>
 				<find><![CDATA[$sql .= ' AND bbcode_match <> "." ';]]></find>
 				<action type="replace-with"><![CDATA[$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></action>
 			</edit>
