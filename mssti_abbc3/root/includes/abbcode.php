@@ -1862,6 +1862,13 @@ class abbcode
 				'match'		=> "#http://www.msnbc.msn.com/id/(\d+)?/vp/(\d+)?\#(\d+)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://www.msnbc.msn.com/id/32545640', '{WIDTH}', '{HEIGHT}', 'launch=$3&width={WIDTH}&height={HEIGHT}')",
 			),
+			'facebook.com' => array(
+				'id'		=> 50,
+				'image'		=> 'video.gif',
+				'example'	=> "http://www.facebook.com/video/video.php?v=1587422536911",
+				'match'		=> "#http://www.facebook.com/video/video.php\?v=([0-9A-Za-z-_]+)?([^[]*)?#ise",
+				'replace'	=> "\$this->auto_embed_video('http://www.facebook.com/v/$1', '{WIDTH}', '{HEIGHT}')",
+			),
 
 			'external' => array(
 			),
