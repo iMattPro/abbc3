@@ -38,6 +38,7 @@
 	<action-group>
 		<copy>
 			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
+			<file from="root/includes/acp/info/acp_abbcodes.php" to="includes/acp/info/acp_abbcodes.php"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
@@ -64,17 +65,46 @@
 			</edit>
 
 			<edit>
-				<find><![CDATA[$sql .= ' AND bbcode_match <> "." ';]]></find>
-				<action type="replace-with"><![CDATA[$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></action>
+				<find><![CDATA[			$sql .= ' AND bbcode_match <> "." ';]]></find>
+				<action type="replace-with"><![CDATA[			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></action>
 			</edit>
 
+		</open>
+
+		<open src="includes/functions_display.php">
+
+			<edit>
+				<find><![CDATA[	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bbcode_helpline]]></inline-find>
+					<inline-action type="after-add"><![CDATA[, bbcode_group]]></inline-action>
+				</inline-edit>
+			</edit>
+
+			<edit>
+				<find><![CDATA[	while ($row = $db->sql_fetchrow($result))
+	{]]></find>
+				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+		// Check phpbb permissions status
+		// Check ABBC3 groups permission
+		// try to make it as quicky as it can be 
+		$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+		if (isset($row['bbcode_group']) && $row['bbcode_group'])
+		{
+			if (!$this->abbcode_permissions($auth_tag, $row['bbcode_group']))
+			{
+				continue;
+			}
+		}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
 		</open>
 
 		<open src="includes/message_parser.php">
 
 			<edit>
-				<find><![CDATA[$sql .= ' WHERE bbcode_match <> "." ';]]></find>
-				<action type="replace-with"><![CDATA[$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></action>
+				<find><![CDATA[			$sql .= ' WHERE bbcode_match <> "." ';]]></find>
+				<action type="replace-with"><![CDATA[			$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></action>
 			</edit>
 
 		</open>
