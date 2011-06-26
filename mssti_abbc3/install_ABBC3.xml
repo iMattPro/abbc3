@@ -85,6 +85,7 @@
 				<rev-version>3.0.9</rev-version>
 				<changelog lang="en">
 					<change> [New] Add support for youtu.be links to BBvideo BBcode</change>
+					<change> [Fix] Custom BBcodes not assigned an image/icon now correctly follow ABBC3's group permission settings</change>
 					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
 					<change> [Change] Update to UMIL v 1.0.4</change>
@@ -431,11 +432,37 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 
 			<edit>
+				<find><![CDATA[	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[bbcode_helpline]]></inline-find>
+					<inline-action type="after-add"><![CDATA[, bbcode_group]]></inline-action>
+				</inline-edit>
+			</edit>
+
+			<edit>
 				<find><![CDATA[		WHERE display_on_posting = 1]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[display_on_posting = 1]]></inline-find>
 					<inline-action type="replace-with"><![CDATA[' . $sql_where . ']]></inline-action>
 				</inline-edit>
+			</edit>
+
+			<edit>
+				<find><![CDATA[	while ($row = $db->sql_fetchrow($result))
+	{]]></find>
+				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+		// Check phpbb permissions status
+		// Check ABBC3 groups permission
+		// try to make it as quicky as it can be 
+		$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+		if (isset($row['bbcode_group']) && $row['bbcode_group'])
+		{
+			if (!$this->abbcode_permissions($auth_tag, $row['bbcode_group']))
+			{
+				continue;
+			}
+		}
+// MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 		</open>
 
