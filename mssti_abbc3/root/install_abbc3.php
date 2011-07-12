@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.8 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.9 05/12/11 12:22 PM VSE Exp $
+* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/
+* @version: $Id: install_abbc3.php, v 3.0.9 7/11/11 9:02 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -400,7 +400,16 @@ function abbc3_308($action, $version)
 			$umil->table_index_remove('phpbb_bbcodes', 'display_order');
 
 			// Change the following columns back to default
-			$umil->table_column_update('phpbb_bbcodes', 'bbcode_id', array('TINT:3', 0));
+			if ($config['version'] >= '3.0.9')
+			{
+				// phpBB 3.0.9 switched bbcode_id to UNSIGNED SMALLINT(4)
+				$umil->table_column_update('phpbb_bbcodes', 'bbcode_id', array('USINT', 0));
+			}
+			else
+			{
+				// phpBB 3.0.8 and older set bbcode_id to TINYINT(3)
+				$umil->table_column_update('phpbb_bbcodes', 'bbcode_id', array('TINT:3', 0));
+			}
 
 			foreach ($abbc3_bbcodes_column_add as $abbc3_bbcode_column_name => $abbc3_bbcode_column_data)
 			{
