@@ -498,7 +498,7 @@ function abbc3_add_bbcodes($action, $version)
 {
 	global $db, $template, $user;
 
-	$first_bbode_id = 0;
+	$first_bbcode_id = 0;
 
 	// Get last bbcode id - Start
 	$sql = 'SELECT MAX(bbcode_id) as max_bbcode_id
@@ -541,7 +541,7 @@ function abbc3_add_bbcodes($action, $version)
 		}
 		else
 		{
-			$first_bbode_id--;
+			$first_bbcode_id--;
 		}
 
 		$sql_ary = array(
@@ -614,7 +614,7 @@ function abbc3_add_bbcodes($action, $version)
 		// else add it
 		else
 		{
-			$sql_ary['bbcode_id'] = ($bbcode_values['bbcode_id']) ? (int) $next_bbcode_id : (int) $first_bbode_id;
+			$sql_ary['bbcode_id'] = ($bbcode_values['bbcode_id']) ? (int) $next_bbcode_id : (int) $first_bbcode_id;
 
 			$result = $db->sql_query('INSERT INTO ' . BBCODES_TABLE . $db->sql_build_array('INSERT', $sql_ary));
 
