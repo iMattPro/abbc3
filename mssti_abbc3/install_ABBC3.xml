@@ -33,6 +33,7 @@
 		3.0.7
 		3.0.7-PL1
 		3.0.8
+		3.0.9
 	-------------------------------------------------------------------
 	Tested on Windows Browsers:
 		- Internet Explorer 7.0 & 8.0
@@ -76,7 +77,7 @@
 		<installation>
 			<level>intermediate</level>
 			<time>1200</time>
-			<target-version>3.0.8</target-version>
+			<target-version>3.0.9</target-version>
 		</installation>
 
 		<history>
