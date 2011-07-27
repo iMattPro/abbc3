@@ -1,6 +1,6 @@
 <?php
 /**
-* @package: phpBB 3.0.8 :: Advanced BBCode box 3 mod version check -> root/adm/mods
+* @package: phpBB 3.0.9 :: Advanced BBCode box 3 mod version check -> root/adm/mods
 * @version: $Id: abbc3_mod_version.php,  v 3.0.9 05/12/11 12:22 PM leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License

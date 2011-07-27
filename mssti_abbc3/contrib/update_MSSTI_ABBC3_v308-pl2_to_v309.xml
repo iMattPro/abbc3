@@ -29,7 +29,7 @@
 		<installation>
 			<level>intermediate</level>
 			<time>300</time>
-			<target-version>3.0.8</target-version>
+			<target-version>3.0.9</target-version>
 		</installation>
 		<link-group>
 			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
