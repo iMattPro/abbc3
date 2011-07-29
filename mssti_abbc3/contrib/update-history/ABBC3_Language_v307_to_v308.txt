@@ -1,0 +1,509 @@
+##############################################################
+## MOD Title: Advanced BBCode Box 3 (aka ABBC3) - Update : This file describes the changes in language files from version 3.0.7 to 3.0.8
+## MOD Author: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
+## MOD Author: VSE < n/a > (n/a) n/a
+## MOD Description: This file describes the changes in language files from
+## version 3.0.7 to 3.0.8 (for custom language
+## translations)
+## MOD Version: 3.0.8
+## 
+## Installation Level: Easy
+## Installation Time: 10 minutes
+## 
+## Files To Edit: 
+##		language/en/mods/abbcode.php
+##		language/en/mods/acp_abbcodes.php
+## 
+## Included Files: n/a
+## 
+## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2
+##############################################################
+## For security purposes, please check: http://www.phpbb.com/mods/
+## for the latest version of this MOD. Although MODs are checked
+## before being allowed in the MODs Database there is no guarantee
+## that there are no security problems within the MOD. No support
+## will be given for MODs not found within the MODs Database which
+## can be found at http://www.phpbb.com/mods/
+##############################################################
+## Author Notes: 
+## 
+## This file is for users who have translated or edited
+## these language files to something not included in the
+## original MOD package.
+		See the main install file for
+## any additional information about the MOD.
+## 
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+
+#
+#-----[ OPEN ]------------------------------------------
+#
+language/en/mods/abbcode.php
+#
+#-----[ FIND ]------------------------------------------
+#
+	'SAMPLE_TEXT'				=> 'This is a text sample' //	' . $lang['SAMPLE_TEXT'] . '
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_FUNCTION_DISABLED'	=> 'This function is not available on this board.',
+	'ABBC3_AJAX_DISABLED'		=> 'Your browser does not support AJAX (XMLHttpRequest) and was unable to process this request.',
+	'ABBC3_SUBMIT'				=> 'Insert into message',
+	'ABBC3_SUBMIT_SIG'			=> 'Insert into signature',
+	'SAMPLE_TEXT'				=> 'This is a text sample',
+
+#
+#-----[ FIND ]------------------------------------------
+#
+*	Several lines have an special note like "##	For translate : " follow for one or more "yes"
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+*	Several lines have an special note like "##	For translate : " followed for one or more "yes"
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_HIGHLIGHT_MOVER'		=> 'Text highlighted',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_HIGHLIGHT_MOVER'		=> 'Highlight text',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_COLOR_EXPLAIN'		=> '<strong>Note:</strong> Enable the ABBC3 Font colour menu or disable to use the standard phpBB3 Font colour picker.',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+
+	// Tigra Color & Highlight family Groups
+	'ABBC3_COLOUR_SAFE'			=> 'Web Safe Palette',
+	'ABBC3_COLOUR_WIN'			=> 'Windows System Palette',
+	'ABBC3_COLOUR_GREY'			=> 'Grey Scale Palette',
+	'ABBC3_COLOUR_MAC'			=> 'Mac OS Palette',
+	'ABBC3_SAMPLE'				=> 'sample',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_GLOW_MOVER'			=> 'Glow text (Only Internet Explorer)',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_GLOW_MOVER'			=> 'Glow text',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_SHADOW_MOVER'		=> 'Shadow text (Only Internet Explorer)',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_SHADOW_MOVER'		=> 'Shadow text',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_DROPSHADOW_MOVER'	=> 'Dropshadow text (Only Internet Explorer)',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_DROPSHADOW_MOVER'	=> 'Dropshadow text',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_BLUR_MOVER'			=> 'Blur text (Only Internet Explorer)',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_BLUR_MOVER'			=> 'Blur text',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_WAVE_MOVER'			=> 'Wave text (Only Internet Explorer)',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_WAVE_MOVER'			=> 'Wave text',
+#
+#-----[ FIND ]------------------------------------------
+#
+	// Image Wizard
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Note:</strong> allowing other websites to be inserted in posts, can pose a security risk. Use at your own risk, or assign to trusted groups.',
+
+	// Image & Thumbnail Wizard
+	'ABBC3_ALIGN_MODE'			=> 'Align image',
+##	For translate :							 Don't				Yes
+	'ABBC3_ALIGN_SELECTOR'		=> array(	'none'			=> 'Default',
+											'left'			=> 'Left',
+											'center'		=> 'Center',
+											'right'			=> 'Right',
+											'float-left'	=> 'Float-Left',
+											'float-right'	=> 'Float-Right'),
+
+	// Image
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_IMG_TIP'				=> '[img=(left|center|right)]http://...[/img]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=left|right)]http://...[/thumbnail]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/rapidshare]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/testlink]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] or [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] or [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_BBVIDEO_FILE'		=> 'Video format',
+	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_BBVIDEO_SELECT'		=> 'Please select a video type',
+	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please contact the %sBoard Administrator%s if this problem persists.<br />In the meantime, you may post your video links using the standard URL BBcode.',
+	'ABBC3_BBVIDEO_FILE'		=> 'File format',
+	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',
+	'ABBC3_BBVIDEO_EXTERNAL'	=> 'External Video from',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.adobe.com/support/flash/ts/documents/test_version/version.swf',
+	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.adobe.com/support/flash/ts/documents/test_version/version.swf[/flash]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/relojanalogo.swf',
+	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.mssti.com/phpbb3/images/media/relojanalogo.swf[/flash]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_FLV_EXAMPLE'			=> 'http://www.channel-ai.com/video/eyn/demo1.flv',
+	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.channel-ai.com/video/eyn/demo1.flv[/flv]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Demo.flv',
+	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mssti.com/phpbb3/images/media/Demo.flv[/flv]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.sarahsnotecards.com/catalunyalive/fishstore.wmv',
+	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.sarahsnotecards.com/catalunyalive/fishstore.wmv[/video]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/calmate.wmv',
+	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mssti.com/phpbb3/images/media/calmate.wmv[/video]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_STREAM_EXAMPLE'		=> 'http://realdev1.realise.com/rossa/mov/demo.mp3',
+	'ABBC3_STREAM_VIEW'			=> '[stream]http://realdev1.realise.com/rossa/mov/demo.mp3[/stream]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3',
+	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3[/stream]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt' . ' | ' . 'http://www.carnivalmidways.com/images/Music/thisisatest.mp3',
+	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt',
+	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt[/quicktime]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_RAM_EXAMPLE'			=> 'http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram',
+	'ABBC3_RAM_VIEW'			=> '[ram]http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram[/ram]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_RAM_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Dr_Who.ram',
+	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://www.mssti.com/phpbb3/images/media/Dr_Who.ram[/ram]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/videos/v1409404EqT5SJjM',
+	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/videos/v1409404EqT5SJjM[/veoh]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J',
+	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J[/veoh]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/swf/x3hm7o',
+	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/swf/x3hm7o[/dm]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport',
+	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport[/dm]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/944074/6185798/tom-clancys-rainbow-six-vegas-2-official-trailer-3',
+	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/944074/6185798/tom-clancys-rainbow-six-vegas-2-official-trailer-3[gamespot]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
+	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[gamespot]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/player/30461.html[/gametrailers]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/video/game-of-best-of-e3/701407[/gametrailers]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'object_ID=967025&downloadURL=http://tvmovies.ign.com/tv/video/article/850/850894/knightrider_trailer_020808_flvlow.flv',
+	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]object_ID=967025&downloadURL=http://tvmovies.ign.com/tv/video/article/850/850894/knightrider_trailer_020808_flvlow.flv[/ignvideo]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html',
+	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html[/ignvideo]',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBC3_LIVELEAK_EXAMPLE'	=> 'http://www.liveleak.com/view?i=413_1202590393',
+	'ABBC3_LIVELEAK_VIEW'		=> '[liveleak]http://www.liveleak.com/view?i=413_1202590393[/liveleak]',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBC3_LIVELEAK_EXAMPLE'	=> 'http://www.liveleak.com/view?i=166_1194290849',
+	'ABBC3_LIVELEAK_VIEW'		=> '[liveleak]http://www.liveleak.com/view?i=166_1194290849[/liveleak]',
+#
+#-----[ OPEN ]------------------------------------------
+#
+language/en/mods/acp_abbcodes.php
+#
+#-----[ FIND ]------------------------------------------
+#
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
+	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
+	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
+	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted ABBC3 MOD from database</strong>',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
+#
+#-----[ FIND ]------------------------------------------
+#
+// abbc3_details
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+
+// This lines are for the UCP
+$lang = array_merge($lang, array(
+	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
+	'UCP_ABBC3_SETTINGS'			=> 'ABBC3 Settings',
+	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Enable the “Advanced BBcodes Box 3” toolbar instead of the regular BBcode buttons?',
+	'UCP_ABBC3_BBCODES'				=> 'ABBC3 View',
+	'UCP_ABBC3_BBCODES_EXPLAIN'		=> 'If the “Advanced BBcodes Box 3” toolbar is enabled, do you want to use the “Compact view” instead of the ABBC3 buttons?',
+));
+
+
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBcodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBCODES_RESIZE'					=> 'Resize large images',
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+	'ABBCODES_RESIZER'					=> 'Image Resizer',
+#
+#-----[ FIND ]------------------------------------------
+#
+//	'ABBCODES_UPLOAD_EXTENSION'			=> 'Available extensions',
+//	'ABBCODES_UPLOAD_EXTENSION_EXPLAIN'	=> 'You can add/change/delete allowed datatypes. Separate extensions with a comma (,)<br /><strong>Note : </strong> These values will overwrite the Attachments Manage extensions setings.',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
+	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Select the video sites and/or formats you would like to allow users to embed in their posts when the BBvideo BBcode is enabled <em class="error">(*)</em>',
+	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> In order to select (or deselect) multiple items, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
+
+	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
+##	For translate :                                	 Don't			Yes
+	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'phpBB style Default',
+													'dropdown'	=> 'Drop Down Menu',
+													'fancy'		=> '“fancy” selector',
+													'tigra'		=> 'Tigra color picker'),
+	'ABBCODES_WIZARD_MODE'				=> 'Choose the wizards mode',
+##	For translate :                                	Don't			Yes
+	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Disable wizards',
+													'1'			=> 'Pop Up window',
+													'2'			=> 'In post'),
+	'ABBCODES_UCP_MODE'					=> 'UCP Control options',
+	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Allow users to select their own editor mode, by choosing between the standard phpBB3 BBcode buttons, ABBC3 “Extended” or ABBC3 “Compact” view.',
+
+	'ABBCODES_WIZARD'					=> 'Wizard',
+	'ABBCODES_WIZARD_SIZE'				=> 'Wizard dimensions',
+	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Default width and height for pop-up wizard window.',
+
+	'ABBCODES_DESELECT_ALL'				=> 'Deselect all',
+	'ABBCODES_SELECT_ALL'				=> 'Select all',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups : </strong>If there are no selected groups then all users can use this BBcode.<br />In order to select (or un-select) multiple groups, you must use Ctrl-Click (or Cmd-Click on Mac) items to add them. If you forget to hold down Ctrl/Cmd when clicking an item, then all the previously selected items will be deselected.',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups : </strong>If there are no selected groups then all users can use this BBcode.<br />In order to select (or deselect) multiple groups, you must CTRL+CLICK (or CMD-CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBCODES_NAME'						=> 'Tag name',
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+	'ABBCODES_NAME'						=> 'BBcode tag',
+#
+#-----[ FIND ]------------------------------------------
+#
+	'ABBCODES_ORDER'					=> 'Tag order',
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+	'ABBCODES_CUSTOM'					=> 'Custom BBcode',
+#
+#-----[ FIND ]------------------------------------------
+#
+// Installer 
+$lang = array_merge($lang, array(
+	// Main
+	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
+	'INSTALLER_VERSION'					=> ' version : %1$s',
+
+	'INSTALLER_INTRO'					=> 'Intro',
+	'INSTALLER_INTRO_WELCOME'			=> 'Welcome to the <strong>%1$s</strong> Installation',
+	'INSTALLER_INTRO_WELCOME_NOTE'		=> 'Please choose what you want to do.',
+	'INSTALLER_INSTALL_MENU'			=> 'Menu',
+	'INSTALLER_EXTRA_MENU'				=> 'Extras',
+
+	// Install
+	'INSTALLER_INSTALL'					=> 'Install',
+	'INSTALLER_INSTALL_WELCOME'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
+	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
+	'INSTALLER_INSTALL_SUCCESSFUL'		=> 'Installation of ABBC3 was successful.',
+	'INSTALLER_INSTALL_UNSUCCESSFUL'	=> 'Installation of ABBC3 was <strong>not</strong> successful.',
+	'INSTALLER_INSTALL_VERSION'			=> 'Install version : %1$s',
+	'INSTALLER_INSTALL_END'				=> 'Installation of <strong>%1$s version : %2$s</strong> was successful. <br /> <p>You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move your <strong>install_abbc3.php</strong> file!</p>',
+
+	// Update
+	'INSTALLER_UPDATE'					=> 'Update',
+	'INSTALLER_UPDATE_WELCOME'			=> 'Welcome to the <strong>ABBC3</strong> Update menu',
+	'INSTALLER_UPDATE_WELCOME_NOTE'		=> 'When you choose to Update ABBC3, any database of previous versions will be dropped.',
+	'INSTALLER_UPDATE_SUCCESSFUL'		=> 'Update of ABBC3 was successful.',
+	'INSTALLER_UPDATE_UNSUCCESSFUL'		=> 'Update of ABBC3 was <strong>not</strong> successful.',
+	'INSTALLER_UPDATE_VERSION'			=> 'Update to version : %1$s',
+	'INSTALLER_UPDATE_END'				=> 'Please be advised that some BBCodes might <strong>not</strong> display correctly due to the changes introduced in BBCodes. If you experience problems please run the <strong>Extras » Re-parse</strong> steps.',
+
+	// Uninstall
+	'INSTALLER_DELETE'					=> 'Delete',
+	'INSTALLER_DELETE_WELCOME'			=> 'Welcome to the <strong>ABBC3</strong> Delete menu',
+	'INSTALLER_DELETE_WELCOME_NOTE'		=> 'When you choose to delete the MOD, we remove all SQL-data insert by the installation.',
+	'INSTALLER_DELETE_VERSION'			=> 'Delete version : %1$s',
+	'INSTALLER_DELETE_NOTE'				=> 'Delete',
+	'INSTALLER_DELETE_SUCCESSFUL'		=> 'Deleted the <strong>%1$s version : %2$s</strong> was successfully.<br />Now delete all files.',
+	'INSTALLER_DELETE_UNSUCCESSFUL'		=> 'Could <strong>not</strong> delete %1$s version :%2$s .',
+
+	// Re-parse
+	'INSTALLER_REPARSE'					=> 'Re-parse',
+	'INSTALLER_REPARSE_WELCOME'			=> 'Welcome to the Re-parse menu',
+	'INSTALLER_REPARSE_WELCOME_NOTE'	=> '<strong>Re-parse</strong> simply reparses all BBCodes -- it is useful if you have changed the syntax of a BBCode, and they have stopped working correctly.',
+	'INSTALLER_REPARSE_NOTE'			=> 'Please note that while the chance of any database damage is unlikely, you are running it at your own risk and I am not responsible if something goes wrong.',
+	'INSTALLER_REPARSE_WARNING'			=> 'You should make a backup of your users, posts and privmsgs tables in case something goes wrong.',
+	'INSTALLER_REPARSE_POST'			=> 'Re-parse post content',
+	'INSTALLER_REPARSE_SIG'				=> 'Re-parse signatures',
+	'INSTALLER_REPARSE_PM'				=> 'Re-parse private messages',
+	'INSTALLER_REPARSE_SUCCESSFUL'		=> '%1$s was successful.',
+	'INSTALLER_REPARSE_UNSUCCESSFUL'	=> 'Could <strong>not</strong> %1$s.',
+	
+	'STEP_PERCENT_COMPLETED'			=> 'Step <strong>%d</strong> of <strong>%d</strong>',
+	'INSTALLER_NOTE'					=> '<strong>Note :</strong> Before adding this MOD to your forum, you should backup the database and all files related to this MOD!',
+	'INSTALLER_DELETE_INFORMATION'		=> 'Could <strong>not</strong> find ABBC3 installed!',
+	'INSTALLER_NEEDS_FOUNDER'			=> 'You must be logged in as a founder.',
+	'MISSING_PARENT_MODULE'				=> 'Module #%1$s is missing as a parent module for "%2$s".',
+	'WARNING'							=> 'Warning',
+
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// UMIL Installer 
+$lang = array_merge($lang, array(
+// Main
+	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
+	'INSTALLER_TITLE_EXPLAIN'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
+
+	'INSTALLER_INSTALL_WELCOME'			=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
+	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Please be advised that some BBCodes might <strong>not</strong> display correctly due to the changes introduced in BBCodes.
+	<br />If you experience problems use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
+	<br /><br />Before adding this MOD to your board, you should back up files and database first.',
+	'INSTALLER_INSTALL_END'				=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
+// Stages
+	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 config',
+	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM

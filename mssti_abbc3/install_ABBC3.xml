@@ -152,11 +152,12 @@
 		</history>
 
 		<link-group>
-			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
+			<link type="template" href="contrib/subsilver2.xml" lang="en">Subsilver2 Style Instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">Install German language pack</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-pl2_to_v309.xml" lang="en">Update : ABBC3 MOD from 3.0.8-pl2 to 3.0.9</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-pl1_to_v308-pl2.xml" lang="en">Update : ABBC3 MOD from 3.0.8-pl1 to 3.0.8-pl2</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL2_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.9</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL1_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8-PL1 to 3.0.9</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8 to 3.0.9</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : Quote behaviour.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>

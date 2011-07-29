@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8-PL2 to 3.0.9]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL2 to version 3.0.9]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8-PL1 to 3.0.9]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL1 to version 3.0.9]]></description>
 		<author-group>
 			<author>
 				<realname><![CDATA[Gabriel]]></realname>
@@ -74,6 +74,11 @@
 		</open>
 
 		<open src="includes/functions_display.php">
+
+			<edit>
+				<find><![CDATA[	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></find>
+				<action type="replace-with"><![CDATA[	$abbc3 = ($abbc3 && @$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></action>
+			</edit>
 
 			<edit>
 				<find><![CDATA[	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline]]></find>

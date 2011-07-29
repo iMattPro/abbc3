@@ -22,7 +22,7 @@ ABBC3 currently features the following:
 
 == REQUIREMENTS:
 
-* phpBB 3.0.8
+* phpBB 3.0.9
 * You must have javascript enabled to use this MOD.
 
 == DOCUMENTATION:

@@ -1,0 +1,895 @@
+##############################################################
+## MOD Title: Advanced BBCode Box 3 ( aka ABBC3 ) - Update to version 1.0.12
+## MOD Author: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
+## MOD Description: See the main install file for any additional
+## information about the MOD.
+## MOD Version: 1.0.12
+## 
+## Installation Level: Easy
+## Installation Time: 20 minutes
+## 
+## Files To Edit: 
+##		adm/style/acp_users_signature.html
+##		adm/style/overall_header.html
+##		adm/style/simple_header.html
+##		includes/bbcode.php
+##		includes/constants.php
+##		includes/functions.php
+##		includes/functions_display.php
+##		includes/message_parser.php
+##		includes/acp/acp_bbcodes.php
+##		language/en/acp/common.php
+##		styles/prosilver/template/bbcode.html
+##		styles/prosilver/template/overall_header.html
+##		styles/prosilver/template/simple_header.html
+##		styles/prosilver/template/posting_buttons.html
+##		styles/subsilver2/template/bbcode.html
+##		styles/subsilver2/template/overall_header.html
+##		styles/subsilver2/template/posting_buttons.html
+##		styles/subsilver2/template/posting_body.html
+##		styles/subsilver2/template/ucp_profile_signature.html
+## 
+## Included Files: 
+##		root/abbcode_page.php
+##		root/adm/style/*.*
+##		root/images/*.*
+##		root/includes/*.*
+##		root/install_abbc3.php
+##		root/language/en/mods/*.*
+##		root/styles/abbcode/*.*
+##		root/styles/prosilver/template/*.*
+##		root/styles/subsilver2/template/*.*
+## 
+## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2
+##############################################################
+## For security purposes, please check: http://www.phpbb.com/mods/
+## for the latest version of this MOD. Although MODs are checked
+## before being allowed in the MODs Database there is no guarantee
+## that there are no security problems within the MOD. No support
+## will be given for MODs not found within the MODs Database which
+## can be found at http://www.phpbb.com/mods/
+##############################################################
+## Author Notes: 
+## 
+## This file provides instructions for upgrading ABBC3
+## MOD from version 1.0.11 to version 1.0.12
+		
+		You
+## will have to make this change to ALL themes you have
+## installed, based off Prosilver and
+## Subsilver2.
+	-------------------------------------------------------------------
+	IMPORTANT
+## !
+	
+	Before made any changes, makes sure your template
+## is stored into "filesystem"
+	    ACP -> STYLES ->
+## STYLE COMPONENTS -> Templates : subsilver2 ->
+## Details
+	
+	If you do not want to change from
+## "Database" to "Filesystem",
+	you must do next changes
+## within your ACP :
+	    ACP -> STYLES -> STYLE
+## COMPONENTS -> Templates : subsilver2 ->
+## Edit
+	
+	-------------------------------------------------------------------
+		
+## 
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+
+#
+#-----[ COPY ]------------------------------------------
+#
+copy root/abbcode_page.php to abbcode_page.php
+copy root/adm/style/*.* to adm/style/*.*
+copy root/images/*.* to images/*.*
+copy root/includes/*.* to includes/*.*
+copy root/install_abbc3.php to install_abbc3.php
+copy root/language/en/mods/*.* to language/en/mods/*.*
+copy root/styles/abbcode/*.* to styles/abbcode/*.*
+copy root/styles/prosilver/template/*.* to styles/prosilver/template/*.*
+copy root/styles/subsilver2/template/*.* to styles/subsilver2/template/*.*
+#
+#-----[ OPEN ]------------------------------------------
+#
+adm/style/acp_users_signature.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+		<!-- IF S_ABBC3_MOD -->
+			<!-- INCLUDE posting_abbcode_buttons.html -->
+		</div>
+		<!-- ELSE -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+		<!-- IF S_ABBC3_MOD -->
+			<!-- INCLUDE posting_abbcode_buttons.html -->
+		</div>
+		<!-- ELSE -->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+
+		<dl>
+
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+
+		<dl>
+
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+<dd style="margin-left: 90px;"><textarea name="signature"
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+name="signature"
+#
+#-----[ IN-LINE BEFORE, ADD ]------------------------------------------
+#
+ id="signature" 
+#
+#-----[ FIND ]------------------------------------------
+#
+			<!-- ELSE -->
+			<dt style="width:100%"><textarea name="signature" id="signature" rows="10" cols="60" style="width: 100%;height:300px" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{SIGNATURE}</textarea></dt>
+			<!-- ENDIF -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+			<!-- ELSE -->
+			<dt style="width: 100%;"><textarea name="signature" id="signature" rows="10" cols="60" style="width: 100%; height: 300px;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{SIGNATURE}</textarea></dt>
+			<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+adm/style/overall_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+
+<!-- IF S_ABBC3_MOD and ( S_BBCODE_ALLOWED or S_NEW_MESSAGE or S_EDIT_POST or S_VIEWTOPIC or S_DISPLAY_PREVIEW or S_POST_REVIEW or S_DISPLAY_REVIEW ) or ( U_MCP and ( U_MCP_POST or U_MCP_TOPIC or U_MCP_FORUM) ) or ( S_PRIVMSGS and S_VIEW_MESSAGE ) -->
+<script type="text/javascript" src="{S_ABBC3_PATH}/abbcode.js" charset="{S_CONTENT_ENCODING}"></script>
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+
+<!-- IF S_ABBC3_RESIZE -->
+<script type="text/javascript" src="{S_ABBC3_PATH}/AdvancedBox.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+/** Image Resizer JS and AdvancedBox JS - Start **/
+	var ImageResizerNumberOf			= '{L_ABBC3_RESIZE_NUMBER}';
+	var ImageResizerNextAlt				= '{L_NEXT}';
+	var ImageResizerPrevtAlt			= '{L_PREVIOUS}';
+	var ImageResizerPlayAlt				= '{L_ABBC3_RESIZE_PLAY}';
+	var ImageResizerPauseAlt			= '{L_ABBC3_RESIZE_PAUSE}';
+	var ImageResizerZoomInAlt			= '{L_ABBC3_RESIZE_ZOOM_IN}';
+	var ImageResizerZoomOutAlt			= '{L_ABBC3_RESIZE_ZOOM_OUT}';
+	var ImageResizerCloseAlt			= '{L_ABBC3_RESIZE_CLOSE}';
+	var ImageResizerBlankImage			= '{S_ABBC3_PATH}/advancedbox_blank.gif';
+	var ImageResizerSignature			= '{S_ABBC3_RESIZE_SIGNATURE}';
+	var ImageResizerMode				= '{S_ABBC3_RESIZE_METHOD}'; // 'advancedbox' 'pop-up' 'enlarge' 'samewindow' 'newwindow'
+	var ImageResizerWarningImage		= '{S_ABBC3_PATH}/warning.gif';
+	var ImageResizerMaxWidth			= '{S_ABBC3_MAX_IMG_WIDTH}' ;
+	var ImageResizerMaxHeight			= '{S_ABBC3_MAX_IMG_HEIGHT}' ;
+	var ImageResizerWarningSmall		= '{L_ABBC3_RESIZE_SMALL}';
+	var ImageResizerWarningFullsize		= '{L_ABBC3_RESIZE_FULLSIZE}';
+	var ImageResizerWarningFilesize		= '{L_ABBC3_RESIZE_FILESIZE}';
+	var ImageResizerWarningNoFilesize	= '{L_ABBC3_RESIZE_NOFILESIZE}';
+/** Image Resizer JS and AdvancedBox JS - End **/
+// ]]>
+</script>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+				
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- INCLUDE abbcode_header.html -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+adm/style/simple_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/bbcode.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+if (!class_exists('abbcode'))
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+if (!class_exists('abbcode'))
+#
+#-----[ FIND ]------------------------------------------
+#
+class bbcode extends abbcode
+// MOD : MSSTI ABBC3 (V1.0.11) - end
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+class bbcode extends abbcode
+// MOD : MSSTI ABBC3 (V1.0.12) - end
+#
+#-----[ FIND ]------------------------------------------
+#
+		$undid_bbcode_specialchars = false;
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+
+		// Try to avoid duplicates anchor ID's inside quotes
+		if ( preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)?\[anchor(=(.*?)([\s]?))?#is', $message) )
+		{
+			$message = preg_replace('#(\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?))?\[anchor((=|)(.*?)([\s]))?#is',"$1[anchor$5quoted$6$7", $message);
+		}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+			$this->template_filename2 = $phpbb_root_path . 'styles/' . $user->theme['template_path'] . '/template/abbcode.html';
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			$this->template_filename2 = $phpbb_root_path . 'styles/' . $user->theme['template_path'] . '/template/abbcode.html';
+#
+#-----[ FIND ]------------------------------------------
+#
+}
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+			$sql .= ' AND bbcode_match <> "." ';
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			$sql .= ' AND bbcode_match <> "." ';
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+							'#\[url:$uid\](ed2k://\|(file|server|serverlist|friend)(|\|[^\\/\|:<>\*\?\"]+?)\|(.*?)\|/?)\[/url:$uid\]#sie'		=> "\$this->ed2k_pass( \$bbcode_id, '\$1', '' )",
+							'#\[url=(ed2k://\|(file|server|serverlist|friend)(|\|[^\\/\|:<>\*\?\"]+?)\|(.*?)\|/?):$uid\](.*?)\[/url:$uid\]#sie'	=> "\$this->ed2k_pass( \$bbcode_id, '\$1', '\$5' )",
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+							'#\[url:$uid\](ed2k://\|(file|server|serverlist|friend)(|\|[^\\/\|:<>\*\?\"]+?)\|(.*?)\|/?)\[/url:$uid\]#sie'		=> "\$this->ed2k_pass( \$bbcode_id, '\$1', '' )",
+							'#\[url=(ed2k://\|(file|server|serverlist|friend)(|\|[^\\/\|:<>\*\?\"]+?)\|(.*?)\|/?):$uid\](.*?)\[/url:$uid\]#sie'	=> "\$this->ed2k_pass( \$bbcode_id, '\$1', '\$5' )",
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+						$user->add_lang('mods/abbcode');
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+						$user->add_lang('mods/abbcode');
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+			if (($tpl2 = file_get_contents($this->template_filename2)) === false)
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			if (($tpl2 = file_get_contents($this->template_filename2)) === false)
+#
+#-----[ FIND ]------------------------------------------
+#
+}
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+			$this->template_filename2 = $phpbb_root_path . 'styles/' . $user->theme['template_path'] . '/template/abbcode.html';
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			$this->template_filename2 = $phpbb_root_path . 'styles/' . $user->theme['template_path'] . '/template/abbcode.html';
+#
+#-----[ FIND ]------------------------------------------
+#
+}
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/constants.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) Clicks Counter feature - Start
+define('CLICKS_TABLE',				$table_prefix . 'clicks');
+// MOD : MSSTI ABBC3 (V1.0.11) Clicks Counter feature - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) Clicks Counter feature - Start
+define('CLICKS_TABLE',				$table_prefix . 'clicks');
+// MOD : MSSTI ABBC3 (V1.0.12) Clicks Counter feature - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/functions.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+	if ( @$config['ABBC3_MOD'] )
+	{
+		if (!class_exists('abbcode'))
+		{
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		}
+		$abbcode = new abbcode();
+		$abbcode->abbcode_init();
+	}
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+	// Safety check
+	if ($config['ABBC3_MOD'] = (isset($config['ABBC3_MOD']) ? $config['ABBC3_MOD'] : false))
+	{
+		if (!class_exists('abbcode'))
+		{
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		}
+		$abbcode = new abbcode();
+		$abbcode->abbcode_init();
+	}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/functions_display.php
+#
+#-----[ FIND ]------------------------------------------
+#
+function display_custom_bbcodes()
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+display_custom_bbcodes(
+#
+#-----[ IN-LINE AFTER, ADD ]------------------------------------------
+#
+ $abbc3 = true 
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+	global $phpbb_root_path, $phpEx, $config, $mode;
+
+	if ( @$config['ABBC3_MOD'] )
+	{
+		if (!class_exists('abbcode'))
+		{
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+	global $config, $mode;
+
+	if ( $abbc3 && @$config['ABBC3_MOD'] )
+	{
+		if (!class_exists('abbcode'))
+		{
+			global $phpbb_root_path, $phpEx;
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+#
+#-----[ FIND ]------------------------------------------
+#
+	}
+	else
+	{
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+		$template->assign_vars(array('S_ABBC3_DISABLED' => true));
+#
+#-----[ FIND ]------------------------------------------
+#
+//	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
+//		FROM ' . BBCODES_TABLE . '
+//		WHERE display_on_posting = 1
+//		ORDER BY bbcode_tag';
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/message_parser.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+			$sql .= ' WHERE bbcode_match <> "." ';
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			$sql .= ' WHERE bbcode_match <> "." ';
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+		// Check ABBC3 groups permission
+		foreach ($this->bbcodes as $bbcode_name => $bbcode_data)
+		{
+			if ( isset($bbcode_data['bbcode_group']) && $bbcode_data['bbcode_group'] != 0 && !$this->abbode_phpbb_auth( $bbcode_data['bbcode_group'] ) )
+			{
+				$this->bbcodes[$bbcode_name]['disabled'] = true;
+			}
+		}
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+		// Check ABBC3 groups permission
+		foreach ($this->bbcodes as $bbcode_name => $bbcode_data)
+		{
+			if (isset($bbcode_data['bbcode_group']) && $bbcode_data['bbcode_group'] && !$this->abbode_phpbb_auth($bbcode_data['bbcode_group']))
+			{
+				$this->bbcodes[$bbcode_name]['disabled'] = true;
+			}
+		}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/acp/acp_bbcodes.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+					$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
+						FROM ' . BBCODES_TABLE;
+					$result = $db->sql_query($sql);
+					$row = $db->sql_fetchrow($result);
+					$db->sql_freeresult($result);
+					$bbcode_order = $row['max_bbcode_order'] + 1;
+					$sql_ary['bbcode_order'] = (int) $bbcode_order;
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+					$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
+						FROM ' . BBCODES_TABLE;
+					$result = $db->sql_query($sql);
+					$row = $db->sql_fetchrow($result);
+					$db->sql_freeresult($result);
+					$bbcode_order = $row['max_bbcode_order'] + 1;
+					$sql_ary['bbcode_order'] = (int) $bbcode_order;
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+language/en/acp/common.php
+#
+#-----[ FIND ]------------------------------------------
+# See contrib/language folder for availables transtations
+#
+// MOD : MSSTI ABBC3 (V1.0.11) - Start
+$lang = array_merge($lang, array(
+	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
+	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
+	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while save ABBC3 settings</strong>',
+	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
+	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
+	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted MOD ABBC3 from database</strong>',
+));
+// MOD : MSSTI ABBC3 (V1.0.11) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+$lang = array_merge($lang, array(
+	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
+	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
+	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while save ABBC3 settings</strong>',
+	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
+	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
+	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted MOD ABBC3 from database</strong>',
+));
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/bbcode.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- BEGIN img --><img src="{URL}" alt="{L_IMAGE}" /><!-- END img -->
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+alt="{L_IMAGE}"
+#
+#-----[ IN-LINE AFTER, ADD ]------------------------------------------
+#
+ class="resize_me"
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/overall_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+
+<!-- IF S_ABBC3_MOD and ( S_BBCODE_ALLOWED or S_NEW_MESSAGE or S_EDIT_POST or S_VIEWTOPIC or S_DISPLAY_PREVIEW or S_POST_REVIEW or S_DISPLAY_REVIEW ) or ( U_MCP and ( U_MCP_POST or U_MCP_TOPIC or U_MCP_FORUM) ) or ( S_PRIVMSGS and S_VIEW_MESSAGE ) -->
+<script type="text/javascript" src="{S_ABBC3_PATH}/abbcode.js" charset="{S_CONTENT_ENCODING}"></script>
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+
+<!-- IF S_ABBC3_RESIZE -->
+<script type="text/javascript" src="{S_ABBC3_PATH}/AdvancedBox.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+/** Image Resizer JS and AdvancedBox JS - Start **/
+	var ImageResizerNumberOf			= '{L_ABBC3_RESIZE_NUMBER}';
+	var ImageResizerNextAlt				= '{L_NEXT}';
+	var ImageResizerPrevtAlt			= '{L_PREVIOUS}';
+	var ImageResizerPlayAlt				= '{L_ABBC3_RESIZE_PLAY}';
+	var ImageResizerPauseAlt			= '{L_ABBC3_RESIZE_PAUSE}';
+	var ImageResizerZoomInAlt			= '{L_ABBC3_RESIZE_ZOOM_IN}';
+	var ImageResizerZoomOutAlt			= '{L_ABBC3_RESIZE_ZOOM_OUT}';
+	var ImageResizerCloseAlt			= '{L_ABBC3_RESIZE_CLOSE}';
+	var ImageResizerBlankImage			= '{S_ABBC3_PATH}/advancedbox_blank.gif';
+	var ImageResizerSignature			= '{S_ABBC3_RESIZE_SIGNATURE}';
+	var ImageResizerMode				= '{S_ABBC3_RESIZE_METHOD}'; // 'advancedbox' 'pop-up' 'enlarge' 'samewindow' 'newwindow'
+	var ImageResizerWarningImage		= '{S_ABBC3_PATH}/warning.gif';
+	var ImageResizerMaxWidth			= '{S_ABBC3_MAX_IMG_WIDTH}' ;
+	var ImageResizerMaxHeight			= '{S_ABBC3_MAX_IMG_HEIGHT}' ;
+	var ImageResizerWarningSmall		= '{L_ABBC3_RESIZE_SMALL}';
+	var ImageResizerWarningFullsize		= '{L_ABBC3_RESIZE_FULLSIZE}';
+	var ImageResizerWarningFilesize		= '{L_ABBC3_RESIZE_FILESIZE}';
+	var ImageResizerWarningNoFilesize	= '{L_ABBC3_RESIZE_NOFILESIZE}';
+/** Image Resizer JS and AdvancedBox JS - End **/
+// ]]>
+</script>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+				
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.12) - Start -->
+<!-- INCLUDE abbcode_header.html -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.12) - End -->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/simple_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/posting_buttons.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+<!-- IF S_ABBC3_MOD -->
+	<!-- INCLUDE posting_abbcode_buttons.html -->
+<!-- ELSE -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- IF S_ABBC3_MOD and not S_ABBC3_DISABLED -->
+	<!-- INCLUDE posting_abbcode_buttons.html -->
+<!-- ELSE -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+<!-- ENDIF -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/bbcode.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- BEGIN img --><img src="{URL}" alt="{L_IMAGE}" /><!-- END img -->
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+alt="{L_IMAGE}"
+#
+#-----[ IN-LINE AFTER, ADD ]------------------------------------------
+#
+ class="resize_me"
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/overall_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+
+<!-- IF S_ABBC3_MOD and ( S_BBCODE_ALLOWED or S_NEW_MESSAGE or S_EDIT_POST or S_VIEWTOPIC or S_DISPLAY_PREVIEW or S_POST_REVIEW or S_DISPLAY_REVIEW ) or ( U_MCP and ( U_MCP_POST or U_MCP_TOPIC or U_MCP_FORUM) ) or ( S_PRIVMSGS and S_VIEW_MESSAGE ) -->
+<script type="text/javascript" src="{S_ABBC3_PATH}/abbcode.js" charset="{S_CONTENT_ENCODING}"></script>
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+
+<!-- IF S_ABBC3_RESIZE -->
+<script type="text/javascript" src="{S_ABBC3_PATH}/AdvancedBox.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+/** Image Resizer JS and AdvancedBox JS - Start **/
+	var ImageResizerNumberOf			= '{L_ABBC3_RESIZE_NUMBER}';
+	var ImageResizerNextAlt				= '{L_NEXT}';
+	var ImageResizerPrevtAlt			= '{L_PREVIOUS}';
+	var ImageResizerPlayAlt				= '{L_ABBC3_RESIZE_PLAY}';
+	var ImageResizerPauseAlt			= '{L_ABBC3_RESIZE_PAUSE}';
+	var ImageResizerZoomInAlt			= '{L_ABBC3_RESIZE_ZOOM_IN}';
+	var ImageResizerZoomOutAlt			= '{L_ABBC3_RESIZE_ZOOM_OUT}';
+	var ImageResizerCloseAlt			= '{L_ABBC3_RESIZE_CLOSE}';
+	var ImageResizerBlankImage			= '{S_ABBC3_PATH}/advancedbox_blank.gif';
+	var ImageResizerSignature			= '{S_ABBC3_RESIZE_SIGNATURE}';
+	var ImageResizerMode				= '{S_ABBC3_RESIZE_METHOD}'; // 'advancedbox' 'pop-up' 'enlarge' 'samewindow' 'newwindow'
+	var ImageResizerWarningImage		= '{S_ABBC3_PATH}/warning.gif';
+	var ImageResizerMaxWidth			= '{S_ABBC3_MAX_IMG_WIDTH}' ;
+	var ImageResizerMaxHeight			= '{S_ABBC3_MAX_IMG_HEIGHT}' ;
+	var ImageResizerWarningSmall		= '{L_ABBC3_RESIZE_SMALL}';
+	var ImageResizerWarningFullsize		= '{L_ABBC3_RESIZE_FULLSIZE}';
+	var ImageResizerWarningFilesize		= '{L_ABBC3_RESIZE_FILESIZE}';
+	var ImageResizerWarningNoFilesize	= '{L_ABBC3_RESIZE_NOFILESIZE}';
+/** Image Resizer JS and AdvancedBox JS - End **/
+// ]]>
+</script>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+				
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.12) - Start -->
+<!-- INCLUDE abbcode_header.html -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.12) - End -->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/posting_buttons.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+	<!-- IF S_ABBC3_MOD -->
+		<!-- INCLUDE posting_abbcode_buttons.html -->
+	<!-- ELSE -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+	<!-- IF S_ABBC3_MOD and not S_ABBC3_DISABLED -->
+		<!-- INCLUDE posting_abbcode_buttons.html -->
+	<!-- ELSE -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+
+<!-- ENDIF -->
+	</td>
+</tr>
+
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+<!-- IF not S_ABBC3_MOD -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+
+<!-- ENDIF -->
+	</td>
+</tr>
+
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- IF not S_ABBC3_MOD or S_ABBC3_DISABLED -->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/posting_body.html
+#
+#-----[ FIND ]------------------------------------------
+# NOTE: just delete the code
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+	<!-- IF S_ABBC3_MOD -->
+			<td valign="top" style="width: 100%;"><textarea id="message" name="message" rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" style="width: 99%;">{MESSAGE}</textarea></td>
+	<!-- ELSE -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+#
+#-----[ FIND ]------------------------------------------
+# NOTE: just delete the code
+#
+<!-- ENDIF -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/ucp_profile_signature.html
+#
+#-----[ FIND ]------------------------------------------
+# NOTE: just delete the code
+#
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - Start -->
+	<!-- IF S_ABBC3_MOD -->
+				<td colspan="2"><textarea class="post" id="signature" name="signature" rows="10" cols="76" style="width: 99%;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{SIGNATURE}</textarea></td>
+	<!-- ELSE -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+#
+#-----[ FIND ]------------------------------------------
+#
+<textarea class="post" name="signature"
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+name="signature"
+#
+#-----[ IN-LINE BEFORE, ADD ]------------------------------------------
+#
+ id="signature" 
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+90%
+#
+#-----[ IN-LINE REPLACE WITH ]------------------------------------------
+#
+99%
+#
+#-----[ FIND ]------------------------------------------
+# NOTE: just delete the code
+#
+<!-- ENDIF -->
+<!-- // MOD : MSSTI ABBC3 (V1.0.11) - End -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+#
+#-----[ DIY INSTRUCTIONS ]------------------------------------------
+#
+IMPORTANT !
+
+You can safety delete :
+root/abbcode_functions.php
+root/images/demo1.flv
+root/files/demo1.flv
+
+OVERWRITE all your previous files with the new ones!
+
+Please make sure of it, some FTP programs don't do it fine.
+
+Makes sure you follow the DIY instruction in the main Install_ABBC3_v1012.xml file.
+
+		
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM
