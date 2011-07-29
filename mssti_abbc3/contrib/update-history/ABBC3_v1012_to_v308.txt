@@ -1,0 +1,976 @@
+##############################################################
+## MOD Title: Advanced BBCode Box 3 (aka ABBC3) - Update from 1.0.12 to 3.0.8
+## MOD Author: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
+## MOD Author: VSE < n/a > (n/a) n/a
+## MOD Description: This file provides instructions for upgrading ABBC3
+## MOD from version 1.0.12 to version 3.0.8
+## MOD Version: 3.0.8
+## 
+## Installation Level: Intermediate
+## Installation Time: 20 minutes
+## 
+## Files To Edit: 
+##		adm/style/acp_users_signature.html
+##		adm/style/overall_header.html
+##		adm/style/simple_header.html
+##		includes/acp/acp_bbcodes.php
+##		includes/bbcode.php
+##		includes/constants.php
+##		includes/functions.php
+##		includes/functions_display.php
+##		includes/message_parser.php
+##		includes/ucp/ucp_prefs.php
+##		language/en/acp/common.php
+##		styles/prosilver/template/overall_header.html
+##		styles/prosilver/template/posting_buttons.html
+##		styles/prosilver/template/posting_preview.html
+##		styles/prosilver/template/simple_header.html
+##		styles/prosilver/template/ucp_prefs_post.html
+##		styles/prosilver/template/ucp_profile_signature.html
+##		styles/prosilver/theme/stylesheet.css
+##		styles/subsilver2/template/overall_header.html
+##		styles/subsilver2/template/posting_body.html
+##		styles/subsilver2/template/posting_buttons.html
+##		styles/subsilver2/template/posting_preview.html
+##		styles/subsilver2/template/simple_header.html
+##		styles/subsilver2/template/ucp_pm_viewmessage.html
+##		styles/subsilver2/template/ucp_prefs_post.html
+##		styles/subsilver2/template/ucp_profile_signature.html
+## 
+## Included Files: 
+##		root/abbcode_page.php
+##		root/adm/style/*.*
+##		root/images/*.*
+##		root/includes/*.*
+##		root/install_abbc3.php
+##		root/language/en/mods/*.*
+##		root/styles/abbcode/*.*
+##		root/styles/prosilver/template/*.*
+##		root/styles/subsilver2/template/*.*
+##		root/umil/*.*
+## 
+## License: http://opensource.org/licenses/gpl-license.php GNU General Public License v2
+##############################################################
+## For security purposes, please check: http://www.phpbb.com/mods/
+## for the latest version of this MOD. Although MODs are checked
+## before being allowed in the MODs Database there is no guarantee
+## that there are no security problems within the MOD. No support
+## will be given for MODs not found within the MODs Database which
+## can be found at http://www.phpbb.com/mods/
+##############################################################
+## Author Notes: 
+## 
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+
+#
+#-----[ COPY ]------------------------------------------
+#
+copy root/abbcode_page.php to abbcode_page.php
+copy root/adm/style/*.* to adm/style/*.*
+copy root/images/*.* to images/*.*
+copy root/includes/*.* to includes/*.*
+copy root/install_abbc3.php to install_abbc3.php
+copy root/language/en/mods/*.* to language/en/mods/*.*
+copy root/styles/abbcode/*.* to styles/abbcode/*.*
+copy root/styles/prosilver/template/*.* to styles/prosilver/template/*.*
+copy root/styles/subsilver2/template/*.* to styles/subsilver2/template/*.*
+copy root/umil/*.* to umil/*.*
+#
+#-----[ OPEN ]------------------------------------------
+#
+adm/style/acp_users_signature.html
+#
+#-----[ FIND ]------------------------------------------
+#
+			<p>{SIGNATURE_PREVIEW}</p>
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+			<div id="sig" class="signature"><p>{SIGNATURE_PREVIEW}</p></div>
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+		<!-- IF S_ABBC3_MOD -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+		<!-- IF S_ABBC3_MOD -->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+
+		<dl>
+
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+			<!-- IF not S_ABBC3_COLOR -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+		<dl>
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+			<!-- IF S_ABBC3_COLOR_MODE eq 'phpbb' -->
+#
+#-----[ FIND ]------------------------------------------
+#
+			<dt style="width: 100%;"><textarea name="signature" id="signature" rows="10" cols="60" style="width: 100%; height: 300px;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);">{SIGNATURE}</textarea></dt>
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+			<dt style="width: 100%; margin-bottom: 5px;"><textarea name="signature" id="signature" rows="10" cols="60" style="width: 99%;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();">{SIGNATURE}</textarea></dt>
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+adm/style/overall_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- INCLUDE abbcode_header.html -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+adm/style/simple_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/acp/acp_bbcodes.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+					$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
+						FROM ' . BBCODES_TABLE;
+					$result = $db->sql_query($sql);
+					$row = $db->sql_fetchrow($result);
+					$db->sql_freeresult($result);
+					$bbcode_order = $row['max_bbcode_order'] + 1;
+					$sql_ary['bbcode_order'] = (int) $bbcode_order;
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+						$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
+							FROM ' . BBCODES_TABLE;
+						$result = $db->sql_query($sql);
+						$row = $db->sql_fetchrow($result);
+						$db->sql_freeresult($result);
+						$bbcode_order = $row['max_bbcode_order'] + 1;
+						$sql_ary['bbcode_order'] = (int) $bbcode_order;
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+#
+						WHERE abbcode = 0 ORDER BY bbcode_tag';
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+			WHERE abbcode = 0 ORDER BY bbcode_tag';
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/bbcode.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+if (!class_exists('abbcode'))
+{
+	include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+}
+/**
+* BBCode class
+* @package phpBB3
+*/
+class bbcode extends abbcode
+// MOD : MSSTI ABBC3 (V1.0.12) - end
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+if (!class_exists('abbcode'))
+{
+	include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+}
+/**
+* BBCode class
+* @package phpBB3
+*/
+// class bbcode
+class bbcode extends abbcode
+// MOD : MSSTI ABBC3 - end
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+
+		// Try to avoid duplicates anchor ID's inside quotes
+		if ( preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)?\[anchor(=(.*?)([\s]?))?#is', $message) )
+		{
+			$message = preg_replace('#(\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?))?\[anchor((=|)(.*?)([\s]))?#is',"$1[anchor$5quoted$6$7", $message);
+		}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+		// Try to avoid duplicates anchor ID's inside quotes
+		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)?\[anchor(=(.*?)([\s]?))?#is', $message))
+		{
+			$message = preg_replace('#(\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?))?\[anchor((=|)(.*?)([\s]))?#is',"$1[anchor$5quoted$6$7", $message);
+		}
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			$this->template_filename2 = $phpbb_root_path . 'styles/' . $user->theme['template_path'] . '/template/abbcode.html';
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+			$this->template_filename2 = $phpbb_root_path . 'styles/' . $user->theme['template_path'] . '/template/abbcode.html';
+#
+#-----[ FIND ]------------------------------------------
+# If you don't find the next line, don't worry probably you never install the 3.0.6 patch. Procede with the next step.
+#
+if (isset($template->orig_tpl_inherits_id) && $template->orig_tpl_inherits_id)
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+if (isset($user->theme['template_inherits_id']) && $user->theme['template_inherits_id'])
+#
+#-----[ FIND ]------------------------------------------
+#
+			}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+			}
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+# IMPORTANT ! change
+#
+		$bitfield = new bitfield($this->bbcode_bitfield);
+		$bbcodes_set = $bitfield->get_all_set();
+
+		foreach ($bbcodes_set as $bbcode_id)
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+		$abbcode = new abbcode();
+// MOD : MSSTI ABBC3 - end
+
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			$sql .= ' AND bbcode_match <> "." ';
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+			$sql .= ' AND bbcode_match <> "." ';
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+							'#\[url:$uid\](ed2k://\|(file|server|serverlist|friend)(|\|[^\\/\|:<>\*\?\"]+?)\|(.*?)\|/?)\[/url:$uid\]#sie'		=> "\$this->ed2k_pass( \$bbcode_id, '\$1', '' )",
+							'#\[url=(ed2k://\|(file|server|serverlist|friend)(|\|[^\\/\|:<>\*\?\"]+?)\|(.*?)\|/?):$uid\](.*?)\[/url:$uid\]#sie'	=> "\$this->ed2k_pass( \$bbcode_id, '\$1', '\$5' )",
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+							'#\[url:$uid\](ed2k://\|(file|server|serverlist|friend)(|\|[^\\/\|:<>\*\?\"]+?)\|(.*?)\|/?)\[/url:$uid\]#sie'		=> "\$this->ed2k_pass( \$bbcode_id, '\$1', '' )",
+							'#\[url=(ed2k://\|(file|server|serverlist|friend)(|\|[^\\/\|:<>\*\?\"]+?)\|(.*?)\|/?):$uid\](.*?)\[/url:$uid\]#sie'	=> "\$this->ed2k_pass( \$bbcode_id, '\$1', '\$5' )",
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+						$user->add_lang('mods/abbcode');
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+						$user->add_lang('mods/abbcode');
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			if (($tpl2 = file_get_contents($this->template_filename2)) === false)
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+			if (($tpl2 = file_get_contents($this->template_filename2)) === false)
+#
+#-----[ FIND ]------------------------------------------
+#
+				$tpl .= $tpl2;
+			}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+				$tpl .= $tpl2;
+			}
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/constants.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) Clicks Counter feature - Start
+define('CLICKS_TABLE',				$table_prefix . 'clicks');
+// MOD : MSSTI ABBC3 (V1.0.12) Clicks Counter feature - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 Clicks Counter - Start
+define('CLICKS_TABLE',				$table_prefix . 'clicks');
+// MOD : MSSTI ABBC3 Clicks Counter - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/functions.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+	// Safety check
+	if ($config['ABBC3_MOD'] = (isset($config['ABBC3_MOD']) ? $config['ABBC3_MOD'] : false))
+	{
+		if (!class_exists('abbcode'))
+		{
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		}
+		$abbcode = new abbcode();
+		$abbcode->abbcode_init();
+	}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+	if (defined('IN_ABBC3'))
+	{
+		$user->add_lang('mods/abbcode');
+	}
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/functions_display.php
+#
+#-----[ FIND ]------------------------------------------
+#
+function display_custom_bbcodes( $abbc3 = true )
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+function display_custom_bbcodes($abbc3 = true)
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+	global $config, $mode;
+
+	if ( $abbc3 && @$config['ABBC3_MOD'] )
+	{
+		if (!class_exists('abbcode'))
+		{
+			global $phpbb_root_path, $phpEx;
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		}
+		$abbcode = new abbcode();
+		$abbcode->abbcode_init();
+		$abbcode->abbcode_display( $mode );
+
+		$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
+			FROM ' . BBCODES_TABLE . '
+			WHERE display_on_posting = 1 AND abbcode = 0 AND bbcode_image = "" 
+			ORDER BY bbcode_tag';
+	}
+	else
+	{
+		$template->assign_vars(array('S_ABBC3_DISABLED' => true));
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+	global $config, $mode, $abbcode;
+
+	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+
+	$sql_where = ' AND abbcode = 0';
+	if ($abbc3 && @$config['ABBC3_MOD'])
+	{
+		// We need to check if ABBC3 is property initialized
+		if (!class_exists('abbcode'))
+		{
+			global $phpbb_root_path, $phpEx;
+
+			include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		}
+
+		$abbcode->abbcode_init();
+		$abbcode->abbcode_display($mode);
+
+		$sql_where = ' AND (abbcode = 0 AND bbcode_image = "")';
+	}
+	else
+	{
+		$template->assign_vars(array('S_ABBC3_DISABLED' => true));
+	}
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+#
+		WHERE display_on_posting = 1
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+AND abbcode = 0
+#
+#-----[ IN-LINE REPLACE WITH ]------------------------------------------
+#
+' . $sql_where . '
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/message_parser.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+			$sql .= ' WHERE bbcode_match <> "." ';
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+			$sql .= ' WHERE bbcode_match <> "." ';
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+				'bbcode_group'	=> $row['bbcode_group'],
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+				'bbcode_group'	=> $row['bbcode_group'],
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+		// Check ABBC3 groups permission
+		foreach ($this->bbcodes as $bbcode_name => $bbcode_data)
+		{
+			if (isset($bbcode_data['bbcode_group']) && $bbcode_data['bbcode_group'] && !$this->abbode_phpbb_auth($bbcode_data['bbcode_group']))
+			{
+				$this->bbcodes[$bbcode_name]['disabled'] = true;
+			}
+		}
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+		// Check phpbb permissions status
+		// Check ABBC3 groups permission
+		// try to make it as quicky as it can be
+		foreach ($this->bbcodes as $bbcode_name => $bbcode_data)
+		{
+			$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($bbcode_name)));
+			if ((isset($bbcode_data['bbcode_group']) && $bbcode_data['bbcode_group']) || in_array($auth_tag, $this->need_permissions))
+			{
+				if (!$this->abbcode_permissions($auth_tag, (isset($bbcode_data['bbcode_group']) ? $bbcode_data['bbcode_group'] : 0)))
+				{
+					$this->bbcodes[$bbcode_name]['disabled'] = true;
+				}
+			}
+		}
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+includes/ucp/ucp_prefs.php
+#
+#-----[ FIND ]------------------------------------------
+#
+'notify'	=> request_var('notify', (bool) $user->data['user_notify']),
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+					'abbcode_mod'		=> request_var('abbcode_mod', (bool) (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : true),
+					'abbcode_compact'	=> request_var('abbcode_compact', (bool) (isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false),
+// MOD : MSSTI ABBC3 - End
+
+#
+#-----[ FIND ]------------------------------------------
+#
+'user_notify'	=> $data['notify'],
+#
+#-----[ AFTER, ADD ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+							'user_abbcode_mod'		=> $data['abbcode_mod'],
+							'user_abbcode_compact'	=> $data['abbcode_compact'],
+// MOD : MSSTI ABBC3 - End
+
+#
+#-----[ FIND ]------------------------------------------
+#
+				$template->assign_vars(array(
+					'S_BBCODE'	=> $data['bbcode'],
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+				$user->add_lang('mods/acp_abbcodes');
+// MOD : MSSTI ABBC3 - End
+
+#
+#-----[ FIND ]------------------------------------------
+#
+					'S_SMILIES'	=> $data['smilies'],
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+					'S_ABBC3_VERSION'	=> @$config['ABBC3_VERSION'],
+					'S_ABBC3_MOD'		=> @$config['ABBC3_MOD'],
+					'S_ABBCODE_MOD'		=> $data['abbcode_mod'],
+					'S_ABBC3_UCP_MODE'	=> @$config['ABBC3_UCP_MODE'],
+					'S_ABBCODE_COMPACT'	=> $data['abbcode_compact'],
+// MOD : MSSTI ABBC3 - End
+
+#
+#-----[ OPEN ]------------------------------------------
+#
+language/en/acp/common.php
+#
+#-----[ FIND ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 (V1.0.12) - Start
+$lang = array_merge($lang, array(
+	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
+	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
+	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while save ABBC3 settings</strong>',
+	'LOG_CONFIG_ADD'			=> '<strong>Added board settings</strong><br />» %s',
+	'LOG_DATABASE_SCHEMA'		=> '<strong>Updating database schema</strong><br />» %s',
+	'LOG_DELETE_ABBCODES'		=> '<strong>Deleted MOD ABBC3 from database</strong>',
+));
+// MOD : MSSTI ABBC3 (V1.0.12) - End
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+// MOD : MSSTI ABBC3 - Start
+$lang = array_merge($lang, array(
+	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
+	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
+	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
+));
+// MOD : MSSTI ABBC3 - End
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/overall_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- INCLUDE abbcode_header.html -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/posting_buttons.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- IF S_ABBC3_MOD and not S_ABBC3_DISABLED -->
+	<!-- INCLUDE posting_abbcode_buttons.html -->
+<!-- ELSE -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<!-- IF S_ABBC3_MOD and not S_ABBC3_DISABLED -->
+	<!-- INCLUDE posting_abbcode_buttons.html -->
+<!-- ELSE -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/posting_preview.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- IF PREVIEW_SIGNATURE --><div class="signature">{PREVIEW_SIGNATURE}</div><!-- ENDIF -->
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+ class="signature"
+#
+#-----[ IN-LINE BEFORE, ADD ]------------------------------------------
+#
+ id="sig"
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/simple_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/ucp_prefs_post.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<fieldset class="submit-buttons">
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<!-- IF S_ABBC3_MOD and S_ABBC3_UCP_MODE -->
+<h2>{L_UCP_ABBCODES}</h2>
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<fieldset>
+	<dl>
+		<dt><label for="abbcode_mod1">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
+		<dd>
+			<label for="abbcode_mod1"><input type="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="abbcode_mod0"><input type="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="abbcode_compact0">{L_UCP_ABBC3_BBCODES}:</label><br /><span>{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></dt>
+		<dd>
+			<label for="abbcode_compact1"><input type="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="abbcode_compact0"><input type="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+	</fieldset>
+	
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/template/ucp_profile_signature.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<div class="signature" style="border-top:none; margin-top: 0; ">{SIGNATURE_PREVIEW}</div>
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+ class="signature"
+#
+#-----[ IN-LINE BEFORE, ADD ]------------------------------------------
+#
+ id="sig"
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/prosilver/theme/stylesheet.css
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/overall_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- INCLUDE abbcode_header.html -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/posting_body.html
+#
+#-----[ FIND ]------------------------------------------
+#
+			<!-- IF S_BBCODE_ALLOWED and not S_ABBC3_COLOR  -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+			<!-- IF S_BBCODE_ALLOWED and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb') -->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/posting_buttons.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+	<!-- IF S_ABBC3_MOD and not S_ABBC3_DISABLED -->
+		<!-- INCLUDE posting_abbcode_buttons.html -->
+	<!-- ELSE -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+	<!-- IF S_ABBC3_MOD and not S_ABBC3_DISABLED -->
+		<!-- INCLUDE posting_abbcode_buttons.html -->
+	<!-- ELSE -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+		</select></span>
+	<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+		</select></span>
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+	<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+<!-- IF not S_ABBC3_MOD or S_ABBC3_DISABLED -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<!-- IF not S_ABBC3_MOD or S_ABBC3_DISABLED -->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/posting_preview.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- IF PREVIEW_SIGNATURE -->
+#
+#-----[ FIND ]------------------------------------------
+#
+<span class="postbody">
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+ class="postbody"
+#
+#-----[ IN-LINE BEFORE, ADD ]------------------------------------------
+#
+ id="sig"
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/simple_header.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - Start //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+#
+#-----[ FIND ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (V1.0.12) - End //-->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/ucp_pm_viewmessage.html
+#
+#-----[ FIND ]------------------------------------------
+#
+				<!-- IF SIGNATURE -->
+#
+#-----[ FIND ]------------------------------------------
+#
+					<span class="postbody">
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+ class="postbody"
+#
+#-----[ IN-LINE BEFORE, ADD ]------------------------------------------
+#
+ id="sig"
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/ucp_prefs_post.html
+#
+#-----[ FIND ]------------------------------------------
+#
+<tr>
+	<td class="cat" colspan="2" align="center">{S_HIDDEN_FIELDS}<input class="btnmain" type="submit" name="submit" value="{L_SUBMIT}" />&nbsp;&nbsp;<input class="btnlite" type="reset" value="{L_RESET}" name="reset" /></td>
+#
+#-----[ BEFORE, ADD ]------------------------------------------
+#
+
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<!-- IF S_ABBC3_MOD and S_ABBC3_UCP_MODE -->
+<tr>
+	<th colspan="2">{L_UCP_ABBCODES}</th>
+
+</tr>
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_ABBC3_SETTINGS}:</b><br /><span class="gensmall">{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></td>
+	<td class="row2"><input type="radio" class="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+</tr>
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_ABBC3_BBCODES}:</b><br /><span class="gensmall">{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></td>
+	<td class="row2"><input type="radio" class="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+</tr>
+<!-- ENDIF -->
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+
+#
+#-----[ OPEN ]------------------------------------------
+#
+styles/subsilver2/template/ucp_profile_signature.html
+#
+#-----[ FIND ]------------------------------------------
+#
+		<!-- IF S_BBCODE_ALLOWED and not S_ABBC3_COLOR  -->
+#
+#-----[ REPLACE WITH ]------------------------------------------
+#
+		<!-- IF S_BBCODE_ALLOWED and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb') -->
+#
+#-----[ FIND ]------------------------------------------
+#
+<td class="row1" colspan="2"><div class="postbody" style="padding: 6px;">{SIGNATURE_PREVIEW}</div></td>
+#
+#-----[ IN-LINE FIND ]------------------------------------------
+#
+ class="postbody"
+#
+#-----[ IN-LINE BEFORE, ADD ]------------------------------------------
+#
+ id="sig"
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM
