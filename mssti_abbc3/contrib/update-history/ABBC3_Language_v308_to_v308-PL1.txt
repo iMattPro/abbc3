@@ -1,11 +1,11 @@
 ##############################################################
-## MOD Title: Advanced BBCode Box 3 (aka ABBC3) - Update : This file describes the changes in language files from version 3.0.8 to 3.0.8-pl1
+## MOD Title: Advanced BBCode Box 3 (aka ABBC3) - Update : This file describes the changes in language files from version 3.0.8 to 3.0.8-PL1
 ## MOD Author: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 ## MOD Author: VSE < n/a > (n/a) n/a
 ## MOD Description: This file describes the changes in language files from
-## version 3.0.8 to 3.0.8-pl1 (for custom language
+## version 3.0.8 to 3.0.8-PL1 (for custom language
 ## translations)
-## MOD Version: 3.0.8-pl1
+## MOD Version: 3.0.8-PL1
 ## 
 ## Installation Level: Easy
 ## Installation Time: 2 minutes

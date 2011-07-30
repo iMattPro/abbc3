@@ -89,12 +89,13 @@
 					<change> [Fix] Custom BBcodes not assigned an image/icon now correctly follow ABBC3's group permission settings</change>
 					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
+					<change> [Fix] Uninstallation will now revert database changes back to correct structure of bbcode_id field depending on your installed version oh phpBB</change>
 					<change> [Change] Update to UMIL v 1.0.4</change>
 				</changelog>
 			</entry>
 			<entry>
 				<date>2010-11-12</date>
-				<rev-version>3.0.8-pl2</rev-version>
+				<rev-version>3.0.8-PL2</rev-version>
 				<changelog lang="en">
 					<change> [Fix] ABBC3 can be disabled by adding the "false" parameter to display_custom_bbcodes().</change>
 					<change> [Change] Updated for campatibility with phpBB 3.0.8.</change>
@@ -102,7 +103,7 @@
 			</entry>
 			<entry>
 				<date>2010-10-03</date>
-				<rev-version>3.0.8-pl1</rev-version>
+				<rev-version>3.0.8-PL1</rev-version>
 				<changelog lang="en">
 					<change> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</change>
 					<change> [Change] Resize Post Area now increases post area in larger increments.</change>
