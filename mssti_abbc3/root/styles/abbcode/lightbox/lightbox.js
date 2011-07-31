@@ -42,50 +42,12 @@
 */
 // -----------------------------------------------------------------------------------
 
-/** Fix by MSSTI for ABBC3 v1.0.11 - Start **/
-var imageNum = 0;
-var lb_max_width = 800; //if you wish to constrain the width (set to 99999 for unlimited size)
-var lb_max_height = 600; //if you wish to constring the height (set to 99999 for unlimited size)
-function Arrayfind(ary, element)
-{
-	var Num = 0;
-	for (var i = 0; i < ary.length ; i++)
-	{
-		if ( ary[i][0] == element)
-		{
-			Num = i;
-		}
-	}
-    return Num;
-}
-/**
-* Code From : http://www.huddletogether.com/forum/comments.php?DiscussionID=1798
-**/
-function lb_scale_dims(orig_w, orig_h, max_w, max_h)
-{
-	var scale = lb_scale_rate(orig_w, orig_h, max_w, max_h);
-	var new_w = Math.round(scale*orig_w); new_h = Math.round(scale*orig_h);
-	if (new_w < 1) { new_w = 1; } if (new_h < 1) { new_h = 1; }
-	return Array(new_w, new_h);
-}
-function lb_scale_rate(orig_w, orig_h, max_w, max_h)
-{
-	var scale1 = 0; var scale2 = 0;
-	if (orig_w > max_w) { scale1 = (orig_w - max_w) / orig_w; }
-	if (orig_h > max_h) { scale2 = (orig_h - max_h) / orig_h; }
-	var scale = (scale1>scale2)?scale1:scale2;
-	return (1-scale);
-}
-/** Fix by MSSTI for ABBC3 v1.0.11 - End **/
-
 //
 //  Configurationl
 //
 LightboxOptions = Object.extend({
-	fileLoadingImage:        'images/loading.gif',     
-	fileLoadingImage:        fileLoadingImage,     
-	fileBottomNavCloseImage: 'images/closelabel.gif',
-	fileBottomNavCloseImage: fileBottomNavCloseImage,
+    fileLoadingImage:        'images/loading.gif',     
+    fileBottomNavCloseImage: 'images/closelabel.gif',
 
     overlayOpacity: 0.8,   // controls transparency of shadow overlay
 
@@ -226,10 +188,7 @@ Lightbox.prototype = {
         this.updateImageList = Prototype.emptyFunction;
 
         document.observe('click', (function(event){
-/** Fix by MSSTI for ABBC3 v1.0.11 - Start **/
-//          var target = event.findElement('a[rel^=lightbox]') || event.findElement('area[rel^=lightbox]');
-			var target = event.findElement('a[class^=lightbox]') || event.findElement('area[class^=lightbox]'); 
-/** Fix by MSSTI for ABBC3 v1.0.11 - End **/
+            var target = event.findElement('a[rel^=lightbox]') || event.findElement('area[rel^=lightbox]');
             if (target) {
                 event.stop();
                 this.start(target);
@@ -251,22 +210,13 @@ Lightbox.prototype = {
 
         new Effect.Appear(this.overlay, { duration: this.overlayDuration, from: 0.0, to: LightboxOptions.overlayOpacity });
 
-/** Fix by MSSTI for ABBC3 v1.0.11 - Start **/
-		if ( imageLink.getAttribute('src') )
-		{
-			imageNum = Arrayfind( this.imageArray, url_clean( imageLink.src ) );
-		}
-		else
-		{
-			imageNum = Arrayfind( this.imageArray, url_clean( imageLink.href ) );
-		}
-/**
         this.imageArray = [];
-        var imageNum = 0;
+        var imageNum = 0;       
+
         if ((imageLink.rel == 'lightbox')){
             // if image is NOT part of a set, add single image to imageArray
             this.imageArray.push([imageLink.href, imageLink.title]);         
-        else {
+        } else {
             // if image is part of a set..
             this.imageArray = 
                 $$(imageLink.tagName + '[href][rel="' + imageLink.rel + '"]').
@@ -275,13 +225,10 @@ Lightbox.prototype = {
             
             while (this.imageArray[imageNum][0] != imageLink.href) { imageNum++; }
         }
-**/
-/** Fix by MSSTI for ABBC3 v1.0.11 - End **/
 
-		// calculate top and left offset for the lightbox 
+        // calculate top and left offset for the lightbox 
         var arrayPageScroll = document.viewport.getScrollOffsets();
         var lightboxTop = arrayPageScroll[1] + (document.viewport.getHeight() / 10);
-		lightboxTop -= 40;
         var lightboxLeft = arrayPageScroll[0];
         this.lightbox.setStyle({ top: lightboxTop + 'px', left: lightboxLeft + 'px' }).show();
         
@@ -313,14 +260,7 @@ Lightbox.prototype = {
 
         imgPreloader.onload = (function(){
             this.lightboxImage.src = this.imageArray[this.activeImage][0];
-/** Fix by MSSTI for ABBC3 v1.0.11 - Start **/
-			var dims = lb_scale_dims(imgPreloader.width, imgPreloader.height, lb_max_width, lb_max_height);
-//			Element.setWidth('lightboxImage', dims[0]);
-//			Element.setHeight('lightboxImage', dims[1]);
-			$('lightboxImage').setStyle({ width: dims[0] + 'px', height: dims[1] + 'px' });
-			this.resizeImageContainer(dims[0], dims[1]);
-//          this.resizeImageContainer(imgPreloader.width, imgPreloader.height);
-/** Fix by MSSTI for ABBC3 v1.0.11 - End **/
+            this.resizeImageContainer(imgPreloader.width, imgPreloader.height);
         }).bind(this);
         imgPreloader.src = this.imageArray[this.activeImage][0];
     },
@@ -554,4 +494,4 @@ Lightbox.prototype = {
 	}
 }
 
-//document.observe('dom:loaded', function () { new Lightbox(); });
+document.observe('dom:loaded', function () { myLightbox = new Lightbox(); });
