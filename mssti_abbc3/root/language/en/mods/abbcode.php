@@ -48,7 +48,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
 // Image Resizer JS
-	'ABBC3_RESIZE_SMALL'		=> 'Click this bar to view the full image.',
+	'ABBC3_RESIZE_SMALL'		=> 'Click to view the full image.',
 	'ABBC3_RESIZE_ZOOM_IN'		=> 'Zoom in (real dimensions: %1$s x %2$s)',
 	'ABBC3_RESIZE_CLOSE'		=> 'Close',
 	'ABBC3_RESIZE_ZOOM_OUT'		=> 'Zoom out',
