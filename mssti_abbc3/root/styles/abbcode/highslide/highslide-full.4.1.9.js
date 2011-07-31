@@ -1,8 +1,7 @@
 /** 
  * Name:    Highslide JS
- * Version: 4.1.12 (2011-03-28)
- * Config:  default +events +unobtrusive +imagemap +slideshow +positioning +transitions +viewport +thumbstrip +inline +ajax +iframe +flash
- * Author:  Torstein HÃ¸nsi
+ * Version: 4.1.9 (2010-07-05)
+ * Author:  Torstein Hønsi
  * Support: www.highslide.com/support
  * License: www.highslide.com/#license
  */
@@ -216,7 +215,6 @@ onReady: [],
 uaVersion: /Trident\/4\.0/.test(navigator.userAgent) ? 8 :
 	parseFloat((navigator.userAgent.toLowerCase().match( /.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/ ) || [0,'0'])[1]),
 ie : (document.all && !window.opera),
-//ie : navigator && /MSIE [678]/.test(navigator.userAgent), // ie9 compliant?
 safari : /Safari/.test(navigator.userAgent),
 geckoMac : /Macintosh.+rv:1\.[0-8].+Gecko/.test(navigator.userAgent),
 
@@ -244,11 +242,11 @@ extend : function (el, attribs) {
 
 setStyles : function (el, styles) {
 	for (var x in styles) {
-		if (hs.ieLt9 && x == 'opacity') {
+		if (hs.ie && x == 'opacity') {
 			if (styles[x] > 0.99) el.style.removeAttribute('filter');
 			else el.style.filter = 'alpha(opacity='+ (styles[x] * 100) +')';
 		}
-		else el.style[x] = styles[x];		
+		else el.style[x] = styles[x];
 	}
 },
 animate: function(el, prop, opt) {
@@ -296,15 +294,15 @@ getPageSize : function () {
 	var d = document, w = window, iebody = d.compatMode && d.compatMode != 'BackCompat' 
 		? d.documentElement : d.body;
 	
-	var width = hs.ieLt9 ? iebody.clientWidth : 
+	var width = hs.ie ? iebody.clientWidth : 
 			(d.documentElement.clientWidth || self.innerWidth),
-		height = hs.ieLt9 ? iebody.clientHeight : self.innerHeight;
+		height = hs.ie ? iebody.clientHeight : self.innerHeight;
 	
 	hs.page = {
 		width: width,
 		height: height,		
-		scrollLeft: hs.ieLt9 ? iebody.scrollLeft : pageXOffset,
-		scrollTop: hs.ieLt9 ? iebody.scrollTop : pageYOffset
+		scrollLeft: hs.ie ? iebody.scrollLeft : pageXOffset,
+		scrollTop: hs.ie ? iebody.scrollTop : pageYOffset
 	};
 	return hs.page;
 },
@@ -498,7 +496,6 @@ discardElement : function(d) {
 },
 dim : function(exp) {
 	if (!hs.dimmer) {
-		isNew = true;
 		hs.dimmer = hs.createElement ('div', {
 				className: 'highslide-dimming highslide-viewport-size',
 				owner: '',
@@ -512,20 +509,17 @@ dim : function(exp) {
 				opacity: 0
 			}, hs.container, true);
 	}
+
 	hs.dimmer.style.display = '';
 
-	var isNew = hs.dimmer.owner == '';
 	hs.dimmer.owner += '|'+ exp.key;
-	
-	if (isNew) {
-		if (hs.geckoMac && hs.dimmingGeckoFix)
-			hs.setStyles(hs.dimmer, {
-				background: 'url('+ hs.graphicsDir + 'geckodimmer.png)',
-				opacity: 1
-			});
-		else
-			hs.animate(hs.dimmer, { opacity: exp.dimmingOpacity }, hs.dimmingDuration);
-	}
+	if (hs.geckoMac && hs.dimmingGeckoFix)
+		hs.setStyles(hs.dimmer, {
+			background: 'url('+ hs.graphicsDir + 'geckodimmer.png)',
+			opacity: 1
+		});
+	else
+		hs.animate(hs.dimmer, { opacity: exp.dimmingOpacity }, hs.dimmingDuration);
 },
 undim : function(key) {
 	if (!hs.dimmer) return;
@@ -772,7 +766,7 @@ dragHandler : function(e)
 	if (exp.iframe) {		
 		if (!exp.releaseMask) exp.releaseMask = hs.createElement('div', null, 
 			{ position: 'absolute', width: exp.x.size+'px', height: exp.y.size+'px', 
-				left: exp.x.cb+'px', top: exp.y.cb+'px', zIndex: 4,	background: (hs.ieLt9 ? 'white' : 'none'), 
+				left: exp.x.cb+'px', top: exp.y.cb+'px', zIndex: 4,	background: (hs.ie ? 'white' : 'none'), 
 				opacity: 0.01 }, 
 			exp.wrapper, true);
 		if (exp.releaseMask.style.display == 'none')
@@ -803,7 +797,7 @@ wrapperMouseHandler : function (e) {
 		if (!e) e = window.event;
 		var over = /mouseover/i.test(e.type); 
 		if (!e.target) e.target = e.srcElement; // ie
-		if (!e.relatedTarget) e.relatedTarget = 
+		if (hs.ie) e.relatedTarget = 
 			over ? e.fromElement : e.toElement; // ie
 		var exp = hs.getExpander(e.target);
 		if (!exp.isExpanded) return;
@@ -879,10 +873,8 @@ preloadImages : function (number) {
 init : function () {
 	if (!hs.container) {
 	
-		hs.ieLt7 = hs.ie && hs.uaVersion < 7;
-		hs.ieLt9 = hs.ie && hs.uaVersion < 9;
-		
 		hs.getPageSize();
+		hs.ieLt7 = hs.ie && hs.uaVersion < 7;
 		hs.ie6SSL = hs.ieLt7 && location.protocol == 'https:';
 		for (var x in hs.langDefaults) {
 			if (typeof hs[x] != 'undefined') hs.lang[x] = hs[x];
@@ -938,7 +930,7 @@ init : function () {
 		
 		hs.hideSelects = hs.ieLt7;
 		hs.hideIframes = ((window.opera && hs.uaVersion < 9) || navigator.vendor == 'KDE' 
-			|| (hs.ieLt7 && hs.uaVersion < 5.5));
+			|| (hs.ie && hs.uaVersion < 5.5));
 		hs.fireEvent(this, 'onActivate');
 	}
 },
@@ -1079,7 +1071,7 @@ hs.Outline =  function (outlineType, onLoad) {
 	this.outlineType = outlineType;
 	var v = hs.uaVersion, tr;
 	
-	this.hasAlphaImageLoader = hs.ie && hs.uaVersion < 7;
+	this.hasAlphaImageLoader = hs.ie && v >= 5.5 && v < 7;
 	if (!outlineType) {
 		if (onLoad) onLoad();
 		return;
@@ -2480,7 +2472,7 @@ focus : function() {
 			var blurExp = hs.expanders[i];
 			blurExp.content.className += ' highslide-'+ blurExp.contentType +'-blur';
 			if (blurExp.isImage) {
-				blurExp.content.style.cursor = hs.ieLt7 ? 'hand' : 'pointer';
+				blurExp.content.style.cursor = hs.ie ? 'hand' : 'pointer';
 				blurExp.content.title = hs.lang.focusTitle;	
 			}	
 			hs.fireEvent(blurExp, 'onBlur');
@@ -2496,7 +2488,7 @@ focus : function() {
 		
 		if (hs.restoreCursor) {
 			hs.styleRestoreCursor = window.opera ? 'pointer' : 'url('+ hs.graphicsDir + hs.restoreCursor +'), pointer';
-			if (hs.ieLt7 && hs.uaVersion < 6) hs.styleRestoreCursor = 'hand';
+			if (hs.ie && hs.uaVersion < 6) hs.styleRestoreCursor = 'hand';
 			this.content.style.cursor = hs.styleRestoreCursor;
 		}
 	}
@@ -3002,7 +2994,7 @@ loadHTML : function() {
 			hs.discardElement(this.iframe);
 		} else {
 			regBody = /(<body[^>]*>|<\/body>)/ig;
-			if (regBody.test(s)) s = s.split(regBody)[hs.ieLt9 ? 1 : 2];
+			if (regBody.test(s)) s = s.split(regBody)[hs.ie ? 1 : 2];
 			
 		}
 	}
@@ -3203,7 +3195,6 @@ hs.Thumbstrip = function(slideshow) {
 			hs.createElement('a', {
 				href: a.href,
 				onclick: function() {
-					if (/highslide-active-anchor/.test(this.className)) return false;
 					hs.getExpander(this).focus();
 					return hs.transit(a);
 				},
@@ -3259,11 +3250,11 @@ hs.addEventListener(document, 'ready', function() {
 			document.getElementsByTagName('HEAD')[0]);
 			
 		function addRule(sel, dec) {		
-			if (hs.ie && hs.uaVersion < 9) {
+			if (!hs.ie) {
+				style.appendChild(document.createTextNode(sel + " {" + dec + "}"));
+			} else {
 				var last = document.styleSheets[document.styleSheets.length - 1];
 				if (typeof(last.addRule) == "object") last.addRule(sel, dec);
-			} else {
-				style.appendChild(document.createTextNode(sel + " {" + dec + "}"));
 			}
 		}
 		function fix(prop) {
