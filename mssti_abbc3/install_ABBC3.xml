@@ -72,7 +72,7 @@
 
 		</author-group>
 
-		<mod-version>3.0.9</mod-version>
+		<mod-version>3.0.10</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -81,6 +81,13 @@
 		</installation>
 
 		<history>
+			<entry>
+				<date>2011-08-01</date>
+				<rev-version>3.0.10</rev-version>
+				<changelog lang="en">
+					<change> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBcodes exist on a page to activate ABBC3</change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2011-05-12</date>
 				<rev-version>3.0.9</rev-version>
@@ -385,6 +392,31 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 	{
 		$user->add_lang('mods/abbcode');
 	}
+// MOD : MSSTI ABBC3 - End
+]]></action>
+			</edit>
+		</open>
+
+		<open src="includes/functions_content.php">
+			<edit>
+				<find><![CDATA[				'L_DOWNLOAD_COUNT'		=> $l_download_count
+			);]]></find>
+				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+			global $abbcode;
+			// We need to check if ABBC3 is property initialized for attached images and the ABBC3 img resizer
+			if (@$config['ABBC3_MOD'])
+			{
+				// For attached image resizer in private message only when bbcodes are not present
+				if (!class_exists('abbcode'))
+				{
+					include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+				}
+				// For attached image resizer regular messages when bbcodes are not present
+ 				if ($abbcode->abbcode_config['S_ABBC3_RESIZE'] && !isset($template->_rootref['S_ABBC3_RESIZE']) && ($display_cat == ATTACHMENT_CATEGORY_IMAGE || $display_cat == ATTACHMENT_CATEGORY_THUMB))
+ 				{
+					$abbcode->abbcode_init();
+ 				}
+			}
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>

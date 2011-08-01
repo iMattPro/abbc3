@@ -1,6 +1,6 @@
 = Advanced BBCode Box 3 (aka ABBC3)
 * Release Version 3.0.8-PL2
-* Development Version 3.0.9
+* Development Version 3.0.10 (Resizer Development)
 
 The source code, issue tracker and wiki can be found at:
 
@@ -41,3 +41,10 @@ Please keep in mind that this version is still in development, so not everything
 == LICENSE:
 
 GNU General Public License v2
+
+== TO DO:
+
+* Test Image Resizer scripts and update XML instructions about their history/changes
+* Increment development to version 3.0.10
+* Build update instructions for 3.0.10
+* Update the install_abbc3.php script for 3.0.10
