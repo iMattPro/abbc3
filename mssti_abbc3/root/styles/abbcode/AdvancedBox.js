@@ -690,14 +690,14 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 			{
 				ObjImage.parentNode.className = ObjImage.parentNode.className + ' lightview';
 				ObjImage.parentNode.rel = 'gallery[lightview_gallery]';
-				ObjImage.onclick = function () { return Lightview.show({ href: this.parentNode.href, rel: 'image', options: { width: 800, height: 600 }}); }
+//				ObjImage.onclick = function () { return Lightview.show({ href: this.parentNode.href, rel: 'image', options: { width: 800, height: 600 }}); }
 				return true;
 			}
 			else
 			{
 				anchor.className = (anchor.className) ? anchor.className + ' lightview' : 'lightview';
 				anchor.rel = 'gallery[lightview_gallery]';
-				ObjImage.onclick = function () { return Lightview.show({ href: this.src, rel: 'image', options: { width: 800, height: 600 }}); }
+//				ObjImage.onclick = function () { return Lightview.show({ href: this.src, rel: 'image', options: { width: 800, height: 600 }}); }
 			}
 		break;
 
