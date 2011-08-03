@@ -40,6 +40,7 @@
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
+			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_wizards.js" to="styles/abbcode/posting_abbcode_wizards.js"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>

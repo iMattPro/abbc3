@@ -82,7 +82,7 @@
 
 		<history>
 			<entry>
-				<date>2011-05-12</date>
+				<date>2011-08-02</date>
 				<rev-version>3.0.9</rev-version>
 				<changelog lang="en">
 					<change> [New] Add support for youtu.be links to BBvideo BBcode</change>
@@ -90,6 +90,7 @@
 					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
 					<change> [Fix] Uninstallation will now revert database changes back to correct structure of bbcode_id field depending on your installed version oh phpBB</change>
+					<change> [Fix] Corrected an issue where the post area resize buttons stopped working with phpBB 3.0.9</change>
 					<change> [Change] Update to UMIL v 1.0.4</change>
 				</changelog>
 			</entry>
@@ -156,7 +157,7 @@
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Subsilver2 Style Instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">Install German language pack</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL2_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.9</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-pl2_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.9</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL1_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8-PL1 to 3.0.9</link>
 			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8 to 3.0.9</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>
