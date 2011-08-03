@@ -44,7 +44,8 @@ GNU General Public License v2
 
 == TO DO:
 
-* Test Image Resizer scripts and update XML instructions about their history/changes
+* Test Image Resizer scripts and update XML instructions about their history/changes (Highslide, Lightview, PopBox)
 * Increment development to version 3.0.10
 * Build update instructions for 3.0.10
 * Update the install_abbc3.php script for 3.0.10
+* Remove the add-on - Hide Images when Resize - it is obsolete, this function now built-in to ABBC3
