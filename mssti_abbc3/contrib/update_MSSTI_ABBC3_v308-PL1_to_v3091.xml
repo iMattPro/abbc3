@@ -55,6 +55,8 @@
 			<file from="root/styles/abbcode/PopBox/*.*" to="styles/abbcode/PopBox/*.*"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_wizards.js" to="styles/abbcode/posting_abbcode_wizards.js"/>
+			<file from="root/styles/prosilver/template/posting_abbcode_wizards.html" to="styles/prosilver/template/posting_abbcode_wizards.html"/>
+			<file from="root/styles/subsilver2/template/posting_abbcode_wizards.html" to="styles/subsilver2/template/posting_abbcode_wizards.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 
