@@ -91,6 +91,7 @@
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
 					<change> [Fix] Uninstallation will now revert database changes back to correct structure of bbcode_id field depending on your installed version oh phpBB</change>
 					<change> [Fix] Corrected an issue where the post area resize buttons stopped working with phpBB 3.0.9</change>
+					<change> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBcodes exist on a page to activate ABBC3</change>
 					<change> [Change] Update to UMIL v 1.0.4</change>
 				</changelog>
 			</entry>
@@ -386,6 +387,31 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 	{
 		$user->add_lang('mods/abbcode');
 	}
+// MOD : MSSTI ABBC3 - End
+]]></action>
+			</edit>
+		</open>
+
+		<open src="includes/functions_content.php">
+			<edit>
+				<find><![CDATA[				'L_DOWNLOAD_COUNT'		=> $l_download_count
+			);]]></find>
+				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+			global $abbcode;
+			// We need to check if ABBC3 is property initialized for attached images and the ABBC3 img resizer
+			if (@$config['ABBC3_MOD'])
+			{
+				// For attached image resizer in private message only when bbcodes are not present
+				if (!class_exists('abbcode'))
+				{
+					include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+				}
+				// For attached image resizer regular messages when bbcodes are not present
+ 				if ($abbcode->abbcode_config['S_ABBC3_RESIZE'] && !isset($template->_rootref['S_ABBC3_RESIZE']) && ($display_cat == ATTACHMENT_CATEGORY_IMAGE || $display_cat == ATTACHMENT_CATEGORY_THUMB))
+ 				{
+					$abbcode->abbcode_init();
+ 				}
+			}
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>

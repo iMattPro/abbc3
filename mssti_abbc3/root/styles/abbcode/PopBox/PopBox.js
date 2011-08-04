@@ -1,6 +1,6 @@
 /********************************************************************************************************************
-* PopBox.js, v2.6b Copyright (c) 2008, C6 Software, Inc. (http://www.c6software.com/)
-* PopBox is released under the Creative Commons GNU GPL license (http://creativecommons.org/licenses/GPL/2.0/")
+* PopBox.js, v2.7a Copyright (c) 2009, C6 Software, Inc. (http://www.c6software.com/)
+* PopBox is released under the Creative Commons GNU GPL license (http://creativecommons.org/licenses/GPL/2.0/)
 * and is free to use in both commercial and non-commercial work, provided this header remains at the top.
 * The latest version and documentation can be found at http://www.c6software.com/products/popbox/default.aspx.
 * Questions and suggestions can be sent to john.reid@c6software.com. Please put "PopBox" somewhere in the
@@ -360,11 +360,6 @@ function InitPopBox(obj)
 	if (pbSrc[elem.id] != null || (elem.style.position != "absolute" && elem.style.position != "relative"))
 	{
 		var strSrc = (pbSrc[elem.id] != null) ? pbSrc[elem.id].src : elem.src;
-
-/** Fix by MSSTI for ABBC3 v1.0.12 - Start **/
-		strSrc = url_clean( strSrc );
-/** Fix by MSSTI for ABBC3 v1.0.12 - End **/
-
 		var img = null;
 		try{img = document.createElement("<img src='" + strSrc + "' />");}
 		catch(ex){img = document.createElement("img"); img.src = strSrc;}
@@ -440,12 +435,6 @@ function InitPopBox(obj)
 		if (popBoxAutoClose == true && (typeof obj.ondblclick != "function" || obj.ondblclick == null) && typeof obj.onmouseover != "function")
 			elem.ondblclick = function(){Revert(elem.id, null, elem.className);};
 	}
-/** Fix by MSSTI for ABBC3 v1.0.12 - Start **/
-	else
-	{
-		elem.ondblclick = function(){Revert(elem.id, null, elem.className);};
-	}
-/** Fix by MSSTI for ABBC3 v1.0.12 - End **/
 
 	if (popBoxAutoClose == true && typeof obj.onmouseover == "function" && (typeof obj.onmouseout != "function" || obj.onmouseout == null))
 	{
@@ -546,7 +535,7 @@ function DoPopBox(elem)
 			
 			if (popBox[elem.id].isPopped == true)
 			{
-				elem.style.zIndex = null;
+				elem.style.zIndex = "";
 	
 				if (popBox[elem.id].originalId != null)
 				{
@@ -721,11 +710,6 @@ function CreatePbBar(obj, pbShowBar, pbShowText, pbShowImage, pbText, pbImage, p
 		objSpan.style.left = (imgPos.x - spanPos.x) + "px";
 		objSpan.style.top = (floatValue != "") ? "1px" : (imgPos.y - spanPos.y) + "px";
 		
-		objSpan.onclick = fnClick;
-		if (isRevert == true)
-			objSpan.onmouseout = fnMouseOut;
-		else
-			objSpan.onmouseover = fnMouseOver;
 		parentNode = objSpan;
 	}
 
@@ -1366,7 +1350,16 @@ function PopEx(obj, newLeft, newTop, newWidth, newHeight, speed, className)
 	if (isReady == false)
 	{
 		var imgWait = CreateWaitImage(obj);
-		var str = "var imgWait = GetRawObject('" + imgWait.id + "'); if (imgWait != null) { imgWait.parentNode.removeChild(imgWait); } PopEx('" + obj.id + "'," + newLeft + "," + newTop + "," + newWidth + "," + newHeight + "," + speed + ",'" + className + "');";
+		var str = "var imgWait = GetRawObject('" + imgWait.id + "'); if (imgWait != null) { imgWait.parentNode.removeChild(imgWait); } PopEx('" + obj.id + "',";
+		if (newLeft == null)
+			str += newLeft + ",";
+		else
+			str += "'" + newLeft + "',";
+		if (newTop == null)
+			str += newTop + ",";
+		else
+			str += "'" + newTop + "',";
+		str += newWidth + "," + newHeight + "," + speed + ",'" + className + "');";
 		objToPop.onload = new Function("", str);
 		return;
 	}
