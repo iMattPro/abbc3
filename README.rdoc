@@ -1,6 +1,6 @@
 = Advanced BBCode Box 3 (aka ABBC3)
 * Release Version 3.0.8-PL2
-* Development Version 3.0.9 (Resizer Development)
+* Development Version 3.0.9
 
 The source code, issue tracker and wiki can be found at:
 
@@ -44,8 +44,5 @@ GNU General Public License v2
 
 == TO DO:
 
-* Test Image Resizer scripts and update XML instructions about their history/changes (Highslide, Lightview, PopBox)
 * Increment development to next version
-* Build update instructions for next version
-* Update the install_abbc3.php script for next version
 * Remove the add-on - Hide Images when Resize - it is obsolete, this function now built-in to ABBC3
