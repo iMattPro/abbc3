@@ -83,7 +83,7 @@
 
 		<history>
 			<entry>
-				<date>2011-08-03</date>
+				<date>2011-08-04</date>
 				<rev-version>3.0.9.1</rev-version>
 				<changelog lang="en">
 					<change> [New] Add support for youtu.be links to BBvideo BBcode</change>
@@ -94,6 +94,7 @@
 					<change> [Fix] Corrected an issue where the post area resize buttons stopped working with phpBB 3.0.9</change>
 					<change> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBcodes exist on a page to activate ABBC3</change>
 					<change> [Change] Image Resizers have been updated: AdvancedBox, Highslide (up to v4.12), Lightview (up to v2.74) and PopBox (up to v2.7a)</change>
+					<change> [Change] Conform to phpBB 3.0.9 new model of using T_SUPER_TEMPLATE_PATH for URLs to javascript </change>
 					<change> [Change] Update to UMIL v 1.0.4</change>
 				</changelog>
 			</entry>
