@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.9 7/30/11 8:28 PM VSE Exp $
+* @version: $Id: install_abbc3.php, v 3.0.9.1 8/03/11 9:32 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -106,7 +106,7 @@ $versions = array(
 	'3.0.8-pl2'		=> array(
 		// No new database changes (so far)
 	),
-	'3.0.9'		=> array(
+	'3.0.9.1'		=> array(
 		// No new database changes (so far)
 	),
 );
@@ -400,7 +400,7 @@ function abbc3_308($action, $version)
 			$umil->table_index_remove('phpbb_bbcodes', 'display_order');
 
 			// Change the following columns back to default
-			if ($config['version'] >= '3.0.9')
+			if (version_compare($config['version'], '3.0.8', '>'))
 			{
 				// phpBB 3.0.9 switched bbcode_id to UNSIGNED SMALLINT(4)
 				$umil->table_column_update('phpbb_bbcodes', 'bbcode_id', array('USINT', 0));
