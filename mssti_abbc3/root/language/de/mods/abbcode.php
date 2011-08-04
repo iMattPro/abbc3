@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBcode Box 3 -> root/language/de/mods :: [de][German]
-* @version: $Id: abbcode.php, v 3.0.9 2010/10/04 19:11:22 femu Exp $
+* @version: $Id: abbcode.php, v 3.0.9.1 2010/10/04 19:11:22 femu Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -48,7 +48,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
 // Image Resizer JS
-	'ABBC3_RESIZE_SMALL'		=> 'Klicke auf diesen Balken, um das Bild in voller Größe zu sehen.',
+	'ABBC3_RESIZE_SMALL'		=> 'Klicke um das Bild in voller Größe zu sehen.',
 	'ABBC3_RESIZE_ZOOM_IN'		=> 'Vergrößern (tatsächliche Abmessungen: %1$s x %2$s)',
 	'ABBC3_RESIZE_CLOSE'		=> 'Schließen',
 	'ABBC3_RESIZE_ZOOM_OUT'		=> 'Verkleinern',

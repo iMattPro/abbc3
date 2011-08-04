@@ -253,7 +253,7 @@
 	position: relative;
 	float: left;
 	padding-bottom: 3px;
-	line-height: 13px;
+	line-height: 15px;
 	overflow: hidden;
 }
 
@@ -271,21 +271,20 @@
 	margin-bottom: 2px;
 }
 .lv_DataText .lv_Caption { clear: both; }
-.lv_Data .lv_ImgNumber {
+.lv_Data .lv_innerPrevNext .lv_ImgNumber {
 	color: #a7a7a7;
-	margin-right: 5px;
-	margin-top: 5px;
+	float: left;
 }
 
 .lv_Data .lv_innerPrevNext, 
 .lv_Data .lv_Slideshow {
 	position: relative;
-	border-left: 1px solid #d7d7d7;
 	padding: 0 5px;
 	margin-top: 5px;
 	vertical-align: middle;
 }
-.lv_Data .lv_Slideshow { padding-right: 0px; }
+.lv_Data .lv_innerPrevNext { padding-left: 0; }
+.lv_Data .lv_Slideshow { padding-right: 0px; border-left: 1px solid #d7d7d7; }
 
 .lv_Data .lv_innerPrevNext .lv_Button, 
 .lv_Data .lv_Slideshow .lv_Button { /* play and stop */
@@ -293,6 +292,9 @@
 	background-position: center left;
 	background-repeat: no-repeat;
 }
+.lv_innerPrevButton { margin-right: 5px; }
+.lv_innerNextButton { margin-left: 5px; }
+
 
 /* the boxes that hold media or external content */
 .lv_contentTop,
@@ -481,5 +483,5 @@
 html #lv_overlay {
 	position: absolute;
 	height: expression(((window.Enumerable && window.Enumerable.max) ? [document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight].max() : document.documentElement.scrollHeight) + 'px' );
-	width: expression(((window.Enumerable && window.Enumerable.max) ? [document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.clientHeight].max() : document.documentElement.scrollWidth) + 'px' );
+	width: expression(((window.Enumerable && window.Enumerable.max) ? [document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth].max() : document.documentElement.scrollWidth) + 'px' );
 }

@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.9 2011/05/12 01:05:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.9.1 2011/05/12 01:05:26 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -86,7 +86,7 @@ class abbcode
 	//	{
 			// For overall_header.html
 			$this->abbcode_config = array(
-				'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.9',
+				'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.9.1',
 				// Display ABBC3 ?
 				'S_ABBC3_MOD'			=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
 				// Where the files are stored

@@ -46,7 +46,8 @@
 
 	Tested on Macintosh Browsers:
 		- Safari 4 & 5
-		- Firefox 3.6
+		- Firefox 3.6, 4, 5
+		- Chrome 12 & 13
 
 	-------------------------------------------------------------------
 
@@ -72,7 +73,7 @@
 
 		</author-group>
 
-		<mod-version>3.0.9</mod-version>
+		<mod-version>3.0.9.1</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -82,8 +83,8 @@
 
 		<history>
 			<entry>
-				<date>2011-08-02</date>
-				<rev-version>3.0.9</rev-version>
+				<date>2011-08-03</date>
+				<rev-version>3.0.9.1</rev-version>
 				<changelog lang="en">
 					<change> [New] Add support for youtu.be links to BBvideo BBcode</change>
 					<change> [Fix] Custom BBcodes not assigned an image/icon now correctly follow ABBC3's group permission settings</change>
@@ -91,6 +92,8 @@
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
 					<change> [Fix] Uninstallation will now revert database changes back to correct structure of bbcode_id field depending on your installed version oh phpBB</change>
 					<change> [Fix] Corrected an issue where the post area resize buttons stopped working with phpBB 3.0.9</change>
+					<change> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBcodes exist on a page to activate ABBC3</change>
+					<change> [Change] Image Resizers have been updated: AdvancedBox, Highslide (up to v4.12), Lightview (up to v2.74) and PopBox (up to v2.7a)</change>
 					<change> [Change] Update to UMIL v 1.0.4</change>
 				</changelog>
 			</entry>
@@ -157,10 +160,9 @@
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Subsilver2 Style Instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">Install German language pack</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-pl2_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.9</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL1_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8-PL1 to 3.0.9</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v309.xml" lang="en">Update : ABBC3 from 3.0.8 to 3.0.9</link>
-			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_hide_image_when_resize.xml" lang="en">Add-on : Hide image when resize.</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL2_to_v3091.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.9.1</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL1_to_v3091.xml" lang="en">Update : ABBC3 from 3.0.8-PL1 to 3.0.9.1</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v3091.xml" lang="en">Update : ABBC3 from 3.0.8 to 3.0.9.1</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : Quote behaviour.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_embossed_button_effect.xml" lang="en">Add-on : Embossed buttons for ABBC3</link>
@@ -386,6 +388,31 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 	{
 		$user->add_lang('mods/abbcode');
 	}
+// MOD : MSSTI ABBC3 - End
+]]></action>
+			</edit>
+		</open>
+
+		<open src="includes/functions_content.php">
+			<edit>
+				<find><![CDATA[				'L_DOWNLOAD_COUNT'		=> $l_download_count
+			);]]></find>
+				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+			global $abbcode;
+			// We need to check if ABBC3 is property initialized for attached images and the ABBC3 img resizer
+			if (@$config['ABBC3_MOD'])
+			{
+				// For attached image resizer in private message only when bbcodes are not present
+				if (!class_exists('abbcode'))
+				{
+					include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+				}
+				// For attached image resizer regular messages when bbcodes are not present
+ 				if ($abbcode->abbcode_config['S_ABBC3_RESIZE'] && !isset($template->_rootref['S_ABBC3_RESIZE']) && ($display_cat == ATTACHMENT_CATEGORY_IMAGE || $display_cat == ATTACHMENT_CATEGORY_THUMB))
+ 				{
+					$abbcode->abbcode_init();
+ 				}
+			}
 // MOD : MSSTI ABBC3 - End
 ]]></action>
 			</edit>

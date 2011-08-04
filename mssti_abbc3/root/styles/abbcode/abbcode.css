@@ -1,7 +1,7 @@
 /*  phpBB 3.0 Style Sheet
  * --------------------------------------------------------------
  * @package: phpBB3 :: Advanced BBCode box 3 -> styles -> abbcode
- * @version: $Id: abbcode.css, v 3.0.9 2010/10/03 10:19:15 leviatan21 Exp $
+ * @version: $Id: abbcode.css, v 3.0.9.1 2010/10/03 10:19:15 leviatan21 Exp $
  * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
  * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
  * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -555,11 +555,35 @@ div.Rainbow {
 }
 /** thumbnails - END **/
 
+/** gallery - Start **/
+ul.abbc3-gallery,
+ul.abbc3-gallery li {
+	display: inline;
+	margin : 0 0 0 0;
+	padding : 0 0 0 0;
+}
+ul.abbc3-gallery a {
+}
+ul.abbc3-gallery img {
+	margin: 1px;
+	padding: 2px;
+	border: 1px dotted #ccc;
+	background-color: #FAFAFA;
+}
+/** gallery - Start **/
+
 /** Image Resizer JS - START **/
-.resized-div           { margin: 0; padding: 0; border: 0px; background-color: #000000; /*width: auto;*/ height: 24px; -moz-border-radius: 7px 7px 0 0; text-align: left; }
+.resized-div           { margin: 0; padding: 0; border: 0px; background-color: #000000; width: 100%; /*width: auto;*/ height: 24px; -moz-border-radius: 7px 7px 0 0; border-radius: 7px 7px 0 0; text-align: left; }
 .resized-txt           { padding-bottom: 5px; color: #ffffff; font-size: 12px; font-weight: normal; text-decoration: none; font-family: "Trebuchet MS", Helvetica, Arial, sans-serif; vertical-align: middle; font-variant: normal; text-transform: none; line-height: 100%; text-align: left; }
 .resized-div img       { background-color: transparent !important; border: 1px solid transparent !important; margin: 2px 5px 0 10px; }
 .resized-div img:hover { border: 1px solid transparent !important; }
+.resized-div a:link,
+.resized-div a:visited,
+.resized-div a:hover,
+.resized-div a:active  { border-width: 0; margin: 0; padding: 0; text-decoration: none; }
+/*
+.resized-div a img     { background-color: transparent; border-color: #dddddd #bbbbbb #aaaaaa #cccccc; border-style: dotted; border-width: 1px; margin: 3px; padding: 5px; }
+*/
 /** Image Resizer JS - END **/
 
 /** AdvancedBox JS - START **/

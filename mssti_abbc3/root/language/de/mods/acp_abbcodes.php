@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/de/mods :: [de][German]
-* @version: $Id: acp_abbcode.php, v 3.0.9 2010/07/24 10:07:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.9.1 2010/07/24 10:07:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -82,8 +82,9 @@ $lang = array_merge($lang, array(
 													'HighslideBox'	=> 'Highslide Box JS',
 													'LiteBox'		=> 'Lite Box JS',
 													'GreyBox'		=> 'Grey Box JS',
-													'Lightview'		=> 'Light view JS',
-													'Ibox'			=> 'Schattenbox mit Ibox JS',
+													'Lightview'		=> 'Light view JS', 
+											//		'Ibox'			=> 'Shadow box with Ibox JS', 
+													'Shadowbox'		=> 'Shadow box with Ibox JS', 
 													'PopBox'		=> 'Pop Box JS',
 													'pop-up'		=> 'Pop Up Fenster',
 													'enlarge'		=> 'Vergrößern',

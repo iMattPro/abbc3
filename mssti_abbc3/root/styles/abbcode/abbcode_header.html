@@ -5,9 +5,10 @@
 <!-- IF S_ABBC3_RESIZE and (S_NEW_MESSAGE or S_EDIT_POST or S_VIEWTOPIC or S_DISPLAY_PREVIEW or S_POST_REVIEW or S_DISPLAY_REVIEW or SIGNATURE) or (U_MCP and (U_MCP_POST or U_MCP_TOPIC or U_MCP_FORUM)) or (S_PRIVMSGS and (S_VIEW_MESSAGE or S_DISPLAY_HISTORY)) or (SEARCH_TITLE or SEARCH_MATCHES) -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'HighslideBox' -->
-	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
 	<script type="text/javascript" src="{S_ABBC3_PATH}/highslide/highslide-full.js"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/highslide/highslide.css" />
+	<style type="text/css">.controls-in-heading .highslide-controls { top: 25px; }</style>
+	<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="{S_ABBC3_PATH}/highslide/highslide-ie6.css" /><![endif]-->
 	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Lightview' -->
@@ -16,18 +17,18 @@
 	<script type='text/javascript' src='{S_ABBC3_PATH}/lightview/scriptaculous.js?load=effects'></script>
 	<script type='text/javascript' src='{S_ABBC3_PATH}/lightview/js/lightview.js'></script>
 	<link rel="stylesheet" type="text/css" href="{S_ABBC3_PATH}/lightview/css/lightview.css" />
-	<style rel="stylesheet" type="text/css" media="screen, projection">#lightview .clearfix { height: auto; }</style>
+	<style type="text/css" media="screen, projection">#lightview .clearfix { height: auto; }</style>
 	<!-- ENDIF -->
 
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Ibox' -->
+	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Shadowbox' -->
 	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
 	<script type="text/javascript" src="{S_ABBC3_PATH}/ibox/shadowbox.js"></script>
 	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'PopBox' -->
 	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
-	<link type="text/css" rel="stylesheet" href="{S_ABBC3_PATH}/PopBox/PopBox.css" />
 	<script type="text/javascript" src="{S_ABBC3_PATH}/PopBox/PopBox.js"></script>
+	<link type="text/css" rel="stylesheet" href="{S_ABBC3_PATH}/PopBox/PopBox.css" />
 	<!-- ENDIF -->
 
 	<script type="text/javascript">
@@ -44,7 +45,8 @@
 		var ImageResizerWarningFullsize		= "{LA_ABBC3_RESIZE_FULLSIZE}";
 		var ImageResizerWarningFilesize		= "{LA_ABBC3_RESIZE_FILESIZE}";
 		var ImageResizerWarningNoFilesize	= "{LA_ABBC3_RESIZE_NOFILESIZE}";
-
+		var ImageResizerMaxWidth			= 0;
+		var ImageResizerMaxHeight			= 0;
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'AdvancedBox' -->
 	/** Image Resizer JS and AdvancedBox JS - Start **/
 		var ImageResizerNumberOf			= "{LA_ABBC3_RESIZE_NUMBER}";
@@ -61,67 +63,83 @@
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'HighslideBox' -->
 	/** Image Resizer JS with Highslide JS - End **/
-		hs.graphicsDir						= "{S_ABBC3_PATH}/highslide/";
 		// Language strings
 		hs.lang = {
-			loadingText :     "{LA_ABBC3_HIGHSLIDE_LOADINGTEXT}",
-			loadingTitle :    "{LA_ABBC3_HIGHSLIDE_LOADINGTITLE}",
-			focusTitle :      "{LA_ABBC3_HIGHSLIDE_FOCUSTITLE}",
-			fullExpandTitle : "{LA_ABBC3_HIGHSLIDE_FULLEXPANDTITLE}",
-			fullExpandText :  "{LA_ABBC3_HIGHSLIDE_FULLEXPANDTEXT}",
-			creditsText :     "{LA_ABBC3_HIGHSLIDE_CREDITSTEXT}",
-			creditsTitle :    "{LA_ABBC3_HIGHSLIDE_CREDITSTITLE}",
-			previousText :    "{LA_ABBC3_HIGHSLIDE_PREVIOUSTEXT}",
-			previousTitle :   "{LA_ABBC3_HIGHSLIDE_PREVIOUSTITLE}",
-			nextText :        "{LA_ABBC3_HIGHSLIDE_NEXTTEXT}",
-			nextTitle :       "{LA_ABBC3_HIGHSLIDE_NEXTTITLE}",
-			moveTitle :       "{LA_ABBC3_HIGHSLIDE_MOVETITLE}",
-			moveText :        "{LA_ABBC3_HIGHSLIDE_MOVETEXT}",
-			closeText :       "{LA_ABBC3_HIGHSLIDE_CLOSETEXT}",
-			closeTitle :      "{LA_ABBC3_HIGHSLIDE_CLOSETITLE}",
-			resizeTitle :     "{LA_ABBC3_HIGHSLIDE_RESIZETITLE}",
-			playText :        "{LA_ABBC3_HIGHSLIDE_PLAYTEXT}",
-			playTitle :       "{LA_ABBC3_HIGHSLIDE_PLAYTITLE}",
-			pauseText :       "{LA_ABBC3_HIGHSLIDE_PAUSETEXT}",
-			pauseTitle :      "{LA_ABBC3_HIGHSLIDE_PAUSETITLE}",
-			restoreTitle :    "{LA_ABBC3_HIGHSLIDE_RESTORETITLE}"
+			loadingText:		"{LA_ABBC3_HIGHSLIDE_LOADINGTEXT}",
+			loadingTitle:		"{LA_ABBC3_HIGHSLIDE_LOADINGTITLE}",
+			focusTitle:			"{LA_ABBC3_HIGHSLIDE_FOCUSTITLE}",
+			fullExpandTitle:	"{LA_ABBC3_HIGHSLIDE_FULLEXPANDTITLE}",
+			fullExpandText:		"{LA_ABBC3_HIGHSLIDE_FULLEXPANDTEXT}",
+			creditsText:		"{LA_ABBC3_HIGHSLIDE_CREDITSTEXT}",
+			creditsTitle:		"{LA_ABBC3_HIGHSLIDE_CREDITSTITLE}",
+			previousText:		"{LA_ABBC3_HIGHSLIDE_PREVIOUSTEXT}",
+			previousTitle:		"{LA_ABBC3_HIGHSLIDE_PREVIOUSTITLE}",
+			nextText:			"{LA_ABBC3_HIGHSLIDE_NEXTTEXT}",
+			nextTitle:			"{LA_ABBC3_HIGHSLIDE_NEXTTITLE}",
+			moveTitle:			"{LA_ABBC3_HIGHSLIDE_MOVETITLE}",
+			moveText:			"{LA_ABBC3_HIGHSLIDE_MOVETEXT}",
+			closeText:			"{LA_ABBC3_HIGHSLIDE_CLOSETEXT}",
+			closeTitle:			"{LA_ABBC3_HIGHSLIDE_CLOSETITLE}",
+			resizeTitle:		"{LA_ABBC3_HIGHSLIDE_RESIZETITLE}",
+			number:				"{LA_ABBC3_HIGHSLIDE_NUMBER}",
+			playText:			"{LA_ABBC3_HIGHSLIDE_PLAYTEXT}",
+			playTitle:			"{LA_ABBC3_HIGHSLIDE_PLAYTITLE}",
+			pauseText:			"{LA_ABBC3_HIGHSLIDE_PAUSETEXT}",
+			pauseTitle:			"{LA_ABBC3_HIGHSLIDE_PAUSETITLE}",
+			restoreTitle:		"{LA_ABBC3_HIGHSLIDE_RESTORETITLE}"
 		};
 
+		// override the settings defined at the top of the highslide.js file.
+		hs.graphicsDir = "{S_ABBC3_PATH}/highslide/graphics/";
 		hs.align = 'center';
 		hs.transitions = ['expand', 'crossfade'];
-		hs.outlineType = 'rounded-white';
+		hs.outlineType = 'rounded-white' /* 'glossy-dark' */;
+		hs.wrapperClassName = 'dark' /* 'controls-in-heading' */;
 		hs.fadeInOut = true;
-		hs.dimmingOpacity = 0.50;
+		hs.dimmingOpacity = 0.75;
 		hs.marginTop = 25;
 		hs.thumbnailId = null;
 		hs.showCredits = false;
+		hs.numberPosition = 'caption';
+		hs.captionEval = 'this.a.title';
+		hs.useBox = false /* true */;
+		hs.width = 600;
+		hs.height = 400;
 
 		// Add the controlbar
 		if (hs.addSlideshow) hs.addSlideshow({
-			// slideshowGroup: 'group1',
+		//	slideshowGroup: 'gallery',
 			interval: 5000,
 			repeat: false,
 			useControls: true,
-			fixedControls: false,
+			fixedControls: false /* 'fit' */,
 			overlayOptions: {
-				opacity: 1,
-				position: 'top left',
-				hideOnMouseOut: false
+				position: 'bottom right',
+				hideOnMouseOut: true /* false */,
+				opacity: 0.75
+			},
+			thumbstrip: {
+				position: 'above',
+				mode: 'horizontal',
+				relativeTo: 'expander'
 			}
 		});
 	/** Image Resizer JS with Highslide JS - End **/
 	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'LiteBox' -->
-	/** Image Resizer JS with Litebox JS - Start **/
-		var fileLoadingImage				= "{S_ABBC3_PATH}/lightbox/loading.gif";
-		var fileBottomNavCloseImage			= "{S_ABBC3_PATH}/lightbox/closelabel.gif";
-	/** Image Resizer JS with Litebox JS - End **/
+	/** Image Resizer JS with Lightbox JS - Start **/
+		LightboxOptions = {
+		//	borderSize : 50,
+			fileLoadingImage : "{S_ABBC3_PATH}/lightbox/images/loading.gif",
+			fileBottomNavCloseImage : "{S_ABBC3_PATH}/lightbox/images/closelabel.gif"
+		};
+	/** Image Resizer JS with Lightbox JS - End **/
 	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'GreyBox' -->
 	/** Image Resizer JS with GreyBox JS - Start **/
-		var GB_ROOT_DIR						= "{S_ABBC3_PATH}/greybox/";
+		var GB_ROOT_DIR = "{S_ABBC3_PATH}/greybox/";
 	/** Image Resizer JS with GreyBox JS - End **/
 	<!-- ENDIF -->
 
@@ -130,21 +148,21 @@
 	/** Image Resizer JS with Lightview JS - End **/
 	<!-- ENDIF -->
 
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Ibox' -->
+	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Shadowbox' -->
 	/** Image Resizer JS with Ibox JS - Start **/
 		Shadowbox.loadSkin('classic', "{S_ABBC3_PATH}/ibox/skins");
+		var ib_imageset = new Array();
 	/** Image Resizer JS with Ibox JS - End **/
 	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'PopBox' -->
 	/** Image Resizer JS with Pop Box JS - Start **/
-		var popBoxRevertText				= "{LA_ABBC3_POPBOX_REVERSETEXT}";
-		popBoxWaitImage.src					= "{S_ABBC3_PATH}/PopBox/images/spinner40.gif";
-		var popBoxRevertImage				= "{S_ABBC3_PATH}/PopBox/images/magminus.gif";
-		var popBoxPopImage					= "{S_ABBC3_PATH}/PopBox/images/magplus.gif";
+		var popBoxRevertText	= "{LA_ABBC3_POPBOX_REVERSETEXT}";
+		popBoxWaitImage.src		= "{S_ABBC3_PATH}/PopBox/images/spinner40.gif";
+		var popBoxRevertImage	= "{S_ABBC3_PATH}/PopBox/images/magminus.gif";
+		var popBoxPopImage		= "{S_ABBC3_PATH}/PopBox/images/magplus.gif";
 	/** Image Resizer JS with Pop Box JS - End **/
 	<!-- ENDIF -->
-
 	// ]]>
 	</script>
 

@@ -6,8 +6,13 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8 to 3.0.9]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8 to version 3.0.9]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8 to 3.0.9.1]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8 to version 3.0.9.1]]></description>
+		<author-notes lang="en"><![CDATA[IMPORTANT : If you were using HighSlide, LightView or PopBox as your Image Resizer method, we have updated them to work with newer versions and you should download the latest versions of these scripts to replace your current scripts, as we could not include these scripts with this MOD.
+		
+		Highslide v4.12: get a new "highslide-full.js" at http://highslide.com/download.php
+		LightView v2.74: get a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
+		PopBox v2.7a: get a new "PopBox.js" at http://www.c6software.com/Products/PopBox/]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Gabriel]]></realname>
@@ -25,7 +30,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.9</mod-version>
+		<mod-version>3.0.9.1</mod-version>
 		<installation>
 			<level>intermediate</level>
 			<time>300</time>
@@ -43,8 +48,14 @@
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
+			<file from="root/styles/abbcode/abbcode_header.html" to="styles/abbcode/abbcode_header.html"/>
 			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
+			<file from="root/styles/abbcode/AdvancedBox.js" to="styles/abbcode/AdvancedBox.js"/>
+			<file from="root/styles/abbcode/highslide/*.*" to="styles/abbcode/highslide/*.*"/>
+			<file from="root/styles/abbcode/lightbox/*.*" to="styles/abbcode/lightbox/*.*"/>
+			<file from="root/styles/abbcode/lightview/*.*" to="styles/abbcode/lightview/*.*"/>
+			<file from="root/styles/abbcode/PopBox/*.*" to="styles/abbcode/PopBox/*.*"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_wizards.js" to="styles/abbcode/posting_abbcode_wizards.js"/>
 			<file from="root/styles/prosilver/template/posting_abbcode_buttons.html" to="styles/prosilver/template/posting_abbcode_buttons.html"/>
@@ -87,6 +98,31 @@
 				<action type="replace-with"><![CDATA[			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></action>
 			</edit>
 
+		</open>
+
+		<open src="includes/functions_content.php">
+			<edit>
+				<find><![CDATA[				'L_DOWNLOAD_COUNT'		=> $l_download_count
+			);]]></find>
+				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+			global $abbcode;
+			// We need to check if ABBC3 is property initialized for attached images and the ABBC3 img resizer
+			if (@$config['ABBC3_MOD'])
+			{
+				// For attached image resizer in private message only when bbcodes are not present
+				if (!class_exists('abbcode'))
+				{
+					include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+				}
+				// For attached image resizer regular messages when bbcodes are not present
+ 				if ($abbcode->abbcode_config['S_ABBC3_RESIZE'] && !isset($template->_rootref['S_ABBC3_RESIZE']) && ($display_cat == ATTACHMENT_CATEGORY_IMAGE || $display_cat == ATTACHMENT_CATEGORY_THUMB))
+ 				{
+					$abbcode->abbcode_init();
+ 				}
+			}
+// MOD : MSSTI ABBC3 - End
+]]></action>
+			</edit>
 		</open>
 
 		<open src="includes/functions_display.php">

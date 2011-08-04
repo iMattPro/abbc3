@@ -1,6 +1,6 @@
 = Advanced BBCode Box 3 (aka ABBC3)
 * Release Version 3.0.8-PL2
-* Development Version 3.0.9
+* Development Version 3.0.9.1
 
 The source code, issue tracker and wiki can be found at:
 

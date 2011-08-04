@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.9 2010/09/27 03:33:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.9.1 2010/09/27 03:33:24 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -41,7 +41,7 @@ class acp_abbcodes
 
 		/** Set some default values so the user havn't to run any install - Start **/
 		// Same default values as root/install_abbc3.php -> abbc3_308()
-		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.9';
+		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.9.1';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
 //		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			? $config['ABBC3_PATH']				: 'styles/abbcode';
 		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';
@@ -324,22 +324,22 @@ class acp_abbcodes
 			'L_NO_EXIST_EXPLAIN_ADVANCEDBOX'	=> sprintf($user->lang['NO_EXIST_EXPLAIN_ADVANCEDBOX'], $board_path),
 
 			'HIGHSLIDE_EXIST'					=> (@file_exists("$this->dir/highslide/highslide-full.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.0.1", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
+			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.1.12", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
 
 			'LITEBOX_EXIST'						=> (@file_exists("$this->dir/lightbox/lightbox.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_LITEBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightbox.js", "2.04", "{$board_path}lightbox/", "Lightbox JS", "http://www.huddletogether.com/projects/lightbox/"),
+			'L_NO_EXIST_EXPLAIN_LITEBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightbox.js", "2.04", "{$board_path}lightbox/", "Lightbox2 JS", "http://www.lokeshdhakar.com/projects/lightbox2/#download"),
 
 			'GREYBOX_EXIST'						=> (@file_exists("$this->dir/greybox/gb_scripts.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_GREYBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "gb_scripts.js", "5.53", "{$board_path}greybox/", "GreyBox", "http://orangoo.com/labs/GreyBox/Download/"),
 
 			'LIGHTVIEW_EXIST'					=> (@file_exists("$this->dir/lightview/js/lightview.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.5", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
+			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.7.4", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
 
 			'IBOX_EXIST'						=> (@file_exists("$this->dir/ibox/ibox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_IBOX'			=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "ibox.js", "2.18", "{$board_path}ibox/", "iBox", "http://www.ibegin.com/labs/ibox/"),
 
 			'POPBOX_EXIST'						=> (@file_exists("$this->dir/PopBox/PopBox.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_POPBOX'			=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "PopBox.js", "2.6b", "{$board_path}PopBox/", "PopBox", "http://www.c6software.com/Products/PopBox/"),
+			'L_NO_EXIST_EXPLAIN_POPBOX'			=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "PopBox.js", "2.7a", "{$board_path}PopBox/", "PopBox", "http://www.c6software.com/Products/PopBox/"),
 		));
 
 	}
