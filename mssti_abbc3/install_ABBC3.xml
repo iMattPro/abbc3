@@ -86,7 +86,7 @@
 				<date>2011-08-04</date>
 				<rev-version>3.0.9.1</rev-version>
 				<changelog lang="en">
-					<change> [New] Add support for youtu.be links to BBvideo BBcode</change>
+					<change> [New] Add support for youtu.be, Facebook, allocine, cnbc and msnbc links to BBvideo BBcode</change>
 					<change> [Fix] Custom BBcodes not assigned an image/icon now correctly follow ABBC3's group permission settings</change>
 					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
