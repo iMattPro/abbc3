@@ -8,9 +8,10 @@
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8-PL1 to 3.0.9.1]]></title>
 		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL1 to version 3.0.9.1]]></description>
-		<author-notes lang="en"><![CDATA[IMPORTANT : If you were using HighSlide, LightView or PopBox as your Image Resizer method, we have updated them to work with newer versions and you should download the latest versions of these scripts to replace your current scripts, as we could not include these scripts with this MOD.
+		<author-notes lang="en"><![CDATA[IMPORTANT : If you were using HighSlide, LightBox, LightView or PopBox as your Image Resizer method, we have updated them to work with newer versions and you should download the latest versions of these scripts to replace your current scripts, as we could not include these scripts with this MOD.
 		
 		Highslide v4.12: get a new "highslide-full.js" at http://highslide.com/download.php
+		LightBox v2.05: get a new "lightbox.js" at http://www.lokeshdhakar.com/projects/lightbox2/#download
 		LightView v2.74: get a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
 		PopBox v2.7a: get a new "PopBox.js" at http://www.c6software.com/Products/PopBox/]]></author-notes>
 		<author-group>
