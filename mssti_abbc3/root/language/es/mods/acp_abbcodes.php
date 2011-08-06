@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.9.1 2010/09/22 01:03:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.9.1 8/5/11 4:57 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -83,8 +83,7 @@ $lang = array_merge($lang, array(
 													'LiteBox'		=> 'Lite Box JS', 
 													'GreyBox'		=> 'Grey Box JS', 
 													'Lightview'		=> 'Light view JS', 
-											//		'Ibox'			=> 'Shadow box with Ibox JS', 
-													'Shadowbox'		=> 'Shadow box with Ibox JS', 
+													'Shadowbox'		=> 'Shadowbox JS', 
 													'PopBox'		=> 'Pop Box JS', 
 													'pop-up'		=> 'Ventana emergente', 
 													'enlarge'		=> 'Ampliar',
@@ -181,6 +180,8 @@ $lang = array_merge($lang, array(
 // Stages
 	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 configuración',
 	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
+// Misc
+	'INSTALLER_RESIZE_CHECK'			=> 'Redimensionar actualización de verificación completa',
 ));
 
 ?>

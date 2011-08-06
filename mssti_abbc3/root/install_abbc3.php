@@ -107,7 +107,7 @@ $versions = array(
 		// No new database changes (so far)
 	),
 	'3.0.9.1'		=> array(
-		// No new database changes (so far)
+		'custom' => 'abbc3_3091',
 	),
 );
 $cache->destroy('config');
@@ -671,6 +671,41 @@ function abbc3_sync_bbcodes()
 	* Return a string
 	**/
 	return "<p>" . $user->lang['ABBCODES_RESYNC_SUCCESS'] . "</p>";
+}
+
+/**
+* Database changes for ABBC3 v3.0.9.1
+*
+* Ibox was replaced by Shadowbox. Need to update database entries using Ibox to Shadowbox.
+**/
+function abbc3_3091($action, $version)
+{
+	global $umil, $user;
+	
+	switch ($action)
+	{
+		case 'update':
+			// Get the resizer method
+			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
+			// If resizer method is set to Ibox, we need to switch it to Shadowbox
+			if ($resizer['config_value'] == 'Ibox')
+			{
+				$umil->config_update('ABBC3_RESIZE_METHOD', 'Shadowbox');
+			}
+		break;
+
+		case 'uninstall':
+			// Get the resizer method
+			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
+			// If resizer method is set to Shadowbox, we need to switch it to Ibox
+			if ($resizer['config_value'] == 'Shadowbox')
+			{
+				$umil->config_update('ABBC3_RESIZE_METHOD', 'Ibox');
+			}
+		break;
+	}
+	
+	return $user->lang['INSTALLER_RESIZE_CHECK'];
 }
 
 /**
