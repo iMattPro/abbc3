@@ -704,17 +704,15 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 		case 'Shadowbox':
 			if (mode == 'attach_parent')
 			{
-				ObjImage.parentNode.setAttribute('rel', 'IBGallery');
-				ib_imageset.push({player:'img', content:ObjImage.parentNode.href, gallery:'IBGallery'});
-				ObjImage.onclick = function () { var index = find_in_galleryset(ib_imageset, ObjImage.parentNode.href); return Shadowbox.open(ib_imageset, {current:(index) ? index : 1, gallery:'IBGallery', continuous:true, autoplay:true}); }
+				ObjImage.parentNode.className = ObjImage.parentNode.className + ' shadowbox-gallery';
+				ObjImage.parentNode.setAttribute('rel', 'shadowbox;player=img');
+				return true;
 			}
 			else
 			{
-				anchor.rel = 'IBGallery';
-				ib_imageset.push({player:'img', content:ObjImage.src, gallery:'IBGallery'});
-				ObjImage.onclick = function() { var index = find_in_galleryset(ib_imageset, ObjImage.src); return Shadowbox.open(ib_imageset, {current:(index) ? index : 1, gallery:'IBGallery', continuous:true, autoplay:true}); }
+				anchor.className = (anchor.className) ? anchor.className + ' shadowbox-gallery' : 'shadowbox-gallery';
+				anchor.rel = 'shadowbox;player=img';
 			}
-			return true;
 		break;
 
 		case 'PopBox':
@@ -1034,7 +1032,20 @@ function ImgOnLoad()
 	}
 
 	if (ImageResizerMode == 'GreyBox') { decoGreyboxLinks(); }
-	if (ImageResizerMode == 'Shadowbox') { Shadowbox.init({skipSetup: true, players: ['img']}); }	// skip the automatic setup
+	if (ImageResizerMode == 'Shadowbox')
+	{
+		Shadowbox.init({
+			// a darker overlay looks better on this particular site
+			overlayOpacity: 0.8
+		});
+		Shadowbox.setup("a.shadowbox-gallery", {
+			gallery: "shadowbox-gallery",
+			player: 'img',
+			continuous: true,
+			counterType: "skip",
+			handleOversize: "resize",
+		});
+	}
 //	if (ImageResizerMode == 'Lightview') { Lightview.load(); Lightview.start.bind(Lightview); }
 
 	return true;

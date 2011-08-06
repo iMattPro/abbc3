@@ -335,8 +335,8 @@ class acp_abbcodes
 			'LIGHTVIEW_EXIST'					=> (@file_exists("$this->dir/lightview/js/lightview.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.7.4", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
 
-			'IBOX_EXIST'						=> (@file_exists("$this->dir/ibox/ibox.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_IBOX'			=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "ibox.js", "2.2", "{$board_path}ibox/", "iBox", "http://www.ibegin.com/labs/ibox/"),
+			'SHADOWBOX_EXIST'					=> (@file_exists("$this->dir/shadowbox/shadowbox.js")) ? 1 : 0,
+			'L_NO_EXIST_EXPLAIN_SHADOWBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "shadowbox.js", "3.0.3", "{$board_path}shadowbox/", "Shadowbox", "http://www.shadowbox-js.com/download.html"),
 
 			'POPBOX_EXIST'						=> (@file_exists("$this->dir/PopBox/PopBox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_POPBOX'			=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "PopBox.js", "2.7a", "{$board_path}PopBox/", "PopBox", "http://www.c6software.com/Products/PopBox/"),

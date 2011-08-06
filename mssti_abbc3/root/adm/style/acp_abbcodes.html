@@ -11,7 +11,7 @@
 			var form_name = 'acp_abbcodes';
 
 			// Check wich options can be used for the resizer method
-			if (!{ADVANCEDBOX_EXIST} || !{HIGHSLIDE_EXIST} || !{LITEBOX_EXIST} || !{GREYBOX_EXIST} || !{LIGHTVIEW_EXIST} || !{IBOX_EXIST} || !{POPBOX_EXIST})
+			if (!{ADVANCEDBOX_EXIST} || !{HIGHSLIDE_EXIST} || !{LITEBOX_EXIST} || !{GREYBOX_EXIST} || !{LIGHTVIEW_EXIST} || !{SHADOWBOX_EXIST} || !{POPBOX_EXIST})
 			{
 				resizer_error = 1;
 				var resizer_options = document.forms[form_name].elements['ABBC3_RESIZE_METHOD'];
@@ -50,7 +50,7 @@
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
-						if (resizer_option == 'Ibox' && !{IBOX_EXIST})
+						if (resizer_option == 'Shadowbox' && !{SHADOWBOX_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
@@ -224,7 +224,7 @@
 				<!-- IF not LITEBOX_EXIST --><div id="error_LiteBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_LITEBOX}</div><!-- ENDIF -->
 				<!-- IF not GREYBOX_EXIST --><div id="error_GreyBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_GREYBOX}</div><!-- ENDIF -->
 				<!-- IF not LIGHTVIEW_EXIST --><div id="error_Lightview" class="small error"><hr />{L_NO_EXIST_EXPLAIN_LIHTVIEW}</div><!-- ENDIF -->
-				<!-- IF not IBOX_EXIST --><div id="error_Ibox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_IBOX}</div><!-- ENDIF -->
+				<!-- IF not SHADOWBOX_EXIST --><div id="error_Shadowbox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_SHADOWBOX}</div><!-- ENDIF -->
 				<!-- IF not POPBOX_EXIST --><div id="error_PopBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_POPBOX}</div><!-- ENDIF -->
 			</div>
 			<!-- DEFINE $SHOW_WARNING = '0' -->
