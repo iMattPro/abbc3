@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8-PL1 to 3.0.9.1]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL1 to version 3.0.9.1]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8-PL1 to 3.0.9.2]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL1 to version 3.0.9.2]]></description>
 		<author-notes lang="en"><![CDATA[IMPORTANT : If you were using HighSlide, LightBox, LightView or PopBox as your Image Resizer method, we have updated them to work with newer versions and you should download the latest versions of these scripts to replace your current scripts, as we could not include these scripts with this MOD.
 		
 		Highslide v4.1.12: get a new "highslide-full.js" at http://highslide.com/download.php
@@ -31,7 +31,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.9.1</mod-version>
+		<mod-version>3.0.9.2</mod-version>
 		<installation>
 			<level>intermediate</level>
 			<time>300</time>

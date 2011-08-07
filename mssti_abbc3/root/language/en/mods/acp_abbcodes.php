@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.9.1 8/5/11 4:57 PM VSE Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.9.2 8/5/11 4:57 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -89,7 +89,7 @@ $lang = array_merge($lang, array(
 													'enlarge'		=> 'Enlarge',
 													'samewindow'	=> 'Same window',
 													'newwindow'		=> 'New window',
-													'none'			=> 'No resize')
+													'none'			=> 'No resize'),
 
 	'NO_EXIST_EXPLAIN_ADVANCEDBOX'		=> 'The file <strong>AdvancedBox.js</strong> is not in the <em>%1$s</em> folder',
 	'NO_EXIST_EXPLAIN_OTHERS'			=> 'The file <strong>%1$s version %2$s</strong> is not present in the <em>%3$s</em> folder<br />If you wish to use %4$s, you must first download the %4$s file(s) from <a href="%5$s" onclick="window.open(this.href);return false;">here</a> and upload the downloaded file(s) into the <em>%3$s</em> directory.',
