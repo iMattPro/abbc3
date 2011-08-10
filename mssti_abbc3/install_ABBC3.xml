@@ -73,7 +73,7 @@
 
 		</author-group>
 
-		<mod-version>3.0.9.2</mod-version>
+		<mod-version>3.0.9.3</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -84,7 +84,7 @@
 		<history>
 			<entry>
 				<date>2011-08-05</date>
-				<rev-version>3.0.9.2</rev-version>
+				<rev-version>3.0.9.3</rev-version>
 				<changelog lang="en">
 					<change> [New] Add support for youtu.be, Facebook, allocine, cnbc and msnbc links to BBvideo BBcode</change>
 					<change> [Fix] Custom BBcodes not assigned an image/icon now correctly follow ABBC3's group permission settings</change>
@@ -161,9 +161,9 @@
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Subsilver2 Style Instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">Install German language pack</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL2_to_v3092.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.9.2</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL1_to_v3092.xml" lang="en">Update : ABBC3 from 3.0.8-PL1 to 3.0.9.2</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v3092.xml" lang="en">Update : ABBC3 from 3.0.8 to 3.0.9.2</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL2_to_v3093.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.9.3</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL1_to_v3093.xml" lang="en">Update : ABBC3 from 3.0.8-PL1 to 3.0.9.3</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v3093.xml" lang="en">Update : ABBC3 from 3.0.8 to 3.0.9.3</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : Quote behaviour.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_embossed_button_effect.xml" lang="en">Add-on : Embossed buttons for ABBC3</link>
