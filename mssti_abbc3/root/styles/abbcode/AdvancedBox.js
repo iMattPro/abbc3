@@ -1038,12 +1038,12 @@ function ImgOnLoad()
 			// a darker overlay looks better on this particular site
 			overlayOpacity: 0.8
 		});
-		Shadowbox.setup("a.shadowbox-gallery", {
-			gallery: "shadowbox-gallery",
+		Shadowbox.setup('a.shadowbox-gallery', {
+			gallery: 'shadowbox-gallery',
 			player: 'img',
 			continuous: true,
-			counterType: "skip",
-			handleOversize: "resize",
+			counterType: 'skip',
+			handleOversize: 'resize'
 		});
 	}
 //	if (ImageResizerMode == 'Lightview') { Lightview.load(); Lightview.start.bind(Lightview); }
