@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root
-* @version: $Id: abbcode_page.php, v 3.0.9.2 2010/09/23 00:27:15 leviatan21 Exp $
+* @version: $Id: abbcode_page.php, v 3.0.9.3 2010/09/23 00:27:15 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
