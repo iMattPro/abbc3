@@ -79,6 +79,30 @@
 
 		</open>
 
+		<open src="includes/message_parser.php">
+
+			<edit>
+				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
+			$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
+// MOD : MSSTI ABBC3 - End]]></remove>
+			</edit>
+
+			<edit>
+				<find><![CDATA[			$this->bbcodes[$row['bbcode_tag']] = array(]]></find>
+				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+			if ($row['bbcode_match'] == '.')
+			{
+				if (isset($this->bbcodes[$row['bbcode_tag']]) && $this->bbcodes[$row['bbcode_tag']])
+				{
+					$this->bbcodes[$row['bbcode_tag']]['bbcode_group'] = $row['bbcode_group'];
+				}
+				continue;
+			}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+		</open>
+
 		<diy-instructions lang="en"><![CDATA[empty comment placeholder]]></diy-instructions>
 
 	</action-group>
