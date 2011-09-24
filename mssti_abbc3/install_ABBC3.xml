@@ -83,6 +83,13 @@
 
 		<history>
 			<entry>
+				<date>2011-09-24</date>
+				<rev-version>3.0.10</rev-version>
+				<changelog lang="en">
+					<change> [Fix] URL and FLASH BBcodes will only appear in message editors if they are allowed under Post Settings in the ACP</change>
+				</changelog>
+			</entry>
+			<entry>
 				<date>2011-08-05</date>
 				<rev-version>3.0.9.3</rev-version>
 				<changelog lang="en">

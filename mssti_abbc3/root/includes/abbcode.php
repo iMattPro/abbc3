@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.9.3 2011/05/12 01:05:26 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.10 2011/09/24 09:36:26 VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -43,7 +43,7 @@ class abbcode
 
 	/* HTML was deprecated in v1.0.11 */
 	/* UPLOAD was was deprecated in v3.0.7 */
-	var $need_permissions	= array('IMG', 'THUMBNAIL', 'IMGSHACK', 'WEB', 'ED2K', 'RAPIDSHARE', 'TESTLINK', 'FLV' ,'BBVIDEO' /* ,'HTML' */ /* ,'UPLOAD' */ );
+	var $need_permissions	= array('URL', 'FLASH', 'IMG', 'THUMBNAIL', 'IMGSHACK', 'WEB', 'ED2K', 'RAPIDSHARE', 'TESTLINK', 'FLV' ,'BBVIDEO' /* ,'HTML' */ /* ,'UPLOAD' */ );
 
 	// [testlinks] and [rapidshare] Hide link/s to guest and bots ?	
 	var $hide_links			= false;	// Options true=hide / false=display, default false
