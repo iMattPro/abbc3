@@ -73,7 +73,7 @@
 
 		</author-group>
 
-		<mod-version>3.0.9.3</mod-version>
+		<mod-version>3.0.10</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -82,6 +82,15 @@
 		</installation>
 
 		<history>
+			<entry>
+				<date>2011-09-24</date>
+				<rev-version>3.0.10</rev-version>
+				<changelog lang="en">
+					<change> [Fix] phpBB's built-in BBcodes will follow ABBC3's group permission settings</change>
+					<change> [Fix] Fixed fatal error when custom BBcodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>
+					<change> [Fix] URL and FLASH BBcodes will only appear in message editors if they are allowed under Post Settings in the ACP</change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2011-08-05</date>
 				<rev-version>3.0.9.3</rev-version>
@@ -483,15 +492,18 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA[	while ($row = $db->sql_fetchrow($result))
 	{]]></find>
 				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-		// Check phpbb permissions status
-		// Check ABBC3 groups permission
-		// try to make it as quicky as it can be 
-		$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
-		if (isset($row['bbcode_group']) && $row['bbcode_group'])
+		if ($abbc3 && @$config['ABBC3_MOD'])
 		{
-			if (!$this->abbcode_permissions($auth_tag, $row['bbcode_group']))
+			// Check phpbb permissions status
+			// Check ABBC3 groups permission
+			// try to make it as quicky as it can be 
+			$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+			if (isset($row['bbcode_group']) && $row['bbcode_group'])
 			{
-				continue;
+				if (!$abbcode->abbcode_permissions($auth_tag, $row['bbcode_group']))
+				{
+					continue;
+				}
 			}
 		}
 // MOD : MSSTI ABBC3 - End]]></action>
@@ -500,10 +512,16 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 
 		<open src="includes/message_parser.php">
 			<edit>
-				<find><![CDATA[			$sql = 'SELECT *
-				FROM ' . BBCODES_TABLE;]]></find>
-				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-			$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
+				<find><![CDATA[			$this->bbcodes[$row['bbcode_tag']] = array(]]></find>
+				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+			if ($row['bbcode_match'] == '.')
+			{
+				if (isset($this->bbcodes[$row['bbcode_tag']]) && $this->bbcodes[$row['bbcode_tag']])
+				{
+					$this->bbcodes[$row['bbcode_tag']]['bbcode_group'] = $row['bbcode_group'];
+				}
+				continue;
+			}
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.9.3 to 3.0.10]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.9.3 to version 3.0.10]]></description>
+		<author-notes lang="en"><![CDATA[empty comment placeholder]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Gabriel]]></realname>
+				<username><![CDATA[leviatan21]]></username>
+				<homepage><![CDATA[http://www.mssti.com/phpbb3/]]></homepage>
+				<email><![CDATA[info@mssti.com]]></email>
+				<contributions-group>
+					<contributions status="current" from="2008-01-10" position="Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<username><![CDATA[VSE]]></username>
+				<contributions-group>
+					<contributions status="current" from="2010-03-02" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+		<mod-version>3.0.10</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.9</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
+		</copy>
+
+		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
+
+		<open src="includes/functions_display.php">
+
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+		// Check phpbb permissions status
+		// Check ABBC3 groups permission
+		// try to make it as quicky as it can be 
+		$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+		if (isset($row['bbcode_group']) && $row['bbcode_group'])
+		{
+			if (!$this->abbcode_permissions($auth_tag, $row['bbcode_group']))
+			{
+				continue;
+			}
+		}
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+		if ($abbc3 && @$config['ABBC3_MOD'])
+		{
+			// Check phpbb permissions status
+			// Check ABBC3 groups permission
+			// try to make it as quicky as it can be 
+			$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+			if (isset($row['bbcode_group']) && $row['bbcode_group'])
+			{
+				if (!$abbcode->abbcode_permissions($auth_tag, $row['bbcode_group']))
+				{
+					continue;
+				}
+			}
+		}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+		</open>
+
+		<open src="includes/message_parser.php">
+
+			<edit>
+				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
+			$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
+// MOD : MSSTI ABBC3 - End]]></remove>
+			</edit>
+
+			<edit>
+				<find><![CDATA[			$this->bbcodes[$row['bbcode_tag']] = array(]]></find>
+				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+			if ($row['bbcode_match'] == '.')
+			{
+				if (isset($this->bbcodes[$row['bbcode_tag']]) && $this->bbcodes[$row['bbcode_tag']])
+				{
+					$this->bbcodes[$row['bbcode_tag']]['bbcode_group'] = $row['bbcode_group'];
+				}
+				continue;
+			}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+
+		</open>
+
+		<diy-instructions lang="en"><![CDATA[empty comment placeholder]]></diy-instructions>
+
+	</action-group>
+</mod>
