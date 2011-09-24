@@ -169,15 +169,18 @@
 				<find><![CDATA[	while ($row = $db->sql_fetchrow($result))
 	{]]></find>
 				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-		// Check phpbb permissions status
-		// Check ABBC3 groups permission
-		// try to make it as quicky as it can be 
-		$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
-		if (isset($row['bbcode_group']) && $row['bbcode_group'])
+		if ($abbc3 && @$config['ABBC3_MOD'])
 		{
-			if (!$this->abbcode_permissions($auth_tag, $row['bbcode_group']))
+			// Check phpbb permissions status
+			// Check ABBC3 groups permission
+			// try to make it as quicky as it can be 
+			$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+			if (isset($row['bbcode_group']) && $row['bbcode_group'])
 			{
-				continue;
+				if (!$abbcode->abbcode_permissions($auth_tag, $row['bbcode_group']))
+				{
+					continue;
+				}
 			}
 		}
 // MOD : MSSTI ABBC3 - End]]></action>

@@ -86,6 +86,7 @@
 				<date>2011-09-24</date>
 				<rev-version>3.0.10</rev-version>
 				<changelog lang="en">
+					<change> [Fix] Fixed fatal error when custom BBcodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>
 					<change> [Fix] URL and FLASH BBcodes will only appear in message editors if they are allowed under Post Settings in the ACP</change>
 				</changelog>
 			</entry>
@@ -490,15 +491,18 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA[	while ($row = $db->sql_fetchrow($result))
 	{]]></find>
 				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-		// Check phpbb permissions status
-		// Check ABBC3 groups permission
-		// try to make it as quicky as it can be 
-		$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
-		if (isset($row['bbcode_group']) && $row['bbcode_group'])
+		if ($abbc3 && @$config['ABBC3_MOD'])
 		{
-			if (!$this->abbcode_permissions($auth_tag, $row['bbcode_group']))
+			// Check phpbb permissions status
+			// Check ABBC3 groups permission
+			// try to make it as quicky as it can be 
+			$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+			if (isset($row['bbcode_group']) && $row['bbcode_group'])
 			{
-				continue;
+				if (!$abbcode->abbcode_permissions($auth_tag, $row['bbcode_group']))
+				{
+					continue;
+				}
 			}
 		}
 // MOD : MSSTI ABBC3 - End]]></action>
