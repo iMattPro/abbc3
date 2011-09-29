@@ -215,19 +215,33 @@
 	<fieldset>	
 		<legend>{L_ABBCODES_VERSION_CHECK}</legend>
 		<dl>
-			<dt><label>{L_ACP_ABBCODES}:</label></dt>
+			<dt><label>{L_ABBCODES_CURRENT_VERSION}:</label></dt>
 			<dd>
-		<!-- IF S_VERSION_UP_TO_DATE -->
-			<!-- IF S_VERSIONCHECK_FAIL -->
-				<strong>{ABBC3_VERSION}</strong> {L_VERSIONCHECK_FAIL}
+			<!-- IF S_VERSION_UP_TO_DATE -->
+				<strong>{ABBC3_VERSION}</strong>
 			<!-- ELSE -->
-				<strong style="color: #228822;">{ABBC3_VERSION}</strong>
+				<strong style="color: #BC2A4D;">{ABBC3_VERSION}</strong>
 			<!-- ENDIF -->
-		<!-- ELSE -->
-				<strong><a href="{U_VERSIONCHECK}" title="{L_MORE_INFORMATION}" style="color: #BC2A4D;" onclick="window.open(this.href);return false;">{ABBC3_VERSION}</a></strong>
-		<!-- ENDIF -->
 			</dd>
 		</dl>
+		<dl>
+			<dt><label>{L_ABBCODES_LATEST_VERSION}:</label></dt>
+			<dd>
+			<!-- IF S_VERSIONCHECK_FAIL -->
+				{L_VERSIONCHECK_FAIL}
+			<!-- ELSE -->
+				<strong>{LATEST_VERSION}</strong>
+			<!-- ENDIF -->
+			</dd>
+		</dl>
+		<!-- IF not S_VERSION_UP_TO_DATE -->
+		<dl>
+			<dt><label>{L_ABBCODES_DOWNLOAD_LATEST}:</label></dt>
+			<dd>
+				<strong><a href="{U_VERSIONCHECK}" onclick="window.open(this.href);return false;">{L_ACP_ABBCODES}</a></strong>
+			</dd>
+		</dl>
+		<!-- ENDIF -->
 	</fieldset>
 
 	<!-- BEGIN options -->

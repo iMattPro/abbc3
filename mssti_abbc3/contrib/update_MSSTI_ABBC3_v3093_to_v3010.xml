@@ -8,7 +8,6 @@
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.9.3 to 3.0.10]]></title>
 		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.9.3 to version 3.0.10]]></description>
-		<author-notes lang="en"><![CDATA[empty comment placeholder]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Gabriel]]></realname>
@@ -29,7 +28,7 @@
 		<mod-version>3.0.10</mod-version>
 		<installation>
 			<level>easy</level>
-			<time>60</time>
+			<time>120</time>
 			<target-version>3.0.9</target-version>
 		</installation>
 		<link-group>
@@ -38,7 +37,10 @@
 	</header>
 	<action-group>
 		<copy>
-			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
+			<file from="root/adm/style/acp_abbcodes.html" to="adm/style/acp_abbcodes.html"/>
+			<file from="root/includes/*.*" to="includes/*.*"/>
+			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
+			<file from="root/language/en/mods/acp_abbcodes.php" to="language/en/mods/acp_abbcodes.php"/>
 		</copy>
 
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
@@ -102,8 +104,6 @@
 			</edit>
 
 		</open>
-
-		<diy-instructions lang="en"><![CDATA[empty comment placeholder]]></diy-instructions>
 
 	</action-group>
 </mod>
