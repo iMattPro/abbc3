@@ -133,6 +133,8 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_DESELECT_ALL'				=> 'Deselect all',
 	'ABBCODES_SELECT_ALL'				=> 'Select all',
+
+	'ABBCODES_VERSION_CHECK'			=> 'Version Check',
 ));
 
 // bbcodes_edit
