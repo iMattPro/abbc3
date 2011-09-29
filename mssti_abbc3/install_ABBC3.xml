@@ -83,9 +83,10 @@
 
 		<history>
 			<entry>
-				<date>2011-09-24</date>
+				<date>2011-09-29</date>
 				<rev-version>3.0.10</rev-version>
 				<changelog lang="en">
+					<change> [Change] Updated the version check feature in ABBC3's settings page and removed old Mod Version Check add-on</change>
 					<change> [Fix] phpBB's built-in BBcodes will follow ABBC3's group permission settings</change>
 					<change> [Fix] Fixed fatal error when custom BBcodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>
 					<change> [Fix] URL and FLASH BBcodes will only appear in message editors if they are allowed under Post Settings in the ACP</change>
@@ -170,9 +171,10 @@
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Subsilver2 Style Instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Install Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">Install German language pack</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL2_to_v3093.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.9.3</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL1_to_v3093.xml" lang="en">Update : ABBC3 from 3.0.8-PL1 to 3.0.9.3</link>
-			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v3093.xml" lang="en">Update : ABBC3 from 3.0.8 to 3.0.9.3</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v3093_to_v3010.xml" lang="en">Update : ABBC3 from 3.0.9.3 to 3.0.10</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL2_to_v3010.xml" lang="en">Update : ABBC3 from 3.0.8-PL2 to 3.0.10</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308-PL1_to_v3010.xml" lang="en">Update : ABBC3 from 3.0.8-PL1 to 3.0.10</link>
+			<link type="contrib" href="contrib/update_MSSTI_ABBC3_v308_to_v3010.xml" lang="en">Update : ABBC3 from 3.0.8 to 3.0.10</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_quote_behaviour.xml" lang="en">Add-on : Quote behaviour.</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_embossed_button_effect.xml" lang="en">Add-on : Embossed buttons for ABBC3</link>

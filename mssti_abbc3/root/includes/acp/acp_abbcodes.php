@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.9.3 2011/08/04 03:33:24 leviatan21 Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.10 9/29/11 12:07 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -41,7 +41,7 @@ class acp_abbcodes
 
 		/** Set some default values so the user havn't to run any install - Start **/
 		// Same default values as root/install_abbc3.php -> abbc3_308()
-		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.9.3';
+		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.10';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
 //		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			? $config['ABBC3_PATH']				: 'styles/abbcode';
 		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';
@@ -707,6 +707,7 @@ class acp_abbcodes
 			$version_up_to_date = version_compare($current_version, $latest_version, '<') ? false : true;
 
 			$template->assign_vars(array(
+				'LATEST_VERSION'	=> $latest_version,
 				'U_VERSIONCHECK'	=> ($version_up_to_date) ? false : $latest_version_info[1],
 			));
 		}

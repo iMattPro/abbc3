@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.9.3 8/5/11 4:57 PM VSE Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.10 9/29/11 12:07 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -133,6 +133,11 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_DESELECT_ALL'				=> 'Desmarcar todo',
 	'ABBCODES_SELECT_ALL'				=> 'Seleccionar todo',
+
+	'ABBCODES_VERSION_CHECK'			=> 'Verificar versión',
+	'ABBCODES_CURRENT_VERSION'			=> 'Versión actual',
+	'ABBCODES_LATEST_VERSION'			=> 'Última versión',
+	'ABBCODES_DOWNLOAD_LATEST'			=> 'Descargar',
 ));
 
 // bbcodes_edit

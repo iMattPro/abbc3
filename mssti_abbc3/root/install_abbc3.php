@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.9.3 8/03/11 9:32 PM VSE Exp $
+* @version: $Id: install_abbc3.php, v 3.0.10 9/29/11 12:45 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -108,6 +108,9 @@ $versions = array(
 	),
 	'3.0.9.3'		=> array(
 		'custom' => 'abbc3_309',
+	),
+	'3.0.10'		=> array(
+		// No new database changes (so far)
 	),
 );
 $cache->destroy('config');
