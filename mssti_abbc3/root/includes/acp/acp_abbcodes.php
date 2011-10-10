@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.10 9/29/11 12:07 AM VSE Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.10 10/10/11 12:34 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -67,7 +67,7 @@ class acp_abbcodes
 
 		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425;
 		$config['ABBC3_VIDEO_height']		= (isset($config['ABBC3_VIDEO_height']))	? $config['ABBC3_VIDEO_height']		: 350;
-		$config['ABBC3_VIDEO_OPTIONS']		= (isset($config['ABBC3_VIDEO_OPTIONS']))	? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;201;202;203;204;205;206;207;208;';
+		$config['ABBC3_VIDEO_OPTIONS']		= (isset($config['ABBC3_VIDEO_OPTIONS']))	? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;201;202;203;204;205;206;207;208;';
 
 		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		? $config['ABBC3_UCP_MODE']			: 1;
 		/** Set some default values so the user havn't to run any install - End **/

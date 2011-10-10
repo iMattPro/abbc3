@@ -1673,6 +1673,13 @@ class abbcode
 				'match'		=> "#http://www.metacafe.com/watch/([0-9]+)?((/[^/]+)/?)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.metacafe.com/fplayer/$1/metacafe.swf', '{WIDTH}', '{HEIGHT}')",
 			),
+			'myspace.com' => array(
+				'id'		=> 51,
+				'image'		=> 'vidsmyspace.gif',
+				'example'	=> "http://www.myspace.com/video/vid/49776296",
+				'match'		=> "#http://(www.)?myspace.com/video/vid/([^[]*)?#sie",
+				'replace'	=> "\$this->auto_embed_video('http://mediaservices.myspace.com/services/media/embed.aspx/m=$2', '{WIDTH}', '{HEIGHT}')",
+			),
 			'myspacetv.com' => array(
 				'id'		=> 23,
 				'image'		=> 'vidsmyspace.gif',
