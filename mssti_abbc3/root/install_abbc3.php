@@ -108,9 +108,10 @@ $versions = array(
 	),
 	'3.0.9.3'		=> array(
 		'custom' => 'abbc3_309',
+		'custom' => 'bbvideo_updater',
 	),
 	'3.0.10'		=> array(
-		// No new database changes (so far)
+		'custom' => 'bbvideo_updater',
 	),
 );
 $cache->destroy('config');
@@ -709,6 +710,52 @@ function abbc3_309($action, $version)
 	}
 	
 	return $user->lang['INSTALLER_RESIZE_CHECK'];
+}
+
+/**
+* Enable new BBvideo IDs - to be called any time new BBvideos are added to includes/abbcode.php
+*
+**/
+function bbvideo_updater($action, $version)
+{
+	global $umil;
+
+	// Array containing arrays of new BBVideo IDs added to ABBC3
+	$new_bbvideo_ids = array(
+		'3.0.9.3' => array('46','47','48','49','50'),
+		'3.0.10'  => array('51'),	
+	);
+
+	switch ($action)
+	{
+		case 'update':
+			// Get users current video options config
+			$video_options = $umil->config_exists('ABBC3_VIDEO_OPTIONS', true);
+			// Split the config value into an array for processing
+			$video_options_array = explode(';', $video_options['config_value'], -1);
+			// Merge the new BBvideos array into the array from the config
+			$video_options_array = array_merge($video_options_array, $new_bbvideo_ids[$version]);
+			// Remove any duplicate values
+			$video_options_array = array_unique($video_options_array);
+			// Sort the array
+			asort($video_options_array);
+			// Update the database with the new settings
+			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array) . ';');
+		break;
+
+		case 'uninstall':
+			// Get users current video options config
+			$video_options = $umil->config_exists('ABBC3_VIDEO_OPTIONS', true);
+			// Split the config value into an array for processing
+			$video_options_array = explode(';', $video_options['config_value'], -1);
+			// Diff the two arrays to remove any of the new BBvideo IDs
+			$video_options_array = array_diff($video_options_array, $new_bbvideo_ids[$version]);
+			// Sort the array
+			asort($video_options_array);
+			// Update the database with the new settings
+			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array) . ';');
+		break;
+	}
 }
 
 /**
