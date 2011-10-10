@@ -33,25 +33,19 @@ if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 	trigger_error('Please download the latest UMIL (Unified MOD Install Library) from: <a href="http://www.phpbb.com/mods/umil/" onclick="window.open(this.href);return false;">phpBB.com/mods/umil</a>', E_USER_ERROR);
 }
 
-/** Set some default values so the user havn't to run any install - Start **/
-$mod_data = array(
-	'config'	=> 'ABBC3_VERSION',
-	'name'		=> 'INSTALLER_TITLE',
-	'language'	=> array('mods/acp_abbcodes', 'mods/abbcode', 'posting', 'install')
-);
-/** Set some default values so the user havn't to run any install - End **/
-
 // The name of the mod to be displayed during installation.
-$mod_name = $mod_data['name'];
+$mod_name = 'INSTALLER_TITLE';
 
-// The name of the config variable which will hold the currently installed version
-$version_config_name = $mod_data['config'];
+/*
+* The name of the config variable which will hold the currently installed version
+* UMIL will handle checking, setting, and updating the version itself.
+*/
+$version_config_name = 'ABBC3_VERSION';
 
-// Add the language file if one was specified
-if (isset($mod_data['language']))
-{
-	$user->add_lang($mod_data['language']);
-}
+/*
+* The language file which will be included when installing
+*/
+$user->add_lang(array('mods/acp_abbcodes', 'mods/abbcode', 'posting', 'install'));
 
 // Logo Image
 $logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.png';
@@ -459,8 +453,6 @@ function abbc3_308($action, $version)
 	}
 
 	cache_purge();
-
-	$message .= $user->lang['INSTALLER_INSTALL_END'];
 
 	// return a message
 	return $message;

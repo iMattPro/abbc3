@@ -181,7 +181,7 @@ $lang = array_merge($lang, array(
 	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Please be advised that this process might overwrite existing custom BBcodes and as a result, those BBcodes might not display correctly due to the changes introduced by ABBC3’s BBcodes.
 	<br />If you experience problems use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
 	<br /><br />Before adding this MOD to your board, you should back up files and database first.',
-	'INSTALLER_INSTALL_END'				=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
+//	'INSTALLER_INSTALL_END'				=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
 // Stages
 	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 config',
 	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
