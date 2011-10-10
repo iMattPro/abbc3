@@ -187,6 +187,7 @@ $lang = array_merge($lang, array(
 	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
 // Misc
 	'INSTALLER_RESIZE_CHECK'			=> 'Resizer Method update check complete',
+	'INSTALLER_BBVIDEO_UPDATER'			=> 'BBvideos have been updated',
 ));
 
 ?>

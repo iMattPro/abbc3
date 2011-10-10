@@ -107,11 +107,13 @@ $versions = array(
 		// No new database changes (so far)
 	),
 	'3.0.9.3'		=> array(
-		'custom' => 'abbc3_309',
-		'custom' => 'bbvideo_updater',
+		'custom' => array(
+			'abbc3_309',		//special changes for version 3.0.9
+			'bbvideo_updater',	//enable some new BBvideo IDs
+		),
 	),
 	'3.0.10'		=> array(
-		'custom' => 'bbvideo_updater',
+		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
 	),
 );
 $cache->destroy('config');
@@ -718,7 +720,7 @@ function abbc3_309($action, $version)
 **/
 function bbvideo_updater($action, $version)
 {
-	global $umil;
+	global $umil, $user;
 
 	// Array containing arrays of new BBVideo IDs added to ABBC3
 	$new_bbvideo_ids = array(
@@ -756,6 +758,8 @@ function bbvideo_updater($action, $version)
 			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array) . ';');
 		break;
 	}
+	
+	return $user->lang['INSTALLER_BBVIDEO_UPDATER'];
 }
 
 /**
