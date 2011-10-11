@@ -178,6 +178,13 @@
 
 		</open>
 
+		<open src="language/en/acp/common.php">
+			<edit>
+				<find><![CDATA[	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',]]></find>
+				<action type="replace-with"><![CDATA[	'ACP_ABBCODES'				=> 'Advanced BBcode Box 3',]]></action>
+			</edit>
+		</open>
+
 		<diy-instructions lang="en"><![CDATA[You can delete the ibox folder located at root/styles/abbcode/ibox/]]></diy-instructions>
 
 	</action-group>

@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.10 9/29/11 12:07 AM VSE Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.10 10/11/11 11:25 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 // This lines are the same as root/language/en/acp/common.php
 $lang = array_merge($lang, array(
-	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBCODES'				=> 'Advanced BBcode Box 3',
 	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
 	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
@@ -49,7 +49,7 @@ $lang = array_merge($lang, array(
 
 // This lines are for the UCP
 $lang = array_merge($lang, array(
-	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
+	'UCP_ABBCODES'					=> 'Advanced BBcode Box 3',
 	'UCP_ABBC3_SETTINGS'			=> 'Message editor BBcode interface',
 	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Note that in <i>Limited</i> mode, not all BBcodes will be available and must be typed in manually.',
 	'UCP_ABBC3_LIMITED'				=> 'Limited - Basic BBcodes only with no icons',
@@ -60,7 +60,7 @@ $lang = array_merge($lang, array(
 // abbc3_details
 $lang = array_merge($lang, array(
 	'ABBCODES_DISABLE'					=> 'ABBC3',
-	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBcodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
+	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBcode Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
 //	'ABBCODES_PATH'						=> 'Script path',
 //	'ABBCODES_PATH_EXPLAIN'				=> 'Path to ABBC3 files in your phpBB root directory, e.g. <samp>styles/abbcode</samp>',
 	'ABBCODES_BG'						=> 'Background image',
@@ -142,7 +142,7 @@ $lang = array_merge($lang, array(
 
 // bbcodes_edit
 $lang = array_merge($lang, array(
-	'ABBCODES_SETINGS'					=> 'ABBC3 settings',
+	'ABBCODES_SETINGS'					=> 'ABBC3 Settings',
 	'ABBCODES_SETINGS_EXPLAIN'			=> 'Here you can determine the basic operation of <strong>ABBC3</strong>, enable or disable, and among other settings adjust the default values for the background.',
 
 	'ABBCODES_EDIT'						=> 'ABBC3 edit BBcode',
@@ -165,7 +165,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SYNC'						=> 'Synchronise order',
 	'ABBCODES_RESYNC_SUCCESS'			=> 'The BBcode order has been resynchronised.',
 
-	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBcodes Box 3</strong> is disabled.<br />',
+	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBcode Box 3</strong> is disabled.<br />',
 	'ABBCODES_STATUS'					=> 'status',
 	'ABBCODES_ACTIVATED'				=> 'activated',
 	'ABBCODES_DEACTIVATED'				=> 'deactivated',
@@ -174,19 +174,20 @@ $lang = array_merge($lang, array(
 // UMIL Installer 
 $lang = array_merge($lang, array(
 // Main
-	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
+	'INSTALLER_TITLE'					=> 'Advanced BBcode Box 3',
 	'INSTALLER_TITLE_EXPLAIN'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
 
-	'INSTALLER_INSTALL_WELCOME'			=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
+	'INSTALLER_INSTALL_WELCOME'			=> 'Before installing ABBC3',
 	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Please be advised that this process might overwrite existing custom BBcodes and as a result, those BBcodes might not display correctly due to the changes introduced by ABBC3’s BBcodes.
-	<br />If you experience problems use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
-	<br /><br />Before adding this MOD to your board, you should back up files and database first.',
-	'INSTALLER_INSTALL_END'				=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
+	<br /><br />If you experience problems with BBcodes no longer working in exisiting posts, use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
+	<br /><br />Before adding this MOD to your board, you should backup all related files and the database before proceeding.',
+//	'INSTALLER_INSTALL_END'				=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
 // Stages
 	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 config',
 	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
 // Misc
 	'INSTALLER_RESIZE_CHECK'			=> 'Resizer Method update check complete',
+	'INSTALLER_BBVIDEO_UPDATER'			=> 'BBvideos have been updated',
 ));
 
 ?>

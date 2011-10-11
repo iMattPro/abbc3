@@ -696,7 +696,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<find><![CDATA[?>]]></find>
 				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
 $lang = array_merge($lang, array(
-	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBCODES'				=> 'Advanced BBcode Box 3',
 	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
 	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
