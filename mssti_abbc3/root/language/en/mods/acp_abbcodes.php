@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.10 9/29/11 12:07 AM VSE Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.10 10/11/11 11:25 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -177,10 +177,10 @@ $lang = array_merge($lang, array(
 	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
 	'INSTALLER_TITLE_EXPLAIN'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
 
-	'INSTALLER_INSTALL_WELCOME'			=> 'When you choose to install ABBC3, any database of previous versions will be dropped.',
+	'INSTALLER_INSTALL_WELCOME'			=> 'Before installing ABBC3',
 	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Please be advised that this process might overwrite existing custom BBcodes and as a result, those BBcodes might not display correctly due to the changes introduced by ABBC3’s BBcodes.
-	<br />If you experience problems use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
-	<br /><br />Before adding this MOD to your board, you should back up files and database first.',
+	<br /><br />If you experience problems with BBcodes no longer working in exisiting posts, use the <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong> feature.
+	<br /><br />Before adding this MOD to your board, you should backup all related files and the database before proceeding.',
 //	'INSTALLER_INSTALL_END'				=> 'You should now <a href="./index.php">login to your board</a> and check if everything is working fine. <br />Do not forget to delete, rename or move this file! <strong><em>install_abbc3.php</em></strong>',
 // Stages
 	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 config',
