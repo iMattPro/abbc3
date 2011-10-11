@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 // This lines are the same as root/language/en/acp/common.php
 $lang = array_merge($lang, array(
-	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBCODES'				=> 'Advanced BBcode Box 3',
 	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
 	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
@@ -49,7 +49,7 @@ $lang = array_merge($lang, array(
 
 // This lines are for the UCP
 $lang = array_merge($lang, array(
-	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
+	'UCP_ABBCODES'					=> 'Advanced BBcode Box 3',
 	'UCP_ABBC3_SETTINGS'			=> 'Message editor BBcode interface',
 	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Note that in <i>Limited</i> mode, not all BBcodes will be available and must be typed in manually.',
 	'UCP_ABBC3_LIMITED'				=> 'Limited - Basic BBcodes only with no icons',
@@ -60,7 +60,7 @@ $lang = array_merge($lang, array(
 // abbc3_details
 $lang = array_merge($lang, array(
 	'ABBCODES_DISABLE'					=> 'ABBC3',
-	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBcodes Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
+	'ABBCODES_DISABLE_EXPLAIN'			=> 'Enable <strong>Advanced BBcode Box 3</strong> or disable to use standard phpBB3 BBcode buttons.',
 //	'ABBCODES_PATH'						=> 'Script path',
 //	'ABBCODES_PATH_EXPLAIN'				=> 'Path to ABBC3 files in your phpBB root directory, e.g. <samp>styles/abbcode</samp>',
 	'ABBCODES_BG'						=> 'Background image',
@@ -142,7 +142,7 @@ $lang = array_merge($lang, array(
 
 // bbcodes_edit
 $lang = array_merge($lang, array(
-	'ABBCODES_SETINGS'					=> 'ABBC3 settings',
+	'ABBCODES_SETINGS'					=> 'ABBC3 Settings',
 	'ABBCODES_SETINGS_EXPLAIN'			=> 'Here you can determine the basic operation of <strong>ABBC3</strong>, enable or disable, and among other settings adjust the default values for the background.',
 
 	'ABBCODES_EDIT'						=> 'ABBC3 edit BBcode',
@@ -165,7 +165,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SYNC'						=> 'Synchronise order',
 	'ABBCODES_RESYNC_SUCCESS'			=> 'The BBcode order has been resynchronised.',
 
-	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBcodes Box 3</strong> is disabled.<br />',
+	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBcode Box 3</strong> is disabled.<br />',
 	'ABBCODES_STATUS'					=> 'status',
 	'ABBCODES_ACTIVATED'				=> 'activated',
 	'ABBCODES_DEACTIVATED'				=> 'deactivated',
@@ -174,7 +174,7 @@ $lang = array_merge($lang, array(
 // UMIL Installer 
 $lang = array_merge($lang, array(
 // Main
-	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
+	'INSTALLER_TITLE'					=> 'Advanced BBcode Box 3',
 	'INSTALLER_TITLE_EXPLAIN'			=> 'Welcome to the <strong>ABBC3</strong> Installation menu',
 
 	'INSTALLER_INSTALL_WELCOME'			=> 'Before installing ABBC3',

@@ -77,7 +77,7 @@ class acp_abbcodes
 		$bbcode_id			= request_var('bbcode_id', 0);
 
 		$this->tpl_name		= 'acp_abbcodes';
-		$this->page_title	= 'ACP_ABBCODES';
+		$this->page_title	= 'ACP_ABBC3_BBCODES';
 		$form_key			= 'acp_abbcodes';
 
 		add_form_key($form_key);
