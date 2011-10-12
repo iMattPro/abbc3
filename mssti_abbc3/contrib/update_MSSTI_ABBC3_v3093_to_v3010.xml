@@ -108,7 +108,7 @@
 		<open src="language/en/acp/common.php">
 			<edit>
 				<find><![CDATA[	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',]]></find>
-				<action type="replace-with"><![CDATA[	'ACP_ABBCODES'				=> 'Advanced BBcode Box 3',]]></action>
+				<action type="replace-with"><![CDATA[	'ACP_ABBCODES'				=> 'Advanced BBCode Box 3',]]></action>
 			</edit>
 		</open>
 

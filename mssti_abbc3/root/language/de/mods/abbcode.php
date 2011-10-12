@@ -1,6 +1,6 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBcode Box 3 -> root/language/de/mods :: [de][German]
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/de/mods :: [de][German]
 * @version: $Id: abbcode.php, v 3.0.9.3 2010/10/04 19:11:22 femu Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 // Help page
-	'ABBC3_HELP_TITLE'			=> 'Advanced BBcode Box 3 :: Hilfe Seite',
+	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode Box 3 :: Hilfe Seite',
 	'ABBC3_HELP_DESC'			=> 'Beschreibung',
 	'ABBC3_HELP_WRITE'			=> 'Dein Schreibformat',
 	'ABBC3_HELP_VIEW'			=> 'Unser Anzeigeformat',
@@ -110,7 +110,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOTE'				=> 'Hinweis',
 	'ABBC3_EXAMPLE'				=> 'Beispiel',
 	'ABBC3_EXAMPLES'			=> 'Beispiele',
-	'ABBC3_SHORT'				=> 'Wähle BBcode',
+	'ABBC3_SHORT'				=> 'Wähle BBCode',
 	'ABBC3_DEPRECATED'			=> '<div class="error">Den <em>%1$s</em> bbcode gibt es seit der Version <em>%2$s</em> nicht mehr</div>',
 	'ABBC3_UNAUTHORISED'		=> 'Bestimmte Wörter kannst du nicht verwenden: <br /><strong> %s </strong>',
 	'ABBC3_NOSCRIPT'			=> 'Bei deinem Browser ist die Verwendung von Scripts deaktiviert oder er unterstützt keine Client-seitige Scripts. <em>( JavaScript! )</em>',
@@ -522,7 +522,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SEARCH_MOVER'		=> 'Gib das Suchwort ein',
 	'ABBC3_SEARCH_TIP'			=> '[search(=(bing|yahoo|google|altavista|lycos|wikipedia))]Text[/search]',
 ##	For translate :                                                              yes                                                 yes                                                   yes                                                    yes                                                       yes                                                   yes
-	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode Box 3[/search]<br /> oder [search=bing]Advanced BBcode Box 3[/search]<br /> oder [search=yahoo]Advanced BBcode Box 3[/search]<br /> oder [search=google]Advanced BBcode Box 3[/search]<br /> oder [search=altavista]Advanced BBcode Box 3[/search]<br /> oder [search=lycos]Advanced BBcode Box 3[/search]<br /> oder [search=wikipedia]Advanced BBcode Box 3[/search]',
+	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBCode Box 3[/search]<br /> oder [search=bing]Advanced BBCode Box 3[/search]<br /> oder [search=yahoo]Advanced BBCode Box 3[/search]<br /> oder [search=google]Advanced BBCode Box 3[/search]<br /> oder [search=altavista]Advanced BBCode Box 3[/search]<br /> oder [search=lycos]Advanced BBCode Box 3[/search]<br /> oder [search=wikipedia]Advanced BBCode Box 3[/search]',
 
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
@@ -531,7 +531,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Wähle ein Video Typ',
-	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Zur Zeit sind keine eingebette Videocodes erlaubt. Bitte informier den %sBoard Administrator%s darüber.<br />In der Zwischenzeit kannst du selbstverständlich die standard URL BBcodes verwenden.',
+	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Zur Zeit sind keine eingebette Videocodes erlaubt. Bitte informier den %sBoard Administrator%s darüber.<br />In der Zwischenzeit kannst du selbstverständlich die standard URL BBCodes verwenden.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Dateiformat',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Video von',
 	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Externes Video von',
@@ -636,7 +636,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_LIVELEAK_EXAMPLE'	=> 'http://www.liveleak.com/view?i=413_1202590393',
 	'ABBC3_LIVELEAK_VIEW'		=> '[liveleak]http://www.liveleak.com/view?i=413_1202590393[/liveleak]',
 
-// Custom BBcodes
+// Custom BBCodes
 	// Deezer audio
 	'DEEZER_TAG'				=> 'Deezer',
 	'DEEZER_MOVER'				=> 'Eine Audiodatei von Deezer einfügen',

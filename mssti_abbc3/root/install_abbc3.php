@@ -94,7 +94,7 @@ $versions = array(
 		'config_remove' => array(
 			array('ABBC3_PATH'),
 		),
-		// We have some BBcodes to update
+		// We have some BBCodes to update
 		'custom' => 'abbc3_bbcode_handler',
 	),
 	'3.0.8-pl2'		=> array(
@@ -393,7 +393,7 @@ function abbc3_308($action, $version)
 		// Run this when uninstalling
 		/* All related to the phpbb_bbcodes table - Start */
 
-			// Remove the ABBC3 custom BBcodes first, before uninstalling anything else
+			// Remove the ABBC3 custom BBCodes first, before uninstalling anything else
 			$message .= abbc3_bbcode_handler($action, $version);
 
 			// remove the table index
@@ -459,7 +459,7 @@ function abbc3_308($action, $version)
 }
 
 /**
-* Install, update or remove ABBC3 custom BBcodes
+* Install, update or remove ABBC3 custom BBCodes
 *
 * @param string		$action
 * @param string		$version
@@ -755,7 +755,7 @@ function bbvideo_updater($action, $version)
 }
 
 /**
-* Define all of ABBC3's custom BBcodes
+* Define all of ABBC3's custom BBCodes
 *
 * @return array		$bbcode_data	all bbcodes	to add
 **/
