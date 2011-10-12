@@ -83,9 +83,10 @@
 
 		<history>
 			<entry>
-				<date>2011-09-29</date>
+				<date>2011-10-10</date>
 				<rev-version>3.0.10</rev-version>
 				<changelog lang="en">
+					<change> [Change] Added a more current version of myspace video link support to BBvideo BBcode</change>
 					<change> [Change] Updated the version check feature in ABBC3's settings page and removed old Mod Version Check add-on</change>
 					<change> [Fix] phpBB's built-in BBcodes will follow ABBC3's group permission settings</change>
 					<change> [Fix] Fixed fatal error when custom BBcodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>
