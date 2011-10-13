@@ -1,6 +1,6 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/includes
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/includes
 * @version: $Id: abbcode.php, v 3.0.10 2011/09/24 09:36:26 VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 

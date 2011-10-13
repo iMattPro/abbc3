@@ -1,6 +1,6 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
 * @version: $Id: abbcode.php, v 3.0.9.3 2010/10/04 19:12:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 // Help page
-	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode box 3 :: Página de ayuda',
+	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode Box 3 :: Página de ayuda',
 	'ABBC3_HELP_DESC'			=> 'Descripción',
 	'ABBC3_HELP_WRITE'			=> 'BBCode formato de uso',
 	'ABBC3_HELP_VIEW'			=> 'BBCode ejemplo se muestra como',
@@ -522,7 +522,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SEARCH_MOVER'		=> 'Insertar enlace a buscador ',
 	'ABBC3_SEARCH_TIP'			=> '[search(=(bing|yahoo|google|altavista|lycos|wikipedia))]texto[/search]',
 ##	For translate :                                                              yes                                                yes                                                  yes                                                   yes                                                      yes                                                  yes
-	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBCode box 3[/search]<br /> o [search=bing]Advanced BBCode box 3[/search]<br /> o [search=yahoo]Advanced BBCode box 3[/search]<br /> o [search=google]Advanced BBCode box 3[/search]<br /> o [search=altavista]Advanced BBCode box 3[/search]<br /> o [search=lycos]Advanced BBCode box 3[/search]<br /> o [search=wikipedia]Advanced BBCode box 3[/search]',
+	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBCode Box 3[/search]<br /> o [search=bing]Advanced BBCode Box 3[/search]<br /> o [search=yahoo]Advanced BBCode Box 3[/search]<br /> o [search=google]Advanced BBCode Box 3[/search]<br /> o [search=altavista]Advanced BBCode Box 3[/search]<br /> o [search=lycos]Advanced BBCode Box 3[/search]<br /> o [search=wikipedia]Advanced BBCode Box 3[/search]',
 
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',

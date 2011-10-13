@@ -1,6 +1,6 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/de/mods :: [de][German]
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/de/mods :: [de][German]
 * @version: $Id: info_acp_abbcode.php, v 3.0.10 10/13/11 12:35 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
