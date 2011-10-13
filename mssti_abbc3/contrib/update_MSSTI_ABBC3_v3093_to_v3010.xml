@@ -40,7 +40,7 @@
 			<file from="root/adm/style/acp_abbcodes.html" to="adm/style/acp_abbcodes.html"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
-			<file from="root/language/en/mods/acp_abbcodes.php" to="language/en/mods/acp_abbcodes.php"/>
+			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
 		</copy>
 
 		<delete>
