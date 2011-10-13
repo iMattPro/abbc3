@@ -86,7 +86,7 @@
 				<date>2011-10-13</date>
 				<rev-version>3.0.10</rev-version>
 				<changelog lang="en">
-					<change> [Change] Added a more current version of myspace video link support to BBvideo BBCode</change>
+					<change> [Change] BBvideo: Update the appearance of embedded BBvideo players. Update YouTube player color theme. Added a more current version of MySpace embedded video link support.</change>
 					<change> [Change] Updated the version check feature in ABBC3's settings page and removed old Mod Version Check add-on</change>
 					<change> [Fix] phpBB's built-in BBCodes will follow ABBC3's group permission settings</change>
 					<change> [Fix] Fixed fatal error when custom BBCodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>

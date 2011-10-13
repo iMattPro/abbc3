@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.10 2011/09/24 09:36:26 VSE Exp $
+* @version: $Id: abbcode.php, v 3.0.10 10/13/11 2:19 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -16,9 +16,6 @@
 * 		http://www.phpbb.com/community/viewtopic.php?f=46&t=579376
 * 	Adding Custom BBCodes in phpBB3
 * 		http://www.phpbb.com/kb/article/adding-custom-bbcodes-in-phpbb3/
-* 
-* If you are using phpBB2, you can find compatible BBCode MODs in the BBCode section of the MOD database.
-* 	http://www.phpbb.com/mods/db/index.php?i=browse&mode=group:category&sub=bbcode
 * 
 * Need New Ions ? :
 *	http://www.famfamfam.com/lab/icons/silk/ 
@@ -1825,14 +1822,14 @@ class abbcode
 				'image'		=> 'youtube.gif',
 				'example'	=> "http://www.youtube.com/watch?v=PDGxfsf-xwQ",
 				'match'		=> "#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#ise",
-				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0&color1=0x3a3a3a&color2=0x999999', '{WIDTH}', '{HEIGHT}')",
+				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
 			),
 			'youtu.be' => array(
 				'id'		=> 49,
 				'image'		=> 'youtube.gif',
 				'example'	=> "http://youtu.be/PDGxfsf-xwQ",
 				'match'		=> "#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#ise",
-				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0&color1=0x3a3a3a&color2=0x999999', '{WIDTH}', '{HEIGHT}')",
+				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
 			),
 			'xfire.com' => array(
 				'id'		=> 44,
