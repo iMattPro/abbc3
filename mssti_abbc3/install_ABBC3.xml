@@ -83,7 +83,7 @@
 
 		<history>
 			<entry>
-				<date>2011-10-10</date>
+				<date>2011-10-13</date>
 				<rev-version>3.0.10</rev-version>
 				<changelog lang="en">
 					<change> [Change] Added a more current version of myspace video link support to BBvideo BBCode</change>
@@ -91,6 +91,7 @@
 					<change> [Fix] phpBB's built-in BBCodes will follow ABBC3's group permission settings</change>
 					<change> [Fix] Fixed fatal error when custom BBCodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>
 					<change> [Fix] URL and FLASH BBCodes will only appear in message editors if they are allowed under Post Settings in the ACP</change>
+					<change> [Fix] Consolidate all ACP language vars to a new info_acp_abbcodes.php file</change>
 				</changelog>
 			</entry>
 			<entry>
@@ -663,7 +664,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 					'S_BBCODE'	=> $data['bbcode'],]]></find>
 				<action type="before-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
-				$user->add_lang('mods/acp_abbcodes');
+				$user->add_lang('mods/info_acp_abbcodes');
 
 				$abbc3_options = '';
 				$abbc3_modes = array('standard' => $user->lang['UCP_ABBC3_STANDARD'], 'compact' => $user->lang['UCP_ABBC3_COMPACT'], 'limited' => $user->lang['UCP_ABBC3_LIMITED']);
@@ -690,22 +691,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 ]]></action>
 			</edit>
 
-		</open>
-
-		<open src="language/en/acp/common.php">
-			<edit>
-				<find><![CDATA[?>]]></find>
-				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-$lang = array_merge($lang, array(
-	'ACP_ABBCODES'				=> 'Advanced BBCode Box 3',
-	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
-	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
-	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
-	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
-));
-// MOD : MSSTI ABBC3 - End]]></action>
-				<comment lang="en">See root/language folder for availables transtations</comment>
-			</edit>
 		</open>
 
 		<open src="styles/prosilver/template/attachment.html">

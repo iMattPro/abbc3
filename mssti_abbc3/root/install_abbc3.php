@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.10 10/10/11 12:36 AM VSE Exp $
+* @version: $Id: install_abbc3.php, v 3.0.10 10/13/11 12:52 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -45,7 +45,7 @@ $version_config_name = 'ABBC3_VERSION';
 /*
 * The language file which will be included when installing
 */
-$user->add_lang(array('mods/acp_abbcodes', 'mods/abbcode', 'posting', 'install'));
+$user->add_lang(array('mods/info_acp_abbcodes', 'mods/abbcode', 'posting', 'install'));
 
 // Logo Image
 $logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.png';

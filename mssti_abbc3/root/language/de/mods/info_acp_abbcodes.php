@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/de/mods :: [de][German]
-* @version: $Id: acp_abbcode.php, v 3.0.10 9/29/11 12:07 AM VSE Exp $
+* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/13/11 12:35 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 // This lines are the same as root/language/en/acp/common.php
 $lang = array_merge($lang, array(
-	'ACP_ABBCODES'				=> 'Advanced BBCodes Box 3',
+	'ACP_ABBCODES'				=> 'Advanced BBCode Box 3',
 	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Einstellungen',
 	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>ABBC3 Einstellungen geändert</strong>',
@@ -49,7 +49,7 @@ $lang = array_merge($lang, array(
 
 // This lines are for the UCP
 $lang = array_merge($lang, array(
-	'UCP_ABBCODES'					=> 'Advanced BBCodes Box 3',
+	'UCP_ABBCODES'					=> 'Advanced BBCode Box 3',
 	'UCP_ABBC3_SETTINGS'			=> 'Message-Editor BBCode schnittstelle',
 	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Beachten Sie, dass in <i>begrenzten</i> Modus nicht alle BBCodes verfügbar sein werden und müssen manuell eingegeben werden.',
 	'UCP_ABBC3_LIMITED'				=> 'Begrenzt - Einfach nur mit BBCodes keine Symbole',
@@ -165,7 +165,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SYNC'						=> 'Synchronisiere die Reihenfolge',
 	'ABBCODES_RESYNC_SUCCESS'			=> 'Die Reihenfolge der BBCodes wurde neu synchronisiert.',
 
-	'ABBCODES_MOD_DISABLE'				=> 'Die <strong>Advanced BBCodes Box 3</strong> ist deaktiviert.<br />',
+	'ABBCODES_MOD_DISABLE'				=> 'Die <strong>Advanced BBCode Box 3</strong> ist deaktiviert.<br />',
 	'ABBCODES_STATUS'					=> 'Status',
 	'ABBCODES_ACTIVATED'				=> 'aktiviert',
 	'ABBCODES_DEACTIVATED'				=> 'deaktiviert',
@@ -174,7 +174,7 @@ $lang = array_merge($lang, array(
 // UMIL Installer
 $lang = array_merge($lang, array(
 // Main
-	'INSTALLER_TITLE'					=> 'Advanced BBCodes Box 3',
+	'INSTALLER_TITLE'					=> 'Advanced BBCode Box 3',
 	'INSTALLER_TITLE_EXPLAIN'			=> 'Willkommen im <strong>ABBC3</strong> Installationsmenü',
 
 	'INSTALLER_INSTALL_WELCOME'			=> 'Wenn du auswählst, daß du ABBC3 installieren möchtest, werden alle Datenbankeinträge früherer Version gelöscht.',
