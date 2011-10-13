@@ -41,6 +41,7 @@
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
+			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
 		</copy>
 
 		<delete>
