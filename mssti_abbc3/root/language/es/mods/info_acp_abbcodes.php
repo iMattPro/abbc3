@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: acp_abbcode.php, v 3.0.10 9/29/11 12:07 AM VSE Exp $
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
+* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/13/11 12:35 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 
 // This lines are the same as root/language/en/acp/common.php
 $lang = array_merge($lang, array(
-	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBCODES'				=> 'Advanced BBCode Box 3',
 	'ACP_ABBC3_SETTINGS'		=> 'Configurar ABBC3',
 	'ACP_ABBC3_BBCODES'			=> 'Componentes ABBC3',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Modificado: configuración de ABBC3</strong>',
@@ -49,12 +49,12 @@ $lang = array_merge($lang, array(
 
 // This lines are for the UCP
 $lang = array_merge($lang, array(
-	'UCP_ABBCODES'					=> 'Advanced BBcodes Box 3',
-	'UCP_ABBC3_SETTINGS'			=> 'Interfaz del editor BBcode de mensajes',
-	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Note que en modo <i>Limitado</i>, no todos los BBcodes estarán disponibles y deberá escribirlos a mano.',
-	'UCP_ABBC3_LIMITED'				=> 'Limitado - Solamente BBcodes básicos sin íconos',
-	'UCP_ABBC3_COMPACT'				=> 'Compacto - Todos los BBcodes en un compacto menú desplegable',
-	'UCP_ABBC3_STANDARD'			=> 'Estándar - Barra de BBcodes completa',
+	'UCP_ABBCODES'					=> 'Advanced BBCode Box 3',
+	'UCP_ABBC3_SETTINGS'			=> 'Interfaz del editor BBCode de mensajes',
+	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Note que en modo <i>Limitado</i>, no todos los BBCodes estarán disponibles y deberá escribirlos a mano.',
+	'UCP_ABBC3_LIMITED'				=> 'Limitado - Solamente BBCodes básicos sin íconos',
+	'UCP_ABBC3_COMPACT'				=> 'Compacto - Todos los BBCodes en un compacto menú desplegable',
+	'UCP_ABBC3_STANDARD'			=> 'Estándar - Barra de BBCodes completa',
 ));
 
 // abbc3_details
@@ -110,7 +110,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_VIDEO_SIZE'				=> 'Dimensiones de videos',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Por defecto la anchura y la altura de videos.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Tipos de vídeo permitidos',
-	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Seleccione los sitios y/o formatos de vídeo que le gustaría que los usuarios puedan integrar en sus mensajes cuando el BBcode BBvideo está habilitado <em class="error">(*)</em>',
+	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Seleccione los sitios y/o formatos de vídeo que le gustaría que los usuarios puedan integrar en sus mensajes cuando el BBCode BBvideo está habilitado <em class="error">(*)</em>',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> Para selecionar (o eliminar la seleción) de multiples items, debe hacer CTRL+CLICK (o CMD-CLICK en Mac) sobre cada item para agregar. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un item, toda seleción previa sera eliminada.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Elija el modo de seleccionar colores',
@@ -156,7 +156,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_NAME'						=> 'Nombre de etiqueta',
 	'ABBCODES_TAG'						=> 'Imagen de etiqueta',
 	'ABBCODES_ORDER'					=> 'Orden de etiqueta',
-	'ABBCODES_CUSTOM'					=> 'BBcode personalizado',
+	'ABBCODES_CUSTOM'					=> 'BBCode personalizado',
 
 	'ABBCODES_BREAK_MOVER'				=> '<strong><i>Salto de línea</i></strong>',
 	'ABBCODES_DIVISION_MOVER'			=> '<strong><i>División</i></strong>',
@@ -165,7 +165,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SYNC'						=> 'Sincronizar orden',
 	'ABBCODES_RESYNC_SUCCESS'			=> 'El orden de los bbcodes ha sido resincronizado.',
 	
-	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBcodes Box 3</strong> está desabilitado.<br />',
+	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBCode Box 3</strong> está desabilitado.<br />',
 	'ABBCODES_STATUS'					=> 'Estado',
 	'ABBCODES_ACTIVATED'				=> 'activado',
 	'ABBCODES_DEACTIVATED'				=> 'desactivado',
@@ -174,11 +174,11 @@ $lang = array_merge($lang, array(
 // UMIL Installer 
 $lang = array_merge($lang, array(
 // Main
-	'INSTALLER_TITLE'					=> 'Advanced BBcodes Box 3',
+	'INSTALLER_TITLE'					=> 'Advanced BBCode Box 3',
 	'INSTALLER_TITLE_EXPLAIN'			=> 'Bienvenido a la instalación de <strong>%1$s</strong>',
 
 	'INSTALLER_INSTALL_WELCOME'			=> 'Si usted elige actualizar ABBC3, cualquier versión previa de este MOD en la base de datos será eliminada.',
-	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Por favor, tenga en cuenta que este proceso podría sobrescribir sus BBCodes personalizados y como resultado, esos BBCodes pueden <strong>no</strong> mostrarse correctamente, en consecuencia de los cambios introducidos por los BBcodes del ABBC3.
+	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Por favor, tenga en cuenta que este proceso podría sobrescribir sus BBCodes personalizados y como resultado, esos BBCodes pueden <strong>no</strong> mostrarse correctamente, en consecuencia de los cambios introducidos por los BBCodes del ABBC3.
 	<br />Si usted encuentra este tipo de problemas utilice el <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong>.
 	<br /><br />Antes de añadir este MOD a su foro, debería hacer una copia de seguridad de los archivos y de la base de datos.',
 	'INSTALLER_INSTALL_END'				=> 'Ahora usted debería <a href="../index.php">entrar en su foro</a> y verificar que todo funciona correctamente. <br />¡ No olvide borrar, renombrar o mover el archivo <strong><em>install_abbc3.php</em></strong>',

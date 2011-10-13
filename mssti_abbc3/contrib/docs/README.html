@@ -72,7 +72,7 @@
 						</ol>
 					</li>
 					<li><a href="#feature">Feature list</a></li>
-					<li><a href="#custombbcodes">Custom BBcodes Conflicts</a></li>
+					<li><a href="#custombbcodes">Custom BBCodes Conflicts</a></li>
 				</ol>
 			</div>
 
@@ -90,7 +90,7 @@
 					<li>This application is opensource software released under the <a href="http://opensource.org/licenses/gpl-license.php" onclick="window.open(this.href);return false;">GPL</a>. Please see source code and the docs directory for more details. This package and its contents are Copyright (c) 2008, 2010 <a href="http://www.mssti.com" onclick="window.open(this.href);return false;">.:: MSSTI ::.</a> , All Rights Reserved.</li>
 					<li><span class="bad">This is <strong>not</strong> a <em>WYSIWYG</em> or a <em>Rich Text Editor</em></span></li>
 					<li> I contacted "Disturbed One" the original developer of this mod and "freddie" the last developer of this mod, 
-						and ask for upgrade the Advanced BBcode Box for phpbb2.x to phpbb3.x, 
+						and ask for upgrade the Advanced BBCode Box for phpbb2.x to phpbb3.x, 
 						Both say that they will not do the job, and are agree that I do it, so here I am ;)</li>
 					<li> phpBB3 posting page use javascript, basically to add tags to the textarea, when you click on a button javascript insert the code into the post text. <br />
 						 ABBC3 works in the same way, and add more javascript funtions to the wizards...<br />
@@ -147,10 +147,12 @@
 			<div class="content">
 				<a name="abbc3_v3010"></a><h3>Changes in 3.0.10</h3>
 				<ul>
+					<li> [Change] Added a more current version of myspace video link support to BBvideo BBCode</li>
 					<li> [Change] Updated the version check feature in ABBC3's settings page and removed old Mod Version Check add-on</li>
-					<li> [Fix] phpBB's built-in BBcodes will follow ABBC3's group permission settings</li>
-					<li> [Fix] Fixed fatal error when custom BBcodes (not assigned an image/icon) are assigned group permissions by ABBC3</li>
-					<li> [Fix] URL and FLASH BBcodes will only appear in message editors if they are allowed under Post Settings in the ACP</li>
+					<li> [Fix] phpBB's built-in BBCodes will follow ABBC3's group permission settings</li>
+					<li> [Fix] Fixed fatal error when custom BBCodes (not assigned an image/icon) are assigned group permissions by ABBC3</li>
+					<li> [Fix] URL and FLASH BBCodes will only appear in message editors if they are allowed under Post Settings in the ACP</li>
+					<li> [Fix] Consolidate all ACP language vars to a new info_acp_abbcodes.php file</li>
 				</ul>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 			</div>
@@ -162,13 +164,13 @@
 			<div class="content">
 				<a name="abbc3_v3093"></a><h3>Changes in 3.0.9.3</h3>
 				<ul>
-					<li> [New] Add support for youtu.be, Facebook, allocine, cnbc and msnbc links to BBvideo BBcode</li>
-					<li> [Fix] Custom BBcodes not assigned an image/icon now correctly follow ABBC3's group permission settings</li>
+					<li> [New] Add support for youtu.be, Facebook, allocine, cnbc and msnbc links to BBvideo BBCode</li>
+					<li> [Fix] Custom BBCodes not assigned an image/icon now correctly follow ABBC3's group permission settings</li>
 					<li> [Fix] Anchor bbcode breaks with Quote tag in between</li>
 					<li> [Fix] MSSQL ODBC Error "Invalid column name '.'"</li>
 					<li> [Fix] Uninstallation will now revert database changes back to correct structure of bbcode_id field depending on your installed version oh phpBB</li>
 					<li> [Fix] Corrected an issue where the post area resize buttons stopped working with phpBB 3.0.9</li>
-					<li> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBcodes exist on a page to activate ABBC3</li>
+					<li> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBCodes exist on a page to activate ABBC3</li>
 					<li> [Change] Image Resizers have been updated: AdvancedBox, Highslide (up to v4.1.12), Lightview (up to v2.74), Lightbox2 (up to v2.05), and PopBox (up to v2.7a). Ibox has been replaced by Shadowbox (v3.0.3).</li>
 					<li> [Change] Conform to phpBB 3.0.9 new model of using T_SUPER_TEMPLATE_PATH for URLs to javascript </li>
 					<li> [Change] Update to UMIL v 1.0.4</li>
@@ -198,18 +200,18 @@
 				<ul>
 					<li> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</li>
 					<li> [Change] Resize Post Area now increases post area in larger increments.</li>
-					<li> [Fix] Assigning BBcode permissions to specific user groups fixed.</li>
-					<li> [Fix] Fixed BBcode permission checks to prevent potential conflicts with other MODs.</li>
+					<li> [Fix] Assigning BBCode permissions to specific user groups fixed.</li>
+					<li> [Fix] Fixed BBCode permission checks to prevent potential conflicts with other MODs.</li>
 					<li> [Fix] Hard coded paths to included abbc3 html files in order to prevent potential conflicts with other MODs.</li>
 					<li> [Fix] Updated the included Flash player.</li>
 					<li> [Fix] Minor XHTML issues fixed in the ACP pages.</li>
 					<li> [Fix] ACP Settings for Image Resizer now display correct values when configured.</li>
-					<li> [Fix] Font Color and Text Highlight BBcodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</li>
-					<li> [Fix] Custom BBcode buttons without an image/icon will correctly display when assigned only to signature and/or PM pages.</li>
-					<li> [Fix] BBcode : Marquee : Works independent of marquee's used by other MODs</li>
-					<li> [Fix] BBcode : Fade : Fade effect now works in Internet Explorer. Displays inline correctly in Safari.</li>
-					<li> [Fix] BBcode : Gradient : Gradient wizard works now.</li>
-					<li> [Fix] BBcode : Search : Replaced MSN with Bing.</li>
+					<li> [Fix] Font Color and Text Highlight BBCodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</li>
+					<li> [Fix] Custom BBCode buttons without an image/icon will correctly display when assigned only to signature and/or PM pages.</li>
+					<li> [Fix] BBCode : Marquee : Works independent of marquee's used by other MODs</li>
+					<li> [Fix] BBCode : Fade : Fade effect now works in Internet Explorer. Displays inline correctly in Safari.</li>
+					<li> [Fix] BBCode : Gradient : Gradient wizard works now.</li>
+					<li> [Fix] BBCode : Search : Replaced MSN with Bing.</li>
 					<li> [New] Added German language pack.</li>
 				</ul>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
@@ -236,9 +238,9 @@
 						</ul>
 					</li>
 					<li> [Change] Switched over to UMIL based installation</li>
-					<li> [Change] BBcode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</li>
-					<li> [Change] BBcode : BBvideo : Now uses XHTML compliant code for all videos embedded from other Video sharing sites.</li>
-					<li> [Fix] TABS BBcode can now be nested inside other ABBC3 bbcodes like table, moderator, offtopic, spoil, anchor, and tabs without breaking</li>
+					<li> [Change] BBCode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</li>
+					<li> [Change] BBCode : BBvideo : Now uses XHTML compliant code for all videos embedded from other Video sharing sites.</li>
+					<li> [Fix] TABS BBCode can now be nested inside other ABBC3 bbcodes like table, moderator, offtopic, spoil, anchor, and tabs without breaking</li>
 					<li> [Fix] Several XHTML and language fixes.</li>
 				</ul>
 				<strong>ACP:</strong><ul>
@@ -265,7 +267,7 @@
 					<li>[Feature] Wizards pop-up window size</li>
 					<li>[Feature] UCP Control options : Allow users to select their own editor mode
 						<ul>
-							<li>Use standard phpBB3 BBcode buttons</li>
+							<li>Use standard phpBB3 BBCode buttons</li>
 							<li>ABBC3 “Extended” view</li>
 							<li>ABBC3 “Compact” view</li>
 						</ul>
@@ -309,7 +311,7 @@
 				<a name="abbc3_v307"></a><h3>Changes in 3.0.7</h3>
 				<ul>
 					<li> [Feature] Updated to phpbb version 3.0.7-PL1 </li>
-					<li> [Feature] Add-On : Compact ABBC3 Mode option displays all BBcodes in a drop-down menu (Instructions in the contrib folder) </li>
+					<li> [Feature] Add-On : Compact ABBC3 Mode option displays all BBCodes in a drop-down menu (Instructions in the contrib folder) </li>
 					<li> [Feature] Add-On : Custom User Profile Options (Create ABBC3 on/off and ABBC3 Compact Mode on/off options for your user's preferences. Instructions in the contrib folder.) </li>
 
 					<li> <span class="bad">[Sec] Deleted "Simple upload" function, suggested by MOD Team</span> </li>
@@ -391,7 +393,7 @@
 						</ul>
 					</li>
 					<li> [Fix] Update process now preserve previous installation settings </li>
-					<li> [Fix] Correctly check BBcodes permissions</li>
+					<li> [Fix] Correctly check BBCodes permissions</li>
 					<li> [Fix] Some strings in the help line (posting and wizard pages) </li>
 					<li> [Fix] Upload files, property checked authorized extension </li>
 					<li> [Fix] Since <strong>split()</strong> has been deprecated in <strong>PHP 5.3.x</strong>, this function was changed to <strong>explode()</strong> </li>
@@ -402,7 +404,7 @@
 					<li> [New] bbcode <a href="http://www.mssti.com/phpbb3/viewtopic.php?f=21&amp;t=596" onclick="window.open(this.href);return false;">Tabs</a> </li>
 					<li> [Feature] Disable bots to see <a href="http://www.mssti.com/phpbb3/viewtopic.php?f=21&amp;t=338" onclick="window.open(this.href);return false;">[hidden]</a> tag, optionally you can do the same for <a href="http://www.mssti.com/phpbb3/viewtopic.php?f=21&amp;t=110" onclick="window.open(this.href);return false;">[rapidshare]</a> and <a href="http://www.mssti.com/phpbb3/viewtopic.php?f=21&amp;t=111" onclick="window.open(this.href);return false;">[testlink]</a> tags</li>
 					<li> [Fix] Style changes on some bbcodes : <a href="http://www.mssti.com/phpbb3/viewtopic.php?f=21&amp;t=114" onclick="window.open(this.href);return false;">bbvideo</a>, <a href="http://www.mssti.com/phpbb3/viewtopic.php?f=21&amp;t=339" onclick="window.open(this.href);return false;">spoiler</a> </li>
-					<li> [Fix] BBcode : spoiler </li>
+					<li> [Fix] BBCode : spoiler </li>
 					<li> [Fix] BBvideo bbcode for : clipfish </li>
 					<li> [Disabled] BBvideo bbcode for : gamevee.com ( The service is no available any more ) </li>
 					<li> [Feature] Added new Web video to bbvideo bbcode : 
@@ -436,7 +438,7 @@
 				<ul>
 					<li> [Sec] Updated to phpbb version 3.0.4 </li>
 					<li> [Sec] Renamed and Moved file <em>root/includes/functions_abbcode.php</em> to <em>root/abbcode_functions.php</em>, suggested by MOD Team.</li>
-					<li> [Fix] BBcodes group permissions </li>
+					<li> [Fix] BBCodes group permissions </li>
 					<li> [Fix] Install script </li>
 					<li> [Fix] Button to add more divisions or line break in ACP </li>
 					<li> [Fix] Severals issues reported by MOD Team </li>
@@ -469,8 +471,8 @@
 					<li> [Fix] Small fixes and changes in some bbcode </li>
 					<li> [Sec] Safety Check for <strong>allow_url_fopen()</strong> in rapidshare bbcode </li>
 					<li> [Feature] Image resize : Re-write the entirely main function, Improve speed and IE doesn't hang, Should work in every style and or portal, and can use with signatures or not </li>
-					<li> [Feature] BBcode styles : nfo, ed2k, moderator, offtopic, spoiler : change with the styles based off </li>
-					<li> [Sec] BBcode table : check against CSS XSS vulnerabilities </li>
+					<li> [Feature] BBCode styles : nfo, ed2k, moderator, offtopic, spoiler : change with the styles based off </li>
+					<li> [Sec] BBCode table : check against CSS XSS vulnerabilities </li>
 					<li> [Fix] Small issues with bbcodes : testlink and megaupload </li>
 					<li> [Fix] Small issues with bbcodes : spoil, mod, offtopic </li>
 					<li> [Feature] New bbcode <a href="http://www.mssti.com/phpbb3/viewtopic.php?f=21&amp;t=338" onclick="window.open(this.href);return false;">[hidden]</a> </li>
@@ -587,7 +589,7 @@
 					<li> [Fix] Youtube link, now you can use with or without www, also work with international links. </li>
 					<li> [Feature] Added severals pre installed custom bbcodes, all are disabled by default. For set it, please read the contrib folder content.
 						<ul>
-							<li>icon for Simple Hide BBcode MOD by ycl6. ( not the full mod )</li>
+							<li>icon for Simple Hide BBCode MOD by ycl6. ( not the full mod )</li>
 							<li>Moderator ( Thanks pavabe )</li>
 							<li>Offtopic ( Thanks tupeu )</li>
 							<li>Dailymotion video ( Thanks joebart72 )</li>
@@ -734,7 +736,7 @@
 							<li> [ - ] Posting box Resizer : shorter </li>
 						</ul>
 					</li>
-					<li><strong>BBcodes : </strong><span class="good">( In default order and state )</span>
+					<li><strong>BBCodes : </strong><span class="good">( In default order and state )</span>
 						<ul>
 							<li>Font Type Dropdown</li>
 							<li>Font Size Dropdown</li>
@@ -906,7 +908,7 @@
 							<li>IGN video <span class="bad">( Disable by default )</span></li>
 							<li>LiveLeak video <span class="bad">( Disable by default )</span></li>
 							<li>--------------------</li>
-							<li>Custom BBcodes</li>
+							<li>Custom BBCodes</li>
 						</ul>
 					</li>
 				</ul>
@@ -917,13 +919,13 @@
 		</div>
 
 		<hr />
-		<a name="custombbcodes"></a><h2>Custom BBcodes Conflicts</h2>
+		<a name="custombbcodes"></a><h2>Custom BBCodes Conflicts</h2>
 		<div class="paragraph">
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div class="content">
 				<ul>
-					<li>ABBC3 will overwrite any custom BBcodes your board may already have if they have the exact same name. If this happens, your older posts using your original custom BBcodes may not appear to work any more. There is a way to prevent this from happening.</li>
-					<li> First, compare your custom bbcode's [tag] names against this list of ABBC3's bbcode [tag] names. If you have any matches you should read further, otherwise you are good to go ahead and install ABBC3 with no custom BBcode conflicts.
+					<li>ABBC3 will overwrite any custom BBCodes your board may already have if they have the exact same name. If this happens, your older posts using your original custom BBCodes may not appear to work any more. There is a way to prevent this from happening.</li>
+					<li> First, compare your custom bbcode's [tag] names against this list of ABBC3's bbcode [tag] names. If you have any matches you should read further, otherwise you are good to go ahead and install ABBC3 with no custom BBCode conflicts.
 						<ul>
 							<li>align=center</li>
 							<li>align=justify</li>
@@ -1003,15 +1005,15 @@
 							<li>youtube</li>
 						</ul>
 					</li>
-					<li>If you have custom BBcodes that use the same names as any of the above, you will have a conflict. If you want to use your custom BBcode instead of ABBC3's do the following:</li>
+					<li>If you have custom BBCodes that use the same names as any of the above, you will have a conflict. If you want to use your custom BBCode instead of ABBC3's do the following:</li>
 					<ul>
-						<li>Go to the Custom BBcodes page in the ACP and write down the settings for the custom BBcodes you want to keep</li>
+						<li>Go to the Custom BBCodes page in the ACP and write down the settings for the custom BBCodes you want to keep</li>
 						<li>Install ABBC3</li>
 						<li>If you have phpMyAdmin, go to your database -> phpbb_bbcodes -> Browse.</li>
 						<li>Find the item with the bbcode_tag youtube and click the pencil icon to edit it</li>
 						<li>Locate the field "abbcode" and change that value to 0, and click the go/submit button</li>
-						<li>Go to the Custom BBcodes screen in the ACP and you should see your custom bbcode in the list. Click it to edit it, and put back your original settings in all fields (including the help line, and also click Display on posting page).</li>
-						<li>You can also go to ABBC3 BBcode settings in the ACP, and assign an image to your Custom BBcode.</li>
+						<li>Go to the Custom BBCodes screen in the ACP and you should see your custom bbcode in the list. Click it to edit it, and put back your original settings in all fields (including the help line, and also click Display on posting page).</li>
+						<li>You can also go to ABBC3 BBCode settings in the ACP, and assign an image to your Custom BBCode.</li>
 					</ul>
 				</ul>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>

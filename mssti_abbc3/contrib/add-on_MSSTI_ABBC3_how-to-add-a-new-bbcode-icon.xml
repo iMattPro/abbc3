@@ -7,7 +7,7 @@
 
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - How to add : ABBC3 and Custom bbcodes with icon]]></title>
 
-		<description lang="en"><![CDATA[This tutorial explains how to add a new icon and BBcode to Advanced BBcode Box 3]]></description>
+		<description lang="en"><![CDATA[This tutorial explains how to add a new icon and BBCode to Advanced BBCode Box 3]]></description>
 
 		<author-notes lang="en"><![CDATA[See the main install file for any additional information about the MOD.]]></author-notes>
 
@@ -124,7 +124,7 @@ Do not check the "Display on posting page"
 Click on submit button
 
 #--------------------------------------------------------------------
-Go to: [ Posting ] > [ Messages :: Advanced BBcodes Box 3] > [ ABBC3 BBCodes ]
+Go to: [ Posting ] > [ Messages :: Advanced BBCode Box 3] > [ ABBC3 BBCodes ]
 
 #-----[ Find ]-------------------------------------------------------
 [goear]
@@ -191,7 +191,7 @@ Do not check the "Display on posting page"
 Click on submit button
 
 #--------------------------------------------------------------------
-Go to: [ Posting ] > [ Messages :: Advanced BBcodes Box 3] > [ ABBC3 BBCodes ]
+Go to: [ Posting ] > [ Messages :: Advanced BBCode Box 3] > [ ABBC3 BBCodes ]
 
 #-----[ Find ]-------------------------------------------------------
 [deezer]
@@ -223,7 +223,7 @@ language/en/mods/abbcode.php
 #
 #-----[ FIND ]-------------------------------------------------------
 #
-	// Custom BBcodes
+	// Custom BBCodes
 #
 #-----[ AFTER, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find.

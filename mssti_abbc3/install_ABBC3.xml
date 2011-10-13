@@ -15,9 +15,9 @@
 		<author-notes lang="en"><![CDATA[To read more about ABBC3, please read the contrib/docs/README.HTML file
 
 	-------------------------------------------------------------------
-	WARNING: Please be advised that this MOD might overwrite some custom BBcodes 
-	you already have and as a result, those BBcodes might not display correctly 
-	due to the changes introduced by ABBC3's BBcodes. If you are using custom BBcodes,
+	WARNING: Please be advised that this MOD might overwrite some custom BBCodes 
+	you already have and as a result, those BBCodes might not display correctly 
+	due to the changes introduced by ABBC3's BBCodes. If you are using custom BBCodes,
 	please read the contrib/docs/README.HTML file for more information before you proceed.
 
 	-------------------------------------------------------------------
@@ -83,26 +83,28 @@
 
 		<history>
 			<entry>
-				<date>2011-09-29</date>
+				<date>2011-10-13</date>
 				<rev-version>3.0.10</rev-version>
 				<changelog lang="en">
+					<change> [Change] Added a more current version of myspace video link support to BBvideo BBCode</change>
 					<change> [Change] Updated the version check feature in ABBC3's settings page and removed old Mod Version Check add-on</change>
-					<change> [Fix] phpBB's built-in BBcodes will follow ABBC3's group permission settings</change>
-					<change> [Fix] Fixed fatal error when custom BBcodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>
-					<change> [Fix] URL and FLASH BBcodes will only appear in message editors if they are allowed under Post Settings in the ACP</change>
+					<change> [Fix] phpBB's built-in BBCodes will follow ABBC3's group permission settings</change>
+					<change> [Fix] Fixed fatal error when custom BBCodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>
+					<change> [Fix] URL and FLASH BBCodes will only appear in message editors if they are allowed under Post Settings in the ACP</change>
+					<change> [Fix] Consolidate all ACP language vars to a new info_acp_abbcodes.php file</change>
 				</changelog>
 			</entry>
 			<entry>
 				<date>2011-08-05</date>
 				<rev-version>3.0.9.3</rev-version>
 				<changelog lang="en">
-					<change> [New] Add support for youtu.be, Facebook, allocine, cnbc and msnbc links to BBvideo BBcode</change>
-					<change> [Fix] Custom BBcodes not assigned an image/icon now correctly follow ABBC3's group permission settings</change>
+					<change> [New] Add support for youtu.be, Facebook, allocine, cnbc and msnbc links to BBvideo BBCode</change>
+					<change> [Fix] Custom BBCodes not assigned an image/icon now correctly follow ABBC3's group permission settings</change>
 					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
 					<change> [Fix] Uninstallation will now revert database changes back to correct structure of bbcode_id field depending on your installed version oh phpBB</change>
 					<change> [Fix] Corrected an issue where the post area resize buttons stopped working with phpBB 3.0.9</change>
-					<change> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBcodes exist on a page to activate ABBC3</change>
+					<change> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBCodes exist on a page to activate ABBC3</change>
 					<change> [Change] Image Resizers have been updated: AdvancedBox, Highslide (up to v4.1.12), Lightview (up to v2.74), Lightbox2 (up to v2.05), and PopBox (up to v2.7a). Ibox has been replaced by Shadowbox (v3.0.3).</change>
 					<change> [Change] Conform to phpBB 3.0.9 new model of using T_SUPER_TEMPLATE_PATH for URLs to javascript </change>
 					<change> [Change] Update to UMIL v 1.0.4</change>
@@ -122,18 +124,18 @@
 				<changelog lang="en">
 					<change> [Change] Changed UCP options to a pull-down menu to select an ABBC3 interface.</change>
 					<change> [Change] Resize Post Area now increases post area in larger increments.</change>
-					<change> [Fix] Assigning BBcode permissions to specific user groups fixed.</change>
-					<change> [Fix] Fixed BBcode permission checks to prevent potential conflicts with other MODs.</change>
+					<change> [Fix] Assigning BBCode permissions to specific user groups fixed.</change>
+					<change> [Fix] Fixed BBCode permission checks to prevent potential conflicts with other MODs.</change>
 					<change> [Fix] Hard coded paths to included abbc3 html files in order to prevent potential conflicts with other MODs.</change>
 					<change> [Fix] Updated the included Flash player.</change>
 					<change> [Fix] Minor XHTML issues fixed in the ACP pages.</change>
 					<change> [Fix] ACP Settings for Image Resizer now display correct values when configured.</change>
-					<change> [Fix] Font Color and Text Highlight BBcodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</change>
-					<change> [Fix] Custom BBcode buttons without an image/icon will correctly display when assigned only to signature and PM pages.</change>
-					<change> [Fix] BBcode : Marquee : Works independent of marquee's used by other MODs</change>
-					<change> [Fix] BBcode : Fade : Fade effect now works in Internet Explorer. Displays inline correctly in Safari.</change>
-					<change> [Fix] BBcode : Gradient : Gradient wizard works now.</change>
-					<change> [Fix] BBcode : Search : Replaced MSN with Bing.</change>
+					<change> [Fix] Font Color and Text Highlight BBCodes using the "Fancy" drop down menu now work correctly with Internet Explorer.</change>
+					<change> [Fix] Custom BBCode buttons without an image/icon will correctly display when assigned only to signature and PM pages.</change>
+					<change> [Fix] BBCode : Marquee : Works independent of marquee's used by other MODs</change>
+					<change> [Fix] BBCode : Fade : Fade effect now works in Internet Explorer. Displays inline correctly in Safari.</change>
+					<change> [Fix] BBCode : Gradient : Gradient wizard works now.</change>
+					<change> [Fix] BBCode : Search : Replaced MSN with Bing.</change>
 					<change> [New] Added German language pack.</change>
 				</changelog>
 			</entry>
@@ -153,8 +155,8 @@
 					<change> [Feature] Wizards can be disabled, use pop up window, or in-post</change>
 					<change> [Feature] Added ACP option to define the content allowed in BBvideo</change>
 					<change> [Change] Switched over to UMIL based installation</change>
-					<change> [Change] BBcode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</change>
-					<change> [Change] BBcode : BBvideo : Now uses XHTML compliant code for all videos embedded from other Video sharing sites.</change>
+					<change> [Change] BBCode : glow, shadow, dropshadow, blur, wave : Now works on modern browsers too, not exclusively in IE.</change>
+					<change> [Change] BBCode : BBvideo : Now uses XHTML compliant code for all videos embedded from other Video sharing sites.</change>
 					<change> [Fix] Several XHTML and language fixes.</change>
 				</changelog>
 			</entry>
@@ -179,7 +181,7 @@
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_with_Evil_Quick_Replyv101.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_embossed_button_effect.xml" lang="en">Add-on : Embossed buttons for ABBC3</link>
 			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_ED2K.xml" lang="en">Add-on : ED2K links in post.</link>
-			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_how-to-add-a-new-bbcode-icon.xml" lang="en">How to : Add ABBC3 and Custom BBcodes with icons</link>
+			<link type="contrib" href="contrib/add-on_MSSTI_ABBC3_how-to-add-a-new-bbcode-icon.xml" lang="en">How to : Add ABBC3 and Custom BBCodes with icons</link>
 		</link-group>
 	</header>
 
@@ -662,7 +664,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 					'S_BBCODE'	=> $data['bbcode'],]]></find>
 				<action type="before-add"><![CDATA[
 // MOD : MSSTI ABBC3 - Start
-				$user->add_lang('mods/acp_abbcodes');
+				$user->add_lang('mods/info_acp_abbcodes');
 
 				$abbc3_options = '';
 				$abbc3_modes = array('standard' => $user->lang['UCP_ABBC3_STANDARD'], 'compact' => $user->lang['UCP_ABBC3_COMPACT'], 'limited' => $user->lang['UCP_ABBC3_LIMITED']);
@@ -689,22 +691,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 ]]></action>
 			</edit>
 
-		</open>
-
-		<open src="language/en/acp/common.php">
-			<edit>
-				<find><![CDATA[?>]]></find>
-				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-$lang = array_merge($lang, array(
-	'ACP_ABBCODES'				=> 'Advanced BBcode Box 3',
-	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
-	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
-	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
-	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
-));
-// MOD : MSSTI ABBC3 - End]]></action>
-				<comment lang="en">See root/language folder for availables transtations</comment>
-			</edit>
 		</open>
 
 		<open src="styles/prosilver/template/attachment.html">
@@ -887,7 +873,7 @@ E) Enable your board :
 F) Change the value that best suits your needs
 
 	F.1) Navigate to Posting Tab
-	F.2) At the left menu you will find a new category "Advanced BBcodes Box 3"
+	F.2) At the left menu you will find a new category "Advanced BBCode Box 3"
 	F.3) ABBC3 settings : Here you can determine the basic operation of ABBC3, 
 	enable or disable, and among other settings adjust the default values for the background.
 	F.4) ABBC3 BBCodes : From this page you can alter the order of tags on posting page or edit the icons,

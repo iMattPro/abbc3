@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.10 10/10/11 12:36 AM VSE Exp $
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/
+* @version: $Id: install_abbc3.php, v 3.0.10 10/13/11 12:52 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -45,7 +45,7 @@ $version_config_name = 'ABBC3_VERSION';
 /*
 * The language file which will be included when installing
 */
-$user->add_lang(array('mods/acp_abbcodes', 'mods/abbcode', 'posting', 'install'));
+$user->add_lang(array('mods/info_acp_abbcodes', 'mods/abbcode', 'posting', 'install'));
 
 // Logo Image
 $logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.png';
@@ -94,7 +94,7 @@ $versions = array(
 		'config_remove' => array(
 			array('ABBC3_PATH'),
 		),
-		// We have some BBcodes to update
+		// We have some BBCodes to update
 		'custom' => 'abbc3_bbcode_handler',
 	),
 	'3.0.8-pl2'		=> array(
@@ -393,7 +393,7 @@ function abbc3_308($action, $version)
 		// Run this when uninstalling
 		/* All related to the phpbb_bbcodes table - Start */
 
-			// Remove the ABBC3 custom BBcodes first, before uninstalling anything else
+			// Remove the ABBC3 custom BBCodes first, before uninstalling anything else
 			$message .= abbc3_bbcode_handler($action, $version);
 
 			// remove the table index
@@ -459,7 +459,7 @@ function abbc3_308($action, $version)
 }
 
 /**
-* Install, update or remove ABBC3 custom BBcodes
+* Install, update or remove ABBC3 custom BBCodes
 *
 * @param string		$action
 * @param string		$version
@@ -755,7 +755,7 @@ function bbvideo_updater($action, $version)
 }
 
 /**
-* Define all of ABBC3's custom BBcodes
+* Define all of ABBC3's custom BBCodes
 *
 * @return array		$bbcode_data	all bbcodes	to add
 **/

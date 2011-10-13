@@ -63,6 +63,10 @@
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 
+		<delete>
+			<file name="language/en/mods/acp_abbcodes.php"/>
+		</delete>
+
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 
 		<open src="includes/bbcode.php">
@@ -173,10 +177,25 @@
 
 		</open>
 
+		<open src="includes/ucp/ucp_prefs.php">
+			<edit>
+				<find><![CDATA[				$user->add_lang('mods/acp_abbcodes');]]></find>
+				<action type="replace-with"><![CDATA[				$user->add_lang('mods/info_acp_abbcodes');]]></action>
+			</edit>
+
+		</open>
+
 		<open src="language/en/acp/common.php">
 			<edit>
-				<find><![CDATA[	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',]]></find>
-				<action type="replace-with"><![CDATA[	'ACP_ABBCODES'				=> 'Advanced BBcode Box 3',]]></action>
+				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
+$lang = array_merge($lang, array(
+	'ACP_ABBCODES'				=> 'Advanced BBCode Box 3',
+	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
+	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
+	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
+));
+// MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
 		</open>
 

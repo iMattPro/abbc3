@@ -1,6 +1,6 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/es/mods :: [es][Spanish]
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
 * @version: $Id: abbcode.php, v 3.0.9.3 2010/10/04 19:12:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
@@ -40,10 +40,10 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 // Help page
-	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode box 3 :: Página de ayuda',
+	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode Box 3 :: Página de ayuda',
 	'ABBC3_HELP_DESC'			=> 'Descripción',
-	'ABBC3_HELP_WRITE'			=> 'BBcode formato de uso',
-	'ABBC3_HELP_VIEW'			=> 'BBcode ejemplo se muestra como',
+	'ABBC3_HELP_WRITE'			=> 'BBCode formato de uso',
+	'ABBC3_HELP_VIEW'			=> 'BBCode ejemplo se muestra como',
 	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 por <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
 	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 	
@@ -110,7 +110,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOTE'				=> 'Nota',
 	'ABBC3_EXAMPLE'				=> 'Ejemplo',
 	'ABBC3_EXAMPLES'			=> 'Ejemplos',
-	'ABBC3_SHORT'				=> 'Seleccione BBcode',
+	'ABBC3_SHORT'				=> 'Seleccione BBCode',
 	'ABBC3_DEPRECATED'			=> '<div class="error">El bbcode <em>%1$s</em> está obsoleto desde ABBC3 version <em>%2$s</em></div>',	
 	'ABBC3_UNAUTHORISED'		=> 'No está permitido usar ciertas palabras : <br /><strong> %s </strong>',
 	'ABBC3_NOSCRIPT'			=> 'Su navegador tiene desactivado scripts o no admite client-side scripting. <em>(JavaScript!)</em>',
@@ -522,7 +522,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SEARCH_MOVER'		=> 'Insertar enlace a buscador ',
 	'ABBC3_SEARCH_TIP'			=> '[search(=(bing|yahoo|google|altavista|lycos|wikipedia))]texto[/search]',
 ##	For translate :                                                              yes                                                yes                                                  yes                                                   yes                                                      yes                                                  yes
-	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode box 3[/search]<br /> o [search=bing]Advanced BBcode box 3[/search]<br /> o [search=yahoo]Advanced BBcode box 3[/search]<br /> o [search=google]Advanced BBcode box 3[/search]<br /> o [search=altavista]Advanced BBcode box 3[/search]<br /> o [search=lycos]Advanced BBcode box 3[/search]<br /> o [search=wikipedia]Advanced BBcode box 3[/search]',
+	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBCode Box 3[/search]<br /> o [search=bing]Advanced BBCode Box 3[/search]<br /> o [search=yahoo]Advanced BBCode Box 3[/search]<br /> o [search=google]Advanced BBCode Box 3[/search]<br /> o [search=altavista]Advanced BBCode Box 3[/search]<br /> o [search=lycos]Advanced BBCode Box 3[/search]<br /> o [search=wikipedia]Advanced BBCode Box 3[/search]',
 
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
@@ -531,7 +531,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Seleccione un tipo de vídeo',
-	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Actualmente no hay vídeos permitidos. Por favor notifique al %sAdministrador del Sitio%s acerca de este problema.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBcode URL.',
+	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Actualmente no hay vídeos permitidos. Por favor notifique al %sAdministrador del Sitio%s acerca de este problema.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBCode URL.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Formato del archivo',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Video desde',
 	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Video externo desde',
@@ -636,7 +636,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_LIVELEAK_EXAMPLE'	=> 'http://www.liveleak.com/view?i=166_1194290849',
 	'ABBC3_LIVELEAK_VIEW'		=> '[liveleak]http://www.liveleak.com/view?i=166_1194290849[/liveleak]',
 
-// Custom BBcodes
+// Custom BBCodes
 	// Deezer audio
 	'DEEZER_TAG'				=> 'Deezer',
 	'DEEZER_MOVER'				=> 'Insertar audio desde Deezer',

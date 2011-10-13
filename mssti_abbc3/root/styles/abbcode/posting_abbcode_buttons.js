@@ -1,5 +1,5 @@
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/styles/abbcode
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/styles/abbcode
 * @version: $Id: posting_abbcode_buttons.js, v 3.0.9.3 2010/09/13 10:06:28 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 

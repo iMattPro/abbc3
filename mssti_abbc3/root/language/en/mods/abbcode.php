@@ -1,6 +1,6 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/language/en/mods :: [en][English]
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/en/mods :: [en][English]
 * @version: $Id: abbcode.php, v 3.0.9.3 2010/10/04 19:09:22 leviatan21 Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
@@ -42,8 +42,8 @@ $lang = array_merge($lang, array(
 // Help page
 	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode Box 3 :: Help Page',
 	'ABBC3_HELP_DESC'			=> 'Description',
-	'ABBC3_HELP_WRITE'			=> 'BBcode usage format',
-	'ABBC3_HELP_VIEW'			=> 'BBcode example displays as',
+	'ABBC3_HELP_WRITE'			=> 'BBCode usage format',
+	'ABBC3_HELP_VIEW'			=> 'BBCode example displays as',
 	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
 	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
@@ -110,8 +110,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOTE'				=> 'Note',
 	'ABBC3_EXAMPLE'				=> 'Example',
 	'ABBC3_EXAMPLES'			=> 'Examples',
-	'ABBC3_SHORT'				=> 'Select BBcode',
-	'ABBC3_DEPRECATED'			=> '<div class="error">The <em>%1$s</em> BBcode has been deprecated as of ABBC3 version <em>%2$s</em></div>',
+	'ABBC3_SHORT'				=> 'Select BBCode',
+	'ABBC3_DEPRECATED'			=> '<div class="error">The <em>%1$s</em> BBCode has been deprecated as of ABBC3 version <em>%2$s</em></div>',
 	'ABBC3_UNAUTHORISED'		=> 'You cannot use certain words : <br /><strong> %s </strong>',
 	'ABBC3_NOSCRIPT'			=> 'Your browser has disabled scripts or does not support client-side scripting. <em>( JavaScript! )</em>',
 	'ABBC3_NOSCRIPT_EXPLAIN'	=> 'The page you are viewing requires the use of JavaScript for best performance.<br />If you have intentionally disabled JavaScript, please enable it.',
@@ -522,7 +522,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SEARCH_MOVER'		=> 'Insert search word',
 	'ABBC3_SEARCH_TIP'			=> '[search(=(bing|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
 ##	For translate :                                                              yes                                                 yes                                                   yes                                                    yes                                                       yes                                                   yes
-	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBcode Box 3[/search]<br /> or [search=bing]Advanced BBcode Box 3[/search]<br /> or [search=yahoo]Advanced BBcode Box 3[/search]<br /> or [search=google]Advanced BBcode Box 3[/search]<br /> or [search=altavista]Advanced BBcode Box 3[/search]<br /> or [search=lycos]Advanced BBcode Box 3[/search]<br /> or [search=wikipedia]Advanced BBcode Box 3[/search]',
+	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBCode Box 3[/search]<br /> or [search=bing]Advanced BBCode Box 3[/search]<br /> or [search=yahoo]Advanced BBCode Box 3[/search]<br /> or [search=google]Advanced BBCode Box 3[/search]<br /> or [search=altavista]Advanced BBCode Box 3[/search]<br /> or [search=lycos]Advanced BBCode Box 3[/search]<br /> or [search=wikipedia]Advanced BBCode Box 3[/search]',
 
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
@@ -531,7 +531,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Please select a video type',
-	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBcode.',
+	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBCode.',
 	'ABBC3_BBVIDEO_FILE'		=> 'File format',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',
 	'ABBC3_BBVIDEO_EXTERNAL'	=> 'External Video from',
@@ -636,7 +636,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_LIVELEAK_EXAMPLE'	=> 'http://www.liveleak.com/view?i=166_1194290849',
 	'ABBC3_LIVELEAK_VIEW'		=> '[liveleak]http://www.liveleak.com/view?i=166_1194290849[/liveleak]',
 
-// Custom BBcodes
+// Custom BBCodes
 	// Deezer audio
 	'DEEZER_TAG'				=> 'Deezer',
 	'DEEZER_MOVER'				=> 'Insert audio from Deezer',

@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.10 10/10/11 12:34 AM VSE Exp $
+* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/includes/acp
+* @version: $Id: acp_abbcode.php, v 3.0.10 10/13/11 12:52 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -32,7 +32,7 @@ class acp_abbcodes
 		global $db, $user, $auth, $template, $cache;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 		
-		$user->add_lang(array('acp/styles', 'mods/acp_abbcodes', 'mods/abbcode'));
+		$user->add_lang(array('acp/styles', 'mods/info_acp_abbcodes', 'mods/abbcode'));
 
 		// Include files
 		require($phpbb_root_path . 'includes/abbcode.' . $phpEx);
@@ -166,7 +166,7 @@ class acp_abbcodes
 
 		$display_vars = array(
 			'title'	=> 'ABBCODES_SETINGS',
-			'lang'	=> array('mods/abbcode', 'mods/acp_abbcodes'),
+			'lang'	=> array('mods/abbcode', 'mods/info_acp_abbcodes'),
 			'vars'	=> array(
 				'legend1'				=> 'GENERAL_OPTIONS',
 				'ABBC3_MOD'				=> array('lang' => 'ABBCODES_DISABLE',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
@@ -426,7 +426,7 @@ class acp_abbcodes
 	{
 		global $user, $db;
 
-		$user->add_lang('mods/acp_abbcodes');
+		$user->add_lang('mods/info_acp_abbcodes');
 
 		// This pseodo-bbcode should not change the position order
 		$bbcode_tag_ary =  array('font=', 'size', 'highlight=', 'color');
@@ -460,7 +460,7 @@ class acp_abbcodes
 	{
 		global $user, $db, $cache, $template, $config;
 
-		$user->add_lang(array('acp/posting', 'mods/acp_abbcodes', 'mods/abbcode'));
+		$user->add_lang(array('acp/posting', 'mods/info_acp_abbcodes', 'mods/abbcode'));
 
 		// Is this ABBC3 is disabled
 		if (!isset($config['ABBC3_MOD']))
