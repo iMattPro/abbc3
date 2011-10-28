@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.10 10/13/11 2:19 PM VSE Exp $
+* @version: $Id: abbcode.php, v 3.0.10 10/27/11 10:17 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -1843,7 +1843,7 @@ class abbcode
 				'image'		=> 'scribd.gif',
 				'example'	=> "[scribd id=33988557 key=key-2l5cezbnj6qttpbzb75d mode=list]",
 				'match'		=> "#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#sie",
-				'replace'	=> "\$this->auto_embed_video('http://documents.scribd.com/ScribdViewer.swf?document_id=$3$10&access_key=$5$12&page=1&version=1&viewMode=$7', '{WIDTH}', '{HEIGHT}', '', array('id' => 'doc_$3$10', 'name' => 'doc_$3$10'), array('play' => 'true', 'loop' => 'true', 'scale' => 'showall', 'wmode' => 'opaque', 'devicefont' => 'false', 'bgcolor' =>'#ffffff', 'menu' => 'true'))",
+				'replace'	=> "\$this->auto_embed_video('http://documents.scribd.com/ScribdViewer.swf?document_id=$3$10&access_key=$5$12&page=1&version=1&viewMode=$7', '{WIDTH}', '{HEIGHT}', '', array('id' => 'doc_$3$10', 'name' => 'doc_$3$10'), array('play' => 'true', 'loop' => 'true', 'scale' => 'showall', 'devicefont' => 'false', 'bgcolor' =>'#ffffff', 'menu' => 'true'))",
 			),
 			'allocine.fr' => array(
 				'id'		=> 46,
@@ -2053,6 +2053,8 @@ class abbcode
 	**/
 	function auto_embed_video($url, $width, $height, $flashvars = '', $object_attribs_ary = array(), $object_params_ary = array())
 	{
+		global $config;
+		
 		// Try to cope with a common user error...
 		if (preg_match('#^[a-z0-9]+://#i', $url))
 		{
@@ -2077,6 +2079,11 @@ class abbcode
 			'autostart'			=> 'false',
 		), $object_params_ary);
 
+		if (isset($config['ABBC3_VIDEO_WMODE']) && $config['ABBC3_VIDEO_WMODE'])
+		{
+			$object_params_ary['wmode'] = 'transparent';
+		}	
+		
 		($flashvars) ? $object_params_ary['flashvars'] = trim(str_replace('&', '&amp;', $flashvars)) : true;
 
 		$object_attribs = '';
