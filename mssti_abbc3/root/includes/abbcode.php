@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.10 10/13/11 2:19 PM VSE Exp $
+* @package: phpBB :: Advanced BBCode Box 3 -> root/includes
+* @version: $Id: abbcode.php, v 3.0.10 11/27/11 10:04 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -1516,6 +1516,20 @@ class abbcode
 		return array(
 			'video' => array(
 			),
+			'allocine.fr' => array(
+				'id'		=> 46,
+				'image'		=> 'allocine.gif',
+				'example'	=> "http://www.allocine.fr/video/player_gen_cmedia=19149857&cfilm=126693.html",
+				'match'		=> "#http://www.allocine.fr/video/player_gen_cmedia=(\d+)?([^[]*)?#ise",
+				'replace'	=> "\$this->auto_embed_video('http://www.allocine.fr/blogvision/$1', '{WIDTH}', '{HEIGHT}')",
+			),
+			'cnbc.com' => array(
+				'id'		=> 47,
+				'image'		=> 'nbc.gif',
+				'example'	=> "http://www.cnbc.com/id/15840232?video=1548022077&play=1",
+				'match'		=> "#http://www.cnbc.com/id/(\d+)(?:|/)\?video=(\d+)?([^[]*)?#ise",
+				'replace'	=> "\$this->auto_embed_video('http://plus.cnbc.com/rssvideosearch/action/player/id/$2/code/cnbcplayershare', '{WIDTH}', '{HEIGHT}')",
+			),
 			'comedycentral.com' => array(
 				'id'		=> 1,
 				'image'		=> 'comedycentral.gif',
@@ -1557,6 +1571,13 @@ class abbcode
 				'example'	=> "http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport",
 				'match'		=> "#http://www.dailymotion.com(.*?)/video/(([^[_]*)?([^[]*)?)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.dailymotion.com/swf/video/$3', '{WIDTH}', '{HEIGHT}')",
+			),
+			'facebook.com' => array(
+				'id'		=> 50,
+				'image'		=> 'video.gif',
+				'example'	=> "http://www.facebook.com/video/video.php?v=1587422536911",
+				'match'		=> "#http://www.facebook.com/video/video.php\?v=([0-9A-Za-z-_]+)?([^[]*)?#ise",
+				'replace'	=> "\$this->auto_embed_video('http://www.facebook.com/v/$1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'g4tv.com' => array(
 				'id'		=> 7,
@@ -1670,6 +1691,13 @@ class abbcode
 				'match'		=> "#http://www.metacafe.com/watch/([0-9]+)?((/[^/]+)/?)?#sie",
 				'replace'	=> "\$this->auto_embed_video('http://www.metacafe.com/fplayer/$1/metacafe.swf', '{WIDTH}', '{HEIGHT}')",
 			),
+			'msnbc.msn.com' => array(
+				'id'		=> 48,
+				'image'		=> 'nbc.gif',
+				'example'	=> "http://www.msnbc.msn.com/id/21134540/vp/41172078#41190910",
+				'match'		=> "#http://www.msnbc.msn.com/id/(\d+)?/vp/(\d+)?\#(\d+)?([^[]*)?#ise",
+				'replace'	=> "\$this->auto_embed_video('http://www.msnbc.msn.com/id/32545640', '{WIDTH}', '{HEIGHT}', 'launch=$3&width={WIDTH}&height={HEIGHT}')",
+			),
 			'myspace.com' => array(
 				'id'		=> 51,
 				'image'		=> 'vidsmyspace.gif',
@@ -1732,6 +1760,13 @@ class abbcode
 				'example'	=> "http://videos.sapo.pt/LguPabwSWikK0wzBmU1o",
 				'match'		=> "#http://(.*?)sapo.pt/(.*/)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://rd3.videos.sapo.pt/play?file=http://rd3.videos.sapo.pt/$3/mov/1', '{WIDTH}', '{HEIGHT}')",
+			),
+			'scribd' => array(
+				'id'		=> 45,
+				'image'		=> 'scribd.gif',
+				'example'	=> "[scribd id=33988557 key=key-2l5cezbnj6qttpbzb75d mode=list]",
+				'match'		=> "#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#sie",
+				'replace'	=> "\$this->auto_embed_video('http://documents.scribd.com/ScribdViewer.swf?document_id=$3$10&access_key=$5$12&page=1&version=1&viewMode=$7', '{WIDTH}', '{HEIGHT}', '', array('id' => 'doc_$3$10', 'name' => 'doc_$3$10'), array('play' => 'true', 'loop' => 'true', 'scale' => 'showall', 'devicefont' => 'false', 'bgcolor' =>'#ffffff', 'menu' => 'true'))",
 			),
 			'sevenload.com' => array(
 				'id'		=> 31,
@@ -1837,41 +1872,6 @@ class abbcode
 				'example'	=> "http://www.xfire.com/video/24c86/",
 				'match'		=> "#http://www.xfire.com/video/(.*?)/#sie",
 				'replace'	=> "\$this->auto_embed_video('http://media.xfire.com/swf/embedplayer.swf', '{WIDTH}', '{HEIGHT}', 'videoid=$1')",
-			),
-			'scribd' => array(
-				'id'		=> 45,
-				'image'		=> 'scribd.gif',
-				'example'	=> "[scribd id=33988557 key=key-2l5cezbnj6qttpbzb75d mode=list]",
-				'match'		=> "#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#sie",
-				'replace'	=> "\$this->auto_embed_video('http://documents.scribd.com/ScribdViewer.swf?document_id=$3$10&access_key=$5$12&page=1&version=1&viewMode=$7', '{WIDTH}', '{HEIGHT}', '', array('id' => 'doc_$3$10', 'name' => 'doc_$3$10'), array('play' => 'true', 'loop' => 'true', 'scale' => 'showall', 'wmode' => 'opaque', 'devicefont' => 'false', 'bgcolor' =>'#ffffff', 'menu' => 'true'))",
-			),
-			'allocine.fr' => array(
-				'id'		=> 46,
-				'image'		=> 'allocine.gif',
-				'example'	=> "http://www.allocine.fr/video/player_gen_cmedia=19149857&cfilm=126693.html",
-				'match'		=> "#http://www.allocine.fr/video/player_gen_cmedia=(\d+)?([^[]*)?#ise",
-				'replace'	=> "\$this->auto_embed_video('http://www.allocine.fr/blogvision/$1', '{WIDTH}', '{HEIGHT}')",
-			),
-			'cnbc.com' => array(
-				'id'		=> 47,
-				'image'		=> 'nbc.gif',
-				'example'	=> "http://www.cnbc.com/id/15840232?video=1548022077&play=1",
-				'match'		=> "#http://www.cnbc.com/id/(\d+)(?:|/)\?video=(\d+)?([^[]*)?#ise",
-				'replace'	=> "\$this->auto_embed_video('http://plus.cnbc.com/rssvideosearch/action/player/id/$2/code/cnbcplayershare', '{WIDTH}', '{HEIGHT}')",
-			),
-			'msnbc.msn.com' => array(
-				'id'		=> 48,
-				'image'		=> 'nbc.gif',
-				'example'	=> "http://www.msnbc.msn.com/id/21134540/vp/41172078#41190910",
-				'match'		=> "#http://www.msnbc.msn.com/id/(\d+)?/vp/(\d+)?\#(\d+)?([^[]*)?#ise",
-				'replace'	=> "\$this->auto_embed_video('http://www.msnbc.msn.com/id/32545640', '{WIDTH}', '{HEIGHT}', 'launch=$3&width={WIDTH}&height={HEIGHT}')",
-			),
-			'facebook.com' => array(
-				'id'		=> 50,
-				'image'		=> 'video.gif',
-				'example'	=> "http://www.facebook.com/video/video.php?v=1587422536911",
-				'match'		=> "#http://www.facebook.com/video/video.php\?v=([0-9A-Za-z-_]+)?([^[]*)?#ise",
-				'replace'	=> "\$this->auto_embed_video('http://www.facebook.com/v/$1', '{WIDTH}', '{HEIGHT}')",
 			),
 
 			'external' => array(
@@ -2053,6 +2053,8 @@ class abbcode
 	**/
 	function auto_embed_video($url, $width, $height, $flashvars = '', $object_attribs_ary = array(), $object_params_ary = array())
 	{
+		global $config;
+		
 		// Try to cope with a common user error...
 		if (preg_match('#^[a-z0-9]+://#i', $url))
 		{
@@ -2077,6 +2079,11 @@ class abbcode
 			'autostart'			=> 'false',
 		), $object_params_ary);
 
+		if (isset($config['ABBC3_VIDEO_WMODE']) && $config['ABBC3_VIDEO_WMODE'])
+		{
+			$object_params_ary['wmode'] = 'transparent';
+		}	
+		
 		($flashvars) ? $object_params_ary['flashvars'] = trim(str_replace('&', '&amp;', $flashvars)) : true;
 
 		$object_attribs = '';

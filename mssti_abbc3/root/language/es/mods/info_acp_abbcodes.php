@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/13/11 12:35 AM VSE Exp $
+* @package: phpBB :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
+* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/27/11 10:41 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -112,6 +112,8 @@ $lang = array_merge($lang, array(
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Tipos de vídeo permitidos',
 	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Seleccione los sitios y/o formatos de vídeo que le gustaría que los usuarios puedan integrar en sus mensajes cuando el BBCode BBvideo está habilitado <em class="error">(*)</em>',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> Para selecionar (o eliminar la seleción) de multiples items, debe hacer CTRL+CLICK (o CMD-CLICK en Mac) sobre cada item para agregar. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un item, toda seleción previa sera eliminada.',
+	'ABBCODES_VIDEO_WMODE'				=> 'Modo transparente',
+	'ABBCODES_VIDEO_WMODE_EXPLAIN'		=> 'Establece la variable "wmode" a transparente. Esto sólo es necesario si el foro tiene un objeto en capas estático (como una barra de herramientas de pie de página) y los vídeos incrustados se están representando en la parte superior del objeto estático.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Elija el modo de seleccionar colores',
 ##	For translate :                                	 Don't			Yes

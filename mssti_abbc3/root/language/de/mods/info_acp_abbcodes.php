@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/de/mods :: [de][German]
-* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/13/11 12:35 AM VSE Exp $
+* @package: phpBB :: Advanced BBCode Box 3 -> root/language/de/mods :: [de][German]
+* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/27/11 10:41 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -112,6 +112,8 @@ $lang = array_merge($lang, array(
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Erlaubte Video Typen',
 	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Wähle hier aus, von welchen Seiten und/oder welche Formate deine Benutzer in ihren Beiträgen verwenden dürfen, wenn der BBvideo BBCode aktiviert ist <em class="error">(*)</em>',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> Um mehrere Einstellungen zu aktivieren/deaktivieren, verwende CTRL+CLICK (oder CMD-CLICK beim Mac), um sie hinzuzufügen. Wenn du vergisst  CTRL/CMD gedrückt zu halten, werden alle zuvor ausgewähltem Einstellung ausgeschaltet.',
+	'ABBCODES_VIDEO_WMODE'				=> 'Transparent modus',
+	'ABBCODES_VIDEO_WMODE_EXPLAIN'		=> 'Legt die Flash-Variable "wmode", um transparent. Dies wird nur benötigt, wenn Ihr Forum hat eine geschichtete statischen Objekt (z. B. eine Fußzeile Symbolleiste) und die eingebetteten Videos werden auf dem statischen Objekt gerendert.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Wähle Farbauswahlmodus',
 ##	For translate :                                	 Don't			Yes

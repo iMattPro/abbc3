@@ -34,6 +34,7 @@
 		3.0.7-PL1
 		3.0.8
 		3.0.9
+		3.0.10
 	-------------------------------------------------------------------
 	Tested on Windows Browsers:
 		- Internet Explorer 7.0 & 8.0
@@ -78,15 +79,15 @@
 		<installation>
 			<level>intermediate</level>
 			<time>1200</time>
-			<target-version>3.0.9</target-version>
+			<target-version>3.0.10</target-version>
 		</installation>
 
 		<history>
 			<entry>
-				<date>2011-10-13</date>
+				<date>2011-10-27</date>
 				<rev-version>3.0.10</rev-version>
 				<changelog lang="en">
-					<change> [Change] BBvideo: Update the appearance of embedded BBvideo players. Update YouTube player color theme. Added a more current version of MySpace embedded video link support.</change>
+					<change> [Change] BBvideo: Update the appearance of embedded BBvideo players. Update YouTube player color theme. Added a more current version of MySpace embedded video link support. Added an option in the ACP to enable the transparent wmode Flash parameter for all BBvideos.</change>
 					<change> [Change] Updated the version check feature in ABBC3's settings page and removed old Mod Version Check add-on</change>
 					<change> [Fix] phpBB's built-in BBCodes will follow ABBC3's group permission settings</change>
 					<change> [Fix] Fixed fatal error when custom BBCodes (not assigned an image/icon) are assigned group permissions by ABBC3</change>

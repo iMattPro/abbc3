@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.10 10/13/11 12:52 AM VSE Exp $
+* @package: phpBB :: Advanced BBCode Box 3 -> root/
+* @version: $Id: install_abbc3.php, v 3.0.10 10/27/11 10:18 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -187,6 +187,7 @@ function abbc3_308($action, $version)
 		'ABBC3_VIDEO_width'		=> (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425,
 		'ABBC3_VIDEO_height'	=> (isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 350,
 		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;201;202;203;204;205;206;207;208;',
+		'ABBC3_VIDEO_WMODE'		=> (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0,
 
 		'ABBC3_UCP_MODE'		=> (isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1,
 	);
@@ -714,7 +715,7 @@ function bbvideo_updater($action, $version)
 {
 	global $umil, $user;
 
-	// Array containing arrays of new BBVideo IDs added to ABBC3
+	// Array containing arrays of new BBvideo IDs added to ABBC3
 	$new_bbvideo_ids = array(
 		'3.0.9.3' => array('46','47','48','49','50'),
 		'3.0.10'  => array('51'),	

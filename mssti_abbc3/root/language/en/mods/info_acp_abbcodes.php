@@ -1,7 +1,7 @@
 <?php
 /**
-* @package: phpBB 3.0.9 :: Advanced BBCode Box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/13/11 12:35 AM VSE Exp $
+* @package: phpBB :: Advanced BBCode Box 3 -> root/language/en/mods :: [en][English]
+* @version: $Id: acp_abbcode.php, v 3.0.10 10/27/11 10:17 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -112,6 +112,8 @@ $lang = array_merge($lang, array(
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
 	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Select the video sites and/or formats you would like to allow users to embed in their posts when the BBvideo BBCode is enabled <em class="error">(*)</em>',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> In order to select (or deselect) multiple items, you must CTRL+CLICK (or CMD+CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
+	'ABBCODES_VIDEO_WMODE'				=> 'Transparent window mode',
+	'ABBCODES_VIDEO_WMODE_EXPLAIN'		=> 'Sets the Flash variable “wmode” to transparent. This is only needed if your forum has a layered static object (such as a footer toolbar) and the embedded videos are being rendered on top of the static object.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
 ##	For translate :                                	 Don't			Yes
@@ -143,7 +145,7 @@ $lang = array_merge($lang, array(
 // bbcodes_edit
 $lang = array_merge($lang, array(
 	'ABBCODES_SETINGS'					=> 'ABBC3 Settings',
-	'ABBCODES_SETINGS_EXPLAIN'			=> 'Here you can configure <strong>ABBC3</strong>. You can set the appearance and options of the BBCodes bar. The “Wizard” settings configure ABBC3’s helper dialogs. The “Image Resizer” section configures how posted/attached images should be handled and/or resized. The “BBVideo” section configures the settings for the BBVideo BBCode.',
+	'ABBCODES_SETINGS_EXPLAIN'			=> 'Here you can configure <strong>ABBC3</strong>. You can set the appearance and options of the BBCodes bar. The “Wizard” settings configure ABBC3’s helper dialogs. The “Image Resizer” section configures how posted/attached images should be handled and/or resized. The “BBvideo” section configures the settings for the BBvideo BBCode.',
 
 	'ABBCODES_EDIT'						=> 'ABBC3 BBCode options',
 	'ABBCODES_EDIT_EXPLAIN'				=> 'Here you can determine where this BBCode will be displayed, who can use it, and assign and icon to it.',

@@ -29,7 +29,7 @@
 		<installation>
 			<level>easy</level>
 			<time>120</time>
-			<target-version>3.0.9</target-version>
+			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
 			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
@@ -37,11 +37,14 @@
 	</header>
 	<action-group>
 		<copy>
+			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/adm/style/acp_abbcodes.html" to="adm/style/acp_abbcodes.html"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
 			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
+			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
+			<file from="root/styles/abbcode/posting_abbcode_wizards.js" to="styles/abbcode/posting_abbcode_wizards.js"/>
 		</copy>
 
 		<delete>
@@ -122,7 +125,7 @@
 			<edit>
 				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
 $lang = array_merge($lang, array(
-	'ACP_ABBCODES'				=> 'Advanced BBCode Box 3',
+	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
 	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
 	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
