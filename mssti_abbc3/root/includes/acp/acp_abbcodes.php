@@ -691,7 +691,7 @@ class acp_abbcodes
 			$errstr = '';
 			$errno = 0;
 
-			$info = get_remote_file('www.mssti.com', '/phpbb3/store/updatecheck', 'abbc3.txt', $errstr, $errno);
+			$info = get_remote_file('www.orca-music.com', '/software', 'abbc3.txt', $errstr, $errno);
 			if ($info === false)
 			{
 				$template->assign_var('S_VERSIONCHECK_FAIL', true);

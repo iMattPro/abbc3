@@ -1958,14 +1958,14 @@ class abbcode
 				'image'		=> 'filefront.gif',
 				'example'	=> "http://www.filefront.com/14284133/Batman-Arkham-Asylum-Gadgets-Trailer/",
 				'match'		=> "#http://www.filefront.com/(.*?)/([^[]*)?#si",
-				'replace'	=> "external",
+				'replace'	=> 'external',
 			),
 			'deviantart.com' => array(
 				'id'		=> 113,
 				'image'		=> 'deviantart.gif',
 				'example'	=> "http://bossk.deviantart.com/art/COLLEGE-FRIES-trailer-106469587",
 				'match'		=> "#http://(.*?).deviantart.com/([^[]*)?#si",
-				'replace'	=> "external",
+				'replace'	=> 'external',
 			),
 			'wat.tv' => array(
 				'id'		=> 114,
