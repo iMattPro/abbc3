@@ -1,8 +1,8 @@
 <?php
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.10 11/27/11 10:04 AM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
+* @version: $Id: abbcode.php, v 3.0.11 2/12/12 8:07 PM VSE Exp $
+* @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
@@ -1987,21 +1987,21 @@ class abbcode
 			'swf' => array(
 				'id'		=> 202,
 				'image'		=> 'flash.gif',
-				'example'	=> "http://www.mssti.com/phpbb3/images/media/relojanalogo.swf",
+				'example'	=> "http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf",
 				'match'		=> "#([^[]+)?\.swf#sie",
 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}')",
 			),
 			'flv' => array(
 				'id'		=> 203,
 				'image'		=> 'flashflv.gif',
-				'example'	=> "http://www.mssti.com/phpbb3/images/media/Demo.flv",
+				'example'	=> "http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv",
 				'match'		=> "#([^[]+)?\.flv#sie",
 				'replace'	=> "\$this->auto_embed_video('./images/player.swf', '{WIDTH}', '{HEIGHT}', 'movie=$0&bgcolor=0x666666&fgcolor=0x000000&autoload=off&volume=70')",
 			),
 			'(wmv|mpg)' => array(
 				'id'		=> 204,
 				'image'		=> 'video.gif',
-				'example'	=> "http://www.mssti.com/phpbb3/images/media/calmate.wmv",
+				'example'	=> "http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv",
 				'match'		=> "#([^[]+)?\.(wmv|mpg)#si",
 				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0" /><param name="Showcontrols" value="true" /><param name="autoStart" value="false" /><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
 				<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
@@ -2009,7 +2009,7 @@ class abbcode
 			'(qt|mov)' => array(
 				'id'		=> 205,
 				'image'		=> 'quicktime.gif',
-				'example'	=> "http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt",
+				'example'	=> "http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt",
 				'match'		=> "#([^[]+)?\.(qt|mov)#si",
 				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="{HEIGHT}"><param name="type" value="video/quicktime" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
 				<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" type="video/quicktime" autoplay="false"></embed></object>'
@@ -2017,7 +2017,7 @@ class abbcode
 			'(mid|midi)' => array(
 				'id'		=> 206,
 				'image'		=> 'quicktime.gif',
-				'example'	=> "http://www.mssti.com/phpbb3/images/media/Adams_Family_Theme.mid",
+				'example'	=> "http://www.notz.com/music/jazz/midi/lazybird.mid",
 				'match'		=> "#([^[]+)?\.(mid|midi)#si",
 				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="{HEIGHT}"><param name="type" value="audio/x-midi" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
 				<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" type="audio/x-midi" autoplay="false"></embed></object>'
@@ -2025,7 +2025,7 @@ class abbcode
 			'mp3' => array(
 				'id'		=> 207,
 				'image'		=> 'quicktime.gif',
-				'example'	=> "http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3",
+				'example'	=> "http://www.robtowns.com/music/first_noel.mp3",
 				'match'		=> "#([^[]+)?\.mp3#si",
 				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
 				<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
@@ -2033,7 +2033,7 @@ class abbcode
 			'ram' => array(
 				'id'		=> 208,
 				'image'		=> 'ram.gif',
-				'example'	=> "http://www.mssti.com/phpbb3/images/media/Dr_Who.ram",
+				'example'	=> "http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram",
 				'match'		=> "#([^[]+)?\.ram#si",
 				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_{ID}" /><param name="prefetch" value="false" /></object><br />
 				<object id="ctrls" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_{ID}" /></object>',

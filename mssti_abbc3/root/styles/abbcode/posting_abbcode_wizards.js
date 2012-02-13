@@ -1,7 +1,7 @@
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/styles/abbcode
-* @version: $Id: posting_abbcode_wizards.js, v 3.0.10 2010/05/18 10:05:18 leviatan21 Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
+* @version: $Id: posting_abbcode_wizards.js, v 3.0.11 2/12/12 8:13 PM leviatan21 Exp $
+* @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @Co-Author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795

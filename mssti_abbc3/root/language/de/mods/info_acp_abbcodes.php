@@ -2,7 +2,7 @@
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/de/mods :: [de][German]
 * @version: $Id: info_acp_abbcode.php, v 3.0.11 2/12/12 7:52 PM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
+* @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @translator (German): femu - http://die-muellers.org

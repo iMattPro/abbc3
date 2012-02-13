@@ -2,7 +2,7 @@
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
 * @version: $Id: abbcode.php, v 3.0.11 2/12/12 11:48 AM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
+* @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @translator: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -44,8 +44,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HELP_DESC'			=> 'Descripción',
 	'ABBC3_HELP_WRITE'			=> 'BBCode formato de uso',
 	'ABBC3_HELP_VIEW'			=> 'BBCode ejemplo se muestra como',
-	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 por <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
-	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
+	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 por <a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" onclick="window.open(this.href);return false;">mssti</a>',
+//	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
 // Image Resizer JS
 	'ABBC3_RESIZE_SMALL'		=> 'Click para ver la imagen completa.',
@@ -427,8 +427,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_TAG'				=> 'página',
 	'ABBC3_URL_MOVER'			=> 'Enlace Web',	
 	'ABBC3_URL_TIP'				=> '[url]http://...[/url] o [url=http://...]Nombre de Web[/url]',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.mssti.com',
-	'ABBC3_URL_VIEW'			=> '[url=http://www.mssti.com].:: MSSTI ::.[/url]',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.google.com',
+	'ABBC3_URL_VIEW'			=> '[url=http://www.google.com]GOOGLE[/url]',
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'correo electrónico',
@@ -452,8 +452,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Insertar página web en el mensaje',
 	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL página[/web]',
-	'ABBC3_WEB_EXAMPLE'			=> 'http://www.mssti.com',
-	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.mssti.com[/web]',
+	'ABBC3_WEB_EXAMPLE'			=> 'http://www.google.com',
+	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.google.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Nota:</strong> permitir que otros sitios web se incluyan en los mensajes, puede suponer un riesgo de seguridad. Utilícelo bajo su propio riesgo, o asignelo a grupos de confianza.',
 
 	// Image & Thumbnail Wizard
@@ -513,7 +513,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] o [click=http://...]Nombre Web[/click] o [click][img]http://...[/img][/click]',
 	'ABBC3_CLICK_EXAMPLE'		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
 ##	For translate :                                                                     yes
-	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] o [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] GOOGLE [/click] o [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
 	'ABBC3_CLICK_TIME'			=> '( Clickeado %d vez )',
 	'ABBC3_CLICK_TIMES'			=> '( Clickeado %d veces )',
 	'ABBC3_CLICK_ERROR'			=> '<strong>ERROR:</strong> Por favor ingrese in ID válido',
@@ -540,43 +540,43 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TAG'			=> 'flash',
 	'ABBC3_FLASH_MOVER'			=> 'Insertar video de flash (swf)',
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] o [flash width,height]URL flash[/flash]',
-	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/relojanalogo.swf',
-	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.mssti.com/phpbb3/images/media/relojanalogo.swf[/flash]',
+	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
+	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
 	'ABBC3_FLV_MOVER'			=> 'Insertar video de flash (flv)',
 	'ABBC3_FLV_TIP'				=> '[flv width=# height=#]URL flash video[/flv] o [flv width,height]URL flash video[/flv]',
-	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Demo.flv',
-	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mssti.com/phpbb3/images/media/Demo.flv[/flv]',
+	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
+	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv[/flv]',
 
 	// Streaming Video Wizard
 	'ABBC3_VIDEO_TAG'			=> 'video',
 	'ABBC3_VIDEO_MOVER'			=> 'Insertar video',
 	'ABBC3_VIDEO_TIP'			=> '[video width=# height=#]URL video[/video]',
-	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/calmate.wmv',
-	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mssti.com/phpbb3/images/media/calmate.wmv[/video]',
+	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
+	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv[/video]',
 
 	// Streaming Audio Wizard
 	'ABBC3_STREAM_TAG'			=> 'sonido',
 	'ABBC3_STREAM_MOVER'		=> 'Insertar sonido',
 	'ABBC3_STREAM_TIP'			=> '[stream]URL Archivo[/stream]',
-	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3',
-	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3[/stream]',
+	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.robtowns.com/music/first_noel.mp3',
+	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
 
 	// Quick time
 	'ABBC3_QUICKTIME_TAG'		=> 'Quick time',
 	'ABBC3_QUICKTIME_MOVER'		=> 'Insertar Quick time',
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quick time[/quicktime]',
-	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt',
-	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt[/quicktime]',
+	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt',
+	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
 
 	// Real Media Wizard
 	'ABBC3_RAM_TAG'				=> 'Real Media',
 	'ABBC3_RAM_MOVER'			=> 'Insertar Real Media',
 	'ABBC3_RAM_TIP'				=> '[ram]URL Real Media[/ram]',
-	'ABBC3_RAM_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Dr_Who.ram',
-	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://www.mssti.com/phpbb3/images/media/Dr_Who.ram[/ram]',
+	'ABBC3_RAM_EXAMPLE'			=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
+	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
 
 	// Google video Wizard
 	'ABBC3_GVIDEO_TAG'			=> 'Google Video',

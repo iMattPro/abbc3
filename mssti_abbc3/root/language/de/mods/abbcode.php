@@ -2,7 +2,7 @@
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/de/mods :: [de][German]
 * @version: $Id: abbcode.php, v 3.0.11 2/12/12 11:48 AM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
+* @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @translator (German): femu - http://die-muellers.org
@@ -44,8 +44,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HELP_DESC'			=> 'Beschreibung',
 	'ABBC3_HELP_WRITE'			=> 'Dein Schreibformat',
 	'ABBC3_HELP_VIEW'			=> 'Unser Anzeigeformat',
-	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
-	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
+	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" onclick="window.open(this.href);return false;">mssti</a>',
+//	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
 // Image Resizer JS
 	'ABBC3_RESIZE_SMALL'		=> 'Klicke um das Bild in voller Größe zu sehen.',
@@ -427,8 +427,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_TAG'				=> 'Seite',
 	'ABBC3_URL_MOVER'			=> 'Web Adresse',
 	'ABBC3_URL_TIP'				=> '[url]http://...[/url] oder [url=http://...]Name Web[/url]',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.mssti.com',
-	'ABBC3_URL_VIEW'			=> '[url=http://www.mssti.com].:: MSSTI ::.[/url]',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.google.com',
+	'ABBC3_URL_VIEW'			=> '[url=http://www.google.com]GOOGLE[/url]',
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'Email',
@@ -452,8 +452,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Web Seite in den Beitrag einfügen',
 	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
-	'ABBC3_WEB_EXAMPLE'			=> 'http://www.mssti.com',
-	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.mssti.com[/web]',
+	'ABBC3_WEB_EXAMPLE'			=> 'http://www.google.com',
+	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.google.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Hinweis:</strong> Anderen Webseiten zu erlauben im Beitrag zu stehen, kann ein Sicherheitsriskio darstellen. Du verwendest dies auf eigene Gefahr, oder lasse diese Funktion nur für Gruppen zu, denen du verstraust.',
 
 	// Image & Thumbnail Wizard
@@ -511,9 +511,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_CLICK_TAG'			=> 'Klickzähler',
 	'ABBC3_CLICK_MOVER'			=> 'Einen Klickzähler einfügen',
 	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] or [click=http://...]Name Web[/click] or [click][img]http://...[/img][/click]',
-	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.mssti.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
+	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
 ##	For translate :                                                                     yes
-	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] oder [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] GOOGLE [/click] oder [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',
 	'ABBC3_CLICK_TIME'			=> '( Wurde %d mal angeklickt )',
 	'ABBC3_CLICK_TIMES'			=> '( Wurde %d mal angeklickt )',
 	'ABBC3_CLICK_ERROR'			=> '<strong>FEHLER:</strong> Bitte gib eine GÜLTIGE klick ID in die URL ein',
@@ -540,43 +540,43 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TAG'			=> 'flash',
 	'ABBC3_FLASH_MOVER'			=> 'Eine Flash Datei hinzufügen (swf)',
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] oder [flash width,height]URL flash[/flash]',
-	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.adobe.com/support/flash/ts/documents/test_version/version.swf',
-	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.adobe.com/support/flash/ts/documents/test_version/version.swf[/flash]',
+	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
+	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
 	'ABBC3_FLV_MOVER'			=> 'Eine Flash Datei hinzufügen (flv)',
 	'ABBC3_FLV_TIP'				=> '[flv width=# height=#]URL flash video[/flv] oder [flv width,height]URL flash video[/flv]',
-	'ABBC3_FLV_EXAMPLE'			=> 'http://www.channel-ai.com/video/eyn/demo1.flv',
-	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.channel-ai.com/video/eyn/demo1.flv[/flv]',
+	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
+	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv[/flv]',
 
 	// Streaming Video Wizard
 	'ABBC3_VIDEO_TAG'			=> 'video',
 	'ABBC3_VIDEO_MOVER'			=> 'Ein Video einfügen',
 	'ABBC3_VIDEO_TIP'			=> '[video width=# height=#]URL Video[/video]',
-	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.sarahsHinweiscards.com/catalunyalive/fishstore.wmv',
-	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.sarahsHinweiscards.com/catalunyalive/fishstore.wmv[/video]',
+	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
+	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv[/video]',
 
 	// Streaming Audio Wizard
 	'ABBC3_STREAM_TAG'			=> 'Tonquelle',
 	'ABBC3_STREAM_MOVER'		=> 'Eine Tonquelle einfügen',
 	'ABBC3_STREAM_TIP'			=> '[stream]URL Stream[/stream]',
-	'ABBC3_STREAM_EXAMPLE'		=> 'http://realdev1.realise.com/rossa/mov/demo.mp3',
-	'ABBC3_STREAM_VIEW'			=> '[stream]http://realdev1.realise.com/rossa/mov/demo.mp3[/stream]',
+	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.robtowns.com/music/first_noel.mp3',
+	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
 
 	// Quick time
 	'ABBC3_QUICKTIME_TAG'		=> 'Quick Time',
 	'ABBC3_QUICKTIME_MOVER'		=> 'Eine Quick Time Datei einfügen',
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quick Time[/quicktime]',
-	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt' . ' ' . 'http://www.carnivalmidways.com/images/Music/thisisatest.mp3',
+	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt',
 	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
 
 	// Real Media Wizard
 	'ABBC3_RAM_TAG'				=> 'Real Media',
 	'ABBC3_RAM_MOVER'			=> 'Eine Real Media Datei einfügen',
 	'ABBC3_RAM_TIP'				=> '[ram]URL Real Media[/ram]',
-	'ABBC3_RAM_EXAMPLE'			=> 'http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram',
-	'ABBC3_RAM_VIEW'			=> '[ram]http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram[/ram]',
+	'ABBC3_RAM_EXAMPLE'			=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
+	'ABBC3_RAM_VIEW'			=> '[ram]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
 
 	// Google video Wizard
 	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
