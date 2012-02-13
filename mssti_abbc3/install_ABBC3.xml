@@ -7,10 +7,7 @@
 
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3)]]></title>
 
-		<description lang="en"><![CDATA[ABBC3 MOD adds lots of useful BBCode features and makes the bbcode buttons look just like Microsoft Office.
-		It also improves the functions of phpBB's BBCode function.
-		It adds the bbcode exactly where the cursor is, inserts smilies where the cursor is, and adds more ways to customize posts. 
-		The MOD is very fast loading, and is a sleek addition to your phpBB bulletin board. You must have javascript enabled to use this MOD.]]></description>
+		<description lang="en"><![CDATA[ABBC3 gives the BBCode buttons a toolbar and icon style appearance, adds many new and useful BBCode features and adds more ways to customize posts. It also improves some of phpBB's built in BBCodes and also supports phpBB's custom BBCodes feature. Additional features include an automatic image resizer option with various lightbox styled expanders, auto-embedded video for dozens of media sites and file formats, and a highly customizable ACP settings area. ABBC3 is a sleek addition to your phpBB bulletin board. You must have javascript enabled to use this MOD.]]></description>
 
 		<author-notes lang="en"><![CDATA[To read more about ABBC3, please read the contrib/docs/README.HTML file
 
@@ -21,34 +18,7 @@
 	please read the contrib/docs/README.HTML file for more information before you proceed.
 
 	-------------------------------------------------------------------
-	Please do not remove the copyright notices and the link to www.mssti.com
-	If you refuse to this, will not get support from me.
-
-	-------------------------------------------------------------------
-	Once you finish the install, please take your time to read the the contrib folder content.
-
-	-------------------------------------------------------------------
-	This MOD works in phpBB version:
-		3.0.6
-		3.0.7
-		3.0.7-PL1
-		3.0.8
-		3.0.9
-		3.0.10
-	-------------------------------------------------------------------
-	Tested on Windows Browsers:
-		- Internet Explorer 7.0 & 8.0
-		- Mozilla Firefox 2.0 & 3.0
-		- Opera 10.53
-		- Safari 4.0.5
-		- Netscape 8.1
-		- Chrome 4.1
-		- Flock 2.5.6
-
-	Tested on Macintosh Browsers:
-		- Safari 4 & 5
-		- Firefox 3.6, 4, 5
-		- Chrome 12 & 13
+	Once you finish the install, please take some time to read through the contrib folder content.
 
 	-------------------------------------------------------------------
 
@@ -65,7 +35,6 @@
 			<author>
 				<realname><![CDATA[Gabriel]]></realname>
 				<username><![CDATA[leviatan21]]></username>
-				<homepage><![CDATA[http://www.mssti.com/phpbb3/]]></homepage>
 				<email><![CDATA[info@mssti.com]]></email>
 				<contributions-group>
 					<contributions status="current" from="2008-01-10" position="Developer"/>
