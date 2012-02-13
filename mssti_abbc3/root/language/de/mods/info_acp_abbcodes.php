@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/de/mods :: [de][German]
-* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/27/11 10:41 PM VSE Exp $
+* @version: $Id: info_acp_abbcode.php, v 3.0.11 2/12/12 7:52 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -60,7 +60,7 @@ $lang = array_merge($lang, array(
 // abbc3_details
 $lang = array_merge($lang, array(
 	'ABBCODES_DISABLE'					=> 'ABBC3',
-	'ABBCODES_DISABLE_EXPLAIN'			=> 'Die <strong>Advanced BBodes Box 3</strong> für die Benutzer ein - bzw. ausschalten. Ist sie ausgeschaltet, werden die Standard Buttons von phpBB3 verwendet.',
+	'ABBCODES_DISABLE_EXPLAIN'			=> 'Die <strong>Advanced BBCode Box 3</strong> für die Benutzer ein - bzw. ausschalten. Ist sie ausgeschaltet, werden die Standard Buttons von phpBB3 verwendet.',
 	'ABBCODES_PATH'						=> 'Script Pfad',
 	'ABBCODES_PATH_EXPLAIN'				=> 'Pfad zu den ABBC3 Dateien unterhalb deines phpBB Root Verzeichnisses, z.B. <samp>styles/abbcode</samp>',
 	'ABBCODES_BG'						=> 'Hintergrundbild',
@@ -155,7 +155,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Gruppen verwalten:</strong> Wenn keine Gruppen angegeben wurden, kann dieser BBCode von allen Benutzer verwendet werden.<br />Um mehrere Gruppen gleichzeitig auszuwählen bzw. abzuwählen, verwende die CTRL Taste zusammen mit der Maus (Cmd beim Mac), um die gewünschten Gruppen auszuwählen. Falls du vergisst die CTRL/Cmd Taste gedrückt zu halten, gehen die vorherigen Einstellungen verloren.',
 
 	'ABBCODES_TIP'						=> 'Tag Tipp',
-	'ABBCODES_NAME'						=> 'Tag Name',
+	'ABBCODES_NAME'						=> 'BBCode Tag',
 	'ABBCODES_TAG'						=> 'Tag Icon',
 	'ABBCODES_ORDER'					=> 'Tag Reihenfolge',
 	'ABBCODES_CUSTOM'					=> 'Custom BBCode',
@@ -183,12 +183,13 @@ $lang = array_merge($lang, array(
 	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Bitte beachte, daß einige BBCodes möglicherweise <strong>nicht</strong> korrekt angezeigt werden können.
 	<br />Falls du Probleme bei der Verwendung des <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong> haben solltest, verwenden in den Admin Tools » Reparse BBCode</strong>.
 	<br /><br />Bevor du diese MOD auf deinem Board installierst, solltest du ein Backup der Dateien und der Datenbank machen.',
-	'INSTALLER_INSTALL_END'				=> 'Du kannst dich nun auf <a href="./index.php">deinem Board einloggen</a> und prüfen, ob alles so funktioniert, wie es sollte. <br />Nicht vergessen, die Datei <strong><em>install_abbc3.php</em></strong> zu löschen, umzubenennen oder zu verschieben!',
+//	'INSTALLER_INSTALL_END'				=> 'Du kannst dich nun auf <a href="./index.php">deinem Board einloggen</a> und prüfen, ob alles so funktioniert, wie es sollte. <br />Nicht vergessen, die Datei <strong><em>install_abbc3.php</em></strong> zu löschen, umzubenennen oder zu verschieben!',
 // Stages
 	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 Konfiguration',
 	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbCodes',
 // Misc
 	'INSTALLER_RESIZE_CHECK'			=> 'Image Resizer update-prüfung abgeschlossen',
+	'INSTALLER_BBVIDEO_UPDATER'			=> 'BBvideos update-prüfung abgeschlossen',
 ));
 
 ?>

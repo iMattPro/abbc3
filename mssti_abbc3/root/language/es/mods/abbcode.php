@@ -1,9 +1,9 @@
 <?php
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: abbcode.php, v 3.0.10 2010/10/04 19:12:22 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.11 2/12/12 11:48 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
+* @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @translator: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 **/
@@ -46,7 +46,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HELP_VIEW'			=> 'BBCode ejemplo se muestra como',
 	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 por <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
 	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
-	
+
 // Image Resizer JS
 	'ABBC3_RESIZE_SMALL'		=> 'Click para ver la imagen completa.',
 	'ABBC3_RESIZE_ZOOM_IN'		=> 'Ampliar (dimensiones reales : %1$ss x %2$s)',
@@ -88,11 +88,11 @@ $lang = array_merge($lang, array(
 
 // Text to be applied to the helpline & mouseover & help page & Wizard texts
 	'BBCODE_STYLES_TIP'			=> 'Consejo: Pueden aplicarse estilos rápidamente al texto seleccionado.',
-	
+
 	'ABBC3_ERROR'				=> 'Error : ',
 	'ABBC3_ERROR_TAG'			=> 'Error inesperado al utilizar etiqueta : ',
 	'ABBC3_NO_EXAMPLE'			=> 'No se dispone de datos ejemplo',
-	
+
 	'ABBC3_ID'					=> 'Introduzca identificador :',
 	'ABBC3_NOID'				=> 'Usted no escribió el identificador',
 	'ABBC3_LINK'				=> 'Introduzca el enlace a ',
@@ -106,7 +106,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HEIGHT'				=> 'Introduzca el alto',
 	'ABBC3_HEIGHT_NOTE'			=> 'Nota: el valor puede ser expresado en porcentaje',
 	'ABBC3_NOHEIGHT'			=> 'Usted no escribió la altura',
-	
+
 	'ABBC3_NOTE'				=> 'Nota',
 	'ABBC3_EXAMPLE'				=> 'Ejemplo',
 	'ABBC3_EXAMPLES'			=> 'Ejemplos',
@@ -119,7 +119,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_AJAX_DISABLED'		=> 'Su navegador no es compatible con AJAX (XMLHttpRequest) y es incapaz de procesar esta solicitud.',
 	'ABBC3_SUBMIT'				=> 'Insertar en el mensaje',
 	'ABBC3_SUBMIT_SIG'			=> 'Insertar en la firma',
-	'SAMPLE_TEXT'				=> 'Esto es una muestra de texto', //	' . $lang['SAMPLE_TEXT'] . '
+	'SAMPLE_TEXT'				=> 'Esto es una muestra de texto',
 ));
 
 /**
@@ -170,7 +170,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_CUT_MOVER'			=> 'Borrar el texto seleccionado',
 	// Copy selected text
 	'ABBC3_COPY_MOVER'			=> 'Copiar el texto seleccionado',
-	// Paste previously copy text	
+	// Paste previously copy text
 	'ABBC3_PASTE_MOVER'			=> 'Pegar el texto copiado',
 	'ABBC3_PASTE_ERROR'			=> 'Por favor, primero copie un texto, luego péguelo ',
 	// Remove BBCode (Removes all BBCode tags from selected text)
@@ -280,7 +280,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_MOVER'			=> 'Texto subíndice',
 	'ABBC3_SUB_TIP'				=> '[sub]texto[/sub]',
 ##	For translate :                 yes                                                             yes
-	'ABBC3_SUP_VIEW'			=> 'Esto es un texto normal [sub]' . $lang['SAMPLE_TEXT'] . '[/sub] esto es un texto normal',
+	'ABBC3_SUB_VIEW'			=> 'Esto es un texto normal [sub]' . $lang['SAMPLE_TEXT'] . '[/sub] esto es un texto normal',
 
 	// Bold
 	'ABBC3_B_MOVER'				=> 'Texto en negrita',
@@ -310,7 +310,7 @@ $lang = array_merge($lang, array(
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Texto arcoiris',
 	'ABBC3_GRAD_TIP'			=> 'Seleccione el texto primero',
-##For translate (The separate words are "This is a sample text") 
+
 ##                                                  yes                    yes                     yes                     yes                      yes                     yes                      yes                     yes                     yes                      yes                     yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                      yes                     yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]E[/color][color=#F60009]s[/color][color=#EC0013]t[/color][color=#E3001C]o[/color] [color=#D0002F]e[/color][color=#C60039]s[/color] [color=#B3004C]u[/color][color=#AA0055]n[/color][color=#A1005E]a[/color] [color=#8E0071]m[/color][color=#84007B]u[/color][color=#7B0084]e[/color][color=#71008E]s[/color][color=#680097]t[/color][color=#5E00A1]r[/color][color=#5500AA]a[/color] [color=#4200BD]d[/color][color=#3900C6]e[/color] [color=#2600D9]t[/color][color=#1C00E3]e[/color][color=#1300EC]x[/color][color=#0900F6]t[/color][color=#0000FF]o[/color]',
 	'ABBC3_GRAD_MIN_ERROR'		=> 'Por favor, primero seleccione el texto : ',
@@ -482,14 +482,14 @@ $lang = array_merge($lang, array(
 
 	// Imgshack
 	'ABBC3_IMGSHACK_MOVER'		=> 'Insertar imagen desde imageshack',
-	'ABBC3_IMGSHACK_TIP'		=> '[url=http://imageshack.us][img=http://...][/img][/url]',
+	'ABBC3_IMGSHACK_TIP'		=> '[url=http://imageshack.us][img]http://...[/img][/url]',
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 
 	// Rapid share checker
 	'ABBC3_FOPEN_ERROR'			=> '<strong>Error : </strong> Lo sentimos pero parece que <strong>allow_url_fopen</strong> no está habilitada, esta funcion requiere que la diretiva PHP allow_url_fopen esté habilitada.',
 	'ABBC3_RAPIDSHARE_TAG'		=> 'rapidshare',
 	'ABBC3_RAPIDSHARE_MOVER'	=> 'Insertar un archivo desde rapidshare',
-	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...][/rapidshare]',
+	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...[/rapidshare]',
 	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
 	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
 	'ABBC3_RAPIDSHARE_GOOD'		=> 'Archivo encontrado el servidor !',
@@ -501,7 +501,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_TAG'		=> 'Inspector de enlace',
 	'ABBC3_TESTLINK_MOVER'		=> 'Comprobar la validez de un archivo almacenado en el servidor público',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
-	'ABBC3_TESTLINK_NOTE'		=> 'Servidores validos:rapidshare,megaupload,megarotic,depositfiles,megashares.',
+	'ABBC3_TESTLINK_NOTE'		=> 'Servidores validos: rapidshare, megaupload, megarotic, depositfiles, megashares',
 	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
 	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'Archivo encontrado el servidor !',
@@ -595,7 +595,7 @@ $lang = array_merge($lang, array(
 	// Veoh video
 	'ABBC3_VEOH_TAG'			=> 'Veoh',
 	'ABBC3_VEOH_MOVER'			=> 'Insertar video desde Veoh',
-	'ABBC3_VEOH_TIP'			=> '[veoh]URL video[/veoh].',
+	'ABBC3_VEOH_TIP'			=> '[veoh]URL video[/veoh]',
 	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J',
 	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J[/veoh]',
 
@@ -614,7 +614,7 @@ $lang = array_merge($lang, array(
 
 	// Gamespot video
 	'ABBC3_GAMESPOT_MOVER'		=> 'Insertar video desde Gamespot',
-	'ABBC3_GAMESPOT_TIP'		=> '[gamespot]Gamespot video URL [gamespot]',
+	'ABBC3_GAMESPOT_TIP'		=> '[gamespot]Gamespot video URL[gamespot]',
 	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
 	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[gamespot]',
 
@@ -626,7 +626,7 @@ $lang = array_merge($lang, array(
 
 	// IGN video
 	'ABBC3_IGNVIDEO_MOVER'		=> 'Insertar video desde Ign',
-	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]ING video URL[/ignvideo]',
+	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]IGN video URL[/ignvideo]',
 	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html',
 	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html[/ignvideo]',
 

@@ -1,9 +1,9 @@
 <?php
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.10 10/27/11 10:17 PM VSE Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.11 2/12/12 7:52 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
+* @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @translator: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
 **/
@@ -173,7 +173,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_DEACTIVATED'				=> 'deactivated',
 ));
 
-// UMIL Installer 
+// UMIL Installer
 $lang = array_merge($lang, array(
 // Main
 	'INSTALLER_TITLE'					=> 'Advanced BBCode Box 3',

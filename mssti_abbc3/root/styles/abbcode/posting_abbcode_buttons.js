@@ -183,7 +183,7 @@ function helpline2(help, help_box)
 
 /**
 * Main function Apply bbcodes
-* based-of editor.js -> function bbfontstyle()
+* based-off editor.js -> function bbfontstyle()
 * @param string		bbcode		bbcode name
 * @param string		bbopen		The open tag
 * @param string		bbclose		The close tag

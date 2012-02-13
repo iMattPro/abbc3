@@ -1,9 +1,9 @@
 <?php
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: abbcode.php, v 3.0.10 2010/10/04 19:09:22 leviatan21 Exp $
+* @version: $Id: abbcode.php, v 3.0.11 2/12/12 11:48 AM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
+* @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
 * @translator: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
 **/
@@ -310,7 +310,7 @@ $lang = array_merge($lang, array(
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Text gradient',
 	'ABBC3_GRAD_TIP'			=> 'Select some text first',
-##For translate (The separate words are "This is a sample text") 
+
 ##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',
 	'ABBC3_GRAD_MIN_ERROR'		=> 'No text was seleted.',
@@ -501,7 +501,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_TAG'		=> 'link checker',
 	'ABBC3_TESTLINK_MOVER'		=> 'Insert a file stored on public server',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
-	'ABBC3_TESTLINK_NOTE'		=> 'Valid servers:rapidshare,megaupload,megarotic,depositfiles,megashares .',
+	'ABBC3_TESTLINK_NOTE'		=> 'Valid servers: rapidshare, megaupload, megarotic, depositfiles, megashares',
 	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
 	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'File found on server !',
@@ -600,7 +600,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J[/veoh]',
 
 	// Collegehumor video
-	'ABBC3_COLLEGEHOMOR_TAG'	=> 'collegehumor',
+	'ABBC3_COLLEGEHUMOR_TAG'	=> 'collegehumor',
 	'ABBC3_COLLEGEHUMOR_MOVER'	=> 'Insert video from collegehumor',
 	'ABBC3_COLLEGEHUMOR_TIP'	=> '[collegehumor]collegehumor video URL[/collegehumor]',
 	'ABBC3_COLLEGEHUMOR_EXAMPLE'=> 'http://www.collegehumor.com/video:1802097',

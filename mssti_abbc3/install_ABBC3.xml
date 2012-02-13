@@ -74,7 +74,7 @@
 
 		</author-group>
 
-		<mod-version>3.0.10</mod-version>
+		<mod-version>3.0.11</mod-version>
 
 		<installation>
 			<level>intermediate</level>
@@ -83,6 +83,14 @@
 		</installation>
 
 		<history>
+			<entry>
+				<date>2012-02-12</date>
+				<rev-version>3.0.11</rev-version>
+				<changelog lang="en">
+					<change> [Fix] Added missing language variables to Spanish and German installation instructions.</change>
+					<change> [Fix] Corrected some minor spelling and coding errors.</change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2011-10-27</date>
 				<rev-version>3.0.10</rev-version>
@@ -103,7 +111,7 @@
 					<change> [Fix] Custom BBCodes not assigned an image/icon now correctly follow ABBC3's group permission settings</change>
 					<change> [Fix] Anchor bbcode breaks with Quote tag in between</change>
 					<change> [Fix] MSSQL ODBC Error "Invalid column name '.'"</change>
-					<change> [Fix] Uninstallation will now revert database changes back to correct structure of bbcode_id field depending on your installed version oh phpBB</change>
+					<change> [Fix] Uninstallation will now revert database changes back to correct structure of bbcode_id field depending on your installed version of phpBB</change>
 					<change> [Fix] Corrected an issue where the post area resize buttons stopped working with phpBB 3.0.9</change>
 					<change> [Fix] Image resizer now works correctly for attached images (not placed inline) when no other BBCodes exist on a page to activate ABBC3</change>
 					<change> [Change] Image Resizers have been updated: AdvancedBox, Highslide (up to v4.1.12), Lightview (up to v2.74), Lightbox2 (up to v2.05), and PopBox (up to v2.7a). Ibox has been replaced by Shadowbox (v3.0.3).</change>
@@ -414,10 +422,10 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			);]]></find>
 				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
 			global $abbcode;
-			// We need to check if ABBC3 is property initialized for attached images and the ABBC3 img resizer
+			// We need to check if ABBC3 is properly initialized for attached images and the ABBC3 img resizer
 			if (@$config['ABBC3_MOD'])
 			{
-				// For attached image resizer in private message only when bbcodes are not present
+				// For attached images being resized in private messages only when bbcodes are not present
 				if (!class_exists('abbcode'))
 				{
 					include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
@@ -571,7 +579,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				</inline-edit>
 				<inline-edit>
 					<inline-find><![CDATA[$bbcode_id]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ . ' and abbcode = 0']]></inline-action>
+					<inline-action type="after-add"><![CDATA[ . ' AND abbcode = 0']]></inline-action>
 				</inline-edit>
 			</edit>
 
@@ -586,7 +594,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				</inline-edit>
 				<inline-edit>
 					<inline-find><![CDATA[$bbcode_id]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ . ' and abbcode = 0']]></inline-action>
+					<inline-action type="after-add"><![CDATA[ . ' AND abbcode = 0']]></inline-action>
 				</inline-edit>
 			</edit>
 
@@ -615,7 +623,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				</inline-edit>
 				<inline-edit>
 					<inline-find><![CDATA[$bbcode_id"]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ . ' and abbcode = 0' ]]></inline-action>
+					<inline-action type="after-add"><![CDATA[ . ' AND abbcode = 0']]></inline-action>
 				</inline-edit>
 			</edit>
 
