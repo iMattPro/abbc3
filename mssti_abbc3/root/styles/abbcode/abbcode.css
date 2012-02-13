@@ -61,7 +61,7 @@ hr.hrdotted {
 /*	Never set a default height for the textarea, will break the function textbox_resize() */
 	height : auto; /* use of auto will override fixed height set in forms.css of phpbb */
 	/* For Safari */
-	resize : none;
+	/*resize : none;*/
 }
 
 #abbc3posttable, 
