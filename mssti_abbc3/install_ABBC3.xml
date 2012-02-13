@@ -7,7 +7,7 @@
 
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3)]]></title>
 
-		<description lang="en"><![CDATA[ABBC3 gives the BBCode buttons a toolbar and icon style appearance, adds many new and useful BBCode features and adds more ways to customize posts. It also improves some of phpBB's built in BBCodes and also supports phpBB's custom BBCodes feature. Additional features include an automatic image resizer option with various lightbox styled expanders, auto-embedded video for dozens of media sites and file formats, and a highly customizable ACP settings area. ABBC3 is a sleek addition to your phpBB bulletin board. You must have javascript enabled to use this MOD.]]></description>
+		<description lang="en"><![CDATA[ABBC3 gives the BBCode buttons a toolbar and icon style appearance, adds many new and useful BBCode features and adds more ways to customize posts. It also improves some of phpBB's built in BBCodes and also supports phpBB's custom BBCodes feature. Additional features include an automatic image resizer option with various lightbox styled expanders, auto-embedded video for dozens of media sites and file formats, and a highly customizable ACP settings area. ABBC3 is a sleek addition to your phpBB bulletin board. Javascript is required by this MOD.]]></description>
 
 		<author-notes lang="en"><![CDATA[To read more about ABBC3, please read the contrib/docs/README.HTML file
 
