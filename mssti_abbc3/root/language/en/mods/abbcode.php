@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode Box 3 :: Help Page',
 	'ABBC3_HELP_DESC'			=> 'Description',
 	'ABBC3_HELP_WRITE'			=> 'BBCode usage format',
-	'ABBC3_HELP_VIEW'			=> 'BBCode example displays as',
+	'ABBC3_HELP_VIEW'			=> 'Result',
 	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" onclick="window.open(this.href);return false;">mssti</a>',
 //	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
@@ -119,7 +119,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_AJAX_DISABLED'		=> 'Your browser does not support AJAX (XMLHttpRequest) and was unable to process this request.',
 	'ABBC3_SUBMIT'				=> 'Insert into message',
 	'ABBC3_SUBMIT_SIG'			=> 'Insert into signature',
-	'SAMPLE_TEXT'				=> 'This is a text sample',
+	'SAMPLE_TEXT'				=> 'The quick brown fox jumps over the lazy dog',
 ));
 
 /**
@@ -241,8 +241,7 @@ $lang = array_merge($lang, array(
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Justify align text',
 	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]text[/align]',
-##	For translate :                                yes           yes
-	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]This is <br />a sample text<br />' . $lang['SAMPLE_TEXT'] . '[/align]',
+	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Right Align
 	'ABBC3_ALIGNRIGHT_MOVER'	=> 'Right align text',
@@ -310,9 +309,7 @@ $lang = array_merge($lang, array(
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Gradient text',
 	'ABBC3_GRAD_TIP'			=> 'Select some text first',
-
-##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
-	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',
+	'ABBC3_GRAD_VIEW'			=> '[color=#40FF00]I[/color] [color=#B6FF00]a[/color][color=#F0FF00]m[/color] [color=#DD9845]a[/color] [color=#BF4A94]r[/color][color=#BF5EBB]a[/color][color=#BF71E2]i[/color][color=#B57BFF]n[/color][color=#8E67FF]b[/color][color=#6754FF]o[/color][color=#4040FF]w[/color]',
 	'ABBC3_GRAD_MIN_ERROR'		=> 'No text was seleted.',
 	'ABBC3_GRAD_MAX_ERROR'		=> 'Only text selections less than 120 characters allowed.',
 	'ABBC3_GRAD_COLORS'			=> 'Pre Selected Colors',
@@ -428,7 +425,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_MOVER'			=> 'Insert URL',	
 	'ABBC3_URL_TIP'				=> '[url]http://url[/url] or [url=http://url]URL text[/url]',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.google.com',
-	'ABBC3_URL_VIEW'			=> '[url=http://www.google.com]GOOGLE[/url]',
+	'ABBC3_URL_VIEW'			=> '[url=http://www.google.com]Google[/url]',
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'email',
@@ -513,7 +510,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_CLICK_TIP'			=> '[click]http://url[/click] or [click=http://url]Name Web[/click] or [click][img]http://url[/img][/click]',
 	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
 ##	For translate :                                                                     yes
-	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] GOOGLE [/click] or [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] Google [/click] or [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
 	'ABBC3_CLICK_TIME'			=> '( Clicked %d time )',
 	'ABBC3_CLICK_TIMES'			=> '( Clicked %d times )',
 	'ABBC3_CLICK_ERROR'			=> '<strong>ERROR:</strong> Please enter a VALID click ID in URL',
