@@ -359,7 +359,7 @@ $lang = array_merge($lang, array(
 
 	// List item
 	'ABBC3_LISTITEM_MOVER'		=> 'Item de lista',
-	'ABBC3_LISTITEM_TIP'		=> '[*]',
+	'ABBC3_LISTITEM_TIP'		=> '[*]texto',
 	'ABBC3_LISTITEM_NOTE'		=> 'Nota: Insertar puntos dentro de la lista.',
 
 	// Line Break
@@ -565,9 +565,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
 
 	// Quick time
-	'ABBC3_QUICKTIME_TAG'		=> 'Quick time',
-	'ABBC3_QUICKTIME_MOVER'		=> 'Insertar Quick time',
-	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quick time[/quicktime]',
+	'ABBC3_QUICKTIME_TAG'		=> 'Quicktime',
+	'ABBC3_QUICKTIME_MOVER'		=> 'Insertar Quicktime',
+	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quicktime[/quicktime]',
 	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt',
 	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
 
@@ -600,8 +600,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J[/veoh]',
 
 	// Collegehumor video
-	'ABBC3_COLLEGEHUMOR_TAG'	=> 'collegehumor',
-	'ABBC3_COLLEGEHUMOR_MOVER'	=> 'Insertar video desde collegehumor',
+	'ABBC3_COLLEGEHUMOR_TAG'	=> 'Collegehumor',
+	'ABBC3_COLLEGEHUMOR_MOVER'	=> 'Insertar video desde Collegehumor',
 	'ABBC3_COLLEGEHUMOR_TIP'	=> '[collegehumor]collegehumor video URL[/collegehumor]',
 	'ABBC3_COLLEGEHUMOR_EXAMPLE'=> 'http://www.collegehumor.com/video:1802097',
 	'ABBC3_COLLEGEHUMOR_VIEW'	=> '[collegehumor]http://www.collegehumor.com/video:1802097[/collegehumor]',

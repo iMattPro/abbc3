@@ -143,7 +143,7 @@ $lang = array_merge($lang, array(
 	// Font Size Dropdown
 	'ABBC3_FONT_GIANT'			=> 'Giant',
 	'ABBC3_SIZE_MOVER'			=> 'Font size',
-	'ABBC3_SIZE_TIP'			=> '[size=150]text large[/size]',
+	'ABBC3_SIZE_TIP'			=> '[size=150]large text[/size]',
 	'ABBC3_SIZE_NOTE'			=> 'Note: The value will be interpreted as a percentage',
 	'ABBC3_SIZE_VIEW'			=> '[size=150]' . $lang['SAMPLE_TEXT'] . '[/size]',
 
@@ -178,12 +178,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOSELECT_ERROR'		=> 'No text was seleted.',
 
 	// Code
-	'ABBC3_CODE_MOVER'			=> 'Code',
+	'ABBC3_CODE_MOVER'			=> 'Code display',
 	'ABBC3_CODE_TIP'			=> '[code]code[/code]',
 	'ABBC3_CODE_VIEW'			=> '[code]' . $lang['SAMPLE_TEXT'] . '[/code]',
 
 	// Quote
-	'ABBC3_QUOTE_MOVER'			=> 'Quote',
+	'ABBC3_QUOTE_MOVER'			=> 'Quote text',
 	'ABBC3_QUOTE_TIP'			=> '[quote]text[/quote] or [quote=“member”]text[/quote]',
 ##	For translate :                                                            yes              yes
 	'ABBC3_QUOTE_VIEW'			=> '[quote]' . $lang['SAMPLE_TEXT'] . '[/quote] or [quote=&quot;member&quot;]' . $lang['SAMPLE_TEXT'] . '[/quote]',
@@ -239,66 +239,66 @@ $lang = array_merge($lang, array(
 	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
 
 	// Justify Align
-	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Text justified',
+	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Justify align text',
 	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]text[/align]',
 ##	For translate :                                yes           yes
 	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]This is <br />a sample text<br />' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Right Align
-	'ABBC3_ALIGNRIGHT_MOVER'	=> 'Text right aligned',
+	'ABBC3_ALIGNRIGHT_MOVER'	=> 'Right align text',
 	'ABBC3_ALIGNRIGHT_TIP'		=> '[align=right]text[/align]',
 	'ABBC3_ALIGNRIGHT_VIEW'		=> '[align=right]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Center Align
-	'ABBC3_ALIGNCENTER_MOVER'	=> 'Text aligned to the center',
+	'ABBC3_ALIGNCENTER_MOVER'	=> 'Center align text',
 	'ABBC3_ALIGNCENTER_TIP'		=> '[align=center]text[/align]',
 	'ABBC3_ALIGNCENTER_VIEW'	=> '[align=center]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Left Align
-	'ABBC3_ALIGNLEFT_MOVER'		=> 'Text left aligned',
+	'ABBC3_ALIGNLEFT_MOVER'		=> 'Left align text',
 	'ABBC3_ALIGNLEFT_TIP'		=> '[align=left]text[/align]',
 	'ABBC3_ALIGNLEFT_VIEW'		=> '[align=left]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Preformat
-	'ABBC3_PRE_MOVER'			=> 'Text preformatted',
+	'ABBC3_PRE_MOVER'			=> 'Preformatted text',
 	'ABBC3_PRE_TIP'				=> '[pre]text[/pre]',
 	'ABBC3_PRE_VIEW'			=> '[pre]' . $lang['SAMPLE_TEXT'] . '<br />		' . $lang['SAMPLE_TEXT'] . '[/pre]',
 
 	// Tab
-	'ABBC3_TAB_MOVER'			=> 'Creates a normal indent',
+	'ABBC3_TAB_MOVER'			=> 'Indent text',
 	'ABBC3_TAB_TIP'				=> '[tab=nn]',
 	'ABBC3_TAB_NOTE'			=> 'Enter a number that will be the margin measured in pixels.',
 	'ABBC3_TAB_VIEW'			=> '[tab=30]' . $lang['SAMPLE_TEXT'],
 
 	// Superscript
-	'ABBC3_SUP_MOVER'			=> 'Sets the text as superscripts',
+	'ABBC3_SUP_MOVER'			=> 'Superscript text',
 	'ABBC3_SUP_TIP'				=> '[sup]text[/sup]',
 ##	For translate :                 yes                                                         yes
 	'ABBC3_SUP_VIEW'			=> 'This is normal text [sup]' . $lang['SAMPLE_TEXT'] . '[/sup] this is normal text',
 
 	// Subscript
-	'ABBC3_SUB_MOVER'			=> 'Sets the text as subscripts',
+	'ABBC3_SUB_MOVER'			=> 'Subscript text',
 	'ABBC3_SUB_TIP'				=> '[sub]text[/sub]',
 ##	For translate :                 yes                                                         yes
 	'ABBC3_SUB_VIEW'			=> 'This is normal text [sub]' . $lang['SAMPLE_TEXT'] . '[/sub] this is normal text',
 
 	// Bold
-	'ABBC3_B_MOVER'				=> 'Text in bold',
+	'ABBC3_B_MOVER'				=> 'Bold text',
 	'ABBC3_B_TIP'				=> '[b]text[/b]',
 	'ABBC3_B_VIEW'				=> '[b]' . $lang['SAMPLE_TEXT'] . '[/b]',
 
 	// Italic
-	'ABBC3_I_MOVER'				=> 'Text in italics',
+	'ABBC3_I_MOVER'				=> 'Italic text',
 	'ABBC3_I_TIP'				=> '[i]text[/i]',
 	'ABBC3_I_VIEW'				=> '[i]' . $lang['SAMPLE_TEXT'] . '[/i]',
 
 	// Underline
-	'ABBC3_U_MOVER'				=> 'Text underlined',
+	'ABBC3_U_MOVER'				=> 'Underline text',
 	'ABBC3_U_TIP'				=> '[u]text[/u]',
 	'ABBC3_U_VIEW'				=> '[u]' . $lang['SAMPLE_TEXT'] . '[/u]',
 
 	// Strikethrough
-	'ABBC3_S_MOVER'				=> 'Text strikethrough',
+	'ABBC3_S_MOVER'				=> 'Strikethrough text',
 	'ABBC3_S_TIP'				=> '[s]text[/s]',
 	'ABBC3_S_VIEW'				=> '[s]' . $lang['SAMPLE_TEXT'] . '[/s]',
 
@@ -308,7 +308,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_FADE_VIEW'			=> '[fade]' . $lang['SAMPLE_TEXT'] . '[/fade]',
 
 	// Text Gradient
-	'ABBC3_GRAD_MOVER'			=> 'Text gradient',
+	'ABBC3_GRAD_MOVER'			=> 'Gradient text',
 	'ABBC3_GRAD_TIP'			=> 'Select some text first',
 
 ##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
@@ -359,7 +359,7 @@ $lang = array_merge($lang, array(
 
 	// List item
 	'ABBC3_LISTITEM_MOVER'		=> 'List item',
-	'ABBC3_LISTITEM_TIP'		=> '[*]',
+	'ABBC3_LISTITEM_TIP'		=> '[*]text',
 	'ABBC3_LISTITEM_NOTE'		=> 'Note: Creates bullets inside list',
 
 	// Line Break
@@ -379,22 +379,22 @@ $lang = array_merge($lang, array(
 	'ABBC3_DIRLTR_VIEW'			=> '[dir=ltr]' . $lang['SAMPLE_TEXT'] . '[/dir]',
 
 	// Marquee Down
-	'ABBC3_MARQDOWN_MOVER'		=> 'Scrolling text down',
+	'ABBC3_MARQDOWN_MOVER'		=> 'Scroll text down',
 	'ABBC3_MARQDOWN_TIP'		=> '[marq=down]text[/marq]',
 	'ABBC3_MARQDOWN_VIEW'		=> '[marq=down]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
 	// Marquee Up
-	'ABBC3_MARQUP_MOVER'		=> 'Scrolling text upwards',
+	'ABBC3_MARQUP_MOVER'		=> 'Scroll text upwards',
 	'ABBC3_MARQUP_TIP'			=> '[marq=up]text[/marq]',
 	'ABBC3_MARQUP_VIEW'			=> '[marq=up]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
 	// Marquee Right
-	'ABBC3_MARQRIGHT_MOVER'		=> 'Displace text to the right',
+	'ABBC3_MARQRIGHT_MOVER'		=> 'Scroll text to the right',
 	'ABBC3_MARQRIGHT_TIP'		=> '[marq=right]text[/marq]',
 	'ABBC3_MARQRIGHT_VIEW'		=> '[marq=right]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
 	// Marquee Left
-	'ABBC3_MARQLEFT_MOVER'		=> 'Displace text to the left',
+	'ABBC3_MARQLEFT_MOVER'		=> 'Scroll text to the left',
 	'ABBC3_MARQLEFT_TIP'		=> '[marq=left]text[/marq]',
 	'ABBC3_MARQLEFT_VIEW'		=> '[marq=left]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
@@ -417,22 +417,22 @@ $lang = array_merge($lang, array(
 	'ABBC3_CELL_EXAMPLE'		=> 'border:1px solid #cccccc;',
 
 	// Anchor
-	'ABBC3_ANCHOR_MOVER'		=> 'Anchor',
-	'ABBC3_ANCHOR_TIP'			=> '[anchor=(this anchor name) goto=(the name of another anchor)]text[/anchor]',
+	'ABBC3_ANCHOR_MOVER'		=> 'Insert anchor',
+	'ABBC3_ANCHOR_TIP'			=> '[anchor=(this anchor name) goto=(target anchor name)]text[/anchor]',
 	'ABBC3_ANCHOR_EXAMPLE'		=> '[anchor=a1 goto=a2]Go to anchor a2[/anchor]',
 ##	For translate :                                           yes                         Yes               Yes
-	'ABBC3_ANCHOR_VIEW'			=> '[anchor=help_0 goto=help_1]Go to link 1[/anchor]<br /> or  [anchor=help_1]this is the link 1[/anchor]',
+	'ABBC3_ANCHOR_VIEW'			=> '[anchor=help_0 goto=help_1]Go to link 1[/anchor]<br /> or  [anchor=help_1]this is link 1[/anchor]',
 
 	// Hyperlink Wizard
 	'ABBC3_URL_TAG'				=> 'page',
-	'ABBC3_URL_MOVER'			=> 'Web address',	
-	'ABBC3_URL_TIP'				=> '[url]http://...[/url] or [url=http://...]Name of site[/url]',
+	'ABBC3_URL_MOVER'			=> 'Insert URL',	
+	'ABBC3_URL_TIP'				=> '[url]http://url[/url] or [url=http://url]URL text[/url]',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.google.com',
 	'ABBC3_URL_VIEW'			=> '[url=http://www.google.com]GOOGLE[/url]',
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'email',
-	'ABBC3_EMAIL_MOVER'			=> 'Email',
+	'ABBC3_EMAIL_MOVER'			=> 'Insert Email',
 	'ABBC3_EMAIL_TIP'			=> '[email]user@server.ext[/email] or [email=user@server.ext]My email[/email]',
 	'ABBC3_EMAIL_EXAMPLE'		=> 'user@server.ext',
 	'ABBC3_EMAIL_VIEW'			=> '[email=user@server.ext]user@server.ext[/email]',
@@ -451,7 +451,7 @@ $lang = array_merge($lang, array(
 	// Web included by iframe
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Insert a website in your post',
-	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
+	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]http://url[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.google.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.google.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Note:</strong> allowing other websites to be inserted in posts, can pose a security risk. Use at your own risk, or assign to trusted groups.',
@@ -469,20 +469,20 @@ $lang = array_merge($lang, array(
 	// Image
 	'ABBC3_IMG_TAG'				=> 'image',
 	'ABBC3_IMG_MOVER'			=> 'Insert image',
-	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
+	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://image_url[/img]',
 	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'thumbnail',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Insert thumbnail',
-	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://image_url[/thumbnail]',
 	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 
 	// Imgshack
 	'ABBC3_IMGSHACK_MOVER'		=> 'Insert image from imageshack',
-	'ABBC3_IMGSHACK_TIP'		=> '[url=http://imageshack.us][img]http://...[/img][/url]',
+	'ABBC3_IMGSHACK_TIP'		=> '[url=http://imageshack.us][img]http://image_url[/img][/url]',
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 
 	// Rapid share checker
@@ -510,7 +510,7 @@ $lang = array_merge($lang, array(
 	// Click counter
 	'ABBC3_CLICK_TAG'			=> 'click',
 	'ABBC3_CLICK_MOVER'			=> 'Insert Clicks Counter',
-	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] or [click=http://...]Name Web[/click] or [click][img]http://...[/img][/click]',
+	'ABBC3_CLICK_TIP'			=> '[click]http://url[/click] or [click=http://url]Name Web[/click] or [click][img]http://url[/img][/click]',
 	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
 ##	For translate :                                                                     yes
 	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] GOOGLE [/click] or [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
@@ -600,8 +600,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J[/veoh]',
 
 	// Collegehumor video
-	'ABBC3_COLLEGEHUMOR_TAG'	=> 'collegehumor',
-	'ABBC3_COLLEGEHUMOR_MOVER'	=> 'Insert video from collegehumor',
+	'ABBC3_COLLEGEHUMOR_TAG'	=> 'Collegehumor',
+	'ABBC3_COLLEGEHUMOR_MOVER'	=> 'Insert video from Collegehumor',
 	'ABBC3_COLLEGEHUMOR_TIP'	=> '[collegehumor]collegehumor video URL[/collegehumor]',
 	'ABBC3_COLLEGEHUMOR_EXAMPLE'=> 'http://www.collegehumor.com/video:1802097',
 	'ABBC3_COLLEGEHUMOR_VIEW'	=> '[collegehumor]http://www.collegehumor.com/video:1802097[/collegehumor]',

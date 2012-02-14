@@ -123,8 +123,8 @@ $lang = array_merge($lang, array(
 ));
 
 /**
-* TRANSLATORS PLEASE Hinweis
-*	Several lines have an special Hinweis like '##	For translate : ' follow for one or more 'yes'
+* TRANSLATORS PLEASE NOTE 
+*	Several lines have an special note like "##	For translate : " followed for one or more "yes"
 *	These means that you can/have to translate the word under
 **/
 $lang = array_merge($lang, array(
@@ -359,7 +359,7 @@ $lang = array_merge($lang, array(
 
 	// List item
 	'ABBC3_LISTITEM_MOVER'		=> 'Listenpunkt',
-	'ABBC3_LISTITEM_TIP'		=> '[*]',
+	'ABBC3_LISTITEM_TIP'		=> '[*]text',
 	'ABBC3_LISTITEM_NOTE'		=> 'Hinweis: Erstellt Aufzählungsspunkte innerhalb der Liste',
 
 	// Line Break
@@ -576,7 +576,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAM_MOVER'			=> 'Eine Real Media Datei einfügen',
 	'ABBC3_RAM_TIP'				=> '[ram]URL Real Media[/ram]',
 	'ABBC3_RAM_EXAMPLE'			=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
-	'ABBC3_RAM_VIEW'			=> '[ram]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
+	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
 
 	// Google video Wizard
 	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
