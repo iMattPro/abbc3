@@ -69,6 +69,7 @@ hr.hrdotted {
 	border : 1px solid #C0C0C0;
 	border-collapse : collapse;
 	vertical-align : top;
+	margin: 0 0 4px 0;
 }
 
 #abbc3posttable select, 
@@ -97,7 +98,8 @@ hr.hrdotted {
 }
 #abbc3posttable tr, #abbc3posttable td, #abbc3posttable div, 
 #abbc3wysiwig tr, #abbc3wysiwig td, #abbc3wysiwig div {
-	height : 26px;
+	border : 1px solid #C0C0C0;
+	height : 29px;
 	margin : 0;
 	padding : 0 0 0 2px;
 	vertical-align : top;
@@ -118,6 +120,7 @@ hr.hrdotted {
 #abbc3wysiwig .button2 {
 	margin : 5px 0 4px 0;
 	padding : 2px 5px;
+	max-height: 20px;
 }
 
 #abbc3posttable .btnlite,
