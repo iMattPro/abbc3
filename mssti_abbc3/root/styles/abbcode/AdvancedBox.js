@@ -876,6 +876,7 @@ function ImageResizerOn(ObjImage)
 			objResizerImg.height		= 16;
 			objResizerImg.alt			= '';
 			objResizerImg.border		= 0;
+			objResizerImg.setAttribute('style', 'vertical-align:middle;');
 
 		var objResizerSpan				= document.createElement('span');
 			objResizerSpan.className	= 'resized-txt';
