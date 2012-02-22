@@ -1,7 +1,7 @@
 /*  phpBB 3.0 Style Sheet
  * --------------------------------------------------------------
  * @package: phpBB3 :: Advanced BBCode Box 3 -> styles -> abbcode
- * @version: $Id: abbcode.css, v 3.0.11 2/12/12 8:13 PM VSE Exp $
+ * @version: $Id: abbcode.css, v 3.0.11 2/21/12 5:54 PM VSE Exp $
  * @copyright: leviatan21 < info@mssti.com > (Gabriel)
  * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
  * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -586,6 +586,7 @@ ul.abbc3-gallery img {
 /*
 .resized-div a img     { background-color: transparent; border-color: #dddddd #bbbbbb #aaaaaa #cccccc; border-style: dotted; border-width: 1px; margin: 3px; padding: 5px; }
 */
+.resized, .hoverbox { cursor: url("zoomin.cur"), pointer !important; }
 /** Image Resizer JS - END **/
 
 /** AdvancedBox JS - START **/
