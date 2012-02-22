@@ -97,7 +97,7 @@ function bbcode_to_plain(data)
 	/** return '['+ match_1 + (match_2 ? '='+ match_2 : '') +']'+ match_3 +'[/'+ match_1 +']'; **/
 	}
 
-	var basic_bbcode_match	 = bbcode_to_plain_create_regexp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
+	var basic_bbcode_match   = bbcode_to_plain_create_regexp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
 	var basic_bbcode_replace = bbcode_to_plain_create_regexp('^(\\d+)x(\\d+)$');
 
 	/** Special bbcodes **/
@@ -811,7 +811,7 @@ function ABBC3_Ajax_send(url, parameters, bbcode, container_id)
 		url = url.replace(/&amp;/g, '&');
 		parameters = parameters.replace(/&amp;/g, '&') + '&ajax=true';
 		// Event handler for an event that fires at every state change
-		xmlhttp.onreadystatechange = function(){ ABBC3_Ajax_handler(xmlhttp, container_id, bbcode); }
+		xmlhttp.onreadystatechange = function(){ ABBC3_Ajax_handler(xmlhttp, container_id, bbcode); };
 		xmlhttp.open('POST', url + parameters, true);
 		xmlhttp.send(parameters);
 	}
@@ -826,7 +826,7 @@ function ABBC3_Ajax_send(url, parameters, bbcode, container_id)
 function ABBC3_Ajax_handler(xmlhttp, container_id, bbcode)
 {
 	// Object status integer
-	     if (xmlhttp.readyState == 0) { /* 0 = uninitialized */	}
+	if (xmlhttp.readyState == 0) { /* 0 = uninitialized */	}
 	else if (xmlhttp.readyState == 1) { /* 1 = loading */		}
 	else if (xmlhttp.readyState == 2) { /* 2 = loaded */		}
 	else if (xmlhttp.readyState == 3) { /* 3 = interactive */	}
@@ -872,7 +872,7 @@ function ABBC3_Ajax_update(el, str)
 }
 
 /**
-* Manae the ajax spinning loading image
+* Manage the ajax spinning loading image
 * @param string		mode	(on=display|off=hide|null=create)
 **/
 function ABBC3_Ajax_indicator(mode)
@@ -933,11 +933,11 @@ if (window.onload_functions) // prosilver
 {
 	onload_functions[onload_functions.length] = "ABBC3_init();";
 }
-else if (typeof(window.addEventListener) != "undefined") // DOM
+else if (typeof(window.addEventListener) !== "undefined") // DOM
 {
 	window.addEventListener("load", ABBC3_init, false);
 }
-else if (typeof(window.attachEvent) != "undefined") // MSIE
+else if (typeof(window.attachEvent) !== "undefined") // MSIE
 {
 	window.attachEvent("onload", ABBC3_init);
 }

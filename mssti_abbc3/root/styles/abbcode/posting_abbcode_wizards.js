@@ -16,10 +16,11 @@ var text_name = '{TEXT_NAME}';
 function win_close(text)
 {
 	var in_popup = <!-- IF S_ABBC3_WIZARD_MODE eq '2' -->false<!-- ELSE -->true<!-- ENDIF -->;
+	var textarea;
 
 	if (is_ie && !in_popup)
 	{
-		var textarea = document.forms[form_name].elements[text_name];
+		textarea = document.forms[form_name].elements[text_name];
 		textarea.focus();
 		baseHeight = document.selection.createRange().duplicate().boundingHeight;
 	}
@@ -97,7 +98,7 @@ if (isNaN(version))
 	version = 0;
 }
 
-if ((browser == "msie") && (version == 2))
+if ((browser === "msie") && (version == 2))
 {
 	version = 3;
 }
@@ -106,7 +107,7 @@ function getValue(clr_id)
 {
 	var clr = document.getElementById(clr_id);
 
-	if (clr.options[clr.selectedIndex].value == "")
+	if (clr.options[clr.selectedIndex].value === "")
 	{
 		return "";
 	}
@@ -214,7 +215,7 @@ function gradient(thetext, priv)
 	thecolors    += getValue('clr5');
 	thecolors     = thecolors.substr(1);
 
-	if (((browser == "netscape") || (browser == "msie") || (browser == "opera")) && (version >= 3.0))
+	if (((browser === "netscape") || (browser === "msie") || (browser === "opera")) && (version >= 3.0))
 	{
 		var colors = new ColorList(thecolors);
 
@@ -239,7 +240,7 @@ function gradient(thetext, priv)
 			gg = Math.round(interpolate(lci/(numcolors-1), colors.codes[lci].g, hci/(numcolors-1), colors.codes[hci].g, i/(numchars-1)));
 			bb = Math.round(interpolate(lci/(numcolors-1), colors.codes[lci].b, hci/(numcolors-1), colors.codes[hci].b, i/(numchars-1)));
 
-			if (browser == "opera")
+			if (browser === "opera")
 			{
 				rr = 255 - rr;
 				gg = 255 - gg;
@@ -248,7 +249,7 @@ function gradient(thetext, priv)
 
 			if (thetext.charAt(i) !== ' ')
 			{
-				if (priv == "priv")
+				if (priv === "priv")
 				{
 					grad += "<font color=#" + tohex[rr] + tohex[gg] + tohex[bb] + ">" + thetext.charAt(i) + "</font>";
 				}
@@ -285,7 +286,7 @@ function gradient_preview(submit)
 	}
 
 	var txtarea = doc.forms[form_name].elements[text_name];
-	var selLength, selStart, selEnd, s1, s2, s3, varreturn;
+	var oSelectLength, selLength, selStart, selEnd, s1, s2, s3, varreturn;
 
 	if ((clientVer >= 4) && is_ie && is_win)
 	{
@@ -336,7 +337,7 @@ function gradient_update(el, str)
 	var gradient_new_El;
 	var gradient_old_El = document.getElementById(el);
 
-	if (gradient_old_El !== null && typeof(str) != 'undefined')
+	if (gradient_old_El !== null && typeof(str) !== 'undefined')
 	{
 		/**
 		* Pure innerHTML is slightly faster in IE 
@@ -423,15 +424,18 @@ function win_accept(tag)
 {
 	var FoundErrors = '';
 	var tag_bbcode;
+	var tag_open;
+	var tag_close;
+
 	if (!tag)
 	{
-		var tag_open = '{ABBC3_OPEN}';
-		var tag_close = '{ABBC3_CLOSE}';
+		tag_open = '{ABBC3_OPEN}';
+		tag_close = '{ABBC3_CLOSE}';
 	}
 	else
 	{
-		var tag_open = tag;
-		var tag_close = '/' + tag;
+		tag_open = tag;
+		tag_close = '/' + tag;
 	}
 
 	if (tag === 'table')
@@ -456,7 +460,7 @@ function win_accept(tag)
 
 		var styleC			= (document.getElementById("promptbox5")	) ? document.getElementById("promptbox5").value	: '';
 
-		if (FoundErrors != '')
+		if (FoundErrors !== '')
 		{
 			alert("{LA_ABBC3_ERROR}" + FoundErrors);
 			return;
@@ -465,7 +469,7 @@ function win_accept(tag)
 		var Row = '';
 		for (var R = 0; R < parseInt(enterR, 10); R++)
 		{
-			Col = '';
+			var Col = '';
 			for (var C = 0; C < parseInt(enterC, 10); C++)
 			{
 				Col += "[td=" + styleC + "]" + "[/td]";
@@ -496,27 +500,27 @@ function win_accept(tag)
 
 		var tag_height		= (document.getElementById("promptbox4")	) ? "," + document.getElementById("promptbox4").value	: '';
 		var tag_height_error= (document.getElementById("errorbox4")		) ? document.getElementById("errorbox4").value			: '';
-		if (tag_height == "," && tag_height_error)
+		if (tag_height === "," && tag_height_error)
 		{
 			FoundErrors += '\n' + tag_height_error;
 		}
 
-		if (FoundErrors != '')
+		if (FoundErrors !== '')
 		{
 			alert("{LA_ABBC3_ERROR}" + FoundErrors);
 			return;
 		}
 
-		close1 = (tag_desc || tag_desc) ? '' : ']';
-		close2 = (tag_desc || tag_desc) ? ']' : '';
+		var close1 = (tag_desc || tag_desc) ? '' : ']';
+		var close2 = (tag_desc || tag_desc) ? ']' : '';
 		tag_open += (tag_desc || tag_desc) ? '=' : '';
 
-		var image_aligned = document.forms['abbcode_wizards'].elements['image_align'];
+		var image_aligned = document.forms.abbcode_wizards.elements.image_align;
 		if (image_aligned)
 		{
 			for (var i = 0; i < image_aligned.length; i++)
 			{
-				if (image_aligned[i].checked && image_aligned[i].value != 'none')
+				if (image_aligned[i].checked && image_aligned[i].value !== 'none')
 				{
 					tag_open += '=' + image_aligned[i].value;
 					break;
@@ -535,11 +539,11 @@ if (window.onload_functions) // prosilver
 {
 	onload_functions[onload_functions.length] = "gradient_init();";
 }
-else if (typeof(window.addEventListener) != "undefined") // DOM
+else if (typeof(window.addEventListener) !== "undefined") // DOM
 {
 	window.addEventListener("load", gradient_init, false);
 }
-else if (typeof(window.attachEvent) != "undefined") // MSIE
+else if (typeof(window.attachEvent) !== "undefined") // MSIE
 {
 	window.attachEvent("onload", gradient_init);
 }
