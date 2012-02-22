@@ -148,9 +148,9 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 		/** New page fragment **/
 		fragment = document.createDocumentFragment();
 		/** New anchor **/
-			anchor = document.createElement('a');
-			anchor.href = url_clean(ObjImage.src);
-			anchor.title = name_clean(ObjImage);
+		anchor = document.createElement('a');
+		anchor.href = url_clean(ObjImage.src);
+		anchor.title = name_clean(ObjImage);
 	}
 
 	// http://planetozh.com/projects/lightbox-clones/

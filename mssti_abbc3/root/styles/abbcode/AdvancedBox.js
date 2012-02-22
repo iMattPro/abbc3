@@ -40,7 +40,7 @@ if (ImageResizerMode === 'AdvancedBox')
 		var SlideShows = []; //new Array();
 	
 		/** Initialize all **/
-		var Start = function(url)
+		Start = function(url)
 		{
 			/** At first run, creates the element container **/
 			if (!$ID('AB-BackGround')) { Create(); }
@@ -64,7 +64,7 @@ if (ImageResizerMode === 'AdvancedBox')
 		};
 	
 		/** Creates the elements container and appends it to the main document (The background, image and close button). **/
-		var Create = function()
+		Create = function()
 		{
 			/** Preload the navbar buttons **/
 			var preload_image_array = new Array("advancedbox_blank.gif", "advancedbox_icon_close.gif", "advancedbox_icon_zoom.gif", "advancedbox_icon_next.gif", "advancedbox_icon_prev.gif", "advancedbox_icon_play.gif", "advancedbox_icon_pause.gif", "advancedbox_icon_loading.gif");
@@ -160,7 +160,7 @@ if (ImageResizerMode === 'AdvancedBox')
 		};
 	
 		/** Adjust sizes **/
-		var Prepare = function(newObjImage, CurrentZoomLevel)
+		Prepare = function(newObjImage, CurrentZoomLevel)
 		{
 			/** Hide all images **/
 			ImagesHidden();
@@ -207,7 +207,7 @@ if (ImageResizerMode === 'AdvancedBox')
 			BoxScale('AB-OuterContainer', objOuterImageContainerdims.W, objOuterImageContainerdims.H, UpdateImage);
 		};
 	
-		var UpdateImage = function()
+		UpdateImage = function()
 		{
 			var objImagedims;
 			/** Resize the image? **/
@@ -265,7 +265,7 @@ if (ImageResizerMode === 'AdvancedBox')
 			ElementHide('AB-LoadingLink');
 		};
 	
-		var Slide_Show = function(PlayOnOff, PlayNumber)
+		Slide_Show = function(PlayOnOff, PlayNumber)
 		{
 			/** Reset to default values **/
 			$ID('AB-ImageName1').firstChild.nodeValue = '';
@@ -322,7 +322,7 @@ if (ImageResizerMode === 'AdvancedBox')
 		};
 	
 		/** If the browser window is resized, recalculate dimensions and positions **/
-		var Resize = function(e)
+		Resize = function(e)
 		{
 			Close();
 			ElementShow('AB-Overlay');
@@ -331,7 +331,7 @@ if (ImageResizerMode === 'AdvancedBox')
 		};
 	
 		/** Reset to default values **/
-		var Close = function(e)
+		Close = function(e)
 		{
 			/** Restore images visibility **/
 			ImagesVisible();
@@ -353,52 +353,52 @@ if (ImageResizerMode === 'AdvancedBox')
 		};
 	
 	/** Common functions - Start **/
-		var $ID					= function(elementid)	{ return document.getElementById(elementid); };
-		var ElementHide			= function(element)		{ $ID(element).style.display = 'none'; };
-		var ElementShow			= function(element)		{ $ID(element).style.display = ''; };
-		var ElementVisible		= function(element)		{ $ID(element).style.visibility = 'visible'; };
-		var ElementInVisible	= function(element)		{ $ID(element).style.visibility = 'hidden'; };
-		var ElementGetWidth		= function(element)		{ return $ID(element).offsetWidth; };
-		var ElementSetWidth		= function(element,w)	{ $ID(element).style.width = w + 'px'; };
-		var ElementGetHeight	= function(element)		{ return $ID(element).offsetHeight; };
-		var ElementSetHeight	= function(element,h)	{ $ID(element).style.height = h + 'px'; };
-		var ElementSetTop		= function(element,t)	{ $ID(element).style.top = t + 'px'; };
-		var ElementSetLeft		= function(element,l)	{ $ID(element).style.left = l + 'px'; };
-		var ElementSetSrc		= function(element,src) { $ID(element).src = src; };
-		var ElementOpacity		= function(element, o)	{ if (window.ActiveXObject) { $ID(element).style.filter = 'alpha(opacity=' + o + ')'; } else { $ID(element).style.opacity = $ID(element).style.MozOpacity = $ID(element).style.KhtmlOpacity = o/100; } };
-		var ElementSetInnerHTML = function(element, c)	{ $ID(element).innerHTML = c; };
-		var ElementBoxes		= function(action)		{ if (action !== 'visible') { action = 'hidden'; } if (IE) { for (var S = 0; S < document.forms.length; S++) { for (var R = 0; R < document.forms[S].length; R++) { if (document.forms[S].elements[R].options) { document.forms[S].elements[R].style.visibility = action; } } } } var theObjects = document.getElementsByTagName('object'); for (var i = 0; i < theObjects.length; i++) { theObjects[i].style.visibility = action; } };
-		var ElementDisabled		= function(element)     { $ID(element).className = ($ID(element).className ? $ID(element).className+' ' : '') + 'disabled'; ElementOpacity($ID(element).id, ojbOpacity); $ID(element).onclick = function() {};};
-		var ElementEnabled		= function(element)     { $ID(element).className = $ID(element).className.replace(/disabled/g, ''); ElementOpacity($ID(element).id, 100); };
+		$ID					= function(elementid)	{ return document.getElementById(elementid); };
+		ElementHide			= function(element)		{ $ID(element).style.display = 'none'; };
+		ElementShow			= function(element)		{ $ID(element).style.display = ''; };
+		ElementVisible		= function(element)		{ $ID(element).style.visibility = 'visible'; };
+		ElementInVisible	= function(element)		{ $ID(element).style.visibility = 'hidden'; };
+		ElementGetWidth		= function(element)		{ return $ID(element).offsetWidth; };
+		ElementSetWidth		= function(element,w)	{ $ID(element).style.width = w + 'px'; };
+		ElementGetHeight	= function(element)		{ return $ID(element).offsetHeight; };
+		ElementSetHeight	= function(element,h)	{ $ID(element).style.height = h + 'px'; };
+		ElementSetTop		= function(element,t)	{ $ID(element).style.top = t + 'px'; };
+		ElementSetLeft		= function(element,l)	{ $ID(element).style.left = l + 'px'; };
+		ElementSetSrc		= function(element,src) { $ID(element).src = src; };
+		ElementOpacity		= function(element, o)	{ if (window.ActiveXObject) { $ID(element).style.filter = 'alpha(opacity=' + o + ')'; } else { $ID(element).style.opacity = $ID(element).style.MozOpacity = $ID(element).style.KhtmlOpacity = o/100; } };
+		ElementSetInnerHTML = function(element, c)	{ $ID(element).innerHTML = c; };
+		ElementBoxes		= function(action)		{ if (action !== 'visible') { action = 'hidden'; } if (IE) { for (var S = 0; S < document.forms.length; S++) { for (var R = 0; R < document.forms[S].length; R++) { if (document.forms[S].elements[R].options) { document.forms[S].elements[R].style.visibility = action; } } } } var theObjects = document.getElementsByTagName('object'); for (var i = 0; i < theObjects.length; i++) { theObjects[i].style.visibility = action; } };
+		ElementDisabled		= function(element)     { $ID(element).className = ($ID(element).className ? $ID(element).className+' ' : '') + 'disabled'; ElementOpacity($ID(element).id, ojbOpacity); $ID(element).onclick = function() {};};
+		ElementEnabled		= function(element)     { $ID(element).className = $ID(element).className.replace(/disabled/g, ''); ElementOpacity($ID(element).id, 100); };
 	
-		var ImagesHidden		= function()			{ var ilist = document.images; for(var l = 0; l < ilist.length; l++) { for (var i = 0; i < SlideShows.length; i++) { /* found the image */ if (url_clean(ilist[l].src) === url_clean(SlideShows[i])) { document.images[l].style.visibility = 'hidden' ; } } } };
-		var ImagesVisible		= function()			{ var ilist = document.images; for(var l = 0; l < ilist.length; l++) { for (var i = 0; i < SlideShows.length; i++) { /* found the image */ if (url_clean(ilist[l].src) === url_clean(SlideShows[i])) { document.images[l].style.visibility = 'visible'; } } } };
+		ImagesHidden		= function()			{ var ilist = document.images; for(var l = 0; l < ilist.length; l++) { for (var i = 0; i < SlideShows.length; i++) { /* found the image */ if (url_clean(ilist[l].src) === url_clean(SlideShows[i])) { document.images[l].style.visibility = 'hidden' ; } } } };
+		ImagesVisible		= function()			{ var ilist = document.images; for(var l = 0; l < ilist.length; l++) { for (var i = 0; i < SlideShows.length; i++) { /* found the image */ if (url_clean(ilist[l].src) === url_clean(SlideShows[i])) { document.images[l].style.visibility = 'visible'; } } } };
 	
 		/**
 		* Code From : http://www.huddletogether.com/forum/comments.php?DiscussionID=1798
 		**/
-		var scale_dims = function(orig_w, orig_h, max_w, max_h) { var new_h; var scale = scale_rate(orig_w, orig_h, max_w, max_h); var new_w = Math.round(scale*orig_w); new_h = Math.round(scale*orig_h); if (new_w < 1) { new_w = 1; } if (new_h < 1) { new_h = 1; } return { W:new_w, H: new_h }; };
-		var scale_rate = function(orig_w, orig_h, max_w, max_h) { var scale1 = 0; var scale2 = 0; if (orig_w > max_w) { scale1 = (orig_w - max_w) / orig_w; } if (orig_h > max_h) { scale2 = (orig_h - max_h) / orig_h; } var scale = (scale1 > scale2) ? scale1 : scale2; return (1-scale); };
+		scale_dims = function(orig_w, orig_h, max_w, max_h) { var new_h; var scale = scale_rate(orig_w, orig_h, max_w, max_h); var new_w = Math.round(scale*orig_w); new_h = Math.round(scale*orig_h); if (new_w < 1) { new_w = 1; } if (new_h < 1) { new_h = 1; } return { W:new_w, H: new_h }; };
+		scale_rate = function(orig_w, orig_h, max_w, max_h) { var scale1 = 0; var scale2 = 0; if (orig_w > max_w) { scale1 = (orig_w - max_w) / orig_w; } if (orig_h > max_h) { scale2 = (orig_h - max_h) / orig_h; } var scale = (scale1 > scale2) ? scale1 : scale2; return (1-scale); };
 		/**
 		* Update the top position and resize both w & h even if is not set a previous value ;)
 		**/
-		var BoxScale  = function(boxElement, boxNewWidth, boxNewHeight, callback) { /** Resize it very sexy like? **/ if (!animate) { ElementSetWidth(boxElement, boxNewWidth); ElementSetHeight(boxElement, boxNewHeight); ElementSetTop(boxElement, (((ElementGetHeight('AB-Overlay') - ElementGetHeight(boxElement)) / 2) + ElementGetHeight('AB-ToolBar'))); } var boxObject = $ID(boxElement); var boxWidth = parseInt(parseFloat(0 + boxObject.style.width), 10); boxNewWidth = parseInt(parseFloat(0 + boxNewWidth), 10); var boxHeight = parseInt(parseFloat(0 + boxObject.style.height), 10); boxNewHeight = parseInt(parseFloat(0 + boxNewHeight), 10); /* if (boxWidth === boxNewWidth && boxHeight === boxNewHeight) { // run me anyway, to prevent image flicker. } */ DoChangeW(boxObject, boxWidth, boxNewWidth, boxHeight, boxNewHeight, BoxScaleSteps, 100, 0.333, callback); };
-		var DoChangeW = function(elem, startWidth, endWidth, startHeight, endHeight, steps, intervals, powr, callback) { /** The width **/ if (elem.widthChangeMemInt) { window.clearInterval(elem.widthChangeMemInt); } var actStep = 0; elem.widthChangeMemInt = window.setInterval(function() { elem.currentWidth = EaseInOut(startWidth, endWidth, steps, actStep, powr); ElementSetWidth(elem.id, elem.currentWidth); actStep++; if (actStep > steps) { window.clearInterval(elem.widthChangeMemInt); DoChangeH(elem, startWidth, endWidth, startHeight, endHeight, steps, intervals, powr, callback);} },intervals); };
-		var DoChangeH = function(elem, startWidth, endWidth, startHeight, endHeight, steps, intervals, powr, callback) { /** The height and the top **/ if (elem.widthChangeMemInt) { window.clearInterval(elem.widthChangeMemInt); } var actStep = 0; elem.widthChangeMemInt = window.setInterval(function() { elem.currentHeight = EaseInOut(startHeight, endHeight, steps, actStep, powr); ElementSetHeight(elem.id, elem.currentHeight); elem.currentTop = (((ElementGetHeight('AB-Overlay') - ElementGetHeight(elem.id)) / 2) + ElementGetHeight('AB-ToolBar')); ElementSetTop(elem.id, elem.currentTop); actStep++; if (actStep > steps) { window.clearInterval(elem.widthChangeMemInt); if (typeof callback === 'function') { callback(); } } },intervals); };
-		var EaseInOut = function(minValue, maxValue, totalSteps, actualStep, powr) { var delta = parseInt(maxValue, 10) - parseInt(minValue, 10); var stepp = minValue+(Math.pow(((1 / totalSteps) * actualStep), powr) * delta); return Math.ceil(stepp); };
+		BoxScale  = function(boxElement, boxNewWidth, boxNewHeight, callback) { /** Resize it very sexy like? **/ if (!animate) { ElementSetWidth(boxElement, boxNewWidth); ElementSetHeight(boxElement, boxNewHeight); ElementSetTop(boxElement, (((ElementGetHeight('AB-Overlay') - ElementGetHeight(boxElement)) / 2) + ElementGetHeight('AB-ToolBar'))); } var boxObject = $ID(boxElement); var boxWidth = parseInt(parseFloat(0 + boxObject.style.width), 10); boxNewWidth = parseInt(parseFloat(0 + boxNewWidth), 10); var boxHeight = parseInt(parseFloat(0 + boxObject.style.height), 10); boxNewHeight = parseInt(parseFloat(0 + boxNewHeight), 10); /* if (boxWidth === boxNewWidth && boxHeight === boxNewHeight) { // run me anyway, to prevent image flicker. } */ DoChangeW(boxObject, boxWidth, boxNewWidth, boxHeight, boxNewHeight, BoxScaleSteps, 100, 0.333, callback); };
+		DoChangeW = function(elem, startWidth, endWidth, startHeight, endHeight, steps, intervals, powr, callback) { /** The width **/ if (elem.widthChangeMemInt) { window.clearInterval(elem.widthChangeMemInt); } var actStep = 0; elem.widthChangeMemInt = window.setInterval(function() { elem.currentWidth = EaseInOut(startWidth, endWidth, steps, actStep, powr); ElementSetWidth(elem.id, elem.currentWidth); actStep++; if (actStep > steps) { window.clearInterval(elem.widthChangeMemInt); DoChangeH(elem, startWidth, endWidth, startHeight, endHeight, steps, intervals, powr, callback);} },intervals); };
+		DoChangeH = function(elem, startWidth, endWidth, startHeight, endHeight, steps, intervals, powr, callback) { /** The height and the top **/ if (elem.widthChangeMemInt) { window.clearInterval(elem.widthChangeMemInt); } var actStep = 0; elem.widthChangeMemInt = window.setInterval(function() { elem.currentHeight = EaseInOut(startHeight, endHeight, steps, actStep, powr); ElementSetHeight(elem.id, elem.currentHeight); elem.currentTop = (((ElementGetHeight('AB-Overlay') - ElementGetHeight(elem.id)) / 2) + ElementGetHeight('AB-ToolBar')); ElementSetTop(elem.id, elem.currentTop); actStep++; if (actStep > steps) { window.clearInterval(elem.widthChangeMemInt); if (typeof callback === 'function') { callback(); } } },intervals); };
+		EaseInOut = function(minValue, maxValue, totalSteps, actualStep, powr) { var delta = parseInt(maxValue, 10) - parseInt(minValue, 10); var stepp = minValue+(Math.pow(((1 / totalSteps) * actualStep), powr) * delta); return Math.ceil(stepp); };
 		/** 
 		* Hide selects/object on page, possible values for action are 'hidden' and 'visible' * Code from : http://www.shawnolson.net/a/1198/hide-select-menus-javascript.html
 		**/
-		var FxFade  = function(elem, start, end, speed, callback) { window.clearInterval(elemfade); elemfade = window.setInterval(function() { start = Findend(start, end, speed); if (!animate) { if (start === 0) { ElementInVisible(elem); } else { ElementVisible(elem); } start = end; } else { ElementOpacity(elem, start); } if (start === end) { if (end === 0) {/** Little trick to prevent sizer flicker **/ ElementSetWidth('AB-Image',  1); ElementSetHeight('AB-Image', 1); } window.clearInterval(elemfade); if (typeof callback === 'function') { callback(); } } }, 1); };
-		var Findend = function(x, y, speed) { return x < y ? Math.min(x + speed*10, y) : Math.max(x - speed*10, y); };
+		FxFade  = function(elem, start, end, speed, callback) { window.clearInterval(elemfade); elemfade = window.setInterval(function() { start = Findend(start, end, speed); if (!animate) { if (start === 0) { ElementInVisible(elem); } else { ElementVisible(elem); } start = end; } else { ElementOpacity(elem, start); } if (start === end) { if (end === 0) {/** Little trick to prevent sizer flicker **/ ElementSetWidth('AB-Image',  1); ElementSetHeight('AB-Image', 1); } window.clearInterval(elemfade); if (typeof callback === 'function') { callback(); } } }, 1); };
+		Findend = function(x, y, speed) { return x < y ? Math.min(x + speed*10, y) : Math.max(x - speed*10, y); };
 		/**
 		* Pauses code execution for specified time. Uses busy code, not good. - Code from http://www.faqts.com/knowledge_base/view.phtml/aid/1602
 		**/
-		var Pause = function(numberMillis) { var now = new Date(); var exitTime = now.getTime() + numberMillis; while (true) { now = new Date(); if (now.getTime() > exitTime) { return; } } };
+		Pause = function(numberMillis) { var now = new Date(); var exitTime = now.getTime() + numberMillis; while (true) { now = new Date(); if (now.getTime() > exitTime) { return; } } };
 		/**
 		* Returns array with : page width, page height, window width, window height, x page scroll, y page scroll values. * Code from - quirksmode.org
 		**/
-		var GetPageSizes = function()
+		GetPageSizes = function()
 		{
 			var xScroll, yScroll;
 			if (window.innerHeight && window.scrollMaxY) { xScroll = document.body.scrollWidth; yScroll = window.innerHeight + window.scrollMaxY; }
@@ -427,7 +427,7 @@ if (ImageResizerMode === 'AdvancedBox')
 		/**
 		* Returns array with x,y page scroll values. * Core code from - quirksmode.org
 		**/
-		var GetPageScroll = function()
+		GetPageScroll = function()
 		{
 			var xScroll, yScroll;
 			if (self.pageYOffset) { yScroll = self.pageYOffset; xScroll = self.pageXOffset; }
@@ -448,7 +448,7 @@ if (ImageResizerMode === 'AdvancedBox')
 	* If you don't find a better way, this may have to be a job for ScrollFreeze.
 	* Code from - http://bytes.com/forum/thread498334.html
 	**/
-	var ScrollFreeze = /*2843293230303620532E4368616C6D657273*/
+	ScrollFreeze = /*2843293230303620532E4368616C6D657273*/
 	{
 		propFlag : true,
 		Ydisp : 0,
