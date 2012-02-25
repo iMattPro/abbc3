@@ -528,8 +528,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
 	'ABBC3_BBVIDEO_MOVER'		=> 'Füge ein Web Video hinzu',
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
-	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
+	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Wähle ein Video Typ',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Zur Zeit sind keine eingebette Videocodes erlaubt. Bitte informier den %sBoard Administrator%s darüber.<br />In der Zwischenzeit kannst du selbstverständlich die standard URL BBCodes verwenden.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Dateiformat',
@@ -589,8 +589,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',
 	'ABBC3_YOUTUBE_MOVER'		=> 'Ein YouTube Video einfügen',
 	'ABBC3_YOUTUBE_TIP'			=> '[youtube]URL Video[/youtube]',
-	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/youtube]',
+	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=sP4NMoJcFd4[/youtube]',
 
 	// Veoh video
 	'ABBC3_VEOH_TAG'			=> 'Veoh',

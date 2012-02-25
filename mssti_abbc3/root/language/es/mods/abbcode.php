@@ -528,8 +528,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
 	'ABBC3_BBVIDEO_MOVER'		=> 'Insertar video desde web',
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
-	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
+	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Seleccione un tipo de vídeo',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Actualmente no hay vídeos permitidos. Por favor notifique al %sAdministrador del Sitio%s acerca de este problema.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBCode URL.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Formato del archivo',
@@ -589,8 +589,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',
 	'ABBC3_YOUTUBE_MOVER'		=> 'Insertar video desde Youtube',
 	'ABBC3_YOUTUBE_TIP'			=> '[youtube]URL video[/youtube]',
-	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/youtube]',
+	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=sP4NMoJcFd4[/youtube]',
 
 	// Veoh video
 	'ABBC3_VEOH_TAG'			=> 'Veoh',
