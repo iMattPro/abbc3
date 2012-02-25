@@ -576,7 +576,7 @@ ul.abbc3-gallery img {
 
 /** Image Resizer JS - START **/
 .resized-div           { margin: 0; padding: 0; border: 0px; background-color: #000000; width: 100%; /*width: auto;*/ height: 24px; -moz-border-radius: 7px 7px 0 0; border-radius: 7px 7px 0 0; text-align: left; }
-.resized-txt           { padding-bottom: 5px; color: #ffffff; font-size: 11px; font-weight: normal; text-decoration: none; vertical-align: middle; font-variant: normal; text-transform: none; line-height: 100%; text-align: left; }
+.resized-txt           { padding-bottom: 5px; color: #ffffff; font-size: 10px; font-weight: normal; text-decoration: none; font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; vertical-align: middle; font-variant: normal; text-transform: none; line-height: 100%; text-align: left; }
 .resized-div img       { background-color: transparent !important; border: 1px solid transparent !important; margin: 2px 5px 0 10px; }
 .resized-div img:hover { border: 1px solid transparent !important; }
 .resized-div a:link,
