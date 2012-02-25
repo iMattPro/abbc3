@@ -1855,14 +1855,14 @@ class abbcode
 			'youtube.com' => array(
 				'id'		=> 43,
 				'image'		=> 'youtube.gif',
-				'example'	=> "http://www.youtube.com/watch?v=PDGxfsf-xwQ",
+				'example'	=> "http://www.youtube.com/watch?v=sP4NMoJcFd4",
 				'match'		=> "#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
 			),
 			'youtu.be' => array(
 				'id'		=> 49,
 				'image'		=> 'youtube.gif',
-				'example'	=> "http://youtu.be/PDGxfsf-xwQ",
+				'example'	=> "http://youtu.be/sP4NMoJcFd4",
 				'match'		=> "#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#ise",
 				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
 			),

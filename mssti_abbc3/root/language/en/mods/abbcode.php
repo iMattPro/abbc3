@@ -525,8 +525,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
 	'ABBC3_BBVIDEO_MOVER'		=> 'Insert web video',
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
-	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
+	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Please select a video type',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBCode.',
 	'ABBC3_BBVIDEO_FILE'		=> 'File format',
@@ -586,8 +586,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',
 	'ABBC3_YOUTUBE_MOVER'		=> 'Insert video from Youtube',
 	'ABBC3_YOUTUBE_TIP'			=> '[youtube]URL video[/youtube]',
-	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/youtube]',
+	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=sP4NMoJcFd4[/youtube]',
 
 	// Veoh video
 	'ABBC3_VEOH_TAG'			=> 'Veoh',
