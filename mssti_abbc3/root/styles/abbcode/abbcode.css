@@ -18,6 +18,7 @@
 	background-color : transparent !important;
 	border-style : none;
 	font-size : 10px;
+	padding-bottom:5px;
 	/* For Safari */
 	resize : none;
 }
@@ -75,10 +76,11 @@ hr.hrdotted {
 #abbc3wysiwig select {
 	height : 20px;
 	margin : 3px 0;
+	font-size : 1.0em;
 }
 
 #acp #abbc3posttable select {
-	font-size : 1.1em;
+	font-size : 1.0em;
 }
 
 #abbc3posttable option, 
