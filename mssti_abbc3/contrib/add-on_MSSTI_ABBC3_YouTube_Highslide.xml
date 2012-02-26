@@ -79,14 +79,14 @@
 			</edit>
 		</open>
 
-		<open src="styles/prosilver/templates/abbcode.html">
+		<open src="styles/prosilver/template/abbcode.html">
 			<edit>
 				<find><![CDATA[<!-- BEGIN bbvideo --><div class="bbvideo" style="width: {BBVIDEO_WIDTH}px;"><div class="bbvideotitle">{BBVIDEO_IMAGE}{BBVIDEO_LINK}</div><div class="bbvideocontent">{BBVIDEO_VIDEO}</div></div><!-- END bbvideo -->]]></find>
 				<action type="before-add"><![CDATA[<!-- BEGIN bbvideo_hs --><a href="{BBVIDEO_LINK}" onclick="{BBVIDEO_ONCLICK}" class="highslide">{BBVIDEO_IMG}</a><!-- END bbvideo_hs -->]]></action>
 			</edit>
 		</open>
 
-		<open src="styles/subsilver2/templates/abbcode.html">
+		<open src="styles/subsilver2/template/abbcode.html">
 			<edit>
 				<find><![CDATA[<!-- BEGIN bbvideo --><div class="bbvideo" style="width: {BBVIDEO_WIDTH}px;"><div class="bbvideotitle">{BBVIDEO_IMAGE}{BBVIDEO_LINK}</div><div class="bbvideocontent">{BBVIDEO_VIDEO}</div></div><!-- END bbvideo -->]]></find>
 				<action type="before-add"><![CDATA[<!-- BEGIN bbvideo_hs --><a href="{BBVIDEO_LINK}" onclick="{BBVIDEO_ONCLICK}" class="highslide">{BBVIDEO_IMG}</a><!-- END bbvideo_hs -->]]></action>
