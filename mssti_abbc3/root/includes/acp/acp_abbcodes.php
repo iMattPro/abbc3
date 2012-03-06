@@ -326,7 +326,7 @@ class acp_abbcodes
 			'L_NO_EXIST_EXPLAIN_ADVANCEDBOX'	=> sprintf($user->lang['NO_EXIST_EXPLAIN_ADVANCEDBOX'], $board_path),
 
 			'HIGHSLIDE_EXIST'					=> (@file_exists("$this->dir/highslide/highslide-full.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.1.12", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
+			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.1.13", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
 
 			'LITEBOX_EXIST'						=> (@file_exists("$this->dir/lightbox/lightbox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_LITEBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightbox.js", "2.05", "{$board_path}lightbox/", "Lightbox2 JS", "http://www.lokeshdhakar.com/projects/lightbox2/#download"),
@@ -335,7 +335,7 @@ class acp_abbcodes
 			'L_NO_EXIST_EXPLAIN_GREYBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "gb_scripts.js", "5.53", "{$board_path}greybox/", "GreyBox", "http://orangoo.com/labs/uploads/GreyBox_v5_53.zip"),
 
 			'LIGHTVIEW_EXIST'					=> (@file_exists("$this->dir/lightview/js/lightview.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.7.4", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
+			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.8.0", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
 
 			'SHADOWBOX_EXIST'					=> (@file_exists("$this->dir/shadowbox/shadowbox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_SHADOWBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "shadowbox.js", "3.0.3", "{$board_path}shadowbox/", "Shadowbox", "http://www.shadowbox-js.com/download.html"),

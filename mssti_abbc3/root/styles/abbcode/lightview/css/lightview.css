@@ -43,10 +43,8 @@
 	margin: 0;
 }
 .lv_Sides * { padding: 0; margin: 0; }
-.lv_Sides li {
-	list-style-type: none;
-	position: relative;
-}
+.lv_Sides .lv_PrevSide,
+.lv_Sides .lv_NextSide { position: relative; }
 
 .lv_PrevSide { float: left; }
 .lv_NextSide { float: right; }
@@ -71,8 +69,9 @@
 	padding: 0;
 	margin: 0;
 }
-.lv_Frames li {
-  list-style-type: none;
+.lv_Frames .lv_Frame,
+.lv_Frames .lv_Center,
+.lv_Frames .lv_PrevNext {
   margin: 0;
   padding: 0;
 }
@@ -114,7 +113,6 @@
 	clear: both;
 	line-height: 0px;
 }
-.lv_Half li { list-style-type: none; }
 .lv_Corner {
 	float: left;
 	position: relative;
@@ -232,7 +230,7 @@
 	clear: both;
 	position: relative;
 	width: 100%;
-	font: 11px Arial, Helvetica, sans-serif;
+	font: 11px/17px Arial, Helvetica, sans-serif;
 	color: #7a7a7a;
 	padding: 0;
 	margin: 0;
@@ -253,15 +251,15 @@
 	position: relative;
 	float: left;
 	padding-bottom: 3px;
-	line-height: 15px;
 	overflow: hidden;
 }
 
 /* simulates padding-left inside .lv_Data 
 .lv_DataText div, .lv_ImgNumber div { margin-left: 3px; } */
-
-.lv_Data li {
-	list-style-type: none;
+.lv_innerController { line-height: 15px; }
+.lv_Data .lv_DataText,
+.lv_Data .lv_innerPrevNext,
+.lv_Data .lv_Slideshow {
 	float: left;
 	margin-top: 3px;
 }
@@ -272,7 +270,7 @@
 }
 .lv_DataText .lv_Caption { clear: both; }
 .lv_Data .lv_innerPrevNext .lv_ImgNumber {
-	color: #a7a7a7;
+	color: #999;
 	float: left;
 }
 
@@ -385,16 +383,16 @@
 	top: auto;
 	margin-top: expression( (-1 * this.offsetHeight / 2 + (document.documentElement ? document.documentElement.scrollTop : 0) + (Lightview.controllerOffset || 0)) + 'px');	
 }
-#lightviewController ul {
+#lightviewController .lv_controllerCenter {
 	display: block;
 	height: 100%;
 	float: left;
 	margin: 0;
 	padding: 0;
 	position: relative;
+	width: auto;
 }
 .lv_controllerTop, .lv_controllerMiddle, .lv_controllerBottom {
-	list-style-type: none;
 	float: left;
 	display: block;
 	position: relative;
@@ -403,7 +401,6 @@
 	margin: 0;
 	padding: 0;
 }
-.lv_controllerCenter  { width: auto; float: left; }
 .lv_controllerCornerWrapper {
 	position: absolute;
 	width: 100%;
@@ -436,9 +433,8 @@
 	height: 100%;
 	float: left;
 }
-.lv_controllerCenter { float: left; width: auto;}
-.lv_controllerCenter li {
-	list-style-type: none;
+.lv_controllerCenter .lv_controllerSetNumber
+.lv_controllerCenter .lv_ButtonWrapper {
 	float: left;
 	display: inline;
 	position: relative;
@@ -483,5 +479,5 @@
 html #lv_overlay {
 	position: absolute;
 	height: expression(((window.Enumerable && window.Enumerable.max) ? [document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight].max() : document.documentElement.scrollHeight) + 'px' );
-	width: expression(((window.Enumerable && window.Enumerable.max) ? [document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth].max() : document.documentElement.scrollWidth) + 'px' );
+	width: expression(((window.Enumerable && window.Enumerable.max) ? [document.body.scrollWidth, document.documentElement.scrollWidth, document.body.offsetWidth, document.documentElement.clientHeight].max() : document.documentElement.scrollWidth) + 'px' );
 }
