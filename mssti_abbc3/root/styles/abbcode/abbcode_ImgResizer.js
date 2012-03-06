@@ -27,14 +27,14 @@ function url_clean(url)
 	url = decodeURIComponent(url.toString().replace(/\s/g, ' '));
 
 	/** Is this an attached image ? if yes, need more work to clear the image url **/
-	if (url.indexOf('download') !== -1)
+	if (url.indexOf('download/') !== -1)
 	{
 		/** Will get the real url to the download script, Ex : http://www.mssti.com/phpbb3/download/file.php **/
 		var valor   = url.substring(0, url.indexOf('?'));
 		/** Will get an string starting from the id, Ex : id=65&mode=view or only id=65 **/
-		var valorId1= url.substring(url.indexOf('id'));
+		var valorId1= url.substring(url.indexOf('id='));
 		/** Will get only the id value, Ex : id=65 or null if have no extra params **/
-		var valorId2 = valorId1.substring(valorId1.indexOf('id'), valorId1.indexOf('&'));
+		var valorId2 = valorId1.substring(valorId1.indexOf('id='), valorId1.indexOf('&'));
 		/** Recreate the image url, Ex : http://www.mssti.com/phpbb3/download/file.php?id=65 **/
 		url = valor + '?' + (valorId2 ? valorId2 : valorId1);
 		/** MOD : kb - Start
@@ -56,11 +56,11 @@ function name_clean(ObjImage)
 {
 	var title = '';
 
-	if (ObjImage.className === 'resize_me' || ObjImage.className === 'hoverbox resize_me')
+	if (ObjImage.className.indexOf('resize_me') !== -1)
 	{
 		title = ObjImage.src.substring(ObjImage.src.lastIndexOf('/') + 1);
 	}
-	else if (ObjImage.className === 'attach_me' || ObjImage.className === 'attach_parent')
+	else if ( (ObjImage.className.indexOf('attach_me') !== -1) || (ObjImage.className.indexOf('attach_parent') !== -1) )
 	{
 		title = ObjImage.alt;
 	}
@@ -259,7 +259,7 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 			}
 			else
 			{
-				var popup_url = (ObjImage.className === 'attach_parent') ? ObjImage.parentNode.href : ObjImage.src ;
+				var popup_url = (ObjImage.className.indexOf('attach_parent') !== -1) ? ObjImage.parentNode.href : ObjImage.src ;
 				var popup_width = (ObjImage.width + 30);
 				var popup_height = (ObjImage.height + 30);
 				ObjImage.onclick = function() { return popup(popup_url, popup_width, popup_height, name_clean(ObjImage)); };
