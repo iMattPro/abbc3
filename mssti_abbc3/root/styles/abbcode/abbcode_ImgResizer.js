@@ -24,7 +24,8 @@ function contains(v, a) { for (var j=0; j<a.length; j++) { if (a[j] === v) { ret
 **/
 function url_clean(url)
 {
-	url = decodeURIComponent(url.toString().replace(/\s/g, ' '));
+//	url = decodeURIComponent(url.toString().replace(/\s/g, ' '));
+	url = decodeURI(url.toString().replace(/\s/g, ' '));
 
 	/** Is this an attached image ? if yes, need more work to clear the image url **/
 	if (url.indexOf('download/') !== -1)
