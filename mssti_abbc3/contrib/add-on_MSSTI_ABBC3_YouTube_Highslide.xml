@@ -63,7 +63,7 @@
 					$identifier = preg_match('#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#si', $in, $matches) ? $matches[5] : (preg_match('#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#is', $in, $matches) ? $matches[1] : '');							  
 					$out = str_replace(
 						array('{BBVIDEO_WIDTH}', '{BBVIDEO_HEIGHT}', '{BBVIDEO_LINK}', '{BBVIDEO_ONCLICK}', '{BBVIDEO_IMG}'), 
-						array($video_width + 10, $video_height + 10, 'http://www.youtube.com/embed/' . $identifier . '?rel=0&amp;wmode=transparent', "return hs.htmlExpand(this, {objectType: 'iframe', width: " . ($video_width + 10) . ", height: " . ($video_height + 10) . ", allowSizeReduction: false, wrapperClassName: 'draggable-header no-footer', preserveContent: false, objectLoadTime: 'after'})", '<img style="width: 130px; height: 97px; border-radius:5px;" alt="YouTube Video" src="http://img.youtube.com/vi/' . $identifier . '/2.jpg" />'),
+						array($video_width + 10, $video_height + 10, 'http://www.youtube.com/embed/' . $identifier . '?rel=0&amp;wmode=transparent', "return hs.htmlExpand(this, {objectType: 'iframe', width: " . ($video_width + 10) . ", height: " . ($video_height + 10) . ", allowSizeReduction: false, wrapperClassName: 'draggable-header no-footer', preserveContent: false, objectLoadTime: 'after'})", '<img style="width: 130px; height: 97px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;" alt="YouTube Video" src="http://img.youtube.com/vi/' . $identifier . '/2.jpg" />'),
 						$this->bbcode_tpl('bbvideo_hs')
 					);
 					break;
