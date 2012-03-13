@@ -539,7 +539,7 @@ function textbox_resize(height, el, cookie_name)
 		el = text_name;
 	}
 
-	/* if no cookir ID was passed, use the main ID */
+	/* if no cookie ID was passed, use the main ID */
 	if (typeof(cookie_name) == 'undefined')
 	{
 		cookie_name = '{S_ABBC3_COOKIE_NAME}' + el;
