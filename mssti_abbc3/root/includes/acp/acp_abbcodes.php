@@ -430,9 +430,9 @@ class acp_abbcodes
 
 		$user->add_lang('mods/info_acp_abbcodes');
 
-		// This pseodo-bbcode should not change the position order
+		// This pseudo-bbcode should not change the position order
 		$bbcode_tag_ary =  array('font=', 'size', 'highlight=', 'color');
-		$next_bbcode_order = sizeof($bbcode_tag_ary)+1;
+		$next_bbcode_order = sizeof($bbcode_tag_ary) + 1;
 
 		$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_order 
 				FROM ' . BBCODES_TABLE . ' 

@@ -102,5 +102,10 @@
 
 		</open>
 
+		<diy-instructions lang="en"><![CDATA[Support for new versions of lightbox scripts has been added:
+Highslide v4.1.13: get a new "highslide-full.js" at http://highslide.com/download.php
+LightView v2.80: get a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
+]]></diy-instructions>
+
 	</action-group>
 </mod>
