@@ -25,12 +25,6 @@
 	<script type="text/javascript" src="{S_ABBC3_PATH}/shadowbox/shadowbox.js?{S_ABBC3_VERSION}"></script>
 	<!-- ENDIF -->
 
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'PopBox' -->
-	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
-	<script type="text/javascript" src="{S_ABBC3_PATH}/PopBox/PopBox.js?{S_ABBC3_VERSION}"></script>
-	<link type="text/css" rel="stylesheet" href="{S_ABBC3_PATH}/PopBox/PopBox.css?{S_ABBC3_VERSION}" />
-	<!-- ENDIF -->
-
 	<script type="text/javascript">
 	// <![CDATA[
 		var ImageResizerUseBar				= {S_ABBC3_RESIZE_BAR};
@@ -137,30 +131,6 @@
 	/** Image Resizer JS with Lightbox JS - End **/
 	<!-- ENDIF -->
 
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'GreyBox' -->
-	/** Image Resizer JS with GreyBox JS - Start **/
-		var GB_ROOT_DIR = "{S_ABBC3_PATH}/greybox/";
-	/** Image Resizer JS with GreyBox JS - End **/
-	<!-- ENDIF -->
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Lightview' -->
-	/** Image Resizer JS with Lightview JS - Start **/
-	/** Image Resizer JS with Lightview JS - End **/
-	<!-- ENDIF -->
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Shadowbox' -->
-	/** Image Resizer JS with Shadowbox JS - Start **/
-	/** Image Resizer JS with Shadowbox JS - End **/
-	<!-- ENDIF -->
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'PopBox' -->
-	/** Image Resizer JS with Pop Box JS - Start **/
-		var popBoxRevertText	= "{LA_ABBC3_POPBOX_REVERSETEXT}";
-		popBoxWaitImage.src		= "{S_ABBC3_PATH}/PopBox/images/spinner40.gif";
-		var popBoxRevertImage	= "{S_ABBC3_PATH}/PopBox/images/magminus.gif";
-		var popBoxPopImage		= "{S_ABBC3_PATH}/PopBox/images/magplus.gif";
-	/** Image Resizer JS with Pop Box JS - End **/
-	<!-- ENDIF -->
 	// ]]>
 	</script>
 
@@ -170,14 +140,6 @@
 	<script src="{S_ABBC3_PATH}/lightbox/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
 	<script src="{S_ABBC3_PATH}/lightbox/lightbox.js?{S_ABBC3_VERSION}" type="text/javascript"></script>
 	<link rel="stylesheet" href="{S_ABBC3_PATH}/lightbox/lightbox.css?{S_ABBC3_VERSION}" type="text/css" media="screen" />
-	<!-- ENDIF -->
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'GreyBox' -->
-	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
-	<script type="text/javascript" src="{S_ABBC3_PATH}/greybox/AJS.js?{S_ABBC3_VERSION}"></script>
-	<script type="text/javascript" src="{S_ABBC3_PATH}/greybox/AJS_fx.js?{S_ABBC3_VERSION}"></script>
-	<script type="text/javascript" src="{S_ABBC3_PATH}/greybox/gb_scripts.js?{S_ABBC3_VERSION}"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/greybox/gb_styles.css?{S_ABBC3_VERSION}" />
 	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'AdvancedBox' -->

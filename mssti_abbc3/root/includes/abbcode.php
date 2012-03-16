@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.11 2/12/12 8:07 PM VSE Exp $
+* @version: $Id: abbcode.php, v 3.0.11 3/15/12 1:27 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -90,7 +90,7 @@ class abbcode
 				'S_ABBC3_PATH'			=> $phpbb_root_path . 'styles/abbcode',
 				// Resize larger images ?
 				'S_ABBC3_RESIZE'		=> (isset($config['ABBC3_RESIZE_METHOD'])) ? ($config['ABBC3_RESIZE_METHOD'] != 'none' ? true : false) : true,
-				// Options are : AdvancedBox | HighslideBox | LiteBox | GreyBox | Lightview | Shadowbox | PopBox | pop-up | enlarge | samewindow | newwindow | none	
+				// Options are : AdvancedBox | HighslideBox | LiteBox | Lightview | Shadowbox | pop-up | enlarge | samewindow | newwindow | none	
 				'S_ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD'])) ? $config['ABBC3_RESIZE_METHOD'] : 'AdvancedBox',
 				// Display Resizer Info Bar ?
 				'S_ABBC3_RESIZE_BAR'	=> (isset($config['ABBC3_RESIZE_BAR'])) ? $config['ABBC3_RESIZE_BAR'] : true,

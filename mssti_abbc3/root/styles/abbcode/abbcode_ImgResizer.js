@@ -197,18 +197,6 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 			}
 		break;
 
-		case 'GreyBox':
-			if (mode === 'attach_parent')
-			{
-				ObjImage.parentNode.rel = 'gb_imageset[gb_gallery]';
-				return true;
-			}
-			else
-			{
-				anchor.rel = 'gb_imageset[gb_gallery]';
-			}
-		break;
-
 		case 'Lightview':
 			if (mode === 'attach_parent')
 			{
@@ -238,20 +226,6 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 				anchor.rel = 'shadowbox;player=img';
 			}
 		break;
-
-		case 'PopBox':
-			if (mode === 'attach_parent')
-			{
-				ObjImage.setAttribute('pbSrc', ObjImage.parentNode.href);
-				ObjImage.onclick = function() { return PopEx(this, null,  null, 0, 0, 50, 'PopBoxImageLarge'); };
-			}
-			else
-			{
-				ObjImage.setAttribute('pbCaption', name_clean(ObjImage)); 
-				ObjImage.onclick = function() { return PopEx(this, null,  null, 0, 0, 50, 'PopBoxImageLarge'); };
-			}
-			return true;
-		//break;
 
 		case 'pop-up':
 			if (mode === 'attach_parent')
@@ -557,7 +531,6 @@ function ImgOnLoad()
 		}
 	}
 
-	if (ImageResizerMode === 'GreyBox') { decoGreyboxLinks(); }
 	if (ImageResizerMode === 'Shadowbox')
 	{
 		Shadowbox.init({

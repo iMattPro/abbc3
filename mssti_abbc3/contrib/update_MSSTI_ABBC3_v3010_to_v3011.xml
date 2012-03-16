@@ -47,6 +47,8 @@
 			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
 			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/AdvancedBox.js" to="styles/abbcode/AdvancedBox.js"/>
+			<file from="root/styles/abbcode/highslide/highslide.css" to="styles/abbcode/highslide/highslide.css"/>
+			<file from="root/styles/abbcode/highslide/highslide-ie6.css" to="styles/abbcode/highslide/highslide-ie6.css"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.js" to="styles/abbcode/posting_abbcode_picker.js"/>
@@ -57,6 +59,11 @@
 			<file from="root/styles/subsilver2/template/posting_abbcode_buttons.html" to="styles/subsilver2/template/posting_abbcode_buttons.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
+
+		<delete>
+			<file name="styles/abbcode/greybox/*.*"/>
+			<file name="styles/abbcode/PopBox/*.*"/>
+		</delete>
 
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 
@@ -103,8 +110,16 @@
 		</open>
 
 		<diy-instructions lang="en"><![CDATA[Support for new versions of lightbox scripts has been added:
-Highslide v4.1.13: get a new "highslide-full.js" at http://highslide.com/download.php
-LightView v2.80: get a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
+------------------------------------------------------------------------------------
+Highslide v4.1.13: download a new "highslide-full.js" at http://highslide.com/download.php
+LightView v2.80: download a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
+
+
+End of support for older lightbox scripts:
+------------------------------------------------------------------------------------
+PopBox has been removed from ABBC3.
+GreyBox has been removed from ABBC3.
+If you were using one of these two as your Image Resizer Lightbox method, you should go to the ACP and choose another method right away.
 ]]></diy-instructions>
 
 	</action-group>

@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: acp_abbcode.php, v 3.0.11 2/12/12 7:52 PM VSE Exp $
+* @version: $Id: acp_abbcode.php, v 3.0.11 3/15/12 1:26 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -81,10 +81,8 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'Advanced Box JS',
 													'HighslideBox'	=> 'Highslide JS',
 													'LiteBox'		=> 'Lightbox2 JS',
-													'GreyBox'		=> 'GreyBox JS',
 													'Lightview'		=> 'Lightview JS',
 													'Shadowbox'		=> 'Shadowbox JS',
-													'PopBox'		=> 'PopBox JS',
 													'pop-up'		=> 'Pop Up window',
 													'enlarge'		=> 'Enlarge',
 													'samewindow'	=> 'Same window',

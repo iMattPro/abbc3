@@ -1,7 +1,7 @@
 <?php
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: abbcode.php, v 3.0.11 2/12/12 11:48 AM VSE Exp $
+* @version: $Id: abbcode.php, v 3.0.11 3/15/12 1:32 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -58,9 +58,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_NUMBER'		=> 'Imagen %1$s de %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Comenzar Proyector automático',
 	'ABBC3_RESIZE_PAUSE'		=> 'Detener Proyector automático',
-
-// Pop Box JS
-	'ABBC3_POPBOX_REVERSETEXT'	=> 'Clic en la imagen para reducirla.',
 
 // Highslide JS - http://vikjavev.no/highslide/forum/viewtopic.php?t=2119
 	'ABBC3_HIGHSLIDE_LOADINGTEXT'		=> 'Cargando...',
