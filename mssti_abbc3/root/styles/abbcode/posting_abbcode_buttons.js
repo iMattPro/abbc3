@@ -1,6 +1,6 @@
 /**
 * @package: phpBB :: Advanced BBCode Box 3 -> root/styles/abbcode
-* @version: $Id: posting_abbcode_buttons.js, v 3.0.11 2/21/12 6:10 PM VSE Exp $
+* @version: $Id: posting_abbcode_buttons.js, v 3.0.11 3/15/12 10:20 PM VSE Exp $
 * @copyright: leviatan21 < info@mssti.com > (Gabriel)
 * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
 * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
@@ -893,6 +893,7 @@ function ABBC3_Ajax_indicator(mode)
 			ABBC3_Ajax_image.setAttribute('id', 'ABBC3_Ajax_image');
 			ABBC3_Ajax_image.setAttribute('src', '{S_ABBC3_PATH}/abbcode_ajax_loading.gif');
 			ABBC3_Ajax_image.style.display = 'none';
+			ABBC3_Ajax_image.style.margin = '3px auto';
 			ABBC3_Ajax_indicator.appendChild(ABBC3_Ajax_image);
 		}
 	}
