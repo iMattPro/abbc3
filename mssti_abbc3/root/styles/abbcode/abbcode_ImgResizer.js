@@ -340,11 +340,11 @@ function ImageResizerOn(ObjImage)
 	{
 		if (ObjImage.fileSize && ObjImage.fileSize > 0)
 		{
-			ObjImage.alt = ObjImage.title = ImageResizerWarningFilesize.replace('%1$s', ResizerW).replace('%2$s', ResizerH).replace('%3$s', Math.round(ObjImage.fileSize / 1024)) + "\n\r" + ImageResizerWarningSmall;
+			ObjImage.title = ImageResizerWarningFilesize.replace('%1$s', ResizerW).replace('%2$s', ResizerH).replace('%3$s', Math.round(ObjImage.fileSize / 1024)) + "\n\r" + ImageResizerWarningSmall;
 		}
 		else
 		{
-			ObjImage.alt = ObjImage.title = ImageResizerWarningNoFilesize.replace('%1$s', ResizerW).replace('%2$s', ResizerH) + "\n\r" + ImageResizerWarningSmall;
+			ObjImage.title = ImageResizerWarningNoFilesize.replace('%1$s', ResizerW).replace('%2$s', ResizerH) + "\n\r" + ImageResizerWarningSmall;
 		}
 	}
 	/** Use the image for click on - End **/
