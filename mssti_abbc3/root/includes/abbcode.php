@@ -1,12 +1,11 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/includes
-* @version: $Id: abbcode.php, v 3.0.11 3/15/12 1:27 PM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel)
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-**/
+*
+* @package phpBB3
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
 
 /**
 * @ignore
@@ -17,10 +16,10 @@
 * 	Adding Custom BBCodes in phpBB3
 * 		http://www.phpbb.com/kb/article/adding-custom-bbcodes-in-phpbb3/
 * 
-* Need New Ions ? :
+* Need New Icons? :
 *	http://www.famfamfam.com/lab/icons/silk/ 
 * 
-**/
+*/
 
 if (!defined('IN_PHPBB'))
 {
@@ -33,7 +32,7 @@ $abbcode = new abbcode();
 /**
 * Advanced BBCode Box 3 class
 * @package phpBB3
-**/
+*/
 class abbcode
 {
 	var $abbcode_config		= array();
@@ -66,7 +65,7 @@ class abbcode
 	* @param bool		$need_template
 	* @return mixeed
 	* @version 3.0.8
-	**/
+	*/
 	function abbcode_init($need_template = true)
 	{
 		global $template, $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
@@ -163,7 +162,7 @@ class abbcode
 	*
 	* @param string $mode
 	* @version 3.0.8
-	**/
+	*/
 	function abbcode_display($mode)
 	{
 		global $db, $template, $user, $phpbb_admin_path, $phpbb_root_path, $post_id;
@@ -176,7 +175,7 @@ class abbcode
 		* 	ACP page mode = sig
 		* 	Posting page mode = post, edit, quote, reply
 		* 	else should be PM
-		**/
+		*/
 		$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : (($mode == 'post' || $mode == 'edit' || $mode == 'quote' || $mode == 'reply') ? 'display_on_posting' : 'display_on_pm');
 
 		$sql = "SELECT abbcode, bbcode_tag, bbcode_order, bbcode_id, bbcode_group, bbcode_tag, bbcode_helpline, bbcode_image, display_on_posting 
@@ -303,7 +302,7 @@ class abbcode
 	* @param mix		$bbcode_group
 	* @return boolean	true / false
 	* @version 3.0.8-PL1
-	**/
+	*/
 	function abbcode_permissions($auth_tag = '', $bbcode_group = '')
 	{
 		global $user, $db, $auth;
@@ -484,7 +483,7 @@ class abbcode
 	*	);
 	*	$text = preg_replace($table_ary, '\2', $text);
 	*
-	**/
+	*/
 	function table_pass($stx, $in)
 	{
 		global $user;
@@ -540,7 +539,7 @@ class abbcode
 	* @param string		$string	Some text to display
 	* @return 			html string
 	* @version 1.0.12
-	**/
+	*/
 	function anchor_pass($a_id, $a_href, $string)
 	{
 		$a_id	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($a_id));
@@ -582,7 +581,7 @@ class abbcode
 	* http://www.boonex.com/trac/dolphin/browser/tags/6.1/plugins/safehtml/safehtml.php
 	* Updated by MSSTI
 	* @version 3.0.7-PL1
-	**/
+	*/
 	function safehtml($string)
 	{
 		// Sometimes users can write tags like m\o\z\-\b\i\n\d\i\n\g, this fix it
@@ -633,7 +632,7 @@ class abbcode
 	* link eD2k in HTML					: <a href= "ed2k://|file|>File Name<|>File size<|>File Hash<|/">File Name to display</a>
 	* link eD2k with HTTP sources		: ed2k://|file|>File Name<|>File size<|>File Hash<|s=http://Web Adress/File|/
 	* link eD2k with root hashe			: ed2k://|file|>File Name<|>File size<|>File Hash<|h=>Root hash<|/
-	**/
+	*/
 	function ed2k_pass($bbcode_id, $var1, $var2)
 	{
 		global $user;
@@ -704,7 +703,7 @@ class abbcode
 	* @param string		$search (bing|yahoo|google|altavista|wikipedia|lycos)
 	* @return string	link
 	* @version 1.0.12
-	**/
+	*/
 	function search_pass($stx, $in , $search)
 	{
 		global $user;
@@ -756,7 +755,7 @@ class abbcode
 	* @param string		$in		URL = post text between [thumbnail=(left|center|right|float-left|float-right)] & [/thumbnail]
 	* @return string	image
 	* @version 3.0.8
-	**/
+	*/
 	function thumb_pass($stx, $in)
 	{
 		global $user;
@@ -832,7 +831,7 @@ class abbcode
 	* @param string		$in		post text between [img=(left|center|right|float-left|float-right)] & [/img]
 	* @return string	image
 	* @version 3.0.8
-	**/
+	*/
 	function img_pass($stx, $in)
 	{
 		global $user;
@@ -895,7 +894,7 @@ class abbcode
 	* @param string		$in		post text between [mod] & [/mod]
 	* @return string	table with message data
 	* @version 3.0.7-PL1
-	**/
+	*/
 	function moderator_pass($stx, $in)
 	{
 		$stx = str_replace(array("\r\n", '\"', '\'', '(', ')', '&quot;'), array("\n", '', '&#39;', '&#40;', '&#41;', ''), trim($stx));
@@ -910,7 +909,7 @@ class abbcode
 	* @param string		$in		post text between [offtopic] & [/offtopic]
 	* @return string	table with message data
 	* @version 1.0.11
-	**/
+	*/
 	function offtopic_pass($in)
 	{
 		$in	 = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in)) ;
@@ -923,7 +922,7 @@ class abbcode
 	*
 	* @param string		$in		post text between [spoil] & [/spoil]
 	* @version 3.0.6
-	**/
+	*/
 	function spoil_pass($in)
 	{
 		global $user;
@@ -936,7 +935,7 @@ class abbcode
 	* Parsing the hidden tag - Second pass.
 	* @param string		$in		post text between [hidden] & [/hidden]
 	* @version 3.0.6
-	**/
+	*/
 	function hidden_pass($in)
 	{
 		global $user;
@@ -960,7 +959,7 @@ class abbcode
 	* @param string		$in		post text between [nfo] & [/nfo]
 	* @return string	table with nfo data
 	* @version 1.0.11
-	**/
+	*/
 	function nfo_pass($in)
 	{
 		global $user;
@@ -977,7 +976,7 @@ class abbcode
 	*
 	* THIS FUNTION IS DEPRECATED SINCE VERSION 1.0.11 ! suggested by MOD Team 
 	* So warn the user about this if he is still using the old database
-	**/
+	*/
 	function html_pass($in)
 	{
 		global $user;
@@ -994,7 +993,7 @@ class abbcode
 	* Test :
 	* 	http://scrippet.net/wordpress/?p=87#comment-238
 	* @version 1.0.12
- 	**/
+ 	*/
 	function scrippets_pass($in)
 	{
 		$in				= str_replace(array('&#40;', '&#41;'), array('(', ')'), trim($in));
@@ -1068,7 +1067,7 @@ class abbcode
 	* @param string		$in 	post text between [testlink] &[/testlink]
 	* @return string	link with text ok/wrong
 	* @version 3.0.8
-	**/
+	*/
 	function testlink_pass($in)
 	{
 		global $user;
@@ -1153,7 +1152,7 @@ class abbcode
 	* @param string		$in 	post text between [rapidshare] &[/rapidshare]
 	* @return string	link with text ok/wrong
 	* @version 3.0.8
-	**/
+	*/
 	function rapidshare_pass($in)
 	{
 		global $user;
@@ -1226,7 +1225,7 @@ class abbcode
 	* @param string		$var2	post text between [click] &[/click]
 	* @return string	link or none
 	* @version 1.0.11
-	**/
+	*/
 	function click_pass($var1, $var2)
 	{
 		global $db, $user, $phpbb_root_path, $phpEx;
@@ -1307,7 +1306,7 @@ class abbcode
 	* @param string		$in 	post text between [tabs] &[/tabs]
 	* @return string	html code
 	* @version 1.0.12
-	**/
+	*/
 	function simpleTabs_pass($in)
 	{
 		static $postTabs_pass;
@@ -1415,7 +1414,7 @@ class abbcode
 	* @param string		$height value for video Height
 	* @return string	$link	value for video url
 	* @version 3.0.8
-	**/
+	*/
 	function flash_pass($width = 0, $height = 0, $link = '')
 	{
 		if ($link)
@@ -1449,7 +1448,7 @@ class abbcode
 	* @param string		$in			post text between [glow]&[/glow] | [shadow]&[/shadow] | [dropshadow]&[/dropshadow] | [blur]&[/blur] | [wave]&[/wave]
 	* @return string
 	* @version 3.0.8
-	**/
+	*/
 	function Text_effect_pass($effect, $colour, $in)
 	{
 		global $user;
@@ -1493,7 +1492,7 @@ class abbcode
 	/**
 	* Initialize Video array
 	* @version 3.0.8
-	**/
+	*/
 	function video_init()
 	{
 		/**
@@ -1501,7 +1500,7 @@ class abbcode
 		* <br />0=($0)<br />1=($1)<br />2=($2)<br />3=($3)<br />4=($4)<br />5=($5)<br />6=($6)<br />7=($7)<br />8=($8)<br />9=($9)<br />10=($10)<br />
 		* http://www.osflv.com/ flv player
 		* http://autoembed.com/demos/
-		**/
+		*/
 		/**
 		* Not available, no more
 		*	stage6.com, gamevee.com, godtube.com, hdshare.tv, imeem.com, lala.com, uncutvideo.aol.com, starclips.net, clipser.com
@@ -1510,7 +1509,7 @@ class abbcode
 		* 	bbc.co, video.msn.com, tm-tube.com
 		* Not possible
 		* 	youporn.com, dotsub.com, probetv.com, blip.tv, gamevideos.1up.com
-		**/
+		*/
 
 		/** Patterns and replacements for BBVIDEO bbcode processing **/
 		return array(
@@ -2050,7 +2049,7 @@ class abbcode
 	* @param string $flashvars
 	* @return xhtml object tag
 	* @version 3.0.8
-	**/
+	*/
 	function auto_embed_video($url, $width, $height, $flashvars = '', $object_attribs_ary = array(), $object_params_ary = array())
 	{
 		global $config;
@@ -2109,7 +2108,7 @@ class abbcode
 	* @param string		$h		value for video Height
 	* @return embed video
 	* @version 3.0.8
-	**/
+	*/
 	function BBvideo_pass($in, $w, $h)
 	{
 		global $user, $config, $phpbb_root_path;
@@ -2229,7 +2228,7 @@ class abbcode
 	* @param mixed	$input	array or string to transform
 	* @param bool	$mode	array to string or string to array
 	* @version 3.0.8
-	**/
+	*/
 	function video_serialize($input, $mode = true)
 	{
 		$out = '';
@@ -2258,7 +2257,7 @@ class abbcode
 	* @param int		$post_id	post id
 	* @return string
 	* @version 3.0.8
-	**/
+	*/
 	function abbc3_add_all_ed2k_link($text, $post_id)
 	{
 		// dig through the message for all ed2k links!
@@ -2291,7 +2290,7 @@ class abbcode
 	* @param string 	$link	post links with ed2k href
 	* @return string	display ed2k links format
 	* @version 3.0.8
-	**/
+	*/
 	function abbc3_ed2k_make_clickable($link)
 	{
 		global $user, $config, $phpbb_root_path;
@@ -2324,7 +2323,7 @@ class abbcode
 	/**
 	* Display ed2k size in a human readable way ;)
 	*
-	**/
+	*/
 	function abbc3_ed2k_humanize_size($size, $rounder = 0)
 	{
 		$sizes		= array('Bytes', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb', 'Zb', 'Yb');
@@ -2385,7 +2384,7 @@ class linktest
 	* @param string format (optional) - only accepted strings are 'KB', 'MB', and 'GB'
 	* @param boolean supported (optional) - to only allow supported hosts or not
 	* @return array result - zero index is either a number or false
-	**/ 
+	*/ 
 	function test($url, $format = 'MB', $supported = false)
 	{
 		/** check for valid hostname in url **/
@@ -2427,7 +2426,7 @@ class linktest
 		* important: do not change key names
 		* the following is the format of the hosts array:
 		* $hosts[method name][domain name] = array(domain pattern, url retrieve method, size adjustment, filters array);
-		**/
+		*/
 		
 		/* most popular hosts */
 		$hosts['rapidshare']['rapidshare.com'] 		= array("@rapidshare\.com@i", 'curl', 1000/$this->CONVERSION, array('@<u>100 MB</u>@i'));
@@ -2535,7 +2534,7 @@ class linktest
 	* can be used as a template.
 	* 
 	* @return array result
-	**/
+	*/
 	function rapidshare()
 	{
 		/** get rapidshare submit form url **/
@@ -2571,7 +2570,7 @@ class linktest
 	* 
 	* @param string params (optional) - params is used for passing POST parameters
 	* @return array result
-	**/
+	*/
 	function other($params = null)
 	{
 		/** get file size and format **/
@@ -2610,7 +2609,7 @@ class linktest
 	* @param string url (required) - this url may not always be the same as the global url so it must be passed
 	* @param string params (optional) - params is used for passing POST parameters
 	* @return array result
-	**/
+	*/
 	function match($url, $pattern, $params = null)
 	{
 		/** get html from url **/
@@ -2694,7 +2693,7 @@ class linktest
 	* @param number size (required) - the file size that was matched from the host
 	* @param string sourceFormat (required) - the format that the host uses (not the requested format)
 	* @return array result
-	**/
+	*/
 	function convertSize($size, $sourceFormat)
 	{
 		/** set variables for equation **/

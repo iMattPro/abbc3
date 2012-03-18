@@ -1,12 +1,11 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/includes/acp/info
-* @version: $Id: acp_abbcode.php, v 3.0.11 2/12/12 8:07 PM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel)
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-**/
+*
+* @package acp
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
 
 /**
 * @package module_install

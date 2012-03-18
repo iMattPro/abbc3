@@ -1,16 +1,15 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.11 3/15/12 1:26 PM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel)
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-**/
+*
+* @package acp
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
 
 /**
 * @ignore
-**/
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -18,7 +17,7 @@ if (!defined('IN_PHPBB'))
 
 /**
 * @package acp
-**/
+*/
 class acp_abbcodes
 {
 	var $u_action;
@@ -156,7 +155,7 @@ class acp_abbcodes
 	/**
 	* Build Frontend with supplied options
 	* @version 3.0.7
-	**/
+	*/
 	function abbc3_details()
 	{
 		global $user, $template, $cache, $config, $phpbb_root_path;
@@ -341,8 +340,8 @@ class acp_abbcodes
 	}
 
 	/**
-	* Add a new division or breack line
-	**/
+	* Add a new division or break line
+	*/
 	function add_new_division_or_linebreak($add_division, $add_linebreak)
 	{
 		global $user, $db, $template, $config, $cache;
@@ -417,7 +416,7 @@ class acp_abbcodes
 
 	/**
 	* Synchronise order
-	**/
+	*/
 	function resync_abbcodes()
 	{
 		global $user, $db;
@@ -451,7 +450,7 @@ class acp_abbcodes
 	/**
 	* Show/edit bbcodes
 	* @version 1.0.12
-	**/
+	*/
 	function bbcodes_edit($id, $mode, $action, $bbcode = '')
 	{
 		global $user, $db, $cache, $template, $config;
@@ -673,7 +672,7 @@ class acp_abbcodes
 	* @param int 		$ttl 				Cache version information for $ttl seconds. Defaults to 86400 (24 hours).
 	* 
 	* @return bool 		false on failure.
-	**/
+	*/
 	function abbc3_version_compare($current_version = '', $version_up_to_date = true, $ttl = 86400)
 	{
 		global $cache, $template;
@@ -714,7 +713,7 @@ class acp_abbcodes
 
 	/**
 	* Select list of images in current style folder
-	**/
+	*/
 	function image_select($dir, $current, $name, $show = false, $u_action, $ide = 'ABBC3_BG')
 	{
 		global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
@@ -760,7 +759,7 @@ class acp_abbcodes
 
 	/**
 	* Select list of BBvideos
-	**/
+	*/
 	function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
 	{
 		global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
@@ -805,7 +804,7 @@ class acp_abbcodes
 
 	/**
 	* Select list of display full size image
-	**/
+	*/
 	function method_select($selected_method = 'AdvancedBox', $name, $ide)
 	{
 		global $user;
@@ -825,7 +824,7 @@ class acp_abbcodes
 
 	/**
 	* Select list of display color picker
-	**/
+	*/
 	function get_radio($name, $input_ary, $input_default = false, $id = false, $key = false)
 	{
 		global $user;

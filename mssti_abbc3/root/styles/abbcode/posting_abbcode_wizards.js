@@ -1,11 +1,3 @@
-/**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/styles/abbcode
-* @version: $Id: posting_abbcode_wizards.js, v 3.0.11 2/12/12 8:13 PM leviatan21 Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel)
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @Co-Author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-**/
 
 <!-- IF S_ABBC3_IN_WIZARD -->
 var form_name = '{FORM_NAME}';

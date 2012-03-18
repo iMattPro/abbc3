@@ -1,18 +1,15 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/
-* @version: $Id: install_abbc3.php, v 3.0.11 2/12/12 8:07 PM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel)
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
 *
-* @todo: made a bbcode add function to works like acp_bbcode.php
-**/
+* @package install
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
 
 /**
 * @ignore
-**/
+*/
 define('UMIL_AUTO', true);
 define('IN_PHPBB', true);
 
@@ -123,7 +120,7 @@ include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
 * @param string		$lang_string	The language string to display
 * @param string		$class			The css class to apply
 * @return string					Formated html code
-**/
+*/
 function display_message($lang_string, $class)
 {
 	global $user;
@@ -133,7 +130,7 @@ function display_message($lang_string, $class)
 
 /**
 * clear cache
-**/
+*/
 function cache_purge()
 {
 	global $cache, $umil;
@@ -151,7 +148,7 @@ function cache_purge()
 *
 * @param string $action The action (install|update|uninstall) will be sent through this.
 * @param string $version The version this is being run for will be sent through this.
-**/
+*/
 function abbc3_308($action, $version)
 {
 	global $db, $cache, $user, $umil, $config;;
@@ -464,7 +461,7 @@ function abbc3_308($action, $version)
 *
 * @param string		$action
 * @param string		$version
-**/
+*/
 function abbc3_bbcode_handler($action, $version)
 {
 	$message = '';
@@ -492,7 +489,7 @@ function abbc3_bbcode_handler($action, $version)
 
 /**
 * Add ABBC3 bbcodes to the bbcodes table
-**/
+*/
 function abbc3_add_bbcodes($action, $version)
 {
 	global $db, $template, $user;
@@ -634,13 +631,13 @@ function abbc3_add_bbcodes($action, $version)
 
 	/**
 	* Return a string
-	**/
+	*/
 	return $user->lang['INSTALLER_BBCODES_ADD'] . $message;
 }
 
 /**
 * Synchronise bbcode order
-**/
+*/
 function abbc3_sync_bbcodes()
 {
 	global $db, $user;
@@ -668,7 +665,7 @@ function abbc3_sync_bbcodes()
 
 	/**
 	* Return a string
-	**/
+	*/
 	return "<p>" . $user->lang['ABBCODES_RESYNC_SUCCESS'] . "</p>";
 }
 
@@ -676,7 +673,7 @@ function abbc3_sync_bbcodes()
 * Database changes for ABBC3 v3.0.9.3
 *
 * Ibox was replaced by Shadowbox. Need to update database entries using Ibox to Shadowbox.
-**/
+*/
 function abbc3_309($action, $version)
 {
 	global $umil, $user;
@@ -710,7 +707,7 @@ function abbc3_309($action, $version)
 /**
 * Enable new BBvideo IDs - to be called any time new BBvideos are added to includes/abbcode.php
 *
-**/
+*/
 function bbvideo_updater($action, $version)
 {
 	global $umil, $user;
@@ -759,7 +756,7 @@ function bbvideo_updater($action, $version)
 * Define all of ABBC3's custom BBCodes
 *
 * @return array		$bbcode_data	all bbcodes	to add
-**/
+*/
 function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 {
 	$bbcode_data = array(
@@ -2241,7 +2238,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'liveleak.gif',
 				'bbcode_group'			=> '0',
 			),
-		/**	Deprecated in v3.0.7
+		/*	Deprecated in v3.0.7
 			'upload'		=> array(
 				'bbcode_tag'			=> 'upload',
 				'bbcode_order'			=> 83,
@@ -2260,8 +2257,8 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'upload.gif',
 				'bbcode_group'			=> '5,4',
 			),
-		**/
-		/**	Deprecated in v1.0.11
+		*/
+		/*	Deprecated in v1.0.11
 			'html'		=> array(
 				'bbcode_tag'			=> 'html',
 				'bbcode_order'			=> 84,
@@ -2280,7 +2277,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'html.gif',
 				'bbcode_group'			=> '5',
 			),
-		**/
+		*/
 		),
 		'3.0.8-pl1' => array(
 			'search'		=> array(
@@ -2410,7 +2407,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_group'			=> '0',
 			),
 		),
-		/**
+		/*
 		'3.0.9' => array(
 			'bbcode_name' => array(
 				'bbcode_tag'			=> '',
@@ -2431,7 +2428,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_group'			=> '0',
 			),
 		),
-		**/
+		*/
 	);
 
 	return $bbcode_data[$version];
