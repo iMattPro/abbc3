@@ -93,13 +93,22 @@
 			</edit>
 		</open>
 
-		<open src="styles/subsilver2/template/simple_header.html">
+		<open src="styles/subsilver2/template/posting_body.html">
+
 			<edit>
-				<find><![CDATA[</head>]]></find>
-				<action type="before-add"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<link rel="stylesheet" type="text/css" media="all" href="{T_IMAGESET_PATH}/abbcode/abbcode.css" />
-<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
-]]></action>
+				<find><![CDATA[<textarea name="message" ]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[name="message"]]></inline-find>
+					<inline-action type="before-add"><![CDATA[id="message" ]]></inline-action>
+				</inline-edit>
+			</edit>
+
+			<edit>
+				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[S_BBCODE_ALLOWED]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb')]]></inline-action>
+				</inline-edit>				
 			</edit>
 		</open>
 
@@ -139,25 +148,6 @@
 			</edit>
 		</open>
 
-		<open src="styles/subsilver2/template/posting_body.html">
-
-			<edit>
-				<find><![CDATA[<textarea name="message" ]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[name="message"]]></inline-find>
-					<inline-action type="before-add"><![CDATA[id="message" ]]></inline-action>
-				</inline-edit>
-			</edit>
-
-			<edit>
-				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED -->]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[S_BBCODE_ALLOWED]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb')]]></inline-action>
-				</inline-edit>				
-			</edit>
-		</open>
-
 		<open src="styles/subsilver2/template/posting_preview.html">
 			<edit>
 				<find><![CDATA[<!-- IF PREVIEW_SIGNATURE -->]]></find>
@@ -166,6 +156,16 @@
 					<inline-find><![CDATA[ class="postbody"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
 				</inline-edit>
+			</edit>
+		</open>
+
+		<open src="styles/subsilver2/template/simple_header.html">
+			<edit>
+				<find><![CDATA[</head>]]></find>
+				<action type="before-add"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{T_IMAGESET_PATH}/abbcode/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+]]></action>
 			</edit>
 		</open>
 
