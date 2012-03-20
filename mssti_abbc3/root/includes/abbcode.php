@@ -9,16 +9,6 @@
 
 /**
 * @ignore
-* 
-* Base article :
-*	Custom BBCodes
-* 		http://www.phpbb.com/community/viewtopic.php?f=46&t=579376
-* 	Adding Custom BBCodes in phpBB3
-* 		http://www.phpbb.com/kb/article/adding-custom-bbcodes-in-phpbb3/
-* 
-* Need New Icons? :
-*	http://www.famfamfam.com/lab/icons/silk/ 
-* 
 */
 
 if (!defined('IN_PHPBB'))
@@ -37,8 +27,8 @@ class abbcode
 {
 	var $abbcode_config		= array();
 
-	/* HTML was deprecated in v1.0.11 */
-	/* UPLOAD was was deprecated in v3.0.7 */
+	// HTML was deprecated in v1.0.11
+	// UPLOAD was was deprecated in v3.0.7
 	var $need_permissions	= array('URL', 'FLASH', 'IMG', 'THUMBNAIL', 'IMGSHACK', 'WEB', 'ED2K', 'RAPIDSHARE', 'TESTLINK', 'FLV' ,'BBVIDEO' /* ,'HTML' */ /* ,'UPLOAD' */ );
 
 	// [testlinks] and [rapidshare] Hide link/s to guest and bots ?	
@@ -70,13 +60,13 @@ class abbcode
 	{
 		global $template, $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
 
-		/* ABBC3 can be disabed in-line - Start */
+		// ABBC3 can be disabed in-line - Start
 		if ($enable = request_var('abbc3disable', 0))
 		{
 			$config['ABBC3_MOD'] = false; 
 			return false;
 		}
-		/* ABBC3 can be disabed in-line - End */
+		// ABBC3 can be disabed in-line - End
 
 	//	if (empty($this->abbcode_config) || sizeof($this->abbcode_config) == 0)
 	//	{
@@ -102,7 +92,7 @@ class abbcode
 				'S_ABBC3_MAX_SIG_WIDTH'	=> (isset($config['ABBC3_MAX_SIG_WIDTH'])) ? $config['ABBC3_MAX_SIG_WIDTH'] : $config['img_max_width'],
 				'S_ABBC3_MAX_SIG_HEIGHT'=> (isset($config['ABBC3_MAX_SIG_HEIGHT'])) ? $config['ABBC3_MAX_SIG_HEIGHT'] : false,
 			);
-/*
+			/*
 			// Styles and admin variables depends on locations
 			$this->abbcode_config = array_merge($this->abbcode_config, array(
 				// path from the very forum root
@@ -110,8 +100,8 @@ class abbcode
 				'S_ABBC3_POSTING_JAVASCRIPT'=> ((isset($phpbb_admin_path)) ? './../../' : './../../../') . str_replace($phpbb_root_path, '', $this->abbcode_config['S_ABBC3_PATH']) . '/posting_abbcode_buttons.js',
 				'S_ABBC3_WIZARD_JAVASCRIPT'	=> ((isset($phpbb_admin_path)) ? './../../' : './../../../') . str_replace($phpbb_root_path, '', $this->abbcode_config['S_ABBC3_PATH']) . '/posting_abbcode_wizards.js',
 			));
-*/
-			/** Display all _common_ variables that may be used at any point in a template. **/
+			*/
+			// Display all _common_ variables that may be used at any point in a template.
 			if ($need_template)
 			{
 				$template->assign_vars($this->abbcode_config);
@@ -186,7 +176,7 @@ class abbcode
 
 		while ($row = $db->sql_fetchrow($result))
 		{
-			/** Some fixes **/
+			// Some fixes
 			$is_abbcode		= ($row['abbcode']) ? true : false;
 			$abbcode_name	= (($is_abbcode) ? 'ABBC3_' : '') . strtoupper(str_replace('=', '', trim($row['bbcode_tag'])));
 			$abbcode_name	= ($row['bbcode_helpline'] == 'ABBC3_ED2K_TIP') ? 'ABBC3_ED2K' : $abbcode_name;
@@ -310,7 +300,7 @@ class abbcode
 
 		$return_value = true;
 
-		/* Check group bbcodes permissions - Start */
+		// Check group bbcodes permissions - Start
 		if ($bbcode_group)
 		{
 			// Always use arrays here ;)
@@ -358,9 +348,9 @@ class abbcode
 				return $return_value;
 			}
 		}
-		/* Check group bbcodes permissions - End */
+		// Check group bbcodes permissions - End
 
-		/* Check some bbcodes status permissions - Start */
+		// Check some bbcodes status permissions - Start
 		if ($auth_tag)
 		{
 			// if no mode is specified, use post settings
@@ -463,7 +453,7 @@ class abbcode
 				return $return_value;
 			}
 		}
-		/* Check some bbcodes status permissions - End */
+		// Check some bbcodes status permissions - End
 
 		return $return_value;
 	}
@@ -562,9 +552,7 @@ class abbcode
 		// If it's an anchor
 		if ($a_href != '')
 		{
-			/**
-			* Fix for SEO MOD : http://www.phpbb-seo.com/en/phpbb-forum/article4493.html#p26303 
-			**/
+			// Fix for SEO MOD : http://www.phpbb-seo.com/en/phpbb-forum/article4493.html#p26303
 			$extra = (class_exists('phpbb_seo')) ? 'onclick="document.location.hash = \'' .$a_href . '\'; return false;"' : '';
 
 			return str_replace(array('{ANCHOR_ID}','{ANCHOR_HREF}', '{ANCHOR_TEXT}', '{ANCHOR_EXTRA}'), array($a_id, $a_href, $string, $extra), $this->bbcode_tpl('anchor_link'));
@@ -803,8 +791,8 @@ class abbcode
 			case 'float-left':
 			case 'float-right':
 				$stx = str_replace('float-', '', $stx);
-					return str_replace(array('{FLOAT}', '{URL}' ,'{WIDTH}'), array($stx, $in, $w), $this->bbcode_tpl('thumb_float'));
-					break;
+				return str_replace(array('{FLOAT}', '{URL}' ,'{WIDTH}'), array($stx, $in, $w), $this->bbcode_tpl('thumb_float'));
+			break;
 			// I know the ccs float:center doesn't exist, but just in case ;)
 			case 'float-center':
 				$stx = str_replace('float-', '', $stx);
@@ -866,6 +854,7 @@ class abbcode
 					return str_replace(array('{FLOAT}', '{URL}'), array($stx, $in), $this->bbcode_tpl('img_float'));
 					break;
 				}
+			// no break
 
 			// I know the ccs float:center doesn't exist, but just in case ;)
 			case 'float-center':
@@ -1013,7 +1002,7 @@ class abbcode
 				continue;
 			}
 
-			/* check for parenthical */
+			// check for parenthical
 			if($line[0] == '(')
 			{
 				$output .= '<p class="parenthetical">' . $line . '</p>';
@@ -1021,7 +1010,7 @@ class abbcode
 				continue;
 			}
 
-			/* line must be dialogue */
+			// line must be dialogue
 			if($dialogueBlock == true)
 			{
 				$output .= '<p class="dialogue">' . $line . '</p>';
@@ -1029,33 +1018,33 @@ class abbcode
 				continue;
 			}
 
-			/* must be header, transition, or character */
+			// must be header, transition, or character
 			if($line == strtoupper($line))
 			{
-				/* check for header (INT or EXT or EST) */
+				// check for header (INT or EXT or EST)
 				if(in_array(substr($line, 0, 3), $sceneHeaders))
 				{
 					$output .= '<p class="sceneheader">' . $line . '</p>';
 				}
-				/* check for transition (CUT or FADE or JUMP) or any uppercase line ended with a : */
+				// check for transition (CUT or FADE or JUMP) or any uppercase line ended with a :
 				else if(in_array(substr($line, 0, 4), $transitions) || substr($line, -1) === ':')
 				{
 					$output .= '<p class="transition">' . $line . '</p>';
 				}
-				/* must be character */
+				// must be character
 				else
 				{
 					$output .= '<p class="character">' . $line . '</p>';
 					$dialogueBlock = true;
 				}
 			}
-			/* default to action */
+			// default to action
 			else
 			{
 				$output .= '<p class="action">' . $line . '</p>';
 			}
 		}
-		/* Regular Expression Magic! */
+		// Regular Expression Magic!
 		$output = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($output));
 
 		return str_replace('{SCRIPPET_TEXT}', $output, $this->bbcode_tpl('scrippet'));
@@ -1310,19 +1299,19 @@ class abbcode
 	function simpleTabs_pass($in)
 	{
 		static $postTabs_pass;
-		/** Only remove the initial new line */
+		// Only remove the initial new line
 		$posttext	= str_replace(array("]\r\n", "]\r", "]\n", '\"', '\'', '(', ')'), array("]\n", ']', ']', '"', '&#39;', '&#40;', '&#41;'), trim($in));
 	//	$posttext	= str_replace(array("\r\n", "\r", "\n", '\"', '\'', '(', ')'), array("\n", '', '', '"', '&#39;', '&#40;', '&#41;'), trim($in));
 	//	$posttext	= str_replace(array('\"', '\'', '(', ')'), array('"', '&#39;', '&#40;', '&#41;'), trim($in));
 		$tag		= '[tabs:';
 		$offset		= 0;
 
-		/** Search for tabs inside the post **/
+		// Search for tabs inside the post
 		if (is_int(strpos($posttext, $tag, $offset)))
 		{
 			$postTabs_pass++;
 
-			/** Reset some default data **/
+			// Reset some default data
 			$output_start		= '';
 			$output				= '';
 			$output_rest		= '';
@@ -1331,7 +1320,7 @@ class abbcode
 			$results_f			= array();
 			$results_t			= array();
 
-			/** Find the begining, the end and the title for the tabs **/
+			// Find the begining, the end and the title for the tabs
 			while ($vai)
 			{
 				$r = strpos($posttext, $tag, $offset);
@@ -1354,7 +1343,7 @@ class abbcode
 			};
 			$results_t_size = sizeof($results_t);
 
-			/** If there is text before the first tab, print it **/
+			// If there is text before the first tab, print it
 			If ($results_i[0] > 0)
 			{
 				$output_start .= substr($posttext, 0, $results_i[0]);
@@ -1362,7 +1351,7 @@ class abbcode
 
 			$output .= '<div class="simpleTabs">';
 
-			/** Print the list of tabs **/
+			// Print the list of tabs
 			$output .= '<ul class="simpleTabsNavigation">';
 			for ($x = 0; $x < $results_t_size; $x++)
 			{
@@ -1373,19 +1362,19 @@ class abbcode
 			}
 
 			$output .= '</ul>';
-			/** Print tabs content **/
+			// Print tabs content
 			for ($x = 0; $x < $results_t_size; $x++)
 			{
-				/** If tab title is END, just print the rest of the post **/
+				// If tab title is END, just print the rest of the post
 				if (strtoupper($results_t[$x]) == 'END')
 				{
-					/** If there is text after the last tab, print it **/
+					// If there is text after the last tab, print it
 					$output_rest .= substr($posttext, $results_f[$x] + 1);
 					break;
 				}
 				$output .= '<div class="simpleTabsContent">';
 
-				/** This is the hidden title that only shows up on RSS feed or somewhere outside the context like a print page **/
+				// This is the hidden title that only shows up on RSS feed or somewhere outside the context like a print page
 				$output .= '<span class="simpleTabsTitles"><strong>' . $results_t[$x] .'&nbsp;:</strong>&nbsp;</span>';
 				if ($results_t_size - $x == 1)
 				{
@@ -1485,6 +1474,7 @@ class abbcode
 
 			default:
 				return '[' . $effect . '=' . $colour . ']' . $in . '[/' . $effect . ']';
+			// no break
 		}
 		return str_replace(array('{CLASS}', '{STYLE}', '{TEXT}'), array($effect, $style, $in), $this->bbcode_tpl('decoration'));
 	}
@@ -1495,23 +1485,8 @@ class abbcode
 	*/
 	function video_init()
 	{
-		/**
-		* @ignore
-		* <br />0=($0)<br />1=($1)<br />2=($2)<br />3=($3)<br />4=($4)<br />5=($5)<br />6=($6)<br />7=($7)<br />8=($8)<br />9=($9)<br />10=($10)<br />
-		* http://www.osflv.com/ flv player
-		* http://autoembed.com/demos/
-		*/
-		/**
-		* Not available, no more
-		*	stage6.com, gamevee.com, godtube.com, hdshare.tv, imeem.com, lala.com, uncutvideo.aol.com, starclips.net, clipser.com
-		*	vidiac.com ( almost death )
-		* Not available yet
-		* 	bbc.co, video.msn.com, tm-tube.com
-		* Not possible
-		* 	youporn.com, dotsub.com, probetv.com, blip.tv, gamevideos.1up.com
-		*/
 
-		/** Patterns and replacements for BBVIDEO bbcode processing **/
+		// Patterns and replacements for BBVIDEO bbcode processing
 		return array(
 			'video' => array(
 			),
@@ -2387,7 +2362,7 @@ class linktest
 	*/ 
 	function test($url, $format = 'MB', $supported = false)
 	{
-		/** check for valid hostname in url **/
+		// check for valid hostname in url
 		$pattern = '@^https?://?([^/]+)@i';
 		
 		if (preg_match($pattern, $url, $matches))
@@ -2403,7 +2378,7 @@ class linktest
 			return $result;
 		}
 		
-		/** set format to 'MB' if variable is not KB, MB or GB **/
+		// set format to 'MB' if variable is not KB, MB or GB
 		$format = strtoupper($format);
 		
 		if ($format !== 'KB' && $format !== 'MB' && $format !== 'GB')
@@ -2411,7 +2386,7 @@ class linktest
 			$format = 'MB';
 		}
 		
-		/** set supported to true if variable is not true or false **/
+		// set supported to true if variable is not true or false
 		if ($supported !== true && $supported !== false)
 		{
 			$supported = true;
@@ -2428,15 +2403,13 @@ class linktest
 		* $hosts[method name][domain name] = array(domain pattern, url retrieve method, size adjustment, filters array);
 		*/
 		
-		/* most popular hosts */
+		// most popular hosts
 		$hosts['rapidshare']['rapidshare.com'] 		= array("@rapidshare\.com@i", 'curl', 1000/$this->CONVERSION, array('@<u>100 MB</u>@i'));
 		$hosts['rapidshare']['rapidshare.de'] 		= array("@rapidshare\.de@i", 'curl', 1, array('@>300 MB<@i'));
-		$hosts['other']['megaupload.com'] 			= array("@megaupload\.com@i", 'curl', 1);
-		$hosts['other']['megarotic.com'] 			= array("@megarotic\.com@i", 'curl', 1);
 		$hosts['other']['depositfiles.com'] 		= array("@depositfiles\.com@i", 'file', 1);
 		$hosts['other']['megashares.com'] 			= array("@megashares\.com@i", 'curl', 1, array('@ 10GB@i'));
 		
-		/** lesser known hosts these hosts are commented out but can be used as needed **/
+		// lesser known hosts these hosts are commented out but can be used as needed
 		//$hosts['other']['filefactory.com'] 		= array("@filefactory\.com@i", 'curl', 1);
 		//$hosts['other']['sendspace.com'] 			= array("@sendspace\.com@i", 'file', 1);
 		//$hosts['other']['badongo.com'] 			= array("@badongo\.com@i", 'curl', 1);
@@ -2474,8 +2447,12 @@ class linktest
 		//$hosts['other']['webfilehost.com'] 		= array("@webfilehost\.com@i", 'curl', 1, array('@500\s?MB@i'));
 		//$hosts['other']['rapidfile.net'] 			= array("@rapidfile\.net@i", 'file', 1, array('@o 300 MB U@i'));
 		//$hosts['other']['zshare.net'] 			= array("@zshare\.net@i", 'file', 1);*/
+
+		// No longer available hosts
+		//$hosts['other']['megaupload.com'] 		= array("@megaupload\.com@i", 'curl', 1);
+		//$hosts['other']['megarotic.com'] 			= array("@megarotic\.com@i", 'curl', 1);
 		
-		/** find out which host to check and set variables from array **/
+		// find out which host to check and set variables from array
 		$host = false;
 		
 		foreach ($hosts as $key => $value)
@@ -2493,7 +2470,7 @@ class linktest
 			}
 		}
 		
-		/** return false if no supported hosts were matched or set default variables if supported is false **/
+		// return false if no supported hosts were matched or set default variables if supported is false
 		if (!$host)
 		{
 			if ($supported == true)
@@ -2515,12 +2492,12 @@ class linktest
 		}
 
 		// Delete the language folder from megaupload
-		if ($hostname == 'www.megaupload.com' && preg_match("#/(.*?)/#i", $this->url) != 0)
-		{
-			$this->url = preg_replace('#(.*?)megaupload.com/(.*?)/(.*?)#si', '$1megaupload.com/$3', $this->url);
-		}
+		//if ($hostname == 'www.megaupload.com' && preg_match("#/(.*?)/#i", $this->url) != 0)
+		//{
+		//	$this->url = preg_replace('#(.*?)megaupload.com/(.*?)/(.*?)#si', '$1megaupload.com/$3', $this->url);
+		//}
 
-		/** dynamic function call **/
+		// dynamic function call
 		$result = $this->$host();
 		
 		return $result;
@@ -2543,7 +2520,7 @@ class linktest
 	//	$url		= $matches[1];
 	//	$params		= "dl.start=Free";
 		
-		/** get rapidshare.de hidden param **/
+		// get rapidshare.de hidden param
 		if ($this->domain == 'rapidshare.de')
 		{
 			$pattern	= '@<input.*.hidden.*.value="(.*)">@i';
@@ -2555,7 +2532,7 @@ class linktest
 	//		}
 		}
 		
-		/** get file size **/
+		// get file size
 	//	$this->url	= $url;
 	//	$result		= $this->other($params);
 		
@@ -2573,7 +2550,7 @@ class linktest
 	*/
 	function other($params = null)
 	{
-		/** get file size and format **/
+		// get file size and format
 		$pattern		= $this->PATTERN;
 		$matches		= $this->match($this->url, $pattern, $params);
 	//	$size			= $matches[1];
@@ -2612,7 +2589,7 @@ class linktest
 	*/
 	function match($url, $pattern, $params = null)
 	{
-		/** get html from url **/
+		// get html from url
 		if ($this->method == 'curl')
 		{
 			$curl = curl_init();
@@ -2641,17 +2618,17 @@ class linktest
 			}
 		}
 		
-		/** uncomment line below to test unfiltered html **/
+		// uncomment line below to test unfiltered html
 		// echo "<xmp>$html</xmp>"; exit;
 		
-		/** setup patterns for preg_replace to remove common-problem text **/
+		// setup patterns for preg_replace to remove common-problem text
 		$patterns[] = '@<title>.*?</title>@i';
 		$patterns[] = '@<meta.*?>@i';
 		$patterns[] = '@<noscript>(.|\n)*?</noscript>@i';
 		$patterns[] = '@&nbsp;@i';
 		$patterns[] = '@</b>@i';
 		
-		/** add custom patterns from filters array **/
+		// add custom patterns from filters array
 		if (is_array($this->filters))
 		{
 			foreach ($this->filters as $value)
@@ -2660,7 +2637,7 @@ class linktest
 			}
 		}
 		
-		/** process patterns with preg_replace **/
+		// process patterns with preg_replace
 		foreach ($patterns as $value)
 		{
 			$test = preg_replace($value, ' ', $html);
@@ -2670,10 +2647,10 @@ class linktest
 			}
 		}
 		
-		/** uncomment line below to test filtered html **/
+		// uncomment line below to test filtered html
 		// echo "<xmp>$html</xmp>"; exit;
 		
-		/** check html against pattern and return result **/
+		// check html against pattern and return result
 		if (preg_match($pattern, $html, $matches))
 		{
 			return $matches;
@@ -2696,14 +2673,14 @@ class linktest
 	*/
 	function convertSize($size, $sourceFormat)
 	{
-		/** set variables for equation **/
+		// set variables for equation
 		$size				= str_replace(',', '', $size);
 		$conversion			= $this->CONVERSION;
 		$adjustment			= $this->adjustment;
 		$format['source']	= $sourceFormat;
 		$format['final']	= $this->format;
 		
-		/** set multiplier and divsor for equation **/
+		// set multiplier and divsor for equation
 		foreach ($format as $key => $value)
 		{
 			switch ($value)
@@ -2720,7 +2697,7 @@ class linktest
 			}
 		}
 		
-		/** convert size to KB then convert to final format **/
+		// convert size to KB then convert to final format
 		$size = $size * $adjustment;
 		$size = ($size * $x['source']) / $x['final'];
 		$result[0] = $size;

@@ -80,7 +80,7 @@ function abbcode_show_help()
 	$count = 0;
 	while ($row = $db->sql_fetchrow($result))
 	{		
-		/** Some fixes **/
+		// Some fixes
 		$tag_name		= str_replace('=', '', trim($row['bbcode_tag']));
 		$abbcode_name	= (($row['abbcode']) ? 'ABBC3_' : '') . strtoupper(str_replace('=', '', trim($row['bbcode_tag'])));
 		$abbcode_name	= ($row['bbcode_helpline'] == 'ABBC3_ED2K_TIP') ? 'ABBC3_ED2K' : $abbcode_name;

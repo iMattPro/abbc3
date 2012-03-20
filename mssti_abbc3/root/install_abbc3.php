@@ -155,7 +155,7 @@ function abbc3_308($action, $version)
 
 	$message = '';
 
-	/* All related to the phpbb_config table - Start */
+// All related to the phpbb_config table - Start
 	// Config entries
 	$abbc3_config_data = array(
 		'ABBC3_MOD'				=> (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: 1,
@@ -202,9 +202,9 @@ function abbc3_308($action, $version)
 		'ABBC3_UPLOAD_MAX_SIZE',	// v1.0.9	v3.0.7
 		'ABBC3_UPLOAD_EXTENSION',	// v1.0.9	v3.0.7
 	);
-	/* All related to the phpbb_config table - End */
+// All related to the phpbb_config table - End
 
-	/* All related to the phpbb_modules table - Start */
+// All related to the phpbb_modules table - Start
 	$abbc3_module_data = array(
 		// First, lets add a new category named ACP_ABBCODES to ACP_CAT_POSTING
 		array('acp', 'ACP_CAT_POSTING', 'ACP_ABBCODES'),
@@ -225,9 +225,9 @@ function abbc3_308($action, $version)
 			),
 		),
 	);
-	/* All related to the phpbb_modules table - End */
+// All related to the phpbb_modules table - End
 
-	/* All related to the new phpbb_clicks tables - Start */
+// All related to the new phpbb_clicks tables - Start
 	$abbc3_clicks_table = array(
 		'COLUMNS'		=> array(
 			'id'		=> array('UINT', NULL, 'auto_increment'),
@@ -239,16 +239,16 @@ function abbc3_308($action, $version)
 			'md5'		=> array('INDEX', array('url')),
 		),
 	);
-	/* All related to the new phpbb_clicks tables - End */
+// All related to the new phpbb_clicks tables - End
 
-	/* All related to the phpbb_users table - Start */
+// All related to the phpbb_users table - Start
 	$abbc3_users_column_add = array(
 		'user_abbcode_mod' => array('TINT:1', 1),
 		'user_abbcode_compact' => array('TINT:1', 0),
 	);
-	/* All related to the phpbb_users table - End */
+// All related to the phpbb_users table - End
 
-	/* All related to the phpbb_bbcodes table - Start */
+// All related to the phpbb_bbcodes table - Start
 	// remove old bbcodes from the bbcodes table
 	$abbc3_bbcode_deprecated = array(
 	//	bbcode_tag     Created  Deprecated
@@ -263,7 +263,7 @@ function abbc3_308($action, $version)
 		'bbcode_order' => array('USINT', 0),
 		'bbcode_group' => array('VCHAR:255', '0'),
 	);
-	/* All related to the phpbb_bbcodes table - End */
+// All related to the phpbb_bbcodes table - End
 
 	switch ($action)
 	{
@@ -273,7 +273,7 @@ function abbc3_308($action, $version)
 		case 'update':
 		case 'install':
 		// Run this when updating to ABBC3 v3.0.8
-		/* All related to the phpbb_config table - Start */
+		// All related to the phpbb_config table - Start
 			$config_added = false;
 			$config_updated = false;
 			foreach ($abbc3_config_data as $config_name => $config_value)
@@ -313,25 +313,25 @@ function abbc3_308($action, $version)
 			{
 				$cache->destroy('config');
 			}
-		/* All related to the phpbb_config table - End */
+		// All related to the phpbb_config table - End
 
-		/* All related to the phpbb_modules table - Start */
+		// All related to the phpbb_modules table - Start
 			if (!$umil->module_exists('acp', 'ACP_CAT_POSTING', 'ACP_ABBCODES'))
 			{
 				$umil->module_add($abbc3_module_data);
 				// Clear the Modules Cache
 				$cache->destroy('_modules_acp');
 			}
-		/* All related to the phpbb_modules table - End */
+		// All related to the phpbb_modules table - End
 
-		/* All related to the new phpbb_clicks tables - Start */
+		// All related to the new phpbb_clicks tables - Start
 			if (!$umil->table_exists('phpbb_clicks'))
 			{
 				$umil->table_add('phpbb_clicks', $abbc3_clicks_table);
 			}
-		/* All related to the new phpbb_clicks tables - End */
+		// All related to the new phpbb_clicks tables - End
 		
-		/* All related to the phpbb_users table - Start */
+		// All related to the phpbb_users table - Start
 			foreach ($abbc3_users_column_add as $abbc3_users_column_name => $abbc3_users_column_data)
 			{
 				if (!$umil->table_column_exists('phpbb_users', $abbc3_users_column_name))
@@ -339,9 +339,9 @@ function abbc3_308($action, $version)
 					$umil->table_column_add('phpbb_users', $abbc3_users_column_name, $abbc3_users_column_data);
 				}
 			}
-		/* All related to the phpbb_users table - Start */
+		// All related to the phpbb_users table - Start
 
-		/* All related to the phpbb_bbcodes table - Start */
+		// All related to the phpbb_bbcodes table - Start
 			foreach ($abbc3_bbcodes_column_add as $abbc3_bbcode_column_name => $abbc3_bbcode_column_data)
 			{
 				if (!$umil->table_column_exists('phpbb_bbcodes', $abbc3_bbcode_column_name))
@@ -383,13 +383,13 @@ function abbc3_308($action, $version)
 
 			// After all add/update bbcodes
 			$message .= abbc3_bbcode_handler($action, $version);
-		/* All related to the phpbb_bbcodes table - End */
+		// All related to the phpbb_bbcodes table - End
 
 		break;
 
 		case 'uninstall':
 		// Run this when uninstalling
-		/* All related to the phpbb_bbcodes table - Start */
+		// All related to the phpbb_bbcodes table - Start
 
 			// Remove the ABBC3 custom BBCodes first, before uninstalling anything else
 			$message .= abbc3_bbcode_handler($action, $version);
@@ -414,26 +414,26 @@ function abbc3_308($action, $version)
 				$umil->table_column_remove('phpbb_bbcodes', $abbc3_bbcode_column_name);
 			}
 			$cache->destroy('sql', BBCODES_TABLE);
-		/* All related to the phpbb_bbcodes table - End */
+		// All related to the phpbb_bbcodes table - End
 
-		/* All related to the phpbb_users table - Start */
+		// All related to the phpbb_users table - Start
 			foreach ($abbc3_users_column_add as $abbc3_users_column_name => $abbc3_users_column_data)
 			{
 				$umil->table_column_remove('phpbb_users', $abbc3_users_column_name);
 			}
-		/* All related to the phpbb_users table - Start */
+		// All related to the phpbb_users table - Start
 
-		/* All related to the new phpbb_clicks tables - Start */
+		// All related to the new phpbb_clicks tables - Start
 			$umil->table_remove('phpbb_clicks');
-		/* All related to the new phpbb_clicks tables - End */
+		// All related to the new phpbb_clicks tables - End
 			
-		/* All related to the phpbb_modules table - Start */
+		// All related to the phpbb_modules table - Start
 			$umil->module_remove(array_reverse($abbc3_module_data));
 			// Clear the Modules Cache
 			$cache->destroy('_modules_acp');
-		/* All related to the phpbb_modules table - End */
+		// All related to the phpbb_modules table - End
 
-		/* All related to the phpbb_config table - Start */
+		// All related to the phpbb_config table - Start
 			foreach ($abbc3_config_data as $config_name => $config_value)
 			{
 				$umil->config_remove($config_name);
@@ -445,7 +445,7 @@ function abbc3_308($action, $version)
 			}
 
 			$cache->destroy('config');
-		/* All related to the phpbb_config table - End */
+		// All related to the phpbb_config table - End
 
 		break;
 	}
@@ -629,9 +629,7 @@ function abbc3_add_bbcodes($action, $version)
 		
 	}
 
-	/**
-	* Return a string
-	*/
+	// Return a string
 	return $user->lang['INSTALLER_BBCODES_ADD'] . $message;
 }
 
@@ -663,9 +661,7 @@ function abbc3_sync_bbcodes()
 	}
 	$db->sql_freeresult($result);
 
-	/**
-	* Return a string
-	*/
+	// Return a string
 	return "<p>" . $user->lang['ABBCODES_RESYNC_SUCCESS'] . "</p>";
 }
 

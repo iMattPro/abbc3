@@ -38,7 +38,7 @@ class acp_abbcodes
 
 		$radio_ary = array(1 => 'ORDER_ALLOW_DENY', 0 => 'ORDER_DENY_ALLOW');
 
-		/** Set some default values so the user havn't to run any install - Start **/
+		// Set some default values so the user havn't to run any install - Start
 		// Same default values as root/install_abbc3.php -> abbc3_308()
 		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.10';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
@@ -70,7 +70,7 @@ class acp_abbcodes
 		$config['ABBC3_VIDEO_WMODE']		= (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0;
 
 		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		? $config['ABBC3_UCP_MODE']			: 1;
-		/** Set some default values so the user havn't to run any install - End **/
+		// Set some default values so the user havn't to run any install - End
 
 		// Set up general vars
 		$action				= request_var('action', '');
@@ -92,21 +92,21 @@ class acp_abbcodes
 		{
 			case 'settings':
 				$this->abbc3_details();
-				break;
+			break;
 
 			case 'bbcodes'	:
 				switch ($action)
 				{
 					case 'sync':
 						$this->resync_abbcodes();
-
 					// no break;
+
 					case 'newdlb':
 						$this->add_division	= (isset($_POST['add_division'])) ? true : false;
 						$this->add_linebreak= (isset($_POST['add_linebreak'])) ? true : false;
 						$this->add_new_division_or_linebreak($this->add_division, $this->add_linebreak);
-
 					// no break;
+
 					case 'move_up':
 					case 'move_down':
 						// Get current order id...
@@ -148,7 +148,7 @@ class acp_abbcodes
 
 				}
 				$this->bbcodes_edit($id, $mode, $action, $bbcode_id);
-				break;
+			break;
 		}
 	}
 
@@ -567,7 +567,7 @@ class acp_abbcodes
 		$first_row_to_move = 0;
 		while ($row = $db->sql_fetchrow($result))
 		{
-			/** Some fixes **/
+			// Some fixes
 			$bbcode_id		= $row['bbcode_id'];
 			$abbcode		= $row['abbcode'];
 			$abbcode_name	= (($row['abbcode']) ? 'ABBC3_' : '') . strtoupper(str_replace('=', '', trim($row['bbcode_tag'])));
