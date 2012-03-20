@@ -9,20 +9,13 @@
 
 		<description lang="en"><![CDATA[ABBC3 gives the BBCode buttons a toolbar and icon style appearance, adds many new and useful BBCode features and adds more ways to customize posts. It also improves some of phpBB's built in BBCodes and also supports phpBB's custom BBCodes feature. Additional features include an automatic image resizer option with various lightbox styled expanders, auto-embedded video for dozens of media sites and file formats, and a highly customizable ACP settings area. ABBC3 is a sleek addition to your phpBB bulletin board. Javascript is required by this MOD.]]></description>
 
-		<author-notes lang="en"><![CDATA[To read more about ABBC3, please read the contrib/docs/README.HTML file
-
-	-------------------------------------------------------------------
-	WARNING: Please be advised that this MOD might overwrite some custom BBCodes 
-	you already have and as a result, those BBCodes might not display correctly 
-	due to the changes introduced by ABBC3's BBCodes. If you are using custom BBCodes,
-	please read the contrib/docs/README.HTML file for more information before you proceed.
-
-	-------------------------------------------------------------------
-	Once you finish the install, please take some time to read through the contrib folder content.
-
-	-------------------------------------------------------------------
-
-	Before adding this MOD to your forum, you should back up all files and databases related to this MOD.]]></author-notes>
+		<author-notes lang="en"><![CDATA[To read more about ABBC3, please read the contrib/docs/README.HTML
+-------------------------------------------------------------------
+WARNING: Please be advised that this MOD might overwrite some custom BBCodes you already have and as a result, those BBCodes might not display correctly due to the changes introduced by ABBC3's BBCodes. If you are using custom BBCodes, please read the contrib/docs/README.HTML file for more information before you proceed.
+-------------------------------------------------------------------
+Once you finish the install, please take some time to read through the contrib folder content.
+-------------------------------------------------------------------
+Before adding this MOD to your forum, you should back up all files and databases related to this MOD.]]></author-notes>
 
 		<author-group>
 			<author>
@@ -177,7 +170,7 @@
 		<copy>
 			<file from="root/abbcode_ajax.php" to="abbcode_ajax.php"/>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
-			<file from="root/adm/style/*.*" to="adm/style/*.*"/>
+			<file from="root/adm/*.*" to="adm/*.*"/>
 			<file from="root/images/*.*" to="images/*.*"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
@@ -441,7 +434,7 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 
 	if ($abbc3 && @$config['ABBC3_MOD'])
 	{
-		// We need to check if ABBC3 is property initialized
+		// We need to check if ABBC3 is properly initialized
 		if (!class_exists('abbcode'))
 		{
 			global $phpbb_root_path, $phpEx;

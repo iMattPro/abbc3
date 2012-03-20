@@ -27,7 +27,7 @@
 		<mod-version>3.0.11</mod-version>
 		<installation>
 			<level>easy</level>
-			<time>120</time>
+			<time>300</time>
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
@@ -39,7 +39,7 @@
 		<copy>
 			<file from="root/abbcode_ajax.php" to="abbcode_ajax.php"/>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
-			<file from="root/adm/*.*" to="adm/style/*.*"/>
+			<file from="root/adm/*.*" to="adm/*.*"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
@@ -49,8 +49,8 @@
 			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
 			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/AdvancedBox.js" to="styles/abbcode/AdvancedBox.js"/>
-			<file from="root/styles/abbcode/highslide/highslide.css" to="styles/abbcode/highslide/highslide.css"/>
-			<file from="root/styles/abbcode/highslide/highslide-ie6.css" to="styles/abbcode/highslide/highslide-ie6.css"/>
+			<file from="root/styles/abbcode/highslide/*.*" to="styles/abbcode/highslide/*.*"/>
+			<file from="root/styles/abbcode/lightview/*.*" to="styles/abbcode/lightview/*.*"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.js" to="styles/abbcode/posting_abbcode_picker.js"/>
@@ -64,13 +64,14 @@
 
 		<delete>
 			<file name="styles/abbcode/greybox/*.*"/>
+			<file name="styles/abbcode/PopBox/images/*.*"/>
 			<file name="styles/abbcode/PopBox/*.*"/>
 			<file name="styles/abbcode/loading.gif"/>
 		</delete>
 
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 
-		<open src="includes/functions_display.php">
+		<open src="includes/functions_content.php">
 
 			<edit>
 				<find><![CDATA[			// We need to check if ABBC3 is property initialized for attached images and the ABBC3 img resizer]]></find>
@@ -80,6 +81,15 @@
 			<edit>
 				<find><![CDATA[				// For attached image resizer in private message only when bbcodes are not present]]></find>
 				<action type="replace-with"><![CDATA[				// For attached images being resized in private messages only when bbcodes are not present]]></action>
+			</edit>
+
+		</open>
+
+		<open src="includes/functions_display.php">
+
+			<edit>
+				<find><![CDATA[		// We need to check if ABBC3 is property initialized]]></find>
+				<action type="replace-with"><![CDATA[		// We need to check if ABBC3 is properly initialized]]></action>
 			</edit>
 
 		</open>
@@ -112,7 +122,9 @@
 
 		</open>
 
-		<diy-instructions lang="en"><![CDATA[Support for new versions of lightbox scripts has been added:
+		<diy-instructions lang="en"><![CDATA[Dont forget to run the install_abbc3.php installation script (click the hi-lighted link above if you are using AutoMOD)
+		
+Support for new versions of lightbox scripts has been added:
 ------------------------------------------------------------------------------------
 Highslide v4.1.13: download a new "highslide-full.js" at http://highslide.com/download.php
 LightView v2.80: download a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
