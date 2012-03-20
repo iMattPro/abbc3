@@ -291,6 +291,15 @@
 
 <!-- ELSEIF S_BBCODES -->
 
+	<!-- IF not S_BBCODE_EDIT -->
+	<script type="text/javascript">
+	// <![CDATA[
+		var U_AJAX_REQUEST = "{U_AJAX_REQUEST}";
+	// ]]>
+	</script>
+	<script type="text/javascript" src="style/acp_abbcodes.js?{S_ABBC3_VERSION}"></script>
+	<!-- ENDIF -->	
+
 	<span style="float: {S_CONTENT_FLOW_END};">&laquo; <!-- IF U_BACK --><a href="{U_BACK}">{L_BACK}</a><!-- ELSE -->{U_ABBC3}<!-- ENDIF --> &raquo;</span>
 	
 	<!-- IF S_ERROR -->
@@ -299,6 +308,12 @@
 		<p>{ERROR_MSG}</p>
 	</div>
 	<!-- ENDIF -->
+
+	<div class="successbox" style="display:none;">
+		<img style="float:left; padding-right:8px;" src="images/accepted.png" />
+		<h3>{L_INFORMATION}</h3>
+		<p>{L_ABBCODES_RESYNC_SUCCESS}</p>
+    </div>
 	
 	<!-- IF S_BBCODE_EDIT -->
 	<h1>{L_ABBCODES_EDIT}</h1>
@@ -313,9 +328,9 @@
 
 	<form id="abbc3_bbcodes" method="post" action="{A_ACTION}">
 	<!-- ENDIF -->
-			<table cellspacing="1">
+			<!-- IF not S_BBCODE_EDIT --><table id="acp_bbcodes_table" cellspacing="1"><!-- ELSE --><table cellspacing="1"><!-- ENDIF -->
 				<thead>
-					<tr>
+					<tr class="nodrag">
 						<!-- IF S_BBCODE_EDIT --> <!-- DEFINE $COLSPAN = 7 --> <!-- ELSE --> <!-- DEFINE $COLSPAN = 1 --> <!-- ENDIF -->
 						<th colspan="{$COLSPAN}">{L_ABBCODES_NAME}</th>
 						<!-- IF not S_BBCODE_EDIT -->
@@ -323,7 +338,7 @@
 						<th>{L_ACP_POST_SETTINGS}</th>
 						<th>{L_ACP_MESSAGE_SETTINGS}</th>
 						<th>{L_ACP_SIGNATURE_SETTINGS}</th>
-						<th>{L_OPTIONS}</th>
+						<th>{L_ACTION}</th>
 						<!-- ENDIF -->
 					</tr>
 						<!-- IF S_BBCODE_EDIT -->
@@ -342,7 +357,7 @@
 				<tbody style="vertical-align:top;">
 				<!-- BEGIN items -->
 				
-				<!-- IF items.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+				<tr id="bbcode_{items.ID}" class="<!-- IF items.S_NOMOVE -->nodrag nodrop <!-- ENDIF --><!-- IF items.S_ROW_COUNT is even -->row1<!-- ELSE -->row2<!-- ENDIF -->">
 					
 					<!-- IF not S_BBCODE_EDIT --><td><!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}</strong><!-- ENDIF --></td><!-- ENDIF -->
 					<td>
@@ -402,8 +417,10 @@
 					<td>{items.ON_PM}</td>
 					<td>{items.ON_SIG}</td>
 					<td style="text-align: right; white-space: nowrap;">
+						<span class="moveButtons">
 						<!-- IF items.S_FIRST_ROW or items.S_NOMOVE -->{ICON_MOVE_UP_DISABLED}<!-- ELSE --><a href="{items.U_MOVE_UP}">{ICON_MOVE_UP}</a><!-- ENDIF -->&nbsp;
 						<!-- IF items.S_LAST_ROW  or items.S_NOMOVE -->{ICON_MOVE_DOWN_DISABLED}<!-- ELSE --><a href="{items.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a><!-- ENDIF -->&nbsp;
+						</span>
 						<a id="abbcode_id_{items.ID}" href="{items.U_EDIT}">{ICON_EDIT}</a>
 					</td>
 				<!-- ENDIF -->

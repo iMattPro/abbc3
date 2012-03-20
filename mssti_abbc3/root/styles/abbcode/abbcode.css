@@ -811,3 +811,12 @@ ul.simpleTabsNavigation li a.current {
 	background : #ffffff url("images/bg/tab-active.png");
 }
 /** SimpleTabs: default style - End **/
+
+/* disable text selection/highlighting in the ACP, improves the jQuery drag and drop UI */
+#acp_bbcodes_table {
+	user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+}

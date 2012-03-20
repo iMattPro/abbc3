@@ -453,7 +453,7 @@ class acp_abbcodes
 	*/
 	function bbcodes_edit($id, $mode, $action, $bbcode = '')
 	{
-		global $user, $db, $cache, $template, $config;
+		global $user, $db, $cache, $template, $config, $phpbb_root_path, $phpEx;
 
 		$user->add_lang(array('acp/posting', 'mods/info_acp_abbcodes', 'mods/abbcode'));
 
@@ -561,6 +561,7 @@ class acp_abbcodes
 			'A_ACTION'			=> (!$bbcode) ? $this->u_action . '&amp;mode=bbcodes&amp;action=newdlb' : null,
 			'U_SYNC'			=> (!$bbcode) ? $this->u_action . '&amp;mode=bbcodes&amp;action=sync' : null,
 			'U_BACK'			=> ($bbcode) ? $this->u_back : null,
+			'U_AJAX_REQUEST' 	=> append_sid($phpbb_root_path . 'abbcode_ajax.' . $phpEx),
 		));
 
 		$no_move = array('ABBC3_FONT', 'ABBC3_SIZE', 'ABBC3_HIGHLIGHT', 'ABBC3_COLOR');
