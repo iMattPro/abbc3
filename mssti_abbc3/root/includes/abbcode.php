@@ -72,7 +72,7 @@ class abbcode
 	//	{
 			// For overall_header.html
 			$this->abbcode_config = array(
-				'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.10',
+				'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.11',
 				// Display ABBC3 ?
 				'S_ABBC3_MOD'			=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
 				// Where the files are stored

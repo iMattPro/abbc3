@@ -40,7 +40,7 @@ class acp_abbcodes
 
 		// Set some default values so the user havn't to run any install - Start
 		// Same default values as root/install_abbc3.php -> abbc3_308()
-		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.10';
+		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.11';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
 //		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			? $config['ABBC3_PATH']				: 'styles/abbcode';
 		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';

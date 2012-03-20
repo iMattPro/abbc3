@@ -106,6 +106,9 @@ $versions = array(
 	'3.0.10'		=> array(
 		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
 	),
+	'3.0.11'		=> array(
+		// No new database changes (so far)
+	),
 );
 $cache->destroy('config');
 $cache->destroy('_modules_acp');
