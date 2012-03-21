@@ -372,8 +372,8 @@ class acp_abbcodes
 		$next_bbcode_order = (int) $row['max_bbcode_order'] + 1;
 		// get last order - End
 
-		$sql = "SELECT *
-				FROM " . BBCODES_TABLE . "
+		$sql = 'SELECT *
+				FROM ' . BBCODES_TABLE . "
 				WHERE bbcode_helpline = '" . ($add_linebreak ? 'ABBC3_BREAK' : 'ABBC3_DIVISION') . "'
 				ORDER BY bbcode_order DESC";
 		$result = $db->sql_query_limit($sql, 1);
@@ -484,7 +484,7 @@ class acp_abbcodes
 				'bbcode_group'			=> (isset($group_ids) && trim($group_ids) != '') ? $group_ids : 0,
 			);
 
-			// Fix for breack line?
+			// Fix for break line?
 			if (substr($abbcode_name[$bbcode],0,14) == 'ABBCODES_BREAK')
 			{
 				$bbcode_sql['bbcode_image'] = $img_spacer;
@@ -503,9 +503,9 @@ class acp_abbcodes
 				}
 			}
 
-			$sql = "UPDATE " . BBCODES_TABLE . "
-				SET " . $db->sql_build_array('UPDATE', $bbcode_sql) . "
-				WHERE bbcode_id = " . $bbcode;
+			$sql = 'UPDATE ' . BBCODES_TABLE . '
+				SET ' . $db->sql_build_array('UPDATE', $bbcode_sql) . '
+				WHERE bbcode_id = ' . $bbcode;
 			$result = $db->sql_query($sql);
 
 			if ($result)
@@ -534,9 +534,9 @@ class acp_abbcodes
 		}
 		$db->sql_freeresult($result);
 
-		$sql = "SELECT abbcode, bbcode_order, bbcode_id, bbcode_group, bbcode_tag, bbcode_helpline, bbcode_image, display_on_posting, display_on_pm, display_on_sig 
-				FROM " . BBCODES_TABLE . " 
-				ORDER BY bbcode_order";
+		$sql = 'SELECT abbcode, bbcode_order, bbcode_id, bbcode_group, bbcode_tag, bbcode_helpline, bbcode_image, display_on_posting, display_on_pm, display_on_sig 
+				FROM ' . BBCODES_TABLE . ' 
+				ORDER BY bbcode_order';
 		$result = $db->sql_query($sql);
 
 		$bbcode_id	= request_var('bbcode_id', 0);
@@ -577,7 +577,7 @@ class acp_abbcodes
 			$abbcode_tag	= str_replace('=', '', trim($row['bbcode_tag']));
 
 			$is_a_bbcode	= true;
-			// is a breack line or division ?
+			// is a break line or division ?
 			if ((strpos($abbcode_name, 'ABBC3_DIVISION') !== false) || (strpos($abbcode_name, 'ABBC3_BREAK') !== false) || in_array($row['bbcode_tag'], array('imgshack', 'cut', 'copy', 'paste', 'plain')))
 			{
 				$is_a_bbcode	= false;
