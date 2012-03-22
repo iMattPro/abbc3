@@ -38,7 +38,7 @@ class acp_abbcodes
 
 		$radio_ary = array(1 => 'ORDER_ALLOW_DENY', 0 => 'ORDER_DENY_ALLOW');
 
-		// Set some default values so the user havn't to run any install - Start
+		// Set some default values in case the user didn't run the installer - Start
 		// Same default values as root/install_abbc3.php -> abbc3_308()
 		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.11';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
@@ -51,11 +51,11 @@ class acp_abbcodes
 		$config['ABBC3_RESIZE_METHOD']		= (isset($config['ABBC3_RESIZE_METHOD']))	? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox';
 		$config['ABBC3_RESIZE_BAR']			= (isset($config['ABBC3_RESIZE_BAR']))		? $config['ABBC3_RESIZE_BAR']		: 1;
 		$config['ABBC3_MAX_IMG_WIDTH']		= (isset($config['ABBC3_MAX_IMG_WIDTH']))	? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width']	? $config['img_max_width'] : 500);
-		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'] ? $config['img_max_height'] : 0);
+		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'] ? $config['img_max_height'] : 300);
 		$config['ABBC3_RESIZE_SIGNATURE']	= (isset($config['ABBC3_RESIZE_SIGNATURE']))? $config['ABBC3_RESIZE_SIGNATURE']	: 0;
-		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'] ? $config['max_sig_img_width'] : 200);
-		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	? $config['ABBC3_MAX_SIG_HEIGHT']	: 0;
-		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'] ? $config['img_max_thumb_width']/2 : 200);
+		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'] ? $config['max_sig_img_width'] : 500);
+		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	? $config['ABBC3_MAX_SIG_HEIGHT']	: 100;
+		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'] ? $config['img_max_thumb_width'] / 2 : 200);
 
 		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		? $config['ABBC3_COLOR_MODE']		: 'phpbb';
 		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown';
@@ -70,7 +70,7 @@ class acp_abbcodes
 		$config['ABBC3_VIDEO_WMODE']		= (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0;
 
 		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		? $config['ABBC3_UCP_MODE']			: 1;
-		// Set some default values so the user havn't to run any install - End
+		// Set some default values in case the user didn't run the installer - End
 
 		// Set up general vars
 		$action				= request_var('action', '');
@@ -170,7 +170,6 @@ class acp_abbcodes
 			'vars'	=> array(
 				'legend1'				=> 'GENERAL_OPTIONS',
 				'ABBC3_MOD'				=> array('lang' => 'ABBCODES_DISABLE',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
-		//		'ABBC3_PATH'			=> array('lang'	=> 'ABBCODES_PATH',				'validate' => 'path',	'type' => 'text::255',		'explain'	=> true),
 				'ABBC3_BG'				=> array('lang' => 'ABBCODES_BG',				'validate' => 'string',	'type' => 'custom',			'function'	=> 'image_select', 'params' => array($this->dir . '/images/bg', '{CONFIG_VALUE}', 'config[ABBC3_BG]', true, $this->u_action, 'ABBC3_BG'), 'explain' => true),
 				'ABBC3_TAB'				=> array('lang' => 'ABBCODES_TAB',				'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true, 'append' => '&nbsp;&nbsp;<span>[ <img src="' . $this->dir . '/images/dots.gif" alt="" /> ]</span>'),
 				'ABBC3_BOXRESIZE'		=> array('lang' => 'ABBCODES_BOXRESIZE',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
