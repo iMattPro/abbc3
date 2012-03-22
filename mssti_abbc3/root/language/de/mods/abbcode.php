@@ -426,8 +426,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_TAG'				=> 'Seite',
 	'ABBC3_URL_MOVER'			=> 'Web Adresse',
 	'ABBC3_URL_TIP'				=> '[url]http://...[/url] oder [url=http://...]Name Web[/url]',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.google.com',
-	'ABBC3_URL_VIEW'			=> '[url=http://www.google.com]GOOGLE[/url]',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_VIEW'			=> '[url=http://www.phpbb.com]phpBB[/url]',
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'Email',
@@ -451,8 +451,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Web Seite in den Beitrag einfügen',
 	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
-	'ABBC3_WEB_EXAMPLE'			=> 'http://www.google.com',
-	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.google.com[/web]',
+	'ABBC3_WEB_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_WEB_VIEW'			=> '[web width=99% height=400]http://www.phpbb.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Hinweis:</strong> Anderen Webseiten zu erlauben im Beitrag zu stehen, kann ein Sicherheitsriskio darstellen. Du verwendest dies auf eigene Gefahr, oder lasse diese Funktion nur für Gruppen zu, denen du verstraust.',
 
 	// Image & Thumbnail Wizard
@@ -469,15 +469,15 @@ $lang = array_merge($lang, array(
 	'ABBC3_IMG_TAG'				=> 'Bild',
 	'ABBC3_IMG_MOVER'			=> 'Bild einfügen',
 	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
-	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
-	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
+	'ABBC3_IMG_EXAMPLE'			=> 'http://images.apple.com/home/images/ipad_hero.jpg',
+	'ABBC3_IMG_VIEW'			=> '[img=center]http://images.apple.com/home/images/ipad_hero.jpg[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'Thumbnail',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Thumbnail einfügen',
 	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
-	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
-	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
+	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://images.apple.com/home/images/ipad_hero.jpg',
+	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://images.apple.com/home/images/ipad_hero.jpg[/thumbnail]',
 
 	// Imgshack
 	'ABBC3_IMGSHACK_MOVER'		=> 'Bild von Imageshack einfügen',
@@ -510,9 +510,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_CLICK_TAG'			=> 'Klickzähler',
 	'ABBC3_CLICK_MOVER'			=> 'Einen Klickzähler einfügen',
 	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] or [click=http://...]Name Web[/click] or [click][img]http://...[/img][/click]',
-	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
+	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.apple.com' . ' | ' . 'http://images.apple.com/home/images/ipad_hero.jpg',
 ##	For translate :                                                                     yes
-	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] GOOGLE [/click] oder [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.apple.com] Apple [/click] oder [click]http://images.apple.com/home/images/ipad_hero.jpg[/click]',
 	'ABBC3_CLICK_TIME'			=> '( Wurde %d mal angeklickt )',
 	'ABBC3_CLICK_TIMES'			=> '( Wurde %d mal angeklickt )',
 	'ABBC3_CLICK_ERROR'			=> '<strong>FEHLER:</strong> Bitte gib eine GÜLTIGE klick ID in die URL ein',
@@ -595,8 +595,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_VEOH_TAG'			=> 'Veoh',
 	'ABBC3_VEOH_MOVER'			=> 'Ein Video von Veoh einfügen',
 	'ABBC3_VEOH_TIP'			=> '[veoh]URL Video[/veoh]',
-	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J',
-	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J[/veoh]',
+	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/watch/v27458670er62wkCt',
+	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/watch/v27458670er62wkCt[/veoh]',
 
 	// Collegehumor video
 	'ABBC3_COLLEGEHUMOR_TAG'	=> 'Collegehumor',
