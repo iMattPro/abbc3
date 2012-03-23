@@ -469,15 +469,15 @@ $lang = array_merge($lang, array(
 	'ABBC3_IMG_TAG'				=> 'Bild',
 	'ABBC3_IMG_MOVER'			=> 'Bild einfügen',
 	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
-	'ABBC3_IMG_EXAMPLE'			=> 'http://images.apple.com/home/images/ipad_hero.jpg',
-	'ABBC3_IMG_VIEW'			=> '[img=center]http://images.apple.com/home/images/ipad_hero.jpg[/img]',
+	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
+	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'Thumbnail',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Thumbnail einfügen',
 	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
-	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://images.apple.com/home/images/ipad_hero.jpg',
-	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://images.apple.com/home/images/ipad_hero.jpg[/thumbnail]',
+	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
+	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 
 	// Imgshack
 	'ABBC3_IMGSHACK_MOVER'		=> 'Bild von Imageshack einfügen',
@@ -510,9 +510,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_CLICK_TAG'			=> 'Klickzähler',
 	'ABBC3_CLICK_MOVER'			=> 'Einen Klickzähler einfügen',
 	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] or [click=http://...]Name Web[/click] or [click][img]http://...[/img][/click]',
-	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.apple.com' . ' | ' . 'http://images.apple.com/home/images/ipad_hero.jpg',
+	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
 ##	For translate :                                                                     yes
-	'ABBC3_CLICK_VIEW'			=> '[click=http://www.apple.com] Apple [/click] oder [click]http://images.apple.com/home/images/ipad_hero.jpg[/click]',
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] Google [/click] oder [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',
 	'ABBC3_CLICK_TIME'			=> '( Wurde %d mal angeklickt )',
 	'ABBC3_CLICK_TIMES'			=> '( Wurde %d mal angeklickt )',
 	'ABBC3_CLICK_ERROR'			=> '<strong>FEHLER:</strong> Bitte gib eine GÜLTIGE klick ID in die URL ein',
