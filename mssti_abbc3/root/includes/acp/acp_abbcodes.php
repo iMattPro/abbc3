@@ -752,7 +752,13 @@ function image_select($dir, $current, $name, $show = false, $u_action, $ide = 'A
 			$selected = ($imagesetlist[$i] == $current) ? ' selected="selected"' : '';
 			$icons_list .= '<option value="' . $imagesetlist[$i] . '"' . $selected . '>' . $imagesetlist[$i] . '</option>' . "\n";
 		}
-		$icons_list .= '</select>'. (($show) ? '&nbsp; <label>' . $user->lang['CURRENT_IMAGE'] . '</label><span><img src="' . $dir . '/' . $current .'" id="newimg" alt="" width="80" height="30" /></span>' : '');
+		$icons_list .= '</select>'. (($show) ? '&nbsp; <label>' . $user->lang['PREVIEW'] . ':</label>
+			<span style="position:relative; display:inline-block; top:10px;">
+				<img src="' . $dir . '/' . $current .'" id="newimg" alt="" width="100" height="30" style="border: solid 1px silver;" />
+				<span style="position:absolute;top:5px;left:10px;width:100%;height:100%;">
+					<img src="' . $phpbb_root_path . '/styles/abbcode/images/bold.gif" width="20" height="20" alt="" /><img src="' . $phpbb_root_path . '/styles/abbcode/images/italic.gif" width="20" height="20" alt="" /><img src="' . $phpbb_root_path . '/styles/abbcode/images/url.gif" width="20" height="20" alt="" /><img src="' . $phpbb_root_path . '/styles/abbcode/images/img.gif" width="20" height="20" alt="" />
+				</span>
+			</span>' : '');
 	}
 	return $icons_list;
 }
