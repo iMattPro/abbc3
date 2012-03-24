@@ -58,15 +58,13 @@ hr.hrdotted {
 	/*resize : none;*/
 }
 
-#abbc3posttable, 
-#abbc3wysiwig {
+#abbc3posttable {
 	border : 1px solid #C0C0C0;
 	border-collapse : collapse;
 	vertical-align : top;
 }
 
-#abbc3posttable select, 
-#abbc3wysiwig select {
+#abbc3posttable select {
 	height : 20px;
 	margin : 3px 0;
 	font-size : 1.0em;
@@ -76,22 +74,19 @@ hr.hrdotted {
 	font-size : 1.0em;
 }
 
-#abbc3posttable option, 
-#abbc3wysiwig option {
+#abbc3posttable option {
 /*	background-color : #eeeeee;	*/
 	color : black;
 	padding-top: 1px;
 	padding-bottom: 1px;
 }
 
-#abbc3posttable option.selected, 
-#abbc3wysiwig option.selected {
+#abbc3posttable option.selected {
 	color : black;
 	font-weight : bold;
 	font-style : italic;
 }
-#abbc3posttable tr, #abbc3posttable td, #abbc3posttable div, 
-#abbc3wysiwig tr, #abbc3wysiwig td, #abbc3wysiwig div {
+#abbc3posttable tr, #abbc3posttable td, #abbc3posttable div {
 	border : 1px solid #C0C0C0;
 	height : 29px;
 	margin : 0;
@@ -99,8 +94,7 @@ hr.hrdotted {
 	vertical-align : top;
 }
 
-#abbc3posttable .btnbbcode3, #abbc3posttable .option.genmed,
-#abbc3wysiwig .btnbbcode3, #abbc3wysiwig .option.genmed {
+#abbc3posttable .btnbbcode3, #abbc3posttable .option.genmed {
 	height : 20px;
 	vertical-align : top;
 	margin : 3px 0 4px 0;
@@ -110,15 +104,13 @@ hr.hrdotted {
 	padding : 1px;
 }
 
-#abbc3posttable .button2, 
-#abbc3wysiwig .button2 {
+#abbc3posttable .button2 {
 	margin : 5px 0 4px 0;
 	padding : 2px 5px;
 	max-height: 20px;
 }
 
-#abbc3posttable .btnlite,
-#abbc3wysiwig .btnlite {
+#abbc3posttable .btnlite {
 	margin : 5px 0 4px 0;
 	padding : 2px 5px;
 }
@@ -147,8 +139,7 @@ hr.hrdotted {
 DELETE ME 2 */
 /** MOD : add button over - END **/
 
-#abbc3posttable .dot, 
-#abbc3wysiwig .dot {
+#abbc3posttable .dot {
 	margin : 3px 0;
 	padding : 0;
 	cursor : default;
