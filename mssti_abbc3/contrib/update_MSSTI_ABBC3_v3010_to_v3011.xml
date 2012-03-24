@@ -10,17 +10,19 @@
 		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.10 to version 3.0.11]]></description>
 		<author-group>
 			<author>
-				<realname><![CDATA[Gabriel]]></realname>
-				<username><![CDATA[leviatan21]]></username>
-				<email><![CDATA[info@mssti.com]]></email>
+				<realname><![CDATA[Matt Friedman]]></realname>
+				<username><![CDATA[VSE]]></username>
+				<homepage><![CDATA[http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/]]></homepage>
 				<contributions-group>
-					<contributions status="current" from="2008-01-10" position="Developer"/>
+					<contributions status="current" from="2010-03-02" position="Developer"/>
 				</contributions-group>
 			</author>
 			<author>
-				<username><![CDATA[VSE]]></username>
+				<realname><![CDATA[Gabriel Vazquez]]></realname>
+				<username><![CDATA[leviatan21]]></username>
+				<email><![CDATA[info@mssti.com]]></email>
 				<contributions-group>
-					<contributions status="current" from="2010-03-02" position="Developer"/>
+					<contributions status="past" from="2008-01-10" to="2012-03-01" position="Developer"/>
 				</contributions-group>
 			</author>
 		</author-group>

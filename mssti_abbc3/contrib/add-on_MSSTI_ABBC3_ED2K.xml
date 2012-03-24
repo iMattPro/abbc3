@@ -29,11 +29,19 @@
 
 		<author-group>
 			<author>
-				<realname>Gabriel</realname>
-				<username>leviatan21</username>
-				<email>info@mssti.com</email>
+				<realname><![CDATA[Matt Friedman]]></realname>
+				<username><![CDATA[VSE]]></username>
+				<homepage><![CDATA[http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/]]></homepage>
 				<contributions-group>
-					<contributions status="current" from="2008-01-10" position="Developer"/>
+					<contributions status="current" from="2010-03-02" position="Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Gabriel Vazquez]]></realname>
+				<username><![CDATA[leviatan21]]></username>
+				<email><![CDATA[info@mssti.com]]></email>
+				<contributions-group>
+					<contributions status="past" from="2008-01-10" to="2012-03-01" position="Developer"/>
 				</contributions-group>
 			</author>
 		</author-group>
