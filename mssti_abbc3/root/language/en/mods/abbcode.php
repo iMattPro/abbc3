@@ -423,7 +423,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_MOVER'			=> 'Insert URL',	
 	'ABBC3_URL_TIP'				=> '[url]http://url[/url] or [url=http://url]URL text[/url]',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
-	'ABBC3_URL_VIEW'			=> '[url=http://www.phpbb.com]phpBB[/url]',
+	'ABBC3_URL_VIEW'			=> '[url=http://www.phpbb.com]Visit phpBB![/url]',
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'email',
@@ -504,10 +504,10 @@ $lang = array_merge($lang, array(
 
 	// Click counter
 	'ABBC3_CLICK_TAG'			=> 'click',
-	'ABBC3_CLICK_MOVER'			=> 'Insert Clicks Counter',
+	'ABBC3_CLICK_MOVER'			=> 'Insert URL with click counter',
 	'ABBC3_CLICK_TIP'			=> '[click]http://url[/click] or [click=http://url]Name Web[/click] or [click][img]http://url[/img][/click]',
 	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
-##	For translate :                                                                     yes
+##	For translate :                                                               yes
 	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] Google [/click] or [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
 	'ABBC3_CLICK_TIME'			=> '( Clicked %d time )',
 	'ABBC3_CLICK_TIMES'			=> '( Clicked %d times )',
