@@ -6,7 +6,7 @@
 //    header lines are left unchanged.
 // Note: Script consists of two files: picker.js and picker.html
 
-// Note: Script Updated for phpbb 3.0.7-PL1 by leviatan21 : http://www.mssti.com/phpbb3/index.php
+// Note: Script Updated for phpbb 3.0.7-PL1 by leviatan21
 
 var TCP = new TColorPicker();
 

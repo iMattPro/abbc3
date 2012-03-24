@@ -1,5 +1,6 @@
 = Advanced BBCode Box 3 (aka ABBC3)
 * Release Version 3.0.10
+* Development Version 3.0.11
 
 The source code, issue tracker and wiki can be found at:
 
@@ -7,7 +8,7 @@ The source code, issue tracker and wiki can be found at:
 
 == DESCRIPTION:
 
-ABBC3 MOD adds lots of useful BBCode features and makes the bbcode buttons look just like Microsoft Office.
+ABBC3 gives the BBCode buttons a toolbar and icon style appearance, adds many new and useful BBCode features and adds more ways to customize posts.
 
 == FEATURES/PROBLEMS:
 
@@ -15,24 +16,23 @@ ABBC3 currently features the following:
 
 * Icon-based BBcode toolbar
 * Several new BBcodes are included
-* Improves the functions of phpBB's BBCode function.
-* It adds the BBcode exactly where the cursor is, inserts smilies where the cursor is, and adds more ways to customize posts.
-* The MOD is very fast loading, and is a sleek addition to your phpBB bulletin board.
+* Improves some of phpBB's built in BBCodes and also supports phpBB's custom BBCodes feature.
+* Automatic image resizer option with various lightbox styled expanders.
+* Auto-embedded video for dozens of media sites and file formats.
+* ABBC3 is very fast loading, and is a sleek addition to your phpBB bulletin board.
 
 == REQUIREMENTS:
 
 * phpBB 3.0.10
-* You must have javascript enabled to use this MOD.
+* Javascript is required by this MOD.
 
 == DOCUMENTATION:
 
-Complete README documentation and changelog are included in the MODs contrib folder.
+Complete README documentation and changelog are included in the MOD's contrib folder.
 
 == DEPLOYMENT:
 
-Please keep in mind that this version is still in development, so not everything may be in place or working.
-
-* It is not recommended that you install this version on a live forum.
+* It is recommended that you install only the current Release Version on a live forum.
 * Report any bugs or problems you encounter to our issue tracker http://github.com/mssti/Advanced-BBCode-Box-3/issues
 * Also, good ideas and bug reports are always welcome.
 * Before adding this MOD to your forum, you should back up all files related to this MOD.

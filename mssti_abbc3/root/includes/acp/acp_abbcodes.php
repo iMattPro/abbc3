@@ -1,16 +1,15 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/includes/acp
-* @version: $Id: acp_abbcode.php, v 3.0.10 10/27/11 10:17 PM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-**/
+*
+* @package acp
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
 
 /**
 * @ignore
-**/
+*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -18,7 +17,7 @@ if (!defined('IN_PHPBB'))
 
 /**
 * @package acp
-**/
+*/
 class acp_abbcodes
 {
 	var $u_action;
@@ -39,9 +38,9 @@ class acp_abbcodes
 
 		$radio_ary = array(1 => 'ORDER_ALLOW_DENY', 0 => 'ORDER_DENY_ALLOW');
 
-		/** Set some default values so the user havn't to run any install - Start **/
+		// Set some default values in case the user didn't run the installer - Start
 		// Same default values as root/install_abbc3.php -> abbc3_308()
-		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.10';
+		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.11';
 		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
 //		$config['ABBC3_PATH']				= (isset($config['ABBC3_PATH']))			? $config['ABBC3_PATH']				: 'styles/abbcode';
 		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';
@@ -52,11 +51,11 @@ class acp_abbcodes
 		$config['ABBC3_RESIZE_METHOD']		= (isset($config['ABBC3_RESIZE_METHOD']))	? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox';
 		$config['ABBC3_RESIZE_BAR']			= (isset($config['ABBC3_RESIZE_BAR']))		? $config['ABBC3_RESIZE_BAR']		: 1;
 		$config['ABBC3_MAX_IMG_WIDTH']		= (isset($config['ABBC3_MAX_IMG_WIDTH']))	? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width']	? $config['img_max_width'] : 500);
-		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'] ? $config['img_max_height'] : 0);
+		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'] ? $config['img_max_height'] : 300);
 		$config['ABBC3_RESIZE_SIGNATURE']	= (isset($config['ABBC3_RESIZE_SIGNATURE']))? $config['ABBC3_RESIZE_SIGNATURE']	: 0;
-		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'] ? $config['max_sig_img_width'] : 200);
-		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	? $config['ABBC3_MAX_SIG_HEIGHT']	: 0;
-		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'] ? $config['img_max_thumb_width']/2 : 200);
+		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'] ? $config['max_sig_img_width'] : 500);
+		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	? $config['ABBC3_MAX_SIG_HEIGHT']	: 100;
+		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'] ? $config['img_max_thumb_width'] / 2 : 200);
 
 		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		? $config['ABBC3_COLOR_MODE']		: 'phpbb';
 		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown';
@@ -71,7 +70,7 @@ class acp_abbcodes
 		$config['ABBC3_VIDEO_WMODE']		= (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0;
 
 		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		? $config['ABBC3_UCP_MODE']			: 1;
-		/** Set some default values so the user havn't to run any install - End **/
+		// Set some default values in case the user didn't run the installer - End
 
 		// Set up general vars
 		$action				= request_var('action', '');
@@ -93,21 +92,21 @@ class acp_abbcodes
 		{
 			case 'settings':
 				$this->abbc3_details();
-				break;
+			break;
 
 			case 'bbcodes'	:
 				switch ($action)
 				{
 					case 'sync':
 						$this->resync_abbcodes();
-
 					// no break;
+
 					case 'newdlb':
 						$this->add_division	= (isset($_POST['add_division'])) ? true : false;
 						$this->add_linebreak= (isset($_POST['add_linebreak'])) ? true : false;
 						$this->add_new_division_or_linebreak($this->add_division, $this->add_linebreak);
-
 					// no break;
+
 					case 'move_up':
 					case 'move_down':
 						// Get current order id...
@@ -149,14 +148,14 @@ class acp_abbcodes
 
 				}
 				$this->bbcodes_edit($id, $mode, $action, $bbcode_id);
-				break;
+			break;
 		}
 	}
 
 	/**
 	* Build Frontend with supplied options
 	* @version 3.0.7
-	**/
+	*/
 	function abbc3_details()
 	{
 		global $user, $template, $cache, $config, $phpbb_root_path;
@@ -171,7 +170,6 @@ class acp_abbcodes
 			'vars'	=> array(
 				'legend1'				=> 'GENERAL_OPTIONS',
 				'ABBC3_MOD'				=> array('lang' => 'ABBCODES_DISABLE',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
-		//		'ABBC3_PATH'			=> array('lang'	=> 'ABBCODES_PATH',				'validate' => 'path',	'type' => 'text::255',		'explain'	=> true),
 				'ABBC3_BG'				=> array('lang' => 'ABBCODES_BG',				'validate' => 'string',	'type' => 'custom',			'function'	=> 'image_select', 'params' => array($this->dir . '/images/bg', '{CONFIG_VALUE}', 'config[ABBC3_BG]', true, $this->u_action, 'ABBC3_BG'), 'explain' => true),
 				'ABBC3_TAB'				=> array('lang' => 'ABBCODES_TAB',				'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true, 'append' => '&nbsp;&nbsp;<span>[ <img src="' . $this->dir . '/images/dots.gif" alt="" /> ]</span>'),
 				'ABBC3_BOXRESIZE'		=> array('lang' => 'ABBCODES_BOXRESIZE',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain'	=> true),
@@ -326,29 +324,23 @@ class acp_abbcodes
 			'L_NO_EXIST_EXPLAIN_ADVANCEDBOX'	=> sprintf($user->lang['NO_EXIST_EXPLAIN_ADVANCEDBOX'], $board_path),
 
 			'HIGHSLIDE_EXIST'					=> (@file_exists("$this->dir/highslide/highslide-full.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.1.12", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
+			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.1.13", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
 
 			'LITEBOX_EXIST'						=> (@file_exists("$this->dir/lightbox/lightbox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_LITEBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightbox.js", "2.05", "{$board_path}lightbox/", "Lightbox2 JS", "http://www.lokeshdhakar.com/projects/lightbox2/#download"),
 
-			'GREYBOX_EXIST'						=> (@file_exists("$this->dir/greybox/gb_scripts.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_GREYBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "gb_scripts.js", "5.53", "{$board_path}greybox/", "GreyBox", "http://orangoo.com/labs/uploads/GreyBox_v5_53.zip"),
-
 			'LIGHTVIEW_EXIST'					=> (@file_exists("$this->dir/lightview/js/lightview.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.7.4", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
+			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.8.0", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
 
 			'SHADOWBOX_EXIST'					=> (@file_exists("$this->dir/shadowbox/shadowbox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_SHADOWBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "shadowbox.js", "3.0.3", "{$board_path}shadowbox/", "Shadowbox", "http://www.shadowbox-js.com/download.html"),
-
-			'POPBOX_EXIST'						=> (@file_exists("$this->dir/PopBox/PopBox.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_POPBOX'			=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "PopBox.js", "2.7a", "{$board_path}PopBox/", "PopBox", "http://www.c6software.com/Products/PopBox/"),
 		));
 
 	}
 
 	/**
-	* Add a new division or breack line
-	**/
+	* Add a new division or break line
+	*/
 	function add_new_division_or_linebreak($add_division, $add_linebreak)
 	{
 		global $user, $db, $template, $config, $cache;
@@ -379,8 +371,8 @@ class acp_abbcodes
 		$next_bbcode_order = (int) $row['max_bbcode_order'] + 1;
 		// get last order - End
 
-		$sql = "SELECT *
-				FROM " . BBCODES_TABLE . "
+		$sql = 'SELECT *
+				FROM ' . BBCODES_TABLE . "
 				WHERE bbcode_helpline = '" . ($add_linebreak ? 'ABBC3_BREAK' : 'ABBC3_DIVISION') . "'
 				ORDER BY bbcode_order DESC";
 		$result = $db->sql_query_limit($sql, 1);
@@ -423,16 +415,16 @@ class acp_abbcodes
 
 	/**
 	* Synchronise order
-	**/
+	*/
 	function resync_abbcodes()
 	{
 		global $user, $db;
 
 		$user->add_lang('mods/info_acp_abbcodes');
 
-		// This pseodo-bbcode should not change the position order
+		// This pseudo-bbcode should not change the position order
 		$bbcode_tag_ary =  array('font=', 'size', 'highlight=', 'color');
-		$next_bbcode_order = sizeof($bbcode_tag_ary)+1;
+		$next_bbcode_order = sizeof($bbcode_tag_ary) + 1;
 
 		$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_order 
 				FROM ' . BBCODES_TABLE . ' 
@@ -457,10 +449,10 @@ class acp_abbcodes
 	/**
 	* Show/edit bbcodes
 	* @version 1.0.12
-	**/
+	*/
 	function bbcodes_edit($id, $mode, $action, $bbcode = '')
 	{
-		global $user, $db, $cache, $template, $config;
+		global $user, $db, $cache, $template, $config, $phpbb_root_path, $phpEx;
 
 		$user->add_lang(array('acp/posting', 'mods/info_acp_abbcodes', 'mods/abbcode'));
 
@@ -491,7 +483,7 @@ class acp_abbcodes
 				'bbcode_group'			=> (isset($group_ids) && trim($group_ids) != '') ? $group_ids : 0,
 			);
 
-			// Fix for breack line?
+			// Fix for break line?
 			if (substr($abbcode_name[$bbcode],0,14) == 'ABBCODES_BREAK')
 			{
 				$bbcode_sql['bbcode_image'] = $img_spacer;
@@ -510,9 +502,9 @@ class acp_abbcodes
 				}
 			}
 
-			$sql = "UPDATE " . BBCODES_TABLE . "
-				SET " . $db->sql_build_array('UPDATE', $bbcode_sql) . "
-				WHERE bbcode_id = " . $bbcode;
+			$sql = 'UPDATE ' . BBCODES_TABLE . '
+				SET ' . $db->sql_build_array('UPDATE', $bbcode_sql) . '
+				WHERE bbcode_id = ' . $bbcode;
 			$result = $db->sql_query($sql);
 
 			if ($result)
@@ -541,9 +533,9 @@ class acp_abbcodes
 		}
 		$db->sql_freeresult($result);
 
-		$sql = "SELECT abbcode, bbcode_order, bbcode_id, bbcode_group, bbcode_tag, bbcode_helpline, bbcode_image, display_on_posting, display_on_pm, display_on_sig 
-				FROM " . BBCODES_TABLE . " 
-				ORDER BY bbcode_order";
+		$sql = 'SELECT abbcode, bbcode_order, bbcode_id, bbcode_group, bbcode_tag, bbcode_helpline, bbcode_image, display_on_posting, display_on_pm, display_on_sig 
+				FROM ' . BBCODES_TABLE . ' 
+				ORDER BY bbcode_order';
 		$result = $db->sql_query($sql);
 
 		$bbcode_id	= request_var('bbcode_id', 0);
@@ -568,13 +560,14 @@ class acp_abbcodes
 			'A_ACTION'			=> (!$bbcode) ? $this->u_action . '&amp;mode=bbcodes&amp;action=newdlb' : null,
 			'U_SYNC'			=> (!$bbcode) ? $this->u_action . '&amp;mode=bbcodes&amp;action=sync' : null,
 			'U_BACK'			=> ($bbcode) ? $this->u_back : null,
+			'U_AJAX_REQUEST' 	=> append_sid($phpbb_root_path . 'abbcode_ajax.' . $phpEx),
 		));
 
 		$no_move = array('ABBC3_FONT', 'ABBC3_SIZE', 'ABBC3_HIGHLIGHT', 'ABBC3_COLOR');
 		$first_row_to_move = 0;
 		while ($row = $db->sql_fetchrow($result))
 		{
-			/** Some fixes **/
+			// Some fixes
 			$bbcode_id		= $row['bbcode_id'];
 			$abbcode		= $row['abbcode'];
 			$abbcode_name	= (($row['abbcode']) ? 'ABBC3_' : '') . strtoupper(str_replace('=', '', trim($row['bbcode_tag'])));
@@ -583,7 +576,7 @@ class acp_abbcodes
 			$abbcode_tag	= str_replace('=', '', trim($row['bbcode_tag']));
 
 			$is_a_bbcode	= true;
-			// is a breack line or division ?
+			// is a break line or division ?
 			if ((strpos($abbcode_name, 'ABBC3_DIVISION') !== false) || (strpos($abbcode_name, 'ABBC3_BREAK') !== false) || in_array($row['bbcode_tag'], array('imgshack', 'cut', 'copy', 'paste', 'plain')))
 			{
 				$is_a_bbcode	= false;
@@ -679,7 +672,7 @@ class acp_abbcodes
 	* @param int 		$ttl 				Cache version information for $ttl seconds. Defaults to 86400 (24 hours).
 	* 
 	* @return bool 		false on failure.
-	**/
+	*/
 	function abbc3_version_compare($current_version = '', $version_up_to_date = true, $ttl = 86400)
 	{
 		global $cache, $template;
@@ -691,7 +684,7 @@ class acp_abbcodes
 			$errstr = '';
 			$errno = 0;
 
-			$info = get_remote_file('www.orca-music.com', '/software', 'abbc3.txt', $errstr, $errno);
+			$info = get_remote_file('orcamx.vlexofree.com', '/software', 'abbc3.txt', $errstr, $errno);
 			if ($info === false)
 			{
 				$template->assign_var('S_VERSIONCHECK_FAIL', true);
@@ -720,7 +713,7 @@ class acp_abbcodes
 
 	/**
 	* Select list of images in current style folder
-	**/
+	*/
 	function image_select($dir, $current, $name, $show = false, $u_action, $ide = 'ABBC3_BG')
 	{
 		global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
@@ -766,7 +759,7 @@ class acp_abbcodes
 
 	/**
 	* Select list of BBvideos
-	**/
+	*/
 	function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
 	{
 		global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
@@ -811,7 +804,7 @@ class acp_abbcodes
 
 	/**
 	* Select list of display full size image
-	**/
+	*/
 	function method_select($selected_method = 'AdvancedBox', $name, $ide)
 	{
 		global $user;
@@ -831,7 +824,7 @@ class acp_abbcodes
 
 	/**
 	* Select list of display color picker
-	**/
+	*/
 	function get_radio($name, $input_ary, $input_default = false, $id = false, $key = false)
 	{
 		global $user;

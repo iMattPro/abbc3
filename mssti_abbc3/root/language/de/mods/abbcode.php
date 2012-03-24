@@ -1,12 +1,14 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/language/de/mods :: [de][German]
-* @version: $Id: abbcode.php, v 3.0.10 2010/10/04 19:11:22 femu Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @translator (German): femu - http://die-muellers.org
-**/
+*
+* abbcode [German]
+*
+* @package language
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @translator: femu - http://die-muellers.org
+*
+*/
 
 /**
 * DO NOT CHANGE
@@ -29,9 +31,9 @@ if (empty($lang) || !is_array($lang))
 // 'Page %s of %s' you can (and should) write 'Page %1$s of %2$s', this allows
 // translators to re-order the output of data while ensuring it remains correct
 //
-// You do not need this where single placeholders are used, e.g. 'Message %d' is fine
+// You do not need this where single placeholders are used, e.g. "Message %d" is fine
 // equally where a string contains only two placeholders which are used to wrap text
-// in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
+// in a url you again do not need to specify an order e.g., "Click %sHERE%s" is fine
 // Reference : http://www.phpbb.com/mods/documentation/phpbb-documentation/language/index.php#lang-use-php
 //
 // Some characters you may want to copy&paste:
@@ -44,8 +46,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HELP_DESC'			=> 'Beschreibung',
 	'ABBC3_HELP_WRITE'			=> 'Dein Schreibformat',
 	'ABBC3_HELP_VIEW'			=> 'Unser Anzeigeformat',
-	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
-	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
+	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" onclick="window.open(this.href);return false;">mssti</a>',
+//	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
 // Image Resizer JS
 	'ABBC3_RESIZE_SMALL'		=> 'Klicke um das Bild in voller Größe zu sehen.',
@@ -54,13 +56,10 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_ZOOM_OUT'		=> 'Verkleinern',
 	'ABBC3_RESIZE_FILESIZE'		=> 'Die Abmessungen wurden verändert. Die Originalabmessungen lauten %1$s x %2$s und das Bild hat eine Größe von %3$sKB.',
 	'ABBC3_RESIZE_NOFILESIZE'	=> 'Die Bildabmessungen wurden verändert. Die Originalabmessungen lauten %1$s x %2$s.',
-	'ABBC3_RESIZE_FULLSIZE'		=> 'Bildabmessungen geändert auf: %1$s % seiner Originalabmessungen [ %2$s x %3$s ]',
+	'ABBC3_RESIZE_FULLSIZE'		=> 'Bildabmessungen geändert auf %1$s % seiner Originalabmessungen [%2$s x %3$s]',
 	'ABBC3_RESIZE_NUMBER'		=> 'Bild %1$s von %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Diashow wiedergeben',
 	'ABBC3_RESIZE_PAUSE'		=> 'Diashow unterbrechen',
-
-// Pop Box JS
-	'ABBC3_POPBOX_REVERSETEXT'	=> 'Klicke auf das Bild, um es zu verkleinern.',
 
 // Highslide JS - http://vikjavev.no/highslide/forum/viewtopic.php?t=2119
 	'ABBC3_HIGHSLIDE_LOADINGTEXT'		=> 'Lade ...',
@@ -119,12 +118,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_AJAX_DISABLED'		=> 'Dein Browser unterstützt kein AJAX (XMLHttpRequest) und kann daher deine Anfrage nicht bearbeiten.',
 	'ABBC3_SUBMIT'				=> 'In den Beitrag einfügen',
 	'ABBC3_SUBMIT_SIG'			=> 'In die Signatur einfügen',
-	'SAMPLE_TEXT'				=> 'Dies ist ein Beispieltext' //	' . $lang['SAMPLE_TEXT'] . '
+	'SAMPLE_TEXT'				=> 'Dies ist ein Beispieltext',
 ));
 
 /**
-* TRANSLATORS PLEASE Hinweis
-*	Several lines have an special Hinweis like '##	For translate : ' follow for one or more 'yes'
+* TRANSLATORS PLEASE NOTE 
+*	Several lines have an special note like "##	For translate : " followed for one or more "yes"
 *	These means that you can/have to translate the word under
 **/
 $lang = array_merge($lang, array(
@@ -196,12 +195,12 @@ $lang = array_merge($lang, array(
 	'SPOILER_HIDE'				=> 'Text ausblenden',
 
 	// hidden
-	'ABBC3_HIDDEN_MOVER'		=>	'Inhalt für Gäste verstecken',
-	'ABBC3_HIDDEN_TIP'			=>	'[hidden]Text[/hidden]',
+	'ABBC3_HIDDEN_MOVER'		=> 'Inhalt für Gäste verstecken',
+	'ABBC3_HIDDEN_TIP'			=> '[hidden]Text[/hidden]',
 	'ABBC3_HIDDEN_VIEW'			=> '[hidden]' . $lang['SAMPLE_TEXT'] . '[/hidden]',
-	'HIDDEN_OFF'				=>	'Verstecken ist deaktiviert',
-	'HIDDEN_ON'					=>	'Verstecken ist aktiviert',
-	'HIDDEN_EXPLAIN'			=>	'Um diesen versteckten Text lesen zu können, mußt du registriert und angemeldet sein',
+	'HIDDEN_OFF'				=> 'Verstecken ist deaktiviert',
+	'HIDDEN_ON'					=> 'Verstecken ist aktiviert',
+	'HIDDEN_EXPLAIN'			=> 'Um diesen versteckten Text lesen zu können, mußt du registriert und angemeldet sein',
 
 	// Moderator tag
 	'ABBC3_MOD_MOVER'			=> 'Moderator Nachricht',
@@ -240,7 +239,7 @@ $lang = array_merge($lang, array(
 
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Blocktext',
-	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]Text[/align]',
+	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]text[/align]',
 ##	For translate :                                yes           yes
 	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]Dies ist<br />ein Beispieltext<br />' . $lang['SAMPLE_TEXT'] . '[/align]',
 
@@ -310,7 +309,7 @@ $lang = array_merge($lang, array(
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Text mit Farbverlauf',
 	'ABBC3_GRAD_TIP'			=> 'Stellt den Text als Farbverlauf dar',
-##For translate (The separate words are 'This is a sample text')
+
 ##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',
 	'ABBC3_GRAD_MIN_ERROR'		=> 'Bitte zuerst den Text markieren: ',
@@ -359,7 +358,7 @@ $lang = array_merge($lang, array(
 
 	// List item
 	'ABBC3_LISTITEM_MOVER'		=> 'Listenpunkt',
-	'ABBC3_LISTITEM_TIP'		=> '[*]',
+	'ABBC3_LISTITEM_TIP'		=> '[*]text',
 	'ABBC3_LISTITEM_NOTE'		=> 'Hinweis: Erstellt Aufzählungsspunkte innerhalb der Liste',
 
 	// Line Break
@@ -421,14 +420,14 @@ $lang = array_merge($lang, array(
 	'ABBC3_ANCHOR_TIP'			=> '[anchor=(dieser Verweisname) goto=(der Name eines anderen Verweises)]Text[/anchor]',
 	'ABBC3_ANCHOR_EXAMPLE'		=> '[anchor=a1 goto=a2]Gehe zum Verweis a2[/anchor]',
 ##	For translate :                                           yes                         Yes               Yes
-	'ABBC3_ANCHOR_VIEW'			=> '[anchor=help0 goto=help_1]Gehe zum Link 1[/anchor]<br /> oder  [anchor=help1]Das ist der Link 1[/anchor]',
+	'ABBC3_ANCHOR_VIEW'			=> '[anchor=help_0 goto=help_1]Gehe zum Link 1[/anchor]<br /> oder  [anchor=help_1]Das ist der Link 1[/anchor]',
 
 	// Hyperlink Wizard
 	'ABBC3_URL_TAG'				=> 'Seite',
 	'ABBC3_URL_MOVER'			=> 'Web Adresse',
 	'ABBC3_URL_TIP'				=> '[url]http://...[/url] oder [url=http://...]Name Web[/url]',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.mssti.com',
-	'ABBC3_URL_VIEW'			=> '[url=http://www.mssti.com].:: MSSTI ::.[/url]',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_VIEW'			=> '[url=http://www.phpbb.com]phpBB[/url]',
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'Email',
@@ -438,7 +437,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_EMAIL_VIEW'			=> '[email=user@server.ext]user@server.ext[/email]',
 
 	// Ed2k link Wizard
-	'ABBC3_ED2K_TAG'			=> 'eD2K',
+	'ABBC3_ED2K_TAG'			=> 'ed2k',
 	'ABBC3_ED2K_MOVER'			=> 'Link eD2K',
 	'ABBC3_ED2K_TIP'			=> '[url]Link ed2k[/url] oder [url=link ed2k]Name ed2k[/url]',
 	'ABBC3_ED2K_EXAMPLE'		=> 'ed2k://|file|The_Two_Towers-The_Purist_Edit-Trailer.avi|14997504|965c013e991ee246d63d45ea71954c4d|/',
@@ -449,11 +448,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_ED2K_SERVERLIST'		=> 'ed2k Server Liste',
 
 	// Web included by iframe
-	'ABBC3_WEB_TAG'				=> 'Web',
+	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Web Seite in den Beitrag einfügen',
-	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL Web[/web]',
-	'ABBC3_WEB_EXAMPLE'			=> 'http://www.mssti.com',
-	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.mssti.com[/web]',
+	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
+	'ABBC3_WEB_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_WEB_VIEW'			=> '[web width=99% height=400]http://www.phpbb.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Hinweis:</strong> Anderen Webseiten zu erlauben im Beitrag zu stehen, kann ein Sicherheitsriskio darstellen. Du verwendest dies auf eigene Gefahr, oder lasse diese Funktion nur für Gruppen zu, denen du verstraust.',
 
 	// Image & Thumbnail Wizard
@@ -469,14 +468,14 @@ $lang = array_merge($lang, array(
 	// Image
 	'ABBC3_IMG_TAG'				=> 'Bild',
 	'ABBC3_IMG_MOVER'			=> 'Bild einfügen',
-	'ABBC3_IMG_TIP'				=> '[img=(left|center|right)]http://...[/img]',
+	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
 	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'Thumbnail',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Thumbnail einfügen',
-	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=left|right)]http://...[/thumbnail]',
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
 	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 
@@ -490,8 +489,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAPIDSHARE_TAG'		=> 'RapidShare',
 	'ABBC3_RAPIDSHARE_MOVER'	=> 'Füge eine Datei von RapidShare hinzu',
 	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...[/rapidshare]',
-	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html',
-	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/rapidshare]',
+	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
 	'ABBC3_RAPIDSHARE_GOOD'		=> 'Datei wurde auf dem Server gefunden!',
 	'ABBC3_RAPIDSHARE_WRONG'	=> 'Datei wurde nicht gefunden!',
 
@@ -501,9 +500,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_TAG'		=> 'Link Checker',
 	'ABBC3_TESTLINK_MOVER'		=> 'Füge eine Datei hinzu, die auf einer öffentlichen Seite gespeichert wurde',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
-	'ABBC3_TESTLINK_NOTE'		=> 'Gültige Server: rapidshare, megaupload, megarotic, depositfiles, megashares',
-	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html',
-	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/ABBC3_v1012.zip.html[/testlink]',
+	'ABBC3_TESTLINK_NOTE'		=> 'Gültige Server: rapidshare, depositfiles, megashares',
+	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'Datei wurde auf dem Server gefunden!',
 	'ABBC3_TESTLINK_WRONG'		=> 'Datei wurde nicht gefunden!',
 
@@ -511,9 +510,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_CLICK_TAG'			=> 'Klickzähler',
 	'ABBC3_CLICK_MOVER'			=> 'Einen Klickzähler einfügen',
 	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] or [click=http://...]Name Web[/click] or [click][img]http://...[/img][/click]',
-	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.mssti.com ' . ' ' . 'http://www.google.com/intl/en_com/images/logo_plain.png' ,
+	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
 ##	For translate :                                                                     yes
-	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] oder [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] Google [/click] oder [click]http://www.google.com/intl/en_com/images/logo_plain.png[/click]',
 	'ABBC3_CLICK_TIME'			=> '( Wurde %d mal angeklickt )',
 	'ABBC3_CLICK_TIMES'			=> '( Wurde %d mal angeklickt )',
 	'ABBC3_CLICK_ERROR'			=> '<strong>FEHLER:</strong> Bitte gib eine GÜLTIGE klick ID in die URL ein',
@@ -528,8 +527,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
 	'ABBC3_BBVIDEO_MOVER'		=> 'Füge ein Web Video hinzu',
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
-	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
+	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Wähle ein Video Typ',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Zur Zeit sind keine eingebette Videocodes erlaubt. Bitte informier den %sBoard Administrator%s darüber.<br />In der Zwischenzeit kannst du selbstverständlich die standard URL BBCodes verwenden.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Dateiformat',
@@ -537,46 +536,46 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Externes Video von',
 
 	// Flash (swf) Wizard
-	'ABBC3_FLASH_TAG'			=> 'Flash',
+	'ABBC3_FLASH_TAG'			=> 'flash',
 	'ABBC3_FLASH_MOVER'			=> 'Eine Flash Datei hinzufügen (swf)',
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] oder [flash width,height]URL flash[/flash]',
-	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.adobe.com/support/flash/ts/documents/test_version/version.swf',
-	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.adobe.com/support/flash/ts/documents/test_version/version.swf[/flash]',
+	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
+	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
 
 	// Flash (flv) Wizard
-	'ABBC3_FLV_TAG'				=> 'Flash',
+	'ABBC3_FLV_TAG'				=> 'flash',
 	'ABBC3_FLV_MOVER'			=> 'Eine Flash Datei hinzufügen (flv)',
 	'ABBC3_FLV_TIP'				=> '[flv width=# height=#]URL flash video[/flv] oder [flv width,height]URL flash video[/flv]',
-	'ABBC3_FLV_EXAMPLE' 		=> 'http://www.channel-ai.com/video/eyn/demo1.flv',
-	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.channel-ai.com/video/eyn/demo1.flv[/flv]',
+	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
+	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv[/flv]',
 
 	// Streaming Video Wizard
-	'ABBC3_VIDEO_TAG'			=> 'Video',
+	'ABBC3_VIDEO_TAG'			=> 'video',
 	'ABBC3_VIDEO_MOVER'			=> 'Ein Video einfügen',
 	'ABBC3_VIDEO_TIP'			=> '[video width=# height=#]URL Video[/video]',
-	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.sarahsHinweiscards.com/catalunyalive/fishstore.wmv',
-	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.sarahsHinweiscards.com/catalunyalive/fishstore.wmv[/video]',
+	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
+	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv[/video]',
 
 	// Streaming Audio Wizard
 	'ABBC3_STREAM_TAG'			=> 'Tonquelle',
 	'ABBC3_STREAM_MOVER'		=> 'Eine Tonquelle einfügen',
 	'ABBC3_STREAM_TIP'			=> '[stream]URL Stream[/stream]',
-	'ABBC3_STREAM_EXAMPLE'		=> 'http://realdev1.realise.com/rossa/mov/demo.mp3',
-	'ABBC3_STREAM_VIEW'			=> '[stream]http://realdev1.realise.com/rossa/mov/demo.mp3[/stream]',
+	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.robtowns.com/music/first_noel.mp3',
+	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
 
 	// Quick time
 	'ABBC3_QUICKTIME_TAG'		=> 'Quick Time',
 	'ABBC3_QUICKTIME_MOVER'		=> 'Eine Quick Time Datei einfügen',
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quick Time[/quicktime]',
-	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt' . ' ' . 'http://www.carnivalmidways.com/images/Music/thisisatest.mp3',
+	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt',
 	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
 
 	// Real Media Wizard
 	'ABBC3_RAM_TAG'				=> 'Real Media',
 	'ABBC3_RAM_MOVER'			=> 'Eine Real Media Datei einfügen',
 	'ABBC3_RAM_TIP'				=> '[ram]URL Real Media[/ram]',
-	'ABBC3_RAM_EXAMPLE'			=> 'http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram',
-	'ABBC3_RAM_VIEW'			=> '[ram]http://www.bbc.co.uk/scotland/radioscotland/media/radioscotland.ram[/ram]',
+	'ABBC3_RAM_EXAMPLE'			=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
+	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
 
 	// Google video Wizard
 	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
@@ -589,18 +588,18 @@ $lang = array_merge($lang, array(
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',
 	'ABBC3_YOUTUBE_MOVER'		=> 'Ein YouTube Video einfügen',
 	'ABBC3_YOUTUBE_TIP'			=> '[youtube]URL Video[/youtube]',
-	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/youtube]',
+	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=sP4NMoJcFd4[/youtube]',
 
 	// Veoh video
 	'ABBC3_VEOH_TAG'			=> 'Veoh',
 	'ABBC3_VEOH_MOVER'			=> 'Ein Video von Veoh einfügen',
 	'ABBC3_VEOH_TIP'			=> '[veoh]URL Video[/veoh]',
-	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/videos/v1409404EqT5SJjM',
-	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/videos/v1409404EqT5SJjM[/veoh]',
+	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/watch/v27458670er62wkCt',
+	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/watch/v27458670er62wkCt[/veoh]',
 
 	// Collegehumor video
-	'ABBC3_COLLEGEHOMOR_TAG'	=> 'Collegehumor',
+	'ABBC3_COLLEGEHUMOR_TAG'	=> 'Collegehumor',
 	'ABBC3_COLLEGEHUMOR_MOVER'	=> 'Ein Video von Collegehumor einfügen',
 	'ABBC3_COLLEGEHUMOR_TIP'	=> '[collegehumor]Collegehumor Video URL[/collegehumor]',
 	'ABBC3_COLLEGEHUMOR_EXAMPLE'=> 'http://www.collegehumor.com/video:1802097',
@@ -609,26 +608,26 @@ $lang = array_merge($lang, array(
 	// Dailymotion video
 	'ABBC3_DM_MOVER'			=> 'Ein Video von Dailymotion einfügen', // from http://www.dailymotion.com/
 	'ABBC3_DM_TIP'				=> '[dm]Dailymotion ID[/dm]',
-	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/swf/x3hm7o',
-	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/swf/x3hm7o[/dm]',
+	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport',
+	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport[/dm]',
 
 	// Gamespot video
 	'ABBC3_GAMESPOT_MOVER'		=> 'Ein Video von Gamespot einfügen',
-	'ABBC3_GAMESPOT_TIP'		=> '[gamespot]Gamespot Video URL[gamespot]',
-	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/944074/6185798/tom-clancys-rainbow-six-vegas-2-official-trailer-3',
-	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/944074/6185798/tom-clancys-rainbow-six-vegas-2-official-trailer-3[gamespot]',
+	'ABBC3_GAMESPOT_TIP'		=> '[gamespot]Gamespot video URL[gamespot]',
+	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
+	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[gamespot]',
 
 	// Gametrailers video
 	'ABBC3_GAMETRAILERS_MOVER'	=> 'Ein Video von Gametrailers einfügen',
 	'ABBC3_GAMETRAILERS_TIP'	=> '[gametrailers]Gametrailers Video URL[/gametrailers]',
 	'ABBC3_GAMETRAILERS_EXAMPLE'=> 'http://www.gametrailers.com/player/30461.html',
-	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/player/30461.html[/gametrailers]',
+	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/video/game-of-best-of-e3/701407[/gametrailers]',
 
 	// IGN video
 	'ABBC3_IGNVIDEO_MOVER'		=> 'Ein Video von IGN einfügen',
-	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]IGN Video URL[/ignvideo]',
-	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'object_ID=967025&downloadURL=http://tvmovies.ign.com/tv/video/article/850/850894/knightrider_trailer_020808_flvlow.flv',
-	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]object_ID=967025&downloadURL=http://tvmovies.ign.com/tv/video/article/850/850894/knightrider_trailer_020808_flvlow.flv[/ignvideo]',
+	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]IGN video URL[/ignvideo]',
+	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html',
+	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html[/ignvideo]',
 
 	// LiveLeak video
 	'ABBC3_LIVELEAK_MOVER'		=> 'Ein Video von Liveleak einfügen',

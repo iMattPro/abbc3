@@ -1,16 +1,15 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root
-* @version: $Id: abbcode_page.php, v 3.0.10 2010/09/23 00:27:15 leviatan21 Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @co-author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-**/
+*
+* @package phpBB3
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
 
 /**
 * @ignore
-**/
+*/
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
@@ -57,9 +56,9 @@ switch ($mode)
 }
 
 /**
-* ABBC3 help page...
+* ABBC3 help page
 * @version 3.0.7-PL1
-**/
+*/
 function abbcode_show_help()
 {
 	global $template, $db, $user, $phpbb_root_path, $phpEx, $abbcode;
@@ -81,7 +80,7 @@ function abbcode_show_help()
 	$count = 0;
 	while ($row = $db->sql_fetchrow($result))
 	{		
-		/** Some fixes **/
+		// Some fixes
 		$tag_name		= str_replace('=', '', trim($row['bbcode_tag']));
 		$abbcode_name	= (($row['abbcode']) ? 'ABBC3_' : '') . strtoupper(str_replace('=', '', trim($row['bbcode_tag'])));
 		$abbcode_name	= ($row['bbcode_helpline'] == 'ABBC3_ED2K_TIP') ? 'ABBC3_ED2K' : $abbcode_name;
@@ -128,11 +127,11 @@ function abbcode_show_help()
 }
 
 /**
- * For display of custom parsed text on user-facing pages
- *
- * @param string	$text
- * @return mix		$text or false if the user can't use this bbcode
- */
+* For display of custom parsed text on user-facing pages
+*
+* @param string		$text
+* @return mix		$text or false if the user can't use this bbcode
+*/
 function force_parse($text)
 {
 	$message = utf8_normalize_nfc($text);
@@ -152,7 +151,7 @@ function force_parse($text)
 * 
 * THIS FUNTION IS DEPRECATED SINCE VERSION 3.0.7 ! suggested by MOD Team 
 * So warn the user about this if he is still using the old database
-**/
+*/
 function abbcode_upload_file($form_name, $text_name)
 {
 	global $user;
@@ -165,7 +164,7 @@ function abbcode_upload_file($form_name, $text_name)
 /**
 * ABBC3 simple redirect page
 * @version 1.0.11
-**/
+*/
 function abbcode_click_file()
 {
 	global $db, $user;
@@ -219,7 +218,7 @@ function abbcode_click_file()
 /**
 * Display the Tigra Colour picker popup window
 * @version 3.0.8
-**/
+*/
 function abbcode_tigra_color_picker()
 {
 	global $template, $user, $abbcode, $phpbb_root_path, $phpEx;
@@ -256,7 +255,7 @@ function abbcode_tigra_color_picker()
 * 
 * @return bbcode tag with link
 * @version 3.0.8
-**/
+*/
 function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 {
 	global $template, $user, $config, $abbcode, $phpbb_admin_path, $phpbb_root_path, $phpEx;

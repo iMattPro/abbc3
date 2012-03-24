@@ -69,3 +69,8 @@
 .text-controls .highslide-close a span {
 	width: 0;
 }
+
+/* Special */
+.in-page .highslide-thumbstrip-horizontal .highslide-marker {
+    border-bottom: gray;
+}

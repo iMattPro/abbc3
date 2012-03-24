@@ -1,12 +1,14 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/language/es/mods :: [es][Spanish]
-* @version: $Id: info_acp_abbcode.php, v 3.0.10 10/27/11 10:41 PM VSE Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @translator: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-**/
+*
+* info_acp_abbcodes [Spanish]
+*
+* @package language
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @translator: leviatan21
+*
+*/
 
 /**
 * DO NOT CHANGE
@@ -20,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 {
 	$lang = array();
 }
-						
+
 // DEVELOPERS PLEASE NOTE
 //
 // All language files should use UTF-8 as their encoding and the files must not contain a BOM.
@@ -38,36 +40,49 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
-// This lines are the same as root/language/en/acp/common.php
 $lang = array_merge($lang, array(
+	// These lines are the same as in root/language/en/acp/common.php
 	'ACP_ABBCODES'				=> 'Advanced BBCode Box 3',
 	'ACP_ABBC3_SETTINGS'		=> 'Configurar ABBC3',
 	'ACP_ABBC3_BBCODES'			=> 'Componentes ABBC3',
 	'LOG_CONFIG_ABBCODES'		=> '<strong>Modificado: configuración de ABBC3</strong>',
 	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error al guardar la configuración de ABBC3</strong>',
-));
 
-// This lines are for the UCP
-$lang = array_merge($lang, array(
+	// UCP settings
 	'UCP_ABBCODES'					=> 'Advanced BBCode Box 3',
 	'UCP_ABBC3_SETTINGS'			=> 'Interfaz del editor BBCode de mensajes',
 	'UCP_ABBC3_SETTINGS_EXPLAIN'	=> 'Note que en modo <i>Limitado</i>, no todos los BBCodes estarán disponibles y deberá escribirlos a mano.',
 	'UCP_ABBC3_LIMITED'				=> 'Limitado - Solamente BBCodes básicos sin íconos',
 	'UCP_ABBC3_COMPACT'				=> 'Compacto - Todos los BBCodes en un compacto menú desplegable',
 	'UCP_ABBC3_STANDARD'			=> 'Estándar - Barra de BBCodes completa',
-));
 
-// abbc3_details
-$lang = array_merge($lang, array(
+	// ABBC3 settings page
+	'ABBCODES_SETINGS'					=> 'ABBC3 Configuración',
+	'ABBCODES_SETINGS_EXPLAIN'			=> 'Aquí puede ajustar los parámetros por defecto para <strong>ABBC3</strong>, Habilitar o deshabilitar, y entre otras opciones de ajustar los valores por defecto para el fondo.',
+
+	'ABBCODES_VERSION_CHECK'			=> 'Verificar versión',
+	'ABBCODES_CURRENT_VERSION'			=> 'Versión actual',
+	'ABBCODES_LATEST_VERSION'			=> 'Última versión',
+	'ABBCODES_DOWNLOAD_LATEST'			=> 'Descargar',
+
 	'ABBCODES_DISABLE'					=> 'ABBC3',
-	'ABBCODES_DISABLE_EXPLAIN'			=> 'Habilitar o deshabilitar <strong>Advanced BBodes Box 3</strong> a usuarios, y/o usar la botonera por defecto de phpbb3.',
-//	'ABBCODES_PATH'						=> 'Ruta del script',
-//	'ABBCODES_PATH_EXPLAIN'				=> 'La ruta dónde está ubicado ABBC3 relativa al nombre de dominio, ej. <samp>styles/abbcode</samp>',
+	'ABBCODES_DISABLE_EXPLAIN'			=> 'Habilitar o deshabilitar <strong>Advanced BBCode Box 3</strong> a usuarios, y/o usar la botonera por defecto de phpbb3.',
 	'ABBCODES_BG'						=> 'Imagen de fondo',
 	'ABBCODES_BG_EXPLAIN'				=> 'Aquí puede cambiar la imagen de fondo para la barra de iconos.<br />Utilice <em>No hay imágenes</em> para ajustar a su estilo.',
 	'ABBCODES_TAB'						=> 'Mostrar la división entre etiquetas',
 	'ABBCODES_BOXRESIZE'				=> 'Redimensionar el area de texto',
 	'ABBCODES_BOXRESIZE_EXPLAIN'		=> 'Mostrar los botones para cambiar el tamaño de el area de texto.',
+	'ABBCODES_UCP_MODE'					=> 'PCU Opciones',
+	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Permitir a los usuarios seleccionar su propio modo del editor, eligiendo entre la botonera de phpBB3, ABBC3 “Vista Completa” o en “Vista Compacta”',
+
+	'ABBCODES_WIZARD'					=> 'Asistente',
+	'ABBCODES_WIZARD_SIZE'				=> 'Dimensiones del asistente',
+	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Alto y ancho de la ventana para el sistente emergente.',
+	'ABBCODES_WIZARD_MODE'				=> 'Elija el modo del asistentes',
+##	For translate :                                	Don't			Yes
+	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Deshabilitar asistentes',
+													'1'			=> 'En ventana emergente',
+													'2'			=> 'En página'),
 
 	'ABBCODES_RESIZER'					=> 'Redimensionar Imágenes',
 	'ABBCODES_RESIZE'					=> 'Cambiar el tamaño de imágenes grandes',
@@ -81,16 +96,14 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'AdvancedBox JS',
 													'HighslideBox'	=> 'Highslide JS',
 													'LiteBox'		=> 'Lightbox2 JS',
-													'GreyBox'		=> 'GreyBox JS',
 													'Lightview'		=> 'Lightview JS',
 													'Shadowbox'		=> 'Shadowbox JS',
-													'PopBox'		=> 'PopBox JS',
 													'pop-up'		=> 'Ventana emergente',
 													'enlarge'		=> 'Ampliar',
 													'samewindow'	=> 'Misma ventana',
 													'newwindow'		=> 'Nueva ventana',
 													'none'			=> 'No redimensionar'),
-	
+
 	'NO_EXIST_EXPLAIN_ADVANCEDBOX'		=> 'El archivo <strong>AdvancedBox.js</strong> no está en la carpeta <em>%1$s</em>',
 	'NO_EXIST_EXPLAIN_OTHERS'			=> 'El archivo <strong>%1$s versión %2$s</strong>, no está presente en la caprpeta <em>%3$s</em><br />Si desea utilizar %4$s, usted debe descargar primero el/los archivo/s %4$s desde <a href="%5$s" onclick="window.open(this.href);return false;">here</a> y subir el/los archivos descargados en el directorio <em>%3$s</em>.',
 
@@ -115,45 +128,18 @@ $lang = array_merge($lang, array(
 	'ABBCODES_VIDEO_WMODE'				=> 'Modo transparente',
 	'ABBCODES_VIDEO_WMODE_EXPLAIN'		=> 'Establece la variable "wmode" a transparente. Esto sólo es necesario si el foro tiene un objeto en capas estático (como una barra de herramientas de pie de página) y los vídeos incrustados se están representando en la parte superior del objeto estático.',
 
-	'ABBCODES_COLOUR_MODE'				=> 'Elija el modo de seleccionar colores',
-##	For translate :                                	 Don't			Yes
-	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'El propio del estilo',
-													'dropdown'	=> 'Menú desplegable',
-													'fancy'		=> 'Selector de “Fancy”',
-													'tigra'		=> 'selector de “Tigra”'),
-	'ABBCODES_WIZARD_MODE'				=> 'Elija el modo del asistentes',
-##	For translate :                                	Don't			Yes
-	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Deshabilitar asistentes',
-													'1'			=> 'En ventana emergente',
-													'2'			=> 'En página'),
-	'ABBCODES_UCP_MODE'					=> 'PCU Opciones',
-	'ABBCODES_UCP_MODE_EXPLAIN'			=> 'Permitir a los usuarios seleccionar su propio modo del editor, eligiendo entre la botonera de phpBB3, ABBC3 “Vista Completa” o en “Vista Compacta”',
-
-	'ABBCODES_WIZARD'					=> 'Asistente',
-	'ABBCODES_WIZARD_SIZE'				=> 'Dimensiones del asistente',
-	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Alto y ancho de la ventana para el sistente emergente.',
-
 	'ABBCODES_DESELECT_ALL'				=> 'Desmarcar todo',
 	'ABBCODES_SELECT_ALL'				=> 'Seleccionar todo',
 
-	'ABBCODES_VERSION_CHECK'			=> 'Verificar versión',
-	'ABBCODES_CURRENT_VERSION'			=> 'Versión actual',
-	'ABBCODES_LATEST_VERSION'			=> 'Última versión',
-	'ABBCODES_DOWNLOAD_LATEST'			=> 'Descargar',
-));
+	// ABBC3 BBCodes page
+	'ABBCODES_CONFIG'					=> 'ABBC3 Componentes',
+	'ABBCODES_CONFIG_EXPLAIN'			=> 'En esta esta página puede alterar el orden de las etiquetas o editar los iconos,',
 
-// bbcodes_edit
-$lang = array_merge($lang, array(
-	'ABBCODES_SETINGS'					=> 'ABBC3 Configuración',
-	'ABBCODES_SETINGS_EXPLAIN'			=> 'Aquí puede ajustar los parámetros por defecto para <strong>ABBC3</strong>, Habilitar o deshabilitar, y entre otras opciones de ajustar los valores por defecto para el fondo.',
-	
 	'ABBCODES_EDIT'						=> 'ABBC3 editar bbcode',
 	'ABBCODES_EDIT_EXPLAIN'				=> 'Aquí puede determinar dónde se mostrará o quién puede utilizar y la imagen de cada uno de BBCode.',
 
-	'ABBCODES_CONFIG'					=> 'ABBC3 Componentes',
-	'ABBCODES_CONFIG_EXPLAIN'			=> 'En esta esta página puede alterar el orden de las etiquetas o editar los iconos,',
 	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Administrar grupos : </strong>Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br />Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse CTRL+CLICK (o CMD-CLICK en Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
-	
+
 	'ABBCODES_TIP'						=> 'Ayuda de etiqueta',
 	'ABBCODES_NAME'						=> 'Nombre de etiqueta',
 	'ABBCODES_TAG'						=> 'Imagen de etiqueta',
@@ -166,29 +152,33 @@ $lang = array_merge($lang, array(
 	'ABBCODES_ADD_BREAK'				=> 'Añadir nuevo Salto de línea',
 	'ABBCODES_SYNC'						=> 'Sincronizar orden',
 	'ABBCODES_RESYNC_SUCCESS'			=> 'El orden de los bbcodes ha sido resincronizado.',
-	
+
+	'ABBCODES_COLOUR_MODE'				=> 'Elija el modo de seleccionar colores',
+##	For translate :                                	 Don't			Yes
+	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'El propio del estilo',
+													'dropdown'	=> 'Menú desplegable',
+													'fancy'		=> 'Selector de “Fancy”',
+													'tigra'		=> 'selector de “Tigra”'),
+
 	'ABBCODES_MOD_DISABLE'				=> '<strong>Advanced BBCode Box 3</strong> está desabilitado.<br />',
 	'ABBCODES_STATUS'					=> 'Estado',
 	'ABBCODES_ACTIVATED'				=> 'activado',
 	'ABBCODES_DEACTIVATED'				=> 'desactivado',
-));
 
-// UMIL Installer 
-$lang = array_merge($lang, array(
-// Main
+	// UMIL Installer
+	// Main
 	'INSTALLER_TITLE'					=> 'Advanced BBCode Box 3',
 	'INSTALLER_TITLE_EXPLAIN'			=> 'Bienvenido a la instalación de <strong>%1$s</strong>',
-
 	'INSTALLER_INSTALL_WELCOME'			=> 'Si usted elige actualizar ABBC3, cualquier versión previa de este MOD en la base de datos será eliminada.',
 	'INSTALLER_INSTALL_WELCOME_NOTE'	=> 'Por favor, tenga en cuenta que este proceso podría sobrescribir sus BBCodes personalizados y como resultado, esos BBCodes pueden <strong>no</strong> mostrarse correctamente, en consecuencia de los cambios introducidos por los BBCodes del ABBC3.
-	<br />Si usted encuentra este tipo de problemas utilice el <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong>.
-	<br /><br />Antes de añadir este MOD a su foro, debería hacer una copia de seguridad de los archivos y de la base de datos.',
-	'INSTALLER_INSTALL_END'				=> 'Ahora usted debería <a href="../index.php">entrar en su foro</a> y verificar que todo funciona correctamente. <br />¡ No olvide borrar, renombrar o mover el archivo <strong><em>install_abbc3.php</em></strong>',
-// Stages
+											<br />Si usted encuentra este tipo de problemas utilice el <a href="http://www.phpbb.com/support/stk/" title="" onclick="window.open(this.href);return false;">Support Toolkit <em>(STK)</em></a> <strong>Admin tools » Reparse BBCode</strong>.
+											<br /><br />Antes de añadir este MOD a su foro, debería hacer una copia de seguridad de los archivos y de la base de datos.',
+	// Stages
 	'INSTALLER_CONFIGS_ADD'				=> 'ABBC3 configuración',
 	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbcodes',
-// Misc
+	// Misc
 	'INSTALLER_RESIZE_CHECK'			=> 'Redimensionar actualización de verificación completa',
+	'INSTALLER_BBVIDEO_UPDATER'			=> 'BBvideos have been updated',
 ));
 
 ?>

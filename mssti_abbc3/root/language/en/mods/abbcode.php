@@ -1,12 +1,13 @@
 <?php
 /**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/language/en/mods :: [en][English]
-* @version: $Id: abbcode.php, v 3.0.10 2010/10/04 19:09:22 leviatan21 Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @translator: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-**/
+*
+* abbcode [English]
+*
+* @package language
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
 
 /**
 * DO NOT CHANGE
@@ -43,9 +44,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_HELP_TITLE'			=> 'Advanced BBCode Box 3 :: Help Page',
 	'ABBC3_HELP_DESC'			=> 'Description',
 	'ABBC3_HELP_WRITE'			=> 'BBCode usage format',
-	'ABBC3_HELP_VIEW'			=> 'BBCode example displays as',
-	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.mssti.com/phpbb3" onclick="window.open(this.href);return false;">mssti</a>',
-	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
+	'ABBC3_HELP_VIEW'			=> 'Result',
+	'ABBC3_HELP_ABOUT'			=> 'Advanced BBCode Box 3 by <a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" onclick="window.open(this.href);return false;">mssti</a>',
+//	'ABBC3_HELP_ALT'			=> 'Advanced BBCode Box 3 (aka ABBC3)',
 
 // Image Resizer JS
 	'ABBC3_RESIZE_SMALL'		=> 'Click to view the full image.',
@@ -54,13 +55,10 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_ZOOM_OUT'		=> 'Zoom out',
 	'ABBC3_RESIZE_FILESIZE'		=> 'This image has been resized. The original image is %1$s x %2$s and weights %3$sKB.',
 	'ABBC3_RESIZE_NOFILESIZE'	=> 'This image has been resized. The original image is %1$s x %2$s.',
-	'ABBC3_RESIZE_FULLSIZE'		=> 'Image resized to : %1$s % of its original size [ %2$s x %3$s ]',
+	'ABBC3_RESIZE_FULLSIZE'		=> 'Image resized to %1$s% of its original size [%2$s x %3$s]',
 	'ABBC3_RESIZE_NUMBER'		=> 'Image %1$s of %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Play slideshow',
 	'ABBC3_RESIZE_PAUSE'		=> 'Pause slideshow',
-
-// Pop Box JS
-	'ABBC3_POPBOX_REVERSETEXT'	=> 'Click the image to shrink it.',
 
 // Highslide JS - http://vikjavev.no/highslide/forum/viewtopic.php?t=2119
 	'ABBC3_HIGHSLIDE_LOADINGTEXT'		=> 'Loading...',
@@ -119,7 +117,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_AJAX_DISABLED'		=> 'Your browser does not support AJAX (XMLHttpRequest) and was unable to process this request.',
 	'ABBC3_SUBMIT'				=> 'Insert into message',
 	'ABBC3_SUBMIT_SIG'			=> 'Insert into signature',
-	'SAMPLE_TEXT'				=> 'This is a text sample',
+	'SAMPLE_TEXT'				=> 'The quick brown fox jumps over the lazy dog',
 ));
 
 /**
@@ -143,7 +141,7 @@ $lang = array_merge($lang, array(
 	// Font Size Dropdown
 	'ABBC3_FONT_GIANT'			=> 'Giant',
 	'ABBC3_SIZE_MOVER'			=> 'Font size',
-	'ABBC3_SIZE_TIP'			=> '[size=150]text large[/size]',
+	'ABBC3_SIZE_TIP'			=> '[size=150]large text[/size]',
 	'ABBC3_SIZE_NOTE'			=> 'Note: The value will be interpreted as a percentage',
 	'ABBC3_SIZE_VIEW'			=> '[size=150]' . $lang['SAMPLE_TEXT'] . '[/size]',
 
@@ -167,7 +165,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SAMPLE'				=> 'sample',
 
 	// Cut selected text
-	'ABBC3_CUT_MOVER'			=> 'Removes selected text',
+	'ABBC3_CUT_MOVER'			=> 'Remove selected text',
 	// Copy selected text
 	'ABBC3_COPY_MOVER'			=> 'Copy selected text',
 	// Paste previously copy text
@@ -178,12 +176,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_NOSELECT_ERROR'		=> 'No text was seleted.',
 
 	// Code
-	'ABBC3_CODE_MOVER'			=> 'Code',
+	'ABBC3_CODE_MOVER'			=> 'Code display',
 	'ABBC3_CODE_TIP'			=> '[code]code[/code]',
 	'ABBC3_CODE_VIEW'			=> '[code]' . $lang['SAMPLE_TEXT'] . '[/code]',
 
 	// Quote
-	'ABBC3_QUOTE_MOVER'			=> 'Quote',
+	'ABBC3_QUOTE_MOVER'			=> 'Quote text',
 	'ABBC3_QUOTE_TIP'			=> '[quote]text[/quote] or [quote=“member”]text[/quote]',
 ##	For translate :                                                            yes              yes
 	'ABBC3_QUOTE_VIEW'			=> '[quote]' . $lang['SAMPLE_TEXT'] . '[/quote] or [quote=&quot;member&quot;]' . $lang['SAMPLE_TEXT'] . '[/quote]',
@@ -239,66 +237,65 @@ $lang = array_merge($lang, array(
 	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
 
 	// Justify Align
-	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Text justified',
+	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Justify align text',
 	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]text[/align]',
-##	For translate :                                yes           yes
-	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]This is <br />a sample text<br />' . $lang['SAMPLE_TEXT'] . '[/align]',
+	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Right Align
-	'ABBC3_ALIGNRIGHT_MOVER'	=> 'Text right aligned',
+	'ABBC3_ALIGNRIGHT_MOVER'	=> 'Right align text',
 	'ABBC3_ALIGNRIGHT_TIP'		=> '[align=right]text[/align]',
 	'ABBC3_ALIGNRIGHT_VIEW'		=> '[align=right]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Center Align
-	'ABBC3_ALIGNCENTER_MOVER'	=> 'Text aligned to the center',
+	'ABBC3_ALIGNCENTER_MOVER'	=> 'Center align text',
 	'ABBC3_ALIGNCENTER_TIP'		=> '[align=center]text[/align]',
 	'ABBC3_ALIGNCENTER_VIEW'	=> '[align=center]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Left Align
-	'ABBC3_ALIGNLEFT_MOVER'		=> 'Text left aligned',
+	'ABBC3_ALIGNLEFT_MOVER'		=> 'Left align text',
 	'ABBC3_ALIGNLEFT_TIP'		=> '[align=left]text[/align]',
 	'ABBC3_ALIGNLEFT_VIEW'		=> '[align=left]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Preformat
-	'ABBC3_PRE_MOVER'			=> 'Text preformatted',
+	'ABBC3_PRE_MOVER'			=> 'Preformatted text',
 	'ABBC3_PRE_TIP'				=> '[pre]text[/pre]',
 	'ABBC3_PRE_VIEW'			=> '[pre]' . $lang['SAMPLE_TEXT'] . '<br />		' . $lang['SAMPLE_TEXT'] . '[/pre]',
 
 	// Tab
-	'ABBC3_TAB_MOVER'			=> 'Creates a normal indent',
+	'ABBC3_TAB_MOVER'			=> 'Indent text',
 	'ABBC3_TAB_TIP'				=> '[tab=nn]',
 	'ABBC3_TAB_NOTE'			=> 'Enter a number that will be the margin measured in pixels.',
 	'ABBC3_TAB_VIEW'			=> '[tab=30]' . $lang['SAMPLE_TEXT'],
 
 	// Superscript
-	'ABBC3_SUP_MOVER'			=> 'Sets the text as superscripts',
+	'ABBC3_SUP_MOVER'			=> 'Superscript text',
 	'ABBC3_SUP_TIP'				=> '[sup]text[/sup]',
 ##	For translate :                 yes                                                         yes
 	'ABBC3_SUP_VIEW'			=> 'This is normal text [sup]' . $lang['SAMPLE_TEXT'] . '[/sup] this is normal text',
 
 	// Subscript
-	'ABBC3_SUB_MOVER'			=> 'Sets the text as subscripts',
+	'ABBC3_SUB_MOVER'			=> 'Subscript text',
 	'ABBC3_SUB_TIP'				=> '[sub]text[/sub]',
 ##	For translate :                 yes                                                         yes
 	'ABBC3_SUB_VIEW'			=> 'This is normal text [sub]' . $lang['SAMPLE_TEXT'] . '[/sub] this is normal text',
 
 	// Bold
-	'ABBC3_B_MOVER'				=> 'Text in bold',
+	'ABBC3_B_MOVER'				=> 'Bold text',
 	'ABBC3_B_TIP'				=> '[b]text[/b]',
 	'ABBC3_B_VIEW'				=> '[b]' . $lang['SAMPLE_TEXT'] . '[/b]',
 
 	// Italic
-	'ABBC3_I_MOVER'				=> 'Text in italics',
+	'ABBC3_I_MOVER'				=> 'Italic text',
 	'ABBC3_I_TIP'				=> '[i]text[/i]',
 	'ABBC3_I_VIEW'				=> '[i]' . $lang['SAMPLE_TEXT'] . '[/i]',
 
 	// Underline
-	'ABBC3_U_MOVER'				=> 'Text underlined',
+	'ABBC3_U_MOVER'				=> 'Underline text',
 	'ABBC3_U_TIP'				=> '[u]text[/u]',
 	'ABBC3_U_VIEW'				=> '[u]' . $lang['SAMPLE_TEXT'] . '[/u]',
 
 	// Strikethrough
-	'ABBC3_S_MOVER'				=> 'Text strikethrough',
+	'ABBC3_S_MOVER'				=> 'Strikethrough text',
 	'ABBC3_S_TIP'				=> '[s]text[/s]',
 	'ABBC3_S_VIEW'				=> '[s]' . $lang['SAMPLE_TEXT'] . '[/s]',
 
@@ -308,11 +305,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_FADE_VIEW'			=> '[fade]' . $lang['SAMPLE_TEXT'] . '[/fade]',
 
 	// Text Gradient
-	'ABBC3_GRAD_MOVER'			=> 'Text gradient',
+	'ABBC3_GRAD_MOVER'			=> 'Gradient text',
 	'ABBC3_GRAD_TIP'			=> 'Select some text first',
-##For translate (The separate words are "This is a sample text") 
-##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
-	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',
+	'ABBC3_GRAD_VIEW'			=> '[color=#40FF00]I[/color] [color=#B6FF00]a[/color][color=#F0FF00]m[/color] [color=#DD9845]a[/color] [color=#BF4A94]r[/color][color=#BF5EBB]a[/color][color=#BF71E2]i[/color][color=#B57BFF]n[/color][color=#8E67FF]b[/color][color=#6754FF]o[/color][color=#4040FF]w[/color]',
 	'ABBC3_GRAD_MIN_ERROR'		=> 'No text was seleted.',
 	'ABBC3_GRAD_MAX_ERROR'		=> 'Only text selections less than 120 characters allowed.',
 	'ABBC3_GRAD_COLORS'			=> 'Pre Selected Colors',
@@ -359,7 +354,7 @@ $lang = array_merge($lang, array(
 
 	// List item
 	'ABBC3_LISTITEM_MOVER'		=> 'List item',
-	'ABBC3_LISTITEM_TIP'		=> '[*]',
+	'ABBC3_LISTITEM_TIP'		=> '[*]text',
 	'ABBC3_LISTITEM_NOTE'		=> 'Note: Creates bullets inside list',
 
 	// Line Break
@@ -379,22 +374,22 @@ $lang = array_merge($lang, array(
 	'ABBC3_DIRLTR_VIEW'			=> '[dir=ltr]' . $lang['SAMPLE_TEXT'] . '[/dir]',
 
 	// Marquee Down
-	'ABBC3_MARQDOWN_MOVER'		=> 'Scrolling text down',
+	'ABBC3_MARQDOWN_MOVER'		=> 'Scroll text down',
 	'ABBC3_MARQDOWN_TIP'		=> '[marq=down]text[/marq]',
 	'ABBC3_MARQDOWN_VIEW'		=> '[marq=down]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
 	// Marquee Up
-	'ABBC3_MARQUP_MOVER'		=> 'Scrolling text upwards',
+	'ABBC3_MARQUP_MOVER'		=> 'Scroll text upwards',
 	'ABBC3_MARQUP_TIP'			=> '[marq=up]text[/marq]',
 	'ABBC3_MARQUP_VIEW'			=> '[marq=up]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
 	// Marquee Right
-	'ABBC3_MARQRIGHT_MOVER'		=> 'Displace text to the right',
+	'ABBC3_MARQRIGHT_MOVER'		=> 'Scroll text to the right',
 	'ABBC3_MARQRIGHT_TIP'		=> '[marq=right]text[/marq]',
 	'ABBC3_MARQRIGHT_VIEW'		=> '[marq=right]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
 	// Marquee Left
-	'ABBC3_MARQLEFT_MOVER'		=> 'Displace text to the left',
+	'ABBC3_MARQLEFT_MOVER'		=> 'Scroll text to the left',
 	'ABBC3_MARQLEFT_TIP'		=> '[marq=left]text[/marq]',
 	'ABBC3_MARQLEFT_VIEW'		=> '[marq=left]' . $lang['SAMPLE_TEXT'] . '[/marq]',
 
@@ -417,22 +412,22 @@ $lang = array_merge($lang, array(
 	'ABBC3_CELL_EXAMPLE'		=> 'border:1px solid #cccccc;',
 
 	// Anchor
-	'ABBC3_ANCHOR_MOVER'		=> 'Anchor',
-	'ABBC3_ANCHOR_TIP'			=> '[anchor=(this anchor name) goto=(the name of another anchor)]text[/anchor]',
+	'ABBC3_ANCHOR_MOVER'		=> 'Insert anchor',
+	'ABBC3_ANCHOR_TIP'			=> '[anchor=(this anchor name) goto=(target anchor name)]text[/anchor]',
 	'ABBC3_ANCHOR_EXAMPLE'		=> '[anchor=a1 goto=a2]Go to anchor a2[/anchor]',
 ##	For translate :                                           yes                         Yes               Yes
-	'ABBC3_ANCHOR_VIEW'			=> '[anchor=help_0 goto=help_1]Go to link 1[/anchor]<br /> or  [anchor=help_1]this is the link 1[/anchor]',
+	'ABBC3_ANCHOR_VIEW'			=> '[anchor=help_0 goto=help_1]Go to link 1[/anchor]<br /> or  [anchor=help_1]this is link 1[/anchor]',
 
 	// Hyperlink Wizard
 	'ABBC3_URL_TAG'				=> 'page',
-	'ABBC3_URL_MOVER'			=> 'Web address',	
-	'ABBC3_URL_TIP'				=> '[url]http://...[/url] or [url=http://...]Name of site[/url]',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.mssti.com',
-	'ABBC3_URL_VIEW'			=> '[url=http://www.mssti.com].:: MSSTI ::.[/url]',
+	'ABBC3_URL_MOVER'			=> 'Insert URL',	
+	'ABBC3_URL_TIP'				=> '[url]http://url[/url] or [url=http://url]URL text[/url]',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_VIEW'			=> '[url=http://www.phpbb.com]Visit phpBB![/url]',
 
 	// Email Wizard
 	'ABBC3_EMAIL_TAG'			=> 'email',
-	'ABBC3_EMAIL_MOVER'			=> 'Email',
+	'ABBC3_EMAIL_MOVER'			=> 'Insert Email',
 	'ABBC3_EMAIL_TIP'			=> '[email]user@server.ext[/email] or [email=user@server.ext]My email[/email]',
 	'ABBC3_EMAIL_EXAMPLE'		=> 'user@server.ext',
 	'ABBC3_EMAIL_VIEW'			=> '[email=user@server.ext]user@server.ext[/email]',
@@ -451,9 +446,9 @@ $lang = array_merge($lang, array(
 	// Web included by iframe
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Insert a website in your post',
-	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
-	'ABBC3_WEB_EXAMPLE'			=> 'http://www.mssti.com',
-	'ABBC3_WEB_VIEW'			=> '[web width=99% height=140]http://www.mssti.com[/web]',
+	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]http://url[/web]',
+	'ABBC3_WEB_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_WEB_VIEW'			=> '[web width=99% height=400]http://www.phpbb.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Note:</strong> allowing other websites to be inserted in posts, can pose a security risk. Use at your own risk, or assign to trusted groups.',
 
 	// Image & Thumbnail Wizard
@@ -469,20 +464,20 @@ $lang = array_merge($lang, array(
 	// Image
 	'ABBC3_IMG_TAG'				=> 'image',
 	'ABBC3_IMG_MOVER'			=> 'Insert image',
-	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
+	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://image_url[/img]',
 	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'thumbnail',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Insert thumbnail',
-	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://image_url[/thumbnail]',
 	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 
 	// Imgshack
 	'ABBC3_IMGSHACK_MOVER'		=> 'Insert image from imageshack',
-	'ABBC3_IMGSHACK_TIP'		=> '[url=http://imageshack.us][img]http://...[/img][/url]',
+	'ABBC3_IMGSHACK_TIP'		=> '[url=http://imageshack.us][img]http://image_url[/img][/url]',
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 
 	// Rapid share checker
@@ -501,7 +496,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_TAG'		=> 'link checker',
 	'ABBC3_TESTLINK_MOVER'		=> 'Insert a file stored on public server',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
-	'ABBC3_TESTLINK_NOTE'		=> 'Valid servers:rapidshare,megaupload,megarotic,depositfiles,megashares .',
+	'ABBC3_TESTLINK_NOTE'		=> 'Valid servers: rapidshare, depositfiles, megashares',
 	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
 	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'File found on server !',
@@ -509,11 +504,11 @@ $lang = array_merge($lang, array(
 
 	// Click counter
 	'ABBC3_CLICK_TAG'			=> 'click',
-	'ABBC3_CLICK_MOVER'			=> 'Insert Clicks Counter',
-	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] or [click=http://...]Name Web[/click] or [click][img]http://...[/img][/click]',
-	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.mssti.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
-##	For translate :                                                                     yes
-	'ABBC3_CLICK_VIEW'			=> '[click=http://www.mssti.com] .:: MSSTI ::. [/click] or [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
+	'ABBC3_CLICK_MOVER'			=> 'Insert URL with click counter',
+	'ABBC3_CLICK_TIP'			=> '[click]http://url[/click] or [click=http://url]Name Web[/click] or [click][img]http://url[/img][/click]',
+	'ABBC3_CLICK_EXAMPLE' 		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
+##	For translate :                                                               yes
+	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] Google [/click] or [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
 	'ABBC3_CLICK_TIME'			=> '( Clicked %d time )',
 	'ABBC3_CLICK_TIMES'			=> '( Clicked %d times )',
 	'ABBC3_CLICK_ERROR'			=> '<strong>ERROR:</strong> Please enter a VALID click ID in URL',
@@ -528,8 +523,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
 	'ABBC3_BBVIDEO_MOVER'		=> 'Insert web video',
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
-	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/BBvideo]',
+	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'Please select a video type',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBCode.',
 	'ABBC3_BBVIDEO_FILE'		=> 'File format',
@@ -540,43 +535,43 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TAG'			=> 'flash',
 	'ABBC3_FLASH_MOVER'			=> 'Insert Flash file (swf)',
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] or [flash width,height]URL flash[/flash]',
-	'ABBC3_FLASH_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/relojanalogo.swf',
-	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://www.mssti.com/phpbb3/images/media/relojanalogo.swf[/flash]',
+	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
+	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
 	'ABBC3_FLV_MOVER'			=> 'Insert Flash video (flv)',
 	'ABBC3_FLV_TIP'				=> '[flv width=# height=#]URL flash video[/flv] or [flv width,height]URL flash video[/flv]',
-	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Demo.flv',
-	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mssti.com/phpbb3/images/media/Demo.flv[/flv]',
+	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
+	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv[/flv]',
 
 	// Streaming Video Wizard
 	'ABBC3_VIDEO_TAG'			=> 'video',
 	'ABBC3_VIDEO_MOVER'			=> 'Insert video',
 	'ABBC3_VIDEO_TIP'			=> '[video width=# height=#]URL video[/video]',
-	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/calmate.wmv',
-	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mssti.com/phpbb3/images/media/calmate.wmv[/video]',
+	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
+	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv[/video]',
 
 	// Streaming Audio Wizard
 	'ABBC3_STREAM_TAG'			=> 'sound',
 	'ABBC3_STREAM_MOVER'		=> 'Insert sound',
 	'ABBC3_STREAM_TIP'			=> '[stream]URL stream[/stream]',
-	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3',
-	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.mssti.com/phpbb3/images/media/Cake_I_Will_Survive.mp3[/stream]',
+	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.robtowns.com/music/first_noel.mp3',
+	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
 
 	// Quick time
 	'ABBC3_QUICKTIME_TAG'		=> 'Quicktime',
 	'ABBC3_QUICKTIME_MOVER'		=> 'Insert Quicktime',
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quicktime[/quicktime]',
-	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt',
-	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.mssti.com/phpbb3/images/media/Buenos_Aires.qt[/quicktime]',
+	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt',
+	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
 
 	// Real Media Wizard
 	'ABBC3_RAM_TAG'				=> 'Real Media',
 	'ABBC3_RAM_MOVER'			=> 'Insert Real Media',
 	'ABBC3_RAM_TIP'				=> '[ram]URL Real Media[/ram]',
-	'ABBC3_RAM_EXAMPLE'			=> 'http://www.mssti.com/phpbb3/images/media/Dr_Who.ram',
-	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://www.mssti.com/phpbb3/images/media/Dr_Who.ram[/ram]',
+	'ABBC3_RAM_EXAMPLE'			=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
+	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
 
 	// Google video Wizard
 	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
@@ -589,19 +584,19 @@ $lang = array_merge($lang, array(
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',
 	'ABBC3_YOUTUBE_MOVER'		=> 'Insert video from Youtube',
 	'ABBC3_YOUTUBE_TIP'			=> '[youtube]URL video[/youtube]',
-	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=PDGxfsf-xwQ',
-	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=PDGxfsf-xwQ[/youtube]',
+	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
+	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=sP4NMoJcFd4[/youtube]',
 
 	// Veoh video
 	'ABBC3_VEOH_TAG'			=> 'Veoh',
 	'ABBC3_VEOH_MOVER'			=> 'Insert video from Veoh',
 	'ABBC3_VEOH_TIP'			=> '[veoh]URL video[/veoh]',
-	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J',
-	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/browse/videos/category/entertainment/watch/v18183513AEp9gT8J[/veoh]',
+	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/watch/v27458670er62wkCt',
+	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/watch/v27458670er62wkCt[/veoh]',
 
 	// Collegehumor video
-	'ABBC3_COLLEGEHOMOR_TAG'	=> 'collegehumor',
-	'ABBC3_COLLEGEHUMOR_MOVER'	=> 'Insert video from collegehumor',
+	'ABBC3_COLLEGEHUMOR_TAG'	=> 'Collegehumor',
+	'ABBC3_COLLEGEHUMOR_MOVER'	=> 'Insert video from Collegehumor',
 	'ABBC3_COLLEGEHUMOR_TIP'	=> '[collegehumor]collegehumor video URL[/collegehumor]',
 	'ABBC3_COLLEGEHUMOR_EXAMPLE'=> 'http://www.collegehumor.com/video:1802097',
 	'ABBC3_COLLEGEHUMOR_VIEW'	=> '[collegehumor]http://www.collegehumor.com/video:1802097[/collegehumor]',

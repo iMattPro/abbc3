@@ -1,16 +1,14 @@
-// <![CDATA[
-
 /**
 * Function Rainbow text - START
 **/
 function Rainbow( )
 {
-	var myRainbowSpan = new Array();
-	elem = getElementsByClassName("Rainbow");
-	for (var i=0; i < elem.length; i++)
+	var myRainbowSpan = []; //new Array();
+	var elem = getElementsByClassName("Rainbow");
+	for (var i = 0; i < elem.length; i++)
 	{
 		// Bring the element an ID
-		var rand_id = parseInt(Math.random()*10000);
+		var rand_id = parseInt(Math.random()*10000, 10);
 		if ( !elem[i].id )
 		{
 			// Set the ID
@@ -18,15 +16,15 @@ function Rainbow( )
 			var r1 = document.getElementById( elem[i].id );
 
 			// remove/strip HTML tags : Script by hscripts.com
-			var re		 = /(<([^>]+)>)/gi;
+			var re = /(<([^>]+)>)/gi;
 			r1.innerHTML = r1.innerHTML.replace(re, "");
 			// Run the function
 			myRainbowSpan[rand_id] = new RainbowSpan( r1 );
 			// Set the timer
-			myRainbowSpan[rand_id].timer =  window.setInterval( function( )
+			myRainbowSpan[rand_id].timer = window.setInterval( function( )
 			{
 				myRainbowSpan[rand_id].moveRainbow( );
-			}, myRainbowSpan[rand_id].speed )
+			}, myRainbowSpan[rand_id].speed );
 		}
 	}
 }
@@ -35,11 +33,11 @@ function RainbowSpan(elem, hue, deg, brt, spd, hspd)
 {
 	this.span		= elem;
 
-	this.hue		= ( hue == null ? 0   : Math.abs(hue) % 360	);
-	this.hspd		= ( hspd== null ? 3   : Math.abs(hspd) % 360);
-	this.speed		= ( spd == null ? 10  : Math.abs(spd)		);
-	this.brt		= ( brt == null ? 255 : Math.abs(brt) % 256	);
-	this.deg		= ( deg == null ? 360 : Math.abs(deg)		);
+	this.hue		= ( hue === null ? 0   : Math.abs(hue) % 360 );
+	this.hspd		= ( hspd=== null ? 3   : Math.abs(hspd) % 360 );
+	this.speed		= ( spd === null ? 10  : Math.abs(spd) );
+	this.brt		= ( brt === null ? 255 : Math.abs(brt) % 256 );
+	this.deg		= ( deg === null ? 360 : Math.abs(deg) );
 	this.length		= this.span.firstChild.data.length;
 	this.hInc		= this.deg/this.length;
 
@@ -62,43 +60,43 @@ RainbowSpan.prototype.moveRainbow = function( )
 		this.hue-=360;
 	}
 
-	var color;
+	var color, red, grn, blu;
 	var b = this.brt;
 	var h = this.hue;
 
 	/** Change the color direction, depending on the user's language direction **/
-	var pagedir = ( document.documentElement.dir == null ? 'ltr' : document.documentElement.dir );
-	for( var i = ( pagedir == 'ltr' ? -1 : 0 ), a = a = this.length; i < a; ( pagedir == 'ltr' ? a-- : i++) )
+	var pagedir = ( document.documentElement.dir === null ? 'ltr' : document.documentElement.dir );
+	for( var i = ( pagedir === 'ltr' ? -1 : 0 ), a = this.length; i < a; ( pagedir === 'ltr' ? a-- : i++) )
 	{
-		if(h>359) h-=360;
+		if ( h > 359 ) { h-=360; }
 
 		if		( h < 60  ) { color = Math.floor( ( (h    ) / 60 ) * b ); red = b;		grn = color;	blu=0;		}
 		else if	( h < 120 ) { color = Math.floor( ( (h-60 ) / 60 ) * b ); red = b-color;grn = b;		blu=0;		}
 		else if	( h < 180 ) { color = Math.floor( ( (h-120) / 60 ) * b ); red = 0;		grn = b;		blu=color;	}
 		else if	( h < 240 ) { color = Math.floor( ( (h-180) / 60 ) * b ); red = 0;		grn = b-color;	blu=b;		}
 		else if	( h < 300 ) { color = Math.floor( ( (h-240) / 60 ) * b ); red = color;	grn = 0;		blu=b;		}
-		else 				{ color = Math.floor( ( (h-300) / 60 ) * b ); red = b;		grn = 0;		blu=b-color;}
+		else				{ color = Math.floor( ( (h-300) / 60 ) * b ); red = b;		grn = 0;		blu=b-color;}
 
 		h+=this.hInc;
 
-		if ( this.span.childNodes[( pagedir == 'ltr' ? a : i)] )
+		if ( this.span.childNodes[( pagedir === 'ltr' ? a : i)] )
 		{
-			this.span.childNodes[( pagedir == 'ltr' ? a : i)].style.color="rgb("+red+", "+grn+", "+blu+")";
+			this.span.childNodes[( pagedir === 'ltr' ? a : i)].style.color="rgb("+red+", "+grn+", "+blu+")";
 		}
 	}
 	this.hue+=this.hspd;
-}
+};
 /** Funtion Rainbow text - End **/
 
 /**
 * Function Fade-in fade-out text - START
 **/
-var FadeOut	 = true
-var FadePas	 = 0;
-var FadeMax	 = 100; // 255;
-var FadeMin	 = 0;
+var FadeOut  = true;
+var FadePas  = 0;
+var FadeMax  = 100; // 255;
+var FadeMin  = 0;
 var FadeStep = 10; // 20;
-var FadeInt	 = 100;
+var FadeInt  = 100;
 var FadeInterval;
 
 var fade_IE = ( window.navigator.userAgent.match(/(^|\W)(MSIE)\s+(\d+)(\.\d+)?/) ) ? true : false;
@@ -134,7 +132,7 @@ function fade_ontimer()
 
 	if ((FadePas < FadeMax) && (FadePas > FadeMin) )
 	{
-		elem = getElementsByClassName("fade_link");
+		var elem = getElementsByClassName("fade_link");
 		for (var i=0; i < elem.length; i++)
 		{
 		/**	elem[i].style.color="rgb(" + FadePas + "," + FadePas + "," + FadePas + ")"; **/
@@ -234,7 +232,7 @@ function MyGetElementsByClassName(classname)
 	{
 		var els = document.getElementsByTagName("*");
 		var c = new RegExp('/b^|' + classname + '|$/b');
-		varfinal = new Array();
+		var varfinal = []; //new Array();
 		var n=0;
 		for (var i=0; i < els.length; i++)
 		{
@@ -261,7 +259,7 @@ function MyGetElementsByClassName(classname)
 **/
 function abbc3_spoiler( el, hide_text, show_text )
 {
-	if ( el.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display !='')
+	if ( el.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display !== '')
 	{
 		el.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = ''; 
 		el.getElementsByTagName('a')[0].innerHTML = '<strong>' + hide_text + '</strong>'; 
@@ -282,7 +280,7 @@ function abbc3_toggle( id )
 {
 	if (document.getElementById(id))
 	{
-		if (document.getElementById(id).style.display == 'block')
+		if (document.getElementById(id).style.display === 'block')
 		{
 			document.getElementById(id).style.display = 'none';
 		}
@@ -314,12 +312,13 @@ function checkAll( str )
 	}
 }
 
-function download( str, i, first )
+function download( str, count, first )
 {
 	var a = document.getElementsByName( str );
 	var n = a.length;
+	var timeout;
 
-	for (var i = i; i < n; i++)
+	for (var i = count; i < n; i++)
 	{
 		if( a[i].checked )
 		{
@@ -346,15 +345,16 @@ function download( str, i, first )
 * specify whether contents should be auto copied to clipboard (memory)
 * Applies only to IE 4+
 **/
-var copytoclip=1 /** 0=no, 1=yes **/
+var copytoclip = 1; /** 0=no, 1=yes **/
 
 function HighlightAll( theField )
 {
 	var tempval = eval("document."+theField);
+	var therange;
 	tempval.focus();
 	tempval.select();
 	
-	if (document.all && copytoclip == 1)
+	if (document.all && copytoclip === 1)
 	{
 		therange=tempval.createTextRange();
 		therange.execCommand("Copy");
@@ -367,7 +367,7 @@ function HighlightAll( theField )
 **/
 function externalLinks( anchor )
 {
-	if ( anchor.getAttribute("href") && ( anchor.getAttribute("rel") == "external" || anchor.getAttribute("rel") == "gb_imageset[]" ) )
+	if ( anchor.getAttribute("href") && ( anchor.getAttribute("rel") === "external" || anchor.getAttribute("rel") === "gb_imageset[]" ) )
 	{
 		anchor.target = "_blank";
 	}
@@ -396,16 +396,17 @@ var kmrSimpleTabs = {
 
 	init: function()
 	{
-		if (!document.getElementsByTagName) return false;
-		if (!document.getElementById) return false;
-		if (!getElementsByClassName("simpleTabs").length) return false;
+		if (!document.getElementsByTagName) { return false; }
+		if (!document.getElementById) { return false; }
+		if (!getElementsByClassName("simpleTabs").length) { return false; }
 
 		var containerDiv = document.getElementsByTagName("div");
+		var cookieElements, curTabCont, curAnchor;
 
 		var Tabber_id = 1;
 		for(var i=0; i<containerDiv.length; i++)
 		{
-			if (containerDiv[i].className == "simpleTabs")
+			if (containerDiv[i].className === "simpleTabs")
 			{
 				Tabber_id++;
 				// assign a unique ID for this tab block and then grab it
@@ -417,21 +418,21 @@ var kmrSimpleTabs = {
 				
 				for(var j=0; j<ul.length; j++)
 				{
-					if (ul[j].className == "simpleTabsNavigation")
+					if (ul[j].className === "simpleTabsNavigation")
 					{
 						var a = ul[j].getElementsByTagName("a");
-						for(var k=0; k<a.length; k++)
+						for(var k = 0; k < a.length; k++)
 						{
 							a[k].setAttribute("id",containerDivId+"_a_"+k);
 							// get current
 							if(kmrSimpleTabs.readCookie('simpleTabsCookie'))
 							{
-								var cookieElements = kmrSimpleTabs.readCookie('simpleTabsCookie').split("_");
-								var curTabCont = cookieElements[1];
-								var curAnchor = cookieElements[2];
-								if(a[k].parentNode.parentNode.parentNode.getAttribute("id")=="tabber"+curTabCont)
+								cookieElements = kmrSimpleTabs.readCookie('simpleTabsCookie').split("_");
+								curTabCont = cookieElements[1];
+								curAnchor = cookieElements[2];
+								if(a[k].parentNode.parentNode.parentNode.getAttribute("id")==="tabber"+curTabCont)
 								{
-									if(a[k].getAttribute("id")=="tabber"+curTabCont+"_a_"+curAnchor)
+									if(a[k].getAttribute("id")==="tabber"+curTabCont+"_a_"+curAnchor)
 									{
 										a[k].className = "current";
 									} else {
@@ -448,7 +449,7 @@ var kmrSimpleTabs = {
 							{
 								kmrSimpleTabs.setCurrent(this,'simpleTabsCookie');
 								return false;
-							}
+							};
 						}
 					}
 				}
@@ -458,18 +459,18 @@ var kmrSimpleTabs = {
 				var div = containerDiv[i].getElementsByTagName("div");
 				for(var l=0; l<div.length; l++)
 				{
-					if (div[l].className == "simpleTabsContent")
+					if (div[l].className === "simpleTabsContent")
 					{
 						TabContent_id++;
 						div[l].setAttribute("id",containerDivId+"_div_"+TabContent_id);	
 						if(kmrSimpleTabs.readCookie('simpleTabsCookie'))
 						{
-							var cookieElements = kmrSimpleTabs.readCookie('simpleTabsCookie').split("_");
-							var curTabCont = cookieElements[1];
-							var curAnchor = cookieElements[2];		
-							if(div[l].parentNode.getAttribute("id")=="tabber"+curTabCont)
+							cookieElements = kmrSimpleTabs.readCookie('simpleTabsCookie').split("_");
+							curTabCont = cookieElements[1];
+							curAnchor = cookieElements[2];		
+							if(div[l].parentNode.getAttribute("id")==="tabber"+curTabCont)
 							{
-								if(div[l].getAttribute("id")=="tabber"+curTabCont+"_div_"+curAnchor)
+								if(div[l].getAttribute("id")==="tabber"+curTabCont+"_div_"+curAnchor)
 								{
 									div[l].className = "simpleTabsContent currentTab";
 								} else {
@@ -531,13 +532,17 @@ var kmrSimpleTabs = {
 	// Cookies
 	createCookie: function(name,value,days)
 	{
+		var expires;
 		if (days)
 		{
 			var date = new Date();
 			date.setTime(date.getTime()+(days*24*60*60*1000));
-			var expires = "; expires="+date.toGMTString();
+			expires = "; expires="+date.toGMTString();
 		}
-		else var expires = "";
+		else
+		{
+			expires = "";
+		}
 		document.cookie = name+"="+value+expires+"; path=/";
 	},
 	
@@ -548,8 +553,14 @@ var kmrSimpleTabs = {
 		for(var i=0;i < ca.length;i++)
 		{
 			var c = ca[i];
-			while (c.charAt(0)==' ') c = c.substring(1,c.length);
-			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+			while (c.charAt(0) === ' ')
+			{
+				c = c.substring(1,c.length);
+			}
+			if (c.indexOf(nameEQ) === 0)
+			{
+				return c.substring(nameEQ.length,c.length);
+			}
 		}
 		return null;
 	},
@@ -565,13 +576,12 @@ if (window.onload_functions) // prosilver
 {
 	onload_functions.push('kmrSimpleTabs.init()');
 }
-else if (typeof(window.addEventListener) != "undefined") // DOM
+else if (typeof(window.addEventListener) !== "undefined") // DOM
 {
 	window.addEventListener("load", kmrSimpleTabs.init, false);
 }
-else if (typeof(window.attachEvent) != "undefined") // MSIE
+else if (typeof(window.attachEvent) !== "undefined") // MSIE
 {
 	window.attachEvent("onload", kmrSimpleTabs.init);
 }
 /** Install the safety net to run once the main function - END **/
-// ]]>

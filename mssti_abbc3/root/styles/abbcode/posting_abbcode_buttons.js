@@ -1,12 +1,3 @@
-/**
-* @package: phpBB :: Advanced BBCode Box 3 -> root/styles/abbcode
-* @version: $Id: posting_abbcode_buttons.js, v 3.0.10 2010/09/13 10:06:28 leviatan21 Exp $
-* @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
-* @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
-* @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
-* @Co-Author: VSE - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=868795
-**/
-
 var copy_paste = '';
 /**
 * Default values for width and height values for the wizard pop-up window
@@ -97,7 +88,7 @@ function bbcode_to_plain(data)
 	/** return '['+ match_1 + (match_2 ? '='+ match_2 : '') +']'+ match_3 +'[/'+ match_1 +']'; **/
 	}
 
-	var basic_bbcode_match	 = bbcode_to_plain_create_regexp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
+	var basic_bbcode_match   = bbcode_to_plain_create_regexp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
 	var basic_bbcode_replace = bbcode_to_plain_create_regexp('^(\\d+)x(\\d+)$');
 
 	/** Special bbcodes **/
@@ -183,7 +174,7 @@ function helpline2(help, help_box)
 
 /**
 * Main function Apply bbcodes
-* based-of editor.js -> function bbfontstyle()
+* based-off editor.js -> function bbfontstyle()
 * @param string		bbcode		bbcode name
 * @param string		bbopen		The open tag
 * @param string		bbclose		The close tag
@@ -451,6 +442,7 @@ function ABBC3_palette(el, mode)
 	var color;
 	var optn;
 	var item;
+	var optn_className;
 	var numberList = {
 		0 : '00',
 		1 : '40',
@@ -461,9 +453,9 @@ function ABBC3_palette(el, mode)
 
 	if (mode == 'dropdown' && el == 'abbc3_color')
 	{
-		var topic_cur_post_id = document.forms[form_name].elements['topic_cur_post_id'];
-			topic_cur_post_id = (topic_cur_post_id) ? parseInt(topic_cur_post_id.value) + 1 : parseInt('{S_POST_ID}', 10);
-		var optn_className = (isEven(topic_cur_post_id)) ? 'bg2 row1' : 'bg1 row2';
+		var topic_cur_post_id = document.forms[form_name].elements.topic_cur_post_id;
+			topic_cur_post_id = (topic_cur_post_id) ? parseInt(topic_cur_post_id.value, 10) + 1 : parseInt('{S_POST_ID}', 10);
+			optn_className = (isEven(topic_cur_post_id)) ? 'bg2 row1' : 'bg1 row2';
 	}
 
 	for (var r = 4; r > -1; r--)
@@ -481,12 +473,12 @@ function ABBC3_palette(el, mode)
 
 					if (el == 'ul_color_selector')
 					{
-						item['onclick']=new Function('bbfontstyle("[color=#'+color+']", "[/color]"); return false;');
+						item.onclick = new Function('bbfontstyle("[color=#'+color+']", "[/color]"); return false;');
 						item.style.color = '#' + color;
 					}
 					else
 					{
-						item['onclick']=new Function('bbfontstyle("[highlight=#'+color+']", "[/highlight]"); return false;');
+						item.onclick = new Function('bbfontstyle("[highlight=#'+color+']", "[/highlight]"); return false;');
 						item.style.backgroundColor = '#' + color;
 					}
 					elSel.appendChild(item);
@@ -538,7 +530,7 @@ function textbox_resize(height, el, cookie_name)
 		el = text_name;
 	}
 
-	/* if no cookir ID was passed, use the main ID */
+	/* if no cookie ID was passed, use the main ID */
 	if (typeof(cookie_name) == 'undefined')
 	{
 		cookie_name = '{S_ABBC3_COOKIE_NAME}' + el;
@@ -605,11 +597,12 @@ if (typeof createCookie != 'function')
 {
 	function createCookie(name, value, days)
 	{
+		var expires;
 		if (days)
 		{
 			var date = new Date();
 			date.setTime(date.getTime() + (days*24*60*60*1000));
-			var expires = '; expires=' + date.toGMTString();
+			expires = '; expires=' + date.toGMTString();
 		}
 		else
 		{	
@@ -809,7 +802,7 @@ function ABBC3_Ajax_send(url, parameters, bbcode, container_id)
 		url = url.replace(/&amp;/g, '&');
 		parameters = parameters.replace(/&amp;/g, '&') + '&ajax=true';
 		// Event handler for an event that fires at every state change
-		xmlhttp.onreadystatechange = function(){ ABBC3_Ajax_handler(xmlhttp, container_id, bbcode); }
+		xmlhttp.onreadystatechange = function(){ ABBC3_Ajax_handler(xmlhttp, container_id, bbcode); };
 		xmlhttp.open('POST', url + parameters, true);
 		xmlhttp.send(parameters);
 	}
@@ -824,7 +817,7 @@ function ABBC3_Ajax_send(url, parameters, bbcode, container_id)
 function ABBC3_Ajax_handler(xmlhttp, container_id, bbcode)
 {
 	// Object status integer
-	     if (xmlhttp.readyState == 0) { /* 0 = uninitialized */	}
+	if (xmlhttp.readyState == 0) { /* 0 = uninitialized */	}
 	else if (xmlhttp.readyState == 1) { /* 1 = loading */		}
 	else if (xmlhttp.readyState == 2) { /* 2 = loaded */		}
 	else if (xmlhttp.readyState == 3) { /* 3 = interactive */	}
@@ -870,7 +863,7 @@ function ABBC3_Ajax_update(el, str)
 }
 
 /**
-* Manae the ajax spinning loading image
+* Manage the ajax spinning loading image
 * @param string		mode	(on=display|off=hide|null=create)
 **/
 function ABBC3_Ajax_indicator(mode)
@@ -891,6 +884,7 @@ function ABBC3_Ajax_indicator(mode)
 			ABBC3_Ajax_image.setAttribute('id', 'ABBC3_Ajax_image');
 			ABBC3_Ajax_image.setAttribute('src', '{S_ABBC3_PATH}/abbcode_ajax_loading.gif');
 			ABBC3_Ajax_image.style.display = 'none';
+			ABBC3_Ajax_image.style.margin = '3px auto';
 			ABBC3_Ajax_indicator.appendChild(ABBC3_Ajax_image);
 		}
 	}
@@ -931,11 +925,11 @@ if (window.onload_functions) // prosilver
 {
 	onload_functions[onload_functions.length] = "ABBC3_init();";
 }
-else if (typeof(window.addEventListener) != "undefined") // DOM
+else if (typeof(window.addEventListener) !== "undefined") // DOM
 {
 	window.addEventListener("load", ABBC3_init, false);
 }
-else if (typeof(window.attachEvent) != "undefined") // MSIE
+else if (typeof(window.attachEvent) !== "undefined") // MSIE
 {
 	window.attachEvent("onload", ABBC3_init);
 }

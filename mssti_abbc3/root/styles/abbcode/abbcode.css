@@ -1,12 +1,5 @@
-/*  phpBB 3.0 Style Sheet
- * --------------------------------------------------------------
- * @package: phpBB3 :: Advanced BBCode Box 3 -> styles -> abbcode
- * @version: $Id: abbcode.css, v 3.0.10 10/13/11 2:19 PM VSE Exp $
- * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
- * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
- * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
- * --------------------------------------------------------------
-*/
+/* ABBC3 Markup Styles
+---------------------------------------- */
 
 .cat {
 	text-indent : 0;
@@ -18,6 +11,7 @@
 	background-color : transparent !important;
 	border-style : none;
 	font-size : 10px;
+	padding-bottom:5px;
 	/* For Safari */
 	resize : none;
 }
@@ -61,7 +55,7 @@ hr.hrdotted {
 /*	Never set a default height for the textarea, will break the function textbox_resize() */
 	height : auto; /* use of auto will override fixed height set in forms.css of phpbb */
 	/* For Safari */
-	resize : none;
+	/*resize : none;*/
 }
 
 #abbc3posttable, 
@@ -75,10 +69,11 @@ hr.hrdotted {
 #abbc3wysiwig select {
 	height : 20px;
 	margin : 3px 0;
+	font-size : 1.0em;
 }
 
 #acp #abbc3posttable select {
-	font-size : 1.1em;
+	font-size : 1.0em;
 }
 
 #abbc3posttable option, 
@@ -97,7 +92,8 @@ hr.hrdotted {
 }
 #abbc3posttable tr, #abbc3posttable td, #abbc3posttable div, 
 #abbc3wysiwig tr, #abbc3wysiwig td, #abbc3wysiwig div {
-	height : 26px;
+	border : 1px solid #C0C0C0;
+	height : 29px;
 	margin : 0;
 	padding : 0 0 0 2px;
 	vertical-align : top;
@@ -118,6 +114,7 @@ hr.hrdotted {
 #abbc3wysiwig .button2 {
 	margin : 5px 0 4px 0;
 	padding : 2px 5px;
+	max-height: 20px;
 }
 
 #abbc3posttable .btnlite,
@@ -573,8 +570,8 @@ ul.abbc3-gallery img {
 /** gallery - Start **/
 
 /** Image Resizer JS - START **/
-.resized-div           { margin: 0; padding: 0; border: 0px; background-color: #000000; width: 100%; /*width: auto;*/ height: 24px; -moz-border-radius: 7px 7px 0 0; border-radius: 7px 7px 0 0; text-align: left; }
-.resized-txt           { padding-bottom: 5px; color: #ffffff; font-size: 12px; font-weight: normal; text-decoration: none; font-family: "Trebuchet MS", Helvetica, Arial, sans-serif; vertical-align: middle; font-variant: normal; text-transform: none; line-height: 100%; text-align: left; }
+.resized-div           { margin: 0; padding: 0; border: 0px; background-color: #000000; width: 100%; /*width: auto;*/ height: 24px; -moz-border-radius: 7px 7px 0 0; -webkit-border-radius: 7px 7px 0 0; border-radius: 7px 7px 0 0; text-align: left; }
+.resized-txt           { padding-bottom: 5px; color: #ffffff; font-size: 10px; font-weight: normal; text-decoration: none; font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; vertical-align: middle; font-variant: normal; text-transform: none; line-height: 100%; text-align: left; }
 .resized-div img       { background-color: transparent !important; border: 1px solid transparent !important; margin: 2px 5px 0 10px; }
 .resized-div img:hover { border: 1px solid transparent !important; }
 .resized-div a:link,
@@ -584,14 +581,15 @@ ul.abbc3-gallery img {
 /*
 .resized-div a img     { background-color: transparent; border-color: #dddddd #bbbbbb #aaaaaa #cccccc; border-style: dotted; border-width: 1px; margin: 3px; padding: 5px; }
 */
+.resized, .hoverbox { cursor: url("zoomin.cur"), pointer !important; }
 /** Image Resizer JS - END **/
 
 /** AdvancedBox JS - START **/
 #AB-BackGround        { position: absolute; top: 0; left: 0; z-index: 90; width: 100%; height: 100%; background-color: #000; }
 #AB-Overlay           { position: absolute; top: 0; left: 0; width: 100%; z-index: 100; text-align: center; line-height: 0; }
 #AB-ToolBar           { position: absolute; top: 0; left: 0; height: 20px; width: 100%; z-index: 10; }
-#AB-ImageName1        { float: right; margin: 0; padding: 0 5px; width: auto; height: 18px; color: #f1f1f1; line-height: 150%; }
-#AB-ImageName2        { float: right; margin: 0; padding: 2px 0; width: auto; height: 18px; color: #f1f1f1; line-height: 150%; }
+#AB-ImageName1        { float: right; margin: 0; padding: 0 5px; width: auto; height: 18px; color: #f1f1f1; line-height: 150%; font-size: 13px;}
+#AB-ImageName2        { float: right; margin: 0; padding: 2px 0; width: auto; height: 18px; color: #f1f1f1; line-height: 150%; font-size: 13px;}
 #AB-OuterContainer    { position: relative; width: 250px; height: 250px; margin: auto auto; border: 4px solid white; background-color: white; }
 #AB-LoadingLink       { z-index: 1000; position: absolute; top: 52%; left: 49%; width: 20px; height: 20px; margin: 0; padding: 0; background: transparent url("advancedbox_blank.gif") no-repeat; /* Trick IE into showing hover */ }
 #AB-LoadingLink       { background: url("advancedbox_icon_loading.gif") top left no-repeat; }
@@ -813,3 +811,12 @@ ul.simpleTabsNavigation li a.current {
 	background : #ffffff url("images/bg/tab-active.png");
 }
 /** SimpleTabs: default style - End **/
+
+/* disable text selection/highlighting in the ACP, improves the jQuery drag and drop UI */
+#acp_bbcodes_table {
+	user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+}

@@ -5,30 +5,24 @@
 <!-- IF S_ABBC3_RESIZE and (S_NEW_MESSAGE or S_EDIT_POST or S_VIEWTOPIC or S_DISPLAY_PREVIEW or S_POST_REVIEW or S_DISPLAY_REVIEW or SIGNATURE) or (U_MCP and (U_MCP_POST or U_MCP_TOPIC or U_MCP_FORUM)) or (S_PRIVMSGS and (S_VIEW_MESSAGE or S_DISPLAY_HISTORY)) or (SEARCH_TITLE or SEARCH_MATCHES) -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'HighslideBox' -->
-	<script type="text/javascript" src="{S_ABBC3_PATH}/highslide/highslide-full.js"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/highslide/highslide.css" />
+	<script type="text/javascript" src="{S_ABBC3_PATH}/highslide/highslide-full.js?{S_ABBC3_VERSION}"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/highslide/highslide.css?{S_ABBC3_VERSION}" />
 	<style type="text/css">.controls-in-heading .highslide-controls { top: 25px; }</style>
-	<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="{S_ABBC3_PATH}/highslide/highslide-ie6.css" /><![endif]-->
+	<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="{S_ABBC3_PATH}/highslide/highslide-ie6.css?{S_ABBC3_VERSION}" /><![endif]-->
 	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Lightview' -->
 	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
-	<script type='text/javascript' src='{S_ABBC3_PATH}/lightview/prototype.js'></script>
+	<script type='text/javascript' src='{S_ABBC3_PATH}/lightview/prototype.js?{S_ABBC3_VERSION}'></script>
 	<script type='text/javascript' src='{S_ABBC3_PATH}/lightview/scriptaculous.js?load=effects'></script>
-	<script type='text/javascript' src='{S_ABBC3_PATH}/lightview/js/lightview.js'></script>
-	<link rel="stylesheet" type="text/css" href="{S_ABBC3_PATH}/lightview/css/lightview.css" />
+	<script type='text/javascript' src='{S_ABBC3_PATH}/lightview/js/lightview.js?{S_ABBC3_VERSION}'></script>
+	<link rel="stylesheet" type="text/css" href="{S_ABBC3_PATH}/lightview/css/lightview.css?{S_ABBC3_VERSION}" />
 	<style type="text/css" media="screen, projection">#lightview .clearfix { height: auto; }</style>
 	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Shadowbox' -->
-	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/shadowbox/shadowbox.css" />
-	<script type="text/javascript" src="{S_ABBC3_PATH}/shadowbox/shadowbox.js"></script>
-	<!-- ENDIF -->
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'PopBox' -->
-	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
-	<script type="text/javascript" src="{S_ABBC3_PATH}/PopBox/PopBox.js"></script>
-	<link type="text/css" rel="stylesheet" href="{S_ABBC3_PATH}/PopBox/PopBox.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/shadowbox/shadowbox.css?{S_ABBC3_VERSION}" />
+	<script type="text/javascript" src="{S_ABBC3_PATH}/shadowbox/shadowbox.js?{S_ABBC3_VERSION}"></script>
 	<!-- ENDIF -->
 
 	<script type="text/javascript">
@@ -137,50 +131,28 @@
 	/** Image Resizer JS with Lightbox JS - End **/
 	<!-- ENDIF -->
 
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'GreyBox' -->
-	/** Image Resizer JS with GreyBox JS - Start **/
-		var GB_ROOT_DIR = "{S_ABBC3_PATH}/greybox/";
-	/** Image Resizer JS with GreyBox JS - End **/
-	<!-- ENDIF -->
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Lightview' -->
-	/** Image Resizer JS with Lightview JS - Start **/
-	/** Image Resizer JS with Lightview JS - End **/
-	<!-- ENDIF -->
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Shadowbox' -->
-	/** Image Resizer JS with Shadowbox JS - Start **/
-	/** Image Resizer JS with Shadowbox JS - End **/
-	<!-- ENDIF -->
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'PopBox' -->
-	/** Image Resizer JS with Pop Box JS - Start **/
-		var popBoxRevertText	= "{LA_ABBC3_POPBOX_REVERSETEXT}";
-		popBoxWaitImage.src		= "{S_ABBC3_PATH}/PopBox/images/spinner40.gif";
-		var popBoxRevertImage	= "{S_ABBC3_PATH}/PopBox/images/magminus.gif";
-		var popBoxPopImage		= "{S_ABBC3_PATH}/PopBox/images/magplus.gif";
-	/** Image Resizer JS with Pop Box JS - End **/
-	<!-- ENDIF -->
 	// ]]>
 	</script>
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'LiteBox' -->
 	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
-	<script src="{S_ABBC3_PATH}/lightbox/prototype.js" type="text/javascript"></script>
+	<script src="{S_ABBC3_PATH}/lightbox/prototype.js?{S_ABBC3_VERSION}" type="text/javascript"></script>
 	<script src="{S_ABBC3_PATH}/lightbox/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
-	<script src="{S_ABBC3_PATH}/lightbox/lightbox.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="{S_ABBC3_PATH}/lightbox/lightbox.css" type="text/css" media="screen" />
+	<script src="{S_ABBC3_PATH}/lightbox/lightbox.js?{S_ABBC3_VERSION}" type="text/javascript"></script>
+	<link rel="stylesheet" href="{S_ABBC3_PATH}/lightbox/lightbox.css?{S_ABBC3_VERSION}" type="text/css" media="screen" />
 	<!-- ENDIF -->
 
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'GreyBox' -->
-	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
-	<script type="text/javascript" src="{S_ABBC3_PATH}/greybox/AJS.js"></script>
-	<script type="text/javascript" src="{S_ABBC3_PATH}/greybox/AJS_fx.js"></script>
-	<script type="text/javascript" src="{S_ABBC3_PATH}/greybox/gb_scripts.js"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/greybox/gb_styles.css" />
-	<!-- ENDIF -->
-
+	<!-- IF S_ABBC3_RESIZE_METHOD eq 'AdvancedBox' -->
 	<script type="text/javascript" src="{S_ABBC3_PATH}/AdvancedBox.js?{S_ABBC3_VERSION}"></script>
+	<!-- ENDIF -->
+
+	<script type="text/javascript" src="{S_ABBC3_PATH}/abbcode_ImgResizer.js?{S_ABBC3_VERSION}"></script>
+	
+	<!-- IF S_ABBC3_RESIZE_BAR -->
+	<style type="text/css">
+	.attach-image img { border: 0; }
+	</style>
+	<!-- ENDIF -->
 
 <!-- ENDIF -->
 

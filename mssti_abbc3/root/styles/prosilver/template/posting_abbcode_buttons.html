@@ -37,10 +37,9 @@
 	<noscript><div class="rules"><p style="text-align: center;"><strong>{L_ABBC3_NOSCRIPT}</strong><br />{L_ABBC3_NOSCRIPT_EXPLAIN}</p></div></noscript>
 	<table id="abbc3posttable" width="100%" border="1" cellspacing="0" cellpadding="0">
 		<tr align="{S_CONTENT_FLOW_BEGIN}">
-			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="bg3"<!-- ENDIF --> valign="middle" colspan="2">
+			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="bg2"<!-- ENDIF --> valign="middle" colspan="2">
 				<span class="abbc3_link">
-					<a href="{S_ABBC3_HELP_PAGE}"          rel="external" onclick="window.open(this.href);return false;" title="{L_ABBC3_HELP_TITLE}"><img src="{S_ABBC3_PATH}/images/help.gif" alt="{L_ABBC3_HELP_TITLE}" title="{L_ABBC3_HELP_TITLE}" /></a>
-					<a href="http://www.mssti.com/phpbb3/" rel="external" onclick="window.open(this.href);return false;" title="{L_ABBC3_HELP_ALT}"><img src="{S_ABBC3_PATH}/images/info.gif" alt="{L_ABBC3_HELP_ALT}" title="{L_ABBC3_HELP_ALT}" /></a>
+					<a href="{S_ABBC3_HELP_PAGE}" rel="external" onclick="window.open(this.href);return false;" title="{L_ABBC3_HELP_TITLE}"><img src="{S_ABBC3_PATH}/images/help.gif" alt="{L_ABBC3_HELP_TITLE}" title="{L_ABBC3_HELP_TITLE}" /></a>
 				</span>
 				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
@@ -202,7 +201,7 @@
 			</td>
 		</tr>
 		<tr align="{S_CONTENT_FLOW_BEGIN}">
-			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="bg3"<!-- ENDIF --> valign="middle" colspan="2">
+			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="bg2"<!-- ENDIF --> valign="middle" colspan="2">
 			<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 			<!-- ENDIF -->
@@ -222,7 +221,7 @@
 		</tr>
 	<!-- IF .custom_tags -->
 		<tr align="{S_CONTENT_FLOW_BEGIN}">
-			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="bg3"<!-- ENDIF --> valign="middle" colspan="2">
+			<td <!-- IF S_ABBC3_BG -->style='background: url("{S_ABBC3_PATH}/images/bg/{S_ABBC3_BG}");'<!-- ELSE -->class="bg2"<!-- ENDIF --> valign="middle" colspan="2">
 				<!-- IF S_ABBC3_TAB -->
 				<img src="{S_ABBC3_PATH}/images/dots.gif" alt="" class="btnbbcode3 dot" />
 				<!-- ENDIF -->
@@ -237,15 +236,10 @@
 			</td>
 		</tr>
 	<!-- ENDIF -->
-
-
 		<tr>
 			<td colspan="2">
-				<textarea readonly="readonly" id="helpbox" name="helpbox" rows="3" cols="76" class="helpline">{L_STYLES_TIP}</textarea>
+				<textarea readonly="readonly" id="helpbox" name="helpbox" rows="2" cols="76" class="helpline">{L_STYLES_TIP}</textarea>
 			</td>
-
-
-
 		</tr>
 <!-- ENDIF -->
 	</table>
