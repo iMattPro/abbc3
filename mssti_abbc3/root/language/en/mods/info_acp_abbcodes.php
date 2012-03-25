@@ -90,7 +90,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZE_METHOD'			=> 'Resize method',
 	'ABBCODES_RESIZE_METHOD_EXPLAIN'	=> 'Choose how to display resized images in full size.',
 	'ABBCODES_RESIZE_BAR'				=> 'Resizer info bar',
-	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Display an Info Bar along the top of resized images.',
+	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Display resizer information along the top of resized images.',
 ##	For translators :                              	 Don't				Yes
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'Advanced Box JS',
 													'HighslideBox'	=> 'Highslide JS',
