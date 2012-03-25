@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel Vazquez)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -711,162 +711,168 @@ class acp_abbcodes
 	}
 }
 
-	/**
-	* Select list of images in current style folder
-	*/
-	function image_select($dir, $current, $name, $show = false, $u_action, $ide = 'ABBC3_BG')
+/**
+* Select list of images in current style folder
+*/
+function image_select($dir, $current, $name, $show = false, $u_action, $ide = 'ABBC3_BG')
+{
+	global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
+
+	// Read the folder and get images
+	$dp = @opendir($dir);
+	$count = 0;
+
+	if ($dp)
 	{
-		global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
-
-		// Read the folder and get images
-		$dp = @opendir($dir);
-		$count = 0;
-
-		if ($dp)
+		while (($file = readdir($dp)) !== false)
 		{
-			while (($file = readdir($dp)) !== false)
+			if (preg_match('#\.(?:gif|jpg|png)$#', $file))
 			{
-				if (preg_match('#\.(?:gif|jpg|png)$#', $file))
-				{
-					$imagesetlist[$count] = $file;
-					$count++;
-				}
+				$imagesetlist[$count] = $file;
+				$count++;
 			}
-			closedir($dp);
 		}
-		else
-		{
-			trigger_error($user->lang['NO_IMAGESET'] . adm_back_link($u_action), E_USER_WARNING);
-		}
-
-		if (sizeof($imagesetlist))
-		{
-			// Make sure the list of possible images is sorted alphabetically
-			sort($imagesetlist);
-
-			$icons_list = '<select id="' .$ide .'" name="' . $name . '" onchange="update_image(this.options[selectedIndex].value);">' . "\n";
-			$icons_list .= '<option value="" ' . (($current == '') ? ' selected="selected"' : ''). '>' . $user->lang['NO_IMAGE'] . '</option>' . "\n";
-
-			for($i = 0; $i < count($imagesetlist); $i++)
-			{
-				$selected = ($imagesetlist[$i] == $current) ? ' selected="selected"' : '';
-				$icons_list .= '<option value="' . $imagesetlist[$i] . '"' . $selected . '>' . $imagesetlist[$i] . '</option>' . "\n";
-			}
-			$icons_list .= '</select>'. (($show) ? '&nbsp; <label>' . $user->lang['CURRENT_IMAGE'] . '</label><span><img src="' . $dir . '/' . $current .'" id="newimg" alt="" width="80" height="30" /></span>' : '');
-		}
-		return $icons_list;
+		closedir($dp);
+	}
+	else
+	{
+		trigger_error($user->lang['NO_IMAGESET'] . adm_back_link($u_action), E_USER_WARNING);
 	}
 
-	/**
-	* Select list of BBvideos
-	*/
-	function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
+	if (sizeof($imagesetlist))
 	{
-		global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
+		// Make sure the list of possible images is sorted alphabetically
+		sort($imagesetlist);
 
-		$abbcode_video_ary = abbcode::video_init();
-		// The video_serialize function is at root/includes/abbcode.php after the abbcode class
-		$allowed_videos = (!$current) ? array() : video_serialize($current, false);
+		$icons_list = '<select id="' .$ide .'" name="' . $name . '" onchange="update_image(this.options[selectedIndex].value);">' . "\n";
+		$icons_list .= '<option value="" ' . (($current == '') ? ' selected="selected"' : ''). '>' . $user->lang['NO_IMAGE'] . '</option>' . "\n";
 
-		if (sizeof($abbcode_video_ary))
+		for($i = 0; $i < count($imagesetlist); $i++)
 		{
-			$video_options = '';
-			$video_optgroup = false;
-
-			foreach ($abbcode_video_ary as $video_name => $video_data)
-			{
-				$video_name = stripslashes($video_name);
-			
-				if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
-				{
-					$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
-					$video_options .= '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">' . "\n";
-					$video_optgroup = true;
-				}
-				// Now check that this video is has data for search and replace
-				else if ((isset($video_data['match']) && $video_data['match'] != '') && (isset($video_data['replace']) && $video_data['replace'] != ''))
-				{
-					$selected = (in_array($video_data['id'], $allowed_videos)) ? ' selected="selected"' : '';
-					$video_options .= '<option value="' . $video_data['id'] . '"' . $selected . '>' . $video_name . '</option>' . "\n";
-				}
-				else
-				{
-					continue;
-				}
-			}
-			$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
+			$selected = ($imagesetlist[$i] == $current) ? ' selected="selected"' : '';
+			$icons_list .= '<option value="' . $imagesetlist[$i] . '"' . $selected . '>' . $imagesetlist[$i] . '</option>' . "\n";
 		}
+		$icons_list .= '</select>'. (($show) ? '&nbsp; <label>' . $user->lang['PREVIEW'] . ':</label>
+			<span style="position:relative; display:inline-block; top:10px;">
+				<img src="' . $dir . '/' . $current .'" id="newimg" alt="" width="100" height="30" style="border: solid 1px silver;" />
+				<span style="position:absolute;top:5px;left:10px;width:100%;height:100%;">
+					<img src="' . $phpbb_root_path . '/styles/abbcode/images/bold.gif" width="20" height="20" alt="" /><img src="' . $phpbb_root_path . '/styles/abbcode/images/italic.gif" width="20" height="20" alt="" /><img src="' . $phpbb_root_path . '/styles/abbcode/images/url.gif" width="20" height="20" alt="" /><img src="' . $phpbb_root_path . '/styles/abbcode/images/img.gif" width="20" height="20" alt="" />
+				</span>
+			</span>' : '');
+	}
+	return $icons_list;
+}
+
+/**
+* Select list of BBvideos
+*/
+function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
+{
+	global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
+
+	$abbcode_video_ary = abbcode::video_init();
+	// The video_serialize function is at root/includes/abbcode.php after the abbcode class
+	$allowed_videos = (!$current) ? array() : video_serialize($current, false);
+
+	if (sizeof($abbcode_video_ary))
+	{
+		$video_options = '';
+		$video_optgroup = false;
+
+		foreach ($abbcode_video_ary as $video_name => $video_data)
+		{
+			$video_name = stripslashes($video_name);
 		
-		return '<select id="' . $ide .'" name="' . $name . '" multiple="multiple" size="10">' . "\n" . $video_options . '</select>
-		<br /><a href="#" onclick="selector(true, \'' . $ide . '\'); return false;">' . $user->lang['ABBCODES_SELECT_ALL'] . '</a> :: <a href="#" onclick="selector(false, \'' . $ide . '\'); return false;">' . $user->lang['ABBCODES_DESELECT_ALL'] . '</a>
-		<br /><br />' . $user->lang['ABBCODES_VIDEO_ALLOWED_NOTE'];
+			if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
+			{
+				$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
+				$video_options .= '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">' . "\n";
+				$video_optgroup = true;
+			}
+			// Now check that this video is has data for search and replace
+			else if ((isset($video_data['match']) && $video_data['match'] != '') && (isset($video_data['replace']) && $video_data['replace'] != ''))
+			{
+				$selected = (in_array($video_data['id'], $allowed_videos)) ? ' selected="selected"' : '';
+				$video_options .= '<option value="' . $video_data['id'] . '"' . $selected . '>' . $video_name . '</option>' . "\n";
+			}
+			else
+			{
+				continue;
+			}
+		}
+		$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
 	}
+	
+	return '<select id="' . $ide .'" name="' . $name . '" multiple="multiple" size="10">' . "\n" . $video_options . '</select>
+	<br /><a href="#" onclick="selector(true, \'' . $ide . '\'); return false;">' . $user->lang['ABBCODES_SELECT_ALL'] . '</a> :: <a href="#" onclick="selector(false, \'' . $ide . '\'); return false;">' . $user->lang['ABBCODES_DESELECT_ALL'] . '</a>
+	<br /><br />' . $user->lang['ABBCODES_VIDEO_ALLOWED_NOTE'];
+}
 
-	/**
-	* Select list of display full size image
-	*/
-	function method_select($selected_method = 'AdvancedBox', $name, $ide)
+/**
+* Select list of display full size image
+*/
+function method_select($selected_method = 'AdvancedBox', $name, $ide)
+{
+	global $user;
+
+	$method_options = $user->lang['ABBCODES_RESIZE_METHODS'];
+
+	$s_method_options = '<select id="' . $ide . '" name="' . $name . '">';
+	foreach($method_options as $method_name => $method_value)
 	{
-		global $user;
-
-		$method_options = $user->lang['ABBCODES_RESIZE_METHODS'];
-
-		$s_method_options = '<select id="' . $ide . '" name="' . $name . '">';
-		foreach($method_options as $method_name => $method_value)
-		{
-			$selected = ($selected_method == $method_name) ? ' selected="selected"' : '';
-			$s_method_options .= '<option value="' . $method_name . '"' . $selected . ' >' . $method_value . '</option>';
-		}
-		$s_method_options.= '</select>';
-
-		return $s_method_options;
+		$selected = ($selected_method == $method_name) ? ' selected="selected"' : '';
+		$s_method_options .= '<option value="' . $method_name . '"' . $selected . ' >' . $method_value . '</option>';
 	}
+	$s_method_options.= '</select>';
 
-	/**
-	* Select list of display color picker
-	*/
-	function get_radio($name, $input_ary, $input_default = false, $id = false, $key = false)
+	return $s_method_options;
+}
+
+/**
+* Select list of display color picker
+*/
+function get_radio($name, $input_ary, $input_default = false, $id = false, $key = false)
+{
+	global $user;
+
+	// destroy a single element of an array
+	if ($name == "abbc3_highlight")
 	{
-		global $user;
-
-		// destroy a single element of an array
-		if ($name == "abbc3_highlight")
-		{
-			unset($input_ary['phpbb']);
-		}
-
-		$html = '';
-		$id_assigned = false;
-		foreach ($input_ary as $value => $title)
-		{
-			$value = strtolower($value);
-			
-			$selected = ($input_default !== false && $value == $input_default) ? ' checked="checked"' : '';
-			$html .= ' <label><input class="radio" type="radio" name="' . $name . '"' . (($id && !$id_assigned) ? ' id="' . $id . '"' : '') . ' value="' . $value . '"' . $selected . (($key) ? ' accesskey="' . $key . '"' : '') . ' />&nbsp;' . $title . '&nbsp;</label>';
-			$id_assigned = true;
-		}
-
-		return $html;
+		unset($input_ary['phpbb']);
 	}
 
-	function groups_select_options($select_id = false, $exclude_ids = false)
+	$html = '';
+	$id_assigned = false;
+	foreach ($input_ary as $value => $title)
 	{
-		global $user, $db;
-
-		$sql = 'SELECT group_id, group_name, group_type
-				FROM ' . GROUPS_TABLE . '
-				WHERE ' . $db->sql_in_set('group_id', array_map('intval', $exclude_ids), true) .' 
-				ORDER BY group_type DESC, group_name ASC';
-		$result = $db->sql_query($sql);
-
-		$group_options = '';
-		while ($row = $db->sql_fetchrow($result))
-		{
-			$selected = (is_array($select_id)) ? ((in_array($row['group_id'], $select_id)) ? ' selected="selected"' : '') : (($row['group_id'] == $select_id) ? ' selected="selected"' : '');
-			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . ucfirst(strtolower((($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name']))) . '</option>';
-		}
-		$db->sql_freeresult($result);
-		return $group_options;
+		$value = strtolower($value);
+		
+		$selected = ($input_default !== false && $value == $input_default) ? ' checked="checked"' : '';
+		$html .= ' <label><input class="radio" type="radio" name="' . $name . '"' . (($id && !$id_assigned) ? ' id="' . $id . '"' : '') . ' value="' . $value . '"' . $selected . (($key) ? ' accesskey="' . $key . '"' : '') . ' />&nbsp;' . $title . '&nbsp;</label>';
+		$id_assigned = true;
 	}
+
+	return $html;
+}
+
+function groups_select_options($select_id = false, $exclude_ids = false)
+{
+	global $user, $db;
+
+	$sql = 'SELECT group_id, group_name, group_type
+			FROM ' . GROUPS_TABLE . '
+			WHERE ' . $db->sql_in_set('group_id', array_map('intval', $exclude_ids), true) .' 
+			ORDER BY group_type DESC, group_name ASC';
+	$result = $db->sql_query($sql);
+
+	$group_options = '';
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$selected = (is_array($select_id)) ? ((in_array($row['group_id'], $select_id)) ? ' selected="selected"' : '') : (($row['group_id'] == $select_id) ? ' selected="selected"' : '');
+		$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . ucfirst(strtolower((($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name']))) . '</option>';
+	}
+	$db->sql_freeresult($result);
+	return $group_options;
+}
 
 ?>

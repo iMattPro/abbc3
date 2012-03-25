@@ -4,7 +4,7 @@
 * info_acp_abbcodes [English]
 *
 * @package language
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel Vazquez)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -90,7 +90,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZE_METHOD'			=> 'Resize method',
 	'ABBCODES_RESIZE_METHOD_EXPLAIN'	=> 'Choose how to display resized images in full size.',
 	'ABBCODES_RESIZE_BAR'				=> 'Resizer info bar',
-	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Display an Info Bar along the top of resized images.',
+	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Display resizer information along the top of resized images.',
 ##	For translators :                              	 Don't				Yes
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'Advanced Box JS',
 													'HighslideBox'	=> 'Highslide JS',

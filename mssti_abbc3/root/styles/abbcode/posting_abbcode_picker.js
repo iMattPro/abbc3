@@ -154,7 +154,7 @@ function TCDraw(o_win, o_doc, txt) {
 	s_tag_openS  = o_doc.layers ? 'layer top=32 left=6' : 'div',
 	s_tag_close  = o_doc.layers ? 'layer' : 'div'
 		
-	this.doc.write('<' + s_tag_openS + ' id="sam" name="sam">' + '\n' + '<table cellpadding="0" cellspacing="0" border="1" width="181px" class="bd">' + '\n' + '<tr>' + '\n' + '<td height="18px">' + '\n' + '<div id="samp"><font face=Tahoma size=2>' + this.txt + '<font color=white>' + this.txt + '</font></font></div>' + '\n' + '</td>' + '\n' + '</tr>' + '\n' + '</table></' + s_tag_close + '>' + '\n');
+	this.doc.write('<' + s_tag_openS + ' id="sam" name="sam">' + '\n' + '<table cellpadding="0" cellspacing="0" border="1" width="181" class="bd">' + '\n' + '<tr>' + '\n' + '<td height="18">' + '\n' + '<div id="samp"><font face=Tahoma size=2>' + this.txt + '<font color=white>' + this.txt + '</font></font></div>' + '\n' + '</td>' + '\n' + '</tr>' + '\n' + '</table></' + s_tag_close + '>' + '\n');
 	this.sample = o_doc.layers ? o_doc.layers['sam'] : o_doc.getElementById ? o_doc.getElementById('sam').style : o_doc.all['sam'].style
 
 	for (var k = 0; k < 4; k ++) {

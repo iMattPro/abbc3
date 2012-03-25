@@ -2,7 +2,7 @@
 /**
 *
 * @package install
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel Vazquez)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */

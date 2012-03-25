@@ -19,21 +19,21 @@ Before adding this MOD to your forum, you should back up all files and databases
 
 		<author-group>
 			<author>
+				<realname><![CDATA[Matt Friedman]]></realname>
 				<username><![CDATA[VSE]]></username>
+				<homepage><![CDATA[http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/]]></homepage>
 				<contributions-group>
 					<contributions status="current" from="2010-03-02" position="Developer"/>
 				</contributions-group>
 			</author>
-
 			<author>
-				<realname><![CDATA[Gabriel]]></realname>
+				<realname><![CDATA[Gabriel Vazquez]]></realname>
 				<username><![CDATA[leviatan21]]></username>
 				<email><![CDATA[info@mssti.com]]></email>
 				<contributions-group>
-					<contributions status="current" from="2008-01-10" position="Developer"/>
+					<contributions status="past" from="2008-01-10" to="2012-03-01" position="Developer"/>
 				</contributions-group>
 			</author>
-
 		</author-group>
 
 		<mod-version>3.0.11</mod-version>
@@ -46,11 +46,13 @@ Before adding this MOD to your forum, you should back up all files and databases
 
 		<history>
 			<entry>
-				<date>2012-03-20</date>
+				<date>2012-03-24</date>
 				<rev-version>3.0.11</rev-version>
 				<changelog lang="en">
-					<change> [Update] BBCodes in the ACP can be arranged more easily and quickly using drag-and-drop.</change>
-					<change> [Update] Support for latest versions of Highslide JS and Lightview.</change>
+					<change> [Change] BBCodes in the ACP can be arranged more easily and quickly using drag-and-drop.</change>
+					<change> [Change] Enhanced the ABBC3 toolbar background image preview in the ACP.</change>
+					<change> [Change] Added some new background gradient images for the ABBC3 toolbar.</change>
+					<change> [Change] Support for latest versions of Highslide JS and Lightview.</change>
 					<change> [Change] Removed PopBox light box from ABBC3 because it is no longer supported.</change>
 					<change> [Change] Removed GreyBox light box from ABBC3 because it is old and did not work well.</change>
 					<change> [Change] Reduced size of the BBCode Help Box area.</change>
