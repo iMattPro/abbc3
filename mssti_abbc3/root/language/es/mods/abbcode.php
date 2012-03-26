@@ -450,7 +450,7 @@ $lang = array_merge($lang, array(
 	// Web included by iframe
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Insertar página web en el mensaje',
-	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL página[/web]',
+	'ABBC3_WEB_TIP'				=> '[web width=99% height=400]URL página[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.phpbb.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=400]http://www.phpbb.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Nota:</strong> permitir que otros sitios web se incluyan en los mensajes, puede suponer un riesgo de seguridad. Utilícelo bajo su propio riesgo, o asignelo a grupos de confianza.',

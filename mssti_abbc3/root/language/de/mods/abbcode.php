@@ -450,7 +450,7 @@ $lang = array_merge($lang, array(
 	// Web included by iframe
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Web Seite in den Beitrag einfügen',
-	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
+	'ABBC3_WEB_TIP'				=> '[web width=99% height=400]URL web[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.phpbb.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=400]http://www.phpbb.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Hinweis:</strong> Anderen Webseiten zu erlauben im Beitrag zu stehen, kann ein Sicherheitsriskio darstellen. Du verwendest dies auf eigene Gefahr, oder lasse diese Funktion nur für Gruppen zu, denen du verstraust.',
