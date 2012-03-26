@@ -208,8 +208,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_MOD_VIEW'			=> '[mod=Moderator_name]' . $lang['SAMPLE_TEXT'] . '[/mod]',
 
 	// Off topic tag
-	'OFFTOPIC'					=> 'Offtopic',
-	'ABBC3_OFFTOPIC_MOVER'		=> 'Insert Off topic text',
+	'OFFTOPIC'					=> 'Off Topic',
+	'ABBC3_OFFTOPIC_MOVER'		=> 'Insert Off Topic text',
 	'ABBC3_OFFTOPIC_TIP'		=> '[offtopic]text[/offtopic]',
 	'ABBC3_OFFTOPIC_VIEW'		=> '[offtopic]' . $lang['SAMPLE_TEXT'] . '[/offtopic]',
 
