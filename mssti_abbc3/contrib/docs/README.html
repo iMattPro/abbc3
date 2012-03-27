@@ -86,31 +86,28 @@
 		<div class="paragraph">
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div class="content">
-				<a name="disclaimer"></a><h3>disclaimer</h3>
+				<a name="disclaimer"></a><h3>Disclaimer</h3>
 				<ul>
-					<li>This application is opensource software released under the <a href="http://opensource.org/licenses/gpl-license.php" onclick="window.open(this.href);return false;">GPL</a>. Please see source code and the docs directory for more details. This package and its contents are Copyright (c) 2008, 2010 <a href="http://www.mssti.com" onclick="window.open(this.href);return false;">.:: MSSTI ::.</a> , All Rights Reserved.</li>
+					<li>This application is open source software released under the <a href="http://opensource.org/licenses/gpl-2.0.php" onclick="window.open(this.href);return false;">GNU General Public License v2</a>. Please see source code and the docs directory for more details. This package and its contents are Copyright (c) 2008, 2010 <a href="http://www.mssti.com" onclick="window.open(this.href);return false;">.:: MSSTI ::.</a> , All Rights Reserved.</li>
+					<li>I contacted "Disturbed One" the original developer of this MOD, and "freddie" the last developer of this MOD, 
+						and asked to upgrade the Advanced BBCode Box for phpbb2.x to phpbb3.x, 
+						Both declined to do the job, and agreed to let me (leviatan21) do it, so here I am ;)</li>
 					<li><span class="bad">This is <strong>not</strong> a <em>WYSIWYG</em> or a <em>Rich Text Editor</em></span></li>
-					<li> I contacted "Disturbed One" the original developer of this mod and "freddie" the last developer of this mod, 
-						and ask for upgrade the Advanced BBCode Box for phpbb2.x to phpbb3.x, 
-						Both say that they will not do the job, and are agree that I do it, so here I am ;)</li>
-					<li> phpBB3 posting page use javascript, basically to add tags to the textarea, when you click on a button javascript insert the code into the post text. <br />
-						 ABBC3 works in the same way, and add more javascript funtions to the wizards...<br />
-						 Apart from that the only function that need extra javascript is the fade tag.</li>
-					<li> Tested on Windows Browsers:
+					<li>Tested on Windows Browsers:
 						<ul>
-							<li>Internet Explorer 8, 9</li>
-							<li>Mozilla Firefox 3.6</li>
-							<li>Opera 9.60, 10</li>
-							<li>Safari 3, 4, 5</li>
+							<li>Internet Explorer 8 or higher</li>
+							<li>Mozilla Firefox 3.6 or higher</li>
+							<li>Opera 9.60, 10 or higher</li>
+							<li>Safari 3 or higher</li>
 							<li>Netscape 8.1</li>
-							<li>Chrome 1.0</li>
+							<li>Chrome 1.0 or higher</li>
 						</ul>
 					</li>
 					<li> Tested on Macintosh Browsers:
 						<ul>
-							<li>Safari 4, 5</li>
-							<li>Firefox 3.6, 4</li>
-							<li>Chrome 12</li>
+							<li>Safari 4 or higher</li>
+							<li>Firefox 3.6 or higher</li>
+							<li>Chrome 12 or higher</li>
 						</ul>
 					</li>
 				</ul>
@@ -134,6 +131,7 @@
 					<li> [Change] Support for latest versions of Highslide JS and Lightview.</li>
 					<li> [Change] Removed PopBox light box from ABBC3 because it is no longer supported.</li>
 					<li> [Change] Removed GreyBox light box from ABBC3 because it is old and did not work well.</li>
+					<li> [Change] Updated Blur and Wave BBCodes for cross browser compatability: Blur works, Wave is disabled in all except IE.</li>
 					<li> [Change] Reduced size of the BBCode Help Box area.</li>
 					<li> [Change] Restored the default resize ability to post/text editor message boxes.</li>
 					<li> [Change] Removed links to the old MSSTI website and updated example video links that linked to content at MSSTI.</li>
@@ -602,11 +600,11 @@
 							<li>IGN video ( Thanks naushadhassam )</li>
 							<li>Liveleak video ( Thanks [alfa] )</li>
 							<li>Veoh video ( Thanks turkanime )</li>
-							<li>NFO ( Thanks TigerCrow ) (Only for Internet Explorer)</li>
+							<li>NFO ( Thanks TigerCrow ) (Better on Internet Explorer)</li>
 							<li>Glow text ( Thanks muiketi )</li>
 							<li>Shadow text ( Thanks muiketi )</li>
 							<li>Dropshadow text ( Thanks muiketi )</li>
-							<li>Blur text ( Thanks muiketi ) (Only for Internet Explorer)</li>
+							<li>Blur text ( Thanks muiketi )</li>
 							<li>Wave text ( Thanks muiketi ) (Only for Internet Explorer)</li>
 							<li>Search tag ( Thanks muiketi )</li>
 							<li>Simple upload files ( Thanks naushadhassam )</li>
@@ -716,18 +714,15 @@
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div class="content">
 				<ul>
-					<li><strong>Resizer : </strong>
-						This corrects the error of the [img] bbcode, when someone publishes a picture that exceeds the width of your forum.<br />				
-						AdvancedBox JS is an JavaScript software used to display images in full size.<br />				
-						Also you can use ABBC3 with other's script : <br />				
-							This modifications are totally optionals. Each script have his own support. I'm not responsible about it. I will not answer question/problem/bug or any kind of issues about them.
+					<li><strong>Image Resizer : </strong>
+						This addresses a shortcoming of the [img] BBCode, when someone posts a picture that exceeds the width of your forum.<br />				
+						AdvancedBox JS is a JavaScript application used to display images in full size.<br />				
+						You can also use ABBC3 with any of the other included scripts. These modifications are totally optional. Each script has its own support. ABBC3 is not responsible for any issues from using a 3rd party script. All questions/problems/bugs should be directed to the developer of the script you are using.
 							<ul style="list-style-type: decimal;">
 								<li>Highslide <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Highslide</strong> for use of the library.</span></li>
-								<li>Lite Box <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Lite Box</strong> for use of the library.</span></li>
-								<li>Grey Box <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Grey Box</strong> for use of the library.</span></li>
-								<li>Light view <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Light view</strong> for use of the library.</span></li>
-								<li>Shadow Box <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Shadow Box</strong> for use of the library.</span></li>
-								<li>Pop Box <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must pay <strong>Pop Box</strong> for use of the library.</span></li>
+								<li>LiteBox2 <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Lite Box</strong> for use of the library.</span></li>
+								<li>Lightview <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Light view</strong> for use of the library.</span></li>
+								<li>ShadowBox <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Shadow Box</strong> for use of the library.</span></li>
 								<li>Pop-up window</li>
 								<li>Enlarge</li>
 								<li>Same window</li>
@@ -744,32 +739,32 @@
 						<ul>
 							<li>Font Type Dropdown</li>
 							<li>Font Size Dropdown</li>
-							<li>Text highlighted Dropdown</li>
-							<li>Font Color Dropdown <span class="bad">( Disable by default )</span></li>
+							<li>Highlight Text Dropdown</li>
+							<li>Font Colour</li>
 							<li>---------------------</li>
-							<li>Cut : Removes selected text</li>
-							<li>Copy : Copy selected text</li>
-							<li>Paste : Paste previously copied text</li>
-							<li>Remove BBCode (Removes all BBCode tags from selected text)</li>
+							<li>Cut : Cut selected text to clipboard</li>
+							<li>Copy : Copy selected text clipboard</li>
+							<li>Paste : Paste text from clipboard</li>
+							<li>Remove : Removes all BBCode tags from selected text</li>
 							<li>---------------------</li>
 							<li>Bullet list: Unordered List</li>
 							<li>Ordered list</li>
 							<li>List item</li>
 							<li>Tabs</li>
-							<li>Header line</li>
-							<li>Bold</li>
-							<li>Italic</li>
-							<li>Underline</li>
-							<li>Strike through</li>
-							<li>Superscript : Sets the text as superscripts</li>
-							<li>Subscript : Sets the text as subscripts</li>
+							<li>Horizontal line</li>
+							<li>Bold text</li>
+							<li>Italic text</li>
+							<li>Underline text</li>
+							<li>Strike through text</li>
+							<li>Superscript text</li>
+							<li>Subscript text</li>
 							<li>Glow text</li>
 							<li>Shadow text</li>
 							<li>Dropshadow text</li>
 							<li>Blur text</li>
 							<li>Wave text></li>
-							<li>Text Fade  <span class="bad">( Requires Javascript enabled )</span></li>
-							<li>Text Gradient</li>
+							<li>Fade text</li>
+							<li>Gradient text (aka Rainbow)</li>
 							<li>---------------------</li>
 							<li>Justify Align</li>
 							<li>Right Align</li>
@@ -780,54 +775,55 @@
 							<li>Tab : Creates a normal indent</li>
 							<li>Message Box text direction Left to Light (Traditional)</li>
 							<li>Message Box text direction right to Left (Arabic, etc)</li>
-							<li>Marquee Up : Scrolling text upwards <span class="bad">( Disable by default )</span></li>
-							<li>Marquee Down : Scrolling text down <span class="bad">( Disable by default )</span></li>
-							<li>Marquee Left : Displacement text to the left <span class="bad">( Disable by default )</span></li>
-							<li>Marquee Right : Displacement text to the right <span class="bad">( Disable by default )</span></li>
+							<li>Marquee Up : Scrolling text upwards <span class="bad">(Disabled by default)</span></li>
+							<li>Marquee Down : Scrolling text down <span class="bad">(Disabled by default)</span></li>
+							<li>Marquee Left : Scrolling text to the left <span class="bad">(Disabled by default)</span></li>
+							<li>Marquee Right : Scrolling text to the right <span class="bad">(Disabled by default)</span></li>
 							<li>Code</li>
 							<li>Quote</li>
-							<li>Spoiler ( User must click on link to review text within tags ) <span class="bad">( Requires Javascript enabled )</span></li>
-							<li>Hidden : Hide content to guest</li>
-							<li>Moderator <span class="good">( Use restricted to moderators and / or administrators )</span></li>
-							<li>Off topic</li>
-							<li>NFO text <span class="good">(Better on Internet explorer)</span></li>
-							<li>Table row cell wizard</li>
+							<li>Spoiler (User must click on link to review text within tags)</li>
+							<li>Hidden : Hide content from unregistered guests</li>
+							<li>Moderator Message <span class="good">(Permissions restricted to Moderators and/or Administrators by default)</span></li>
+							<li>Off Topic</li>
+							<li>NFO text <span class="good">(Better on Internet Explorer)</span></li>
+							<li>Table (create an HTML table)</li>
 							<li>---------------------</li>
 							<li>Anchor</li>
 							<li>Hyperlink Wizard</li>
 							<li>Email Wizard</li>
-							<li>Web : Insert site in the post included by iframe <span class="bad">( Disable by default ) ( Note : it's use activex so its not safe for forums or other websites.. with this way hacker can get in site and hack them... )</span></li>
+							<li>Web : Insert a website in the post via iframe <span class="bad">(Disabled by default. Note: allowing other websites to be inserted in posts, can pose a security risk. Use at your own risk, or assign to trusted groups.)</span></li>
 							<li>Ed2k link Wizard</li>
 							<li>Image Wizard</li>
 							<li>Thumbnail Wizard</li>
 							<li>Imgshack Wizard</li>
-							<li>Link checker <span class="bad">( Requires that you have CURL installed )</span></li>
-							<li>Rapid share checker <span class="bad">( Disable by default )</span> <span class="bad">( Requires the PHP directive allow_url_fopen to be enabled. )</span></li>
-							<li>Click counter <span class="bad">( Disable by default )</span></li>
+							<li>Rapidshare links <span class="bad">(Disabled by default. Requires the PHP directive allow_url_fopen to be enabled.)</span></li>
+							<li>Link checker <span class="bad">(Disabled by default. Requires that you have CURL installed)</span></li>
+							<li>Click counter <span class="bad">(Disabled by default)</span></li>
 							<li>Search tag :
 								<ul style="list-style-type: decimal;">
-									<li>msn</li>
-									<li>msnlive</li>
-									<li>yahoo.com</li>
-									<li>google.com</li>
-									<li>altavista.com</li>
-									<li>wikipedia.org</li>
-									<li>lycos.com</li>
+									<li>Bing</li>
+									<li>Yahoo</li>
+									<li>Google</li>
+									<li>AltaVista</li>
+									<li>Wikipedia</li>
+									<li>Lycos</li>
 									<li>or forum</li>
 								</ul>
 							</li>
 							<li>---------------------</li>
-							<li>Scrippet</li>
 							<li>BBvideo Wizard</span>
 								<br />
 								<strong>Video sites</strong>
 								<ul style="list-style-type: decimal;">
+									<li>allocine.fr</li>
+									<li>cnbc.com</li>
 									<li>comedycentral.com</li>
 									<li>www.clipfish</li>
 									<li>clipmoon.com</li>
 									<li>collegehumor.com</li>
 									<li>crackle.com</li>
 									<li>dailymotion.com</li>
+									<li>facebook.com</li>
 									<li>g4tv.com</li>
 									<li>gamepro.com</li>
 									<li>gameprotv.com</li>
@@ -841,6 +837,8 @@
 									<li>machinima.com</li>
 									<li>megavideo.com</li>
 									<li>metacafe.com</li>
+									<li>msnbc.msn.com</li>
+									<li>myspace.com</li>
 									<li>myspacetv.com</li>
 									<li>vids.myspace.com</li>
 									<li>www.myvideo</li>
@@ -849,6 +847,7 @@
 									<li>revver.com</li>
 									<li>rutube.ru</li>
 									<li>sapo.pt</li>
+									<li>scribd</li>
 									<li>sevenload.com</li>
 									<li>spike.com</li>
 									<li>tangle.com</li>
@@ -862,11 +861,11 @@
 									<li>vsocial.com</li>
 									<li>wegame.com</li>
 									<li>youtube.com</li>
+									<li>youtu.be</li>
 									<li>xfire.com</li>
-									<li>scribd</li>
 								</ul>
-								<strong>External videos</strong><span class="bad">( Disable by default )</span>
-								<br />This videos are not possible to embed into post, but have a nice link to it 
+								<strong>External videos</strong> <span class="bad">(Disabled by default)</span>
+								<br />These videos can not be embedded into posts and instead have a nice link to it. 
 								<ul style="list-style-type: decimal;">
 									<li>badr.tv</li>
 									<li>comedians.jokes.com</li>
@@ -885,32 +884,33 @@
 								</ul>
 								<strong>Files types</strong>
 								<ul style="list-style-type: decimal;">
+									<li>DivX .avi .divx .mkv</li>
 									<li>Flash .swf</li>
 									<li>Flash .flv</li>
-									<li>DivX .avi .divx .mkv</li>
 									<li>Windows Media Video .wmv</li>
 									<li>Moving Pictures Expert Group .mpg</li>
-									<li>Quick Time Audio : .mp3 .mid .midi</li>
 									<li>Quick Time Movie : .qt .mov</li>
+									<li>Quick Time Audio : .mp3 .mid .midi</li>
 									<li>Real Audio .ram</li>
 								</ul>
 								<br />
 							</li>
-							<li>Flash (swf) <span class="bad">( Disable by default )</span></li>
-							<li>Flash (flv) <span class="bad">( Disable by default )</span></li>
-							<li>Video <span class="bad">( Disable by default )</span></li>
+							<li>Scrippet</li>
+							<li>Flash (swf) <span class="bad">(Disabled by default)</span></li>
+							<li>Flash (flv) <span class="bad">(Disabled by default)</span></li>
+							<li>Video <span class="bad">(Disabled by default)</span></li>
 							<li>Stream <span class="bad">( Disable by default )</span></li>
-							<li>Quick time <span class="bad">( Disable by default )</span></li>
-							<li>Real media <span class="bad">( Disable by default )</span></li>
-							<li>Google video <span class="bad">( Disable by default )</span></li>
-							<li>Youtube video <span class="bad">( Disable by default )</span></li>
-							<li>Veoh video <span class="bad">( Disable by default )</span></li>
-							<li>CollegeHumor video <span class="bad">( Disable by default )</span></li>
-							<li>DailyMotion video <span class="bad">( Disable by default )</span></li>
-							<li>Gamespot video <span class="bad">( Disable by default )</span></li>
-							<li>GameTrailers video <span class="bad">( Disable by default )</span></li>
-							<li>IGN video <span class="bad">( Disable by default )</span></li>
-							<li>LiveLeak video <span class="bad">( Disable by default )</span></li>
+							<li>Quicktime <span class="bad">(Disabled by default)</span></li>
+							<li>Real media <span class="bad">(Disabled by default)</span></li>
+							<li>Google video <span class="bad">(Disabled by default)</span></li>
+							<li>Youtube video <span class="bad">(Disabled by default)</span></li>
+							<li>Veoh video <span class="bad">(Disabled by default)</span></li>
+							<li>CollegeHumor video <span class="bad">(Disabled by default)</span></li>
+							<li>DailyMotion video <span class="bad">(Disabled by default)</span></li>
+							<li>Gamespot video <span class="bad">(Disabled by default)</span></li>
+							<li>GameTrailers video <span class="bad">(Disabled by default)</span></li>
+							<li>IGN video <span class="bad">(Disabled by default)</span></li>
+							<li>LiveLeak video <span class="bad">(Disabled by default)</span></li>
 							<li>--------------------</li>
 							<li>Custom BBCodes</li>
 						</ul>
@@ -1014,7 +1014,7 @@
 						<li>Go to the Custom BBCodes page in the ACP and write down the settings for the custom BBCodes you want to keep</li>
 						<li>Install ABBC3</li>
 						<li>If you have phpMyAdmin, go to your database -> phpbb_bbcodes -> Browse.</li>
-						<li>Find the item with the bbcode_tag youtube and click the pencil icon to edit it</li>
+						<li>Find the item with the "bbcode_tag" that matches your custom BBCode and click the pencil icon to edit it</li>
 						<li>Locate the field "abbcode" and change that value to 0, and click the go/submit button</li>
 						<li>Go to the Custom BBCodes screen in the ACP and you should see your custom bbcode in the list. Click it to edit it, and put back your original settings in all fields (including the help line, and also click Display on posting page).</li>
 						<li>You can also go to ABBC3 BBCode settings in the ACP, and assign an image to your Custom BBCode.</li>
