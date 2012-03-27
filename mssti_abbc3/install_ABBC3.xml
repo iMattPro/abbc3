@@ -46,7 +46,7 @@ Before adding this MOD to your forum, you should back up all files and databases
 
 		<history>
 			<entry>
-				<date>2012-03-24</date>
+				<date>2012-03-26</date>
 				<rev-version>3.0.11</rev-version>
 				<changelog lang="en">
 					<change> [Change] BBCodes in the ACP can be arranged more easily and quickly using drag-and-drop.</change>
@@ -55,6 +55,7 @@ Before adding this MOD to your forum, you should back up all files and databases
 					<change> [Change] Support for latest versions of Highslide JS and Lightview.</change>
 					<change> [Change] Removed PopBox light box from ABBC3 because it is no longer supported.</change>
 					<change> [Change] Removed GreyBox light box from ABBC3 because it is old and did not work well.</change>
+					<change> [Change] Updated Blur and Wave BBCodes for cross browser compatability: Blur works, Wave is disabled in all except IE.</change>
 					<change> [Change] Reduced size of the BBCode Help Box area.</change>
 					<change> [Change] Restored the default resize ability to post/text editor message boxes.</change>
 					<change> [Change] Removed links to the old MSSTI website and updated example video links that linked to content at MSSTI.</change>
