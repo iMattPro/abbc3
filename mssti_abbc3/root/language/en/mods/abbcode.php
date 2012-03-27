@@ -453,7 +453,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_WEB_TIP'				=> '[web width=99% height=400]http://url[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.phpbb.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=400]http://www.phpbb.com[/web]',
-	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Note:</strong> allowing other websites to be inserted in posts, can pose a security risk. Use at your own risk, or assign to trusted groups.',
+	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Note:</strong> allowing other websites to be inserted in posts can pose a security risk. Use at your own risk, or assign to trusted groups.',
 
 	// Image & Thumbnail Wizard
 	'ABBC3_ALIGN_MODE'			=> 'Align image',
