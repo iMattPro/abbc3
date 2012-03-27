@@ -217,13 +217,13 @@ $lang = array_merge($lang, array(
 	// SCRIPPET
 	'ABBC3_SCRIPPET_MOVER'		=> 'Schattenbox',
 	'ABBC3_SCRIPPET_TIP'		=> '[scrippet]Text in schattierter Box[/scrippet]',
-##	For translate :                 don't change the "<br />" and don't join the lines in one !
+##	For translate :                 don't change the "<br />" and don't join the lines in one!
 	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY<br />
-	ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />
-	ANTONIUS<br />
-	Do you think in a thousand years, anyone will remember our names?<br />
-	IPSUM<br />
-	Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
+									ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />
+									ANTONIUS<br />
+									Do you think in a thousand years, anyone will remember our names?<br />
+									IPSUM<br />
+									Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
 
 	// Tabs
 	'ABBC3_TABS_MOVER'			=> 'Tabs',
@@ -233,9 +233,13 @@ $lang = array_merge($lang, array(
 
 	// NFO
 	'ABBC3_NFO_TITLE'			=> 'NFO Text',
-	'ABBC3_NFO_MOVER'			=> 'NFO Text (besser beim Internet Explorer)',
+	'ABBC3_NFO_MOVER'			=> 'NFO Text',
 	'ABBC3_NFO_TIP'				=> '[nfo]NFO Text[/nfo]',
-	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
+	'ABBC3_NFO_VIEW'			=> '[nfo]         /\_/\
+    ____/ o o \
+  /~____  =ø= /
+ (______)__m_m)
+[/nfo]',
 
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Blocktext',
@@ -319,27 +323,27 @@ $lang = array_merge($lang, array(
 
 	// Glow text
 	'ABBC3_GLOW_MOVER'			=> 'Glühender Text',
-	'ABBC3_GLOW_TIP'			=> '[glow=(color)]Text[/glow]',
+	'ABBC3_GLOW_TIP'			=> '[glow=color]Text[/glow]',
 	'ABBC3_GLOW_VIEW'			=> '[glow=red]' . $lang['SAMPLE_TEXT'] . '[/glow]',
 
 	// Shadow text
 	'ABBC3_SHADOW_MOVER'		=> 'Text mit Schatten',
-	'ABBC3_SHADOW_TIP'			=> '[shadow=(color)]Text[/shadow]',
+	'ABBC3_SHADOW_TIP'			=> '[shadow=color]Text[/shadow]',
 	'ABBC3_SHADOW_VIEW'			=> '[shadow=blue]' . $lang['SAMPLE_TEXT'] . '[/shadow]',
 
 	// Dropshadow text
 	'ABBC3_DROPSHADOW_MOVER'	=> 'Text mit Schattenfall',
-	'ABBC3_DROPSHADOW_TIP'		=> '[dropshadow=(color)]Text[/dropshadow]',
+	'ABBC3_DROPSHADOW_TIP'		=> '[dropshadow=color]Text[/dropshadow]',
 	'ABBC3_DROPSHADOW_VIEW'		=> '[dropshadow=blue]' . $lang['SAMPLE_TEXT'] . '[/dropshadow]',
 
 	// Blur text
-	'ABBC3_BLUR_MOVER'			=> 'Unscharfer Text (nur Internet Explorer)',
-	'ABBC3_BLUR_TIP'			=> '[blur=(color)]Text[/blur]',
+	'ABBC3_BLUR_MOVER'			=> 'Unscharfer Text',
+	'ABBC3_BLUR_TIP'			=> '[blur=color]Text[/blur]',
 	'ABBC3_BLUR_VIEW'			=> '[blur=blue]' . $lang['SAMPLE_TEXT'] . '[/blur]',
 
 	// Wave text
 	'ABBC3_WAVE_MOVER'			=> 'Wellentext (nur Internet Explorer)',
-	'ABBC3_WAVE_TIP'			=> '[wave=(color)]Text[/wave]',
+	'ABBC3_WAVE_TIP'			=> '[wave=color]Text[/wave]',
 	'ABBC3_WAVE_VIEW'			=> '[wave=blue]' . $lang['SAMPLE_TEXT'] . '[/wave]',
 
 	// Unordered List
@@ -450,7 +454,7 @@ $lang = array_merge($lang, array(
 	// Web included by iframe
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Web Seite in den Beitrag einfügen',
-	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]URL web[/web]',
+	'ABBC3_WEB_TIP'				=> '[web width=99% height=400]URL web[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.phpbb.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=400]http://www.phpbb.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Hinweis:</strong> Anderen Webseiten zu erlauben im Beitrag zu stehen, kann ein Sicherheitsriskio darstellen. Du verwendest dies auf eigene Gefahr, oder lasse diese Funktion nur für Gruppen zu, denen du verstraust.',
@@ -468,14 +472,14 @@ $lang = array_merge($lang, array(
 	// Image
 	'ABBC3_IMG_TAG'				=> 'Bild',
 	'ABBC3_IMG_MOVER'			=> 'Bild einfügen',
-	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://...[/img]',
+	'ABBC3_IMG_TIP'				=> '[img]http://image_url[/img] oder [img=left|center|right|float-left|float-right]http://image_url[/img]',
 	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
-	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
+	'ABBC3_IMG_VIEW'			=> '[img]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'Thumbnail',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Thumbnail einfügen',
-	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://...[/thumbnail]',
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail]http://image_url[/thumbnail] oder [thumbnail=left|center|right|float-left|float-right]http://image_url[/thumbnail]',
 	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 
@@ -519,7 +523,7 @@ $lang = array_merge($lang, array(
 
 	// Search tag
 	'ABBC3_SEARCH_MOVER'		=> 'Gib das Suchwort ein',
-	'ABBC3_SEARCH_TIP'			=> '[search(=(bing|yahoo|google|altavista|lycos|wikipedia))]Text[/search]',
+	'ABBC3_SEARCH_TIP'			=> '[search]text[/search] oder [search=bing|yahoo|google|altavista|lycos|wikipedia]text[/search]',
 ##	For translate :                                                              yes                                                 yes                                                   yes                                                    yes                                                       yes                                                   yes
 	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBCode Box 3[/search]<br /> oder [search=bing]Advanced BBCode Box 3[/search]<br /> oder [search=yahoo]Advanced BBCode Box 3[/search]<br /> oder [search=google]Advanced BBCode Box 3[/search]<br /> oder [search=altavista]Advanced BBCode Box 3[/search]<br /> oder [search=lycos]Advanced BBCode Box 3[/search]<br /> oder [search=wikipedia]Advanced BBCode Box 3[/search]',
 

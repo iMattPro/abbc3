@@ -208,21 +208,21 @@ $lang = array_merge($lang, array(
 	'ABBC3_MOD_VIEW'			=> '[mod=Moderator_name]' . $lang['SAMPLE_TEXT'] . '[/mod]',
 
 	// Off topic tag
-	'OFFTOPIC'					=> 'Offtopic',
-	'ABBC3_OFFTOPIC_MOVER'		=> 'Insert Off topic text',
+	'OFFTOPIC'					=> 'Off Topic',
+	'ABBC3_OFFTOPIC_MOVER'		=> 'Insert Off Topic text',
 	'ABBC3_OFFTOPIC_TIP'		=> '[offtopic]text[/offtopic]',
 	'ABBC3_OFFTOPIC_VIEW'		=> '[offtopic]' . $lang['SAMPLE_TEXT'] . '[/offtopic]',
 
 	// SCRIPPET
 	'ABBC3_SCRIPPET_MOVER'		=> 'Scrippet',
 	'ABBC3_SCRIPPET_TIP'		=> '[scrippet]Screenplay text[/scrippet]',
-##	For translate :                 don't change the "<br />" and don't join the lines in one !
+##	For translate :                 don't change the "<br />" and don't join the lines in one!
 	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY<br />
-	ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />
-	ANTONIUS<br />
-	Do you think in a thousand years, anyone will remember our names?<br />
-	IPSUM<br />
-	Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
+									ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />
+									ANTONIUS<br />
+									Do you think in a thousand years, anyone will remember our names?<br />
+									IPSUM<br />
+									Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
 
 	// Tabs
 	'ABBC3_TABS_MOVER'			=> 'Tabs',
@@ -232,9 +232,13 @@ $lang = array_merge($lang, array(
 
 	// NFO
 	'ABBC3_NFO_TITLE'			=> 'NFO text',
-	'ABBC3_NFO_MOVER'			=> 'NFO text (Only for Internet Explorer)',
+	'ABBC3_NFO_MOVER'			=> 'NFO text',
 	'ABBC3_NFO_TIP'				=> '[nfo]NFO text[/nfo]',
-	'ABBC3_NFO_VIEW'			=> '[nfo]		Ü²Ü  Û Û²²     ÛÛÛÛ  Û ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ     ÛÛÛÛ Û  Û ÛÛÛÛÛ ²² ±[/nfo]',
+	'ABBC3_NFO_VIEW'			=> '[nfo]         /\_/\
+    ____/ o o \
+  /~____  =ø= /
+ (______)__m_m)
+[/nfo]',
 
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Justify align text',
@@ -315,27 +319,27 @@ $lang = array_merge($lang, array(
 
 	// Glow text
 	'ABBC3_GLOW_MOVER'			=> 'Glow text',
-	'ABBC3_GLOW_TIP'			=> '[glow=(color)]text[/glow]',
+	'ABBC3_GLOW_TIP'			=> '[glow=color]text[/glow]',
 	'ABBC3_GLOW_VIEW'			=> '[glow=red]' . $lang['SAMPLE_TEXT'] . '[/glow]',
 
 	// Shadow text
 	'ABBC3_SHADOW_MOVER'		=> 'Shadow text',
-	'ABBC3_SHADOW_TIP'			=> '[shadow=(color)]text[/shadow]',
+	'ABBC3_SHADOW_TIP'			=> '[shadow=color]text[/shadow]',
 	'ABBC3_SHADOW_VIEW'			=> '[shadow=blue]' . $lang['SAMPLE_TEXT'] . '[/shadow]',
 
 	// Dropshadow text
 	'ABBC3_DROPSHADOW_MOVER'	=> 'Dropshadow text',
-	'ABBC3_DROPSHADOW_TIP'		=> '[dropshadow=(color)]text[/dropshadow]',
+	'ABBC3_DROPSHADOW_TIP'		=> '[dropshadow=color]text[/dropshadow]',
 	'ABBC3_DROPSHADOW_VIEW'		=> '[dropshadow=blue]' . $lang['SAMPLE_TEXT'] . '[/dropshadow]',
 
 	// Blur text
-	'ABBC3_BLUR_MOVER'			=> 'Blur text (Only for Internet Explorer)',
-	'ABBC3_BLUR_TIP'			=> '[blur=(color)]text[/blur]',
+	'ABBC3_BLUR_MOVER'			=> 'Blur text',
+	'ABBC3_BLUR_TIP'			=> '[blur=color]text[/blur]',
 	'ABBC3_BLUR_VIEW'			=> '[blur=blue]' . $lang['SAMPLE_TEXT'] . '[/blur]',
 
 	// Wave text
 	'ABBC3_WAVE_MOVER'			=> 'Wave text (Only for Internet Explorer)',
-	'ABBC3_WAVE_TIP'			=> '[wave=(color)]text[/wave]',
+	'ABBC3_WAVE_TIP'			=> '[wave=color]text[/wave]',
 	'ABBC3_WAVE_VIEW'			=> '[wave=blue]' . $lang['SAMPLE_TEXT'] . '[/wave]',
 
 	// Unordered List
@@ -446,7 +450,7 @@ $lang = array_merge($lang, array(
 	// Web included by iframe
 	'ABBC3_WEB_TAG'				=> 'web',
 	'ABBC3_WEB_MOVER'			=> 'Insert a website in your post',
-	'ABBC3_WEB_TIP'				=> '[web width=200 height=100]http://url[/web]',
+	'ABBC3_WEB_TIP'				=> '[web width=99% height=400]http://url[/web]',
 	'ABBC3_WEB_EXAMPLE'			=> 'http://www.phpbb.com',
 	'ABBC3_WEB_VIEW'			=> '[web width=99% height=400]http://www.phpbb.com[/web]',
 	'ABBC3_WEB_EXPLAIN'			=> '<strong class="error">Note:</strong> allowing other websites to be inserted in posts, can pose a security risk. Use at your own risk, or assign to trusted groups.',
@@ -464,14 +468,14 @@ $lang = array_merge($lang, array(
 	// Image
 	'ABBC3_IMG_TAG'				=> 'image',
 	'ABBC3_IMG_MOVER'			=> 'Insert image',
-	'ABBC3_IMG_TIP'				=> '[img=(left|center|right|float-left|float-right)]http://image_url[/img]',
+	'ABBC3_IMG_TIP'				=> '[img]http://image_url[/img] or [img=left|center|right|float-left|float-right]http://image_url[/img]',
 	'ABBC3_IMG_EXAMPLE'			=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
-	'ABBC3_IMG_VIEW'			=> '[img=center]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
+	'ABBC3_IMG_VIEW'			=> '[img]http://www.google.com/intl/en_com/images/logo_plain.png[/img]',
 
 	// Thumbnail
 	'ABBC3_THUMBNAIL_TAG'		=> 'thumbnail',
 	'ABBC3_THUMBNAIL_MOVER'		=> 'Insert thumbnail',
-	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail(=(left|center|right|float-left|float-right))]http://image_url[/thumbnail]',
+	'ABBC3_THUMBNAIL_TIP'		=> '[thumbnail]http://image_url[/thumbnail] or [thumbnail=left|center|right|float-left|float-right]http://image_url[/thumbnail]',
 	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 
@@ -487,8 +491,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...[/rapidshare]',
 	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
 	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
-	'ABBC3_RAPIDSHARE_GOOD'		=> 'File found on server !',
-	'ABBC3_RAPIDSHARE_WRONG'	=> 'File not found !',
+	'ABBC3_RAPIDSHARE_GOOD'		=> 'File found on server!',
+	'ABBC3_RAPIDSHARE_WRONG'	=> 'File not found!',
 
 	// testlink
 	'ABBC3_CURL_ERROR'			=> '<strong>Error : </strong> Sorry but it appears that CURL is not loaded. Please install it to use this function.',
@@ -499,8 +503,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_NOTE'		=> 'Valid servers: rapidshare, depositfiles, megashares',
 	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
 	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
-	'ABBC3_TESTLINK_GOOD'		=> 'File found on server !',
-	'ABBC3_TESTLINK_WRONG'		=> 'File not found !',
+	'ABBC3_TESTLINK_GOOD'		=> 'File found on server!',
+	'ABBC3_TESTLINK_WRONG'		=> 'File not found!',
 
 	// Click counter
 	'ABBC3_CLICK_TAG'			=> 'click',
@@ -515,7 +519,7 @@ $lang = array_merge($lang, array(
 
 	// Search tag
 	'ABBC3_SEARCH_MOVER'		=> 'Insert search word',
-	'ABBC3_SEARCH_TIP'			=> '[search(=(bing|yahoo|google|altavista|lycos|wikipedia))]text[/search]',
+	'ABBC3_SEARCH_TIP'			=> '[search]text[/search] or [search=bing|yahoo|google|altavista|lycos|wikipedia]text[/search]',
 ##	For translate :                                                              yes                                                 yes                                                   yes                                                    yes                                                       yes                                                   yes
 	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBCode Box 3[/search]<br /> or [search=bing]Advanced BBCode Box 3[/search]<br /> or [search=yahoo]Advanced BBCode Box 3[/search]<br /> or [search=google]Advanced BBCode Box 3[/search]<br /> or [search=altavista]Advanced BBCode Box 3[/search]<br /> or [search=lycos]Advanced BBCode Box 3[/search]<br /> or [search=wikipedia]Advanced BBCode Box 3[/search]',
 

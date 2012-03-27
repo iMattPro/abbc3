@@ -1465,11 +1465,11 @@ class abbcode
 			break;
 
 			case 'BLUR' :
-				$style .= ($is_ie) ? "filter: blur(strength=7); color:$colour;" : "color: $colour; text-shadow: -0.1em 0.0em 0.1em $colour, 0.1em 0.0em 0.1em $colour;";
+				$style .= ($is_ie) ? "filter: blur(strength=7); color:$colour;" : "color: transparent; text-shadow: 0 0 0.2em $colour;";
 			break;
 
 			case 'WAVE' :
-				$style .= ($is_ie) ? "filter: wave(strength=2); color: $colour;" : "text-shadow: 0.2em 0.5em 0.1em $colour, -0.2em 0.1em 0.1em $colour, 0.2em -0.3em 0.1em $colour; font-weight: bold; font-style: italic;";
+				$style .= ($is_ie) ? "filter: wave(strength=2); color: $colour;" : "";
 			break;
 
 			default:

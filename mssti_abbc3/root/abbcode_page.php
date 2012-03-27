@@ -405,7 +405,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 		'ABBC3_DESC'		=> (in_array($tag, $need_description )) ? true : false,
 		'ABBC3_W_H'			=> (in_array($tag, $need_width_height)) ? true : false,
 		'ABBC3_WIDTH'		=> ($abbcode_bbcode == 'abbc3_web') ? '100%' : $abbcode->abbcode_config['ABBC3_VIDEO_WIDTH'],
-		'ABBC3_HEIGHT'		=> ($abbcode_bbcode == 'abbc3_web') ? '100'  : $abbcode->abbcode_config['ABBC3_VIDEO_HEIGHT'],
+		'ABBC3_HEIGHT'		=> ($abbcode_bbcode == 'abbc3_web') ? '400'  : $abbcode->abbcode_config['ABBC3_VIDEO_HEIGHT'],
 		'S_WIZARD_GENERAL'	=> ($abbcode_bbcode == 'abbc3_table') ? false : ($abbcode_bbcode == 'abbc3_grad') ? false : true,
 		'S_WIZARD_TABLE'	=> ($abbcode_bbcode == 'abbc3_table') ? true  : false,
 		'S_WIZARD_GRAD'		=> ($abbcode_bbcode == 'abbc3_grad') ? true  : false,
