@@ -50,6 +50,10 @@ hr.hrdotted {
 	margin : 0;
 }
 
+#helpbox {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
 #message-box textarea.inputbox {
 	width : 100%;
 /*	Never set a default height for the textarea, will break the function textbox_resize() */

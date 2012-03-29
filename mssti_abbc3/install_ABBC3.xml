@@ -59,7 +59,7 @@ Before adding this MOD to your forum, you should back up all files and databases
 					<change> [Change] Updated Blur BBCode for cross-browser compatibility with all browsers.</change>
 					<change> [Change] Updated Wave BBCode, the effect is disabled in all except IE because it is only supported in IE.</change>
 					<change> [Change] Improved the look/readability of the ABBC3 Help page in Prosilver.</change>
-					<change> [Change] Reduced size of the BBCode Help Box area that is displayed under the ABBC3 toolbar.</change>
+					<change> [Change] Improved the display font and reduced size of the BBCode Help Box area that is displayed under the ABBC3 toolbar.</change>
 					<change> [Change] Restored the default resize ability to post/text editor message boxes.</change>
 					<change> [Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.</change>
 					<change> [Fix] Added missing language variables to Spanish and German installation instructions.</change>
