@@ -60,6 +60,7 @@
 			<file from="root/styles/abbcode/posting_abbcode_wizards.js" to="styles/abbcode/posting_abbcode_wizards.js"/>
 			<file from="root/styles/prosilver/template/abbcode.html" to="styles/prosilver/template/abbcode.html"/>
 			<file from="root/styles/prosilver/template/posting_abbcode_buttons.html" to="styles/prosilver/template/posting_abbcode_buttons.html"/>
+			<file from="root/styles/prosilver/template/posting_abbcode_help.html" to="styles/prosilver/template/posting_abbcode_help.html"/>
 			<file from="root/styles/subsilver2/template/abbcode.html" to="styles/subsilver2/template/abbcode.html"/>
 			<file from="root/styles/subsilver2/template/posting_abbcode_buttons.html" to="styles/subsilver2/template/posting_abbcode_buttons.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>

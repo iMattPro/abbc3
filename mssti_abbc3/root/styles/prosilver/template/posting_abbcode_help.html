@@ -37,10 +37,10 @@
 				<h2>{L_ABBC3_HELP_DESC} : <strong<!-- IF bbc_row.ABBC3_HELP_SRC --> class="gotimage" style='background-image: url("{S_ABBC3_PATH}/images/{bbc_row.ABBC3_HELP_SRC}")'<!-- ENDIF -->>{bbc_row.ABBC3_HELP_DESC}</strong></h2>
 				<dl class="faq">
 					<dt><strong>{L_ABBC3_HELP_WRITE}:</strong></dt>
-					<dd>{bbc_row.ABBC3_HELP_WRITE}<!-- IF bbc_row.ABBC3_HELP_NOTE --><br />{bbc_row.ABBC3_HELP_NOTE}<!-- ENDIF --><hr class="dashed" /></dd>
+					<dd><pre>{bbc_row.ABBC3_HELP_WRITE}</pre><!-- IF bbc_row.ABBC3_HELP_NOTE --><br />{bbc_row.ABBC3_HELP_NOTE}<!-- ENDIF --><hr class="dashed" /></dd>
 				<!-- IF bbc_row.ABBC3_HELP_EXAMPLE -->
 					<dd><strong>{L_ABBC3_EXAMPLE} :</strong></dd>
-					<dd>{bbc_row.ABBC3_HELP_EXAMPLE}<hr class="dashed" /></dd>
+					<dd><pre>{bbc_row.ABBC3_HELP_EXAMPLE}</pre><hr class="dashed" /></dd>
 				<!-- ENDIF -->
 				<!-- IF bbc_row.ABBC3_HELP_VIEW -->
 					<dd><strong>{L_ABBC3_HELP_VIEW} :</strong></dd>
