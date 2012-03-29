@@ -1461,7 +1461,7 @@ class abbcode
 			break;
 
 			case 'DROPSHADOW' :
-				$style .= ($is_ie) ? "filter: dropshadow(color=$shadow_colour, strength=4); color:$colour;" : "color : $colour; text-shadow: 0.2em 0.2em 0.05em $shadow_colour;";
+				$style .= ($is_ie) ? "filter: dropshadow(color=$shadow_colour, strength=4); color:$colour;" : "color : $colour; text-shadow: -0.1em 0.1em 0.05em $shadow_colour;";
 			break;
 
 			case 'BLUR' :
