@@ -123,8 +123,9 @@ $lang = array_merge($lang, array(
 
 /**
 * TRANSLATORS PLEASE NOTE 
-*	Several lines have an special note like "##	For translate : " followed for one or more "yes"
-*	These means that you can/have to translate the word under
+*	Several lines have an special note like "##	For translator: " followed by "yes" and "no"
+*	These are lines with mixed code and language. For these lines you can translate anything 
+*	under a "yes" but do not change any text under a "no"
 **/
 $lang = array_merge($lang, array(
 // bbcodes texts
@@ -179,12 +180,12 @@ $lang = array_merge($lang, array(
 	// Code
 	'ABBC3_CODE_MOVER'			=> 'Código',
 	'ABBC3_CODE_TIP'			=> '[code]texto código[/code]',
-	'ABBC3_CODE_VIEW'			=> '[code]' . $lang['SAMPLE_TEXT'] . '[/code]',
+	'ABBC3_CODE_VIEW'			=> '[code]' . $lang['SAMPLE_TEXT'] . '[/code] o [code=php]' . $lang['SAMPLE_TEXT'] . '[/code]',
 
 	// Quote
 	'ABBC3_QUOTE_MOVER'			=> 'Citar',
 	'ABBC3_QUOTE_TIP'			=> '[quote]texto[/quote] o [quote=“usuario”]texto[/quote]',
-##	For translate :                                                             yes            yes
+##	For translator:                                                             yes            yes
 	'ABBC3_QUOTE_VIEW'			=> '[quote]' . $lang['SAMPLE_TEXT'] . '[/quote] o [quote=&quot;usuario&quot;]' . $lang['SAMPLE_TEXT'] . '[/quote]',
 
 	// Spoiler
@@ -194,7 +195,7 @@ $lang = array_merge($lang, array(
 	'SPOILER_SHOW'				=> 'Ver el Spoiler',
 	'SPOILER_HIDE'				=> 'Ocultar el Spoiler',
 
-	// hidden
+	// Hidden
 	'ABBC3_HIDDEN_MOVER'		=> 'Ocultar el contenido a visitantes',
 	'ABBC3_HIDDEN_TIP'			=> '[hidden]texto[/hidden]',
 	'ABBC3_HIDDEN_VIEW'			=> '[hidden]' . $lang['SAMPLE_TEXT'] . '[/hidden]',
@@ -202,13 +203,13 @@ $lang = array_merge($lang, array(
 	'HIDDEN_ON'					=> 'Ocultar está ON',
 	'HIDDEN_EXPLAIN'			=> 'La Administración del Sitio requiere que esté registrado y se haya identificado para ver este mensaje.',
 
-	// Moderator tag
+	// Moderator
 	'ABBC3_MOD_MOVER'			=> 'Mensaje del moderator',
 	'ABBC3_MOD_TIP'				=> '[mod=nombre]texto[/mod]',
-##	For translate :                      yes
+##	For translator:                      yes
 	'ABBC3_MOD_VIEW'			=> '[mod=Nombre_de_moderador]' . $lang['SAMPLE_TEXT'] . '[/mod]',
 
-	// Off topic tag
+	// Off Topic
 	'OFFTOPIC'					=> 'Fuera de tema',
 	'ABBC3_OFFTOPIC_MOVER'		=> 'Insertar texto fuera de tema',
 	'ABBC3_OFFTOPIC_TIP'		=> '[offtopic]texto[/offtopic]',
@@ -217,7 +218,7 @@ $lang = array_merge($lang, array(
 	// SCRIPPET
 	'ABBC3_SCRIPPET_MOVER'		=> 'Scrippet',
 	'ABBC3_SCRIPPET_TIP'		=> '[scrippet]Texto del guión[/scrippet]',
-##	For translate :                 don't change the "<br />" and don't join the lines in one!
+##	For translator:                 don't change the "<br />" and don't join the lines in one!
 	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANTIGUA ROMA - DIA<br />
 									ANTONIO e IPSUM estan caminando por las calles atestadas.<br />
 									ANTONIO<br />
@@ -228,7 +229,7 @@ $lang = array_merge($lang, array(
 	// Tabs
 	'ABBC3_TABS_MOVER'			=> 'Tabs',
 	'ABBC3_TABS_TIP'			=> '[tabs] [tabs:Titulo_solapa]Texto de la solapa[tabs:Otro_Titulo]Texto de la solapa[/tabs]',
-##	For translate :                              yes                 yes                                                                                                                               yes               Yes
+##	For translator:                              yes                 yes                                                                                                                               yes               Yes
 	'ABBC3_TABS_VIEW'			=> '[tabs] [tabs:Titulo solapa]&nbsp;Todo el contenido abajo este código se inserta dentro de la ficha, hasta que otra ficha se declara con: &#91;tabs:XXX&#93;.[tabs:Otra solapa]&nbsp;Y continúa así... hasta el final de la página o, opcionalmente, puede añadir el código de abajo para poner fin a la última ficha y añadir más texto fuera de las pestañas: [/tabs]',
 
 	// NFO
@@ -244,7 +245,7 @@ $lang = array_merge($lang, array(
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Texto justificado',
 	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]texto[/align]',
-##	For translate :                                yes           yes
+##	For translator:                                yes           yes
 	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]This is <br />a sample text<br />' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Right Align
@@ -276,13 +277,13 @@ $lang = array_merge($lang, array(
 	// Superscript
 	'ABBC3_SUP_MOVER'			=> 'Texto superíndice',
 	'ABBC3_SUP_TIP'				=> '[sup]texto[/sup]',
-##	For translate :                 yes                                                             yes
+##	For translator:                 yes                                                             yes
 	'ABBC3_SUP_VIEW'			=> 'Esto es un texto normal [sup]' . $lang['SAMPLE_TEXT'] . '[/sup] esto es un texto normal',
 
 	// Subscript
 	'ABBC3_SUB_MOVER'			=> 'Texto subíndice',
 	'ABBC3_SUB_TIP'				=> '[sub]texto[/sub]',
-##	For translate :                 yes                                                             yes
+##	For translator:                 yes                                                             yes
 	'ABBC3_SUB_VIEW'			=> 'Esto es un texto normal [sub]' . $lang['SAMPLE_TEXT'] . '[/sub] esto es un texto normal',
 
 	// Bold
@@ -350,20 +351,20 @@ $lang = array_merge($lang, array(
 	'ABBC3_LISTB_MOVER'			=> 'Lista Desordenada',
 	'ABBC3_LISTB_TIP'			=> '[list]texto[/list]',
 	'ABBC3_LISTB_NOTE'			=> 'Nota: usted puede usar [*] para insertar puntos',
-##	For translate :                          yes      yes      yes           yes        yes            yes                yes
+##	For translator:                          yes      yes      yes           yes        yes            yes                yes
 	'ABBC3_LISTB_VIEW'			=> '[list][*]Item 1[*]Item 2[*]Item 3[/list] o [list][*]Item 1[list][*]sub-item 1[list][*]sub-sub-item1[/list][/list][/list]',
 
 	// Ordered List
 	'ABBC3_LISTO_MOVER'			=> 'Lista Ordenada',
 	'ABBC3_LISTO_TIP'			=> '[list=1|a]texto[/list]',
 	'ABBC3_LISTO_NOTE'			=> 'Nota: usted puede usar [*] para insertar puntos',
-##	For translate :                            yes      yes     yes          yes          yes      yes      yes           yes          yes      yes      yes           yes          yes      yes       yes             yes          yes      yes       yes
+##	For translator:                            yes      yes     yes          yes          yes      yes      yes           yes          yes      yes      yes           yes          yes      yes       yes             yes          yes      yes       yes
 	'ABBC3_LISTO_VIEW'			=> '[list=1][*]Item 1[*]Item2[*]Item3[/list] o [list=a][*]Item a[*]Item b[*]Item c[/list] o [list=A][*]Item A[*]Item B[*]Item C[/list] o [list=i][*]Item i[*]Item ii[*]Item iii[/list] o [list=I][*]Item I[*]Item II[*]Item III[/list]',
 
 	// List item
 	'ABBC3_LISTITEM_MOVER'		=> 'Item de lista',
 	'ABBC3_LISTITEM_TIP'		=> '[*]texto',
-	'ABBC3_LISTITEM_NOTE'		=> 'Nota: Insertar puntos dentro de la lista.',
+	//'ABBC3_LISTITEM_NOTE'		=> 'Nota: Insertar puntos dentro de la lista.',
 
 	// Line Break
 	'ABBC3_HR_MOVER'			=> 'Línea divisoria',
@@ -423,7 +424,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_ANCHOR_MOVER'		=> 'Ancla',
 	'ABBC3_ANCHOR_TIP'			=> '[anchor=(el nombre de esta ancla) goto=(el nombre de la otra ancla)]texto[/anchor]',
 	'ABBC3_ANCHOR_EXAMPLE'		=> '[anchor=a1 goto=a2]ir al ancla a2[/anchor]',
-##	For translate :                                           yes                                Yes               Yes
+##	For translator:                                           yes                                Yes               Yes
 	'ABBC3_ANCHOR_VIEW'			=> '[anchor=help_0 goto=help_1]ir al ancla ayuda 1[/anchor]<br /> o [anchor=help_1]esta es el ancla ayuda 1[/anchor]',
 
 	// Hyperlink Wizard
@@ -461,7 +462,7 @@ $lang = array_merge($lang, array(
 
 	// Image & Thumbnail Wizard
 	'ABBC3_ALIGN_MODE'			=> 'Alinear Imagen',
-##	For translate :							 Don't				Yes
+##	For translator:							 Don't				Yes
 	'ABBC3_ALIGN_SELECTOR'		=> array(	'none'			=> 'Sin alinear',
 											'left'			=> 'Izquierda',
 											'center'		=> 'Centro',
@@ -515,7 +516,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_CLICK_MOVER'			=> 'Insertar contador de Clicks',
 	'ABBC3_CLICK_TIP'			=> '[click]http://...[/click] o [click=http://...]Nombre Web[/click] o [click][img]http://...[/img][/click]',
 	'ABBC3_CLICK_EXAMPLE'		=> 'http://www.google.com' . ' | ' . 'http://www.google.com/intl/en_com/images/logo_plain.png',
-##	For translate :                                                                     yes
+##	For translator:                                                                     yes
 	'ABBC3_CLICK_VIEW'			=> '[click=http://www.google.com] Google [/click] o [click][img]http://www.google.com/intl/en_com/images/logo_plain.png[/img][/click]',
 	'ABBC3_CLICK_TIME'			=> '( Clickeado %d vez )',
 	'ABBC3_CLICK_TIMES'			=> '( Clickeado %d veces )',
@@ -524,7 +525,7 @@ $lang = array_merge($lang, array(
 	// Search tag
 	'ABBC3_SEARCH_MOVER'		=> 'Insertar enlace a buscador ',
 	'ABBC3_SEARCH_TIP'			=> '[search]text[/search] o [search=bing|yahoo|google|altavista|lycos|wikipedia]text[/search]',
-##	For translate :                                                              yes                                                yes                                                  yes                                                   yes                                                      yes                                                  yes
+##	For translator:                                                              yes                                                yes                                                  yes                                                   yes                                                      yes                                                  yes
 	'ABBC3_SEARCH_VIEW'			=> '[search]Advanced BBCode Box 3[/search]<br /> o [search=bing]Advanced BBCode Box 3[/search]<br /> o [search=yahoo]Advanced BBCode Box 3[/search]<br /> o [search=google]Advanced BBCode Box 3[/search]<br /> o [search=altavista]Advanced BBCode Box 3[/search]<br /> o [search=lycos]Advanced BBCode Box 3[/search]<br /> o [search=wikipedia]Advanced BBCode Box 3[/search]',
 
 	// BBvideo Wizard
