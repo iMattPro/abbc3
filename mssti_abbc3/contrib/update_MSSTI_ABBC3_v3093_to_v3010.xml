@@ -47,15 +47,10 @@
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_wizards.js" to="styles/abbcode/posting_abbcode_wizards.js"/>
 		</copy>
-
 		<delete>
 			<file name="language/en/mods/acp_abbcodes.php"/>
 		</delete>
-
-		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-
 		<open src="includes/functions_display.php">
-
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
 		// Check phpbb permissions status
@@ -87,17 +82,13 @@
 		}
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 		</open>
-
 		<open src="includes/message_parser.php">
-
 			<edit>
 				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
 			$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
 // MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
-
 			<edit>
 				<find><![CDATA[			$this->bbcodes[$row['bbcode_tag']] = array(]]></find>
 				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
@@ -111,17 +102,13 @@
 			}
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 		</open>
-
 		<open src="includes/ucp/ucp_prefs.php">
 			<edit>
 				<find><![CDATA[				$user->add_lang('mods/acp_abbcodes');]]></find>
 				<action type="replace-with"><![CDATA[				$user->add_lang('mods/info_acp_abbcodes');]]></action>
 			</edit>
-
 		</open>
-
 		<open src="language/en/acp/common.php">
 			<edit>
 				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
@@ -135,6 +122,6 @@ $lang = array_merge($lang, array(
 // MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
 		</open>
-
+		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 	</action-group>
 </mod>

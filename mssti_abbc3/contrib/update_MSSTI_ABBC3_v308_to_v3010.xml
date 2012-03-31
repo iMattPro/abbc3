@@ -67,22 +67,16 @@
 			<file from="root/styles/subsilver2/template/posting_abbcode_wizards.html" to="styles/subsilver2/template/posting_abbcode_wizards.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
-		
 		<delete>
 			<file name="language/en/mods/acp_abbcodes.php"/>
 		</delete>
-
-		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-
 		<open src="adm/style/overall_header.html">
 			<edit>
 				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
 				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../styles/abbcode/abbcode_header.html -->]]></action>
 			</edit>
 		</open>
-
 		<open src="includes/bbcode.php">
-
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
 		// Try to avoid duplicates anchor ID's inside quotes
@@ -99,14 +93,11 @@
 		}
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[			$sql .= ' AND bbcode_match <> "." ';]]></find>
 				<action type="replace-with"><![CDATA[			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></action>
 			</edit>
-
 		</open>
-
 		<open src="includes/functions_content.php">
 			<edit>
 				<find><![CDATA[				'L_DOWNLOAD_COUNT'		=> $l_download_count
@@ -131,32 +122,26 @@
 ]]></action>
 			</edit>
 		</open>
-
 		<open src="includes/functions_display.php">
-
 			<edit>
 				<find><![CDATA[	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></find>
 				<action type="replace-with"><![CDATA[	$abbc3 = ($abbc3 && @$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
 
 	$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : ($mode == 'compose' ? 'display_on_pm' : 'display_on_posting');]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[	$sql_where = ' AND abbcode = 0';
 	if ($abbc3 && @$config['ABBC3_MOD'])]]></find>
 				<action type="replace-with"><![CDATA[	if ($abbc3 && @$config['ABBC3_MOD'])]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[		$sql_where = ' AND (abbcode = 0 AND bbcode_image = "")';]]></find>
 				<action type="replace-with"><![CDATA[		$sql_where = " $display = 1 AND (abbcode = 0 AND bbcode_image = '')";]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[		$template->assign_vars(array('S_ABBC3_DISABLED' => true));]]></find>
 				<action type="before-add"><![CDATA[		$sql_where = " $display = 1 AND abbcode = 0";]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline]]></find>
 				<inline-edit>
@@ -164,12 +149,10 @@
 					<inline-action type="after-add"><![CDATA[, bbcode_group]]></inline-action>
 				</inline-edit>
 			</edit>
-
 			<edit>
 				<find><![CDATA[		WHERE display_on_posting = 1 ' . $sql_where . ']]></find>
 				<action type="replace-with"><![CDATA[		WHERE ' . $sql_where . ']]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[	while ($row = $db->sql_fetchrow($result))
 	{]]></find>
@@ -190,17 +173,13 @@
 		}
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 		</open>
-
 		<open src="includes/message_parser.php">
-
 			<edit>
 				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
 			$sql .= ' WHERE bbcode_match <> "." ';
 // MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
-
 			<edit>
 				<find><![CDATA[			$this->bbcodes[$row['bbcode_tag']] = array(]]></find>
 				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
@@ -214,9 +193,7 @@
 			}
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 		</open>
-
 		<open src="includes/ucp/ucp_prefs.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
@@ -227,7 +204,6 @@
 					'abbcode_mod'	=> request_var('abbcode_mod', (($user->data['user_abbcode_mod']) ? ($user->data['user_abbcode_compact'] ? 'compact' : 'standard') : 'limited')),
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
 							'user_abbcode_mod'		=> $data['abbcode_mod'],
@@ -238,7 +214,6 @@
 							'user_abbcode_compact'	=> (($data['abbcode_mod'] == 'compact') ? 1 : 0),
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
 				$user->add_lang('mods/acp_abbcodes');
@@ -257,7 +232,6 @@
 				}
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
 					'S_ABBC3_VERSION'	=> @$config['ABBC3_VERSION'],
@@ -273,9 +247,7 @@
 					'S_ABBCODE_OPTIONS'	=> $abbc3_options,
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
-
 		</open>
-
 		<open src="language/en/acp/common.php">
 			<edit>
 				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
@@ -289,14 +261,12 @@ $lang = array_merge($lang, array(
 // MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
 		</open>
-
 		<open src="styles/prosilver/template/overall_header.html">
 			<edit>
 				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
 				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../abbcode/abbcode_header.html -->]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/prosilver/template/ucp_prefs_post.html">
 			<edit>
 				<find><![CDATA[	<fieldset>
@@ -323,14 +293,12 @@ $lang = array_merge($lang, array(
 	</fieldset>]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/overall_header.html">
 			<edit>
 				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
 				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../abbcode/abbcode_header.html -->]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/ucp_prefs_post.html">
 			<edit>
 				<find><![CDATA[<tr>
@@ -347,8 +315,7 @@ $lang = array_merge($lang, array(
 </tr>]]></action>
 			</edit>
 		</open>
-
+		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 		<diy-instructions lang="en"><![CDATA[You can delete the ibox folder located at root/styles/abbcode/ibox/]]></diy-instructions>
-
 	</action-group>
 </mod>

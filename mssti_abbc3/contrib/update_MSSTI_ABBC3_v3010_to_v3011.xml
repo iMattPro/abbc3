@@ -37,7 +37,6 @@
 		</link-group>
 	</header>
 	<action-group>
-
 		<copy>
 			<file from="root/abbcode_ajax.php" to="abbcode_ajax.php"/>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
@@ -65,41 +64,29 @@
 			<file from="root/styles/subsilver2/template/posting_abbcode_buttons.html" to="styles/subsilver2/template/posting_abbcode_buttons.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
-
 		<delete>
 			<file name="styles/abbcode/greybox/*.*"/>
 			<file name="styles/abbcode/PopBox/images/*.*"/>
 			<file name="styles/abbcode/PopBox/*.*"/>
 			<file name="styles/abbcode/loading.gif"/>
 		</delete>
-
-		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-
 		<open src="includes/functions_content.php">
-
 			<edit>
 				<find><![CDATA[			// We need to check if ABBC3 is property initialized for attached images and the ABBC3 img resizer]]></find>
 				<action type="replace-with"><![CDATA[			// We need to check if ABBC3 is properly initialized for attached images and the ABBC3 img resizer]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[				// For attached image resizer in private message only when bbcodes are not present]]></find>
 				<action type="replace-with"><![CDATA[				// For attached images being resized in private messages only when bbcodes are not present]]></action>
 			</edit>
-
 		</open>
-
 		<open src="includes/functions_display.php">
-
 			<edit>
 				<find><![CDATA[		// We need to check if ABBC3 is property initialized]]></find>
 				<action type="replace-with"><![CDATA[		// We need to check if ABBC3 is properly initialized]]></action>
 			</edit>
-
 		</open>
-
 		<open src="includes/acp/acp_bbcodes.php">
-
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' and abbcode = 0';]]></find>
 				<inline-edit>
@@ -107,7 +94,6 @@
 					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
 				</inline-edit>
 			</edit>
-
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' and abbcode = 0';]]></find>
 				<inline-edit>
@@ -115,7 +101,6 @@
 					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
 				</inline-edit>
 			</edit>
-
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = $bbcode_id" . ' and abbcode = 0' ;]]></find>
 				<inline-edit>
@@ -123,9 +108,8 @@
 					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
 				</inline-edit>
 			</edit>
-
 		</open>
-
+		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 		<diy-instructions lang="en"><![CDATA[Dont forget to run the install_abbc3.php installation script (click the hi-lighted link above if you are using AutoMOD)
 		
 Support for new versions of lightbox scripts has been added:
@@ -138,8 +122,6 @@ End of support for older lightbox scripts:
 ------------------------------------------------------------------------------------
 PopBox has been removed from ABBC3.
 GreyBox has been removed from ABBC3.
-If you were using one of these two as your Image Resizer Lightbox method, you should go to the ACP and choose another method right away.
-]]></diy-instructions>
-
+If you were using one of these two as your Image Resizer Lightbox method, you should go to the ACP and choose another method right away.]]></diy-instructions>
 	</action-group>
 </mod>
