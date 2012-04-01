@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Add-on : Enhanced ED2K links.]]></title>
-
 		<description lang="en"><![CDATA[This file provides instructions to enhance ED2K links in your forum.
 		
 		1) make ED2K links work directly (without [url] tag) 
 		2) make a table at the end of the post to download all the ED2K links in-one-click.
 
 		See the main install file for any additional information about the MOD.]]></description>
-
 		<author-notes lang="en"><![CDATA[You will have to make this change to ALL themes you have installed, based off Prosilver and Subsilver2.
 	-------------------------------------------------------------------
 	IMPORTANT !
@@ -26,7 +25,6 @@
 	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Edit
 
 	-------------------------------------------------------------------]]></author-notes>
-
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
@@ -45,27 +43,21 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		
 		<mod-version>3.0.11</mod-version>
-		
 		<installation>
 			<level>easy</level>
 			<time>120</time>
 			<target-version>3.0.10</target-version>
 		</installation>
-
 		<link-group>
 			<link type="parent" href="../install_ABBC3.xml" lang="en">Code change</link>
 		</link-group>
 	</header>
-
 	<action-group>
-
 		<open src="viewtopic.php">
 			<edit>
 				<find><![CDATA[	// Dump vars into template]]></find>
-				<action type="before-add"><![CDATA[
-// MOD : MSSTI ABBC3 eD2k Add all links feature - Start
+				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 eD2k Add all links feature - Start
 	$ed2k_links = array();
 	if (@$config['ABBC3_MOD'])
 	{
@@ -91,11 +83,9 @@
 
 ]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[	$prev_post_id = $row['post_id'];]]></find>
-				<action type="before-add"><![CDATA[
-// MOD : MSSTI ABBC3 eD2k Add all links feature - Start
+				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 eD2k Add all links feature - Start
 	if (!empty($ed2k_links[$row['post_id']]))
 	{
 		foreach ($ed2k_links[$row['post_id']] as $ed2k_link)
@@ -108,13 +98,11 @@
 ]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/prosilver/template/viewtopic_body.html">
 			<edit>
 				<comment lang="en"><![CDATA[Make a table at the end of the post to download all the ed2k links in-one-click - Step 2 of 2]]></comment>
 				<find><![CDATA[			<!-- IF postrow.S_DISPLAY_NOTICE -->]]></find>
-				<action type="before-add"><![CDATA[
-<!-- MOD : MSSTI ABBC3 Add all eD2k links feature - Start //-->
+				<action type="before-add"><![CDATA[<!-- MOD : MSSTI ABBC3 Add all eD2k links feature - Start //-->
 				<!-- IF postrow.ALL_ED2K_LINK -->
 					<br />
 					<hr />
@@ -138,12 +126,10 @@
 ]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/viewtopic_body.html">
 			<edit>
 				<find><![CDATA[			<!-- IF postrow.S_DISPLAY_NOTICE -->]]></find>
-				<action type="before-add"><![CDATA[
-<!-- MOD : MSSTI ABBC3 Add all eD2k links feature - Start //-->
+				<action type="before-add"><![CDATA[<!-- MOD : MSSTI ABBC3 Add all eD2k links feature - Start //-->
 				<!-- IF postrow.ALL_ED2K_LINK -->
 					<br />
 					<hr />
@@ -166,7 +152,6 @@
 ]]></action>
 			</edit>
 		</open>
-
 		<diy-instructions lang="en"><![CDATA[IMPORTANT !
 
 OVERWRITE all your previous files with the new ones!
@@ -193,6 +178,5 @@ B) Refresh the templates :
 
 #####################################################################
 C) Enjoy it !.]]></diy-instructions>
-
 	</action-group>
 </mod>

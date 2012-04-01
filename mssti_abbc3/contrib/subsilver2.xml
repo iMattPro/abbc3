@@ -1,26 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Template : Changes for Subsilver2 based off style]]></title>
-		<description lang="en"><![CDATA[Changes for Subsilver2 based off style]]></description>
-		<author-notes lang="en"><![CDATA[You will have to make this change to ALL themes you have installed, based off Subsilver2. I use "Subsilver2" as an example.
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Template : Subsilver2 Style Instructions]]></title>
+		<description lang="en"><![CDATA[Instructions for subsilver2 based styles]]></description>
+		<author-notes lang="en"><![CDATA[IMPORTANT !
 
-	-------------------------------------------------------------------
-	IMPORTANT !
-	
-	Before made any changes, makes sure your template is stored into "filesystem"
-	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Details
-	
-	If you do not want to change from "Database" to "Filesystem",
-	you must do next changes within your ACP :
-	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Edit
-	
-	-------------------------------------------------------------------
+Before made any changes, makes sure your template is stored into "filesystem"
+    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Details
 
-	Before adding this MOD to your forum, you should back up all files and databases related to this MOD.]]></author-notes>
+If you do not want to change from "Database" to "Filesystem",
+you must do next changes within your ACP :
+    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Edit
+
+-------------------------------------------------------------------
+
+Before adding this MOD to your forum, you should back up all files and databases related to this MOD.]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
@@ -170,7 +169,6 @@
 				<find><![CDATA[<tr>
 	<td class="cat" colspan="2" align="center">{S_HIDDEN_FIELDS}<input class="btnmain" type="submit" name="submit" value="{L_SUBMIT}" />&nbsp;&nbsp;<input class="btnlite" type="reset" value="{L_RESET}" name="reset" /></td>]]></find>
 				<action type="before-add"><![CDATA[
-
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
 <!-- IF S_ABBC3_MOD and S_ABBC3_UCP_MODE -->
 <tr>

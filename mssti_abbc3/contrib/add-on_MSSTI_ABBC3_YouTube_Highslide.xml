@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Add-on : Open YouTube videos with Highslide JS]]></title>
 		<description lang="en"><![CDATA[This file provides instructions to allow YouTube videos to open with the Highslide JS effect. This will only work for YouTube videos posted using ABBC3's BBVideo bbcode, and is compatible with the standard YouTube url and the shortened youtu.be url.]]></description>
@@ -25,22 +27,17 @@
 				</contributions-group>
 			</author>
 		</author-group>
-
 		<mod-version>3.0.11</mod-version>
-
 		<installation>
 			<level>easy</level>
 			<time>300</time>
 			<target-version>3.0.10</target-version>
 		</installation>
-
 		<link-group>
 			<link type="parent" href="../install_ABBC3.xml" lang="en">Code change</link>
 		</link-group>
 	</header>
-
 	<action-group>
-
 		<open src="includes/abbcode.php">
 			<edit>
 				<find><![CDATA[		/** Patterns and replacements for BBVIDEO bbcode processing **/]]></find>
@@ -73,28 +70,24 @@
 ]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/abbcode/abbcode_header.html">
 			<edit>
 				<find><![CDATA[		//	slideshowGroup: 'gallery',]]></find>
 				<action type="before-add"><![CDATA[			slideshowGroup: 'gallery',]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/prosilver/template/abbcode.html">
 			<edit>
 				<find><![CDATA[<!-- BEGIN bbvideo --><div class="bbvideo" style="width: {BBVIDEO_WIDTH}px;"><div class="bbvideotitle">{BBVIDEO_IMAGE}{BBVIDEO_LINK}</div><div class="bbvideocontent">{BBVIDEO_VIDEO}</div></div><!-- END bbvideo -->]]></find>
 				<action type="before-add"><![CDATA[<!-- BEGIN bbvideo_hs --><a href="{BBVIDEO_LINK}" onclick="{BBVIDEO_ONCLICK}" class="highslide">{BBVIDEO_IMG}</a><!-- END bbvideo_hs -->]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/abbcode.html">
 			<edit>
 				<find><![CDATA[<!-- BEGIN bbvideo --><div class="bbvideo" style="width: {BBVIDEO_WIDTH}px;"><div class="bbvideotitle">{BBVIDEO_IMAGE}{BBVIDEO_LINK}</div><div class="bbvideocontent">{BBVIDEO_VIDEO}</div></div><!-- END bbvideo -->]]></find>
 				<action type="before-add"><![CDATA[<!-- BEGIN bbvideo_hs --><a href="{BBVIDEO_LINK}" onclick="{BBVIDEO_ONCLICK}" class="highslide">{BBVIDEO_IMG}</a><!-- END bbvideo_hs -->]]></action>
 			</edit>
 		</open>
-
 		<diy-instructions lang="en"><![CDATA[You can disable the Highslide effect and revert back to the default embedded video style at any time by changing the $use_highslide variable to false.
 
 #####################################
@@ -108,6 +101,5 @@ Change to:
 $use_highslide = false;
 
 #####################################]]></diy-instructions>
-
 	</action-group>
 </mod>
