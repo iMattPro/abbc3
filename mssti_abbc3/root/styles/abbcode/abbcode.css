@@ -597,24 +597,18 @@ ul.abbc3-gallery img {
 
 /* Hidden block - Start */
 .hiddenbox {
-	padding : 0 2px 2px 5px;
-	background-color : #ffffff;
-	border : 1px solid #d8d8d8;
-	font-size : 1em;
+	padding: 0 2px 2px 5px;
+	background-color: #ffffff;
+	border: 1px solid #d8d8d8;
+	font-size: 1em;
 }
 
-.unhidden, .hidden {
-	border-bottom : 1px solid #cccccc;
-	margin-bottom : 3px;
-	font-size : 0.8em;
-	font-weight : bold;
-	display : block;
-}
-.unhidden {
-	color : #339900;
-}
-.hidden {
-	color : #990000;
+.hiddentitle {
+	border-bottom: 1px solid #cccccc;
+	margin-bottom: 3px;
+	font-size: 0.8em;
+	font-weight: bold;
+	display: block;
 }
 .hiddentext {
 	color: #ff0000;
