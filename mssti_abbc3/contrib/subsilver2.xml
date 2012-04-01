@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
 <!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Template : Changes for Subsilver2 based off style]]></title>
-		
 		<description lang="en"><![CDATA[Changes for Subsilver2 based off style]]></description>
-
 		<author-notes lang="en"><![CDATA[You will have to make this change to ALL themes you have installed, based off Subsilver2. I use "Subsilver2" as an example.
 
 	-------------------------------------------------------------------
@@ -24,7 +21,6 @@
 	-------------------------------------------------------------------
 
 	Before adding this MOD to your forum, you should back up all files and databases related to this MOD.]]></author-notes>
-		
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
@@ -43,26 +39,20 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		
 		<mod-version>3.0.11</mod-version>
-		
 		<installation>
 			<level>easy</level>
 			<time>300</time>
 			<target-version>3.0.10</target-version>
 		</installation>
-
 		<link-group>
 			<link type="parent" href="../install_ABBC3.xml" lang="en">Code change</link>
 		</link-group>
 	</header>
-
 	<action-group>
-
 		<copy>
-			<file from="root/styles/subsilver2/template/*.*" to="styles/subsilver2/template/*.*" />
+			<file from="root/styles/subsilver2/template/*.*" to="styles/subsilver2/template/*.*"/>
 		</copy>
-
 		<open src="styles/subsilver2/template/attachment.html">
 			<edit>
 				<find><![CDATA[<a href="{_file.U_DOWNLOAD_LINK}"><img src="{_file.THUMB_IMAGE}" alt="{_file.DOWNLOAD_NAME}" /></a><br />]]></find>
@@ -71,7 +61,6 @@
 					<inline-action type="after-add"><![CDATA[ class="attach_parent"]]></inline-action>
 				</inline-edit>
 			</edit>
-
 			<edit>
 				<find><![CDATA[<img src="{_file.U_INLINE_LINK}" alt="{_file.DOWNLOAD_NAME}" /><br />]]></find>
 				<inline-edit>
@@ -80,7 +69,6 @@
 				</inline-edit>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/bbcode.html">
 			<edit>
 				<find><![CDATA[<!-- BEGIN img --><img src="{URL}" alt="{L_IMAGE}" /><!-- END img -->]]></find>
@@ -90,7 +78,6 @@
 				</inline-edit>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/overall_header.html">
 			<edit>
 				<find><![CDATA[</head>]]></find>
@@ -100,9 +87,7 @@
 ]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/posting_body.html">
-
 			<edit>
 				<find><![CDATA[<textarea name="message" ]]></find>
 				<inline-edit>
@@ -110,16 +95,14 @@
 					<inline-action type="before-add"><![CDATA[id="message" ]]></inline-action>
 				</inline-edit>
 			</edit>
-
 			<edit>
 				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED -->]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[S_BBCODE_ALLOWED]]></inline-find>
 					<inline-action type="after-add"><![CDATA[ and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb')]]></inline-action>
-				</inline-edit>				
+				</inline-edit>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/posting_buttons.html">
 			<edit>
 				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED -->]]></find>
@@ -129,7 +112,6 @@
 	<!-- ELSE -->
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[<!-- ENDIF -->
 	</td>
@@ -145,7 +127,6 @@
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
 <!-- IF not S_ABBC3_MOD or S_ABBC3_DISABLED -->]]></action>
 			</edit>
-
 			<edit>
 				<find><![CDATA[		<td class="genmed" align="center">{L_FONT_COLOR}</td>
 	<!-- ENDIF -->
@@ -155,7 +136,6 @@
 <!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/posting_preview.html">
 			<edit>
 				<find><![CDATA[<!-- IF PREVIEW_SIGNATURE -->]]></find>
@@ -166,7 +146,6 @@
 				</inline-edit>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/simple_header.html">
 			<edit>
 				<find><![CDATA[</head>]]></find>
@@ -176,7 +155,6 @@
 ]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/ucp_pm_viewmessage.html">
 			<edit>
 				<find><![CDATA[				<!-- IF SIGNATURE -->]]></find>
@@ -184,10 +162,9 @@
 				<inline-edit>
 					<inline-find><![CDATA[ class="postbody"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
-				</inline-edit>				
+				</inline-edit>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/ucp_prefs_post.html">
 			<edit>
 				<find><![CDATA[<tr>
@@ -208,7 +185,6 @@
 ]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/ucp_profile_signature.html">
 			<edit>
 				<find><![CDATA[<textarea class="post" name="signature" ]]></find>
@@ -216,13 +192,11 @@
 					<inline-find><![CDATA[ name="signature"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="signature"]]></inline-action>
 				</inline-edit>
-
 				<inline-edit>
 					<inline-find><![CDATA[90%]]></inline-find>
 					<inline-action type="replace-with"><![CDATA[99%]]></inline-action>
 				</inline-edit>
 			</edit>
-
 			<edit>
 				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED -->]]></find>
 				<inline-edit>
@@ -230,16 +204,14 @@
 					<inline-action type="after-add"><![CDATA[ and (not S_ABBC3_COLOR or S_ABBC3_COLOR_MODE eq 'phpbb')]]></inline-action>
 				</inline-edit>
 			</edit>
-
 			<edit>
 				<find><![CDATA[<td class="row1" colspan="2"><div class="postbody" style="padding: 6px;">{SIGNATURE_PREVIEW}</div></td>]]></find>
 				<inline-edit>
-				<inline-find><![CDATA[ class="postbody"]]></inline-find>
+					<inline-find><![CDATA[ class="postbody"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="sig"]]></inline-action>
-				</inline-edit>				
+				</inline-edit>
 			</edit>
 		</open>
-
 		<open src="styles/subsilver2/template/viewtopic_body.html">
 			<edit>
 				<find><![CDATA[					<!-- IF postrow.SIGNATURE -->]]></find>
@@ -247,15 +219,11 @@
 				<inline-edit>
 					<inline-find><![CDATA[ class="postbody"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="sig{postrow.POST_ID}"]]></inline-action>
-				</inline-edit>				
+				</inline-edit>
 			</edit>
 		</open>
-
 		<diy-instructions lang="en"><![CDATA[IMPORTANT !
 
-Makes sure you follow the DIY instruction in the main Install_ABBC3.xml file.
-
-]]>
-		</diy-instructions>
+Make sure you follow the DIY instruction in the main install_ABBC3.xml file.]]></diy-instructions>
 	</action-group>
 </mod>
