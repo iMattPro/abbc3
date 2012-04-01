@@ -10,30 +10,15 @@
 		<description lang="en"><![CDATA[This file provides instructions for using ABBC3 with Evil Quick Reply v1.0.1. It allows you to use the ABBC3 BBCode toolbar within the Quick Reply window.
 
 See the main install file for any additional information about the MOD.]]></description>
-		<author-notes lang="en"><![CDATA[You will have to make this change to ALL themes you have installed, based off Prosilver and Subsilver2.
-	-------------------------------------------------------------------
-	IMPORTANT !
+		<author-notes lang="en"><![CDATA[First you must make sure you have installed Evil Quick Reply 1.0.1 (EQR) and its Smilies Addon:
 
-	Before you make any changes, make sure your template is stored into the "filesystem"
-	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Details
+    * 1) Install EQR install.xml
+    * 2) Install EQR templates/prosilver.xml (for all your styles based on Prosilver)
+    * 3) Install EQR templates/subsilver2.xml (for all your styles based on subsilver2)
+    * 4) Install EQR contrib/addons/smilies_bbcodes/install.xml
+    * 5) Install EQR contrib/addons/smilies_bbcodes/templates/prosilver.xml
 
-	If you do not want to change from "Database" to "Filesystem",
-	you must do the following style changes within your ACP here:
-	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Edit
-
-	-------------------------------------------------------------------
-
-EQR have several step for install.
-
-    * 1) install.xml
-    * 2) templates/prosilver.xml
-    * 3) templates/subsilver2.xml
-    * 4) contrib/addons/smilies_bbcodes/install.xml
-    * 5) contrib/addons/smilies_bbcodes/templates/prosilver.xml
-
-Once you install all, apply this add-on.
-
-	-------------------------------------------------------------------]]></author-notes>
+Once you have installed all of the above, apply the following changes:]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
@@ -59,7 +44,7 @@ Once you install all, apply this add-on.
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
-			<link type="parent" href="../install_ABBC3.xml" lang="en">Code change</link>
+			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -71,8 +56,8 @@ Once you install all, apply this add-on.
 			// Use Signature settings      : $mode = 'signature'
 			// Use Post settings           : $mode = 'post'
 			// Use Private message setting : $mode = ''
-			$mode = '';
-			// If you don't want ABBC3 in EQR change true with false
+			$mode = 'post';
+			// If you don't want ABBC3 in EQR change true to false
 			display_custom_bbcodes(true);
 // MOD : MSSTI ABBC3 add-on : EQR - End
 ]]></action>

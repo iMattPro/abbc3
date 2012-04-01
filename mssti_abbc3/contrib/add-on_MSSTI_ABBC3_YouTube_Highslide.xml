@@ -34,7 +34,7 @@
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
-			<link type="parent" href="../install_ABBC3.xml" lang="en">Code change</link>
+			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
 		</link-group>
 	</header>
 	<action-group>
