@@ -51,10 +51,9 @@ Before adding this MOD to your forum, you should back up all files and databases
 					<change><![CDATA[[Change] Separated AdvancedBox JS into standalone script (saves bandwidth).]]></change>
 					<change><![CDATA[[Change] Updated Blur BBCode for cross-browser compatibility with all browsers.]]></change>
 					<change><![CDATA[[Change] Updated Wave BBCode, the effect is disabled in all except IE because it is only supported in IE.]]></change>
-					<change><![CDATA[[Change] Updated Off Topic BBCode, gave it a whole new look in posts.]]></change>
+					<change><![CDATA[[Change] Updated Off Topic BBCode, gave it a whole new look in posts and fixed a bug in it.]]></change>
 					<change><![CDATA[[Change] Improved the look/readability of the ABBC3 Help page in Prosilver.]]></change>
 					<change><![CDATA[[Change] Improved the display font and reduced size of the BBCode Help Box area that is displayed under the ABBC3 toolbar.]]></change>
-					<change><![CDATA[[Change] Restored the default resize ability to post/text editor message boxes.]]></change>
 					<change><![CDATA[[Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.]]></change>
 					<change><![CDATA[[Fix] Added missing language variables to Spanish and German installation instructions.]]></change>
 					<change><![CDATA[[Fix] Various general spelling and coding errors have been addressed.]]></change>
