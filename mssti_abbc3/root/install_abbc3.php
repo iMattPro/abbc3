@@ -95,7 +95,7 @@ $versions = array(
 		'custom' => 'abbc3_bbcode_handler',
 	),
 	'3.0.8-pl2'		=> array(
-		// No new database changes (so far)
+		// No new database changes
 	),
 	'3.0.9.3'		=> array(
 		'custom' => array(
@@ -107,7 +107,7 @@ $versions = array(
 		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
 	),
 	'3.0.11'		=> array(
-		// No new database changes (so far)
+		// No new database changes
 	),
 );
 $cache->destroy('config');
@@ -1966,7 +1966,6 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'scrippet.gif',
 				'bbcode_group'			=> '0',
 			),
-
 			'flash'		=> array(
 				'bbcode_tag'			=> 'flash',
 				'bbcode_order'			=> 68,
