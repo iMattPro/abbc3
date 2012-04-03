@@ -901,9 +901,10 @@ class abbcode
 	*/
 	function offtopic_pass($in)
 	{
-		$in	 = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in)) ;
+		global $user;
 
-		return str_replace('{OFFTOPIC_TEXT}', $in, $this->bbcode_tpl('offtopic'));
+		$in	 = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in)) ;
+		return str_replace(array('{OFFTOPIC}', '{OFFTOPIC_TEXT}'), array($user->lang['OFFTOPIC'], $in), $this->bbcode_tpl('offtopic'));
 	}
 
 	/**
