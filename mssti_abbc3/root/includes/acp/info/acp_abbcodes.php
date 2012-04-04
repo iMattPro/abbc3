@@ -2,7 +2,7 @@
 /**
 *
 * @package acp
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel Vazquez)
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
