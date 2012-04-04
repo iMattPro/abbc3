@@ -628,15 +628,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 					<inline-find><![CDATA[{_file.L_DOWNLOAD_COUNT}"]]></inline-find>
 					<inline-action type="after-add"><![CDATA[ class="attach_parent"]]></inline-action>
 				</inline-edit>
-				<comment lang="en"><![CDATA[You will have to make this change to ALL themes you have installed, based off Prosilver. I use "Prosilver" as an example.
-				IMPORTANT !
-				
-				Before made any changes, makes sure your template is stored into "filesystem"
-				ACP -> STYLES -> STYLE COMPONENTS -> Templates : prosilver -> Details
-				
-				If you do not want to change from "Database" to "Filesystem", you must do next changes within your ACP :
-				ACP -> STYLES -> STYLE COMPONENTS -> Templates : prosilver -> Edit
-				]]></comment>
 			</edit>
 			<edit>
 				<find><![CDATA[onclick="viewableArea(this);" /></dt>]]></find>
