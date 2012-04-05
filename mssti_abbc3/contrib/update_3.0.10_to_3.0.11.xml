@@ -51,6 +51,7 @@
 			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/AdvancedBox.js" to="styles/abbcode/AdvancedBox.js"/>
 			<file from="root/styles/abbcode/highslide/*.*" to="styles/abbcode/highslide/*.*"/>
+			<file from="root/styles/abbcode/images/abbc3/*.*" to="styles/abbcode/images/abbc3/*.*"/>
 			<file from="root/styles/abbcode/images/bg/*.*" to="styles/abbcode/images/bg/*.*"/>
 			<file from="root/styles/abbcode/lightview/*.*" to="styles/abbcode/lightview/*.*"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
