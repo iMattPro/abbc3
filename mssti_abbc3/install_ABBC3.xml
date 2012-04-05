@@ -723,71 +723,44 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-		<diy-instructions lang="en"><![CDATA[IMPORTANT ! 
+		<diy-instructions lang="en"><![CDATA[A) Database update:
+
+	1)	Once all the files have been modified and uploaded to your site,
+		you should point your browser to the install_abbc3.php installation
+		script (or click the hi-lighted link above if you are using AutoMOD)
+	2)	When you have done this you should see the phpBB3 ABBC3 Installation
+		screen appear, follow the instructions.
+		If the installation was successful, you can now use your forum.
+		Congratulations, you have installed phpBB3 ABBC3 successfully. 
+		But there is still work ahead!
+	3)	You should remove/rename the installation script (install_abbc3.php)
+		from your server.
 
 #####################################################################
-Log on to Administration Control Panel
+B) Refresh the templates:
+
+	1)	Navigate to "STYLES" tab.
+	2)	Under "STYLE COMPONENTS" click on "Templates".
+	3)	Under "Actions" click on "Refresh".
+	4)	In the next screen, click on "Yes" (Repeat last 2 steps for each
+		installed style).
 
 #####################################################################
-A) Disable your board :
+C) Purge the cache:
 
-	A.1) Navigate to General Tab -> Board settings 
-	A.2) look at "Disable board: This will make the board unavailable to users. 
-	You can also enter a short (255 character) message to display if you wish." 
-	A.3) Change to "yes"
-	A.4) Submit to save setting.
-
-#####################################################################
-B) Database update :
-
-	B.1) Once all the files have been modified and uploaded to your site,
-	you should point your browser at this location with the addition 
-	of /install_abbc3.php
-	For example if your domain name is www.mydomain.tld and you placed phpBB3 
-	in a directory /phpBB3 off your web root you would enter 
-	http://www.mydomain.tld/phpBB3/install_abbc3.php into your browser.
-	B.2) When you have done this you should see the phpBB3 ABBC3 Installation screen appear, follow the instructions.
-	If the installation was successful, you can now use your forum.
-	Congratulations, you have installed phpBB3 ABBC3 successfully. 
-	But there is still work ahead!
-	B.3) You should remove/rename the install file (root/install_abbc3.php) 
-	from your server.
+	1)	Navigate to "GENERAL" tab
+	2)	Look for "Purge the cache"
+	3)	Click the "Run Now" button
+	4)	In the next screen, click on "Yes"
 
 #####################################################################
-C) Refresh the templates :
+D) Set up ABBC3's options to best suit your needs:
 
-	C.1) Navigate to "Styles" Tab.
-	C.2) Under "Style components " click on "Templates".
-	C.3) Under "Actions" click on "Refresh".
-	C.4) in the next screen, click on "Yes" ( Repeat last 2 steps to each instaled style ).
-
-#####################################################################
-D) Purge the cache :
-
-	D.1) Navigate to General Tab
-	D.2) look at Purge the cache
-	D.3) Click on "Run Now" button at right
-	D.4) in the next screen, click on "Yes"
-
-#####################################################################
-E) Enable your board :
-
-	E.1) Navigate to General Tab -> Board settings 
-	E.2) look at "Disable board: This will make the board unavailable to users. 
-	You can also enter a short (255 character) message to display if you wish." 
-	E.3) Change to "NO"
-	E.4) Submit to save setting.
-
-#####################################################################
-F) Change the value that best suits your needs
-
-	F.1) Navigate to Posting Tab
-	F.2) At the left menu you will find a new category "Advanced BBCode Box 3"
-	F.3) ABBC3 settings : Here you can determine the basic operation of ABBC3, 
-	enable or disable, and among other settings adjust the default values for the background.
-	F.4) ABBC3 BBCodes : From this page you can alter the order of tags on posting page or edit the icons,
-
-#####################################################################
-H) Enjoy it !.]]></diy-instructions>
+	1)	Navigate to "POSTING" tab
+	2)	In the left menu you will find a new category "ADVANCED BBCODE BOX 3"
+	3)	In ABBC3 Settings you can configure ABBC3's general settings
+		including the Wizards, Image Resizer and BBvideo.
+	4)	In ABBC3 BBCodes you can configure the order of the BBCodes in the
+		BBCodes toolbar and edit the options for each of the BBCodes.]]></diy-instructions>
 	</action-group>
 </mod>
