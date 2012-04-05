@@ -362,20 +362,20 @@ function ImageResizerOn(ObjImage)
 
 		if (ObjImage.fileSize && ObjImage.fileSize > 0)
 		{
-			objResizerDiv.alt = objResizerDiv.title = ImageResizerWarningFilesize.replace('%1$s', ResizerW).replace('%2$s', ResizerH).replace('%3$s', Math.round(ObjImage.fileSize / 1024)) + "\n\r" + ImageResizerWarningSmall;
+			objResizerDiv.title = ImageResizerWarningFilesize.replace('%1$s', ResizerW).replace('%2$s', ResizerH).replace('%3$s', Math.round(ObjImage.fileSize / 1024)) + "\n\r" + ImageResizerWarningSmall;
 		}
 		else
 		{
-			objResizerDiv.alt = objResizerDiv.title = ImageResizerWarningNoFilesize.replace('%1$s', ResizerW).replace('%2$s', ResizerH) + "\n\r" + ImageResizerWarningSmall;
+			objResizerDiv.title = ImageResizerWarningNoFilesize.replace('%1$s', ResizerW).replace('%2$s', ResizerH) + "\n\r" + ImageResizerWarningSmall;
 		}
 
-		var	objResizerImg				= document.createElement('img');
-			objResizerImg.src			= ImageResizerWarningImage;
-			objResizerImg.width			= 16;
-			objResizerImg.height		= 16;
-			objResizerImg.alt			= '';
-			objResizerImg.border		= 0;
-			objResizerImg.setAttribute('style', 'vertical-align:middle;');
+// 		var	objResizerImg				= document.createElement('img');
+// 			objResizerImg.src			= ImageResizerWarningImage;
+// 			objResizerImg.width			= 16;
+// 			objResizerImg.height		= 16;
+// 			objResizerImg.alt			= '';
+// 			objResizerImg.border		= 0;
+// 			objResizerImg.setAttribute('style', 'vertical-align:middle;');
 
 		var objResizerSpan				= document.createElement('span');
 			objResizerSpan.className	= 'resized-txt';
@@ -390,7 +390,7 @@ function ImageResizerOn(ObjImage)
 			objResizerText.data			= ImageResizerWarningFullsize.replace('%1$s', ResizerP).replace('%2$s', ResizerW).replace('%3$s', ResizerH); // + " " + ImageResizerWarningSmall;
 		}
 
-		objResizerDiv.appendChild(objResizerImg);
+//		objResizerDiv.appendChild(objResizerImg);
 		objResizerSpan.appendChild(objResizerText);
 		objResizerDiv.appendChild(objResizerSpan);
 		ObjImage.parentNode.insertBefore(objResizerDiv, ObjImage);
