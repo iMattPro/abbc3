@@ -66,13 +66,13 @@
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
-			<file name="styles/abbcode/greybox/*.*"/>
-			<file name="styles/abbcode/PopBox/images/*.*"/>
-			<file name="styles/abbcode/PopBox/*.*"/>
 			<file name="styles/abbcode/abbc3_logo.png"/>
 			<file name="styles/abbcode/abbcode_ajax_loading.gif"/>
+			<file name="styles/abbcode/greybox/*.*"/>
 			<file name="styles/abbcode/loading.gif"/>
 			<file name="styles/abbcode/pixel.gif"/>
+			<file name="styles/abbcode/PopBox/images/*.*"/>
+			<file name="styles/abbcode/PopBox/*.*"/>
 			<file name="styles/abbcode/warning.gif"/>
 			<file name="styles/abbcode/zoomin.cur"/>
 		</delete>
@@ -95,24 +95,15 @@
 		<open src="includes/acp/acp_bbcodes.php">
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' and abbcode = 0';]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[' and abbcode = 0';]]></inline-find>
-					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
-				</inline-edit>
+				<action type="replace-with"><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' AND abbcode = 0';]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' and abbcode = 0';]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[' and abbcode = 0';]]></inline-find>
-					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
-				</inline-edit>
+				<action type="replace-with"><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' AND abbcode = 0';]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = $bbcode_id" . ' and abbcode = 0' ;]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[' and abbcode = 0' ;]]></inline-find>
-					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
-				</inline-edit>
+				<action type="replace-with"><![CDATA[					WHERE bbcode_id = $bbcode_id" . ' AND abbcode = 0';]]></action>
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
