@@ -44,7 +44,6 @@
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
-			<file from="root/styles/abbcode/abbcode_ajax_loading.gif" to="styles/abbcode/abbcode_ajax_loading.gif"/>
 			<file from="root/styles/abbcode/abbcode_header.html" to="styles/abbcode/abbcode_header.html"/>
 			<file from="root/styles/abbcode/abbcode_ImgResizer.js" to="styles/abbcode/abbcode_ImgResizer.js"/>
 			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
