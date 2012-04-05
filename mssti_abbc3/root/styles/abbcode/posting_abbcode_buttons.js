@@ -882,7 +882,7 @@ function ABBC3_Ajax_indicator(mode)
 			/** Create the image here **/
 			ABBC3_Ajax_image = document.createElement('img');
 			ABBC3_Ajax_image.setAttribute('id', 'ABBC3_Ajax_image');
-			ABBC3_Ajax_image.setAttribute('src', '{S_ABBC3_PATH}/abbcode_ajax_loading.gif');
+			ABBC3_Ajax_image.setAttribute('src', '{S_ABBC3_PATH}/images/abbc3/abbcode_ajax_loading.gif');
 			ABBC3_Ajax_image.style.display = 'none';
 			ABBC3_Ajax_image.style.margin = '3px auto';
 			ABBC3_Ajax_indicator.appendChild(ABBC3_Ajax_image);

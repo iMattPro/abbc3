@@ -68,7 +68,12 @@
 			<file name="styles/abbcode/greybox/*.*"/>
 			<file name="styles/abbcode/PopBox/images/*.*"/>
 			<file name="styles/abbcode/PopBox/*.*"/>
+			<file name="styles/abbcode/abbc3_logo.png"/>
+			<file name="styles/abbcode/abbcode_ajax_loading.gif"/>
 			<file name="styles/abbcode/loading.gif"/>
+			<file name="styles/abbcode/pixel.gif"/>
+			<file name="styles/abbcode/warning.gif"/>
+			<file name="styles/abbcode/zoomin.cur"/>
 		</delete>
 		<open src="includes/functions_content.php">
 			<edit>

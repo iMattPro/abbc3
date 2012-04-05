@@ -45,7 +45,7 @@ $version_config_name = 'ABBC3_VERSION';
 $user->add_lang(array('mods/info_acp_abbcodes', 'mods/abbcode', 'posting', 'install'));
 
 // Logo Image
-$logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.png';
+$logo_img = $phpbb_root_path . 'styles/abbcode/images/abbc3/abbc3_logo.png';
 
 // Options to display to the user
 $user->lang['INSTALLER_INSTALL_WELCOME_NOTE'] = $user->lang['INSTALLER_INSTALL_WELCOME_NOTE'] . '<br /><br /><br />' . $user->lang['ABBC3_HELP_ABOUT'];
