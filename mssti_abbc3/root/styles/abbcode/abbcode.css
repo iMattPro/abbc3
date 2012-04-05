@@ -642,13 +642,6 @@ span.anchor {
 /* Anchor - End */
 
 /* bbvideo - Start */
-.bbvideo {
-/* if you want add you own style here */
-/* Example for text arround :
-	float: left;
-	padding-right: 10px;
-*/
-}
 .bbvideotitle {
 	padding: 5px;
 	background-color: #ffffff;
@@ -659,6 +652,7 @@ span.anchor {
 	color: #555555;
 	clear: both;
 }
+
 .bbvideotitle img {
 	float: left;
 	margin-right: 5px;
@@ -747,12 +741,15 @@ span.anchor {
 		http://pirex.com.br/wordpress-plugins/post-tabs/
 		http://labs.komrade.gr/simpletabs/
 */
+
 div.simpleTabs {
 	padding: 10px;
 }
+
 div.simpleTabsContent.currentTab {
 	display: block;
 }
+
 div.simpleTabsContent {
 	display: none;
 	border: 1px solid #cccccc;
@@ -764,6 +761,7 @@ div.simpleTabsContent {
 div.simpleTabsContent .simpleTabsTitles {
 	display: none;
 }
+
 ul.simpleTabsNavigation {
 	margin: 5px 2px 3px 1.5em !important;
 	font-size: 1.0em;
