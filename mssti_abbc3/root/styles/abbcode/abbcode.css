@@ -60,7 +60,7 @@ hr.hrdotted {
 /*	Never set a default height for the textarea, will break the function textbox_resize() */
 	height: auto; /* use of auto will override fixed height set in forms.css of phpbb */
 	/* For Safari */
-	/*resize: none;*/
+	resize: none;
 }
 
 #abbc3posttable {
@@ -576,7 +576,7 @@ ul.abbc3-gallery img {
 
 /* Image Resizer JS - START */
 .resized-div           { margin: 0; padding: 0; border: 0; background-color: #000000; width: 100%; /*width: auto;*/ height: 24px; -moz-border-radius: 7px 7px 0 0; -webkit-border-radius: 7px 7px 0 0; border-radius: 7px 7px 0 0; text-align: left; }
-.resized-txt           { padding-bottom: 5px; color: #ffffff; font-size: 10px; font-weight: normal; text-decoration: none; font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; vertical-align: middle; font-variant: normal; text-transform: none; line-height: 100%; text-align: left; }
+.resized-txt           { background: url("images/abbc3/zoom_in.gif") 5px 0 no-repeat; padding: 0 0 5px 24px; color: #ffffff; font-size: 10px; font-weight: normal; text-decoration: none; font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif; vertical-align: middle; font-variant: normal; text-transform: none; line-height: 100%; text-align: left; }
 .resized-div img       { background-color: transparent !important; border: 1px solid transparent !important; margin: 2px 5px 0 10px; }
 .resized-div img:hover { border: 1px solid transparent !important; }
 .resized-div a:link,
@@ -586,7 +586,7 @@ ul.abbc3-gallery img {
 /*
 .resized-div a img     { background-color: transparent; border-color: #dddddd #bbbbbb #aaaaaa #cccccc; border-style: dotted; border-width: 1px; margin: 3px; padding: 5px; }
 */
-.resized, .hoverbox { cursor: url("zoomin.cur"), pointer !important; }
+.resized, .hoverbox { cursor: url("images/abbc3/zoomin.cur"), pointer !important; }
 /* Image Resizer JS - END */
 
 /* AdvancedBox JS - START */
@@ -642,13 +642,6 @@ span.anchor {
 /* Anchor - End */
 
 /* bbvideo - Start */
-.bbvideo {
-/* if you want add you own style here */
-/* Example for text arround :
-	float: left;
-	padding-right: 10px;
-*/
-}
 .bbvideotitle {
 	padding: 5px;
 	background-color: #ffffff;
@@ -659,6 +652,7 @@ span.anchor {
 	color: #555555;
 	clear: both;
 }
+
 .bbvideotitle img {
 	float: left;
 	margin-right: 5px;
@@ -747,12 +741,15 @@ span.anchor {
 		http://pirex.com.br/wordpress-plugins/post-tabs/
 		http://labs.komrade.gr/simpletabs/
 */
+
 div.simpleTabs {
 	padding: 10px;
 }
+
 div.simpleTabsContent.currentTab {
 	display: block;
 }
+
 div.simpleTabsContent {
 	display: none;
 	border: 1px solid #cccccc;
@@ -764,6 +761,7 @@ div.simpleTabsContent {
 div.simpleTabsContent .simpleTabsTitles {
 	display: none;
 }
+
 ul.simpleTabsNavigation {
 	margin: 5px 2px 3px 1.5em !important;
 	font-size: 1.0em;

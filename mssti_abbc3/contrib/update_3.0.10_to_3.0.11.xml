@@ -8,6 +8,11 @@
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.10 to 3.0.11]]></title>
 		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.10 to version 3.0.11]]></description>
+		<author-notes lang="en"><![CDATA[IMPORTANT:
+		This update includes many new icons and graphics inside the styles/abbcode folder.
+		Make sure you upload every file listed in the File copy section. Any directory with *.* means ALL the contents of that directory (and all content in directories nested within) must be copied to your server.
+		Also, be sure to delete the old files listed in the Delete files section from your server. Any directory with *.* means you should delete that entire directory from your server. 
+		If you have any doubt - there is no harm in simply uploading every file included in this MOD's root folder to the appropriate locations on your server.]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
@@ -29,7 +34,7 @@
 		<mod-version>3.0.11</mod-version>
 		<installation>
 			<level>easy</level>
-			<time>300</time>
+			<time>600</time>
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
@@ -44,14 +49,13 @@
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
-			<file from="root/styles/abbcode/abbcode_ajax_loading.gif" to="styles/abbcode/abbcode_ajax_loading.gif"/>
 			<file from="root/styles/abbcode/abbcode_header.html" to="styles/abbcode/abbcode_header.html"/>
 			<file from="root/styles/abbcode/abbcode_ImgResizer.js" to="styles/abbcode/abbcode_ImgResizer.js"/>
 			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
 			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/AdvancedBox.js" to="styles/abbcode/AdvancedBox.js"/>
 			<file from="root/styles/abbcode/highslide/*.*" to="styles/abbcode/highslide/*.*"/>
-			<file from="root/styles/abbcode/images/bg/*.*" to="styles/abbcode/images/bg/*.*"/>
+			<file from="root/styles/abbcode/images/*.*" to="styles/abbcode/images/*.*"/>
 			<file from="root/styles/abbcode/lightview/*.*" to="styles/abbcode/lightview/*.*"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>
@@ -65,10 +69,15 @@
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
+			<file name="styles/abbcode/abbc3_logo.png"/>
+			<file name="styles/abbcode/abbcode_ajax_loading.gif"/>
 			<file name="styles/abbcode/greybox/*.*"/>
+			<file name="styles/abbcode/loading.gif"/>
+			<file name="styles/abbcode/pixel.gif"/>
 			<file name="styles/abbcode/PopBox/images/*.*"/>
 			<file name="styles/abbcode/PopBox/*.*"/>
-			<file name="styles/abbcode/loading.gif"/>
+			<file name="styles/abbcode/warning.gif"/>
+			<file name="styles/abbcode/zoomin.cur"/>
 		</delete>
 		<open src="includes/functions_content.php">
 			<edit>
@@ -89,24 +98,15 @@
 		<open src="includes/acp/acp_bbcodes.php">
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' and abbcode = 0';]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[' and abbcode = 0';]]></inline-find>
-					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
-				</inline-edit>
+				<action type="replace-with"><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' AND abbcode = 0';]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' and abbcode = 0';]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[' and abbcode = 0';]]></inline-find>
-					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
-				</inline-edit>
+				<action type="replace-with"><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' AND abbcode = 0';]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = $bbcode_id" . ' and abbcode = 0' ;]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[' and abbcode = 0' ;]]></inline-find>
-					<inline-action type="replace-with"><![CDATA[' AND abbcode = 0';]]></inline-action>
-				</inline-edit>
+				<action type="replace-with"><![CDATA[					WHERE bbcode_id = $bbcode_id" . ' AND abbcode = 0';]]></action>
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>

@@ -35,7 +35,7 @@
 		<mod-version>3.0.10</mod-version>
 		<installation>
 			<level>intermediate</level>
-			<time>300</time>
+			<time>600</time>
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>

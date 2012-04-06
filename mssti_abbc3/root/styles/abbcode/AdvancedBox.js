@@ -92,7 +92,6 @@ if (ImageResizerMode === 'AdvancedBox')
 			/** Create the image name container for images less than 300px **/
 			var objResizerSpan = document.createElement('span');
 				objResizerSpan.setAttribute('id', 'AB-ImageName2');
-				objResizerSpan.className = 'resized-txt';
 			/** Create the main text **/
 			var	objResizerText = document.createTextNode('');
 				objResizerSpan.appendChild(objResizerText);
@@ -110,7 +109,6 @@ if (ImageResizerMode === 'AdvancedBox')
 			/** Create the image name container for images bigger than 300px **/
 				objResizerSpan = document.createElement('span');
 				objResizerSpan.setAttribute('id', 'AB-ImageName1');
-				objResizerSpan.className = 'resized-txt';
 			/** Create the main text **/
 				objResizerText = document.createTextNode('');
 				objResizerSpan.appendChild(objResizerText);

@@ -2,7 +2,7 @@
 /**
 *
 * @package install
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel Vazquez)
+* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -45,7 +45,7 @@ $version_config_name = 'ABBC3_VERSION';
 $user->add_lang(array('mods/info_acp_abbcodes', 'mods/abbcode', 'posting', 'install'));
 
 // Logo Image
-$logo_img = $phpbb_root_path . 'styles/abbcode/abbc3_logo.png';
+$logo_img = $phpbb_root_path . 'styles/abbcode/images/abbc3/abbc3_logo.png';
 
 // Options to display to the user
 $user->lang['INSTALLER_INSTALL_WELCOME_NOTE'] = $user->lang['INSTALLER_INSTALL_WELCOME_NOTE'] . '<br /><br /><br />' . $user->lang['ABBC3_HELP_ABOUT'];
@@ -95,7 +95,7 @@ $versions = array(
 		'custom' => 'abbc3_bbcode_handler',
 	),
 	'3.0.8-pl2'		=> array(
-		// No new database changes (so far)
+		// No new database changes
 	),
 	'3.0.9.3'		=> array(
 		'custom' => array(
@@ -107,7 +107,7 @@ $versions = array(
 		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
 	),
 	'3.0.11'		=> array(
-		// No new database changes (so far)
+		// No new database changes
 	),
 );
 $cache->destroy('config');
@@ -186,7 +186,7 @@ function abbc3_308($action, $version)
 
 		'ABBC3_VIDEO_width'		=> (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425,
 		'ABBC3_VIDEO_height'	=> (isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 350,
-		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;201;202;203;204;205;206;207;208;',
+		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;101;102;103;104;105;106;107;108;109;110;111;112;113;114;201;204;205;206;207;',
 		'ABBC3_VIDEO_WMODE'		=> (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0,
 
 		'ABBC3_UCP_MODE'		=> (isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1,
@@ -1966,7 +1966,6 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'scrippet.gif',
 				'bbcode_group'			=> '0',
 			),
-
 			'flash'		=> array(
 				'bbcode_tag'			=> 'flash',
 				'bbcode_order'			=> 68,

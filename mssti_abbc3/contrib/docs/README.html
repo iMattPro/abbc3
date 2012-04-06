@@ -8,9 +8,8 @@
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="resource-type" content="document" />
 <meta name="distribution" content="global" />
-<meta name="copyright" content="2007 phpBB Group" />
 <meta name="keywords" content="" />
-<meta name="description" content="Advanced BBCode Box 3 (aka ABBC3) Changelog" />
+<meta name="description" content="Advanced BBCode Box 3 (aka ABBC3) Docs" />
 <title>phpBB3 &bull; Changelog</title>
 
 <link href="stylesheet.css" rel="stylesheet" type="text/css" media="screen, projection" />
@@ -25,7 +24,7 @@
 		<div class="headerbar">
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div id="doc-description">
-				<a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" id="logo"><img src="./images/abbc3_logo.png" alt=".:: MSSTI ::." /></a>
+				<a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" id="logo"><img src="./images/abbc3_logo.png" alt="Advanced BBCode Box 3" /></a>
 				<h1>Advanced BBCode Box 3 (aka ABBC3) Document</h1>
 				<p style="display: none;"><a href="#start_here">Skip</a></p>
 			</div>
@@ -46,6 +45,15 @@
 			<div class="content">
 				<ol style="list-style-type: circle;">
 					<li><a href="#Notes">Author notes</a></li>
+					<li><a href="#feature">Feature list</a></li>
+					<li><a href="#custombbcodes">Custom BBCodes Conflicts</a></li>
+					<li><a href="#CustomBBcodes">How To Set Up Custom BBCodes With ABBC3</a>
+						<ol style="list-style-type: square;">
+							<li><a href="#option1">OPTION 1 : Create a Custom BBCode (no Icon)</a></li>
+							<li><a href="#option2">OPTION 2 : Create a Custom BBCode with Icon</a></li>
+							<li><a href="#option3">OPTION 3 : Create a Custom BBCode with Icon and Wizard</a></li>
+						</ol>
+					</li>
 					<li><a href="#changelog">Changelog</a>
 						<ol style="list-style-type: square;">
 							<li><a href="#abbc3_v3011">Changes in 3.0.11</a></li>
@@ -72,8 +80,6 @@
 							<li><a href="#abbc3_v100">Initial release 1.0.0</a></li>
 						</ol>
 					</li>
-					<li><a href="#feature">Feature list</a></li>
-					<li><a href="#custombbcodes">Custom BBCodes Conflicts</a></li>
 				</ol>
 			</div>
 
@@ -81,14 +87,13 @@
 		</div>
 
 		<hr />
-
 		<a name="Notes"></a><h2>Author notes</h2>
 		<div class="paragraph">
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div class="content">
 				<a name="disclaimer"></a><h3>Disclaimer</h3>
 				<ul>
-					<li>This application is open source software released under the <a href="http://opensource.org/licenses/gpl-2.0.php" onclick="window.open(this.href);return false;">GNU General Public License v2</a>. Please see source code and the docs directory for more details. This package and its contents are Copyright (c) 2008, 2010 <a href="http://www.mssti.com" onclick="window.open(this.href);return false;">.:: MSSTI ::.</a> , All Rights Reserved.</li>
+					<li>This application is open source software released under the <a href="http://opensource.org/licenses/gpl-2.0.php" onclick="window.open(this.href);return false;">GNU General Public License v2</a>. Please see source code for more details.</li>
 					<li>I contacted "Disturbed One" the original developer of this MOD, and "freddie" the last developer of this MOD, 
 						and asked to upgrade the Advanced BBCode Box for phpbb2.x to phpbb3.x, 
 						Both declined to do the job, and agreed to let me (leviatan21) do it, so here I am ;)</li>
@@ -117,14 +122,541 @@
 		</div>
 
 		<hr />
+		<a name="feature"></a><h2>Feature list</h2>
+		<div class="paragraph">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<div class="content">
+				<ul>
+					<li><strong>Image Resizer : </strong>
+						This addresses a shortcoming of the [img] BBCode, when someone posts a picture that exceeds the width of your forum.<br />				
+						AdvancedBox JS is a JavaScript application used to display images in full size.<br />				
+						You can also use ABBC3 with any of the other included scripts. These modifications are totally optional. Each script has its own support. ABBC3 is not responsible for any issues from using a 3rd party script. All questions/problems/bugs should be directed to the developer of the script you are using.
+							<ul style="list-style-type: decimal;">
+								<li>Highslide <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Highslide</strong> for use of the library.</span></li>
+								<li>Litebox2</li>
+								<li>Lightview <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Light view</strong> for use of the library.</span></li>
+								<li>ShadowBox <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Shadow Box</strong> for use of the library.</span></li>
+								<li>Pop-up window</li>
+								<li>Enlarge</li>
+								<li>Same window</li>
+								<li>New window</li>
+							</ul>
+					</li>
+					<li><strong>Buttons to Expand/Contract the text area</strong>
+						<ul style="list-style-type: decimal;">
+							<li> [ + ] Posting box Resizer : larger </li>
+							<li> [ - ] Posting box Resizer : shorter </li>
+						</ul>
+					</li>
+					<li><strong>BBCodes : </strong><span class="good">( In default order and state )</span>
+						<ul>
+							<li>Font Type Dropdown</li>
+							<li>Font Size Dropdown</li>
+							<li>Highlight Text Dropdown</li>
+							<li>Font Colour</li>
+							<li>---------------------</li>
+							<li>Cut : Cut selected text to clipboard</li>
+							<li>Copy : Copy selected text clipboard</li>
+							<li>Paste : Paste text from clipboard</li>
+							<li>Remove : Removes all BBCode tags from selected text</li>
+							<li>---------------------</li>
+							<li>Bullet list: Unordered List</li>
+							<li>Ordered list</li>
+							<li>List item</li>
+							<li>Tabs</li>
+							<li>Horizontal line</li>
+							<li>Bold text</li>
+							<li>Italic text</li>
+							<li>Underline text</li>
+							<li>Strike through text</li>
+							<li>Superscript text</li>
+							<li>Subscript text</li>
+							<li>Glow text</li>
+							<li>Shadow text</li>
+							<li>Dropshadow text</li>
+							<li>Blur text</li>
+							<li>Wave text></li>
+							<li>Fade text</li>
+							<li>Gradient text (aka Rainbow)</li>
+							<li>---------------------</li>
+							<li>Justify Align</li>
+							<li>Right Align</li>
+							<li>Center Align</li>
+							<li>Left Align</li>
+							<li>Preformat text</li>
+							<li>---------------------</li>
+							<li>Tab : Creates a normal indent</li>
+							<li>Message Box text direction Left to Light (Traditional)</li>
+							<li>Message Box text direction right to Left (Arabic, etc)</li>
+							<li>Marquee Up : Scrolling text upwards <span class="bad">(Disabled by default)</span></li>
+							<li>Marquee Down : Scrolling text down <span class="bad">(Disabled by default)</span></li>
+							<li>Marquee Left : Scrolling text to the left <span class="bad">(Disabled by default)</span></li>
+							<li>Marquee Right : Scrolling text to the right <span class="bad">(Disabled by default)</span></li>
+							<li>Code</li>
+							<li>Quote</li>
+							<li>Spoiler (User must click on link to review text within tags)</li>
+							<li>Hidden : Hide content from unregistered guests</li>
+							<li>Moderator Message <span class="good">(Permissions restricted to Moderators and/or Administrators by default)</span></li>
+							<li>Off Topic</li>
+							<li>NFO text <span class="good">(Better on Internet Explorer)</span></li>
+							<li>Table (create an HTML table)</li>
+							<li>---------------------</li>
+							<li>Anchor</li>
+							<li>Hyperlink Wizard</li>
+							<li>Email Wizard</li>
+							<li>Web : Insert a website in the post via iframe <span class="bad">(Disabled by default. Note: allowing other websites to be inserted in posts can pose a security risk. Use at your own risk, or assign to trusted groups.)</span></li>
+							<li>Ed2k link Wizard</li>
+							<li>Image Wizard</li>
+							<li>Thumbnail Wizard</li>
+							<li>Imgshack Wizard</li>
+							<li>Rapidshare links <span class="bad">(Disabled by default. Requires the PHP directive allow_url_fopen to be enabled.)</span></li>
+							<li>Link checker <span class="bad">(Disabled by default. Requires that you have CURL installed)</span></li>
+							<li>Click counter <span class="bad">(Disabled by default)</span></li>
+							<li>Search tag :
+								<ul style="list-style-type: decimal;">
+									<li>Bing</li>
+									<li>Yahoo</li>
+									<li>Google</li>
+									<li>AltaVista</li>
+									<li>Wikipedia</li>
+									<li>Lycos</li>
+									<li>or forum</li>
+								</ul>
+							</li>
+							<li>---------------------</li>
+							<li>BBvideo Wizard
+								<br />
+								<strong>Video sites</strong>
+								<ul style="list-style-type: decimal;">
+									<li>allocine.fr</li>
+									<li>break.com</li>
+									<li>www.clipfish</li>
+									<li>clipmoon.com</li>
+									<li>cnbc.com</li>
+									<li>collegehumor.com</li>
+									<li>comedycentral.com</li>
+									<li>crackle.com</li>
+									<li>current.com</li>
+									<li>dailymotion.com</li>
+									<li>ebaumsworld.com</li>
+									<li>facebook.com</li>
+									<li>flickr.com</li>
+									<li>funnyordie.com</li>
+									<li>g4tv.com</li>
+									<li>gameprotv.com</li>
+									<li>gamespot.com</li>
+									<li>gametrailers.com</li>
+									<li>www.gamevideos</li>
+									<li>godtube.com</li>
+									<li>howcast.com</li>
+									<li>ign.com</li>
+									<li>kyte.tv</li>
+									<li>liveleak.com</li>
+									<li>metacafe.com</li>
+									<li>msnbc.msn.com</li>
+									<li>myspace.com</li>
+									<li>myspacetv.com</li>
+									<li>vids.myspace.com</li>
+									<li>www.myvideo</li>
+									<li>photobucket.com</li>
+									<li>www.porkolt</li>
+									<li>rutube.ru</li>
+									<li>sapo.pt</li>
+									<li>scribd</li>
+									<li>sevenload.com</li>
+									<li>theonion.com</li>
+									<li>vbox7.com</li>
+									<li>veoh.com</li>
+									<li>video.google</li>
+									<li>video.yahoo</li>
+									<li>videu.de</li>
+									<li>vimeo.com</li>
+									<li>vsocial.com</li>
+									<li>wegame.com</li>
+									<li>xfire.com</li>
+									<li>youtu.be</li>
+									<li>youtube.com</li>
+								</ul>
+								<strong>External videos</strong> <span class="bad">(Disabled by default)</span>
+								<br />These videos can not be embedded into posts and instead have a nice link to it. 
+								<ul style="list-style-type: decimal;">
+									<li>blip.tv</li>
+									<li>comedians.comedycentral.com</li>
+									<li>comedians.jokes.com</li>
+									<li>deviantart.com</li>
+									<li>gotgame.com</li>
+									<li>moddb.com</li>
+									<li>revision3.com</li>
+									<li>slideshare.net</li>
+									<li>spike.com</li>
+									<li>streetfire.net</li>
+									<li>ted.com</li>
+									<li>tu.tv</li>
+									<li>videogamer.com</li>
+									<li>wat.tv</li>
+								</ul>
+								<strong>File types</strong>
+								<ul style="list-style-type: decimal;">
+									<li>DivX (.avi .divx .mkv)</li>
+									<li>Flash (.swf)</li>
+									<li>Flash (.flv)</li>
+									<li>Windows Media Video (.wmv)</li>
+									<li>Moving Pictures Expert Group (.mpg)</li>
+									<li>QuickTime Movie (.qt .mov)</li>
+									<li>QuickTime Audio (.mp3 .mid .midi)</li>
+									<li>Real Audio (.ram)</li>
+								</ul>
+							</li>
+							<li>Scrippet</li>
+							<li>Flash (swf) <span class="bad">(Disabled by default)</span></li>
+							<li>Flash (flv) <span class="bad">(Disabled by default)</span></li>
+							<li>Video <span class="bad">(Disabled by default)</span></li>
+							<li>Stream <span class="bad">( Disable by default )</span></li>
+							<li>Quicktime <span class="bad">(Disabled by default)</span></li>
+							<li>Real media <span class="bad">(Disabled by default)</span></li>
+							<li>Google video <span class="bad">(Disabled by default)</span></li>
+							<li>Youtube video <span class="bad">(Disabled by default)</span></li>
+							<li>Veoh video <span class="bad">(Disabled by default)</span></li>
+							<li>CollegeHumor video <span class="bad">(Disabled by default)</span></li>
+							<li>DailyMotion video <span class="bad">(Disabled by default)</span></li>
+							<li>Gamespot video <span class="bad">(Disabled by default)</span></li>
+							<li>GameTrailers video <span class="bad">(Disabled by default)</span></li>
+							<li>IGN video <span class="bad">(Disabled by default)</span></li>
+							<li>LiveLeak video <span class="bad">(Disabled by default)</span></li>
+							<li>--------------------</li>
+							<li>Custom BBCodes</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
+
+			</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		<hr />
+		<a name="custombbcodes"></a><h2>Custom BBCodes Conflicts</h2>
+		<div class="paragraph">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<div class="content">
+				<ul>
+					<li>ABBC3 will overwrite any custom BBCodes your board may already have if they have the exact same name. If this happens, older posts using your original custom BBCodes may not appear to work any more. There is a way to prevent this from happening.</li>
+					<li> First, compare your <strong>custom</strong> bbcode's [tag] names against this list of ABBC3's bbcode [tag] names. If you have any matches you should read further, otherwise you are good to go ahead and install ABBC3 with no custom BBCode conflicts.
+						<ul>
+							<li>align=center</li>
+							<li>align=justify</li>
+							<li>align=left</li>
+							<li>align=right</li>
+							<li>anchor=</li>
+							<li>b</li>
+							<li>BBvideo</li>
+							<li>blur=</li>
+							<li>center</li>
+							<li>click</li>
+							<li>code</li>
+							<li>collegehumor</li>
+							<li>color</li>
+							<li>copy</li>
+							<li>cut</li>
+							<li>dir=ltr</li>
+							<li>dir=rtl</li>
+							<li>dm</li>
+							<li>dropshadow=</li>
+							<li>email</li>
+							<li>fade</li>
+							<li>flash</li>
+							<li>flv</li>
+							<li>font=</li>
+							<li>gamespot</li>
+							<li>gametrailers</li>
+							<li>glow=</li>
+							<li>grad</li>
+							<li>gvideo</li>
+							<li>hidden</li>
+							<li>highlight=</li>
+							<li>hr</li>
+							<li>i</li>
+							<li>ignvideo</li>
+							<li>img=</li>
+							<li>imgshack</li>
+							<li>listb</li>
+							<li>listitem</li>
+							<li>listo</li>
+							<li>liveleak</li>
+							<li>marq=down</li>
+							<li>marq=left</li>
+							<li>marq=right</li>
+							<li>marq=up</li>
+							<li>mod=</li>
+							<li>nfo</li>
+							<li>offtopic</li>
+							<li>paste</li>
+							<li>plain</li>
+							<li>pre</li>
+							<li>quicktime</li>
+							<li>quote</li>
+							<li>ram</li>
+							<li>rapidshare</li>
+							<li>s</li>
+							<li>scrippet</li>
+							<li>search</li>
+							<li>shadow=</li>
+							<li>size</li>
+							<li>spoil</li>
+							<li>stream</li>
+							<li>sub</li>
+							<li>sup</li>
+							<li>tab=</li>
+							<li>table=</li>
+							<li>tabs</li>
+							<li>testlink</li>
+							<li>thumbnail</li>
+							<li>u</li>
+							<li>url</li>
+							<li>url=</li>
+							<li>veoh</li>
+							<li>video</li>
+							<li>wave=</li>
+							<li>web</li>
+							<li>youtube</li>
+						</ul>
+					</li>
+					<li>If you have custom BBCodes that use the same names as any of the above, you will have a conflict. If you want to use your custom BBCode instead of ABBC3's do the following:
+						<ul>
+							<li>Go to the Custom BBCodes page in the ACP and write down the settings for the custom BBCodes you want to keep</li>
+							<li>Install ABBC3</li>
+							<li>If you have phpMyAdmin, go to your database -> phpbb_bbcodes -> Browse.</li>
+							<li>Find the item with the "bbcode_tag" that matches your custom BBCode and click the pencil icon to edit it</li>
+							<li>Locate the field "abbcode" and change that value to 0, and click the go/submit button</li>
+							<li>Go to the Custom BBCodes screen in the ACP and you should see your custom bbcode in the list. Click it to edit it, and put back your original settings in all fields (including the help line, and also click Display on posting page).</li>
+							<li>You can also go to ABBC3 BBCode settings in the ACP, and assign an image to your Custom BBCode.</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
+			</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		<hr />
+		<a name="CustomBBcodes"></a><h2>How To Set Up Custom BBCodes With ABBC3</h2>
+		<div class="paragraph">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<div class="content">
+				<a name="option1"></a><h3>OPTION 1 : Create a Custom BBCode (no Icon)</h3>
+				<pre>
+###################################################################################################
+##
+## Files To Edit: 0
+##	
+## Included Files: 0
+##
+## Author Notes:
+##  bbcode : Center text ( this is already done )
+##
+###################################################################################################
+
+Log in to your forum and go to [ Administration Control Panel ]
+
+go to: [ Posting ] > [ Messages :: BBCodes] > [ Add a new BBCode ]
+
+#-----[ BBCode usage ]-----------------------------------------------
+[center]{TEXT}[/center]
+
+#-----[ HTML replacement ]-------------------------------------------
+&lt;div align="center"&gt;{TEXT}&lt;/div&gt;
+
+#-----[ Help line ]--------------------------------------------------
+Enter your text to be centered between [center] and [/center]
+
+#-----[ Settings ]---------------------------------------------------
+Check the "Display on posting page"
+
+#-----[ Submit ]-----------------------------------------------------
+Click on submit button
+				</pre>
+				<a name="option2"></a><h3>OPTION 2 : Create a Custom BBCode with Icon</h3>
+				<pre>
+###################################################################################################
+##
+## Files To Edit: 0
+##
+## Included Files: 0
+##	images/goear.gif
+##
+## Author Notes:
+##	Install a new custom bbcode, show it with an image instead a button.
+##	bbcode : Goear audio
+##
+###################################################################################################
+
+Log in to your forum and go to [ Administration Control Panel ]
+
+Go to: [ Posting ] > [ Messages :: BBCodes] > [ Add a new BBCode ]
+
+#-----[ BBCode usage ]-----------------------------------------------
+[goear]http://www.goear.com/listen.php?v={TEXT}[/goear]
+
+#-----[ HTML replacement ]-------------------------------------------
+&lt;object width="353" height="132"&gt;
+&lt;embed src="http://www.goear.com/files/external.swf?file={TEXT}" type="application/x-shockwave-flash" wmode="transparent" quality="high" width="353" height="132"&gt;&lt;/embed&gt;&lt;/object&gt;
+&lt;br /&gt;
+
+#-----[ Help line ]--------------------------------------------------
+Insert audio from Goear : [goear]Goear audio URL[/goear] ( Example : http://www.goear.com/listen.php?v=0874d92 )
+
+#-----[ Settings ]---------------------------------------------------
+Do not check the "Display on posting page"
+
+#-----[ Submit ]-----------------------------------------------------
+Click on submit button
+
+Go to: [ Posting ] > [ Advanced BBCode Box 3 ] > [ ABBC3 BBCodes ]
+
+#-----[ Find ]-------------------------------------------------------
+[goear]
+
+#-----[ Edit ]-------------------------------------------------------
+Click on Green action icon.
+
+#-----[ Set up ]-----------------------------------------------------
+# Note : Now you can mannage this bbcode
+
+If you want to use it in posts, check : Post settings
+If you want to use it in private messages, check : Private message settings
+If you want to use it in signatures, check : Signature settings
+ 
+In "Tag image icon" use the pull-down to find "goear.gif"
+
+#-----[ Submit ]-----------------------------------------------------
+Click on submit button
+				</pre>
+				<a name="option3"></a><h3>OPTION 3 : Create a Custom BBCode with Icon and Wizard</h3>
+				<pre>
+###################################################################################################
+##
+## Files To Edit:
+##	language/en/mods/abbcode.php
+##	styles/prosilver/template/posting_abbcode_buttons.html
+##
+## Included Files:
+##	images/deezer.gif
+##
+## Author Notes:
+##	Install a new custom bbcode, show it with an image instead a button and get a wizard.
+##	bbcode : Deezer audio
+##
+###################################################################################################
+
+###################################################################################################
+## Step: 1 / 3
+###################################################################################################
+Log in to your forum and go to [ Administration Control Panel ]
+
+Go to: [ Posting ] &gt; [ Messages :: BBCodes] &gt; [ Add a new BBCode ]
+
+#-----[ BBCode usage ]-----------------------------------------------
+[deezer]http://www.deezer.com/track/{TEXT}[/deezer]
+
+#-----[ HTML replacement ]-------------------------------------------
+&lt;object width="180" height="25"&gt;
+	&lt;param name="movie" value="http://www.deezer.com/embedded/small-widget.swf?idSong={TEXT}&amp;colorBackground=0x525252&amp;colorButtons=0xDDDDDD&amp;textColor1=0xFFFFFF&amp;autoplay=0" /&gt;
+	&lt;embed src="http://www.deezer.com/embedded/small-widget.swf?idSong={TEXT}&amp;colorBackground=0x525252&amp;colorButtons=0xDDDDDD&amp;textColor1=0xFFFFFF&amp;autoplay=0" type="application/x-shockwave-flash" wmode="transparent" quality="high" width="180" height="25"&gt;&lt;/embed&gt;
+&lt;/object&gt;
+&lt;br /&gt;
+
+#-----[ Help line ]--------------------------------------------------
+[Deezer]Deezer audio URL[/Deezer]
+
+#-----[ Settings ]---------------------------------------------------
+Do not check the "Display on posting page"
+
+#-----[ Submit ]-----------------------------------------------------
+Click on submit button
+
+#--------------------------------------------------------------------
+Go to: [ Posting ] &gt; [ Advanced BBCode Box 3 ] &gt; [ ABBC3 BBCodes ]
+
+#-----[ Find ]-------------------------------------------------------
+[deezer]
+
+#-----[ Edit ]-------------------------------------------------------
+Click on Green action icon.
+
+#-----[ Set up ]-----------------------------------------------------
+# Note : Now you can mannage this bbcode
+
+If you want to use it in posts, check : Post settings
+If you want to use it in private messages, check : Private message settings
+If you want to use it in signatures, check : Signature settings
+ 
+In "Tag image icon" use the pull-down to find "deezer.gif"
+
+#-----[ Submit ]-----------------------------------------------------
+Click on submit button
+
+###################################################################################################
+## Step: 2 / 3
+###################################################################################################
+#
+#-----[ OPEN ]-------------------------------------------------------
+# NOTE: You will have to make this change to each language you have installed and you may translate it in the correct language
+#
+language/en/mods/abbcode.php
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+	// Custom BBCodes
+#
+#-----[ AFTER, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line after the preceding line(s) to find.
+#
+# USAGE: MUST start allways the tag name in upperase + _TAG / _MOVER / _TIP /_EXAMPLE or _VIEW. I use DEEZER for this example
+#
+	// Deezer audio
+	'DEEZER_TAG'			=&gt; 'Deezer',
+	'DEEZER_MOVER'			=&gt; 'Insert audio from Deezer',
+	'DEEZER_TIP'			=&gt; '[Deezer]Deezer audio URL[/Deezer]',
+	'DEEZER_EXAMPLE'		=&gt; 'http://www.deezer.com/track/351534',
+	'DEEZER_VIEW'			=&gt; '&lt;object width="180" height="220"&gt;&lt;param name="movie" value="http://www.deezer.com/embedded/widget.swf?path=696108&amp;lang=en&amp;autoplay=true&amp;id=351534"&gt;&lt;/param&gt;&lt;embed src="http://www.deezer.com/embedded/widget.swf?path=696108&amp;lang=en&amp;autoplay=true&amp;id=351534" type="application/x-shockwave-flash" width="180" height="220"&gt;&lt;/embed&gt;&lt;/object&gt;',
+
+###################################################################################################
+## Step: 3 / 3
+###################################################################################################
+#
+#-----[ OPEN ]-------------------------------------------------------
+# NOTE: You will have to make this change to ALL themes you have installed. I use "prosilver" as an example.
+#
+styles/prosilver/template/posting_abbcode_buttons.html
+
+#
+#-----[ FIND ]-------------------------------------------------------
+#
+		/** This bbcodes needs extra data **/
+#
+#-----[ BEFORE, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#
+		case "deezer" :
+				</pre>
+				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
+			</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		<hr />
 		<a name="changelog"></a><h2>Changelog</h2>
-		<p>This is a non-exhaustive (but still near complete) changelog for Advanced BBCode Box 3 (aka ABBC3) Thanks to all those people who've contributed bug reports and code fixes.</p>
+		<p>This is a non-exhaustive (but still near complete) changelog for Advanced BBCode Box 3 (aka ABBC3). Thanks to all those people who've contributed bug reports and code fixes.</p>
 
 		<div class="paragraph">
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div class="content">
 				<a name="abbc3_v3011"></a><h3>Changes in 3.0.11</h3>
 				<ul>
+					<li> [Change] New BBvideos: blip.tv, break.com, current.com, ebaumsworld.com, flickr.com, funnyordie.com, godtube.com, howcast.com, ted.com, theonion.com</li>
+					<li> [Change] Updated BBvideos: collegehumor.com, crackle.com, deviantart.com, gamespot.com, ign.com, streetfire.com, yahoo.com</li>
+					<li> [Change] Deleted BBvideos (due to unavailability): badr.tv, filefront.com, gamepro.com, livevideo.com, machinima.com, megavideo.com, revver.com, tangle.com, tinypic.com, vidilife.com</li>
 					<li> [Change] ABBC3 BBCodes can be arranged more easily and quickly using drag-and-drop in the ACP settings area.</li>
 					<li> [Change] Enhanced the ABBC3 toolbar background image preview in the ACP settings area.</li>
 					<li> [Change] Added some new background gradient images for the ABBC3 toolbar.</li>
@@ -134,10 +666,10 @@
 					<li> [Change] Separated AdvancedBox JS into standalone script (saves bandwidth).</li>
 					<li> [Change] Updated Blur BBCode for cross-browser compatibility with all browsers.</li>
 					<li> [Change] Updated Wave BBCode, the effect is disabled in all except IE because it is only supported in IE.</li>
-					<li> [Change] Updated Off Topic BBCode, gave it a whole new look in posts.</i>
+					<li> [Change] Updated Off Topic BBCode, gave it a whole new look in posts and fixed a bug in it.</li>
 					<li> [Change] Improved the look/readability of the ABBC3 Help page in Prosilver.</li>
+					<li> [Change] Improved the look of the Image Resizer Info Bar.</li>
 					<li> [Change] Improved the display font and reduced size of the BBCode Help Box area that is displayed under the ABBC3 toolbar.</li>
-					<li> [Change] Restored the default resize ability to post/text editor message boxes.</li>
 					<li> [Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.</li>
 					<li> [Fix] Added missing language variables to Spanish and German installation instructions.</li>
 					<li> [Fix] Various general spelling and coding errors have been addressed.</li>
@@ -257,12 +789,14 @@
 							<li> “fancy” selector</li>
 							<li> “Tigra” color picker</li>
 						</ul>
+					</li>
 					<li> [Feature] Highlight bbcode : Colour picker : Now we have 3 options:
 						<ul>
 							<li> Drop Down Menu</li>
 							<li> “fancy” selector</li>
 							<li> “Tigra” color picker</li>
 						</ul>
+					</li>
 					<li> [Feature] Wizards mode :
 						<ul>
 							<li>Disable wizards</li>
@@ -277,6 +811,7 @@
 							<li>ABBC3 “Extended” view</li>
 							<li>ABBC3 “Compact” view</li>
 						</ul>
+					</li>
 					<li> [Feature] Added ACP option to define the content allowed in BBvideo</li>
 				</ul>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
@@ -298,7 +833,7 @@
 						<ul>
 							<li>It use real cookies inside the JavaScript </li>
 							<li>the size will be saved immediately the user push [ + ] / [ - ] button </li>
-							<li>each size will be independent for signature and post ( PM & post use the same ) </li>
+							<li>each size will be independent for signature and post ( PM &amp; post use the same ) </li>
 						</ul>
 					</li>
 
@@ -326,7 +861,7 @@
 					<li> [Change] Now fade bbcode really faded instead "whited" ( Thanks to Senky from MOD Team ) </li>
 					<li> [Change] Quoted post message boxes are no longer fixed in size. Instructions to make Quoted posts display in a fixed-height message box similar to the Code message boxes are now included as an Add-On in the contrib folder </li>
 					<li> [Change] Cleaned up ABBC3's English language text </li>
-					<li> [Change] Updated instructions to MODX 1.2.5 format <li/>
+					<li> [Change] Updated instructions to MODX 1.2.5 format </li>
 					
 					<li> [Fix] Remove BBCodes from the selected text </li>
 					<li> [Fix] Insert function using IE8 and wizards ( Ticket #43 Thanks to JuanLUX ) </li>
@@ -708,323 +1243,6 @@
 				</ul>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 
-			</div>
-			<span class="corners-bottom"><span></span></span></div>
-		</div>
-
-		<hr />
-		<a name="feature"></a><h2>Feature list</h2>
-		<div class="paragraph">
-			<div class="inner"><span class="corners-top"><span></span></span>
-			<div class="content">
-				<ul>
-					<li><strong>Image Resizer : </strong>
-						This addresses a shortcoming of the [img] BBCode, when someone posts a picture that exceeds the width of your forum.<br />				
-						AdvancedBox JS is a JavaScript application used to display images in full size.<br />				
-						You can also use ABBC3 with any of the other included scripts. These modifications are totally optional. Each script has its own support. ABBC3 is not responsible for any issues from using a 3rd party script. All questions/problems/bugs should be directed to the developer of the script you are using.
-							<ul style="list-style-type: decimal;">
-								<li>Highslide <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Highslide</strong> for use of the library.</span></li>
-								<li>LiteBox2 <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Lite Box</strong> for use of the library.</span></li>
-								<li>Lightview <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Light view</strong> for use of the library.</span></li>
-								<li>ShadowBox <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Shadow Box</strong> for use of the library.</span></li>
-								<li>Pop-up window</li>
-								<li>Enlarge</li>
-								<li>Same window</li>
-								<li>New window</li>
-							</ul>
-					</li>
-					<li><strong>Buttons to Expand/Contract the text area</strong>
-						<ul style="list-style-type: decimal;">
-							<li> [ + ] Posting box Resizer : larger </li>
-							<li> [ - ] Posting box Resizer : shorter </li>
-						</ul>
-					</li>
-					<li><strong>BBCodes : </strong><span class="good">( In default order and state )</span>
-						<ul>
-							<li>Font Type Dropdown</li>
-							<li>Font Size Dropdown</li>
-							<li>Highlight Text Dropdown</li>
-							<li>Font Colour</li>
-							<li>---------------------</li>
-							<li>Cut : Cut selected text to clipboard</li>
-							<li>Copy : Copy selected text clipboard</li>
-							<li>Paste : Paste text from clipboard</li>
-							<li>Remove : Removes all BBCode tags from selected text</li>
-							<li>---------------------</li>
-							<li>Bullet list: Unordered List</li>
-							<li>Ordered list</li>
-							<li>List item</li>
-							<li>Tabs</li>
-							<li>Horizontal line</li>
-							<li>Bold text</li>
-							<li>Italic text</li>
-							<li>Underline text</li>
-							<li>Strike through text</li>
-							<li>Superscript text</li>
-							<li>Subscript text</li>
-							<li>Glow text</li>
-							<li>Shadow text</li>
-							<li>Dropshadow text</li>
-							<li>Blur text</li>
-							<li>Wave text></li>
-							<li>Fade text</li>
-							<li>Gradient text (aka Rainbow)</li>
-							<li>---------------------</li>
-							<li>Justify Align</li>
-							<li>Right Align</li>
-							<li>Center Align</li>
-							<li>Left Align</li>
-							<li>Preformat text</li>
-							<li>---------------------</li>
-							<li>Tab : Creates a normal indent</li>
-							<li>Message Box text direction Left to Light (Traditional)</li>
-							<li>Message Box text direction right to Left (Arabic, etc)</li>
-							<li>Marquee Up : Scrolling text upwards <span class="bad">(Disabled by default)</span></li>
-							<li>Marquee Down : Scrolling text down <span class="bad">(Disabled by default)</span></li>
-							<li>Marquee Left : Scrolling text to the left <span class="bad">(Disabled by default)</span></li>
-							<li>Marquee Right : Scrolling text to the right <span class="bad">(Disabled by default)</span></li>
-							<li>Code</li>
-							<li>Quote</li>
-							<li>Spoiler (User must click on link to review text within tags)</li>
-							<li>Hidden : Hide content from unregistered guests</li>
-							<li>Moderator Message <span class="good">(Permissions restricted to Moderators and/or Administrators by default)</span></li>
-							<li>Off Topic</li>
-							<li>NFO text <span class="good">(Better on Internet Explorer)</span></li>
-							<li>Table (create an HTML table)</li>
-							<li>---------------------</li>
-							<li>Anchor</li>
-							<li>Hyperlink Wizard</li>
-							<li>Email Wizard</li>
-							<li>Web : Insert a website in the post via iframe <span class="bad">(Disabled by default. Note: allowing other websites to be inserted in posts, can pose a security risk. Use at your own risk, or assign to trusted groups.)</span></li>
-							<li>Ed2k link Wizard</li>
-							<li>Image Wizard</li>
-							<li>Thumbnail Wizard</li>
-							<li>Imgshack Wizard</li>
-							<li>Rapidshare links <span class="bad">(Disabled by default. Requires the PHP directive allow_url_fopen to be enabled.)</span></li>
-							<li>Link checker <span class="bad">(Disabled by default. Requires that you have CURL installed)</span></li>
-							<li>Click counter <span class="bad">(Disabled by default)</span></li>
-							<li>Search tag :
-								<ul style="list-style-type: decimal;">
-									<li>Bing</li>
-									<li>Yahoo</li>
-									<li>Google</li>
-									<li>AltaVista</li>
-									<li>Wikipedia</li>
-									<li>Lycos</li>
-									<li>or forum</li>
-								</ul>
-							</li>
-							<li>---------------------</li>
-							<li>BBvideo Wizard</span>
-								<br />
-								<strong>Video sites</strong>
-								<ul style="list-style-type: decimal;">
-									<li>allocine.fr</li>
-									<li>cnbc.com</li>
-									<li>comedycentral.com</li>
-									<li>www.clipfish</li>
-									<li>clipmoon.com</li>
-									<li>collegehumor.com</li>
-									<li>crackle.com</li>
-									<li>dailymotion.com</li>
-									<li>facebook.com</li>
-									<li>g4tv.com</li>
-									<li>gamepro.com</li>
-									<li>gameprotv.com</li>
-									<li>gamespot.com</li>
-									<li>gametrailers.com</li>
-									<li>www.gamevideos</li>
-									<li>ign.com</li>
-									<li>kyte.tv</li>
-									<li>liveleak.com</li>
-									<li>livevideo.com</li>
-									<li>machinima.com</li>
-									<li>megavideo.com</li>
-									<li>metacafe.com</li>
-									<li>msnbc.msn.com</li>
-									<li>myspace.com</li>
-									<li>myspacetv.com</li>
-									<li>vids.myspace.com</li>
-									<li>www.myvideo</li>
-									<li>photobucket.com</li>
-									<li>www.porkolt</li>
-									<li>revver.com</li>
-									<li>rutube.ru</li>
-									<li>sapo.pt</li>
-									<li>scribd</li>
-									<li>sevenload.com</li>
-									<li>spike.com</li>
-									<li>tangle.com</li>
-									<li>tinypic.com</li>
-									<li>vbox7.com</li>
-									<li>veoh.com</li>
-									<li>videu.de</li>
-									<li>vimeo.com</li>
-									<li>video.google</li>
-									<li>video.yahoo</li>
-									<li>vsocial.com</li>
-									<li>wegame.com</li>
-									<li>youtube.com</li>
-									<li>youtu.be</li>
-									<li>xfire.com</li>
-								</ul>
-								<strong>External videos</strong> <span class="bad">(Disabled by default)</span>
-								<br />These videos can not be embedded into posts and instead have a nice link to it. 
-								<ul style="list-style-type: decimal;">
-									<li>badr.tv</li>
-									<li>comedians.jokes.com</li>
-									<li>comedians.comedycentral.com</li>
-									<li>moddb.com</li>
-									<li>revision3.com</li>
-									<li>slideshare.net</li>
-									<li>streetfire.net</li>
-									<li>tu.tv</li>
-									<li>videogamer.com</li>
-									<li>vidilife.com</li>
-									<li>gotgame.com</li>
-									<li>filefront.com</li>
-									<li>deviantart.com</li>
-									<li>wat.tv</li>
-								</ul>
-								<strong>Files types</strong>
-								<ul style="list-style-type: decimal;">
-									<li>DivX .avi .divx .mkv</li>
-									<li>Flash .swf</li>
-									<li>Flash .flv</li>
-									<li>Windows Media Video .wmv</li>
-									<li>Moving Pictures Expert Group .mpg</li>
-									<li>Quick Time Movie : .qt .mov</li>
-									<li>Quick Time Audio : .mp3 .mid .midi</li>
-									<li>Real Audio .ram</li>
-								</ul>
-								<br />
-							</li>
-							<li>Scrippet</li>
-							<li>Flash (swf) <span class="bad">(Disabled by default)</span></li>
-							<li>Flash (flv) <span class="bad">(Disabled by default)</span></li>
-							<li>Video <span class="bad">(Disabled by default)</span></li>
-							<li>Stream <span class="bad">( Disable by default )</span></li>
-							<li>Quicktime <span class="bad">(Disabled by default)</span></li>
-							<li>Real media <span class="bad">(Disabled by default)</span></li>
-							<li>Google video <span class="bad">(Disabled by default)</span></li>
-							<li>Youtube video <span class="bad">(Disabled by default)</span></li>
-							<li>Veoh video <span class="bad">(Disabled by default)</span></li>
-							<li>CollegeHumor video <span class="bad">(Disabled by default)</span></li>
-							<li>DailyMotion video <span class="bad">(Disabled by default)</span></li>
-							<li>Gamespot video <span class="bad">(Disabled by default)</span></li>
-							<li>GameTrailers video <span class="bad">(Disabled by default)</span></li>
-							<li>IGN video <span class="bad">(Disabled by default)</span></li>
-							<li>LiveLeak video <span class="bad">(Disabled by default)</span></li>
-							<li>--------------------</li>
-							<li>Custom BBCodes</li>
-						</ul>
-					</li>
-				</ul>
-				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
-
-			</div>
-			<span class="corners-bottom"><span></span></span></div>
-		</div>
-
-		<hr />
-		<a name="custombbcodes"></a><h2>Custom BBCodes Conflicts</h2>
-		<div class="paragraph">
-			<div class="inner"><span class="corners-top"><span></span></span>
-			<div class="content">
-				<ul>
-					<li>ABBC3 will overwrite any custom BBCodes your board may already have if they have the exact same name. If this happens, your older posts using your original custom BBCodes may not appear to work any more. There is a way to prevent this from happening.</li>
-					<li> First, compare your custom bbcode's [tag] names against this list of ABBC3's bbcode [tag] names. If you have any matches you should read further, otherwise you are good to go ahead and install ABBC3 with no custom BBCode conflicts.
-						<ul>
-							<li>align=center</li>
-							<li>align=justify</li>
-							<li>align=left</li>
-							<li>align=right</li>
-							<li>anchor=</li>
-							<li>b</li>
-							<li>BBvideo</li>
-							<li>blur=</li>
-							<li>center</li>
-							<li>click</li>
-							<li>code</li>
-							<li>collegehumor</li>
-							<li>color</li>
-							<li>copy</li>
-							<li>cut</li>
-							<li>dir=ltr</li>
-							<li>dir=rtl</li>
-							<li>dm</li>
-							<li>dropshadow=</li>
-							<li>email</li>
-							<li>fade</li>
-							<li>flash</li>
-							<li>flv</li>
-							<li>font=</li>
-							<li>gamespot</li>
-							<li>gametrailers</li>
-							<li>glow=</li>
-							<li>grad</li>
-							<li>gvideo</li>
-							<li>hidden</li>
-							<li>highlight=</li>
-							<li>hr</li>
-							<li>i</li>
-							<li>ignvideo</li>
-							<li>img=</li>
-							<li>imgshack</li>
-							<li>listb</li>
-							<li>listitem</li>
-							<li>listo</li>
-							<li>liveleak</li>
-							<li>marq=down</li>
-							<li>marq=left</li>
-							<li>marq=right</li>
-							<li>marq=up</li>
-							<li>mod=</li>
-							<li>nfo</li>
-							<li>offtopic</li>
-							<li>paste</li>
-							<li>plain</li>
-							<li>pre</li>
-							<li>quicktime</li>
-							<li>quote</li>
-							<li>ram</li>
-							<li>rapidshare</li>
-							<li>s</li>
-							<li>scrippet</li>
-							<li>search</li>
-							<li>shadow=</li>
-							<li>size</li>
-							<li>spoil</li>
-							<li>stream</li>
-							<li>sub</li>
-							<li>sup</li>
-							<li>tab=</li>
-							<li>table=</li>
-							<li>tabs</li>
-							<li>testlink</li>
-							<li>thumbnail</li>
-							<li>u</li>
-							<li>url</li>
-							<li>url=</li>
-							<li>veoh</li>
-							<li>video</li>
-							<li>wave=</li>
-							<li>web</li>
-							<li>youtube</li>
-						</ul>
-					</li>
-					<li>If you have custom BBCodes that use the same names as any of the above, you will have a conflict. If you want to use your custom BBCode instead of ABBC3's do the following:</li>
-					<ul>
-						<li>Go to the Custom BBCodes page in the ACP and write down the settings for the custom BBCodes you want to keep</li>
-						<li>Install ABBC3</li>
-						<li>If you have phpMyAdmin, go to your database -> phpbb_bbcodes -> Browse.</li>
-						<li>Find the item with the "bbcode_tag" that matches your custom BBCode and click the pencil icon to edit it</li>
-						<li>Locate the field "abbcode" and change that value to 0, and click the go/submit button</li>
-						<li>Go to the Custom BBCodes screen in the ACP and you should see your custom bbcode in the list. Click it to edit it, and put back your original settings in all fields (including the help line, and also click Display on posting page).</li>
-						<li>You can also go to ABBC3 BBCode settings in the ACP, and assign an image to your Custom BBCode.</li>
-					</ul>
-				</ul>
-				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 			</div>
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
