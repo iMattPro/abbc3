@@ -42,9 +42,9 @@ Before adding this MOD to your forum, you should back up all files and databases
 				<date>2012-04-06</date>
 				<rev-version>3.0.11</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[[Change] New BBvideos: blip.tv, break.com, current.com, ebaumsworld.com, flickr.com, funnyordie.com, godtube.com, howcast.com, ted.com, theonion.com]]></change>
+					<change><![CDATA[[Change] New BBvideos: blip.tv, break.com, cnettv.cnet.com, current.com, ebaumsworld.com, flickr.com, funnyordie.com, godtube.com, howcast.com, ted.com, theonion.com]]></change>
 					<change><![CDATA[[Change] Updated BBvideos: collegehumor.com, crackle.com, deviantart.com, gamespot.com, ign.com, streetfire.com, yahoo.com]]></change>
-					<change><![CDATA[[Change] Deleted BBvideos (due to unavailability): badr.tv, filefront.com, gamepro.com, livevideo.com, machinima.com, megavideo.com, revver.com, tangle.com, tinypic.com, vidilife.com]]></change>
+					<change><![CDATA[[Change] Deleted BBvideos (due to unavailability): badr.tv, filefront.com, gamepro.com, livevideo.com, machinima.com, megavideo.com, porkolt.com, revver.com, tangle.com, tinypic.com, vidilife.com]]></change>
 					<change><![CDATA[[Change] ABBC3 BBCodes can be arranged more easily and quickly using drag-and-drop in the ACP settings area.]]></change>
 					<change><![CDATA[[Change] Enhanced the ABBC3 toolbar background image preview in the ACP settings area.]]></change>
 					<change><![CDATA[[Change] Added some new background gradient images for the ABBC3 toolbar.]]></change>

@@ -1504,12 +1504,12 @@ class abbcode
 				'match'		=> '#http://(.*?)break.com/([^[]*)?-([0-9]+)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://embed.break.com/$3', '{WIDTH}', '{HEIGHT}')",
 			),
-			'www.clipfish' => array(
+			'clipfish.de' => array(
 				'id'		=> 2,
 				'image'		=> 'clipfish.gif',
 				'example'	=> 'http://www.clipfish.de/video/1856437/ac-dc-tnt/',
-				'match'		=> '#http://www.clipfish.(.*?)/video/([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.clipfish.de/cfng/flash/clipfish_player_3.swf?as=0&vid=$2', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.clipfish.de/video/([0-9]+)([^[]*)?#sie',
+				'replace'	=> "\$this->auto_embed_video('http://www.clipfish.de/cfng/flash/clipfish_player_3.swf?as=0&vid=$1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'clipmoon.com' => array(
 				'id'		=> 3,
@@ -1525,6 +1525,13 @@ class abbcode
 				'match'		=> '#http://www.cnbc.com/id/(\d+)(?:|/)\?video=(\d+)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://plus.cnbc.com/rssvideosearch/action/player/id/$2/code/cnbcplayershare', '{WIDTH}', '{HEIGHT}')",
 			),
+ 			'cnettv.cnet.com' => array(
+ 				'id'		=> 27,
+ 				'image'		=> 'cnet.gif',
+ 				'example'	=> 'http://cnettv.cnet.com/kinect-controlled-motorized-skateboard/9742-1_53-50118306.html',
+ 				'match'		=> '#http://cnettv\.cnet\.com/[a-z0-9\-]*\/[0-9]{4}-[0-9]_[0-9]{2}-([0-9]{5,9})\.html#sie',
+ 				'replace'	=> "\$this->auto_embed_video('http://www.cnet.com/av/video/embed/player.swf', '{WIDTH}', '{HEIGHT}', 'playerType=embedded&type=id&value=$1')",
+ 			),
 			'collegehumor.com' => array(
 				'id'		=> 4,
 				'image'		=> 'collegehumor.gif',
@@ -1728,13 +1735,6 @@ class abbcode
 				'match'		=> '#http://s(.*?).photobucket.com/(albums/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5', '{WIDTH}', '{HEIGHT}')",
 			),
-			'www.porkolt' => array(
-				'id'		=> 27,
-				'image'		=> 'porkolt.gif',
-				'example'	=> 'http://www.porkolt.com/Avatar---Trailer-1-274678.html',
-				'match'		=> '#http://www.porkolt.(.*)/(.*?)-([0-9]{5,}).(.*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://content3.porkolt.com/player/own/porkoltplayer.swf?parameters=http://datas.porkolt.com/datas/h/$3', '{WIDTH}', '{HEIGHT}', '')",
-			),
 			'rutube.ru' => array(
 				'id'		=> 29,
 				'image'		=> 'rutube.gif',
@@ -1819,7 +1819,7 @@ class abbcode
 				'match'		=> '#http://www.wegame.com/watch/(.*?)/([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.wegame.com/static/flash/player.swf?xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true', '{WIDTH}', '{HEIGHT}', 'xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true')",
 			),
-			'screen.yahoo' => array(
+			'screen.yahoo.com' => array(
 				'id'		=> 40,
 				'image'		=> 'yahoovid.gif',
 				'example'	=> 'http://screen.yahoo.com/fred-armisen-28463551.html',
