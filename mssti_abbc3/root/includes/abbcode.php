@@ -2179,8 +2179,9 @@ class abbcode
 				break;
 			}
 		}
-		// if nothig have being found correctly, return without changes
-		$out = ($out) ? $out : '[BBvideo' . (($w && $h) ? " $w,$h" : '') . ']' . $in . '[/BBvideo]';
+		// if input does not match any video formats, treat it as a magic URL
+//		$out = $out ? $out : '[BBvideo' . (($w && $h) ? " $w,$h" : '') . ']' . $in . '[/BBvideo]';
+		$out = $out ? $out : make_clickable($in);
 		return $out;
 	}
 }
