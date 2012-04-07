@@ -2193,141 +2193,139 @@ class abbcode
 }
 // Advanced BBCode Box 3 class End
 
-// Advanced BBCode Box 3 functions - Start
-	/**
-	* Transform an array into a serialized format
-	* Because serialize a large array ( almost 70 key ) 
-	* will return a large string to store into the config value
-	* we need another way to manage it.
-	*
-	* @param mixed	$input	array or string to transform
-	* @param bool	$mode	array to string or string to array
-	* @version 3.0.8
-	*/
-	function video_serialize($input, $mode = true)
+/**
+* Transform an array into a serialized format
+* Because serialize a large array ( almost 70 key ) 
+* will return a large string to store into the config value
+* we need another way to manage it.
+*
+* @param mixed	$input	array or string to transform
+* @param bool	$mode	array to string or string to array
+* @version 3.0.8
+*/
+function video_serialize($input, $mode = true)
+{
+	$out = '';
+	if ($mode)
 	{
-		$out = '';
-		if ($mode)
+		foreach ($input as $key => $value)
 		{
-			foreach ($input as $key => $value)
-			{
-				$out .= $value . ';';
-			}
+			$out .= $value . ';';
 		}
-		else
-		{
-			$out = explode(";", $input);
-		}
-
-		return $out;
 	}
-// Advanced BBCode Box 3 functions - End
+	else
+	{
+		$out = explode(";", $input);
+	}
+
+	return $out;
+}
 
 // MOD : eD2k links - START
-	/**
-	* eD2k Add-on optionally called from viewtopic
-	*	display table with ed2k links features
-	*
-	* @param string		$text		post text
-	* @param int		$post_id	post id
-	* @return string
-	* @version 3.0.8
-	*/
-	function abbc3_add_all_ed2k_link($text, $post_id)
+/**
+* eD2k Add-on optionally called from viewtopic
+*	display table with ed2k links features
+*
+* @param string		$text		post text
+* @param int		$post_id	post id
+* @return string
+* @version 3.0.8
+*/
+function abbc3_add_all_ed2k_link($text, $post_id)
+{
+	// dig through the message for all ed2k links!
+	$match = array();
+	preg_match_all('/href="(ed2k:(.*?))"[^>]*>(.*?)</i', $text, $match);
+
+	$ed2k_links = $match[1];
+	$ed2k_names = $match[3];
+
+	// no need to dig through it if there are not at least 2 links!
+	if (sizeof($ed2k_links) > 1)
 	{
-		// dig through the message for all ed2k links!
-		$match = array();
-		preg_match_all('/href="(ed2k:(.*?))"[^>]*>(.*?)</i', $text, $match);
-
-		$ed2k_links = $match[1];
-		$ed2k_names = $match[3];
-
-		// no need to dig through it if there are not at least 2 links!
-		if (sizeof($ed2k_links) > 1)
+		foreach ($ed2k_links as $ed2k_link => $item)
 		{
-			foreach ($ed2k_links as $ed2k_link => $item)
-			{
-				$t_ed2k_parts = explode("|", $ed2k_links[$ed2k_link]);
-				$block_array[$post_id][] = array(
-					'LINK_VALUE' 	=> $ed2k_links[$ed2k_link],
-					'LINK_TEXT'		=> (isset($ed2k_names[$ed2k_link])) ? $ed2k_names[$ed2k_link] : $t_ed2k_parts[2],
-				);
-			}
-		}
-		return $block_array;
-	}
-
-	/**
-	* eD2k Add-on optionally called from viewtopic
-	* 	Replace magic urls and display ed2k links format
-	*	Cuts down displayed size of link if over 50 chars, turns absolute links
-	* 
-	* @param string 	$link	post links with ed2k href
-	* @return string	display ed2k links format
-	* @version 3.0.8
-	*/
-	function abbc3_ed2k_make_clickable($link)
-	{
-		global $user, $config, $phpbb_root_path;
-
-		$ed2k_icon = $this->abbcode_config['S_ABBC3_PATH'] . '/images/emule.gif';
-		$ed2k_stat = $this->abbcode_config['S_ABBC3_PATH'] . '/images/stats.gif';
-
-		$matches = preg_match_all("#(^|(?<=[^\w\"']))(ed2k://\|(file|server|friend)\|([^\\/\|:<>\*\?\"]+?)\|(\d+?)\|([a-f0-9]{32})\|(.*?)/?)(?![\"'])(?=([,\.]*?[\s<\[])|[,\.]*?$)#i", $link, $match);
-
-		if ($matches)
-		{
-			foreach ($match[0] as $i => $m)
-			{
-				$ed2k_link	= (isset($match[2][$i])) ? $match[2][$i] : '';
-
-				// Only for testing propose, commented out so I do not loose the code.
-			//	$ed2k_type	= (isset($match[3][$i])) ? $match[3][$i] : '';
-				$ed2k_size	= (isset($match[5][$i])) ? $match[5][$i] : '';
-				$ed2k_hash	= (isset($match[6][$i])) ? $match[6][$i] : '';
-
-				$max_len	= 100;
-				$ed2k_name	= (isset($match[4][$i])) ? $match[4][$i] : '';
-
-				$ed2k_name	= (strlen($ed2k_name) > $max_len) ? substr($ed2k_name, 0, $max_len - 19) . '...' . substr($ed2k_name, -16) : $ed2k_name;
-				return ' <img src="' . $ed2k_icon . '" class="ed2k_img" alt="" title="" />&nbsp;<a href="' . $ed2k_link . '" class="postlink">' . $ed2k_name . '</a>&nbsp;[' . abbc3_ed2k_humanize_size($ed2k_size) . ']&nbsp;<a href="http://ed2k.shortypower.org/?hash=' . $ed2k_hash . '" onclick="window.open(this.href);return false;"><img src="' . $ed2k_stat . '"  alt="" title="" /></a>';
-			}
+			$t_ed2k_parts = explode("|", $ed2k_links[$ed2k_link]);
+			$block_array[$post_id][] = array(
+				'LINK_VALUE' 	=> $ed2k_links[$ed2k_link],
+				'LINK_TEXT'		=> (isset($ed2k_names[$ed2k_link])) ? $ed2k_names[$ed2k_link] : $t_ed2k_parts[2],
+			);
 		}
 	}
+	return $block_array;
+}
 
-	/**
-	* Display ed2k size in a human readable way ;)
-	*
-	*/
-	function abbc3_ed2k_humanize_size($size, $rounder = 0)
+/**
+* eD2k Add-on optionally called from viewtopic
+* 	Replace magic urls and display ed2k links format
+*	Cuts down displayed size of link if over 50 chars, turns absolute links
+* 
+* @param string 	$link	post links with ed2k href
+* @return string	display ed2k links format
+* @version 3.0.8
+*/
+function abbc3_ed2k_make_clickable($link)
+{
+	global $user, $config, $phpbb_root_path;
+
+	$ed2k_icon = $this->abbcode_config['S_ABBC3_PATH'] . '/images/emule.gif';
+	$ed2k_stat = $this->abbcode_config['S_ABBC3_PATH'] . '/images/stats.gif';
+
+	$matches = preg_match_all("#(^|(?<=[^\w\"']))(ed2k://\|(file|server|friend)\|([^\\/\|:<>\*\?\"]+?)\|(\d+?)\|([a-f0-9]{32})\|(.*?)/?)(?![\"'])(?=([,\.]*?[\s<\[])|[,\.]*?$)#i", $link, $match);
+
+	if ($matches)
 	{
-		$sizes		= array('Bytes', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb', 'Zb', 'Yb');
-		$rounders	= array(0, 1, 2, 2, 2, 3, 3, 3, 3);
-		$ext		= $sizes[0];
-		$rnd		= $rounders[0];
+		foreach ($match[0] as $i => $m)
+		{
+			$ed2k_link	= (isset($match[2][$i])) ? $match[2][$i] : '';
 
-		if ($size < 1024)
-		{
-			$rounder	= 0;
-			$format		= '%.' . $rounder . 'f Bytes';
-		}
-		else
-		{
-			for ($i = 1, $cnt = count($sizes); ($i < $cnt && $size >= 1024); $i++)
-			{
-				$size	= $size / 1024;
-				$ext	= $sizes[$i];
-				$rnd	= $rounders[$i];
-				$format	= '%.' . $rnd . 'f ' . $ext;
-			}
-		}
+			// Only for testing propose, commented out so I do not loose the code.
+		//	$ed2k_type	= (isset($match[3][$i])) ? $match[3][$i] : '';
+			$ed2k_size	= (isset($match[5][$i])) ? $match[5][$i] : '';
+			$ed2k_hash	= (isset($match[6][$i])) ? $match[6][$i] : '';
 
-		if (!$rounder)
-		{
-			$rounder = $rnd;
+			$max_len	= 100;
+			$ed2k_name	= (isset($match[4][$i])) ? $match[4][$i] : '';
+
+			$ed2k_name	= (strlen($ed2k_name) > $max_len) ? substr($ed2k_name, 0, $max_len - 19) . '...' . substr($ed2k_name, -16) : $ed2k_name;
+			return ' <img src="' . $ed2k_icon . '" class="ed2k_img" alt="" title="" />&nbsp;<a href="' . $ed2k_link . '" class="postlink">' . $ed2k_name . '</a>&nbsp;[' . abbc3_ed2k_humanize_size($ed2k_size) . ']&nbsp;<a href="http://ed2k.shortypower.org/?hash=' . $ed2k_hash . '" onclick="window.open(this.href);return false;"><img src="' . $ed2k_stat . '"  alt="" title="" /></a>';
 		}
-		return sprintf($format, round($size, $rounder));
 	}
+}
+
+/**
+* Display ed2k size in a human readable way ;)
+*
+*/
+function abbc3_ed2k_humanize_size($size, $rounder = 0)
+{
+	$sizes		= array('Bytes', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb', 'Zb', 'Yb');
+	$rounders	= array(0, 1, 2, 2, 2, 3, 3, 3, 3);
+	$ext		= $sizes[0];
+	$rnd		= $rounders[0];
+
+	if ($size < 1024)
+	{
+		$rounder	= 0;
+		$format		= '%.' . $rounder . 'f Bytes';
+	}
+	else
+	{
+		for ($i = 1, $cnt = count($sizes); ($i < $cnt && $size >= 1024); $i++)
+		{
+			$size	= $size / 1024;
+			$ext	= $sizes[$i];
+			$rnd	= $rounders[$i];
+			$format	= '%.' . $rnd . 'f ' . $ext;
+		}
+	}
+
+	if (!$rounder)
+	{
+		$rounder = $rnd;
+	}
+	return sprintf($format, round($size, $rounder));
+}
 // MOD : eD2k links - END
 
 /**
