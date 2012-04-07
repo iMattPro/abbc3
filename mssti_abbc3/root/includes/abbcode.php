@@ -1763,6 +1763,13 @@ class abbcode
 				'match'		=> '#http://twitvid.com/([^[]*)?#si',
 				'replace'	=> '<iframe src="http://www.twitvid.com/embed.php?guid=$1&autoplay=0" title="Twitvid video player" type="text/html" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
+			'ustream.tv' => array(
+				'id'		=> 23,
+				'image'		=> 'ustream.gif',
+				'example'	=> 'http://www.ustream.tv/channel/9948292',
+				'match'		=> '#http://(?:www\.)ustream\.tv\/(?:channel/([0-9]{1,8}))#sie',
+				'replace'	=> "\$this->auto_embed_video('http://www.ustream.tv/flash/viewer.swf', '{WIDTH}', '{HEIGHT}', 'cid=$1&autoplay=false')",
+			),
 			'vbox7.com' => array(
 				'id'		=> 35,
 				'image'		=> 'vbox7.gif',
