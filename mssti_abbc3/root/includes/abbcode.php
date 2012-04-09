@@ -2189,17 +2189,25 @@ class abbcode
 * we need another way to manage it.
 *
 * @param mixed	$input	array or string to transform
-* @param bool	$mode	array to string or string to array
+* @param bool	$mode	array to string (true) or string to array (false)
 * @version 3.0.8
 */
 function video_serialize($input, $mode = true)
 {
+	global $user;
+	
 	$out = '';
 	if ($mode)
 	{
 		foreach ($input as $key => $value)
 		{
 			$out .= $value . ';';
+		}
+		
+		// The config table only stores 255 chars, so we need to prevent any instance where this might be exceeded.
+		if (strlen($out) > 255)
+		{
+			trigger_error($user->lang['ABBCODES_VIDEO_ERROR']);
 		}
 	}
 	else

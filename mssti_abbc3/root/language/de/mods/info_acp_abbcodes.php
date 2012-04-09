@@ -120,6 +120,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SIG_IMAGE_HEIGHT'			=> 'Maximale Höhe des Signatur Bildes in Pixeln',
 	'ABBCODES_SIG_IMAGE_HEIGHT_EXPLAIN'	=> 'Die Größe des Signaturbildes wird verändert, sobald die Höhe des Bildes den hier eingestellten Wert überschreitet.',
 
+	'ABBCODES_VIDEO_ERROR'				=> '<strong>Fehler:</strong> Es gibt zu viele BBvideos ausgewählt. Deaktivieren Sie einige BBvideos und erneut versuchen.',
 	'ABBCODES_VIDEO_SIZE'				=> 'Video Abmessungen',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Die Standard Höhe und Breite für ein Beitragsvideo.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Erlaubte Video Typen',

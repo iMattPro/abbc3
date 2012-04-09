@@ -119,6 +119,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SIG_IMAGE_HEIGHT'			=> 'Maximum signature image height in pixels',
 	'ABBCODES_SIG_IMAGE_HEIGHT_EXPLAIN'	=> 'Images in signatures will be resized if they exceed the height set here. Set to 0 to disable checking this dimension.',
 
+	'ABBCODES_VIDEO_ERROR'				=> '<strong>Error:</strong> There are too many BBvideos selected. Deselect some BBvideos and try again.',
 	'ABBCODES_VIDEO_SIZE'				=> 'Video dimensions',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',

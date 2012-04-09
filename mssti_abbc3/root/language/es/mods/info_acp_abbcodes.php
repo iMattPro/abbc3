@@ -120,6 +120,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SIG_IMAGE_HEIGHT'			=> 'Alto máximo de imágenes en firmas, de pixel',
 	'ABBCODES_SIG_IMAGE_HEIGHT_EXPLAIN'	=> 'Las imagenes de las firmas serán redimensionadas si se excede del alto establecido aquí.',
 
+	'ABBCODES_VIDEO_ERROR'				=> '<strong>Error:</strong> Hay demasiados BBvideos seleccionados. Anule la selección de algunos BBvideos y vuelva a intentarlo.',
 	'ABBCODES_VIDEO_SIZE'				=> 'Dimensiones de videos',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Por defecto la anchura y la altura de videos.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Tipos de vídeo permitidos',
