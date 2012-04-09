@@ -1472,7 +1472,6 @@ class abbcode
 	*/
 	function video_init()
 	{
-
 		// Patterns and replacements for BBVIDEO bbcode processing
 		return array(
 			'video' => array(),
@@ -1613,7 +1612,7 @@ class abbcode
 				'id'		=> 13,
 				'image'		=> 'gametrailers.gif',
 				'example'	=> 'http://www.gametrailers.com/user-movie/first-gta-cw-screens/268358',
-				'match'		=> '#http://www.gametrailers.com/user-movie/(.*?)/([0-9]+)([^[]*)?#sie',
+				'match'		=> '#http://www.gametrailers.com/(?:user\-movie|player)/(.*?)/([0-9]+)(?:[^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?umid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gametrailers.com' => array(
@@ -1623,12 +1622,12 @@ class abbcode
 				'match'		=> '#http://www.gametrailers.com/(.*?)/([0-9]+)([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?mid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
-			'www.gamevideos' => array(
+			'gamevideos.1up' => array(
 				'id'		=> 15,
 				'image'		=> 'gamevideos.gif',
-				'example'	=> 'http://www.gamevideos.com/video/id/17766',
-				'match'		=> '#http://www.gamevideos(.*?).com/video/id/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://gamevideos.1up.com/swf/gamevideos12.swf?embedded=1&fullscreen=1&autoplay=0&src=http://www.gamevideos.com/video/videoListXML%3Fid%3D$2%26ordinal%3D%26adPlay%3Dfalse', '{WIDTH}', '{HEIGHT}')",
+				'example'	=> 'http://gamevideos.1up.com/video/id/17766',
+				'match'		=> '#http://(?:www.)?gamevideos(?:.*?).com/video/id/([^[]*)?#sie',
+				'replace'	=> "\$this->auto_embed_video('http://gamevideos.1up.com/swf/gamevideos12.swf?embedded=1&fullscreen=1&autoplay=0&src=http://gamevideos.1up.com/do/videoListXML%3Fid%3D$1%26adPlay%3Dfalse', '{WIDTH}', '{HEIGHT}')",
 			),
 			'godtube.com' => array(
 				'id'		=> 33,
@@ -1847,7 +1846,7 @@ class abbcode
 				'id'		=> 102,
 				'image'		=> 'comedians.gif',
 				'example'	=> 'http://comedians.jokes.com/bert-kreischer/videos/bert-kreischer---twelve-words',
-				'match'		=> '#http://comedians.jokes.com/(.*?)/videos/([^[]*)#si',
+				'match'		=> '#http://comedians.(jokes|comedycentral).com/(.*?)/videos/([^[]*)#si',
 				'replace'	=> 'external',
 			),
 			'deviantart.com' => array(
@@ -1969,7 +1968,7 @@ class abbcode
 			'(qt|mov)' => array(
 				'id'		=> 205,
 				'image'		=> 'quicktime.gif',
-				'example'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt',
+				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
 				'match'		=> '#([^[]+)?\.(qt|mov)#si',
 				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="{HEIGHT}"><param name="type" value="video/quicktime" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
 								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" type="video/quicktime" autoplay="false"></embed></object>'
