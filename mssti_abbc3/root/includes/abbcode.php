@@ -2039,17 +2039,20 @@ class abbcode
 			'autostart'			=> 'false',
 		), $object_params_ary);
 
+		// Add some optional params if needed
 		if (isset($config['ABBC3_VIDEO_WMODE']) && $config['ABBC3_VIDEO_WMODE'])
 		{
 			$object_params_ary['wmode'] = 'transparent';
-		}	
-		
-		($flashvars) ? $object_params_ary['flashvars'] = trim(str_replace('&', '&amp;', $flashvars)) : true;
+		}		
+		if (!empty($flashvars))
+		{
+			$object_params_ary['flashvars'] = trim(str_replace('&', '&amp;', $flashvars));
+		}
 
 		$object_attribs = '';
-		foreach ($object_attribs_ary as $param => $value)
+		foreach ($object_attribs_ary as $attrib => $value)
 		{
-			$object_attribs .= ' ' . $param . '="' . $value . '"';
+			$object_attribs .= ' ' . $attrib . '="' . $value . '"';
 		}
 
 		$object_params = '';
