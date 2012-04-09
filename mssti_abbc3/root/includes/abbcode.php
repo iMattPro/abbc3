@@ -1692,7 +1692,7 @@ class abbcode
 				'match'		=> '#http://(www.)?myspace.com/video/vid/([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://mediaservices.myspace.com/services/media/embed.aspx/m=$2', '{WIDTH}', '{HEIGHT}')",
 			),
-			'www.myvideo' => array(
+			'myvideo' => array(
 				'id'		=> 25,
 				'image'		=> 'myvideo.gif',
 				'example'	=> 'http://www.myvideo.de/watch/2668372',
@@ -2071,112 +2071,95 @@ class abbcode
 	* @param string		$w		value for video width
 	* @param string		$h		value for video Height
 	* @return embed video
-	* @version 3.0.8
+	* @version 3.0.11
 	*/
 	function BBvideo_pass($in, $w, $h)
 	{
-		global $user, $config, $phpbb_root_path;
+		global $user, $config;
 
 		if (empty($this->abbcode_config))
 		{
 			$this->abbcode_init(false);
 		}
 
+		// fill the bbvideo array (use static so it keeps its value after execution)
 		static $abbcode_video_ary = array();
 		if (empty($abbcode_video_ary))
 		{
 			$abbcode_video_ary = abbcode::video_init();
-			$allowed_videos = video_serialize($config['ABBC3_VIDEO_OPTIONS'], false);
-			foreach ($abbcode_video_ary as $video_name => $video_data)
-			{
-				if (!isset($video_data['id']))
-				{
-					$abbcode_video_ary[$video_name]['display'] = false;
-					continue;
-				}
-
-				$abbcode_video_ary[$video_name]['display'] = (in_array($video_data['id'], $allowed_videos)) ? true : false;
-			}
 		}
 
+		$allowed_videos 	= video_serialize($config['ABBC3_VIDEO_OPTIONS'], false);
 		$video_unique_id	= substr(base_convert(unique_id(), 16, 36), 0, 8);
 		$video_width		= (intval($w)) ? $w : $this->abbcode_config['ABBC3_VIDEO_WIDTH'];
 		$video_height		= (intval($h)) ? $h : $this->abbcode_config['ABBC3_VIDEO_HEIGHT'];
 		$video_image_path	= $this->abbcode_config['S_ABBC3_PATH'];
-	//	$match				= get_preg_expression('bbcode_htm');
-	//	$replace			= array('\1', '\1', '\2', '\1', '', '');
-	//	$in					= preg_replace($match, $replace, $in);
 		$in					= trim($in);
 		$video_link			= '';
-		$video_content		= '';
 		$video_image		= '';
+		$video_content		= '';
 		$out				= '';
 
 		foreach ($abbcode_video_ary as $video_name => $video_data)
 		{
-			// Fisrt check that this video is enabled and have data for search and replace
-			if (!isset($video_data['match']) || $video_data['match'] == '' || !isset($video_data['replace']) || $video_data['replace'] == '')
+			// only process BBvideos that have match, replace and id values
+			if (!isset($video_data['match']) || $video_data['match'] == '' || !isset($video_data['replace']) || $video_data['replace'] == '' || !isset($video_data['id']) || $video_data['id'] == '')
 			{
 				continue;
 			}
-			// Second check that video url is one on the list and it's on the post text
-			if (preg_match('#' . $video_name . '#si', $in) && preg_match($video_data['match'], $in))
+			// find a BBvideo match for the video url
+			if (preg_match($video_data['match'], $in))
 			{
-				// if the video is not allowed, return a link 
-				if (!$video_data['display'])
+				// if this video is not allowed, return a link 
+				if (!in_array($video_data['id'], $allowed_videos))
 				{
 					$out = make_clickable($in);
 					break;
 				}
 
+				// if FLASH is not allowed, return as flash link 
 				if (!$user->optionget('viewflash'))
 				{
 					$out = str_replace(array('$1', '$2'), array($in, '[ flash ]'), $this->bbcode_tpl('url', -1, true));
 					break;
 				}
 
-				if (preg_match('#\.#si', $video_name))
+				// create the icon image tag
+				$video_image = $video_image_path . '/images/' . $video_data['image'];
+				$video_image = file_exists($video_image) ? '<img src="' . $video_image . '" class="postimage" alt="" width="20" height="20" /> ' : '';
+				
+				// create a link to the video
+				if ($video_data['id'] > 200)
 				{
-					preg_match('@^(?:http://)?([^/]+)@i', $in, $video_name);
-					if (file_exists($video_image_path . '/images/' . $video_data['image']))
-					{
-						$video_image = '<img src="' . $video_image_path . '/images/' . $video_data['image'] . '" class="postimage" alt="' . $video_name[1] . '" title="' . $video_name[1] . '" /> ';
-					}
-					$video_link = $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_name[1] . '</a>';
+					// this is for direct file formats, they have an ID of 200+, get the correct extension
+					preg_match('#(?:[^[]+)?\.(' . $video_name . ')#i', $in, $video_title);
+					$video_link = $user->lang['ABBC3_BBVIDEO_FILE'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
 				}
 				else
 				{
-					preg_match_all('#' . $video_name . '#si', $in, $file_name);
-					// Some files have more than 1 extension, find out the proper image for this one
-					$file_name = (isset($file_name[1])) ? $file_name[1] : $file_name[0];
-					if (isset($file_name[1]) && file_exists($video_image_path . '/images/' . $file_name[1] . '.gif'))
-					{
-						$video_image = '<img src="' . $video_image_path  . '/images/' . $file_name[1] . '.gif' . '" class="postimage" alt="' . $file_name[1] . '" title="' . $file_name[1] . '" /> ';
-					}
-					else if (file_exists($video_image_path . '/images/' . $video_data['image']))
-					{
-						$video_image = '<img src="' . $video_image_path  . '/images/' . $video_data['image'] . '" class="postimage" alt="' . $file_name[0] . '" title="' . $file_name[0] . '" /> ';
-					}
-					$video_link = $user->lang['ABBC3_BBVIDEO_FILE'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . (isset($file_name[1]) ? $file_name[1] : $file_name[0]) . '</a>';
+					// this is for all linked video sites, narrow video names down to just the domain
+					preg_match('#([^/]+)#i', $video_name, $video_title);
+					$video_link = $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
 				}
 
+				// generate output for bbvideos with no embedded content
 				if ($video_data['replace'] === 'external')
 				{
 					$out = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '<div class="bbvideocontent">{BBVIDEO_VIDEO}</div>'), array($video_width + 10, $video_image, $video_link, ''), $this->bbcode_tpl('bbvideo'));
 					break;
 				}
 
+				// generate embedded video content
 				$video_content = preg_replace($video_data['match'], $video_data['replace'], $in);
 
-				// Resize acording the video settings, and perform some code clearance
-				$video_content = str_replace(array ('{WIDTH}', '{HEIGHT}', '{ID}') , array ($video_width, $video_height, $video_unique_id) , $video_content);
+				// replace variables in the match string with values
+				$video_content = str_replace(array('{WIDTH}', '{HEIGHT}', '{ID}'), array($video_width, $video_height, $video_unique_id), $video_content);
 
 				$out = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width + 10, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
 				break;
 			}
 		}
-		// if input does not match any video formats, treat it as a magic URL
-//		$out = $out ? $out : '[BBvideo' . (($w && $h) ? " $w,$h" : '') . ']' . $in . '[/BBvideo]';
+		// if input did not match any BBvideos, return a link
 		$out = $out ? $out : make_clickable($in);
 		return $out;
 	}
