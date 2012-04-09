@@ -79,7 +79,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_WIZARD_SIZE'				=> 'Größe der Helferanzeige',
 	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Standard Breite und Höhe des PupUp Helfer Fensters.',
 	'ABBCODES_WIZARD_MODE'				=> 'Wähle den Unterstützungsmodus',
-##	For translate :                                	Don't			Yes
+##	For translators :								Don't			Yes
 	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Unterstützung deaktivieren',
 													'1'			=> 'Pop Up Fenster',
 													'2'			=> 'Im Beitrag'),
@@ -92,7 +92,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZE_METHOD_EXPLAIN'	=> 'Wähle aus, wie die Bilder in verschiedenen Situationen als Vollbild dargestellt werden sollen.',
 	'ABBCODES_RESIZE_BAR'				=> 'Hinweis zur Größenänderung',
 	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Verwende den oberen Rand für die geänderten Bilder',
-##	For translate :                                	 Don't				Yes
+##	For translators :								Don't				Yes
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'Advanced Box JS',
 													'HighslideBox'	=> 'Highslide JS',
 													'LiteBox'		=> 'Lightbox2 JS',
@@ -155,7 +155,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESYNC_SUCCESS'			=> 'Die Reihenfolge der BBCodes wurde neu synchronisiert.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Wähle Farbauswahlmodus',
-##	For translate :                                	 Don't			Yes
+##	For translators :								Don't			Yes
 	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'phpBB standard Style',
 													'dropdown'	=> 'Aufklappmenü',
 													'fancy'		=> '“witzigen” Auswähler',

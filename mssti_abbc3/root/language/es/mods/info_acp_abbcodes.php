@@ -79,7 +79,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_WIZARD_SIZE'				=> 'Dimensiones del asistente',
 	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Alto y ancho de la ventana para el sistente emergente.',
 	'ABBCODES_WIZARD_MODE'				=> 'Elija el modo del asistentes',
-##	For translate :                                	Don't			Yes
+##	For translators :								Don't			Yes
 	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Deshabilitar asistentes',
 													'1'			=> 'En ventana emergente',
 													'2'			=> 'En página'),
@@ -87,12 +87,12 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZER'					=> 'Redimensionar Imágenes',
 	'ABBCODES_RESIZE'					=> 'Cambiar el tamaño de imágenes grandes',
 	'ABBCODES_RESIZE_EXPLAIN'			=> 'Esto corrige el error de la etiqueta [img] cuando alguien publica una imagen que supera el ancho de su foro.',
-	'ABBCODES_JAVASCRIPT_EXPLAIN'		=> '<strong>Nota : </strong> <em>AdvancedBox JS</em> es una aplicación JavaScript usada para visualizar imágenes en tamaño completo.<br />También puede utilizar <strong>ABBC3</strong> con cualquiera de los otras aplicaciones incluídas<br />Estas modificaciones son totalmente opcionales. Cada script tiene su propio soporte. Yo no soy responsable de ello. No voy a responder preguntas/problemas/errores o cualquier tipo de cuestiones acerca de ellos.<br />Lamentablemente Internet Explorer no entiende cómo manejar algunas imágenes adjuntas con esas aplicaciones.',
+	'ABBCODES_JAVASCRIPT_EXPLAIN'		=> '<strong>Nota:</strong> <em>AdvancedBox JS</em> es una aplicación JavaScript usada para visualizar imágenes en tamaño completo.<br />También puede utilizar <strong>ABBC3</strong> con cualquiera de los otras aplicaciones incluídas<br />Estas modificaciones son totalmente opcionales. Cada script tiene su propio soporte. Yo no soy responsable de ello. No voy a responder preguntas/problemas/errores o cualquier tipo de cuestiones acerca de ellos.<br />Lamentablemente Internet Explorer no entiende cómo manejar algunas imágenes adjuntas con esas aplicaciones.',
 	'ABBCODES_RESIZE_METHOD'			=> 'Método de redimensión',
 	'ABBCODES_RESIZE_METHOD_EXPLAIN'	=> 'Seleccione la forma de mostrar las imágenes en tamaño completo, siempre que sea posible.',
 	'ABBCODES_RESIZE_BAR'				=> 'Nota sobre redimensión',
 	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Utilizar la barra superior en las imágenes redimensiadas',
-##	For translate :                                  Don't              Yes
+##	For translators :								Don't              Yes
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'AdvancedBox JS',
 													'HighslideBox'	=> 'Highslide JS',
 													'LiteBox'		=> 'Lightbox2 JS',
@@ -139,7 +139,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_EDIT'						=> 'ABBC3 editar bbcode',
 	'ABBCODES_EDIT_EXPLAIN'				=> 'Aquí puede determinar dónde se mostrará o quién puede utilizar y la imagen de cada uno de BBCode.',
 
-	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Administrar grupos : </strong>Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br />Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse CTRL+CLICK (o CMD-CLICK en Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
+	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Administrar grupos:</strong> Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br />Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse CTRL+CLICK (o CMD-CLICK en Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
 
 	'ABBCODES_TIP'						=> 'Ayuda de etiqueta',
 	'ABBCODES_NAME'						=> 'Nombre de etiqueta',
@@ -155,7 +155,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESYNC_SUCCESS'			=> 'El orden de los bbcodes ha sido resincronizado.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Elija el modo de seleccionar colores',
-##	For translate :                                	 Don't			Yes
+##	For translators :								Don't			Yes
 	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'El propio del estilo',
 													'dropdown'	=> 'Menú desplegable',
 													'fancy'		=> 'Selector de “Fancy”',
