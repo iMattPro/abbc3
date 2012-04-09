@@ -61,7 +61,7 @@ Before adding this MOD to your forum, you should back up all files and databases
 					<change><![CDATA[[Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.]]></change>
 					<change><![CDATA[[Fix] Added missing language variables to Spanish and German installation instructions.]]></change>
 					<change><![CDATA[[Fix] Various general spelling and coding errors have been addressed.]]></change>
-					<change><![CDATA[[Add-On] Instructions to have YouTube videos open up with Highslide JS added to the contrib folder.]]></change>
+					<change><![CDATA[[Add-On] Instructions to have YouTube videos open up with Highslide JS, Lightview and Shadowbox added to the contrib folder.]]></change>
 				</changelog>
 			</entry>
 			<entry>
@@ -154,7 +154,7 @@ Before adding this MOD to your forum, you should back up all files and databases
 			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2 Edits</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">German language pack</link>
-			<link type="contrib" href="contrib/add_on_YouTube_Highslide.xml" lang="en">Add-on : Open YouTube videos with Highslide JS</link>
+			<link type="contrib" href="contrib/add_on_YouTube_Lightboxes.xml" lang="en">Add-on : Open YouTube videos with Lightboxes</link>
 			<link type="contrib" href="contrib/add_on_Evil_Quick_Reply.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add_on_embossed_button_effect.xml" lang="en">Add-on : Embossed buttons for ABBC3</link>
 			<link type="contrib" href="contrib/add_on_ED2K.xml" lang="en">Add-on : Enhanced ED2K links.</link>
