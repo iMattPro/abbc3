@@ -40,24 +40,9 @@
 	<action-group>
 		<open src="includes/abbcode.php">
 			<edit>
-				<find><![CDATA[		/** Patterns and replacements for BBVIDEO bbcode processing **/]]></find>
-				<action type="before-add"><![CDATA[		$use_highslide = true; // Open YouTube in Highslide JS? true / false
-
-		global $config;
-		$use_highslide = ($config['ABBC3_RESIZE'] && $config['ABBC3_RESIZE_METHOD'] === 'HighslideBox') ? $use_highslide : false;]]></action>
-			</edit>
-			<edit>
-				<find><![CDATA[				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",]]></find>
-				<action type="replace-with"><![CDATA[				'replace'	=> $use_highslide ? 'HighslideBox' : "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",]]></action>
-			</edit>
-			<edit>
-				<find><![CDATA[				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",]]></find>
-				<action type="replace-with"><![CDATA[				'replace'	=> $use_highslide ? 'HighslideBox' : "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",]]></action>
-			</edit>
-			<edit>
 				<find><![CDATA[				$video_content = preg_replace($video_data['match'], $video_data['replace'], $in);]]></find>
 				<action type="before-add"><![CDATA[				// For youtube in highslide popups
-				if ($video_data['replace'] === 'HighslideBox' && ($this->abbcode_config['S_ABBC3_RESIZE'] && $this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'HighslideBox'))
+				if (($video_name === 'youtube.com' || $video_name === 'youtu.be') && $this->abbcode_config['S_ABBC3_RESIZE'] && $this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'HighslideBox')
 				{
 					$identifier = preg_match('#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#si', $in, $matches) ? $matches[5] : (preg_match('#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#is', $in, $matches) ? $matches[1] : '');							  
 					$out = str_replace(
@@ -88,18 +73,5 @@
 				<action type="before-add"><![CDATA[<!-- BEGIN bbvideo_hs --><a href="{BBVIDEO_LINK}" onclick="{BBVIDEO_ONCLICK}" class="highslide">{BBVIDEO_IMG}</a><!-- END bbvideo_hs -->]]></action>
 			</edit>
 		</open>
-		<diy-instructions lang="en"><![CDATA[You can disable the Highslide effect and revert back to the default embedded video style at any time by changing the $use_highslide variable to false.
-
-#####################################
-
-Open includes/abbcode.php
-
-Find:
-$use_highslide = true;
-
-Change to:
-$use_highslide = false;
-
-#####################################]]></diy-instructions>
 	</action-group>
 </mod>
