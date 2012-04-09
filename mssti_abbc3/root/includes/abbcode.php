@@ -25,16 +25,16 @@ $abbcode = new abbcode();
 */
 class abbcode
 {
-	var $abbcode_config		= array();
+	var $abbcode_config = array();
 
 	// HTML was deprecated in v1.0.11
 	// UPLOAD was was deprecated in v3.0.7
-	var $need_permissions	= array('URL', 'FLASH', 'IMG', 'THUMBNAIL', 'IMGSHACK', 'WEB', 'ED2K', 'RAPIDSHARE', 'TESTLINK', 'FLV' ,'BBVIDEO' /* ,'HTML' */ /* ,'UPLOAD' */ );
+	var $need_permissions = array('URL', 'FLASH', 'IMG', 'THUMBNAIL', 'IMGSHACK', 'WEB', 'ED2K', 'RAPIDSHARE', 'TESTLINK', 'FLV' ,'BBVIDEO' /* ,'HTML' */ /* ,'UPLOAD' */ );
 
-	// [testlinks] and [rapidshare] Hide link/s to guest and bots ?	
-	var $hide_links			= false;	// Options true=hide / false=display, default false
+	// [testlinks] and [rapidshare] Hide link/s from guest and bots ?	
+	var $hide_links	= false;	// Options true=hide / false=display, default false
 	// [testlinks] and [rapidshare] Display the OK/WRONG image or use text ?
-	var $img_links			= true;		// Options true=use image / false=use text, default true
+	var $img_links	= true;		// Options true=use image / false=use text, default true
 
 	/**
 	* Constructor
@@ -60,91 +60,80 @@ class abbcode
 	{
 		global $template, $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
 
-		// ABBC3 can be disabed in-line - Start
-		if ($enable = request_var('abbc3disable', 0))
+		// For overall_header.html
+		$this->abbcode_config = array(
+			'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.11',
+			// Display ABBC3 ?
+			'S_ABBC3_MOD'			=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
+			// Where the files are stored
+			'S_ABBC3_PATH'			=> $phpbb_root_path . 'styles/abbcode',
+			// Resize larger images ?
+			'S_ABBC3_RESIZE'		=> (isset($config['ABBC3_RESIZE_METHOD'])) ? ($config['ABBC3_RESIZE_METHOD'] != 'none' ? true : false) : true,
+			// Options are : AdvancedBox | HighslideBox | LiteBox | Lightview | Shadowbox | pop-up | enlarge | samewindow | newwindow | none	
+			'S_ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD'])) ? $config['ABBC3_RESIZE_METHOD'] : 'AdvancedBox',
+			// Display Resizer Info Bar ?
+			'S_ABBC3_RESIZE_BAR'	=> (isset($config['ABBC3_RESIZE_BAR'])) ? $config['ABBC3_RESIZE_BAR'] : true,
+			// Resize if image is bigger than...
+			'S_ABBC3_MAX_IMG_WIDTH'	=> (isset($config['ABBC3_MAX_IMG_WIDTH'])) ? $config['ABBC3_MAX_IMG_WIDTH'] : $config['img_max_width'],
+			'S_ABBC3_MAX_IMG_HEIGHT'=> (isset($config['ABBC3_MAX_IMG_HEIGHT'])) ? $config['ABBC3_MAX_IMG_HEIGHT'] : false,
+			// Resize larger images in signatures ?
+			'S_ABBC3_RESIZE_SIGNATURE'=> (isset($config['ABBC3_RESIZE_SIGNATURE'])) ? $config['ABBC3_RESIZE_SIGNATURE'] : false,
+			// Resize if image is bigger than...
+			'S_ABBC3_MAX_SIG_WIDTH'	=> (isset($config['ABBC3_MAX_SIG_WIDTH'])) ? $config['ABBC3_MAX_SIG_WIDTH'] : $config['img_max_width'],
+			'S_ABBC3_MAX_SIG_HEIGHT'=> (isset($config['ABBC3_MAX_SIG_HEIGHT'])) ? $config['ABBC3_MAX_SIG_HEIGHT'] : false,
+		);
+		/*
+		// Styles and admin variables depends on locations
+		$this->abbcode_config = array_merge($this->abbcode_config, array(
+			// path from the very forum root
+			'S_ABBC3_OVERALL_HEADER'	=> ((isset($phpbb_admin_path)) ? './../../' : './../../../') . str_replace($phpbb_root_path, '', $this->abbcode_config['S_ABBC3_PATH']) . '/abbcode_header.html',
+			'S_ABBC3_POSTING_JAVASCRIPT'=> ((isset($phpbb_admin_path)) ? './../../' : './../../../') . str_replace($phpbb_root_path, '', $this->abbcode_config['S_ABBC3_PATH']) . '/posting_abbcode_buttons.js',
+			'S_ABBC3_WIZARD_JAVASCRIPT'	=> ((isset($phpbb_admin_path)) ? './../../' : './../../../') . str_replace($phpbb_root_path, '', $this->abbcode_config['S_ABBC3_PATH']) . '/posting_abbcode_wizards.js',
+		));
+		*/
+		// Display all _common_ variables that may be used at any point in a template.
+		if ($need_template)
 		{
-			$config['ABBC3_MOD'] = false; 
-			return false;
+			$template->assign_vars($this->abbcode_config);
 		}
-		// ABBC3 can be disabed in-line - End
 
-	//	if (empty($this->abbcode_config) || sizeof($this->abbcode_config) == 0)
-	//	{
-			// For overall_header.html
-			$this->abbcode_config = array(
-				'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.11',
-				// Display ABBC3 ?
-				'S_ABBC3_MOD'			=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
-				// Where the files are stored
-				'S_ABBC3_PATH'			=> $phpbb_root_path . 'styles/abbcode',
-				// Resize larger images ?
-				'S_ABBC3_RESIZE'		=> (isset($config['ABBC3_RESIZE_METHOD'])) ? ($config['ABBC3_RESIZE_METHOD'] != 'none' ? true : false) : true,
-				// Options are : AdvancedBox | HighslideBox | LiteBox | Lightview | Shadowbox | pop-up | enlarge | samewindow | newwindow | none	
-				'S_ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD'])) ? $config['ABBC3_RESIZE_METHOD'] : 'AdvancedBox',
-				// Display Resizer Info Bar ?
-				'S_ABBC3_RESIZE_BAR'	=> (isset($config['ABBC3_RESIZE_BAR'])) ? $config['ABBC3_RESIZE_BAR'] : true,
-				// Resize if image is bigger than...
-				'S_ABBC3_MAX_IMG_WIDTH'	=> (isset($config['ABBC3_MAX_IMG_WIDTH'])) ? $config['ABBC3_MAX_IMG_WIDTH'] : $config['img_max_width'],
-				'S_ABBC3_MAX_IMG_HEIGHT'=> (isset($config['ABBC3_MAX_IMG_HEIGHT'])) ? $config['ABBC3_MAX_IMG_HEIGHT'] : false,
-				// Resize larger images in signatures ?
-				'S_ABBC3_RESIZE_SIGNATURE'=> (isset($config['ABBC3_RESIZE_SIGNATURE'])) ? $config['ABBC3_RESIZE_SIGNATURE'] : false,
-				// Resize if image is bigger than...
-				'S_ABBC3_MAX_SIG_WIDTH'	=> (isset($config['ABBC3_MAX_SIG_WIDTH'])) ? $config['ABBC3_MAX_SIG_WIDTH'] : $config['img_max_width'],
-				'S_ABBC3_MAX_SIG_HEIGHT'=> (isset($config['ABBC3_MAX_SIG_HEIGHT'])) ? $config['ABBC3_MAX_SIG_HEIGHT'] : false,
-			);
-			/*
-			// Styles and admin variables depends on locations
-			$this->abbcode_config = array_merge($this->abbcode_config, array(
-				// path from the very forum root
-				'S_ABBC3_OVERALL_HEADER'	=> ((isset($phpbb_admin_path)) ? './../../' : './../../../') . str_replace($phpbb_root_path, '', $this->abbcode_config['S_ABBC3_PATH']) . '/abbcode_header.html',
-				'S_ABBC3_POSTING_JAVASCRIPT'=> ((isset($phpbb_admin_path)) ? './../../' : './../../../') . str_replace($phpbb_root_path, '', $this->abbcode_config['S_ABBC3_PATH']) . '/posting_abbcode_buttons.js',
-				'S_ABBC3_WIZARD_JAVASCRIPT'	=> ((isset($phpbb_admin_path)) ? './../../' : './../../../') . str_replace($phpbb_root_path, '', $this->abbcode_config['S_ABBC3_PATH']) . '/posting_abbcode_wizards.js',
-			));
-			*/
-			// Display all _common_ variables that may be used at any point in a template.
-			if ($need_template)
-			{
-				$template->assign_vars($this->abbcode_config);
-			}
-
-			// For posting_buttons.html -> posting_abbcode_buttons.html
-			$this->abbcode_config = array_merge($this->abbcode_config, array(
-				// Bakground image
-				'ABBC3_BG'				=> (isset($config['ABBC3_BG'])) ? $config['ABBC3_BG'] : 'bg_abbc3.gif',
-				// Display icon division for tags ?
-				'ABBC3_TAB'				=> (isset($config['ABBC3_TAB'])) ? $config['ABBC3_TAB'] : 1,
-				// Resize posting textarea ?
-				'ABBC3_BOXRESIZE'		=> (isset($config['ABBC3_BOXRESIZE'])) ? $config['ABBC3_BOXRESIZE'] : true,
-				// Usename posting
-				'POST_AUTHOR'			=> (isset($user->data['username'])) ? $user->data['username'] : '',
-				// Thumbnails width
-				'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH'])) ? $config['ABBC3_MAX_THUM_WIDTH'] : $config['img_max_thumb_width'],
-				// Width for posted video ?
-				'ABBC3_VIDEO_WIDTH'		=> (isset($config['ABBC3_VIDEO_width'])) ? $config['ABBC3_VIDEO_width'] : 425,
-				// Height for posted video ?
-				'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 350,
-				// Link to ABBC3 help page
-				'ABBC3_HELP_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=help'),
-				// ABBC3 mode 
-				'ABBC3_COMPACT'			=> (isset($config['ABBC3_UCP_MODE'])) ? $config['ABBC3_UCP_MODE'] : false,
-				// Color picker
-				'ABBC3_COLOR_MODE'		=> (isset($config['ABBC3_COLOR_MODE'])) ? $config['ABBC3_COLOR_MODE'] : 'phpbb',
-				// Highlight picker
-				'ABBC3_HIGHLIGHT_MODE'	=> (isset($config['ABBC3_HIGHLIGHT_MODE'])) ? $config['ABBC3_HIGHLIGHT_MODE'] : 'phpbb',
-				// Link to ABBC3 wizards page
-				'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=wizards"),
-				// 0=Disable wizards | 1=Pop Up window | 2=In post (Ajax)
-				'ABBC3_WIZARD_MODE'		=> (isset($config['ABBC3_WIZARD_MODE'])) ? (int) $config['ABBC3_WIZARD_MODE'] : 1,
-				// Width for pop-up wizard window ?
-				'ABBC3_WIZARD_WIDTH'	=> (isset($config['ABBC3_WIZARD_width'])) ? $config['ABBC3_WIZARD_width'] : 700,
-				// Height for pop-up wizard window ?
-				'ABBC3_WIZARD_HEIGHT'	=> (isset($config['ABBC3_WIZARD_height'])) ? $config['ABBC3_WIZARD_height'] : 400,
-				// Link to ABBC3 tigra color picker page
-				'ABBC3_TIGRA_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=tigra"),
-				// Cookie
-				'ABBC3_COOKIE_NAME'		=> $config['cookie_name'] . '_abbc3',
-			));
-	//	}
+		// For posting_buttons.html -> posting_abbcode_buttons.html
+		$this->abbcode_config = array_merge($this->abbcode_config, array(
+			// Bakground image
+			'ABBC3_BG'				=> (isset($config['ABBC3_BG'])) ? $config['ABBC3_BG'] : 'bg_abbc3.gif',
+			// Display icon division for tags ?
+			'ABBC3_TAB'				=> (isset($config['ABBC3_TAB'])) ? $config['ABBC3_TAB'] : 1,
+			// Resize posting textarea ?
+			'ABBC3_BOXRESIZE'		=> (isset($config['ABBC3_BOXRESIZE'])) ? $config['ABBC3_BOXRESIZE'] : true,
+			// Usename posting
+			'POST_AUTHOR'			=> (isset($user->data['username'])) ? $user->data['username'] : '',
+			// Thumbnails width
+			'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH'])) ? $config['ABBC3_MAX_THUM_WIDTH'] : $config['img_max_thumb_width'],
+			// Width for posted video ?
+			'ABBC3_VIDEO_WIDTH'		=> (isset($config['ABBC3_VIDEO_width'])) ? $config['ABBC3_VIDEO_width'] : 425,
+			// Height for posted video ?
+			'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 350,
+			// Link to ABBC3 help page
+			'ABBC3_HELP_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=help'),
+			// ABBC3 mode 
+			'ABBC3_COMPACT'			=> (isset($config['ABBC3_UCP_MODE'])) ? $config['ABBC3_UCP_MODE'] : false,
+			// Color picker
+			'ABBC3_COLOR_MODE'		=> (isset($config['ABBC3_COLOR_MODE'])) ? $config['ABBC3_COLOR_MODE'] : 'phpbb',
+			// Highlight picker
+			'ABBC3_HIGHLIGHT_MODE'	=> (isset($config['ABBC3_HIGHLIGHT_MODE'])) ? $config['ABBC3_HIGHLIGHT_MODE'] : 'phpbb',
+			// Link to ABBC3 wizards page
+			'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=wizards"),
+			// 0=Disable wizards | 1=Pop Up window | 2=In post (Ajax)
+			'ABBC3_WIZARD_MODE'		=> (isset($config['ABBC3_WIZARD_MODE'])) ? (int) $config['ABBC3_WIZARD_MODE'] : 1,
+			// Width for pop-up wizard window ?
+			'ABBC3_WIZARD_WIDTH'	=> (isset($config['ABBC3_WIZARD_width'])) ? $config['ABBC3_WIZARD_width'] : 700,
+			// Height for pop-up wizard window ?
+			'ABBC3_WIZARD_HEIGHT'	=> (isset($config['ABBC3_WIZARD_height'])) ? $config['ABBC3_WIZARD_height'] : 400,
+			// Link to ABBC3 tigra color picker page
+			'ABBC3_TIGRA_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=tigra"),
+			// Cookie
+			'ABBC3_COOKIE_NAME'		=> $config['cookie_name'] . '_abbc3',
+		));
 	}
 
 	/**
@@ -212,7 +201,6 @@ class abbcode
 						$abbcode_name . '_TIP'	=> $abbcode_tip,
 						$abbcode_name . '_NOTE'	=> $abbcode_note,
 					));
-
 				break;
 
 				// Is a Line break ? -> abbc3_break(n)
@@ -359,20 +347,20 @@ class abbcode
 			switch ($auth_tag)
 			{
 				case 'THUMBNAIL':
-				case 'IMGSHACK' :
+				case 'IMGSHACK':
 					$auth_tag = 'IMG';
 				break;
 
-				case 'WEB' :
-				case 'ED2K' :
-				case 'RAPIDSHARE' :
-				case 'TESTLINK' :
+				case 'WEB':
+				case 'ED2K':
+				case 'RAPIDSHARE':
+				case 'TESTLINK':
 					$auth_tag = 'URL';
 				break;
 
-				case 'FLV' :
+				case 'FLV':
 			//	Commented out, because we think bbvideo should not follow flash restrictions ;)
-			//	case 'BBVIDEO' :
+			//	case 'BBVIDEO':
 					$auth_tag = 'FLASH';
 				break;
 
@@ -512,8 +500,7 @@ class abbcode
 		{
 			if (preg_match($abbcode_found, $in))
 			{
-				// when using the /e modifier, preg_replace slashes double-quotes but does not
-				// seem to slash anything else
+				// when using the /e modifier, preg_replace slashes double-quotes but does not seem to slash anything else
 				$in = str_replace('\"', '"', preg_replace($abbcode_found, $abbcode_replace, $in));
 			}
 		}
@@ -1446,7 +1433,6 @@ class abbcode
 		$effect = ucfirst(strtolower(trim($effect)));
 		$colour = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($colour));
 		$in	 	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in));
-		// IE manage this at his own way
 		$is_ie	= (strpos(strtolower($user->browser), 'msie') !== false);
 		$style	= "display: inline-block; padding: " . (($is_ie) ? "0 0.2em; " : "0 0.5em; ");
 		$shadow_colour = '#999999'; //  Default text shadow color #999999. You can change to another colour if desired.
@@ -2012,6 +1998,7 @@ class abbcode
 				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_{ID}" /><param name="prefetch" value="false" /></object><br />
 								<object id="ctrls" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_{ID}" /></object>',
 			),
+			// available ids: 209-300
 		);
 	}
 
@@ -2148,7 +2135,7 @@ class abbcode
 
 				if (preg_match('#\.#si', $video_name))
 				{
-					preg_match('@^(?:http://)?([^/]+)@i',$in, $video_name);
+					preg_match('@^(?:http://)?([^/]+)@i', $in, $video_name);
 					if (file_exists($video_image_path . '/images/' . $video_data['image']))
 					{
 						$video_image = '<img src="' . $video_image_path . '/images/' . $video_data['image'] . '" class="postimage" alt="' . $video_name[1] . '" title="' . $video_name[1] . '" /> ';
@@ -2192,7 +2179,6 @@ class abbcode
 		return $out;
 	}
 }
-// Advanced BBCode Box 3 class End
 
 /**
 * Transform an array into a serialized format
