@@ -666,6 +666,14 @@ span.anchor {
 	-webkit-border-radius: 0 0 3px 3px;
 	border-radius: 0 0 3px 3px;
 }
+
+.bbvideo_thumb {
+	width: 130px;
+	height: 97px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius:5px;
+}
 /* bbvideo - End */
 
 /* Scrippet.css - Start

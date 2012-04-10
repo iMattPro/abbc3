@@ -35,7 +35,7 @@
 		<mod-version>3.0.11</mod-version>
 		<installation>
 			<level>easy</level>
-			<time>180</time>
+			<time>60</time>
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
@@ -73,21 +73,8 @@
 						break;
 					} 
 
-					$out = str_replace(array('{BBVIDEO_LINK}', '{BBVIDEO_CLASS}', '{BBVIDEO_ATTRIBS}', '{BBVIDEO_IMG}'), array($bb_link, $bb_class, $bb_attribs, $bb_thumb), $this->bbcode_tpl('bbvideo_lb'));
-					break;
+					return '<a href="' . $bb_link . '" class="' . $bb_class . '" ' . $bb_attribs . '><img class="bbvideo_thumb" alt="" title="YouTube Video" src="' . $bb_thumb . '" /></a>';
 				}]]></action>
-			</edit>
-		</open>
-		<open src="styles/prosilver/template/abbcode.html">
-			<edit>
-				<find><![CDATA[<!-- BEGIN bbvideo --><div class="bbvideo" style="width: {BBVIDEO_WIDTH}px;"><div class="bbvideotitle">{BBVIDEO_IMAGE}{BBVIDEO_LINK}</div><div class="bbvideocontent">{BBVIDEO_VIDEO}</div></div><!-- END bbvideo -->]]></find>
-				<action type="before-add"><![CDATA[<!-- BEGIN bbvideo_lb --><a href="{BBVIDEO_LINK}" class="{BBVIDEO_CLASS}" {BBVIDEO_ATTRIBS}><img style="width: 130px; height: 97px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;" alt="YouTube Video" src="{BBVIDEO_IMG}" /></a><!-- END bbvideo_lb -->]]></action>
-			</edit>
-		</open>
-		<open src="styles/subsilver2/template/abbcode.html">
-			<edit>
-				<find><![CDATA[<!-- BEGIN bbvideo --><div class="bbvideo" style="width: {BBVIDEO_WIDTH}px;"><div class="bbvideotitle">{BBVIDEO_IMAGE}{BBVIDEO_LINK}</div><div class="bbvideocontent">{BBVIDEO_VIDEO}</div></div><!-- END bbvideo -->]]></find>
-				<action type="before-add"><![CDATA[<!-- BEGIN bbvideo_lb --><a href="{BBVIDEO_LINK}" class="{BBVIDEO_CLASS}" {BBVIDEO_ATTRIBS}><img style="width: 130px; height: 97px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;" alt="YouTube Video" src="{BBVIDEO_IMG}" /></a><!-- END bbvideo_lb -->]]></action>
 			</edit>
 		</open>
 	</action-group>
