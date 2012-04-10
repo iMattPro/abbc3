@@ -1769,19 +1769,19 @@ class abbcode
 				'match'		=> '#http://(.*?).veoh.com/([0-9A-Za-z-_\-/]+)?/([0-9A-Za-z-_]+)#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1337&permalinkId=$3&player=videodetailsembedded&videoAutoPlay=0&id=anonymous', '{WIDTH}', '{HEIGHT}')",
 			),
-			'videu.de' => array(
-				'id'		=> 37,
-				'image'		=> 'videu.gif',
-				'example'	=> 'http://www.videu.de/video/38',
-				'match'		=> '#http://www.videu.de/video/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.videu.de/flv/player2.swf?iid=$1', '{WIDTH}', '{HEIGHT}')",
-			),
 			'video.google' => array(
 				'id'		=> 39,
 				'image'		=> 'googlevid.gif',
 				'example'	=> 'http://video.google.com/videoplay?docid=-8351924403384451128',
 				'match'		=> '#http://video.google.(.*?)/(videoplay|googleplayer.swf)\?docid=([0-9A-Za-z-_]+)([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://video.google.\$1/googleplayer.swf?docId=\$3', '{WIDTH}', '{HEIGHT}')",
+			),
+			'videu.de' => array(
+				'id'		=> 37,
+				'image'		=> 'videu.gif',
+				'example'	=> 'http://www.videu.de/video/38',
+				'match'		=> '#http://www.videu.de/video/([^[]*)?#sie',
+				'replace'	=> "\$this->auto_embed_video('http://www.videu.de/flv/player2.swf?iid=$1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'vimeo.com' => array(
 				'id'		=> 38,
@@ -1804,6 +1804,13 @@ class abbcode
 				'match'		=> '#http://www.wegame.com/watch/(.*?)/([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.wegame.com/static/flash/player.swf?xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true', '{WIDTH}', '{HEIGHT}', 'xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true')",
 			),
+			'xfire.com' => array(
+				'id'		=> 44,
+				'image'		=> 'xfire.gif',
+				'example'	=> 'http://www.xfire.com/video/24c86/',
+				'match'		=> '#http://www.xfire.com/video/(.*?)/#sie',
+				'replace'	=> "\$this->auto_embed_video('http://media.xfire.com/swf/embedplayer.swf', '{WIDTH}', '{HEIGHT}', 'videoid=$1')",
+			),
 			'screen.yahoo.com' => array(
 				'id'		=> 40,
 				'image'		=> 'yahoovid.gif',
@@ -1824,13 +1831,6 @@ class abbcode
 				'example'	=> 'http://youtu.be/sP4NMoJcFd4',
 				'match'		=> '#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
-			),
-			'xfire.com' => array(
-				'id'		=> 44,
-				'image'		=> 'xfire.gif',
-				'example'	=> 'http://www.xfire.com/video/24c86/',
-				'match'		=> '#http://www.xfire.com/video/(.*?)/#sie',
-				'replace'	=> "\$this->auto_embed_video('http://media.xfire.com/swf/embedplayer.swf', '{WIDTH}', '{HEIGHT}', 'videoid=$1')",
 			),
 			// available ids: 52-100
 
