@@ -626,9 +626,9 @@ class acp_abbcodes
 					'TAG_EXPLAIN'		=> $abbcode_explain,
 					'IMG_SRC'			=> ($abbcode_image && $abbcode_image != $img_spacer) ? $this->dir . '/images/' . $abbcode_image : '',
 
-					'ON_POST'			=> ($row['display_on_posting'])	? $user->lang['ENABLED'] : $user->lang['DISABLED'],
-					'ON_PM'				=> ($row['display_on_pm'])		? $user->lang['ENABLED'] : $user->lang['DISABLED'],
-					'ON_SIG'			=> ($row['display_on_sig'])		? $user->lang['ENABLED'] : $user->lang['DISABLED'],
+					'ON_POST'			=> ($row['display_on_posting'])	? $user->lang['ENABLED'] : '<em>' . $user->lang['DISABLED'] . '</em>',
+					'ON_PM'				=> ($row['display_on_pm'])		? $user->lang['ENABLED'] : '<em>' . $user->lang['DISABLED'] . '</em>',
+					'ON_SIG'			=> ($row['display_on_sig'])		? $user->lang['ENABLED'] : '<em>' . $user->lang['DISABLED'] . '</em>',
 
 					'S_NOMOVE'			=> (in_array($abbcode_name, $no_move)) ? true : false,
 					'S_FIRST_ROW'		=> ($row['bbcode_order'] == $first_row_to_move) ? true : false,
