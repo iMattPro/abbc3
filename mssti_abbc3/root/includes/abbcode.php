@@ -1634,7 +1634,7 @@ class abbcode
 				'image'		=> 'godtube.gif',
 				'example'	=> 'http://www.godtube.com/watch/?v=9JJBE1NU',
 				'match'		=> '#http://www.godtube.com/watch/\?v=([^[]*)?#si',
-				'replace'	=> '<script type="text/javascript" src="http://www.godtube.com/embed/source/$1.js?w={WIDTH}&h={HEIGHT}&ap=false&sl=false&title=false"></script>',
+				'replace'	=> '<script type="text/javascript" src="http://www.godtube.com/embed/source/$1.js?w={WIDTH}&amp;h={HEIGHT}&amp;ap=false&amp;sl=false&amp;title=false"></script>',
 			),
 			'howcast.com' => array(
 				'id'		=> 28,
@@ -1746,7 +1746,7 @@ class abbcode
 				'image'		=> 'twitvid.gif',
 				'example'	=> 'http://twitvid.com/0U73M',
 				'match'		=> '#http://twitvid.com/([^[]*)?#si',
-				'replace'	=> '<iframe src="http://www.twitvid.com/embed.php?guid=$1&autoplay=0" title="Twitvid video player" type="text/html" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+				'replace'	=> '<iframe src="http://www.twitvid.com/embed.php?guid=$1&amp;autoplay=0" title="Twitvid video player" type="text/html" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
 			'ustream.tv' => array(
 				'id'		=> 23,
@@ -1816,7 +1816,7 @@ class abbcode
 				'image'		=> 'yahoovid.gif',
 				'example'	=> 'http://screen.yahoo.com/fred-armisen-28463551.html',
 				'match'		=> '#http://screen.yahoo.com/((([^-]+)?-)*)([0-9]+).html#si',
-				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://d.yimg.com/nl/vyc/site/player.html#shareUrl=http%3A%2F%2Fscreen.yahoo.com%$1$4.html&browseCarouselUI=hide&repeat=0&lang=en-US&vid=$4&startScreenCarouselUI=hide"></iframe>',
+				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://d.yimg.com/nl/vyc/site/player.html#shareUrl=http%3A%2F%2Fscreen.yahoo.com%$1$4.html&amp;browseCarouselUI=hide&amp;repeat=0&amp;lang=en-US&amp;vid=$4&amp;startScreenCarouselUI=hide"></iframe>',
 			),
 			'youtube.com' => array(
 				'id'		=> 43,
