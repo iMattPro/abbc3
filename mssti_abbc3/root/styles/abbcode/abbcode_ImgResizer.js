@@ -181,7 +181,7 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 			else
 			{
 				anchor.className = anchor.className + ' highslide';
-				anchor.onclick = function() { return hs.expand(anchor, { slideshowGroup: 'gallery' }); };
+				anchor.onclick = function() { return hs.expand(anchor, {slideshowGroup: 'gallery'}); };
 			}
 		break;
 

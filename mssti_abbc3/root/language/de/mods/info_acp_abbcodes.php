@@ -79,7 +79,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_WIZARD_SIZE'				=> 'Größe der Helferanzeige',
 	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Standard Breite und Höhe des PupUp Helfer Fensters.',
 	'ABBCODES_WIZARD_MODE'				=> 'Wähle den Unterstützungsmodus',
-##	For translate :                                	Don't			Yes
+##	For translators :								Don't			Yes
 	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Unterstützung deaktivieren',
 													'1'			=> 'Pop Up Fenster',
 													'2'			=> 'Im Beitrag'),
@@ -92,7 +92,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZE_METHOD_EXPLAIN'	=> 'Wähle aus, wie die Bilder in verschiedenen Situationen als Vollbild dargestellt werden sollen.',
 	'ABBCODES_RESIZE_BAR'				=> 'Hinweis zur Größenänderung',
 	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Verwende den oberen Rand für die geänderten Bilder',
-##	For translate :                                	 Don't				Yes
+##	For translators :								Don't				Yes
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'Advanced Box JS',
 													'HighslideBox'	=> 'Highslide JS',
 													'LiteBox'		=> 'Lightbox2 JS',
@@ -120,6 +120,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SIG_IMAGE_HEIGHT'			=> 'Maximale Höhe des Signatur Bildes in Pixeln',
 	'ABBCODES_SIG_IMAGE_HEIGHT_EXPLAIN'	=> 'Die Größe des Signaturbildes wird verändert, sobald die Höhe des Bildes den hier eingestellten Wert überschreitet.',
 
+	'ABBCODES_VIDEO_ERROR'				=> '<strong>Fehler:</strong> Es gibt zu viele BBvideos ausgewählt. Deaktivieren Sie einige BBvideos und erneut versuchen.',
 	'ABBCODES_VIDEO_SIZE'				=> 'Video Abmessungen',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Die Standard Höhe und Breite für ein Beitragsvideo.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Erlaubte Video Typen',
@@ -154,7 +155,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESYNC_SUCCESS'			=> 'Die Reihenfolge der BBCodes wurde neu synchronisiert.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Wähle Farbauswahlmodus',
-##	For translate :                                	 Don't			Yes
+##	For translators :								Don't			Yes
 	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'phpBB standard Style',
 													'dropdown'	=> 'Aufklappmenü',
 													'fancy'		=> '“witzigen” Auswähler',

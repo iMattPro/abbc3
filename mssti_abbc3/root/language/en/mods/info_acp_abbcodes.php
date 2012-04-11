@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_WIZARD_SIZE'				=> 'Wizard dimensions',
 	'ABBCODES_WIZARD_SIZE_EXPLAIN'		=> 'Default width and height for pop-up window wizards.',
 	'ABBCODES_WIZARD_MODE'				=> 'Choose the wizard mode',
-##	For translators :                              	Don't			Yes
+##	For translators :								Don't			Yes
 	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Disable wizards',
 													'1'			=> 'Pop Up window',
 													'2'			=> 'In post'),
@@ -86,12 +86,12 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZER'					=> 'Image Resizer',
 	'ABBCODES_RESIZE'					=> 'Resize large images',
 	'ABBCODES_RESIZE_EXPLAIN'			=> 'This will resize images posted using the <code>[IMG]</code> BBCode or uploaded as attachments that exceed the maximum width and/or height settings defined below.',
-	'ABBCODES_JAVASCRIPT_EXPLAIN'		=> '<strong>Note : </strong> <em>AdvancedBox JS</em> is a JavaScript application used to display images in full size.<br />You can also use ABBC3 with any of the other included scripts. These modifications are totally optional. Each script has its own support. ABBC3 is not responsible for any issues from using a 3rd party script. All questions/problems/bugs should be directed to the developer of the script you are using.',
+	'ABBCODES_JAVASCRIPT_EXPLAIN'		=> '<strong>Note:</strong> <em>AdvancedBox JS</em> is a JavaScript application used to display images in full size.<br />You can also use ABBC3 with any of the other included scripts. These modifications are totally optional. Each script has its own support. ABBC3 is not responsible for any issues from using a 3rd party script. All questions/problems/bugs should be directed to the developer of the script you are using.',
 	'ABBCODES_RESIZE_METHOD'			=> 'Resize method',
 	'ABBCODES_RESIZE_METHOD_EXPLAIN'	=> 'Choose how to display resized images in full size.',
 	'ABBCODES_RESIZE_BAR'				=> 'Resizer info bar',
 	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Display resizer information along the top of resized images.',
-##	For translators :                              	 Don't				Yes
+##	For translators :								Don't				Yes
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'Advanced Box JS',
 													'HighslideBox'	=> 'Highslide JS',
 													'LiteBox'		=> 'Lightbox2 JS',
@@ -119,6 +119,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_SIG_IMAGE_HEIGHT'			=> 'Maximum signature image height in pixels',
 	'ABBCODES_SIG_IMAGE_HEIGHT_EXPLAIN'	=> 'Images in signatures will be resized if they exceed the height set here. Set to 0 to disable checking this dimension.',
 
+	'ABBCODES_VIDEO_ERROR'				=> '<strong>Error:</strong> There are too many BBvideos selected. Deselect some BBvideos and try again.',
 	'ABBCODES_VIDEO_SIZE'				=> 'Video dimensions',
 	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
@@ -137,7 +138,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_EDIT'						=> 'ABBC3 BBCode options',
 	'ABBCODES_EDIT_EXPLAIN'				=> 'Here you can determine where this BBCode will be displayed, who can use it, and assign and icon to it.',
 
-	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups : </strong>If there are no selected groups then all users can use this BBCode.<br />In order to select (or deselect) multiple groups, you must CTRL+CLICK (or CMD+CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
+	'ABBCODES_GROUPS_EXPLAIN'			=> '<strong>Manage groups:</strong> If there are no selected groups then all users can use this BBCode.<br />In order to select (or deselect) multiple groups, you must CTRL+CLICK (or CMD+CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
 
 	'ABBCODES_TIP'						=> 'Tag tip',
 	'ABBCODES_NAME'						=> 'BBCode tag',
@@ -153,7 +154,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESYNC_SUCCESS'			=> 'The BBCode order has been resynchronised.',
 
 	'ABBCODES_COLOUR_MODE'				=> 'Choose the colour picker mode',
-##	For translators :                              	 Don't			Yes
+##	For translators :								Don't			Yes
 	'ABBCODES_COLOUR_SELECTOR'			=> array(	'phpbb'		=> 'phpBB style Default',
 													'dropdown'	=> 'Drop Down Menu',
 													'fancy'		=> '“Fancy” selector',

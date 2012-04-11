@@ -13,7 +13,7 @@ var popup_wizards	= <!-- IF S_ABBC3_WIZARD_MODE eq '0' -->false<!-- ELSE -->true
 
 /**
 * Replace all bbcodes to a plain text
-* Code based off : http://ufku.com/personal/bbc2html
+* Code based off: http://ufku.com/personal/bbc2html
 * @param string		data		post text to convert
 **/
 function bbcode_to_plain(data)
@@ -224,84 +224,83 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 
 	switch (bbcode)
 	{
-	/** We make the life easyer for some bbcodes - Start **/	
-		case "abbc3_tab" :
+	/** We make life easier for some bbcodes - Start **/	
+		case "abbc3_tab":
 			bbfontstyle("[tab=30]", "");
 			break;
-		case "abbc3_anchor" :
+		case "abbc3_anchor":
 			bbfontstyle("[anchor= goto=]", "[/anchor]");
 			break;
-		case "abbc3_mod" :
+		case "abbc3_mod":
 			bbfontstyle("[mod=\"{S_POST_AUTHOR}\"]", "[/mod]");
 			break;
-		case "abbc3_tabs" :
+		case "abbc3_tabs":
 			bbfontstyle("[tabs][tabs: ]", "[/tabs]");
 			break;
-		case "abbc3_listb" :
+		case "abbc3_listb":
 			bbfontstyle("[list][*]", "[/list]");
 			break;
-		case "abbc3_listo" :
+		case "abbc3_listo":
 			bbfontstyle("[list=1][*]", "[/list]");
 			break;
-		case "abbc3_listitem" :
+		case "abbc3_listitem":
 			bbfontstyle("[*]", "");
 			break;
-		case "abbc3_hr" :
+		case "abbc3_hr":
 			bbfontstyle("[hr]", "");
 			break;
-		case "abbc3_glow" :
+		case "abbc3_glow":
 			bbfontstyle("[glow=red]", "[/glow]");
 			break;
-		case "abbc3_shadow" :
+		case "abbc3_shadow":
 			bbfontstyle("[shadow=blue]", "[/shadow]");
 			break;
-		case "abbc3_dropshadow" :
+		case "abbc3_dropshadow":
 			bbfontstyle("[dropshadow=blue]", "[/dropshadow]");
 			break;
-		case "abbc3_blur" :
+		case "abbc3_blur":
 			bbfontstyle("[blur=blue]", "[/blur]");
 			break;
-		case "abbc3_wave" :
+		case "abbc3_wave":
 			bbfontstyle("[wave=blue]", "[/wave]");
 			break;
-		case "abbc3_imgshack" :
+		case "abbc3_imgshack":
 			popup('http://imageshack.us/', popup_width, popup_height);
 		//	tinypic ¿?
 		//	popup('http://ipostimage.org/', popup_width, popup_height);
 		//	popup('http://www.imageposter.com/uploads/?mode=phpbb&forumurl=' + escape(document.location.href), '_imagehost', 'resizable=yes,width=500,height=400', popup_width, popup_height);	*/
 			break;
-	/** We make the life easyer for some bbcodes - End **/	
+	/** We make life easier for some bbcodes - End **/	
 
-	/** This bbcodes use wizard - Start **/
-		/** This bbcodes was deprecated in v3.0.7 **/
-		case "abbc3_upload" :
-		case "abbc3_url" :
-		case "abbc3_ed2k" :
-		case "abbc3_email" :
-		case "abbc3_img" :
-		case "abbc3_thumbnail" :
-		case "abbc3_rapidshare" :
-		case "abbc3_testlink" :
-		case "abbc3_click" :
-		case "abbc3_table" :
-		/** This bbcodes needs extra data **/
-		case "abbc3_bbvideo" :
-		case "abbc3_flash" :
-		case "abbc3_flv" :
-		case "abbc3_video" :
-		case "abbc3_quicktime" :
-		case "abbc3_ram" :
-		case "abbc3_web" :
+	/** These bbcodes use the wizard - Start **/
+		case "abbc3_upload": // This bbcode was deprecated in v3.0.7
+		case "abbc3_url":
+		case "abbc3_ed2k":
+		case "abbc3_email":
+		case "abbc3_img":
+		case "abbc3_thumbnail":
+		case "abbc3_rapidshare":
+		case "abbc3_testlink":
+		case "abbc3_click":
+		case "abbc3_table":
+		/** These bbcodes needs extra data **/
+		case "abbc3_bbvideo":
+		case "abbc3_flash":
+		case "abbc3_flv":
+		case "abbc3_video":
+		case "abbc3_quicktime":
+		case "abbc3_ram":
+		case "abbc3_web":
 		/** Web videos bbcodes **/
-		case "abbc3_stream" :
-		case "abbc3_veoh" :
-		case "abbc3_collegehumor" :
-		case "abbc3_gvideo" :
-		case "abbc3_youtube" :
-		/** Gradient needs his own function **/
-		case "abbc3_grad" :
+		case "abbc3_stream":
+		case "abbc3_veoh":
+		case "abbc3_collegehumor":
+		case "abbc3_gvideo":
+		case "abbc3_youtube":
+		/** Gradient requires its own function **/
+		case "abbc3_grad":
 		/** Extra Custom bbcodes - Start **/
-		case "deezer" :
+		case "deezer":
 		/** Extra Custom bbcodes - End **/
 
 			if (bbcode == "abbc3_grad")
@@ -345,9 +344,9 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 			popup(wizards_url + wizards_params, popup_width, popup_height);
 		<!-- ENDIF -->
 			break;
-	/** This bbcodes needs wizard - End **/
+	/** These bbcodes use the wizard - End **/
 
-		case "abbc3_plain" :
+		case "abbc3_plain":
 			if (typeof(theSelection) == 'undefined' || theSelection == '' || theSelection === null)
 			{
 				alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_NOSELECT_ERROR}");
@@ -370,7 +369,7 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 				} catch (e) {}
 			}
 			break;
-		case "abbc3_cut" :
+		case "abbc3_cut":
 			if (typeof(theSelection) == 'undefined' || theSelection === null || theSelection == '')
 			{
 				alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_NOSELECT_ERROR}");
@@ -389,7 +388,7 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 				}
 			}
 			break;
-		case "abbc3_copy" :
+		case "abbc3_copy":
 			if (typeof(theSelection) == 'undefined' || theSelection == '' || theSelection === null)
 			{
 				alert("{LA_ABBC3_ERROR}\n{LA_ABBC3_NOSELECT_ERROR}");
@@ -400,7 +399,7 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 				copy_paste = theSelection;
 			}
 			break;
-		case "abbc3_paste" :
+		case "abbc3_paste":
 			if (copy_paste)
 			{
 				bbfontstyle(copy_paste, '');
@@ -411,8 +410,8 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 			}
 			break;
 
-		/** This should never happens, just in case, let's phpbb3 take care of it **/
-		default :
+		/** This should never happen, but just in case let phpbb3 take care of it **/
+		default:
 			bbfontstyle(bbopen, bbclose);
 			break;
 	}
@@ -423,7 +422,7 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 <!-- IF (S_ABBC3_COLOR_MODE eq 'dropdown' or S_ABBC3_HIGHLIGHT_MODE eq 'dropdown') or (S_ABBC3_COLOR_MODE eq 'fancy' or S_ABBC3_HIGHLIGHT_MODE eq 'fancy') -->
 /**
 * Dropdown Color pallette for highlight text & colour text
-* Code from : http://www.mredkj.com/tutorials/tutorial005.html
+* Code from: http://www.mredkj.com/tutorials/tutorial005.html
 * @param string		el		the element id
 * @param string		mode	(fancy | dropdown)
 **/
@@ -647,7 +646,7 @@ if (typeof readCookie != 'function')
 * http://pro.html.it - http://web-graphics.com 
 * obtained from: http://web-graphics.com/mtarchive/001717.php
 *
-* MSSTI :
+* MSSTI:
 *	- added ability to perform tooltips on list elements
 * @param string		id					the element ID
 * @param string		headline			the title
@@ -732,7 +731,7 @@ function locate(e)
 /**
 * AJAX Form POST Request - HTML Form POST/Submit with AJAX/Javascript
 *
-* Base code :
+* Base code:
 *	http://www.captain.at/howto-ajax-form-post-request.php
 *	http://en.wikipedia.org/wiki/XMLHttpRequest
 *	http://developer.apple.com/internet/webcontent/xmlhttpreq.html
@@ -838,14 +837,14 @@ function ABBC3_Ajax_handler(xmlhttp, container_id, bbcode)
 		// And the others mean other things.
 		else
 		{	// Numeric code returned by server + String message accompanying the status code
-			alert('{LA_GENERAL_ERROR} : ' + "\n" + xmlhttp.status + ' => ' + xmlhttp.statusText);
+			alert('{LA_GENERAL_ERROR}: ' + "\n" + xmlhttp.status + ' => ' + xmlhttp.statusText);
 		}
 	}
 }
 
 /**
 * Pure innerHTML is slightly faster in IE 
-*	code from : http://blog.stevenlevithan.com/archives/faster-than-innerhtml
+*	code from: http://blog.stevenlevithan.com/archives/faster-than-innerhtml
 * @param string		el			the element ID to display the result
 * @param string		str			the result to display
 **/

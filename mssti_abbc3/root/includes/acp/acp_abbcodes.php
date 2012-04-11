@@ -783,13 +783,14 @@ function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
 		{
 			$video_name = stripslashes($video_name);
 		
+			// Get option group labels
 			if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
 			{
 				$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
 				$video_options .= '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">' . "\n";
 				$video_optgroup = true;
 			}
-			// Now check that this video is has data for search and replace
+			// Now build options from videos that have match and replace data
 			else if ((isset($video_data['match']) && $video_data['match'] != '') && (isset($video_data['replace']) && $video_data['replace'] != ''))
 			{
 				$selected = (in_array($video_data['id'], $allowed_videos)) ? ' selected="selected"' : '';

@@ -39,12 +39,13 @@ Before adding this MOD to your forum, you should back up all files and databases
 		</installation>
 		<history>
 			<entry>
-				<date>2012-04-06</date>
+				<date>2012-04-09</date>
 				<rev-version>3.0.11</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[[Change] New BBvideos: blip.tv, break.com, current.com, ebaumsworld.com, flickr.com, funnyordie.com, godtube.com, howcast.com, ted.com, theonion.com]]></change>
+					<change><![CDATA[[Change] Optimized the BBvideo engine to be faster and more efficient.]]></change>
+					<change><![CDATA[[Change] New BBvideos: blip.tv, break.com, cnettv.cnet.com, current.com, ebaumsworld.com, flickr.com, funnyordie.com, godtube.com, howcast.com, hulu.com, mpora.com, ted.com, theonion.com, twitvid.com, ustream.tv]]></change>
 					<change><![CDATA[[Change] Updated BBvideos: collegehumor.com, crackle.com, deviantart.com, gamespot.com, ign.com, streetfire.com, yahoo.com]]></change>
-					<change><![CDATA[[Change] Deleted BBvideos (due to unavailability): badr.tv, filefront.com, gamepro.com, livevideo.com, machinima.com, megavideo.com, revver.com, tangle.com, tinypic.com, vidilife.com]]></change>
+					<change><![CDATA[[Change] Deleted BBvideos (due to unavailability): badr.tv, filefront.com, gamepro.com, livevideo.com, machinima.com, megavideo.com, porkolt.com, revver.com, tangle.com, tinypic.com, vidilife.com]]></change>
 					<change><![CDATA[[Change] ABBC3 BBCodes can be arranged more easily and quickly using drag-and-drop in the ACP settings area.]]></change>
 					<change><![CDATA[[Change] Enhanced the ABBC3 toolbar background image preview in the ACP settings area.]]></change>
 					<change><![CDATA[[Change] Added some new background gradient images for the ABBC3 toolbar.]]></change>
@@ -61,7 +62,7 @@ Before adding this MOD to your forum, you should back up all files and databases
 					<change><![CDATA[[Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.]]></change>
 					<change><![CDATA[[Fix] Added missing language variables to Spanish and German installation instructions.]]></change>
 					<change><![CDATA[[Fix] Various general spelling and coding errors have been addressed.]]></change>
-					<change><![CDATA[[Add-On] Instructions to have YouTube videos open up with Highslide JS added to the contrib folder.]]></change>
+					<change><![CDATA[[Add-On] Instructions to have YouTube videos open up with Highslide JS, Lightview and Shadowbox added to the contrib folder.]]></change>
 				</changelog>
 			</entry>
 			<entry>
@@ -154,9 +155,9 @@ Before adding this MOD to your forum, you should back up all files and databases
 			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2 Edits</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">German language pack</link>
-			<link type="contrib" href="contrib/add_on_YouTube_Highslide.xml" lang="en">Add-on : Open YouTube videos with Highslide JS</link>
+			<link type="contrib" href="contrib/add_on_YouTube_Lightboxes.xml" lang="en">Add-on : Open YouTube videos with Lightboxes</link>
 			<link type="contrib" href="contrib/add_on_Evil_Quick_Reply.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
-			<link type="contrib" href="contrib/add_on_embossed_button_effect.xml" lang="en">Add-on : Embossed buttons for ABBC3</link>
+			<link type="contrib" href="contrib/add_on_Embossed_Buttons.xml" lang="en">Add-on : Embossed BBCode Buttons</link>
 			<link type="contrib" href="contrib/add_on_ED2K.xml" lang="en">Add-on : Enhanced ED2K links.</link>
 			<link type="contrib" href="contrib/update_3.0.8_to_3.0.10.xml" lang="en">Update Instructions (3.0.8 to 3.0.10)</link>
 			<link type="contrib" href="contrib/update_3.0.8-PL1_to_3.0.10.xml" lang="en">Update Instructions (3.0.8-PL1 to 3.0.10)</link>

@@ -2406,7 +2406,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 		),
 		/*
-		'3.0.9' => array(
+		'3.0.12' => array(
 			'bbcode_name' => array(
 				'bbcode_tag'			=> '',
 				'bbcode_order'			=> nn,

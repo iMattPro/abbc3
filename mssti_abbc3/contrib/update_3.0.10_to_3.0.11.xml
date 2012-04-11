@@ -72,6 +72,8 @@
 			<file name="styles/abbcode/abbc3_logo.png"/>
 			<file name="styles/abbcode/abbcode_ajax_loading.gif"/>
 			<file name="styles/abbcode/greybox/*.*"/>
+			<file name="styles/abbcode/images/bg/bg_button.gif"/>
+			<file name="styles/abbcode/images/bg/bg_tabs.gif"/>
 			<file name="styles/abbcode/loading.gif"/>
 			<file name="styles/abbcode/pixel.gif"/>
 			<file name="styles/abbcode/PopBox/images/*.*"/>
