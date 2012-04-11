@@ -126,7 +126,7 @@ hr.hrdotted {
 }
 
 .editor_Button:hover {
-	background: #FAFAFA url("images/bg/bg_button.gif");
+	background: #FAFAFA url("images/abbc3/bg_button.gif");
 }
 
 /* MOD: add button over - START */
@@ -168,7 +168,7 @@ DELETE ME 2 */
 	text-align: center;
 	text-decoration: none;
 	color: #000000;
-	background-image: url("images/bg/bg_tabs.gif");
+	background-image: url("images/abbc3/bg_tabs.gif");
 	border: 1px solid #666666;
 }
 #button_selector.button2:hover, 
@@ -279,7 +279,7 @@ DELETE ME 2 */
 .tooltip span.top {
 	font-weight: bold;
 	padding: 2px;
-	background: #FAFAFA url("images/bg/bg_tabs.gif") 0 0;
+	background: #FAFAFA url("images/abbc3/bg_tabs.gif") 0 0;
 }
 
 .tooltip span.bottom {
