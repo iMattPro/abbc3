@@ -118,6 +118,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUBMIT'				=> 'Insert into message',
 	'ABBC3_SUBMIT_SIG'			=> 'Insert into signature',
 	'SAMPLE_TEXT'				=> 'The quick brown fox jumps over the lazy dog',
+	'DEPRECATED_BBCODE'			=> '<strong class="error">Note:</strong> this BBCode is obsolete and has been replaced by BBvideo.',
 ));
 
 /**
@@ -542,6 +543,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] or [flash width,height]URL flash[/flash]',
 	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
 	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
+	'ABBC3_FLASH_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
@@ -549,6 +551,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLV_TIP'				=> '[flv width=# height=#]URL flash video[/flv] or [flv width,height]URL flash video[/flv]',
 	'ABBC3_FLV_EXAMPLE'			=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
 	'ABBC3_FLV_VIEW'			=> '[flv 250,200]http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv[/flv]',
+	'ABBC3_FLV_EXPLAIN'			=> $lang['DEPRECATED_BBCODE'],
 
 	// Streaming Video Wizard
 	'ABBC3_VIDEO_TAG'			=> 'video',
@@ -556,6 +559,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_VIDEO_TIP'			=> '[video width=# height=#]URL video[/video]',
 	'ABBC3_VIDEO_EXAMPLE'		=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
 	'ABBC3_VIDEO_VIEW'			=> '[video 250,200]http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv[/video]',
+	'ABBC3_VIDEO_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Streaming Audio Wizard
 	'ABBC3_STREAM_TAG'			=> 'sound',
@@ -563,6 +567,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_STREAM_TIP'			=> '[stream]URL stream[/stream]',
 	'ABBC3_STREAM_EXAMPLE'		=> 'http://www.robtowns.com/music/first_noel.mp3',
 	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
+	'ABBC3_STREAM_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Quick time
 	'ABBC3_QUICKTIME_TAG'		=> 'Quicktime',
@@ -570,6 +575,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quicktime[/quicktime]',
 	'ABBC3_QUICKTIME_EXAMPLE'	=> 'http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt',
 	'ABBC3_QUICKTIME_VIEW'		=> '[quicktime width=250 height=200]http://www.nature.com/neuro/journal/v3/n3/extref/Li_control.mov.qt[/quicktime]',
+	'ABBC3_QUICKTIME_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
 
 	// Real Media Wizard
 	'ABBC3_RAM_TAG'				=> 'Real Media',
@@ -577,6 +583,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAM_TIP'				=> '[ram]URL Real Media[/ram]',
 	'ABBC3_RAM_EXAMPLE'			=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
 	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
+	'ABBC3_RAM_EXPLAIN'			=> $lang['DEPRECATED_BBCODE'],
 
 	// Google video Wizard
 	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
@@ -584,6 +591,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_GVIDEO_TIP'			=> '[GVideo]URL video[/GVideo]',
 	'ABBC3_GVIDEO_EXAMPLE'		=> 'http://video.google.com/videoplay?docid=-8351924403384451128',
 	'ABBC3_GVIDEO_VIEW'			=> '[GVideo]http://video.google.com/videoplay?docid=-8351924403384451128[/GVideo]',
+	'ABBC3_GVIDEO_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Youtube video Wizard
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',
@@ -591,6 +599,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_YOUTUBE_TIP'			=> '[youtube]URL video[/youtube]',
 	'ABBC3_YOUTUBE_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
 	'ABBC3_YOUTUBE_VIEW'		=> '[youtube]http://www.youtube.com/watch?v=sP4NMoJcFd4[/youtube]',
+	'ABBC3_YOUTUBE_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Veoh video
 	'ABBC3_VEOH_TAG'			=> 'Veoh',
@@ -598,6 +607,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_VEOH_TIP'			=> '[veoh]URL video[/veoh]',
 	'ABBC3_VEOH_EXAMPLE'		=> 'http://www.veoh.com/watch/v27458670er62wkCt',
 	'ABBC3_VEOH_VIEW'			=> '[veoh]http://www.veoh.com/watch/v27458670er62wkCt[/veoh]',
+	'ABBC3_VEOH_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Collegehumor video
 	'ABBC3_COLLEGEHUMOR_TAG'	=> 'Collegehumor',
@@ -605,36 +615,42 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLLEGEHUMOR_TIP'	=> '[collegehumor]collegehumor video URL[/collegehumor]',
 	'ABBC3_COLLEGEHUMOR_EXAMPLE'=> 'http://www.collegehumor.com/video:1802097',
 	'ABBC3_COLLEGEHUMOR_VIEW'	=> '[collegehumor]http://www.collegehumor.com/video:1802097[/collegehumor]',
+	'ABBC3_COLLEGEHUMOR_EXPLAIN'=> $lang['DEPRECATED_BBCODE'],
 
 	// Dailymotion video
 	'ABBC3_DM_MOVER'			=> 'Insert video from dailymotion', // from http://www.dailymotion.com/
 	'ABBC3_DM_TIP'				=> '[dm]Dailymotion ID[/dm]',
 	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport',
 	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport[/dm]',
+	'ABBC3_DM_EXPLAIN'			=> $lang['DEPRECATED_BBCODE'],
 
 	// Gamespot video
 	'ABBC3_GAMESPOT_MOVER'		=> 'Insert video from Gamespot',
 	'ABBC3_GAMESPOT_TIP'		=> '[gamespot]Gamespot video URL[gamespot]',
 	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
 	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[gamespot]',
+	'ABBC3_GAMESPOT_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
 
 	// Gametrailers video
 	'ABBC3_GAMETRAILERS_MOVER'	=> 'Insert video from Gametrailers',
 	'ABBC3_GAMETRAILERS_TIP'	=> '[gametrailers]Gametrailers video URL[/gametrailers]',
 	'ABBC3_GAMETRAILERS_EXAMPLE'=> 'http://www.gametrailers.com/player/30461.html',
 	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/video/game-of-best-of-e3/701407[/gametrailers]',
+	'ABBC3_GAMETRAILERS_EXPLAIN'=> $lang['DEPRECATED_BBCODE'],
 
 	// IGN video
 	'ABBC3_IGNVIDEO_MOVER'		=> 'Insert video from IGN',
 	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]IGN video URL[/ignvideo]',
 	'ABBC3_IGNVIDEO_EXAMPLE'	=> 'http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html',
 	'ABBC3_IGNVIDEO_VIEW'		=> '[ignvideo]http://movies.ign.com/dor/objects/14299069/che/videos/che_pt2_exclip_010609.html[/ignvideo]',
+	'ABBC3_IGNVIDEO_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
 
 	// LiveLeak video
 	'ABBC3_LIVELEAK_MOVER'		=> 'Insert video from Liveleak',
 	'ABBC3_LIVELEAK_TIP'		=> '[liveleak]Liveleak video URL[/liveleak]',
 	'ABBC3_LIVELEAK_EXAMPLE'	=> 'http://www.liveleak.com/view?i=166_1194290849',
 	'ABBC3_LIVELEAK_VIEW'		=> '[liveleak]http://www.liveleak.com/view?i=166_1194290849[/liveleak]',
+	'ABBC3_LIVELEAK_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
 
 // Custom BBCodes
 	// Deezer audio
