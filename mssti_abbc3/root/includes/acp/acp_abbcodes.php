@@ -66,7 +66,7 @@ class acp_abbcodes
 
 		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425;
 		$config['ABBC3_VIDEO_height']		= (isset($config['ABBC3_VIDEO_height']))	? $config['ABBC3_VIDEO_height']		: 350;
-		$config['ABBC3_VIDEO_OPTIONS']		= (isset($config['ABBC3_VIDEO_OPTIONS']))	? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;101;102;103;104;105;106;107;108;109;110;111;112;113;114;201;204;205;206;207;';
+		$config['ABBC3_VIDEO_OPTIONS']		= (isset($config['ABBC3_VIDEO_OPTIONS']))	? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;101;102;103;104;105;106;107;108;109;110;207;';
 		$config['ABBC3_VIDEO_WMODE']		= (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0;
 
 		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		? $config['ABBC3_UCP_MODE']			: 1;

@@ -1482,6 +1482,13 @@ class abbcode
 				'match'		=> '#http://www.allocine.fr/video/player_gen_cmedia=(\d+)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.allocine.fr/blogvision/$1', '{WIDTH}', '{HEIGHT}')",
 			),
+			'blip.tv' => array(
+				'id'		=> 52,
+				'image'		=> 'bliptv.gif',
+				'example'	=> 'http://blip.tv/disenchanted/disenchanted-ep-101-once-upon-a-crackhouse-6063266',
+				'match'		=> '#http://(.*?)blip.tv/([^[]*)?#sie',
+				'replace'	=> "\$this->oembed_url('http://blip.tv/oembed/?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+			),
 			'break.com' => array(
 				'id'		=> 21,
 				'image'		=> 'break.gif',
@@ -1643,6 +1650,13 @@ class abbcode
 				'match'		=> '#http://(.*?)howcast.com/videos/([0-9]+)?-([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.howcast.com/flash/howcast_player.swf?file=$2&theme=black', '{WIDTH}', '{HEIGHT}', '&fs=true')",
 			),
+			'hulu.com' => array(
+				'id'		=> 53,
+				'image'		=> 'hulu.gif',
+				'example'	=> 'http://www.hulu.com/watch/308687/the-office-dwight-vs-jim-prank-tacular',
+				'match'		=> '#http://(.*?)hulu.com/([^[]*)?#sie',
+				'replace'	=> "\$this->oembed_url('http://www.hulu.com/api/oembed?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+			),
 			'ign.com' => array(
 				'id'		=> 16,
 				'image'		=> 'ign.gif',
@@ -1706,6 +1720,13 @@ class abbcode
 				'match'		=> '#http://s(.*?).photobucket.com/(albums/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5', '{WIDTH}', '{HEIGHT}')",
 			),
+			'revision3.com' => array(
+				'id'		=> 54,
+				'image'		=> 'revision3.gif',
+				'example'	=> 'http://revision3.com/scamschool/fortheladies2',
+				'match'		=> '#http://(.*?)revision3.com/(.*?)/([^[]*)?#sie',
+				'replace'	=> "\$this->oembed_url('http://revision3.com/api/oembed/?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+			),
 			'rutube.ru' => array(
 				'id'		=> 29,
 				'image'		=> 'rutube.gif',
@@ -1733,6 +1754,13 @@ class abbcode
 				'example'	=> 'http://en.sevenload.com/shows/Tekzilla/episodes/hMbjjr3-Windows-7-Enhancements-for-Power-Users-Tekzilla-Daily-Tip',
 				'match'		=> '#http://(.*?).sevenload.com/(?:.*?)(episodes|videos)/([^/[-]*)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://en.sevenload.com/pl/$3/{WIDTH}x{HEIGHT}/swf', '{WIDTH}', '{HEIGHT}')",
+			),
+			'slideshare.net' => array(
+				'id'		=> 55,
+				'image'		=> 'slideshare.gif',
+				'example'	=> 'http://www.slideshare.net/chrisbrogan/social-media-for-publishers-presentation',
+				'match'		=> '#http://www.slideshare.net/(.*?)/([^[]*)?#sie',
+				'replace'	=> "\$this->oembed_url('http://www.slideshare.net/api/oembed/2?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
 			),
 			'theonion.com' => array(
 				'id'		=> 34,
@@ -1832,16 +1860,9 @@ class abbcode
 				'match'		=> '#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
 			),
-			// available ids: 52-100
+			// available ids: 56-100
 
 			'external' => array(),
-			'blip.tv' => array(
-				'id'		=> 112,
-				'image'		=> 'bliptv.gif',
-				'example'	=> 'http://blip.tv/disenchanted/disenchanted-ep-101-once-upon-a-crackhouse-6063266',
-				'match'		=> '#http://(.*?)blip.tv/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
 			'comedians.jokes.com' => array(
 				'id'		=> 102,
 				'image'		=> 'comedians.gif',
@@ -1850,24 +1871,17 @@ class abbcode
 				'replace'	=> 'external',
 			),
 			'deviantart.com' => array(
-				'id'		=> 113,
+				'id'		=> 103,
 				'image'		=> 'deviantart.gif',
 				'example'	=> 'http://bossk.deviantart.com/art/COLLEGE-FRIES-trailer-106469587',
 				'match'		=> '#http://(.*?)deviantart.com/([^[]*)?#si',
 				'replace'	=> 'external',
 			),
 			'gotgame.com' => array(
-				'id'		=> 111,
+				'id'		=> 105,
 				'image'		=> 'gotgame.gif',
 				'example'	=> 'http://gotgame.com/2012/03/26/assassins-creed-3-interview-with-alex-hutchinson/',
 				'match'		=> '#http://(.*?)gotgame.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'hulu.com' => array(
-				'id'		=> 103,
-				'image'		=> 'hulu.gif',
-				'example'	=> 'http://www.hulu.com/watch/308687/the-office-dwight-vs-jim-prank-tacular',
-				'match'		=> '#http://(.*?)hulu.com/([^[]*)?#si',
 				'replace'	=> 'external',
 			),
 			'moddb.com' => array(
@@ -1875,20 +1889,6 @@ class abbcode
 				'image'		=> 'moddb.gif',
 				'example'	=> 'http://www.moddb.com/groups/humour-satire-parody/videos/flight-dc132-part-1',
 				'match'		=> '#http://www.moddb.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'revision3.com' => array(
-				'id'		=> 105,
-				'image'		=> 'revision3.gif',
-				'example'	=> 'http://revision3.com/scamschool/fortheladies2',
-				'match'		=> '#http://revision3.com/(.*?)/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'slideshare.net' => array(
-				'id'		=> 106,
-				'image'		=> 'slideshare.gif',
-				'example'	=> 'http://www.slideshare.net/chrisbrogan/social-media-for-publishers-presentation',
-				'match'		=> '#http://www.slideshare.net/(.*?)/([^[]*)?#si',
 				'replace'	=> 'external',
 			),
 			'spike.com' => array(
@@ -1906,7 +1906,7 @@ class abbcode
 				'replace'	=> 'external',
 			),
 			'ted.com' => array(
-				'id'		=> 110,
+				'id'		=> 106,
 				'image'		=> 'ted.gif',
 				'example'	=> 'http://www.ted.com/talks/jack_choi_on_the_virtual_dissection_table.html',
 				'match'		=> '#http://((.*?)?)ted.com/([^[]*)?#si',
@@ -1927,13 +1927,13 @@ class abbcode
 				'replace'	=> 'external',
 			),
 			'wat.tv' => array(
-				'id'		=> 114,
+				'id'		=> 110,
 				'image'		=> 'wattv.gif',
 				'example'	=> 'http://www.wat.tv/video/mords-moi-sans-hesitation-2ykhj_2g5h3_.html',
 				'match'		=> '#http://(.*?)wat.tv/video/([^[]*)?#si',
 				'replace'	=> 'external',
 			),
-			// available ids: 115-200
+			// available ids: 111-200
 
 			'file' => array(),
 			'(avi|divx|mkv)' => array(
@@ -2004,7 +2004,36 @@ class abbcode
 	}
 
 	/**
-	* Build a XHTML compliant object tag
+	* Get embed code using oEmbed
+	*
+	* @param string $url
+	* @param string $width
+	* @param string $height
+	* @return embed code
+	* @version 3.0.11
+	*/
+	function oembed_url($url, $width, $height)
+	{
+		$oembed_contents = @file_get_contents($url);
+		$oembed_data 	 = @json_decode($oembed_contents);
+		$embed_code 	 = isset($oembed_data) ? $oembed_data->html : '';
+		$embed_code 	 = preg_replace(array('/width="([0-9]{1,4})"/', '/height="([0-9]{1,4})"/'), array('width="' . $width . '"', 'height="' . $height . '"'), $embed_code);
+		return $embed_code;	
+		/**
+		* more examples of some polular oEmbed ready sites
+		* dailymotion.com => http://www.dailymotion.com/api/oembed?url=$0&format=json,
+		* flickr.com => http://www.flickr.com/services/oembed/?url=$0&format=json,
+		* qik.com => http://qik.com/api/oembed?url=$0&format=json,
+		* scribd.com => http://www.scribd.com/services/oembed?url=$0&format=json,
+		* viddler.com => http://lab.viddler.com/services/oembed/?url=$0&format=json,
+		* vimeo.com => http://vimeo.com/api/oembed.xml?url=$0&format=json,
+		* wordpress.tv => http://wordpress.tv/oembed/?url=$0&format=json,
+		* youtube.com => http://www.youtube.com/oembed?url=$0&format=json,
+		*/
+	}
+
+	/**
+	* Build an XHTML compliant object tag
 	*
 	* @param string $url
 	* @param string $width

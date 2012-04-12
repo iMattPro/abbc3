@@ -57,32 +57,6 @@ $options = array(
 
 // The array of versions and actions within each.
 $versions = array(
-// phpbb v3.0.0
-//	'1.0.0'		=> array(),
-//	'1.0.1'		=> array(),
-//	'1.0.2'		=> array(),
-//	'1.0.3'		=> array(),
-//	'1.0.3-VEOH'=> array(),
-//	'1.0.4'		=> array(),
-//	'1.0.5'		=> array(),
-//	'1.0.6'		=> array(),
-//	'1.0.6-b'	=> array(),
-//	'1.0.6-bFIX'=> array(),
-//	'1.0.7'		=> array(),
-//	'1.0.7-b'	=> array(),
-//	'1.0.8'		=> array(),
-// phpbb v3.0.1
-//	'1.0.9'		=> array(),
-//	'1.0.9-b'	=> array(),
-// phpbb v3.0.2
-//	'1.0.10'	=> array(),
-// phpbb v3.0.3 and v3.0.4
-//	'1.0.11'	=> array(),
-// pbpBB v3.0.5 
-//	'1.0.12'	=> array(),
-//	'3.0.6'		=> array(),	// Never released
-// phpbb v3.0.7 & v3.0.7-PL1
-//	'3.0.7-PL1'	=> array(),	// Never released
 	'3.0.8'		=> array(
 		'custom' => 'abbc3_308',
 	),
@@ -107,7 +81,7 @@ $versions = array(
 		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
 	),
 	'3.0.11'		=> array(
-		// No new database changes
+		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
 	),
 );
 $cache->destroy('config');
@@ -186,7 +160,7 @@ function abbc3_308($action, $version)
 
 		'ABBC3_VIDEO_width'		=> (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425,
 		'ABBC3_VIDEO_height'	=> (isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 350,
-		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;101;102;103;104;105;106;107;108;109;110;111;112;113;114;201;204;205;206;207;',
+		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;101;102;103;104;105;106;107;108;109;110;207;',
 		'ABBC3_VIDEO_WMODE'		=> (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0,
 
 		'ABBC3_UCP_MODE'		=> (isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1,
@@ -714,7 +688,15 @@ function bbvideo_updater($action, $version)
 	// Array containing arrays of new BBvideo IDs added to ABBC3
 	$new_bbvideo_ids = array(
 		'3.0.9.3' => array('46','47','48','49','50'),
-		'3.0.10'  => array('51'),	
+		'3.0.10'  => array('51'),
+		'3.0.11'  => array('52', '53', '54', '55'),
+	);
+
+	// Array containing arrays of old BBvideo IDs removed from ABBC3
+	$old_bbvideo_ids = array(
+		'3.0.9.3' => array(), // no BBvideos to remove
+		'3.0.10'  => array(), // no BBvideos to remove
+		'3.0.11'  => array('111', '112', '113', '114'),
 	);
 
 	switch ($action)
@@ -726,6 +708,8 @@ function bbvideo_updater($action, $version)
 			$video_options_array = explode(';', $video_options['config_value'], -1);
 			// Merge the new BBvideos array into the array from the config
 			$video_options_array = array_merge($video_options_array, $new_bbvideo_ids[$version]);
+			// Remove the old BBvideos array from the array from the config
+			$video_options_array = array_diff($video_options_array, $old_bbvideo_ids[$version]);
 			// Remove any duplicate values
 			$video_options_array = array_unique($video_options_array);
 			// Sort the array
@@ -741,6 +725,10 @@ function bbvideo_updater($action, $version)
 			$video_options_array = explode(';', $video_options['config_value'], -1);
 			// Diff the two arrays to remove any of the new BBvideo IDs
 			$video_options_array = array_diff($video_options_array, $new_bbvideo_ids[$version]);
+			// Put back the old BBvideos from the old BBvideos array
+			$video_options_array = array_merge($video_options_array, $old_bbvideo_ids[$version]);
+			// Remove any duplicate values
+			$video_options_array = array_unique($video_options_array);
 			// Sort the array
 			asort($video_options_array);
 			// Update the database with the new settings
