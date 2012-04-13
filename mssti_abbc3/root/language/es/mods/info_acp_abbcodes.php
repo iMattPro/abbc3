@@ -122,7 +122,7 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_VIDEO_ERROR'				=> '<strong>Error:</strong> Hay demasiados BBvideos seleccionados. Anule la selección de algunos BBvideos y vuelva a intentarlo.',
 	'ABBCODES_VIDEO_SIZE'				=> 'Dimensiones de videos',
-	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Por defecto la anchura y la altura de videos.',
+	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Por defecto la anchura y la altura de videos.<br />Standard: 425 x 350. Widescreen: 560 x 340.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Tipos de vídeo permitidos',
 	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Seleccione los sitios y/o formatos de vídeo que le gustaría que los usuarios puedan integrar en sus mensajes cuando el BBCode BBvideo está habilitado <em class="error">(*)</em>',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> Para selecionar (o eliminar la seleción) de multiples items, debe hacer CTRL+CLICK (o CMD-CLICK en Mac) sobre cada item para agregar. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un item, toda seleción previa sera eliminada.',

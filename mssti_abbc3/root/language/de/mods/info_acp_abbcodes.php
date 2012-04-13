@@ -122,7 +122,7 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_VIDEO_ERROR'				=> '<strong>Fehler:</strong> Es gibt zu viele BBvideos ausgewählt. Deaktivieren Sie einige BBvideos und erneut versuchen.',
 	'ABBCODES_VIDEO_SIZE'				=> 'Video Abmessungen',
-	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Die Standard Höhe und Breite für ein Beitragsvideo.',
+	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Die Standard Höhe und Breite für ein Beitragsvideo.<br />Standard: 425 x 350. Widescreen: 560 x 340.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Erlaubte Video Typen',
 	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Wähle hier aus, von welchen Seiten und/oder welche Formate deine Benutzer in ihren Beiträgen verwenden dürfen, wenn der BBvideo BBCode aktiviert ist <em class="error">(*)</em>',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> Um mehrere Einstellungen zu aktivieren/deaktivieren, verwende CTRL+CLICK (oder CMD-CLICK beim Mac), um sie hinzuzufügen. Wenn du vergisst  CTRL/CMD gedrückt zu halten, werden alle zuvor ausgewähltem Einstellung ausgeschaltet.',
