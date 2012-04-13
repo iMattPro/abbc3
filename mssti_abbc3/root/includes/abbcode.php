@@ -1979,7 +1979,7 @@ class abbcode
 				'example'	=> 'http://www.notz.com/music/jazz/midi/lazybird.mid',
 				'match'		=> '#([^[]+)?\.(mid|midi)#si',
 				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="27"><param name="type" value="audio/x-midi" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
-								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="425" height="27" type="audio/x-midi" autoplay="false"></embed></object>'
+								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="27" type="audio/x-midi" autoplay="false"></embed></object>'
 			),
 			'mp3' => array(
 				'id'		=> 207,
