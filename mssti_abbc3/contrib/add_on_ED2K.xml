@@ -9,22 +9,11 @@
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Add-on : Enhanced ED2K links.]]></title>
 		<description lang="en"><![CDATA[This file provides instructions to enhance ED2K links in your forum.
 		
-		1) make ED2K links work directly (without [url] tag) 
-		2) make a table at the end of the post to download all the ED2K links in-one-click.
+		1) This will make ED2K links work directly (without [url] tag).
+		2) This will make a summary table at the end of the post to download all the ED2K links in-one-click.
 
 		See the main install file for any additional information about the MOD.]]></description>
-		<author-notes lang="en"><![CDATA[You will have to make this change to ALL themes you have installed, based off Prosilver and Subsilver2.
-	-------------------------------------------------------------------
-	IMPORTANT !
-
-	Before you make any changes, make sure your template is stored into the "filesystem"
-	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Details
-
-	If you do not want to change from "Database" to "Filesystem",
-	you must do the following style changes within your ACP here:
-	    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Edit
-
-	-------------------------------------------------------------------]]></author-notes>
+		<author-notes lang="en"><![CDATA[You will have to make this change to ALL themes you have installed. Apply the Prosilver changes to themes based off Prosilver. Apply the subsilver2 changes to themes based off subsilver2.]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
@@ -153,9 +142,6 @@
 			</edit>
 		</open>
 		<diy-instructions lang="en"><![CDATA[IMPORTANT !
-
-OVERWRITE all your previous files with the new ones!
-Please make sure of it, some FTP programs don't do it fine.
 
 #####################################################################
 Log on to Administration Control Panel

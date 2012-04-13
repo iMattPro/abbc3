@@ -1535,7 +1535,7 @@ class abbcode
 				'id'		=> 1,
 				'image'		=> 'comedycentral.gif',
 				'example'	=> 'http://www.comedycentral.com/videos/index.jhtml?videoId=185763&title=weekly-evil-six-reasons-alaska',
-				'match'		=> '#http://www.comedycentral.com/videos/index.jhtml\?videoId=([0-9]+)([^[]*)?#sie',
+				'match'		=> '#http://(?:.*?)comedycentral.com/videos/index.jhtml\?videoId=([0-9]+)([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://media.mtvnservices.com/mgid:cms:item:comedycentral.com:$1', '{WIDTH}', '{HEIGHT}', 'autoPlay=false')",
 			),
 			'crackle.com' => array(	
@@ -2011,25 +2011,27 @@ class abbcode
 	* @param string $height
 	* @return embed code
 	* @version 3.0.11
+	*
+	* more examples of some polular oEmbed ready sites
+	* dailymotion.com => http://www.dailymotion.com/api/oembed?url=$0&format=json,
+	* flickr.com => http://www.flickr.com/services/oembed/?url=$0&format=json,
+	* funnyordie.com => http://www.funnyordie.com/oembed?url=$0&format=json,
+	* photobucket.com => http://photobucket.com/oembed?url=$0&format=json,
+	* qik.com => http://qik.com/api/oembed?url=$0&format=json,
+	* scribd.com => http://www.scribd.com/services/oembed?url=$0&format=json,
+	* smugmug.com => http://api.smugmug.com/services/oembed/?url=$0&format=json,
+	* viddler.com => http://lab.viddler.com/services/oembed/?url=$0&format=json,
+	* vimeo.com => http://vimeo.com/api/oembed.xml?url=$0&format=json,
+	* wordpress.tv => http://wordpress.tv/oembed/?url=$0&format=json,
+	* youtube.com => http://www.youtube.com/oembed?url=$0&format=json,
 	*/
 	function oembed_url($url, $width, $height)
 	{
 		$oembed_contents = @file_get_contents($url);
 		$oembed_data 	 = @json_decode($oembed_contents);
 		$embed_code 	 = isset($oembed_data) ? $oembed_data->html : '';
-		$embed_code 	 = preg_replace(array('/width="([0-9]{1,4})"/', '/height="([0-9]{1,4})"/'), array('width="' . $width . '"', 'height="' . $height . '"'), $embed_code);
+		$embed_code 	 = preg_replace(array('/width="([0-9]{1,4})"/i', '/height="([0-9]{1,4})"/i'), array('width="' . $width . '"', 'height="' . $height . '"'), $embed_code);
 		return $embed_code;	
-		/**
-		* more examples of some polular oEmbed ready sites
-		* dailymotion.com => http://www.dailymotion.com/api/oembed?url=$0&format=json,
-		* flickr.com => http://www.flickr.com/services/oembed/?url=$0&format=json,
-		* qik.com => http://qik.com/api/oembed?url=$0&format=json,
-		* scribd.com => http://www.scribd.com/services/oembed?url=$0&format=json,
-		* viddler.com => http://lab.viddler.com/services/oembed/?url=$0&format=json,
-		* vimeo.com => http://vimeo.com/api/oembed.xml?url=$0&format=json,
-		* wordpress.tv => http://wordpress.tv/oembed/?url=$0&format=json,
-		* youtube.com => http://www.youtube.com/oembed?url=$0&format=json,
-		*/
 	}
 
 	/**

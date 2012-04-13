@@ -180,7 +180,7 @@ $lang = array_merge($lang, array(
 	'INSTALLER_BBCODES_ADD'				=> 'ABBC3 bbCodes',
 	// Misc
 	'INSTALLER_RESIZE_CHECK'			=> 'Image Resizer update-prüfung abgeschlossen',
-	'INSTALLER_BBVIDEO_UPDATER'			=> 'BBvideos update-prüfung abgeschlossen',
+	'INSTALLER_BBVIDEO_UPDATER'			=> 'BBvideos wurden aktualisiert',
 ));
 
 ?>
