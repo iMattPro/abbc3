@@ -728,44 +728,12 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-		<diy-instructions lang="en"><![CDATA[A) Database update:
+		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, you should point your
+browser to the "install_abbc3.php" installation script (or click the highlighted link
+above if you are using AutoMOD) and follow the instructions. If the installation was
+successful, you can now use your forum. Congratulations, you have installed ABBC3 successfully. 
 
-	1)	Once all the files have been modified and uploaded to your site,
-		you should point your browser to the install_abbc3.php installation
-		script (or click the hi-lighted link above if you are using AutoMOD)
-	2)	When you have done this you should see the phpBB3 ABBC3 Installation
-		screen appear, follow the instructions.
-		If the installation was successful, you can now use your forum.
-		Congratulations, you have installed phpBB3 ABBC3 successfully. 
-		But there is still work ahead!
-	3)	You should remove/rename the installation script (install_abbc3.php)
-		from your server.
-
-#####################################################################
-B) Refresh the templates:
-
-	1)	Navigate to "STYLES" tab.
-	2)	Under "STYLE COMPONENTS" click on "Templates".
-	3)	Under "Actions" click on "Refresh".
-	4)	In the next screen, click on "Yes" (Repeat last 2 steps for each
-		installed style).
-
-#####################################################################
-C) Purge the cache:
-
-	1)	Navigate to "GENERAL" tab
-	2)	Look for "Purge the cache"
-	3)	Click the "Run Now" button
-	4)	In the next screen, click on "Yes"
-
-#####################################################################
-D) Set up ABBC3's options to best suit your needs:
-
-	1)	Navigate to "POSTING" tab
-	2)	In the left menu you will find a new category "ADVANCED BBCODE BOX 3"
-	3)	In ABBC3 Settings you can configure ABBC3's general settings
-		including the Wizards, Image Resizer and BBvideo.
-	4)	In ABBC3 BBCodes you can configure the order of the BBCodes in the
-		BBCodes toolbar and edit the options for each of the BBCodes.]]></diy-instructions>
+You can configure ABBC3's settings in the ACP under the "POSTING" tab. In the left
+menu you will find a new category "ADVANCED BBCODE BOX 3" with all our settings.]]></diy-instructions>
 	</action-group>
 </mod>

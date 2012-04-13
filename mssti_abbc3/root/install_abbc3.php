@@ -76,19 +76,26 @@ $versions = array(
 	// Version 3.0.9.3
 	'3.0.9.3'		=> array(
 		'custom' => array(
-			'abbc3_309',		//special changes for version 3.0.9
-			'bbvideo_updater',	//enable some new BBvideo IDs
+			//special changes for version 3.0.9
+			'abbc3_309',
+			//enable some new BBvideo IDs
+			'bbvideo_updater',
 		),
 	),
 
 	// Version 3.0.10
 	'3.0.10'		=> array(
-		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
+		//enable some new BBvideo IDs
+		'custom' => 'bbvideo_updater',
 	),
 
 	// Version 3.0.11
 	'3.0.11'		=> array(
-		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
+		//enable some new BBvideo IDs
+		'custom' => 'bbvideo_updater',
+		
+		// purge the cache
+		'cache_purge' => array(),
 	),
 );
 
@@ -167,7 +174,7 @@ function abbc3_308($action, $version)
 				'module_auth'		=> 'acl_a_bbcode',
 			),
 		),
-		// Config Module
+		// BBCodes Module
 		array('acp', 'ACP_ABBCODES', array(
 				'module_basename'	=> 'abbcodes',
 				'module_langname'	=> 'ACP_ABBC3_BBCODES',
