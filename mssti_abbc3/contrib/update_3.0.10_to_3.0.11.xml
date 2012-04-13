@@ -114,6 +114,15 @@
 				<action type="replace-with"><![CDATA[					WHERE bbcode_id = $bbcode_id" . ' AND abbcode = 0';]]></action>
 			</edit>
 		</open>
+		<open src="styles/subsilver2/template/ucp_profile_signature.html">
+			<edit>
+				<find><![CDATA[<textarea class="post"]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[99%]]></inline-find>
+					<inline-action type="replace-with"><![CDATA[90%]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 		<diy-instructions lang="en"><![CDATA[Don't forget to run the install_abbc3.php installation script (click the highlighted link above if you are using AutoMOD)
 

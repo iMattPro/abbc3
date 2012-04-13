@@ -190,10 +190,6 @@ Before adding this MOD to your forum, you should back up all files and databases
 					<inline-find><![CDATA[ name="signature"]]></inline-find>
 					<inline-action type="before-add"><![CDATA[ id="signature"]]></inline-action>
 				</inline-edit>
-				<inline-edit>
-					<inline-find><![CDATA[90%]]></inline-find>
-					<inline-action type="replace-with"><![CDATA[99%]]></inline-action>
-				</inline-edit>
 			</edit>
 			<edit>
 				<find><![CDATA[<!-- IF S_BBCODE_ALLOWED -->]]></find>

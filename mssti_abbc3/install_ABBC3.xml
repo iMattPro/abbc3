@@ -60,6 +60,8 @@ Before adding this MOD to your forum, you should back up all files and databases
 					<change><![CDATA[[Change] Improved the look of the Image Resizer Info Bar.]]></change>
 					<change><![CDATA[[Change] Improved the look of the BBCode Help Box area that is displayed under the ABBC3 toolbar.]]></change>
 					<change><![CDATA[[Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.]]></change>
+					<change><![CDATA[[Fix] Corrected padding issue with BBvideos in subsilver2.]]></change>
+					<change><![CDATA[[Fix] Revert to original width of signature post area in subsilver2 to fix an issue with uninstall errors in AutoMOD.]]></change>
 					<change><![CDATA[[Fix] Added missing language variables to Spanish and German installation instructions.]]></change>
 					<change><![CDATA[[Fix] Various general spelling and coding errors have been addressed.]]></change>
 					<change><![CDATA[[Add-On] Instructions to have YouTube videos open up with Highslide JS, Lightview and Shadowbox added to the contrib folder.]]></change>
