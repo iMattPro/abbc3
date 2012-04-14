@@ -1,7 +1,7 @@
 Advanced BBCode Box 3 for phpBB3
 =================================
 
-ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and highly customizable toolbar. ABBC3 also adds many new and useful BBCodes giving users more ways to customize their posts. It also improves some of phpBB3's built-in BBCodes and also supports your own custom BBCodes. Additional features include an Image Resizer with various Lightbox styled expanders, and Auto-Embedded Video from dozens of media sites and file formats.
+ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and highly customizable toolbar. ABBC3 also adds many new and useful BBCodes giving users more ways to customize their posts. It also improves some of phpBB3's built-in BBCodes and supports your own custom BBCodes. Additional features include an Image Resizer with various Lightbox styled expanders, and Auto-Embedded Video from dozens of media sites and file formats.
 
 
 Features
@@ -14,8 +14,8 @@ Features
 * BBCodes can be assigned to certain usergroups for private use.
 * BBCodes can be assigned to the Post, Private Message and Signature editors independently.
 * Image Resizer with various lightbox styled expanders (Highslide, Lightview, Lightbox2, and Shadowbox).
-* Embed video in your posts from a URL, supports dozens of media sites and file formats (see below).
-* ABBC3 is very fast loading, and is a sleek addition to your phpBB bulletin board.
+* Embed video in your posts, supports dozens of media sites and file formats (see below).
+* ABBC3 is very fast loading and is a sleek addition to your phpBB3 bulletin board.
 
 
 ### New BBCodes
@@ -45,7 +45,7 @@ Deployment
 * Release Version 3.0.10 ([Download it here](http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/)) 
 * Development Version 3.0.11
 * It is recommended that you install only the current Release Version on a live forum.
-* Report any bugs or problems you encounter to our [Issue Tracker](http://github.com/mssti/Advanced-BBCode-Box-3/issues)
+* Report any bugs or problems you encounter to the [Issue Tracker](http://github.com/VSEphpbb/Advanced-BBCode-Box-3/issues)
 * Before adding this MOD to your forum, you should back up all files related to this MOD.
 
 
