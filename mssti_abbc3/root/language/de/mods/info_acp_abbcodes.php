@@ -134,7 +134,7 @@ $lang = array_merge($lang, array(
 
 	// ABBC3 BBCodes page
 	'ABBCODES_CONFIG'					=> 'ABBC3 Komponenteneinstellungen',
-	'ABBCODES_CONFIG_EXPLAIN'			=> 'Hier kannst du die Reihenfolge der Tags festlegen oder auch die Icons ändern.',
+	'ABBCODES_CONFIG_EXPLAIN'			=> 'Hier können Sie die Reihenfolge der BBCodes in der Symbolleiste (Drag-and-Drop die Tabellenzeilen zu organisieren) und bearbeiten Sie die Optionen für jede der BBCodes.',
 
 	'ABBCODES_EDIT'						=> 'ABBC3 BBCode bearbeiten',
 	'ABBCODES_EDIT_EXPLAIN'				=> 'Hier kannst du festlegen, wer welche BBCodes verwenden darf, sowie die Reihenfolge und das dazugehörige Icon festlegen.',
