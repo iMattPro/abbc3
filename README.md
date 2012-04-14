@@ -1,0 +1,55 @@
+Advanced BBCode Box 3 (aka ABBC3)
+=================================
+
+ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and highly customizable toolbar. ABBC3 also adds many new and useful BBCodes giving users more ways to customize their posts. It also improves some of phpBB3's built-in BBCodes and also supports your own custom BBCodes. Additional features include an Image Resizer with various Lightbox styled expanders, and Auto-Embedded Video from dozens of media sites and file formats.
+
+
+Features
+--------
+
+* Icon-based BBCode toolbar.
+* Customize the theme of the toolbar and the order/layout of your BBCodes.
+* Many new BBCodes (see below).
+* Supports phpBB3’s custom BBCodes.
+* BBCodes can be assigned to certain usergroups for private use.
+* BBCodes can be assigned to the Post, Private Message and Signature editors independently.
+* Image Resizer with various lightbox styled expanders (Highslide, Lightview, Lightbox2, and Shadowbox).
+* BBvideo - Embed video in your posts from a URL, supports dozens of media sites and file formats (see below).
+* ABBC3 is very fast loading, and is a sleek addition to your phpBB bulletin board.
+
+
+### New BBCodes
+
+	Font Family, Highlight Text, Cut, Copy, Paste, Tabs, Horizontal line, Strike through text, Superscript, Subscript, Glow, Shadow, Dropshadow, Blur, Wave, Fade text, Gradient text, Justify Align, Right Align, Center Align, Left Align, Preformat text, Indent, Scrolling text, Spoiler, Hidden, Moderator Message, Off Topic, NFO, Tables, Anchor, Email, Ed2k link, Thumbnail images, Imgshack, Rapidshare links, Click counter, Search text, BBvideo, and more.
+ 
+### Supported Video Sharing Sites
+
+	allocine.fr, blip.tv, break.com, clipfish.de, clipmoon.com, cnbc.com, cnettv.cnet.com, collegehumor.com, comedians.comedycentral.com, comedians.jokes.com, comedycentral.com, crackle.com, current.com, dailymotion.com, deviantart.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com, g4tv.com, gameprotv.com, gamespot.com, gametrailers.com, gamevideos.1up, godtube.com, gotgame.com, howcast.com, hulu.com, ign.com, kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo, photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com, scribd, sevenload.com, slideshare.net, spike.com, streetfire.net, ted.com, theonion.com, tu.tv, twitvid.com, ustream.tv, vbox7.com, veoh.com, video.google, videogamer.com, videu.de, vimeo.com, vsocial.com, wat.tv, wegame.com, xfire.com, youtu.be, youtube.com		
+
+
+Deployment
+----------
+
+* Release Version 3.0.10
+* Development Version 3.0.11
+* It is recommended that you install only the current Release Version on a live forum.
+* Report any bugs or problems you encounter to our [Issue Tracker](http://github.com/mssti/Advanced-BBCode-Box-3/issues)
+* Before adding this MOD to your forum, you should back up all files related to this MOD.
+
+
+Documentation
+-------------
+
+Complete README documentation and changelog are included in the MOD's `contrib` folder.
+
+
+Requirements
+------------
+
+* phpBB 3.0.10
+* Javascript is required by this MOD.
+
+License
+-------
+
+GNU General Public License v2
