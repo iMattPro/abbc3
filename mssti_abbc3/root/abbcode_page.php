@@ -178,8 +178,7 @@ function abbcode_click_file()
 	if(!$id)
 	{
 		$user->add_lang('mods/abbcode');
-		echo $user->lang['ABBC3_CLICK_ERROR'];
-		exit;
+		trigger_error($user->lang['ABBC3_CLICK_ERROR']);
 	}
 
 	$data_select = array(
