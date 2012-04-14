@@ -275,7 +275,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 
 	$user->add_lang(array('posting', 'mods/abbcode'));
 
-	// We only allow to the grdient bbcodes use pop-up wizard ;)
+	// The Gradient BBCode must use a wizard, so lets force it to use one if they are disabled ;)
 	if ($abbcode_bbcode == 'abbc3_grad' && $abbcode->abbcode_config['ABBC3_WIZARD_MODE'] == 0)
 	{
 		$abbcode->abbcode_config['ABBC3_WIZARD_MODE'] = 1;

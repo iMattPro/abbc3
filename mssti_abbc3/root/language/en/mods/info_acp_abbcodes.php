@@ -133,7 +133,7 @@ $lang = array_merge($lang, array(
 
 	// ABBC3 BBCodes page
 	'ABBCODES_CONFIG'					=> 'ABBC3 BBCodes',
-	'ABBCODES_CONFIG_EXPLAIN'			=> 'Here you can configure the order of the BBCodes in the BBCodes toolbar and edit the options for each of the BBCodes.',
+	'ABBCODES_CONFIG_EXPLAIN'			=> 'Here you can configure the order of the BBCodes in the toolbar (drag-and-drop the table rows to arrange) and edit the options for each of the BBCodes.',
 
 	'ABBCODES_EDIT'						=> 'ABBC3 BBCode options',
 	'ABBCODES_EDIT_EXPLAIN'				=> 'Here you can determine where this BBCode will be displayed, who can use it, and assign and icon to it.',

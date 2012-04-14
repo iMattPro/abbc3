@@ -161,10 +161,10 @@ Before adding this MOD to your forum, you should back up all files and databases
 			<link type="contrib" href="contrib/add_on_Evil_Quick_Reply.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add_on_Embossed_Buttons.xml" lang="en">Add-on : Embossed BBCode Buttons</link>
 			<link type="contrib" href="contrib/add_on_ED2K.xml" lang="en">Add-on : Enhanced ED2K links.</link>
-			<link type="contrib" href="contrib/update_3.0.8_to_3.0.10.xml" lang="en">Update Instructions (3.0.8 to 3.0.10)</link>
-			<link type="contrib" href="contrib/update_3.0.8-PL1_to_3.0.10.xml" lang="en">Update Instructions (3.0.8-PL1 to 3.0.10)</link>
-			<link type="contrib" href="contrib/update_3.0.8-PL2_to_3.0.10.xml" lang="en">Update Instructions (3.0.8-PL2 to 3.0.10)</link>
-			<link type="contrib" href="contrib/update_3.0.9.3_to_3.0.10.xml" lang="en">Update Instructions (3.0.9.3 to 3.0.10)</link>
+			<link type="contrib" href="contrib/update_3.0.8_to_3.0.11.xml" lang="en">Update Instructions (3.0.8 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.8-PL1_to_3.0.11.xml" lang="en">Update Instructions (3.0.8-PL1 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.8-PL2_to_3.0.11.xml" lang="en">Update Instructions (3.0.8-PL2 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.9.3_to_3.0.11.xml" lang="en">Update Instructions (3.0.9.3 to 3.0.11)</link>
 			<link type="contrib" href="contrib/update_3.0.10_to_3.0.11.xml" lang="en">Update Instructions (3.0.10 to 3.0.11)</link>
 		</link-group>
 	</header>
@@ -733,9 +733,9 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, you should point your
 browser to the "install_abbc3.php" installation script (or click the highlighted link
 above if you are using AutoMOD) and follow the instructions. If the installation was
-successful, you can now use your forum. Congratulations, you have installed ABBC3 successfully. 
+successful, you can now use your forum.
 
 You can configure ABBC3's settings in the ACP under the "POSTING" tab. In the left
-menu you will find a new category "ADVANCED BBCODE BOX 3" with all our settings.]]></diy-instructions>
+menu you will find the category "ADVANCED BBCODE BOX 3" with all our settings.]]></diy-instructions>
 	</action-group>
 </mod>

@@ -134,7 +134,7 @@ $lang = array_merge($lang, array(
 
 	// ABBC3 BBCodes page
 	'ABBCODES_CONFIG'					=> 'ABBC3 Componentes',
-	'ABBCODES_CONFIG_EXPLAIN'			=> 'En esta esta página puede alterar el orden de las etiquetas o editar los iconos,',
+	'ABBCODES_CONFIG_EXPLAIN'			=> 'Aquí puede configurar el orden de los BBCodes (arrastrar y soltar las filas de la tabla para organizar) y editar las opciones de cada uno de los BBCodes.',
 
 	'ABBCODES_EDIT'						=> 'ABBC3 editar bbcode',
 	'ABBCODES_EDIT_EXPLAIN'				=> 'Aquí puede determinar dónde se mostrará o quién puede utilizar y la imagen de cada uno de BBCode.',

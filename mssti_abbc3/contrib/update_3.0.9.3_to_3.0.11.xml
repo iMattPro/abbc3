@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.10 to 3.0.11]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.10 to version 3.0.11]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.9.3 to 3.0.11]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.9.3 to version 3.0.11]]></description>
 		<author-notes lang="en"><![CDATA[IMPORTANT:
 		This update includes many new icons and graphics inside the styles/abbcode folder.
 
@@ -72,6 +72,7 @@
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
+			<file name="language/en/mods/acp_abbcodes.php"/>
 			<file name="styles/abbcode/abbc3_logo.png"/>
 			<file name="styles/abbcode/abbcode_ajax_loading.gif"/>
 			<file name="styles/abbcode/greybox/*.*"/>
@@ -112,6 +113,76 @@
 			<edit>
 				<find><![CDATA[		// We need to check if ABBC3 is property initialized]]></find>
 				<action type="replace-with"><![CDATA[		// We need to check if ABBC3 is properly initialized]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+		// Check phpbb permissions status
+		// Check ABBC3 groups permission
+		// try to make it as quicky as it can be 
+		$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+		if (isset($row['bbcode_group']) && $row['bbcode_group'])
+		{
+			if (!$this->abbcode_permissions($auth_tag, $row['bbcode_group']))
+			{
+				continue;
+			}
+		}
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+		if ($abbc3 && @$config['ABBC3_MOD'])
+		{
+			// Check phpbb permissions status
+			// Check ABBC3 groups permission
+			// try to make it as quicky as it can be 
+			$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+			if (isset($row['bbcode_group']) && $row['bbcode_group'])
+			{
+				if (!$abbcode->abbcode_permissions($auth_tag, $row['bbcode_group']))
+				{
+					continue;
+				}
+			}
+		}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+		</open>
+		<open src="includes/message_parser.php">
+			<edit>
+				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
+			$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
+// MOD : MSSTI ABBC3 - End]]></remove>
+			</edit>
+			<edit>
+				<find><![CDATA[			$this->bbcodes[$row['bbcode_tag']] = array(]]></find>
+				<action type="before-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+			if ($row['bbcode_match'] == '.')
+			{
+				if (isset($this->bbcodes[$row['bbcode_tag']]) && $this->bbcodes[$row['bbcode_tag']])
+				{
+					$this->bbcodes[$row['bbcode_tag']]['bbcode_group'] = $row['bbcode_group'];
+				}
+				continue;
+			}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+		</open>
+		<open src="includes/ucp/ucp_prefs.php">
+			<edit>
+				<find><![CDATA[				$user->add_lang('mods/acp_abbcodes');]]></find>
+				<action type="replace-with"><![CDATA[				$user->add_lang('mods/info_acp_abbcodes');]]></action>
+			</edit>
+		</open>
+		<open src="language/en/acp/common.php">
+			<edit>
+				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
+$lang = array_merge($lang, array(
+	'ACP_ABBCODES'				=> 'Advanced BBcodes Box 3',
+	'ACP_ABBC3_SETTINGS'		=> 'ABBC3 Settings',
+	'ACP_ABBC3_BBCODES'			=> 'ABBC3 BBCodes',
+	'LOG_CONFIG_ABBCODES'		=> '<strong>Altered ABBC3 settings</strong>',
+	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
+));
+// MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
 		</open>
 		<open src="styles/subsilver2/template/ucp_profile_signature.html">
