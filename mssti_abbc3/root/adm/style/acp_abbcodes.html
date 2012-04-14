@@ -310,7 +310,7 @@
 	<!-- ENDIF -->
 
 	<div class="successbox" style="display:none;">
-		<img style="float:left; padding-right:8px;" src="images/accepted.png" />
+		<img style="float:left; padding-right:8px;" src="images/accepted.png" width="48" height="48" alt="" />
 		<h3>{L_INFORMATION}</h3>
 		<p>{L_ABBCODES_RESYNC_SUCCESS}</p>
     </div>
@@ -361,7 +361,7 @@
 					
 					<!-- IF not S_BBCODE_EDIT --><td><!-- IF items.TAG_NAME --><strong>{items.TAG_NAME}</strong><!-- ENDIF --></td><!-- ENDIF -->
 					<td>
-					<!-- IF items.IMG_SRC and not S_BBCODE_EDIT --><img src="{items.IMG_SRC}" title="{items.NAME}" alt="{items.NAME}" style="float: right;"/><!-- ENDIF -->
+					<!-- IF items.IMG_SRC and not S_BBCODE_EDIT --><img src="{items.IMG_SRC}" title="{items.NAME}" alt="{items.NAME}" style="float: right;" /><!-- ENDIF -->
 					<!-- IF items.TAG_NAME and S_BBCODE_EDIT --><strong>{items.TAG_NAME}</strong><!-- ELSE -->{items.TAG_EXPLAIN}<!-- ENDIF -->
 					<input type="hidden" name="id[{items.ID}]" value="{items.ID}" />
 					<input type="hidden" name="name[{items.ID}]" value="{items.NAME}" />

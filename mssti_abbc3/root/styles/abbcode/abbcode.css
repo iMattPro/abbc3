@@ -659,9 +659,10 @@ span.anchor {
 }
 
 .bbvideocontent {
-	padding-top: 5px;
+	padding: 5px;
 	background-color: #555555;
 	text-align: center;
+	line-height: 1.0em;
 	-moz-border-radius: 0 0 3px 3px;
 	-webkit-border-radius: 0 0 3px 3px;
 	border-radius: 0 0 3px 3px;

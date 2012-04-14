@@ -230,6 +230,7 @@
 								<br />These videos will be embedded into posts. 
 								<ul style="list-style-type: decimal;">
 									<li>allocine.fr</li>
+									<li>blip.tv</li>
 									<li>break.com</li>
 									<li>clipfish.de</li>
 									<li>clipmoon.com</li>
@@ -251,6 +252,7 @@
 									<li>gamevideos.1up</li>
 									<li>godtube.com</li>
 									<li>howcast.com</li>
+									<li>hulu.com</li>
 									<li>ign.com</li>
 									<li>kyte.tv</li>
 									<li>liveleak.com</li>
@@ -260,10 +262,12 @@
 									<li>myspace.com</li>
 									<li>myvideo</li>
 									<li>photobucket.com</li>
+									<li>revision3.com</li>
 									<li>rutube.ru</li>
 									<li>sapo.pt</li>
 									<li>scribd</li>
 									<li>sevenload.com</li>
+									<li>slideshare.net</li>
 									<li>theonion.com</li>
 									<li>twitvid.com</li>
 									<li>ustream.tv</li>
@@ -280,17 +284,12 @@
 									<li>youtube.com</li>
 								</ul>
 								<strong>External videos</strong>
-								<br />These videos can not be embedded into posts and instead have a nice link to it. 
+								<br />ABBC3 can not be embed these videos into posts at this time, and instead presents a nice link to the video. 
 								<ul style="list-style-type: decimal;">
-									<li>blip.tv</li>
-									<li>comedians.comedycentral.com</li>
-									<li>comedians.jokes.com</li>
+									<li>comedians.jokes.com / comedians.comedycentral.com</li>
 									<li>deviantart.com</li>
 									<li>gotgame.com</li>
-									<li>hulu.com</li>
 									<li>moddb.com</li>
-									<li>revision3.com</li>
-									<li>slideshare.net</li>
 									<li>spike.com</li>
 									<li>streetfire.net</li>
 									<li>ted.com</li>
@@ -301,14 +300,14 @@
 								<strong>File types</strong>
 								<br />These videos will be embedded into posts. 
 								<ul style="list-style-type: decimal;">
-									<li>DivX (.avi .divx .mkv)</li>
-									<li>QuickTime / MPEG (.mov .mp4 .mpeg)</li>
-									<li>Windows Media Video (.wmv)</li>
+									<li>DivX (.avi .divx .mkv) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
+									<li>QuickTime / MPEG (.mov .mp4 .mpeg) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
+									<li>Windows Media Video (.wmv) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
 									<li>Flash (.flv) <span class="bad">(Disabled by default)</span></li>
 									<li>Flash (.swf) <span class="bad">(Disabled by default)</span></li>
-									<li>QuickTime MIDI (.mid .midi)</li>
+									<li>QuickTime MIDI (.mid .midi) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
 									<li>QuickTime Audio (.mp3)</li>
-									<li>Real Audio (.ram) <span class="bad">(Disabled by default)</span></li>
+									<li>Real Audio (.ram) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
 								</ul>
 							</li>
 							<li>Scrippet <span class="bad">(Disabled by default)</span></li>
@@ -658,11 +657,11 @@ styles/prosilver/template/posting_abbcode_buttons.html
 			<div class="content">
 				<a name="abbc3_v3011"></a><h3>Changes in 3.0.11</h3>
 				<ul>
+					<li> [Feature] ABBC3 BBCodes can be arranged more easily and quickly using drag-and-drop in the ACP settings area.</li>
 					<li> [Change] Optimized the BBvideo engine to be faster and more efficient.</li>
 					<li> [Change] New BBvideos: blip.tv, break.com, cnettv.cnet.com, current.com, ebaumsworld.com, flickr.com, funnyordie.com, godtube.com, howcast.com, hulu.com, mpora.com, ted.com, theonion.com, twitvid.com, ustream.tv</li>
-					<li> [Change] Updated BBvideos: collegehumor.com, crackle.com, deviantart.com, gamespot.com, ign.com, streetfire.com, yahoo.com</li>
+					<li> [Change] Updated BBvideos: collegehumor.com, crackle.com, deviantart.com, gamespot.com, ign.com, revision3.com, slideshare.net, streetfire.com, yahoo.com</li>
 					<li> [Change] Deleted BBvideos (due to unavailability): badr.tv, filefront.com, gamepro.com, livevideo.com, machinima.com, megavideo.com, porkolt.com, revver.com, tangle.com, tinypic.com, vidilife.com</li>
-					<li> [Change] ABBC3 BBCodes can be arranged more easily and quickly using drag-and-drop in the ACP settings area.</li>
 					<li> [Change] Enhanced the ABBC3 toolbar background image preview in the ACP settings area.</li>
 					<li> [Change] Added some new background gradient images for the ABBC3 toolbar.</li>
 					<li> [Change] Support for latest versions of Highslide JS and Lightview.</li>
@@ -674,11 +673,13 @@ styles/prosilver/template/posting_abbcode_buttons.html
 					<li> [Change] Updated Off Topic BBCode, gave it a whole new look in posts and fixed a bug in it.</li>
 					<li> [Change] Improved the look/readability of the ABBC3 Help page in Prosilver.</li>
 					<li> [Change] Improved the look of the Image Resizer Info Bar.</li>
-					<li> [Change] Improved the display font and reduced size of the BBCode Help Box area that is displayed under the ABBC3 toolbar.</li>
+					<li> [Change] Improved the look of the BBCode Help Box area that is displayed under the ABBC3 toolbar.</li>
 					<li> [Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.</li>
+					<li> [Fix] Corrected padding issue with BBvideos in subsilver2.</li>
+					<li> [Fix] Revert to original width of signature post area in subsilver2 to fix an issue with uninstall errors in AutoMOD.</li>
 					<li> [Fix] Added missing language variables to Spanish and German installation instructions.</li>
 					<li> [Fix] Various general spelling and coding errors have been addressed.</li>
-					<li> [Add-On] Instructions to have YouTube videos open up with Highslide JS added to the contrib folder.</li>
+					<li> [Add-On] Instructions to have YouTube videos open up with Highslide JS, Lightview and Shadowbox added to the contrib folder.</li>
 				</ul>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 			</div>

@@ -12,15 +12,11 @@
 */
 define('UMIL_AUTO', true);
 define('IN_PHPBB', true);
-
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
-if (!defined('DEBUG'))
-{
-	@define('DEBUG', true);
-}
 
+// Start session management
 $user->session_begin();
 $auth->acl($user->data);
 $user->setup();
@@ -57,35 +53,12 @@ $options = array(
 
 // The array of versions and actions within each.
 $versions = array(
-// phpbb v3.0.0
-//	'1.0.0'		=> array(),
-//	'1.0.1'		=> array(),
-//	'1.0.2'		=> array(),
-//	'1.0.3'		=> array(),
-//	'1.0.3-VEOH'=> array(),
-//	'1.0.4'		=> array(),
-//	'1.0.5'		=> array(),
-//	'1.0.6'		=> array(),
-//	'1.0.6-b'	=> array(),
-//	'1.0.6-bFIX'=> array(),
-//	'1.0.7'		=> array(),
-//	'1.0.7-b'	=> array(),
-//	'1.0.8'		=> array(),
-// phpbb v3.0.1
-//	'1.0.9'		=> array(),
-//	'1.0.9-b'	=> array(),
-// phpbb v3.0.2
-//	'1.0.10'	=> array(),
-// phpbb v3.0.3 and v3.0.4
-//	'1.0.11'	=> array(),
-// pbpBB v3.0.5 
-//	'1.0.12'	=> array(),
-//	'3.0.6'		=> array(),	// Never released
-// phpbb v3.0.7 & v3.0.7-PL1
-//	'3.0.7-PL1'	=> array(),	// Never released
+	// Version 3.0.8
 	'3.0.8'		=> array(
 		'custom' => 'abbc3_308',
 	),
+
+	// Version 3.0.8-pl1
 	'3.0.8-pl1'		=> array(
 		// Lets remove deprecated configs
 		'config_remove' => array(
@@ -94,22 +67,38 @@ $versions = array(
 		// We have some BBCodes to update
 		'custom' => 'abbc3_bbcode_handler',
 	),
+
+	// Version 3.0.8-pl2
 	'3.0.8-pl2'		=> array(
 		// No new database changes
 	),
+
+	// Version 3.0.9.3
 	'3.0.9.3'		=> array(
 		'custom' => array(
-			'abbc3_309',		//special changes for version 3.0.9
-			'bbvideo_updater',	//enable some new BBvideo IDs
+			//special changes for version 3.0.9
+			'abbc3_309',
+			//enable some new BBvideo IDs
+			'bbvideo_updater',
 		),
 	),
+
+	// Version 3.0.10
 	'3.0.10'		=> array(
-		'custom' => 'bbvideo_updater',	//enable some new BBvideo IDs
+		//enable some new BBvideo IDs
+		'custom' => 'bbvideo_updater',
 	),
+
+	// Version 3.0.11
 	'3.0.11'		=> array(
-		// No new database changes
+		//enable some new BBvideo IDs
+		'custom' => 'bbvideo_updater',
+		
+		// purge the cache
+		'cache_purge' => array(),
 	),
 );
+
 $cache->destroy('config');
 $cache->destroy('_modules_acp');
 $cache->destroy('sql', BBCODES_TABLE);
@@ -118,36 +107,9 @@ $cache->destroy('sql', BBCODES_TABLE);
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
 
 /**
-* Display a message with a specified css class
-*
-* @param string		$lang_string	The language string to display
-* @param string		$class			The css class to apply
-* @return string					Formated html code
-*/
-function display_message($lang_string, $class)
-{
-	global $user;
-
-	return '<span class="' . $class . '">' . $user->lang[$lang_string] . '</span>';
-}
-
-/**
-* clear cache
-*/
-function cache_purge()
-{
-	global $cache, $umil;
-
-	$cache->destroy('config');
-	$cache->destroy('_modules_acp');
-	$cache->destroy('sql', BBCODES_TABLE);
-	$umil->cache_purge('template', 0);
-}
-
-/**
 * Here is our custom function that will be called for version 3.0.8
 * Because this is our first time installing through UMIL,
-* we need to do this in a non-standard way
+* we have a lot to check before installing, so use a custom function
 *
 * @param string $action The action (install|update|uninstall) will be sent through this.
 * @param string $version The version this is being run for will be sent through this.
@@ -158,14 +120,12 @@ function abbc3_308($action, $version)
 
 	$message = '';
 
-// All related to the phpbb_config table - Start
-	// Config entries
+	// CONFIG TABLE - an array of config entries (check to see if any already exists from prior version)
 	$abbc3_config_data = array(
 		'ABBC3_MOD'				=> (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: 1,
 		'ABBC3_PATH'			=> (isset($config['ABBC3_PATH']))				? $config['ABBC3_PATH']				: 'styles/abbcode',
 		'ABBC3_BG'				=> (isset($config['ABBC3_BG']))					? $config['ABBC3_BG']				: 'bg_abbc3.gif',
 		'ABBC3_TAB'				=> (isset($config['ABBC3_TAB']))				? $config['ABBC3_TAB']				: 1,
-
 		'ABBC3_BOXRESIZE'		=> (isset($config['ABBC3_BOXRESIZE']))			? $config['ABBC3_BOXRESIZE']		: 1,
 		'ABBC3_RESIZE'			=> (isset($config['ABBC3_RESIZE']))				? $config['ABBC3_RESIZE']			: 1,
 		'ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD']))		? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox',
@@ -176,28 +136,24 @@ function abbc3_308($action, $version)
 		'ABBC3_MAX_SIG_WIDTH'	=> (isset($config['ABBC3_MAX_SIG_WIDTH']))		? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'] ? $config['max_sig_img_width'] : 500),
 		'ABBC3_MAX_SIG_HEIGHT'	=> (isset($config['ABBC3_MAX_SIG_HEIGHT']))		? $config['ABBC3_MAX_SIG_HEIGHT']	: 100,
 		'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH']))		? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'] ? $config['img_max_thumb_width'] / 2 : 200),
-
 		'ABBC3_COLOR_MODE'		=> (isset($config['ABBC3_COLOR_MODE']))			? $config['ABBC3_COLOR_MODE']		: 'phpbb',
 		'ABBC3_HIGHLIGHT_MODE'	=> (isset($config['ABBC3_HIGHLIGHT_MODE']))		? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown',
-
 		'ABBC3_WIZARD_MODE'		=> (isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 1,
 		'ABBC3_WIZARD_width'	=> (isset($config['ABBC3_WIZARD_width']))		? $config['ABBC3_WIZARD_width']		: 700,
 		'ABBC3_WIZARD_height'	=> (isset($config['ABBC3_WIZARD_height']))		? $config['ABBC3_WIZARD_height']	: 400,
-
 		'ABBC3_VIDEO_width'		=> (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425,
 		'ABBC3_VIDEO_height'	=> (isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 350,
-		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;101;102;103;104;105;106;107;108;109;110;111;112;113;114;201;204;205;206;207;',
+		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;101;102;103;104;105;106;107;108;109;110;207;',
 		'ABBC3_VIDEO_WMODE'		=> (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0,
-
 		'ABBC3_UCP_MODE'		=> (isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1,
 	);
 
-	// update entries from the config table
+	// CONFIG TABLE - array of config entries that need to be updated
 	$abbc3_config_update = array(	
 		'max_post_font_size'	=> ($config['max_post_font_size'] != 0) ? (($config['max_post_font_size'] < 300) ? 300 : $config['max_post_font_size']) : 0,
 	);
 
-	// remove old entries from the config table
+	// CONFIG TABLE - array of entries from older versions of ABBC3 to remove
 	$abbc3_config_deprecated = array(	
 	//	config_name                    Created  Deprecated
 		'ABBC3_GREYBOX',			// v1.0.9	v1.0.10
@@ -205,9 +161,8 @@ function abbc3_308($action, $version)
 		'ABBC3_UPLOAD_MAX_SIZE',	// v1.0.9	v3.0.7
 		'ABBC3_UPLOAD_EXTENSION',	// v1.0.9	v3.0.7
 	);
-// All related to the phpbb_config table - End
 
-// All related to the phpbb_modules table - Start
+	// MODULES TABLE - array of ACP module settings
 	$abbc3_module_data = array(
 		// First, lets add a new category named ACP_ABBCODES to ACP_CAT_POSTING
 		array('acp', 'ACP_CAT_POSTING', 'ACP_ABBCODES'),
@@ -219,7 +174,7 @@ function abbc3_308($action, $version)
 				'module_auth'		=> 'acl_a_bbcode',
 			),
 		),
-		// Config Module
+		// BBCodes Module
 		array('acp', 'ACP_ABBCODES', array(
 				'module_basename'	=> 'abbcodes',
 				'module_langname'	=> 'ACP_ABBC3_BBCODES',
@@ -228,9 +183,8 @@ function abbc3_308($action, $version)
 			),
 		),
 	);
-// All related to the phpbb_modules table - End
 
-// All related to the new phpbb_clicks tables - Start
+	// CLICKS TABLE - array of new phpbb_clicks table settings
 	$abbc3_clicks_table = array(
 		'COLUMNS'		=> array(
 			'id'		=> array('UINT', NULL, 'auto_increment'),
@@ -242,22 +196,21 @@ function abbc3_308($action, $version)
 			'md5'		=> array('INDEX', array('url')),
 		),
 	);
-// All related to the new phpbb_clicks tables - End
 
-// All related to the phpbb_users table - Start
+	// USERS TABLE - array of columns to add to phpbb_users table
 	$abbc3_users_column_add = array(
 		'user_abbcode_mod' => array('TINT:1', 1),
 		'user_abbcode_compact' => array('TINT:1', 0),
 	);
-// All related to the phpbb_users table - End
 
-// All related to the phpbb_bbcodes table - Start
-	// remove old bbcodes from the bbcodes table
+	// BBCODES TABLE - array of BBCodes to remove from the BBCodes table if they exists from prior version
 	$abbc3_bbcode_deprecated = array(
 	//	bbcode_tag     Created  Deprecated
 		'upload', 	// v1.0.9	v3.0.7
 		'html',		// v1.0.10	v1.0.11
 	);
+
+	// BBCODES TABLE - array of new columns to add to the phpbb_bbcodes table
 	$abbc3_bbcodes_column_add = array(
 		'display_on_pm' => array('TINT:1', 1),
 		'display_on_sig' => array('TINT:1', 1),
@@ -266,8 +219,8 @@ function abbc3_308($action, $version)
 		'bbcode_order' => array('USINT', 0),
 		'bbcode_group' => array('VCHAR:255', '0'),
 	);
-// All related to the phpbb_bbcodes table - End
 
+	// let's get to work!
 	switch ($action)
 	{
 		// This is not supposed to happen, but just in case we also check for “no action”.
@@ -275,10 +228,9 @@ function abbc3_308($action, $version)
 		// This is not possible, just in case we also check for “update”.
 		case 'update':
 		case 'install':
-		// Run this when updating to ABBC3 v3.0.8
-		// All related to the phpbb_config table - Start
+
+			// CONFIG TABLE - Start
 			$config_added = false;
-			$config_updated = false;
 			foreach ($abbc3_config_data as $config_name => $config_value)
 			{
 				if (!$umil->config_exists($config_name))
@@ -286,16 +238,9 @@ function abbc3_308($action, $version)
 					$config_added = true;
 					$umil->config_add($config_name, $config_value);
 				}
-			/**
-			* Commented out for future refference :
-			* We do not need to update config values
-				else
-				{
-					$config_updated = true;
-					$umil->config_update($config_name, $config_value);
-				}
-			**/
 			}
+
+			$config_updated = false;
 			if ($config['max_post_font_size'] != $abbc3_config_update['max_post_font_size'])
 			{
 				$config_updated = true;
@@ -316,25 +261,21 @@ function abbc3_308($action, $version)
 			{
 				$cache->destroy('config');
 			}
-		// All related to the phpbb_config table - End
 
-		// All related to the phpbb_modules table - Start
+			// MODULES TABLE - Start
 			if (!$umil->module_exists('acp', 'ACP_CAT_POSTING', 'ACP_ABBCODES'))
 			{
 				$umil->module_add($abbc3_module_data);
-				// Clear the Modules Cache
 				$cache->destroy('_modules_acp');
 			}
-		// All related to the phpbb_modules table - End
 
-		// All related to the new phpbb_clicks tables - Start
+			// CLICKS TABLE - Start
 			if (!$umil->table_exists('phpbb_clicks'))
 			{
 				$umil->table_add('phpbb_clicks', $abbc3_clicks_table);
 			}
-		// All related to the new phpbb_clicks tables - End
 		
-		// All related to the phpbb_users table - Start
+			// USERS TABLE - Start
 			foreach ($abbc3_users_column_add as $abbc3_users_column_name => $abbc3_users_column_data)
 			{
 				if (!$umil->table_column_exists('phpbb_users', $abbc3_users_column_name))
@@ -342,9 +283,8 @@ function abbc3_308($action, $version)
 					$umil->table_column_add('phpbb_users', $abbc3_users_column_name, $abbc3_users_column_data);
 				}
 			}
-		// All related to the phpbb_users table - Start
 
-		// All related to the phpbb_bbcodes table - Start
+			// BBCODES TABLE - Start
 			foreach ($abbc3_bbcodes_column_add as $abbc3_bbcode_column_name => $abbc3_bbcode_column_data)
 			{
 				if (!$umil->table_column_exists('phpbb_bbcodes', $abbc3_bbcode_column_name))
@@ -384,16 +324,15 @@ function abbc3_308($action, $version)
 				$cache->destroy('sql', BBCODES_TABLE);
 			}
 
-			// After all add/update bbcodes
+			// INSTALL ALL ABBC3 BBCODES
 			$message .= abbc3_bbcode_handler($action, $version);
-		// All related to the phpbb_bbcodes table - End
 
 		break;
 
 		case 'uninstall':
-		// Run this when uninstalling
-		// All related to the phpbb_bbcodes table - Start
-
+			// Run this when uninstalling - basically the reverse of the above install case
+		
+			// BBCODES TABLE - Start
 			// Remove the ABBC3 custom BBCodes first, before uninstalling anything else
 			$message .= abbc3_bbcode_handler($action, $version);
 
@@ -417,26 +356,21 @@ function abbc3_308($action, $version)
 				$umil->table_column_remove('phpbb_bbcodes', $abbc3_bbcode_column_name);
 			}
 			$cache->destroy('sql', BBCODES_TABLE);
-		// All related to the phpbb_bbcodes table - End
 
-		// All related to the phpbb_users table - Start
+			// USERS TABLE - Start
 			foreach ($abbc3_users_column_add as $abbc3_users_column_name => $abbc3_users_column_data)
 			{
 				$umil->table_column_remove('phpbb_users', $abbc3_users_column_name);
 			}
-		// All related to the phpbb_users table - Start
 
-		// All related to the new phpbb_clicks tables - Start
+			// CLICKS TABLE - Start
 			$umil->table_remove('phpbb_clicks');
-		// All related to the new phpbb_clicks tables - End
 			
-		// All related to the phpbb_modules table - Start
+			// MODULES TABLE - Start
 			$umil->module_remove(array_reverse($abbc3_module_data));
-			// Clear the Modules Cache
 			$cache->destroy('_modules_acp');
-		// All related to the phpbb_modules table - End
 
-		// All related to the phpbb_config table - Start
+			// CONFIG TABLE - Start
 			foreach ($abbc3_config_data as $config_name => $config_value)
 			{
 				$umil->config_remove($config_name);
@@ -448,15 +382,52 @@ function abbc3_308($action, $version)
 			}
 
 			$cache->destroy('config');
-		// All related to the phpbb_config table - End
 
 		break;
 	}
 
+	// make sure cache is purged
 	cache_purge();
 
 	// return a message
 	return $message;
+}
+
+/**
+* Here is our custom function that will be called for version 3.0.9.3
+* Ibox was replaced by Shadowbox. Need to update database entries using Ibox to Shadowbox.
+*
+* @param string $action The action (install|update|uninstall) will be sent through this.
+* @param string $version The version this is being run for will be sent through this.
+*/
+function abbc3_309($action, $version)
+{
+	global $umil, $user;
+	
+	switch ($action)
+	{
+		case 'update':
+			// Get the resizer method
+			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
+			// If resizer method is set to Ibox, we need to switch it to Shadowbox
+			if ($resizer['config_value'] == 'Ibox')
+			{
+				$umil->config_update('ABBC3_RESIZE_METHOD', 'Shadowbox');
+			}
+		break;
+
+		case 'uninstall':
+			// Get the resizer method
+			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
+			// If resizer method is set to Shadowbox, we need to switch it to Ibox
+			if ($resizer['config_value'] == 'Shadowbox')
+			{
+				$umil->config_update('ABBC3_RESIZE_METHOD', 'Ibox');
+			}
+		break;
+	}
+	
+	return $user->lang['INSTALLER_RESIZE_CHECK'];
 }
 
 /**
@@ -473,13 +444,13 @@ function abbc3_bbcode_handler($action, $version)
 	{
 		case 'install':
 		case 'update':
-			// Add/update ABBC3 bbcodes
+			// Add/update ABBC3 BBCodes
 			$message .= abbc3_add_bbcodes($action, $version);
-			// Synchronise bbcode order
+			// Synchronise BBCode order
 			$message .= abbc3_sync_bbcodes();
 		break;
 
-		// Remove ALL ABBC3 bbcodes
+		// Remove ALL ABBC3 BBCodes
 		case 'uninstall':
 			global $umil, $user;
 			$umil->table_row_remove('phpbb_bbcodes', array('abbcode' => '1'));
@@ -491,7 +462,7 @@ function abbc3_bbcode_handler($action, $version)
 }
 
 /**
-* Add ABBC3 bbcodes to the bbcodes table
+* Add ABBC3 BBCodes to the BBCode table
 */
 function abbc3_add_bbcodes($action, $version)
 {
@@ -499,7 +470,7 @@ function abbc3_add_bbcodes($action, $version)
 
 	$first_bbcode_id = 0;
 
-	// Get last bbcode id - Start
+	// Get last BBCode id - Start
 	$sql = 'SELECT MAX(bbcode_id) as max_bbcode_id
 		FROM ' . BBCODES_TABLE;
 	$result = $db->sql_query($sql);
@@ -510,7 +481,7 @@ function abbc3_add_bbcodes($action, $version)
 	{
 		$next_bbcode_id = $row['max_bbcode_id'];
 
-		// Make sure it is greater than the core bbcode ids...
+		// Make sure it is greater than the core BBCode ids...
 		if ($next_bbcode_id <= NUM_CORE_BBCODES)
 		{
 			$next_bbcode_id = NUM_CORE_BBCODES;
@@ -525,7 +496,7 @@ function abbc3_add_bbcodes($action, $version)
 	{
 		trigger_error($user->lang['TOO_MANY_BBCODES']);
 	}
-	// Get last bbcode id - End
+	// Get last BBCode id - End
 
 	$bbcode_data = get_abbc3_bbcodes($action, $version);
 
@@ -561,7 +532,7 @@ function abbc3_add_bbcodes($action, $version)
 			'bbcode_group'			=> (isset($bbcode_values['bbcode_group']) ? $bbcode_values['bbcode_group'] : 0),
 		);
 
-		// Check if exist
+		// Check if exists
 		$sql = 'SELECT * 
 				FROM ' . BBCODES_TABLE . "
 				WHERE LOWER(bbcode_tag) = '" . $db->sql_escape(strtolower($sql_ary['bbcode_tag'])) . "'";
@@ -569,7 +540,7 @@ function abbc3_add_bbcodes($action, $version)
 		$row_exist = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
 
-		// if exist, check if it was updated
+		// if exists, check if it was updated
 		if ($row_exist)
 		{
 			$bbcode_id = (int) $row_exist['bbcode_id'];
@@ -595,7 +566,7 @@ function abbc3_add_bbcodes($action, $version)
 				}
 			}
 
-			// if any bbcode data is different, overwrite it, but preserve some bbcode data
+			// if any BBCode data is different, overwrite it, but preserve some BBCode data
 			if ($update)
 			{
 				($row_exist['bbcode_order'] !== $bbcode_values['bbcode_order'])												? $sql_ary['bbcode_order'] = $bbcode_values['bbcode_order']				: true;
@@ -621,6 +592,7 @@ function abbc3_add_bbcodes($action, $version)
 		}
 	}
 
+	// report what we did
 	$message = '';
 	if (sizeof($ary_bbcode_modified))
 	{
@@ -637,13 +609,13 @@ function abbc3_add_bbcodes($action, $version)
 }
 
 /**
-* Synchronise bbcode order
+* Synchronise BBCode order
 */
 function abbc3_sync_bbcodes()
 {
 	global $db, $user;
 
-	// This pseodo-bbcode should not change the position order
+	// These pseudo-BBCodes should not change the position order
 	$bbcode_tag_ary =  array('font=', 'size', 'highlight=', 'color');
 	$next_bbcode_order = sizeof($bbcode_tag_ary)+1;
 
@@ -669,43 +641,7 @@ function abbc3_sync_bbcodes()
 }
 
 /**
-* Database changes for ABBC3 v3.0.9.3
-*
-* Ibox was replaced by Shadowbox. Need to update database entries using Ibox to Shadowbox.
-*/
-function abbc3_309($action, $version)
-{
-	global $umil, $user;
-	
-	switch ($action)
-	{
-		case 'update':
-			// Get the resizer method
-			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
-			// If resizer method is set to Ibox, we need to switch it to Shadowbox
-			if ($resizer['config_value'] == 'Ibox')
-			{
-				$umil->config_update('ABBC3_RESIZE_METHOD', 'Shadowbox');
-			}
-		break;
-
-		case 'uninstall':
-			// Get the resizer method
-			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
-			// If resizer method is set to Shadowbox, we need to switch it to Ibox
-			if ($resizer['config_value'] == 'Shadowbox')
-			{
-				$umil->config_update('ABBC3_RESIZE_METHOD', 'Ibox');
-			}
-		break;
-	}
-	
-	return $user->lang['INSTALLER_RESIZE_CHECK'];
-}
-
-/**
-* Enable new BBvideo IDs - to be called any time new BBvideos are added to includes/abbcode.php
-*
+* BBvideo IDs Updater - to be called any time new BBvideos are added/removed from includes/abbcode.php
 */
 function bbvideo_updater($action, $version)
 {
@@ -714,7 +650,15 @@ function bbvideo_updater($action, $version)
 	// Array containing arrays of new BBvideo IDs added to ABBC3
 	$new_bbvideo_ids = array(
 		'3.0.9.3' => array('46','47','48','49','50'),
-		'3.0.10'  => array('51'),	
+		'3.0.10'  => array('51'),
+		'3.0.11'  => array('52', '53', '54', '55'),
+	);
+
+	// Array containing arrays of old BBvideo IDs removed from ABBC3
+	$old_bbvideo_ids = array(
+		'3.0.9.3' => array(), // no BBvideos to remove
+		'3.0.10'  => array(), // no BBvideos to remove
+		'3.0.11'  => array('111', '112', '113', '114'),
 	);
 
 	switch ($action)
@@ -726,6 +670,8 @@ function bbvideo_updater($action, $version)
 			$video_options_array = explode(';', $video_options['config_value'], -1);
 			// Merge the new BBvideos array into the array from the config
 			$video_options_array = array_merge($video_options_array, $new_bbvideo_ids[$version]);
+			// Remove the old BBvideos array from the array from the config
+			$video_options_array = array_diff($video_options_array, $old_bbvideo_ids[$version]);
 			// Remove any duplicate values
 			$video_options_array = array_unique($video_options_array);
 			// Sort the array
@@ -741,6 +687,10 @@ function bbvideo_updater($action, $version)
 			$video_options_array = explode(';', $video_options['config_value'], -1);
 			// Diff the two arrays to remove any of the new BBvideo IDs
 			$video_options_array = array_diff($video_options_array, $new_bbvideo_ids[$version]);
+			// Put back the old BBvideos from the old BBvideos array
+			$video_options_array = array_merge($video_options_array, $old_bbvideo_ids[$version]);
+			// Remove any duplicate values
+			$video_options_array = array_unique($video_options_array);
 			// Sort the array
 			asort($video_options_array);
 			// Update the database with the new settings
@@ -748,13 +698,14 @@ function bbvideo_updater($action, $version)
 		break;
 	}
 	
+	// Return a string
 	return $user->lang['INSTALLER_BBVIDEO_UPDATER'];
 }
 
 /**
-* Define all of ABBC3's custom BBCodes
+* Array defining all of ABBC3's custom BBCodes
 *
-* @return array		$bbcode_data	all bbcodes	to add
+* @return array		$bbcode_data	all BBCodes	to add
 */
 function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 {
@@ -2277,6 +2228,8 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 		*/
 		),
+
+		// BBCodes new and/or changed in version 3.0.8-pl1
 		'3.0.8-pl1' => array(
 			'search'		=> array(
 				'bbcode_tag'			=> 'search',
@@ -2405,32 +2358,37 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_group'			=> '0',
 			),
 		),
-		/*
-		'3.0.12' => array(
-			'bbcode_name' => array(
-				'bbcode_tag'			=> '',
-				'bbcode_order'			=> nn,
-				'bbcode_id'				=> true/false,
-				'bbcode_helpline'		=> 'ABBC3_XXX_TIP',
-				'bbcode_match'			=> '[xxx]{XXX}[/xxx]',
-				'bbcode_tpl'			=> '<xxx>{XXX}</xxx>',
-				'first_pass_match'		=> '!\[xxx\](.*?)\[/xxx\]!ies',
-				'first_pass_replace'	=> '\'[xxx:$uid]${1}[/xxx:$uid]\'',
-				'second_pass_match'		=> '!\[xxx:$uid\](.*?)\[/xxx:$uid\]!ies',
-				'second_pass_replace'	=> 'str_replace(array("\r\n", "\n", "<br />", "<br />"), "\r", htmlspecialchars_decode(\'$1\'))',
-				'display_on_posting'	=> true/false,
-				'display_on_pm'			=> true/false,
-				'display_on_sig'		=> true/false,
-				'abbcode'				=> 1,
-				'bbcode_image'			=> 'xxxx.gif',
-				'bbcode_group'			=> '0',
-			),
-		),
-		*/
 	);
 
+	// return a string
 	return $bbcode_data[$version];
+}
 
+/**
+* Display a message with a specified css class
+*
+* @param string		$lang_string	The language string to display
+* @param string		$class			The css class to apply
+* @return string					Formated html code
+*/
+function display_message($lang_string, $class)
+{
+	global $user;
+
+	return '<span class="' . $class . '">' . $user->lang[$lang_string] . '</span>';
+}
+
+/**
+* clear cache
+*/
+function cache_purge()
+{
+	global $cache, $umil;
+
+	$cache->destroy('config');
+	$cache->destroy('_modules_acp');
+	$cache->destroy('sql', BBCODES_TABLE);
+	$umil->cache_purge('template', 0);
 }
 
 ?>

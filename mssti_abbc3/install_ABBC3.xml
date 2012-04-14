@@ -39,14 +39,14 @@ Before adding this MOD to your forum, you should back up all files and databases
 		</installation>
 		<history>
 			<entry>
-				<date>2012-04-09</date>
+				<date>2012-04-11</date>
 				<rev-version>3.0.11</rev-version>
 				<changelog lang="en">
+					<change><![CDATA[[Feature] ABBC3 BBCodes can be arranged more easily and quickly using drag-and-drop in the ACP settings area.]]></change>
 					<change><![CDATA[[Change] Optimized the BBvideo engine to be faster and more efficient.]]></change>
 					<change><![CDATA[[Change] New BBvideos: blip.tv, break.com, cnettv.cnet.com, current.com, ebaumsworld.com, flickr.com, funnyordie.com, godtube.com, howcast.com, hulu.com, mpora.com, ted.com, theonion.com, twitvid.com, ustream.tv]]></change>
-					<change><![CDATA[[Change] Updated BBvideos: collegehumor.com, crackle.com, deviantart.com, gamespot.com, ign.com, streetfire.com, yahoo.com]]></change>
+					<change><![CDATA[[Change] Updated BBvideos: collegehumor.com, crackle.com, deviantart.com, gamespot.com, ign.com, revision3.com, slideshare.net, streetfire.com, yahoo.com]]></change>
 					<change><![CDATA[[Change] Deleted BBvideos (due to unavailability): badr.tv, filefront.com, gamepro.com, livevideo.com, machinima.com, megavideo.com, porkolt.com, revver.com, tangle.com, tinypic.com, vidilife.com]]></change>
-					<change><![CDATA[[Change] ABBC3 BBCodes can be arranged more easily and quickly using drag-and-drop in the ACP settings area.]]></change>
 					<change><![CDATA[[Change] Enhanced the ABBC3 toolbar background image preview in the ACP settings area.]]></change>
 					<change><![CDATA[[Change] Added some new background gradient images for the ABBC3 toolbar.]]></change>
 					<change><![CDATA[[Change] Support for latest versions of Highslide JS and Lightview.]]></change>
@@ -58,8 +58,10 @@ Before adding this MOD to your forum, you should back up all files and databases
 					<change><![CDATA[[Change] Updated Off Topic BBCode, gave it a whole new look in posts and fixed a bug in it.]]></change>
 					<change><![CDATA[[Change] Improved the look/readability of the ABBC3 Help page in Prosilver.]]></change>
 					<change><![CDATA[[Change] Improved the look of the Image Resizer Info Bar.]]></change>
-					<change><![CDATA[[Change] Improved the display font and reduced size of the BBCode Help Box area that is displayed under the ABBC3 toolbar.]]></change>
+					<change><![CDATA[[Change] Improved the look of the BBCode Help Box area that is displayed under the ABBC3 toolbar.]]></change>
 					<change><![CDATA[[Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.]]></change>
+					<change><![CDATA[[Fix] Corrected padding issue with BBvideos in subsilver2.]]></change>
+					<change><![CDATA[[Fix] Revert to original width of signature post area in subsilver2 to fix an issue with uninstall errors in AutoMOD.]]></change>
 					<change><![CDATA[[Fix] Added missing language variables to Spanish and German installation instructions.]]></change>
 					<change><![CDATA[[Fix] Various general spelling and coding errors have been addressed.]]></change>
 					<change><![CDATA[[Add-On] Instructions to have YouTube videos open up with Highslide JS, Lightview and Shadowbox added to the contrib folder.]]></change>
@@ -728,44 +730,12 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-		<diy-instructions lang="en"><![CDATA[A) Database update:
+		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, you should point your
+browser to the "install_abbc3.php" installation script (or click the highlighted link
+above if you are using AutoMOD) and follow the instructions. If the installation was
+successful, you can now use your forum. Congratulations, you have installed ABBC3 successfully. 
 
-	1)	Once all the files have been modified and uploaded to your site,
-		you should point your browser to the install_abbc3.php installation
-		script (or click the hi-lighted link above if you are using AutoMOD)
-	2)	When you have done this you should see the phpBB3 ABBC3 Installation
-		screen appear, follow the instructions.
-		If the installation was successful, you can now use your forum.
-		Congratulations, you have installed phpBB3 ABBC3 successfully. 
-		But there is still work ahead!
-	3)	You should remove/rename the installation script (install_abbc3.php)
-		from your server.
-
-#####################################################################
-B) Refresh the templates:
-
-	1)	Navigate to "STYLES" tab.
-	2)	Under "STYLE COMPONENTS" click on "Templates".
-	3)	Under "Actions" click on "Refresh".
-	4)	In the next screen, click on "Yes" (Repeat last 2 steps for each
-		installed style).
-
-#####################################################################
-C) Purge the cache:
-
-	1)	Navigate to "GENERAL" tab
-	2)	Look for "Purge the cache"
-	3)	Click the "Run Now" button
-	4)	In the next screen, click on "Yes"
-
-#####################################################################
-D) Set up ABBC3's options to best suit your needs:
-
-	1)	Navigate to "POSTING" tab
-	2)	In the left menu you will find a new category "ADVANCED BBCODE BOX 3"
-	3)	In ABBC3 Settings you can configure ABBC3's general settings
-		including the Wizards, Image Resizer and BBvideo.
-	4)	In ABBC3 BBCodes you can configure the order of the BBCodes in the
-		BBCodes toolbar and edit the options for each of the BBCodes.]]></diy-instructions>
+You can configure ABBC3's settings in the ACP under the "POSTING" tab. In the left
+menu you will find a new category "ADVANCED BBCODE BOX 3" with all our settings.]]></diy-instructions>
 	</action-group>
 </mod>

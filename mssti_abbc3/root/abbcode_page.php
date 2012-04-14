@@ -149,7 +149,7 @@ function force_parse($text)
 * 
 * @return bbcode tag with link
 * 
-* THIS FUNTION IS DEPRECATED SINCE VERSION 3.0.7 ! suggested by MOD Team 
+* THIS FUNCTION IS DEPRECATED AS OF VERSION 3.0.7! suggested by MOD Team 
 * So warn the user about this if he is still using the old database
 */
 function abbcode_upload_file($form_name, $text_name)
@@ -169,8 +169,8 @@ function abbcode_click_file()
 {
 	global $db, $user;
 
-	header("Cache-Control: no-cache, must-revalidate");
-	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+	header('Cache-Control: no-cache, must-revalidate');
+	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
 
 	// Initial var setup
 	$id	= request_var('id', 0);
@@ -178,12 +178,11 @@ function abbcode_click_file()
 	if(!$id)
 	{
 		$user->add_lang('mods/abbcode');
-		echo $user->lang['ABBC3_CLICK_ERROR'];
-		exit;
+		trigger_error($user->lang['ABBC3_CLICK_ERROR']);
 	}
 
 	$data_select = array(
-		'id' 	=> $id,
+		'id' => $id,
 	);
 
 	$sql = 'SELECT url, clicks 
@@ -194,7 +193,7 @@ function abbcode_click_file()
 	$db->sql_freeresult($result);
 
 	$data_update = array(
-		'clicks' 	=> $row['clicks'] + 1,
+		'clicks' => $row['clicks'] + 1,
 	);
 
 	$sql = 'UPDATE ' . CLICKS_TABLE . ' 
@@ -210,8 +209,8 @@ function abbcode_click_file()
 		$row['url'] = 'http://' . $row['url'];
 	}
 
-	header("Status: 301 Moved Permanently", false, 301);
-	header("Location: " . trim($row['url']));
+	header('Status: 301 Moved Permanently', false, 301);
+	header('Location: ' . trim($row['url']));
 	exit;
 }
 
@@ -335,7 +334,6 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 				{
 					continue;
 				}
-				$video_name = stripslashes($video_name);
 
 				if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
 				{

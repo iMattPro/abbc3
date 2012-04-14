@@ -121,7 +121,7 @@ $lang = array_merge($lang, array(
 
 	'ABBCODES_VIDEO_ERROR'				=> '<strong>Error:</strong> There are too many BBvideos selected. Deselect some BBvideos and try again.',
 	'ABBCODES_VIDEO_SIZE'				=> 'Video dimensions',
-	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.',
+	'ABBCODES_VIDEO_SIZE_EXPLAIN'		=> 'Default width and height for posted video.<br />Standard: 425 x 350. Widescreen: 560 x 340.',
 	'ABBCODES_VIDEO_ALLOWED'			=> 'Video types allowed',
 	'ABBCODES_VIDEO_ALLOWED_EXPLAIN'	=> 'Select the video sites and/or formats you would like to allow users to embed in their posts when the BBvideo BBCode is enabled <em class="error">(*)</em>',
 	'ABBCODES_VIDEO_ALLOWED_NOTE'		=> '<em class="error">(*)</em> In order to select (or deselect) multiple items, you must CTRL+CLICK (or CMD+CLICK on Mac) items to add them. If you forget to hold down CTRL/CMD when clicking an item, then all the previously selected items will be deselected.',
