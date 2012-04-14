@@ -56,7 +56,7 @@ class acp_abbcodes
 		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'] ? $config['img_max_thumb_width'] / 2 : 200);
 		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		? $config['ABBC3_COLOR_MODE']		: 'phpbb';
 		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown';
-		$config['ABBC3_WIZARD_MODE']		= (isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 1;
+		$config['ABBC3_WIZARD_MODE']		= (isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 2;
 		$config['ABBC3_WIZARD_width']		= (isset($config['ABBC3_WIZARD_width']))	? $config['ABBC3_WIZARD_width']		: 700;
 		$config['ABBC3_WIZARD_height']		= (isset($config['ABBC3_WIZARD_height']))	? $config['ABBC3_WIZARD_height']	: 400;
 		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425;
