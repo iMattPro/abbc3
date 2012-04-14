@@ -775,8 +775,6 @@ function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
 
 		foreach ($abbcode_video_ary as $video_name => $video_data)
 		{
-			$video_name = stripslashes($video_name);
-		
 			// Get option group labels
 			if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
 			{

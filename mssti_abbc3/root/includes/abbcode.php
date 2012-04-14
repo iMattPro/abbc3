@@ -904,8 +904,8 @@ class abbcode
 	{
 		global $user;
 
-		$in	 = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in)) ;
-		return str_replace(array('{SPOILER_SHOW}', '{LA_SPOILER_SHOW}', '{LA_SPOILER_HIDE}', '{SPOILER_TEXT}'), array($user->lang['SPOILER_SHOW'], "'" . addslashes($user->lang['SPOILER_SHOW']) . "'", "'" . addslashes($user->lang['SPOILER_HIDE']) . "'", $in), $this->bbcode_tpl('spoiler'));
+		$in	 = str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($in));
+		return str_replace(array('{SPOILER_SHOW}', '{LA_SPOILER_SHOW}', '{LA_SPOILER_HIDE}', '{SPOILER_TEXT}'), array($user->lang['SPOILER_SHOW'], "'" . $user->lang['SPOILER_SHOW'] . "'", "'" . $user->lang['SPOILER_HIDE'] . "'", $in), $this->bbcode_tpl('spoiler'));
 	}
 
 	/**

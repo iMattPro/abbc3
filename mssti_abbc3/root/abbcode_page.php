@@ -334,7 +334,6 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 				{
 					continue;
 				}
-				$video_name = stripslashes($video_name);
 
 				if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
 				{
