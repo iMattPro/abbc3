@@ -2029,7 +2029,7 @@ class abbcode
 	{
 		$oembed_contents = @file_get_contents($url);
 		$oembed_data 	 = @json_decode($oembed_contents);
-		$embed_code 	 = isset($oembed_data) ? $oembed_data->html : '';
+		$embed_code 	 = (isset($oembed_data)) ? $oembed_data->html : '';
 		$embed_code 	 = preg_replace(array('/width="([0-9]{1,4})"/i', '/height="([0-9]{1,4})"/i'), array('width="' . $width . '"', 'height="' . $height . '"'), $embed_code);
 		return $embed_code;	
 	}
@@ -2159,7 +2159,7 @@ class abbcode
 
 				// create the icon image tag
 				$video_image = $video_image_path . '/images/' . $video_data['image'];
-				$video_image = file_exists($video_image) ? '<img src="' . $video_image . '" class="postimage" alt="" width="20" height="20" /> ' : '';
+				$video_image = (file_exists($video_image)) ? '<img src="' . $video_image . '" class="postimage" alt="" width="20" height="20" /> ' : '';
 				
 				// create a link to the video
 				if ($video_data['id'] > 200)

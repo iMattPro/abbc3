@@ -169,8 +169,8 @@ function abbcode_click_file()
 {
 	global $db, $user;
 
-	header("Cache-Control: no-cache, must-revalidate");
-	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+	header('Cache-Control: no-cache, must-revalidate');
+	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
 
 	// Initial var setup
 	$id	= request_var('id', 0);
@@ -209,8 +209,8 @@ function abbcode_click_file()
 		$row['url'] = 'http://' . $row['url'];
 	}
 
-	header("Status: 301 Moved Permanently", false, 301);
-	header("Location: " . trim($row['url']));
+	header('Status: 301 Moved Permanently', false, 301);
+	header('Location: ' . trim($row['url']));
 	exit;
 }
 
