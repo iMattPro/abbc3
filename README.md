@@ -1,4 +1,4 @@
-Advanced BBCode Box 3 (aka ABBC3)
+Advanced BBCode Box 3 for phpBB3
 =================================
 
 ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and highly customizable toolbar. ABBC3 also adds many new and useful BBCodes giving users more ways to customize their posts. It also improves some of phpBB3's built-in BBCodes and also supports your own custom BBCodes. Additional features include an Image Resizer with various Lightbox styled expanders, and Auto-Embedded Video from dozens of media sites and file formats.
@@ -14,17 +14,17 @@ Features
 * BBCodes can be assigned to certain usergroups for private use.
 * BBCodes can be assigned to the Post, Private Message and Signature editors independently.
 * Image Resizer with various lightbox styled expanders (Highslide, Lightview, Lightbox2, and Shadowbox).
-* BBvideo - Embed video in your posts from a URL, supports dozens of media sites and file formats (see below).
+* Embed video in your posts from a URL, supports dozens of media sites and file formats (see below).
 * ABBC3 is very fast loading, and is a sleek addition to your phpBB bulletin board.
 
 
 ### New BBCodes
 
-	Font Family, Highlight Text, Cut, Copy, Paste, Tabs, Horizontal line, Strike through text, Superscript, Subscript,
-	Glow, Shadow, Dropshadow, Blur, Wave, Fade text, Gradient text, Justify Align, Right Align, Center Align,
-	Left Align, Preformat text, Indent, Scrolling text, Spoiler, Hidden, Moderator Message, Off Topic, NFO,
-	Tables, Anchor, Email, Ed2k link, Thumbnail images, Imgshack, Rapidshare links, Click counter, Search
-	text, BBvideo, and more.
+	Font Family, Highlight Text, Cut, Copy, Paste, Tabs, Horizontal line, Strike through text, Superscript,
+	Subscript, Glow, Shadow, Dropshadow, Blur, Wave, Fade text, Rainbow text, Justify Align, Right Align,
+	Center Align, Left Align, Preformat text, Indent, Scrolling text, Spoiler, Hidden, Moderator Message,
+	Off Topic, NFO, Tables, Anchor, Email, Ed2k links, Thumbnail images, Imgshack, Rapidshare links, Click
+	counter, Search text, BBvideo, and more.
  
 ### Supported Video Sharing Sites
 
@@ -42,7 +42,7 @@ Features
 Deployment
 ----------
 
-* Release Version 3.0.10
+* Release Version 3.0.10 ([Download it here](http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/)) 
 * Development Version 3.0.11
 * It is recommended that you install only the current Release Version on a live forum.
 * Report any bugs or problems you encounter to our [Issue Tracker](http://github.com/mssti/Advanced-BBCode-Box-3/issues)
