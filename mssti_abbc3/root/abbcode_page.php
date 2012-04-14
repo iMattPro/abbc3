@@ -149,7 +149,7 @@ function force_parse($text)
 * 
 * @return bbcode tag with link
 * 
-* THIS FUNTION IS DEPRECATED SINCE VERSION 3.0.7 ! suggested by MOD Team 
+* THIS FUNCTION IS DEPRECATED AS OF VERSION 3.0.7! suggested by MOD Team 
 * So warn the user about this if he is still using the old database
 */
 function abbcode_upload_file($form_name, $text_name)
@@ -182,7 +182,7 @@ function abbcode_click_file()
 	}
 
 	$data_select = array(
-		'id' 	=> $id,
+		'id' => $id,
 	);
 
 	$sql = 'SELECT url, clicks 
@@ -193,7 +193,7 @@ function abbcode_click_file()
 	$db->sql_freeresult($result);
 
 	$data_update = array(
-		'clicks' 	=> $row['clicks'] + 1,
+		'clicks' => $row['clicks'] + 1,
 	);
 
 	$sql = 'UPDATE ' . CLICKS_TABLE . ' 
