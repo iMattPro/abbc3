@@ -216,8 +216,5 @@ Before adding this MOD to your forum, you should back up all files and databases
 				</inline-edit>
 			</edit>
 		</open>
-		<diy-instructions lang="en"><![CDATA[IMPORTANT !
-
-Make sure you follow the DIY instruction in the main install_ABBC3.xml file.]]></diy-instructions>
 	</action-group>
 </mod>

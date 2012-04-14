@@ -733,9 +733,9 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, you should point your
 browser to the "install_abbc3.php" installation script (or click the highlighted link
 above if you are using AutoMOD) and follow the instructions. If the installation was
-successful, you can now use your forum. Congratulations, you have installed ABBC3 successfully. 
+successful, you can now use your forum.
 
 You can configure ABBC3's settings in the ACP under the "POSTING" tab. In the left
-menu you will find a new category "ADVANCED BBCODE BOX 3" with all our settings.]]></diy-instructions>
+menu you will find the category "ADVANCED BBCODE BOX 3" with all our settings.]]></diy-instructions>
 	</action-group>
 </mod>
