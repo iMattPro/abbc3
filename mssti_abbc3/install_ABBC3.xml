@@ -37,7 +37,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</installation>
 		<history>
 			<entry>
-				<date>2012-04-11</date>
+				<date>2012-04-15</date>
 				<rev-version>3.0.11</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Feature] ABBC3 BBCodes can be arranged more easily and quickly using drag-and-drop in the ACP settings area.]]></change>
@@ -46,20 +46,20 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 					<change><![CDATA[[Change] Updated BBvideos: collegehumor.com, crackle.com, deviantart.com, gamespot.com, ign.com, revision3.com, slideshare.net, streetfire.com, yahoo.com]]></change>
 					<change><![CDATA[[Change] Deleted BBvideos (due to unavailability): badr.tv, filefront.com, gamepro.com, livevideo.com, machinima.com, megavideo.com, porkolt.com, revver.com, tangle.com, tinypic.com, vidilife.com]]></change>
 					<change><![CDATA[[Change] Enhanced the ABBC3 toolbar background image preview in the ACP settings area.]]></change>
-					<change><![CDATA[[Change] Added some new background gradient images for the ABBC3 toolbar.]]></change>
-					<change><![CDATA[[Change] Support for latest versions of Highslide JS and Lightview.]]></change>
-					<change><![CDATA[[Change] Removed PopBox support from ABBC3 because it is no longer supported.]]></change>
-					<change><![CDATA[[Change] Removed GreyBox support from ABBC3 because it is old and did not work well cross-browser.]]></change>
+					<change><![CDATA[[Change] Added 9 new background gradient images for the ABBC3 toolbar.]]></change>
+					<change><![CDATA[[Change] Support for the latest versions of Highslide JS and Lightview.]]></change>
+					<change><![CDATA[[Change] Removed PopBox from ABBC3 because it is no longer supported.]]></change>
+					<change><![CDATA[[Change] Removed GreyBox from ABBC3 because it is old and did not work well cross-browser.]]></change>
 					<change><![CDATA[[Change] Separated AdvancedBox JS into standalone script (saves bandwidth).]]></change>
 					<change><![CDATA[[Change] Updated Blur BBCode for cross-browser compatibility with all browsers.]]></change>
 					<change><![CDATA[[Change] Updated Wave BBCode, the effect is disabled in all except IE because it is only supported in IE.]]></change>
-					<change><![CDATA[[Change] Updated Off Topic BBCode, gave it a whole new look in posts and fixed a bug in it.]]></change>
-					<change><![CDATA[[Change] Improved the look/readability of the ABBC3 Help page in Prosilver.]]></change>
+					<change><![CDATA[[Change] Updated Off Topic BBCode, gave it a whole new look in posts and fixed a language bug in it.]]></change>
+					<change><![CDATA[[Change] Improved the look/readability of the ABBC3 BBCodes Help page in Prosilver.]]></change>
 					<change><![CDATA[[Change] Improved the look of the Image Resizer Info Bar.]]></change>
-					<change><![CDATA[[Change] Improved the look of the BBCode Help Box area that is displayed under the ABBC3 toolbar.]]></change>
-					<change><![CDATA[[Change] Removed dead links to the MSSTI website and updated example video links that linked to content at MSSTI.]]></change>
-					<change><![CDATA[[Fix] Corrected padding issue with BBvideos in subsilver2.]]></change>
-					<change><![CDATA[[Fix] Revert to original width of signature post area in subsilver2 to fix an issue with uninstall errors in AutoMOD.]]></change>
+					<change><![CDATA[[Change] Improved the look of the BBCode Help Box area that displays BBCode hints under the ABBC3 toolbar.]]></change>
+					<change><![CDATA[[Change] Removed dead links to MSSTI.com and updated example BBvideo links that linked to content at MSSTI.com]]></change>
+					<change><![CDATA[[Fix] Corrected a padding issue with BBvideos in subsilver2.]]></change>
+					<change><![CDATA[[Fix] Revert to default width of signature post area in subsilver2 to fix an issue with uninstall errors in AutoMOD.]]></change>
 					<change><![CDATA[[Fix] Added missing language variables to Spanish and German installation instructions.]]></change>
 					<change><![CDATA[[Fix] Various general spelling and coding errors have been addressed.]]></change>
 					<change><![CDATA[[Add-On] Instructions to have YouTube videos open up with Highslide JS, Lightview and Shadowbox added to the contrib folder.]]></change>
@@ -152,7 +152,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 			</entry>
 		</history>
 		<link-group>
-			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2 Edits</link>
+			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2 instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">German language pack</link>
 			<link type="contrib" href="contrib/add_on_YouTube_Lightboxes.xml" lang="en">Add-on : Open YouTube videos with Lightboxes</link>
