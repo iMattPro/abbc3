@@ -236,12 +236,12 @@ $lang = array_merge($lang, array(
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
 		<diy-instructions lang="en"><![CDATA[Don't forget to run the install_abbc3.php installation script (click the highlighted link above if you are using AutoMOD)
 
-SUPPORT FOR NEW VERSIONS OF LIGHTBOX SCRIPTS HAS BEEN ADDED:
+SUPPORT FOR NEW VERSIONS OF IMAGE RESIZER SCRIPTS HAS BEEN ADDED:
 Highslide v4.1.13: download a new "highslide-full.js" at http://highslide.com/download.php
 LightView v2.80: download a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
 LightBox v2.05: get a new "lightbox.js" at http://www.lokeshdhakar.com/projects/lightbox2/#download
 
-END OF SUPPORT FOR OLDER LIGHTBOX SCRIPTS:
+END OF SUPPORT FOR OLDER IMAGE RESIZER SCRIPTS:
 PopBox has been removed from ABBC3.
 GreyBox has been removed from ABBC3.
 Ibox has been removed from ABBC3.

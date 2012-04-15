@@ -104,7 +104,7 @@ $lang = array_merge($lang, array(
 													'none'			=> 'No resize'),
 
 	'NO_EXIST_EXPLAIN_ADVANCEDBOX'		=> 'The file <strong>AdvancedBox.js</strong> is not in the <em>%1$s</em> folder',
-	'NO_EXIST_EXPLAIN_OTHERS'			=> 'The file <strong>%1$s version %2$s</strong> is not present in the <em>%3$s</em> folder.<br />If you wish to use %4$s, you must first download the %4$s file(s) from <a href="%5$s" onclick="window.open(this.href);return false;">here</a> and upload the downloaded file(s) into the <em>%3$s</em> directory.',
+	'NO_EXIST_EXPLAIN_OTHERS'			=> 'The file <strong style="font-size:1.1em;">%1$s version %2$s</strong> is not present in the <em>%3$s</em> folder.<br />If you wish to use %4$s, you must download the %4$s file(s) from <a href="%5$s" onclick="window.open(this.href);return false;">here</a> and upload <strong style="font-size:1.1em;">%1$s</strong> into the <em>%3$s</em> directory.',
 
 	'ABBCODES_MAX_IMAGE_WIDTH'			=> 'Maximum image width in pixels',
 	'ABBCODES_MAX_IMAGE_WIDTH_EXPLAIN'	=> 'Images will be resized if they exceed the width set here. Set to 0 to disable checking this dimension.',

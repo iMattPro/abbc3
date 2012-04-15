@@ -321,7 +321,7 @@ class acp_abbcodes
 			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.1.13", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
 
 			'LITEBOX_EXIST'						=> (@file_exists("$this->dir/lightbox/lightbox.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_LITEBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightbox.js", "2.05", "{$board_path}lightbox/", "Lightbox2 JS", "http://www.lokeshdhakar.com/projects/lightbox2/#download"),
+			'L_NO_EXIST_EXPLAIN_LITEBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightbox.js", "2.05", "{$board_path}lightbox/", "Lightbox2", "https://github.com/lokesh/lightbox2/tags"),
 
 			'LIGHTVIEW_EXIST'					=> (@file_exists("$this->dir/lightview/js/lightview.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.8.0", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),

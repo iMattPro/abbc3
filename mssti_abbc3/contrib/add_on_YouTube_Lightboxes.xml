@@ -49,7 +49,7 @@
 				<action type="before-add"><![CDATA[				// For youtube in highslide/lightview/shadowbox popups
 				if (($video_name === 'youtube.com' || $video_name === 'youtu.be') && $this->abbcode_config['S_ABBC3_RESIZE'] && ($this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'HighslideBox' || $this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'Lightview' || $this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'Shadowbox'))
 				{
-					$identifier = preg_match('#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#si', $in, $matches) ? $matches[5] : (preg_match('#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#is', $in, $matches) ? $matches[1] : '');							  
+					$identifier = (preg_match('#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#si', $in, $matches)) ? $matches[5] : (preg_match('#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#is', $in, $matches) ? $matches[1] : '');							  
 					$bb_thumb = 'http://img.youtube.com/vi/' . $identifier . '/2.jpg';
 
 					switch ($this->abbcode_config['S_ABBC3_RESIZE_METHOD'])
@@ -57,7 +57,7 @@
 						case 'HighslideBox':
 							$bb_class = 'highslide';
 							$bb_link = 'http://www.youtube.com/embed/' . $identifier . '?rel=0&amp;wmode=transparent&amp;autoplay=1';
-							$bb_attribs = 'onclick="return hs.htmlExpand(this, {objectType: \'iframe\', width: ' . ($video_width + 10) . ', height: ' . ($video_height + 10) . ', allowSizeReduction: false, wrapperClassName: \'draggable-header no-footer\', preserveContent: false, objectLoadTime: \'after\'})"';
+							$bb_attribs = 'onclick="return hs.htmlExpand(this, {objectType: \'iframe\', width: ' . ($video_width + 10) . ', height: ' . ($video_height + 10) . ', allowSizeReduction: false, wrapperClassName: \'draggable-header no-footer\', numberPosition: null, preserveContent: false, objectLoadTime: \'after\'})"';
 						break;
 
 						case 'Lightview':
