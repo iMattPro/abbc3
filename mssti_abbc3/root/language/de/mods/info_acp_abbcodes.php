@@ -105,7 +105,7 @@ $lang = array_merge($lang, array(
 													'none'			=> 'Nicht ändern'),
 
 	'NO_EXIST_EXPLAIN_ADVANCEDBOX'		=> 'Die Datei <strong>AdvancedBox.js</strong> ist nicht im Verzeichnis <em>%1$s</em> vorhanden',
-	'NO_EXIST_EXPLAIN_OTHERS'			=> 'Die Date <strong>%1$s version %2$s</strong> ist nicht im Verzeichnis <em>%3$s</em> vorhanden<br />Wenn du %4$s verwenden willst, musst du erst die Datei(en) von %4$s von <a href="%5$s" onclick="window.open(this.href);return false;">hier</a> downloaden und sie dann in das Verzeichnis <em>%3$s</em> hochladen.',
+	'NO_EXIST_EXPLAIN_OTHERS'			=> 'Die Date <strong style="font-size:1.1em;">%1$s version %2$s</strong> ist nicht im Verzeichnis <em>%3$s</em> vorhanden<br />Wenn du %4$s verwenden willst, musst du erst die Datei(en) von %4$s von <a href="%5$s" onclick="window.open(this.href);return false;">hier</a> downloaden und sie dann in das Verzeichnis <em>%3$s</em> hochladen.',
 
 	'ABBCODES_MAX_IMAGE_WIDTH'			=> 'Maximale Bildbreite in Pixeln',
 	'ABBCODES_MAX_IMAGE_WIDTH_EXPLAIN'	=> 'Die Größe des Bildes wird verändert, sobald die Breite des Bildes den hier eingestellten Wert überschreitet.',

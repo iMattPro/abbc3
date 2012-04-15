@@ -105,7 +105,7 @@ $lang = array_merge($lang, array(
 													'none'			=> 'No redimensionar'),
 
 	'NO_EXIST_EXPLAIN_ADVANCEDBOX'		=> 'El archivo <strong>AdvancedBox.js</strong> no está en la carpeta <em>%1$s</em>',
-	'NO_EXIST_EXPLAIN_OTHERS'			=> 'El archivo <strong>%1$s versión %2$s</strong>, no está presente en la caprpeta <em>%3$s</em><br />Si desea utilizar %4$s, usted debe descargar primero el/los archivo/s %4$s desde <a href="%5$s" onclick="window.open(this.href);return false;">here</a> y subir el/los archivos descargados en el directorio <em>%3$s</em>.',
+	'NO_EXIST_EXPLAIN_OTHERS'			=> 'El archivo <strong style="font-size:1.1em;">%1$s versión %2$s</strong>, no está presente en la caprpeta <em>%3$s</em><br />Si desea utilizar %4$s, usted debe descargar primero el/los archivo/s %4$s desde <a href="%5$s" onclick="window.open(this.href);return false;">here</a> y subir <strong style="font-size:1.1em;">%1$s</strong> en el directorio <em>%3$s</em>.',
 
 	'ABBCODES_MAX_IMAGE_WIDTH'			=> 'Ancho máximo de la imagen en píxeles',
 	'ABBCODES_MAX_IMAGE_WIDTH_EXPLAIN'	=> 'Cambiar el tamaño de las imágenes si el ancho es superior al establecido aquí.',
