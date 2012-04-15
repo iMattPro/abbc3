@@ -7,12 +7,10 @@
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3)]]></title>
-		<description lang="en"><![CDATA[ABBC3 gives the BBCode buttons a toolbar and icon style appearance, adds many new and useful BBCode features and adds more ways to customize posts. It also improves some of phpBB's built in BBCodes and also supports phpBB's custom BBCodes feature. Additional features include an automatic image resizer option with various lightbox styled expanders, auto-embedded video for dozens of media sites and file formats, and a highly customizable ACP settings area. ABBC3 is a sleek addition to your phpBB bulletin board. Javascript is required by this MOD.]]></description>
+		<description lang="en"><![CDATA[ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and highly customizable toolbar. ABBC3 also adds many new and useful BBCodes giving users more ways to customize their posts. It also improves some of phpBB3's built-in BBCodes and supports your own custom BBCodes. Additional features include an Image Resizer with various Lightbox styled expanders, and Auto-Embed Video for dozens of media sites and file formats. ABBC3 is a sleek addition to your phpBB bulletin board. Javascript is required by this MOD.]]></description>
 		<author-notes lang="en"><![CDATA[To learn more about ABBC3, please read the contrib/docs/README.HTML
 -------------------------------------------------------------------
-WARNING: Please be advised that this MOD might overwrite some custom BBCodes you already have and as a result, those BBCodes might not display correctly due to the changes introduced by ABBC3's BBCodes. If you are using custom BBCodes, please read the contrib/docs/README.HTML file for more information before you proceed.
--------------------------------------------------------------------
-Before adding this MOD to your forum, you should back up all files and databases related to this MOD.]]></author-notes>
+WARNING: Please be advised that this MOD might overwrite some custom BBCodes you already have and as a result, those BBCodes might not display correctly due to the changes introduced by ABBC3's BBCodes. If you are using custom BBCodes, please read the contrib/docs/README.HTML file for more information before you proceed.]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
