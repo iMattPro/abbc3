@@ -6,20 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Template : Subsilver2 Style Instructions]]></title>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Template : Instructions for subsilver2 styles]]></title>
 		<description lang="en"><![CDATA[Instructions for subsilver2 based styles]]></description>
-		<author-notes lang="en"><![CDATA[IMPORTANT !
-
-Before made any changes, makes sure your template is stored into "filesystem"
-    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Details
-
-If you do not want to change from "Database" to "Filesystem",
-you must do next changes within your ACP :
-    ACP -> STYLES -> STYLE COMPONENTS -> Templates : subsilver2 -> Edit
-
--------------------------------------------------------------------
-
-Before adding this MOD to your forum, you should back up all files and databases related to this MOD.]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
@@ -41,7 +29,7 @@ Before adding this MOD to your forum, you should back up all files and databases
 		<mod-version>3.0.11</mod-version>
 		<installation>
 			<level>easy</level>
-			<time>300</time>
+			<time>600</time>
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
