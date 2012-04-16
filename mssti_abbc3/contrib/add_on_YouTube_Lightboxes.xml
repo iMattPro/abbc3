@@ -57,19 +57,19 @@
 						case 'HighslideBox':
 							$bb_class = 'highslide';
 							$bb_link = 'http://www.youtube.com/embed/' . $identifier . '?rel=0&amp;wmode=transparent&amp;autoplay=1';
-							$bb_attribs = 'onclick="return hs.htmlExpand(this, {objectType: \'iframe\', width: ' . ($video_width + 10) . ', height: ' . ($video_height + 10) . ', allowSizeReduction: false, wrapperClassName: \'draggable-header no-footer\', numberPosition: null, preserveContent: false, objectLoadTime: \'after\'})"';
+							$bb_attribs = 'onclick="return hs.htmlExpand(this, {objectType: \'iframe\', width: ' . $video_width . ', height: ' . $video_height . ', allowSizeReduction: false, wrapperClassName: \'draggable-header no-footer\', numberPosition: null, preserveContent: false, objectLoadTime: \'after\'})"';
 						break;
 
 						case 'Lightview':
 							$bb_class = 'lightview';
 							$bb_link = 'http://www.youtube.com/v/' . $identifier . '&amp;fs=1&amp;rel=0&amp;autoplay=1';
-							$bb_attribs = 'rel="flash" title=" :: :: width: ' . ($video_width + 10) . ', height: ' . ($video_height + 10) . '"';
+							$bb_attribs = 'rel="flash" title=" :: :: width: ' . $video_width . ', height: ' . $video_height . '"';
 						break;
 
 						case 'Shadowbox':
 							$bb_class = 'shadowbox';
 							$bb_link = 'http://www.youtube.com/v/' . $identifier . '&amp;fs=1&amp;rel=0&amp;autoplay=1';
-							$bb_attribs = 'rel="shadowbox;width=' . ($video_width + 10) . ';height=' . ($video_height + 10) . ';player=swf"';
+							$bb_attribs = 'rel="shadowbox;width=' . $video_width . ';height=' . $video_height . ';player=swf"';
 						break;
 					} 
 
