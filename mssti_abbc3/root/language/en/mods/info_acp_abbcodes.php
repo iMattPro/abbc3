@@ -93,6 +93,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZE_BAR_EXPLAIN'		=> 'Display resizer information along the top of resized images.',
 ##	For translators :								Don't				Yes
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'Advanced Box JS',
+													'ColorBox'		=> 'ColorBox JS',
 													'HighslideBox'	=> 'Highslide JS',
 													'LiteBox'		=> 'Lightbox2 JS',
 													'Lightview'		=> 'Lightview JS',

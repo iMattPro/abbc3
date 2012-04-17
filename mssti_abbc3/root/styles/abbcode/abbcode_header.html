@@ -40,6 +40,22 @@
 	<script type="text/javascript" src="{S_ABBC3_PATH}/shadowbox/shadowbox.js?{S_ABBC3_VERSION}"></script>
 	<!-- ENDIF -->
 
+	<!-- IF S_ABBC3_RESIZE_METHOD eq 'ColorBox' -->
+	<link rel="stylesheet" type="text/css" href="{S_ABBC3_PATH}/colorbox/colorbox.css?{S_ABBC3_VERSION}" />
+	<script type="text/javascript">
+	// <![CDATA[
+		var ColorBoxNext	= "{LA_NEXT}",
+			ColorBoxPrev	= "{LA_PREVIOUS}",
+			ColorBoxPlay	= "{LA_ABBC3_RESIZE_PLAY}",
+			ColorBoxStop	= "{LA_ABBC3_RESIZE_PAUSE}",
+			ColorBoxClose	= "{LA_ABBC3_RESIZE_CLOSE}",
+			ColorBoxCurrent	= "{LA_ABBC3_RESIZE_NUMBER}";
+		window.jQuery || document.write(unescape('%3Cscript src="{S_ABBC3_PATH}/colorbox/jquery-1.7.2.min.js" type="text/javascript"%3E%3C/script%3E'));
+	// ]]>
+	</script>
+	<script type="text/javascript" src="{S_ABBC3_PATH}/colorbox/jquery.colorbox-min.js?{S_ABBC3_VERSION}"></script>
+	<!-- ENDIF -->
+
 	<script type="text/javascript">
 	// <![CDATA[
 		var ImageResizerUseBar				= {S_ABBC3_RESIZE_BAR};

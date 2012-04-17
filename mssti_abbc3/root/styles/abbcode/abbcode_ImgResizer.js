@@ -227,6 +227,18 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 			}
 		break;
 
+		case 'ColorBox':
+			if (mode === 'attach_parent')
+			{
+				ObjImage.parentNode.className = ObjImage.parentNode.className + ' colorbox-gallery';
+				return true;
+			}
+			else
+			{
+				anchor.className = (anchor.className) ? anchor.className + ' colorbox-gallery' : 'colorbox-gallery';
+			}
+		break;
+
 		case 'pop-up':
 			if (mode === 'attach_parent')
 			{
@@ -552,6 +564,20 @@ function ImgOnLoad()
 				var lightbox, options;
 				options = new LightboxOptions;
 				return lightbox = new Lightbox(options);
+			});
+		break;
+
+		case 'ColorBox':
+			$(".colorbox-gallery").colorbox({
+				rel: "colorbox-gallery",
+				photo: true,
+				returnFocus: false,
+				next: ColorBoxNext,
+				previous: ColorBoxPrev,
+				slideshowStart: ColorBoxPlay,
+				slideshowStop: ColorBoxStop,
+				close: ColorBoxClose,
+				current: ColorBoxCurrent.replace(/%1\$s/, "{current}").replace(/%2\$s/, "{total}")
 			});
 		break;
 	}
