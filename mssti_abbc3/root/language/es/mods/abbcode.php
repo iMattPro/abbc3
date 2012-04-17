@@ -60,6 +60,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_NUMBER'		=> 'Imagen %1$s de %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Comenzar Proyector automático',
 	'ABBC3_RESIZE_PAUSE'		=> 'Detener Proyector automático',
+	'ABBC3_RESIZE_IMAGE'		=> 'Imagen',
+	'ABBC3_RESIZE_OF'			=> 'de',
 
 // Highslide JS - http://vikjavev.no/highslide/forum/viewtopic.php?t=2119
 	'ABBC3_HIGHSLIDE_LOADINGTEXT'		=> 'Cargando...',

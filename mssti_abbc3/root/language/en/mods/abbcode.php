@@ -59,6 +59,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_NUMBER'		=> 'Image %1$s of %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Play slideshow',
 	'ABBC3_RESIZE_PAUSE'		=> 'Pause slideshow',
+	'ABBC3_RESIZE_IMAGE'		=> 'Image',
+	'ABBC3_RESIZE_OF'			=> 'of',
 
 // Highslide JS - http://vikjavev.no/highslide/forum/viewtopic.php?t=2119
 	'ABBC3_HIGHSLIDE_LOADINGTEXT'		=> 'Loading...',

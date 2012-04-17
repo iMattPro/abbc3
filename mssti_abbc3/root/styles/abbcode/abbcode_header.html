@@ -11,6 +11,21 @@
 	<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="{S_ABBC3_PATH}/highslide/highslide-ie6.css?{S_ABBC3_VERSION}" /><![endif]-->
 	<!-- ENDIF -->
 
+	<!-- IF S_ABBC3_RESIZE_METHOD eq 'LiteBox' -->
+	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
+	<link rel="stylesheet" href="{S_ABBC3_PATH}/lightbox/lightbox.css?{S_ABBC3_VERSION}" type="text/css" media="screen" />
+	<script type="text/javascript">
+	// <![CDATA[
+		var LightboxFileLoadingImage = "{S_ABBC3_PATH}/lightbox/images/loading.gif",
+			LightboxFileCloseImage = "{S_ABBC3_PATH}/lightbox/images/close.png",
+     		LightboxFileLabelImage = "{LA_ABBC3_RESIZE_IMAGE}",
+      		LightboxFileLabelOf = "{LA_ABBC3_RESIZE_OF}";
+		window.jQuery || document.write(unescape('%3Cscript src="{S_ABBC3_PATH}/lightbox/jquery-1.7.2.min.js" type="text/javascript"%3E%3C/script%3E'));
+	// ]]>
+	</script>
+	<script src="{S_ABBC3_PATH}/lightbox/lightbox.js?{S_ABBC3_VERSION}" type="text/javascript"></script>
+	<!-- ENDIF -->
+
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Lightview' -->
 	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
 	<script type='text/javascript' src='{S_ABBC3_PATH}/lightview/prototype.js?{S_ABBC3_VERSION}'></script>
@@ -120,26 +135,8 @@
 	/** Image Resizer JS with Highslide JS - End **/
 	<!-- ENDIF -->
 
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'LiteBox' -->
-	/** Image Resizer JS with Lightbox JS - Start **/
-		LightboxOptions = {
-		//	borderSize : 50,
-			fileLoadingImage : "{S_ABBC3_PATH}/lightbox/images/loading.gif",
-			fileBottomNavCloseImage : "{S_ABBC3_PATH}/lightbox/images/closelabel.gif"
-		};
-	/** Image Resizer JS with Lightbox JS - End **/
-	<!-- ENDIF -->
-
 	// ]]>
 	</script>
-
-	<!-- IF S_ABBC3_RESIZE_METHOD eq 'LiteBox' -->
-	<!-- Please, do not change these files, which have been adjusted to work with ABBC3 //-->
-	<script src="{S_ABBC3_PATH}/lightbox/prototype.js?{S_ABBC3_VERSION}" type="text/javascript"></script>
-	<script src="{S_ABBC3_PATH}/lightbox/scriptaculous.js?load=effects,builder" type="text/javascript"></script>
-	<script src="{S_ABBC3_PATH}/lightbox/lightbox.js?{S_ABBC3_VERSION}" type="text/javascript"></script>
-	<link rel="stylesheet" href="{S_ABBC3_PATH}/lightbox/lightbox.css?{S_ABBC3_VERSION}" type="text/css" media="screen" />
-	<!-- ENDIF -->
 
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'AdvancedBox' -->
 	<script type="text/javascript" src="{S_ABBC3_PATH}/AdvancedBox.js?{S_ABBC3_VERSION}"></script>

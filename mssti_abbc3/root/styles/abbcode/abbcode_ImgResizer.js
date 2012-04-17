@@ -531,20 +531,31 @@ function ImgOnLoad()
 		}
 	}
 
-	if (ImageResizerMode === 'Shadowbox')
+	switch (ImageResizerMode)
 	{
-		Shadowbox.init({
-			// a darker overlay looks better on this particular site
-			overlayOpacity: 0.8
-		});
-		Shadowbox.setup('a.shadowbox-gallery', {
-			gallery: 'shadowbox-gallery',
-			player: 'img',
-			continuous: true,
-			counterType: 'skip',
-			handleOversize: 'resize'
-		});
+		case 'Shadowbox':
+			Shadowbox.init({
+				// a darker overlay looks better on this particular site
+				overlayOpacity: 0.8
+			});
+			Shadowbox.setup('a.shadowbox-gallery', {
+				gallery: 'shadowbox-gallery',
+				player: 'img',
+				continuous: true,
+				counterType: 'skip',
+				handleOversize: 'resize'
+			});
+		break;
+		
+		case 'LiteBox':
+			$(function() {			
+				var lightbox, options;
+				options = new LightboxOptions;
+				return lightbox = new Lightbox(options);
+			});
+		break;
 	}
+
 //	if (ImageResizerMode == 'Lightview') { Lightview.load(); Lightview.start.bind(Lightview); }
 
 	return true;
