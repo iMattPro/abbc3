@@ -201,9 +201,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_MOVER'		=> 'Hide content from unregistered guests',
 	'ABBC3_HIDDEN_TIP'			=> '[hidden]text[/hidden]',
 	'ABBC3_HIDDEN_VIEW'			=> '[hidden]' . $lang['SAMPLE_TEXT'] . '[/hidden]',
-	'HIDDEN_OFF'				=> 'Content hidden from unregistered guests',
+	'HIDDEN_OFF'				=> 'Hidden Content (for members only)',
 	'HIDDEN_ON'					=> 'Hidden Content',
-	'HIDDEN_EXPLAIN'			=> 'This board requires you to be registered and logged-in before you can view hidden content.',
+	'HIDDEN_EXPLAIN'			=> 'This board requires you to be registered and logged-in to view hidden content.',
 
 	// Moderator
 	'ABBC3_MOD_MOVER'			=> 'Moderator message',
