@@ -337,7 +337,7 @@ dl.testlink {
 
 /* Spoiler - START */
 .spoilwrapper {
-	margin: 5px;
+/*	margin: 5px; */
 	padding: 0;
 	color: #000000;
 	border: 1px solid #dbdbdb;
