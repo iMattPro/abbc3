@@ -1469,6 +1469,7 @@ class abbcode
 	/**
 	* Initialize Video array
 	* @version 3.0.8
+	* TO-DO for 3.1 => Switch to iframe embeds wherever available. Stop using eval within the regex
 	*/
 	function video_init()
 	{
@@ -1530,6 +1531,8 @@ class abbcode
 				'example'	=> 'http://www.collegehumor.com/video/6747386/skyrim-hoarders',
 				'match'		=> '#http://www.collegehumor.com/video/([0-9]+)/([^[]*)#sie',
 				'replace'	=> "\$this->auto_embed_video('http://0.static.collegehumor.cvcdn.com/moogaloop/moogaloop.internal.1.0.1.swf?clip_id=$1&use_node_id=true&fullscreen=1', '{WIDTH}', '{HEIGHT}')",
+//				'match'		=> '#http://www.collegehumor.com/video/([0-9]+)/([^[]*)#si',
+//				'replace'	=> '<iframe src="http://www.collegehumor.com/e/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>',
 			),
 			'comedycentral.com' => array(
 				'id'		=> 1,
@@ -1558,6 +1561,8 @@ class abbcode
 				'example'	=> 'http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport',
 				'match'		=> '#http://www.dailymotion.com(.*?)/video/(([^[_]*)?([^[]*)?)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.dailymotion.com/swf/video/$3', '{WIDTH}', '{HEIGHT}')",
+//				'match'		=> '#http://(?:.*?)dailymotion.com(?:.*?)/video/(([^[_]*)?([^[]*)?)?#si',
+//				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://www.dailymotion.com/embed/video/$2"></iframe>',
 			),
 			'ebaumsworld.com' => array(
 				'id'		=> 32,
@@ -1586,6 +1591,8 @@ class abbcode
 				'example'	=> 'http://www.funnyordie.com/videos/5ef1adb57b/between-two-ferns-with-zach-galifianakis',
 				'match'		=> '#http://((.*?)?)funnyordie.com/(.*?)/(.*?)/([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://player.ordienetworks.com/flash/fodplayer.swf', '{WIDTH}', '{HEIGHT}', 'key=$4')",
+//				'match'		=> '#http://(?:.*?)funnyordie.com/(.*?)/(.*?)/(?:[^[]*)?#si',
+//				'replace'	=> '<iframe src="http://www.funnyordie.com/embed/$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
 			'g4tv.com' => array(
 				'id'		=> 7,
@@ -1607,6 +1614,8 @@ class abbcode
 				'example'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
 				'match'		=> '#http://www.gamespot.com(.*?)/video/(.*?)/(\d{7}?)(/[^/]+)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$3%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
+//				'match'		=> '#http://www.gamespot.com(.*?)/video/(.*?)/(\d{7}?)(/[^/]+)?#si',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.gamespot.com/videoembed/$3" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 			),
 			'gamespot.com/showcases' => array(
 				'id'		=> 11,
@@ -1614,6 +1623,8 @@ class abbcode
 				'example'	=> 'http://www.gamespot.com/showcases/ace-combat?sid=6345546',
 				'match'		=> '#http://www.gamespot.com/showcases/(.*?)\?sid=([0-9]+)([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$2%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
+//				'match'		=> '#http://www.gamespot.com/showcases/(.*?)\?sid=([0-9]+)([^[]*)?#si',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.gamespot.com/videoembed/$2" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 			),
 			'gametrailers.com/user-movie' => array(
 				'id'		=> 13,
@@ -1712,6 +1723,8 @@ class abbcode
 				'example'	=> 'http://www.myvideo.de/watch/2668372',
 				'match'		=> '#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.myvideo.$1/movie/$3', '{WIDTH}', '{HEIGHT}')",
+//				'match'		=> '#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#si',
+//				'replace'	=> '<iframe src='http://www.myvideo.$1/embed/$3' style='width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;' width='{WIDTH}' height='{HEIGHT}' frameborder='0' scrolling='no'></iframe>',
 			),
 			'photobucket.com/albums' => array(
 				'id'		=> 26,
@@ -1740,6 +1753,8 @@ class abbcode
 				'example'	=> 'http://videos.sapo.pt/LguPabwSWikK0wzBmU1o',
 				'match'		=> '#http://(.*?)sapo.pt/(.*/)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://rd3.videos.sapo.pt/play?file=http://rd3.videos.sapo.pt/$3/mov/1', '{WIDTH}', '{HEIGHT}')",
+//				'match'		=> '#http://(.*?)sapo.pt/(.*/)?([^[]*)?#si',
+//				'replace'	=> '<iframe src="http://videos.sapo.pt/playhtml?file=http://rd3.videos.sapo.pt/$3/mov/1" frameborder="0" scrolling="no" width="{WIDTH}" height="{HEIGHT}"></iframe>',
 			),
 			'scribd' => array(
 				'id'		=> 45,
@@ -1747,6 +1762,8 @@ class abbcode
 				'example'	=> '[scribd id=33988557 key=key-2l5cezbnj6qttpbzb75d mode=list]',
 				'match'		=> '#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#sie',
 				'replace'	=> "\$this->auto_embed_video('http://documents.scribd.com/ScribdViewer.swf?document_id=$3$10&access_key=$5$12&page=1&version=1&viewMode=$7', '{WIDTH}', '{HEIGHT}', '', array('id' => 'doc_$3$10', 'name' => 'doc_$3$10'), array('play' => 'true', 'loop' => 'true', 'scale' => 'showall', 'devicefont' => 'false', 'bgcolor' =>'#ffffff', 'menu' => 'true'))",
+//				'match'		=> '#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#si',
+//				'replace'	=> '<iframe class="scribd_iframe_embed" src="http://www.scribd.com/embeds/$3$10/content?start_page=1&view_mode=$7&access_key=$5$12" data-auto-height="false" data-aspect-ratio scrolling="no" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
 			'sevenload.com' => array(
 				'id'		=> 31,
@@ -1754,6 +1771,8 @@ class abbcode
 				'example'	=> 'http://en.sevenload.com/shows/Tekzilla/episodes/hMbjjr3-Windows-7-Enhancements-for-Power-Users-Tekzilla-Daily-Tip',
 				'match'		=> '#http://(.*?).sevenload.com/(?:.*?)(episodes|videos)/([^/[-]*)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://en.sevenload.com/pl/$3/{WIDTH}x{HEIGHT}/swf', '{WIDTH}', '{HEIGHT}')",
+//				'match'		=> '#http://(.*?).sevenload.com/(?:.*?)(episodes|videos)/([^/[-]*)?([^[]*)?#si',
+//				'replace'	=> '<script type="text/javascript" src="http://en.sevenload.com/pl/$3/{WIDTH}x{HEIGHT}/0"></script>',
 			),
 			'slideshare.net' => array(
 				'id'		=> 55,
@@ -1782,6 +1801,8 @@ class abbcode
 				'example'	=> 'http://www.ustream.tv/channel/9948292',
 				'match'		=> '#http://(?:www\.)ustream\.tv\/(?:channel/([0-9]{1,8}))#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.ustream.tv/flash/viewer.swf', '{WIDTH}', '{HEIGHT}', 'cid=$1&autoplay=false')",
+//				'match'		=> '#http://(?:www\.)ustream\.tv\/(?:channel/([0-9]{1,8}))#si',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe>',
 			),
 			'vbox7.com' => array(
 				'id'		=> 35,
@@ -1817,6 +1838,8 @@ class abbcode
 				'example'	=> 'http://vimeo.com/3759030',
 				'match'		=> '#http://((.*?))vimeo.com/([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://vimeo.com/moogaloop.swf?clip_id=$3&server=vimeo.com&fullscreen=1&show_title=1&show_byline=1&show_portrait=0&color=', '{WIDTH}', '{HEIGHT}')",
+//				'match'		=> '#http://(?:.*?)vimeo.com(?:/groups/(?:.*)/videos/|/)([^[]*)?#si',
+//				'replace'	=> '<iframe src="http://player.vimeo.com/video/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 			),
 			'vsocial.com' => array(
 				'id'		=> 41,
@@ -1852,6 +1875,8 @@ class abbcode
 				'example'	=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
 				'match'		=> '#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
+//				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
 			),
 			'youtu.be' => array(
 				'id'		=> 49,
@@ -1859,6 +1884,8 @@ class abbcode
 				'example'	=> 'http://youtu.be/sP4NMoJcFd4',
 				'match'		=> '#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
+//				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
 			),
 			// available ids: 56-100
 
