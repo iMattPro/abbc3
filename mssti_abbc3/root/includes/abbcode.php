@@ -523,7 +523,7 @@ class abbcode
 		$a_href	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($a_href));
 		$string	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($string));
 
-		// If no id and no href, the bcode is not well formed
+		// If no id and no href, the bbcode is not well formed
 		if (!$a_id && !$a_href)
 		{
 			return '[anchor= ]' . $string . '[/anchor]';
@@ -1575,7 +1575,7 @@ class abbcode
 				'id'		=> 50,
 				'image'		=> 'video.gif',
 				'example'	=> 'http://www.facebook.com/video/video.php?v=1587422536911',
-				'match'		=> '#http://www.facebook.com/video/video.php\?v=([0-9A-Za-z-_]+)?([^[]*)?#sie',
+				'match'		=> '#http://www.facebook.com/(?:.*)video.php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.facebook.com/v/$1', '{WIDTH}', '{HEIGHT}')",
 			),
 			'flickr.com' => array(
@@ -1631,14 +1631,16 @@ class abbcode
 				'image'		=> 'gametrailers.gif',
 				'example'	=> 'http://www.gametrailers.com/user-movie/first-gta-cw-screens/268358',
 				'match'		=> '#http://www.gametrailers.com/(?:user\-movie|player)/(.*?)/([0-9]+)(?:[^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?umid=$2', '{WIDTH}', '{HEIGHT}')",
+				'replace'	=> "\$this->auto_embed_video('http://media.mtvnservices.com/mgid:moses:usermovie:gametrailers.com:$2', '{WIDTH}', '{HEIGHT}')",
+//				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?umid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gametrailers.com' => array(
 				'id'		=> 14,
 				'image'		=> 'gametrailers.gif',
 				'example'	=> 'http://www.gametrailers.com/video/world-premiere-facebreaker/30461',
 				'match'		=> '#http://www.gametrailers.com/(.*?)/([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?mid=$2', '{WIDTH}', '{HEIGHT}')",
+				'replace'	=> "\$this->auto_embed_video('http://media.mtvnservices.com/mgid:moses:video:gametrailers.com:$2', '{WIDTH}', '{HEIGHT}')",
+//				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?mid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gamevideos.1up' => array(
 				'id'		=> 15,
@@ -1729,7 +1731,7 @@ class abbcode
 			'photobucket.com/albums' => array(
 				'id'		=> 26,
 				'image'		=> 'photobucket.gif',
-				'example'	=> 'http://s0006.photobucket.com/albums/0006/pbhomepage/Ice%20Age/?action=view&current=TFEIT301100-H264_Oct27.flv',
+				'example'	=> 'http://s0006.photobucket.com/albums/0006/pbhomepage/Ice%20Age/?action=view&current=TFEIT301100-H264_Oct27.mp4',
 				'match'		=> '#http://s(.*?).photobucket.com/(albums/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5', '{WIDTH}', '{HEIGHT}')",
 			),
