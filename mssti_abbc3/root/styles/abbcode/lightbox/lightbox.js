@@ -1,6 +1,6 @@
 
 /*
-Lightbox v2.5
+Lightbox v2.51
 by Lokesh Dhakar - http://www.lokeshdhakar.com
 
 For more information, visit:
@@ -43,7 +43,9 @@ lightbox = new Lightbox options
 // NOTE: Modified to work with ABBC3
 
 //(function() {
-  var Lightbox, LightboxOptions;
+  var $, Lightbox, LightboxOptions;
+
+  $ = jQuery;
 
   LightboxOptions = (function() {
 
@@ -76,7 +78,7 @@ lightbox = new Lightbox options
 
     Lightbox.prototype.enable = function() {
       var _this = this;
-      return $('a[rel^=lightbox], area[rel^=lightbox]').on('click', function(e) {
+      return $('body').on('click', 'a[rel^=lightbox], area[rel^=lightbox]', function(e) {
         _this.start($(e.currentTarget));
         return false;
       });
@@ -200,7 +202,7 @@ lightbox = new Lightbox options
       $lightbox.find('.lb-outerContainer').addClass('animating');
       preloader = new Image;
       preloader.onload = function() {
-        $image.attr('src', _this.album[_this.currentImageIndex].link);
+        $image.attr('src', _this.album[imageNumber].link);
         $image.width = preloader.width;
         $image.height = preloader.height;
         return _this.sizeContainer(preloader.width, preloader.height);
@@ -274,8 +276,6 @@ lightbox = new Lightbox options
       var $lightbox,
         _this = this;
       $lightbox = $('#lightbox');
-//      console.log(this.album[this.currentImageIndex].title !== "");
-//      console.log(typeof this.album[this.currentImageIndex].title !== 'undefined');
       if (typeof this.album[this.currentImageIndex].title !== 'undefined' && this.album[this.currentImageIndex].title !== "") {
         $lightbox.find('.lb-caption').html(this.album[this.currentImageIndex].title).fadeIn('fast');
       }
