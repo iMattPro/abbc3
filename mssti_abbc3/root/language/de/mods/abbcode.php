@@ -407,7 +407,7 @@ $lang = array_merge($lang, array(
 
 	// Table row cell wizard
 	'ABBC3_TABLE_MOVER'			=> 'Eine Tabelle einfügen',
-	'ABBC3_TABLE_TIP'			=> '[table=(ccs style)][tr=(ccs style)][td=(ccs style)]text[/td][/tr][/table]',
+	'ABBC3_TABLE_TIP'			=> '[table=(CSS style)][tr=(CSS style)][td=(CSS style)]text[/td][/tr][/table]',
 	'ABBC3_TABLE_VIEW'			=> '[table=width:50%;border:1px solid #cccccc][tr=text-align:center][td=border:1px solid #cccccc]' . $lang['SAMPLE_TEXT'] . '[/td][/tr][/table]',
 
 	'ABBC3_TABLE_STYLE'			=> 'Den Tabellen Stil eingeben',
