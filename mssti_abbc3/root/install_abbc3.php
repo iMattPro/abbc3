@@ -76,22 +76,22 @@ $versions = array(
 	// Version 3.0.9.3
 	'3.0.9.3'		=> array(
 		'custom' => array(
-			//special changes for version 3.0.9
+			// special changes for version 3.0.9
 			'abbc3_309',
-			//enable some new BBvideo IDs
+			// enable some new BBvideo IDs
 			'bbvideo_updater',
 		),
 	),
 
 	// Version 3.0.10
 	'3.0.10'		=> array(
-		//enable some new BBvideo IDs
+		// enable some new BBvideo IDs
 		'custom' => 'bbvideo_updater',
 	),
 
 	// Version 3.0.11
 	'3.0.11'		=> array(
-		//enable some new BBvideo IDs
+		// enable some new BBvideo IDs
 		'custom' => 'bbvideo_updater',
 		
 		// purge the cache
