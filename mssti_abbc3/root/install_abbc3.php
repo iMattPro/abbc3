@@ -97,6 +97,15 @@ $versions = array(
 		// purge the cache
 		'cache_purge' => array(),
 	),
+
+	// Version 3.0.12
+	'3.0.12'		=> array(
+		// enable some new BBvideo IDs
+		'custom' =>'bbvideo_updater',
+		
+		// purge the cache
+		'cache_purge' => array(),
+	),
 );
 
 $cache->destroy('config');
@@ -652,6 +661,7 @@ function bbvideo_updater($action, $version)
 		'3.0.9.3' => array('46','47','48','49','50'),
 		'3.0.10'  => array('51'),
 		'3.0.11'  => array('52', '53', '54', '55'),
+		'3.0.12'  => array('56'),
 	);
 
 	// Array containing arrays of old BBvideo IDs removed from ABBC3
@@ -659,6 +669,7 @@ function bbvideo_updater($action, $version)
 		'3.0.9.3' => array(), // no BBvideos to remove
 		'3.0.10'  => array(), // no BBvideos to remove
 		'3.0.11'  => array('111', '112', '113', '114'),
+		'3.0.12'  => array(), // no BBvideos to remove
 	);
 
 	switch ($action)

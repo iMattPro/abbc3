@@ -1820,6 +1820,15 @@ class abbcode
 				'match'		=> '#http://(.*?).veoh.com/([0-9A-Za-z-_\-/]+)?/([0-9A-Za-z-_]+)#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1337&permalinkId=$3&player=videodetailsembedded&videoAutoPlay=0&id=anonymous', '{WIDTH}', '{HEIGHT}')",
 			),
+			'viddler.com' => array(
+				'id'		=> 56,
+				'image'		=> 'viddler.gif',
+				'example'	=> 'http://www.viddler.com/v/7a0d64f2',
+				'match'		=> '#http://(?:.*?).viddler.com/v/([0-9A-Za-z-_]+)([^[]*)?#sie',
+				'replace'	=> "\$this->auto_embed_video('//www.viddler.com/player/$1/', '{WIDTH}', '{HEIGHT}', 'f=1&autoplay=f&loop=false&nologo=false&hd=false')",
+//				'match'		=> '#http://(?:.*?).viddler.com/v/([0-9A-Za-z-_]+)([^[]*)?#si',
+//				'replace'	=> '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&autoplay=0&player=full&loop=false&nologo=false&hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+			),
 			'video.google' => array(
 				'id'		=> 39,
 				'image'		=> 'googlevid.gif',
@@ -1889,7 +1898,7 @@ class abbcode
 //				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
 //				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
 			),
-			// available ids: 56-100
+			// available ids: 57-100
 
 			'external' => array(),
 			'comedians.jokes.com' => array(
