@@ -490,7 +490,7 @@ function ImgOnLoad()
 			}
 		}
 
-		/** Check if this image will be resized - Start **/
+		/** Check if this image will not be resized - Start **/
 		if (
 			// If thumbnail are disabled
 			(img.className === 'hoverbox resize_me' && !include_thumbnail_abbc3) ||
@@ -498,13 +498,13 @@ function ImgOnLoad()
 			(img.className === 'attach_parent' && !include_thumbnail_attached) ||
 			// If phpbb image attached are disabled 
 			(img.className === 'attach_me' && !include_images_attached) ||
-			// If the image is smaller then we specify in the ACP
-			((img.className === 'resize_me' || img.className === 'attach_me') && (!ImageResizerMaxWidth || ImageResizerMaxWidth > 0 && img.width < ImageResizerMaxWidth) && (!ImageResizerMaxHeight || ImageResizerMaxHeight > 0 && img.height < ImageResizerMaxHeight))
+			// If the image is smaller than max width and max height specified in the ACP
+			((img.className === 'resize_me' || img.className === 'attach_me') && (!ImageResizerMaxWidth || ImageResizerMaxWidth > 0 && img.width <= ImageResizerMaxWidth) && (!ImageResizerMaxHeight || ImageResizerMaxHeight > 0 && img.height <= ImageResizerMaxHeight))
 		)
 		{
 			continue;
 		}
-		/** Check if this image will be resized - End **/
+		/** Check if this image will not be resized - End **/
 
 		switch (img.className)
 		{
