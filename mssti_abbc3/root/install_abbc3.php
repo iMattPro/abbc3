@@ -100,8 +100,12 @@ $versions = array(
 
 	// Version 3.0.12
 	'3.0.12'		=> array(
-		// enable some new BBvideo IDs
-		'custom' =>'bbvideo_updater',
+		'custom' => array(
+			// enable some new BBvideo IDs
+			'bbvideo_updater',
+			// We have some BBCodes to update
+			'abbc3_bbcode_handler',
+		),
 		
 		// purge the cache
 		'cache_purge' => array(),
@@ -2366,6 +2370,28 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'display_on_sig'		=> 0,
 				'abbcode'				=> 1,
 				'bbcode_image'			=> 'marqr.gif',
+				'bbcode_group'			=> '0',
+			),
+		),
+		// BBCodes new and/or changed in version 3.0.12
+		'3.0.12' => array(
+			// updated with INTEXT to support unicode characters for fonts with foreign language names
+			'font'			=> array(
+				'bbcode_tag'			=> 'font=',
+				'bbcode_order'			=> 1,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_FONT_TIP',
+				'bbcode_match'			=> '[font={INTTEXT}]{TEXT}[/font]',
+				'bbcode_tpl'			=> '<span style="font-family: {INTTEXT};">{TEXT}</span>',
+				'first_pass_match'		=> '!\[font\=([\p{L}\p{N}\-+,_. ]+)\](.*?)\[/font\]!iues',
+				'first_pass_replace'	=> '\'[font=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/font:$uid]\'',
+				'second_pass_match'		=> '!\[font\=([\p{L}\p{N}\-+,_. ]+):$uid\](.*?)\[/font:$uid\]!su',
+				'second_pass_replace'	=> '<span style="font-family: ${1};">${2}</span>',
+				'display_on_posting'	=> 1,
+				'display_on_pm'			=> 1,
+				'display_on_sig'		=> 1,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> ' ',
 				'bbcode_group'			=> '0',
 			),
 		),
