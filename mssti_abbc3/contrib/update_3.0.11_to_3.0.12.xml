@@ -56,6 +56,16 @@
 			<file from="root/styles/subsilver2/template/abbcode.html" to="styles/subsilver2/template/abbcode.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
+		<delete>
+			<file name="styles/abbcode/lightbox/builder.js"/>
+			<file name="styles/abbcode/lightbox/effects.js"/>
+			<file name="styles/abbcode/lightbox/prototype.js"/>
+			<file name="styles/abbcode/lightbox/scriptaculous.js"/>
+			<file name="styles/abbcode/lightbox/images/close.gif"/>
+			<file name="styles/abbcode/lightbox/images/closelabel.gif"/>
+			<file name="styles/abbcode/lightbox/images/nextlabel.gif"/>
+			<file name="styles/abbcode/lightbox/images/prevlabel.gif"/>
+		</delete>
 		<open src="includes/bbcode.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
