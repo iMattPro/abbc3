@@ -45,6 +45,7 @@
 			<file from="root/adm/style/acp_abbcodes.html" to="adm/style/acp_abbcodes.html"/>
 			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
 			<file from="root/includes/acp/acp_abbcodes.php" to="includes/acp/acp_abbcodes.php"/>
+			<file from="root/includes/acp/info/acp_abbcodes.php" to="includes/acp/info/acp_abbcodes.php"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
 			<file from="root/styles/abbcode/abbcode_header.html" to="styles/abbcode/abbcode_header.html"/>
