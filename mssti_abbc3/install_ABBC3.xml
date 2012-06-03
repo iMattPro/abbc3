@@ -164,6 +164,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 			<link type="contrib" href="contrib/update_3.0.8-PL2_to_3.0.11.xml" lang="en">Update Instructions (3.0.8-PL2 to 3.0.11)</link>
 			<link type="contrib" href="contrib/update_3.0.9.3_to_3.0.11.xml" lang="en">Update Instructions (3.0.9.3 to 3.0.11)</link>
 			<link type="contrib" href="contrib/update_3.0.10_to_3.0.11.xml" lang="en">Update Instructions (3.0.10 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.11_to_3.0.12.xml" lang="en">Update Instructions (3.0.11 to 3.0.12)</link>
 		</link-group>
 	</header>
 	<action-group>
