@@ -42,8 +42,8 @@ Features
 Deployment
 ----------
 
-* Release Version 3.0.10 ([Download it here](http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/)) 
-* Development Version 3.0.11
+* Release Version 3.0.11 ([Download it here](http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/)) 
+* Development Version 3.0.12
 * It is recommended that you install only the current Release Version on a live forum.
 * Report any bugs or problems you encounter to the [Issue Tracker](http://github.com/VSEphpbb/Advanced-BBCode-Box-3/issues)
 * Before adding this MOD to your forum, you should back up all files related to this MOD.
