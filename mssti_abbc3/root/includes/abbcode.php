@@ -1168,7 +1168,7 @@ class abbcode
 			while (!feof ($rs_checkfiles))
 			{
 				$buffer = @fgets($rs_checkfiles, 4096);
-				if (eregi('File is on server number', $buffer))
+				if (stripos($buffer, 'File is on server number') !== false)
 				{
 					$rapidshare_msg = '<span class="abbc3_good">' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '</span>';
 					$rapidshare_pic = '<img src="' . $ok_icon . '" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" />';
