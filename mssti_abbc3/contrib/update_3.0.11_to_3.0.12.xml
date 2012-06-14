@@ -69,12 +69,8 @@
 		</delete>
 		<open src="includes/bbcode.php">
 			<edit>
-				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
-			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
-// MOD : MSSTI ABBC3 - End]]></find>
-				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
-			$sql .= " AND bbcode_match <> '" . $db->sql_escape('.') . "'";
-// MOD : MSSTI ABBC3 - End]]></action>
+				<find><![CDATA[			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></find>
+				<action type="replace-with"><![CDATA[			$sql .= " AND bbcode_match <> '.'";]]></action>
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>

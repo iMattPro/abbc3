@@ -320,7 +320,7 @@ class bbcode extends abbcode
 				FROM ' . BBCODES_TABLE . '
 				WHERE ' . $db->sql_in_set('bbcode_id', $sql);]]></find>
 				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-			$sql .= " AND bbcode_match <> '" . $db->sql_escape('.') . "'";
+			$sql .= " AND bbcode_match <> '.'";
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 			<edit>
