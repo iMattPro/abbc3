@@ -1534,6 +1534,13 @@ class abbcode
 //				'match'		=> '#http://www.collegehumor.com/video/([0-9]+)/([^[]*)#si',
 //				'replace'	=> '<iframe src="http://www.collegehumor.com/e/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>',
 			),
+			'comedians.jokes.com' => array(
+				'id'		=> 57,
+				'image'		=> 'comedians.gif',
+				'example'	=> 'http://comedians.jokes.com/bert-kreischer/videos/bert-kreischer---twelve-words',
+				'match'		=> '#http://comedians.(jokes|comedycentral).com/(.*?)/videos/([^[]*)#sie',
+				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+			),
 			'comedycentral.com' => array(
 				'id'		=> 1,
 				'image'		=> 'comedycentral.gif',
@@ -1656,6 +1663,13 @@ class abbcode
 				'match'		=> '#http://www.godtube.com/watch/\?v=([^[]*)?#si',
 				'replace'	=> '<script type="text/javascript" src="http://www.godtube.com/embed/source/$1.js?w={WIDTH}&amp;h={HEIGHT}&amp;ap=false&amp;sl=false&amp;title=false"></script>',
 			),
+			'gotgame.com' => array(
+				'id'		=> 58,
+				'image'		=> 'gotgame.gif',
+				'example'	=> 'http://gotgame.com/2012/03/26/assassins-creed-3-interview-with-alex-hutchinson/',
+				'match'		=> '#http://(.*?)gotgame.com/([^[]*)?#sie',
+				'replace'	=> "\$this->oembed_url('http://gotgame.com/wp-content/plugins/oembed-provider/oembed-provider.php?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+			),
 			'howcast.com' => array(
 				'id'		=> 28,
 				'image'		=> 'howcast.gif',
@@ -1697,6 +1711,13 @@ class abbcode
 				'example'	=> 'http://www.metacafe.com/watch/966360/merry_christmas_with_crazy_frog/',
 				'match'		=> '#http://www.metacafe.com/watch/([0-9]+)?((/[^/]+)/?)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.metacafe.com/fplayer/$1/metacafe.swf', '{WIDTH}', '{HEIGHT}')",
+			),
+			'moddb.com' => array(
+				'id'		=> 59,
+				'image'		=> 'moddb.gif',
+				'example'	=> 'http://www.moddb.com/groups/humour-satire-parody/videos/flight-dc132-part-1',
+				'match'		=> '#http://www.moddb.com/([^[]*)?#sie',
+				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
 			),
 			'mpora.com' => array(
 				'id'		=> 24,
@@ -1783,6 +1804,20 @@ class abbcode
 				'match'		=> '#http://www.slideshare.net/(.*?)/([^[]*)?#sie',
 				'replace'	=> "\$this->oembed_url('http://www.slideshare.net/api/oembed/2?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
 			),
+			'spike.com' => array(
+				'id'		=> 60,
+				'image'		=> 'spike.gif',
+				'example'	=> 'http://www.spike.com/video-clips/32xg36/winter-passing-trailer',
+				'match'		=> '#http://www.spike.com/([^[]*)?#sie',
+				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+			),
+			'streetfire.net' => array(
+				'id'		=> 61,
+				'image'		=> 'streetfire.gif',
+				'example'	=> 'http://www.streetfire.net/video/standing-moto-double-fail_2381106.htm',
+				'match'		=> '#http://(.*?)streetfire.net/video/([^[]*)?#sie',
+				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+			),
 			'theonion.com' => array(
 				'id'		=> 34,
 				'image'		=> 'theonion.gif',
@@ -1836,6 +1871,13 @@ class abbcode
 				'match'		=> '#http://video.google.(.*?)/(videoplay|googleplayer.swf)\?docid=([0-9A-Za-z-_]+)([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://video.google.\$1/googleplayer.swf?docId=\$3', '{WIDTH}', '{HEIGHT}')",
 			),
+			'videogamer.com' => array(
+				'id'		=> 63,
+				'image'		=> 'videogamer.gif',
+				'example'	=> 'http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html',
+				'match'		=> '#http://www.videogamer.com/([^[]*)?#sie',
+				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+			),
 			'videu.de' => array(
 				'id'		=> 37,
 				'image'		=> 'videu.gif',
@@ -1858,6 +1900,13 @@ class abbcode
 				'example'	=> 'http://www.vsocial.com/video/?d=2893',
 				'match'		=> '#http://www.vsocial.com/video/\?d=([^[]*)#sie',
 				'replace'	=> "\$this->auto_embed_video('http://static.vsocial.com/flash/ups.swf?d=$1&a=0', '{WIDTH}', '{HEIGHT}')",
+			),
+			'wat.tv' => array(
+				'id'		=> 62,
+				'image'		=> 'wattv.gif',
+				'example'	=> 'http://www.wat.tv/video/mords-moi-sans-hesitation-2ykhj_2g5h3_.html',
+				'match'		=> '#http://(.*?)wat.tv/video/([^[]*)?#sie',
+				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
 			),
 			'wegame.com' => array(
 				'id'		=> 42,
@@ -1898,49 +1947,14 @@ class abbcode
 				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
 				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
 			),
-			// available ids: 57-100
+			// available ids: 64-100
 
 			'external' => array(),
-			'comedians.jokes.com' => array(
-				'id'		=> 102,
-				'image'		=> 'comedians.gif',
-				'example'	=> 'http://comedians.jokes.com/bert-kreischer/videos/bert-kreischer---twelve-words',
-				'match'		=> '#http://comedians.(jokes|comedycentral).com/(.*?)/videos/([^[]*)#si',
-				'replace'	=> 'external',
-			),
 			'deviantart.com' => array(
 				'id'		=> 103,
 				'image'		=> 'deviantart.gif',
 				'example'	=> 'http://bossk.deviantart.com/art/COLLEGE-FRIES-trailer-106469587',
 				'match'		=> '#http://(.*?)deviantart.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'gotgame.com' => array(
-				'id'		=> 105,
-				'image'		=> 'gotgame.gif',
-				'example'	=> 'http://gotgame.com/2012/03/26/assassins-creed-3-interview-with-alex-hutchinson/',
-				'match'		=> '#http://(.*?)gotgame.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'moddb.com' => array(
-				'id'		=> 104,
-				'image'		=> 'moddb.gif',
-				'example'	=> 'http://www.moddb.com/groups/humour-satire-parody/videos/flight-dc132-part-1',
-				'match'		=> '#http://www.moddb.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'spike.com' => array(
-				'id'		=> 101,
-				'image'		=> 'spike.gif',
-				'example'	=> 'http://www.spike.com/video-clips/32xg36/winter-passing-trailer',
-				'match'		=> '#http://www.spike.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'streetfire.net' => array(
-				'id'		=> 107,
-				'image'		=> 'streetfire.gif',
-				'example'	=> 'http://www.streetfire.net/video/standing-moto-double-fail_2381106.htm',
-				'match'		=> '#http://(.*?)streetfire.net/video/([^[]*)?#si',
 				'replace'	=> 'external',
 			),
 			'ted.com' => array(
@@ -1955,20 +1969,6 @@ class abbcode
 				'image'		=> 'tutv.gif',
 				'example'	=> 'http://tu.tv/videos/el-gato-boxeador',
 				'match'		=> '#http://((.*?)?)tu.tv/videos/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'videogamer.com' => array(
-				'id'		=> 109,
-				'image'		=> 'videogamer.gif',
-				'example'	=> 'http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html',
-				'match'		=> '#http://www.videogamer.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'wat.tv' => array(
-				'id'		=> 110,
-				'image'		=> 'wattv.gif',
-				'example'	=> 'http://www.wat.tv/video/mords-moi-sans-hesitation-2ykhj_2g5h3_.html',
-				'match'		=> '#http://(.*?)wat.tv/video/([^[]*)?#si',
 				'replace'	=> 'external',
 			),
 			// available ids: 111-200
@@ -2047,6 +2047,59 @@ class abbcode
 			),
 			// available ids: 210-300
 		);
+	}
+
+	/**
+	* Find video link by parsing meta tags and look for Open Graph Protocol content
+	* Use YQL (instead of file_get_contents) to scrape only meta tag data from the target URL
+	* This method is used for sites whose embed code can not be found by URL regex matching
+	*
+	* @param string $url
+	* @param string $w
+	* @param string $h
+	* @return xhtml object tag
+	* @version 3.0.12
+	*/
+	function embed_ogp($url, $w, $h)
+	{
+		$yql = 'https://query.yahooapis.com/v1/public/yql';
+		$yql_query = 'select * from html where url="' . $url . '" and xpath="//meta" and compat="html5"';
+		$yql_query_url = $yql . '?q=' . urlencode($yql_query) . '&format=json';
+		
+		// Make call with cURL
+		$curl = curl_init($yql_query_url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+     	curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+		$json = curl_exec($curl);
+     	curl_close($curl);
+
+		// Convert JSON to PHP object 
+		$php_obj = json_decode($json);
+
+		// Confirm that results were returned before parsing
+		if (!is_null($php_obj->query->results))
+		{
+			$meta = array();
+	
+			// Parse results into an array of meta data
+			foreach($php_obj->query->results->meta as $meta_tag)
+			{
+				$name = ( isset($meta_tag->name) ? $meta_tag->name : (isset($meta_tag->property) ? $meta_tag->property : '') );
+				if (!empty($name) && isset($meta_tag->content))
+				{
+					$meta[$name] = $meta_tag->content;
+				}
+			}
+	
+			// Get the Open Graph Protocol video url
+			$video_url = ( isset($meta['og:video']) ? $meta['og:video'] : (isset($meta['og:video:url']) ? $meta['og:video:url'] : '') );
+
+			// Embed the video url
+			if (!empty($video_url))
+			{
+				return $this->auto_embed_video($video_url, $w, $h);
+			}
+		}
 	}
 
 	/**
