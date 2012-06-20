@@ -1981,11 +1981,11 @@ class abbcode
 				'match'		=> '#([^[]+)?\.(avi|divx|mkv)#sie',
 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}', '', array('type' => 'video/divx'), array('pluginspage' => 'http://go.divx.com/plugin/download/', 'custommode' => 'none'))",
 			),
-			'(mov|mp4|mpeg|mpg)' => array(
+			'(mov|mp4|m4v|mpeg|mpg)' => array(
 				'id'		=> 205,
 				'image'		=> 'mov.gif',
 				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
-				'match'		=> '#([^[]+)?\.(mov|mp4|mpeg|mpg)#si',
+				'match'		=> '#([^[]+)?\.(mov|mp4|m4v|mpeg|mpg)#si',
 				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="{HEIGHT}" scale="tofit"><param name="type" value="video/quicktime" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
 								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" scale="tofit" type="video/quicktime" autoplay="false"></embed></object>'
 			),
@@ -2029,6 +2029,14 @@ class abbcode
 //				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
 //								<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
 			),
+			'(m4a|m4p)' => array(
+				'id'		=> 209,
+				'image'		=> 'sound.gif',
+				'example'	=> 'http://urlto.m4a',
+				'match'		=> '#([^[]+)?\.(m4a|m4p)#si',
+				'replace'	=> '<object width="{WIDTH}" height="27"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
+								<embed src="$0" autoplay="false" loop="false" width="{WIDTH}" height="27" controller="true"></embed></object>',
+			),
 			'ram' => array(
 				'id'		=> 208,
 				'image'		=> 'ram.gif',
@@ -2037,7 +2045,7 @@ class abbcode
 				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_{ID}" /><param name="prefetch" value="false" /></object><br />
 								<object id="ctrls" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_{ID}" /></object>',
 			),
-			// available ids: 209-300
+			// available ids: 210-300
 		);
 	}
 
@@ -2050,7 +2058,7 @@ class abbcode
 	* @return embed code
 	* @version 3.0.11
 	*
-	* more examples of some polular oEmbed ready sites
+	* more examples of some popular oEmbed ready sites
 	* dailymotion.com => http://www.dailymotion.com/api/oembed?url=$0&format=json,
 	* flickr.com => http://www.flickr.com/services/oembed/?url=$0&format=json,
 	* funnyordie.com => http://www.funnyordie.com/oembed?url=$0&format=json,
@@ -2062,6 +2070,8 @@ class abbcode
 	* vimeo.com => http://vimeo.com/api/oembed.xml?url=$0&format=json,
 	* wordpress.tv => http://wordpress.tv/oembed/?url=$0&format=json,
 	* youtube.com => http://www.youtube.com/oembed?url=$0&format=json,
+	* soundcloud.com => http://soundcloud.com/oembed?url=$0&format=json,
+	* tu.tv => http://tu.tv/oembed/?url=$0&format=json ( html entities are encoded :( )
 	*/
 	function oembed_url($url, $width, $height)
 	{
