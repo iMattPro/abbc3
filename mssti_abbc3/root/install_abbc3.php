@@ -673,7 +673,7 @@ function bbvideo_updater($action, $version)
 		'3.0.9.3' => array(), // no BBvideos to remove
 		'3.0.10'  => array(), // no BBvideos to remove
 		'3.0.11'  => array('111', '112', '113', '114'),
-		'3.0.12'  => array('101', '102', '104', '105', '107', '109', '110'),
+		'3.0.12'  => array('101', '102', '103', '104', '105', '106', '107', '108', '109', '110'),
 	);
 
 	switch ($action)

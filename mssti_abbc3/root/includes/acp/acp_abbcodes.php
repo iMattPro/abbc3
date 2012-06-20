@@ -779,7 +779,7 @@ function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
 		foreach ($abbcode_video_ary as $video_name => $video_data)
 		{
 			// Get option group labels
-			if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
+			if ($video_name == 'video' || $video_name == 'file')
 			{
 				$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
 				$video_options .= '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">' . "\n";

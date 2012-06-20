@@ -307,13 +307,9 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 				$abbcode_video_ary[$video_name]['display'] = (in_array($video_data['id'], $allowed_videos)) ? true : false;
 
 				// Now clear video optgroup
-				if (($video_data['id'] >= 1 && $video_data['id'] <= 100) && $abbcode_video_ary[$video_name]['display'])
+				if (($video_data['id'] >= 1 && $video_data['id'] <= 200) && $abbcode_video_ary[$video_name]['display'])
 				{
 					$abbcode_video_ary['video']['display'] = true;
-				}
-				else if (($video_data['id'] >= 101 && $video_data['id'] <= 200) && $abbcode_video_ary[$video_name]['display'])
-				{
-					$abbcode_video_ary['external']['display'] = true;
 				}
 				else if (($video_data['id'] >= 201 && $video_data['id'] <= 300) && $abbcode_video_ary[$video_name]['display'])
 				{
@@ -335,7 +331,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 					continue;
 				}
 
-				if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
+				if ($video_name == 'video' || $video_name == 'file')
 				{
 					$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
 					$video_options .= '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">' . "\n";

@@ -1947,31 +1947,7 @@ class abbcode
 				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
 				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
 			),
-			// available ids: 64-100
-
-			'external' => array(),
-			'deviantart.com' => array(
-				'id'		=> 103,
-				'image'		=> 'deviantart.gif',
-				'example'	=> 'http://bossk.deviantart.com/art/COLLEGE-FRIES-trailer-106469587',
-				'match'		=> '#http://(.*?)deviantart.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'ted.com' => array(
-				'id'		=> 106,
-				'image'		=> 'ted.gif',
-				'example'	=> 'http://www.ted.com/talks/jack_choi_on_the_virtual_dissection_table.html',
-				'match'		=> '#http://((.*?)?)ted.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'tu.tv' => array(
-				'id'		=> 108,
-				'image'		=> 'tutv.gif',
-				'example'	=> 'http://tu.tv/videos/el-gato-boxeador',
-				'match'		=> '#http://((.*?)?)tu.tv/videos/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			// available ids: 111-200
+			// available ids: 64-200
 
 			'file' => array(),
 			'(avi|divx|mkv)' => array(
@@ -2274,13 +2250,6 @@ class abbcode
 					// this is for all linked video sites, narrow video names down to just the domain
 					preg_match('#([^/]+)#i', $video_name, $video_title);
 					$video_link = $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
-				}
-
-				// generate output for bbvideos with no embedded content
-				if ($video_data['replace'] === 'external')
-				{
-					$out = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '<div class="bbvideocontent">{BBVIDEO_VIDEO}</div>'), array($video_width + 10, $video_image, $video_link, ''), $this->bbcode_tpl('bbvideo'));
-					break;
 				}
 
 				// generate embedded video content
