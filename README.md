@@ -30,13 +30,12 @@ Features
 
 	allocine.fr, blip.tv, break.com, clipfish.de, clipmoon.com, cnbc.com, cnettv.cnet.com, collegehumor.com,
 	comedians.comedycentral.com, comedians.jokes.com, comedycentral.com, crackle.com, current.com,
-	dailymotion.com, deviantart.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com, g4tv.com,
-	gameprotv.com, gamespot.com, gametrailers.com, gamevideos.1up, godtube.com, gotgame.com, howcast.com,
-	hulu.com, ign.com, kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com,
-	myvideo, photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com, scribd, sevenload.com,
-	slideshare.net, spike.com, streetfire.net, ted.com, theonion.com, tu.tv, twitvid.com, ustream.tv, vbox7.com,
-	veoh.com, video.google, videogamer.com, videu.de, vimeo.com, vsocial.com, wat.tv, wegame.com, xfire.com,
-	youtu.be, youtube.com		
+	dailymotion.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com, g4tv.com, gameprotv.com,
+	gamespot.com, gametrailers.com, gamevideos.1up, godtube.com, gotgame.com, howcast.com, hulu.com, ign.com,
+	kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo,
+	photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com, scribd, sevenload.com, slideshare.net,
+	spike.com, streetfire.net, theonion.com, twitvid.com, ustream.tv, vbox7.com, veoh.com, video.google,
+	videogamer.com, videu.de, vimeo.com, vsocial.com, wat.tv, wegame.com, xfire.com, youtu.be, youtube.com		
 
 
 Deployment
