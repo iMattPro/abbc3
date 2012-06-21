@@ -571,6 +571,123 @@ var kmrSimpleTabs = {
 	}
 };
 
+/**
+* Funtion OGP video via AJAX - START
+**/
+
+/**
+* Find the link to an SWF file and embed it in the page. Uses an AJAX request
+* to YQL service to retrieve meta tags from a given url as JSON data. 
+*/
+function ogpEmbedVideo( url, width, height, id ) {	
+
+	var xmlHttpReq = false;
+
+	if (url.match('^http'))
+	{
+		// construct YQL query to get a url's meta tags as JSON data
+		var yql = 'http://query.yahooapis.com/v1/public/yql',
+			yql_query = 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
+			yql_query_url = yql + '?q=' + encodeURIComponent(yql_query) + '&format=json';
+		
+		// Mozilla/Safari
+		if (window.XMLHttpRequest)
+		{
+			xmlHttpReq = new XMLHttpRequest();
+		}
+		// IE
+		else if (window.ActiveXObject)
+		{
+			xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		// Make the AJAX request
+		xmlHttpReq.open("GET", yql_query_url, true);
+		xmlHttpReq.onreadystatechange = function() {
+			if (xmlHttpReq.readyState === 4)
+			{
+				document.getElementById(id).innerHTML = ogpEmbedCode( xmlHttpReq.responseText, width, height );
+			}
+		};
+		xmlHttpReq.send(null);
+	}
+}
+
+/**
+* Parse JSON data into an array of META tags. Find the Open Graph Protocol
+* meta tag with a URL for the SWF video file and wrap it in an embed tag.
+*/
+function ogpEmbedCode( str, width, height ) {
+
+	var embed = "Error loading video...",
+		meta = {},	
+		data = parseJSON( str );
+
+	if (data.query.results !== null)
+	{
+		for (var i = 0, l = data.query.results.meta.length; i < l; i++)
+		{
+			var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
+			if(name === null)
+			{
+				continue;
+			}
+			meta[name] = data.query.results.meta[i].content;
+		}
+		
+		if ( meta["og:video"] || meta["og:video:url"] )
+		{
+	
+			var embed_src = (meta["og:video"] || meta["og:video:url"]),
+				embed_type = (meta["og:video:type"] || "application/x-shockwave-flash"),
+				embed_width = (width || meta["og:video:width"]),
+				embed_height = (height || meta["og:video:height"]);
+	
+			embed = '<embed src="' + embed_src + '" type="' + embed_type + '" width="' + embed_width + '" height="' + embed_height + '" autostart="false"/>';
+		}
+	}
+	
+	return embed;		
+}
+
+/**
+* Convert JSON string into JSON object using jQuery technique.
+* Ref: http://code.jquery.com/jquery-1.7.2.js
+*/
+function parseJSON( data ) {
+	if ( typeof data !== "string" || !data ) {
+		return null;
+	}
+
+	// Make sure leading/trailing whitespace is removed (IE can't handle it)
+	data = data.replace(/^\s+|\s+$/g, "");
+
+	// Attempt to parse using the native JSON parser first
+	if ( window.JSON && window.JSON.parse ) {
+		return window.JSON.parse( data );
+	}
+
+	// JSON RegExp
+	var rvalidchars = /^[\],:{}\s]*$/,
+		rvalidescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
+		rvalidtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+		rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g;
+
+	// Make sure the incoming data is actual JSON
+	// Logic borrowed from http://json.org/json2.js
+	if ( rvalidchars.test( data.replace( rvalidescape, "@" )
+		.replace( rvalidtokens, "]" )
+		.replace( rvalidbraces, "")) ) {
+
+		return ( new Function( "return " + data ) )();
+
+	}
+
+	return null;
+}
+/**
+* Funtion OGP video via AJAX - END
+**/
+
 /** Install the safety net to run once the main function - START **/
 if (window.onload_functions) // prosilver
 {

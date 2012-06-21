@@ -52,6 +52,7 @@
 			<file from="root/styles/abbcode/abbcode_header.html" to="styles/abbcode/abbcode_header.html"/>
 			<file from="root/styles/abbcode/abbcode_ImgResizer.js" to="styles/abbcode/abbcode_ImgResizer.js"/>
 			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
+			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/colorbox/*.*" to="styles/abbcode/colorbox/*.*"/>
 			<file from="root/styles/abbcode/lightbox/*.*" to="styles/abbcode/lightbox/*.*"/>
 			<file from="root/styles/prosilver/template/abbcode.html" to="styles/prosilver/template/abbcode.html"/>

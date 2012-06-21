@@ -1538,8 +1538,8 @@ class abbcode
 				'id'		=> 57,
 				'image'		=> 'comedians.gif',
 				'example'	=> 'http://comedians.jokes.com/bert-kreischer/videos/bert-kreischer---twelve-words',
-				'match'		=> '#http://comedians.(jokes|comedycentral).com/(.*?)/videos/([^[]*)#sie',
-				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://comedians.(jokes|comedycentral).com/(.*?)/videos/([^[]*)#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'comedycentral.com' => array(
 				'id'		=> 1,
@@ -1716,8 +1716,8 @@ class abbcode
 				'id'		=> 59,
 				'image'		=> 'moddb.gif',
 				'example'	=> 'http://www.moddb.com/groups/humour-satire-parody/videos/flight-dc132-part-1',
-				'match'		=> '#http://www.moddb.com/([^[]*)?#sie',
-				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.moddb.com/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'mpora.com' => array(
 				'id'		=> 24,
@@ -1808,15 +1808,15 @@ class abbcode
 				'id'		=> 60,
 				'image'		=> 'spike.gif',
 				'example'	=> 'http://www.spike.com/video-clips/32xg36/winter-passing-trailer',
-				'match'		=> '#http://www.spike.com/([^[]*)?#sie',
-				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.spike.com/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'streetfire.net' => array(
 				'id'		=> 61,
 				'image'		=> 'streetfire.gif',
 				'example'	=> 'http://www.streetfire.net/video/standing-moto-double-fail_2381106.htm',
-				'match'		=> '#http://(.*?)streetfire.net/video/([^[]*)?#sie',
-				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)streetfire.net/video/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'theonion.com' => array(
 				'id'		=> 34,
@@ -1875,8 +1875,8 @@ class abbcode
 				'id'		=> 63,
 				'image'		=> 'videogamer.gif',
 				'example'	=> 'http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html',
-				'match'		=> '#http://www.videogamer.com/([^[]*)?#sie',
-				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.videogamer.com/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'videu.de' => array(
 				'id'		=> 37,
@@ -1905,8 +1905,8 @@ class abbcode
 				'id'		=> 62,
 				'image'		=> 'wattv.gif',
 				'example'	=> 'http://www.wat.tv/video/mords-moi-sans-hesitation-2ykhj_2g5h3_.html',
-				'match'		=> '#http://(.*?)wat.tv/video/([^[]*)?#sie',
-				'replace'	=> "\$this->embed_ogp('$0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)wat.tv/video/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'wegame.com' => array(
 				'id'		=> 42,
@@ -2023,59 +2023,6 @@ class abbcode
 			),
 			// available ids: 210-300
 		);
-	}
-
-	/**
-	* Find video link by parsing meta tags and look for Open Graph Protocol content
-	* Use YQL (instead of file_get_contents) to scrape only meta tag data from the target URL
-	* This method is used for sites whose embed code can not be found by URL regex matching
-	*
-	* @param string $url
-	* @param string $w
-	* @param string $h
-	* @return xhtml object tag
-	* @version 3.0.12
-	*/
-	function embed_ogp($url, $w, $h)
-	{
-		$yql = 'https://query.yahooapis.com/v1/public/yql';
-		$yql_query = 'select * from html where url="' . $url . '" and xpath="//meta" and compat="html5"';
-		$yql_query_url = $yql . '?q=' . urlencode($yql_query) . '&format=json';
-		
-		// Make call with cURL
-		$curl = curl_init($yql_query_url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-     	curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-		$json = curl_exec($curl);
-     	curl_close($curl);
-
-		// Convert JSON to PHP object 
-		$php_obj = json_decode($json);
-
-		// Confirm that results were returned before parsing
-		if (!is_null($php_obj->query->results))
-		{
-			$meta = array();
-	
-			// Parse results into an array of meta data
-			foreach($php_obj->query->results->meta as $meta_tag)
-			{
-				$name = ( isset($meta_tag->name) ? $meta_tag->name : (isset($meta_tag->property) ? $meta_tag->property : '') );
-				if (!empty($name) && isset($meta_tag->content))
-				{
-					$meta[$name] = $meta_tag->content;
-				}
-			}
-	
-			// Get the Open Graph Protocol video url
-			$video_url = ( isset($meta['og:video']) ? $meta['og:video'] : (isset($meta['og:video:url']) ? $meta['og:video:url'] : '') );
-
-			// Embed the video url
-			if (!empty($video_url))
-			{
-				return $this->auto_embed_video($video_url, $w, $h);
-			}
-		}
 	}
 
 	/**
