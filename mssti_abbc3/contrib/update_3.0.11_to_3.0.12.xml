@@ -44,6 +44,7 @@
 		<copy>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/adm/style/acp_abbcodes.html" to="adm/style/acp_abbcodes.html"/>
+			<file from="root/flashplayer/*.*" to="flashplayer/*.*"/>
 			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
 			<file from="root/includes/acp/acp_abbcodes.php" to="includes/acp/acp_abbcodes.php"/>
 			<file from="root/includes/acp/info/acp_abbcodes.php" to="includes/acp/info/acp_abbcodes.php"/>
@@ -60,6 +61,7 @@
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
+			<file name="images/player.swf"/>
 			<file name="styles/abbcode/lightbox/builder.js"/>
 			<file name="styles/abbcode/lightbox/effects.js"/>
 			<file name="styles/abbcode/lightbox/prototype.js"/>

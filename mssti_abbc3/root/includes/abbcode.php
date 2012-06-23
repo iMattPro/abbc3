@@ -1969,7 +1969,7 @@ class abbcode
 				'image'		=> 'flashflv.gif',
 				'example'	=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
 				'match'		=> '#([^[]+)?\.flv#sie',
-				'replace'	=> "\$this->auto_embed_video('./images/player.swf', '{WIDTH}', '{HEIGHT}', 'movie=$0&bgcolor=0x666666&fgcolor=0x000000&autoload=off&volume=70')",
+				'replace'	=> "\$this->auto_embed_video('./flashplayer/flowplayer-3.2.11.swf', '{WIDTH}', '{HEIGHT}', 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'playlist\':[{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'}]}')",
 			),
 			'swf' => array(
 				'id'		=> 202,

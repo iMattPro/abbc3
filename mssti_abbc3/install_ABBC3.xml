@@ -41,6 +41,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 				<rev-version>3.0.12</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Feature] Added ColorboxJS to the Image Resizer methods.]]></change>
+					<change><![CDATA[[Change] Updated and relocated the included Flash Player.]]></change>
 					<change><![CDATA[[Change] Updated Lightbox2 from 2.0.5 to 2.51 (and included it with ABBC3).]]></change>
 					<change><![CDATA[[Change] Updated the appearance of the Hidden BBcode.]]></change>
 					<change><![CDATA[[Change] Updated Font BBcode to support fonts with unicode characters in their names.]]></change>
@@ -188,7 +189,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 			<file from="root/abbcode_ajax.php" to="abbcode_ajax.php"/>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/adm/*.*" to="adm/*.*"/>
-			<file from="root/images/*.*" to="images/*.*"/>
+			<file from="root/flashplayer/*.*" to="flashplayer/*.*"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
