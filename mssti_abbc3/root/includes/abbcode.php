@@ -1544,9 +1544,9 @@ class abbcode
 			'comedycentral.com' => array(
 				'id'		=> 1,
 				'image'		=> 'comedycentral.gif',
-				'example'	=> 'http://www.comedycentral.com/videos/index.jhtml?videoId=185763&title=weekly-evil-six-reasons-alaska',
-				'match'		=> '#http://(?:.*?)comedycentral.com/videos/index.jhtml\?videoId=([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://media.mtvnservices.com/mgid:cms:item:comedycentral.com:$1', '{WIDTH}', '{HEIGHT}', 'autoPlay=false')",
+				'example'	=> 'http://www.comedycentral.com/video-clips/l56fcp/futurama-trashy-robo-sluts',
+				'match'		=> '#http://(?:.*?)comedycentral.com/video-clips/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'crackle.com' => array(	
 				'id'		=> 5,
@@ -1619,19 +1619,10 @@ class abbcode
 				'id'		=> 10,
 				'image'		=> 'gamespot.gif',
 				'example'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
-				'match'		=> '#http://www.gamespot.com(.*?)/video/(.*?)/(\d{7}?)(/[^/]+)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$3%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
-//				'match'		=> '#http://www.gamespot.com(.*?)/video/(.*?)/(\d{7}?)(/[^/]+)?#si',
-//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.gamespot.com/videoembed/$3" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
-			),
-			'gamespot.com/showcases' => array(
-				'id'		=> 11,
-				'image'		=> 'gamespot.gif',
-				'example'	=> 'http://www.gamespot.com/showcases/ace-combat?sid=6345546',
-				'match'		=> '#http://www.gamespot.com/showcases/(.*?)\?sid=([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$2%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
-//				'match'		=> '#http://www.gamespot.com/showcases/(.*?)\?sid=([0-9]+)([^[]*)?#si',
-//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.gamespot.com/videoembed/$2" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
+				'match'		=> '#http://www.gamespot.com(?:.*?)/(?:video|showcases)/(?:.*?)(?:/|\?sid=)(\d{7}?)(?:.*)?#sie',
+				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$1%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
+//				'match'		=> '#http://www.gamespot.com(?:.*?)/(?:video|showcases)/(?:.*?)(?:/|\?sid=)(\d{7}?)(?:.*)?#si',
+// size issues	'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.gamespot.com/videoembed/$1&vidSize=480" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 			),
 			'gametrailers.com/user-movie' => array(
 				'id'		=> 13,
@@ -1747,7 +1738,7 @@ class abbcode
 				'match'		=> '#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.myvideo.$1/movie/$3', '{WIDTH}', '{HEIGHT}')",
 //				'match'		=> '#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#si',
-//				'replace'	=> '<iframe src='http://www.myvideo.$1/embed/$3' style='width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;' width='{WIDTH}' height='{HEIGHT}' frameborder='0' scrolling='no'></iframe>',
+//				'replace'	=> '<iframe src="http://www.myvideo.$1/embed/$3" style="width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no"></iframe>',
 			),
 			'photobucket.com/albums' => array(
 				'id'		=> 26,
@@ -1947,7 +1938,7 @@ class abbcode
 				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
 				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
 			),
-			// available ids: 64-200
+			// available ids: 11, 64-200
 
 			'file' => array(),
 			'(avi|divx|mkv)' => array(
