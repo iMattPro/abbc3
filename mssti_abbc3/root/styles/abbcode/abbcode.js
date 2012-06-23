@@ -692,6 +692,104 @@ function parseJSON( data ) {
 * Funtion OGP video via AJAX - END
 **/
 
+
+/**
+* Funtion OGP video via AJAX (jQuery version) - START
+*
+* Call method:	jQuery('.ogp_video').ogpEmbedVideo();
+* URL setup:	<a class="ogp_video" href="site.html" data-video-width="425" data-video-height="350">
+*
+*/
+// (function(jQuery){
+// 
+// 	/**
+// 	* Transform links with the ogp_video class into embedded video
+// 	* using AJAX and OGP over YQL
+// 	*/
+// 	jQuery.fn.ogpEmbedVideo = function(){	
+// 		return this.each(function(){
+// 
+// 			var elem = jQuery(this);
+// 			var url = elem.attr('href');
+// 			var options = {
+// 				videoWidth : elem.data("video-width"),
+// 				videoHeight : elem.data("video-height")
+// 			};
+// 
+// 			elem.wrap('<div class="ogp_video_container"></div>');
+// 
+// 			var container= elem.parent(jQuery(".ogp_video_container"));
+// 			
+// 			elem.remove();
+// 
+// 			embedOpenGraph(url, container, options);
+// 		});
+// 	};
+//
+//	/**
+//	* Use YQL service to perform cross-domain AJAX request of URL
+//	* URL's META tags are all we retrieve, in form of a JSON object
+//	*/
+// 	function embedOpenGraph(url, container, options) {	
+// 		if (url.match('^http')) {
+// 			container.html('loading...');
+// 			jQuery.ajax({
+// 				url: "http://query.yahooapis.com/v1/public/yql",
+// 				dataType: "jsonp",
+// 				data: {
+// 					q: 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
+// 					format: "json",
+// 					//env: 'store://datatables.org/alltableswithkeys',
+// 					callback: "?"
+// 				},
+// 				success: function(data) {
+// 					container.html(ogpEmbedCode(data, options));
+// 				}
+// 			});
+// 		}
+// 	}
+//
+//	/**
+//	* META tags parsed into a data.query.results JSON object
+//	* Find og:video URL link and construct an embed tag around it 
+//	*/
+// 	function ogpEmbedCode(data, options) {
+// 
+// 		var embed = "Error loading video...",
+// 			meta = {};
+// 	
+// 		if (data.query.results !== null)
+// 		{
+// 			for (var i = 0, l = data.query.results.meta.length; i < l; i++)
+// 			{
+// 				var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
+// 				if (name === null)
+// 				{
+// 					continue;
+// 				}
+// 				meta[name] = data.query.results.meta[i].content;
+// 			}
+// 	
+// 			if ( meta['og:video'] || meta['og:video:url'] ) {
+// 	
+// 				embed = jQuery('<embed src="' + (meta['og:video'] || meta['og:video:url']) + '"/>');
+// 	
+// 				embed
+// 					.attr('type', meta['og:video:type'] || "application/x-shockwave-flash")
+// 					.attr('width', options.videoWidth || meta['og:video:width'])
+// 					.attr('height', options.videoHeight || meta['og:video:height'])
+// 					.attr('autostart', 'false');
+// 			}
+// 		}
+// 		return embed;		
+// 	}
+// 
+// })( jQuery );
+/**
+* Funtion OGP video via AJAX (jQuery version) - END
+*/
+
+
 /** Install the safety net to run once the main function - START **/
 if (window.onload_functions) // prosilver
 {
