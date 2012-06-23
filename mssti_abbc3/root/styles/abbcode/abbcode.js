@@ -578,37 +578,41 @@ var kmrSimpleTabs = {
 /**
 * Find the link to an SWF file and embed it in the page. Uses an AJAX request
 * to YQL service to retrieve meta tags from a given url as JSON data. 
+* Known issues - will not work with IE7 and below...need to use jQuery for that.
 */
 function ogpEmbedVideo( url, width, height, id ) {	
-
-	var xmlHttpReq = false;
-
 	if (url.match('^http'))
 	{
 		// construct YQL query to get a url's meta tags as JSON data
 		var yql = 'http://query.yahooapis.com/v1/public/yql',
 			yql_query = 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
-			yql_query_url = yql + '?q=' + encodeURIComponent(yql_query) + '&format=json';
-		
-		// Mozilla/Safari
-		if (window.XMLHttpRequest)
+			yql_query_url = yql + '?q=' + encodeURIComponent(yql_query) + '&format=json',
+			ajaxReq = false;
+
+		// IE8 and above (cross domain support for IE7 and below not allowed)
+		if (window.XDomainRequest)
 		{
-			xmlHttpReq = new XMLHttpRequest();
+			ajaxReq = new XDomainRequest();
+			ajaxReq.open("GET", yql_query_url, true);
+			ajaxReq.onload = function () {
+				document.getElementById(id).innerHTML = ogpEmbedCode( ajaxReq.responseText, width, height );
+			};
+			ajaxReq.send(null);
 		}
-		// IE
-		else if (window.ActiveXObject)
+		// Real Browsers
+		else if (window.XMLHttpRequest && !window.XDomainRequest)
 		{
-			xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+			ajaxReq = new XMLHttpRequest();
+			// Make the AJAX request
+			ajaxReq.open("GET", yql_query_url, true);
+			ajaxReq.onreadystatechange = function() {
+				if (ajaxReq.readyState === 4)
+				{
+					document.getElementById(id).innerHTML = ogpEmbedCode( ajaxReq.responseText, width, height );
+				}
+			};
+			ajaxReq.send(null);
 		}
-		// Make the AJAX request
-		xmlHttpReq.open("GET", yql_query_url, true);
-		xmlHttpReq.onreadystatechange = function() {
-			if (xmlHttpReq.readyState === 4)
-			{
-				document.getElementById(id).innerHTML = ogpEmbedCode( xmlHttpReq.responseText, width, height );
-			}
-		};
-		xmlHttpReq.send(null);
 	}
 }
 
