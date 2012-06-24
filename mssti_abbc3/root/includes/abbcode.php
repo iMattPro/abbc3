@@ -1941,29 +1941,13 @@ class abbcode
 			// available ids: 11, 64-200
 
 			'file' => array(),
-			'(avi|divx|mkv)' => array(
-				'id'		=> 201,
-				'image'		=> 'avi.gif',
-				'example'	=> 'http://people.sc.fsu.edu/~jburkardt/data/avi/ccvt_box.avi',
-				'match'		=> '#([^[]+)?\.(avi|divx|mkv)#sie',
-				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}', '', array('type' => 'video/divx'), array('pluginspage' => 'http://go.divx.com/plugin/download/', 'custommode' => 'none'))",
-			),
-			'(mov|mp4|m4v|mpeg|mpg)' => array(
-				'id'		=> 205,
-				'image'		=> 'mov.gif',
-				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
-				'match'		=> '#([^[]+)?\.(mov|mp4|m4v|mpeg|mpg)#si',
-				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="{HEIGHT}" scale="tofit"><param name="type" value="video/quicktime" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
-								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" scale="tofit" type="video/quicktime" autoplay="false"></embed></object>'
-			),
-			'wmv' => array(
-				'id'		=> 204,
-				'image'		=> 'wmv.gif',
-				'example'	=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
-				'match'		=> '#([^[]+)?\.wmv#si',
-				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0" /><param name="Showcontrols" value="true" /><param name="autoStart" value="false" /><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
-								<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
-			),
+// 			'(avi|divx|mkv)' => array(
+// 				'id'		=> 201,
+// 				'image'		=> 'avi.gif',
+// 				'example'	=> 'http://people.sc.fsu.edu/~jburkardt/data/avi/ccvt_box.avi',
+// 				'match'		=> '#([^[]+)?\.(avi|divx|mkv)#sie',
+// 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}', '', array('type' => 'video/divx'), array('pluginspage' => 'http://go.divx.com/plugin/download/', 'custommode' => 'none'))",
+// 			),
 			'flv' => array(
 				'id'		=> 203,
 				'image'		=> 'flashflv.gif',
@@ -1978,13 +1962,28 @@ class abbcode
 				'match'		=> '#([^[]+)?\.swf#sie',
 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}')",
 			),
-			'(mid|midi)' => array(
-				'id'		=> 206,
-				'image'		=> 'quicktime.gif',
-				'example'	=> 'http://www.notz.com/music/jazz/midi/lazybird.mid',
-				'match'		=> '#([^[]+)?\.(mid|midi)#si',
-				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="27"><param name="type" value="audio/x-midi" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
-								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="27" type="audio/x-midi" autoplay="false"></embed></object>'
+			'(mp4|m4v)' => array(
+				'id'		=> 209,
+				'image'		=> 'mov.gif',
+				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
+				'match'		=> '#([^[]+)?\.(mp4|m4v)#sie',
+				'replace'	=> "\$this->auto_embed_video('./flashplayer/flowplayer-3.2.11.swf', '{WIDTH}', '{HEIGHT}', 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'playlist\':[{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'}]}')",
+			),
+			'(mov|mpg|mpeg)' => array(
+				'id'		=> 205,
+				'image'		=> 'mov.gif',
+				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
+				'match'		=> '#([^[]+)?\.(mov|mpg|mpeg)#si',
+				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="{HEIGHT}" scale="tofit"><param name="type" value="video/quicktime" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
+								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" scale="tofit" type="video/quicktime" autoplay="false"></embed></object>'
+			),
+			'wmv' => array(
+				'id'		=> 204,
+				'image'		=> 'wmv.gif',
+				'example'	=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
+				'match'		=> '#([^[]+)?\.wmv#si',
+				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0" /><param name="Showcontrols" value="true" /><param name="autoStart" value="false" /><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
+								<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
 			),
 			'mp3' => array(
 				'id'		=> 207,
@@ -1996,15 +1995,23 @@ class abbcode
 //				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
 //								<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
 			),
-			'ram' => array(
-				'id'		=> 208,
-				'image'		=> 'ram.gif',
-				'example'	=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
-				'match'		=> '#([^[]+)?\.ram#si',
-				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_{ID}" /><param name="prefetch" value="false" /></object><br />
-								<object id="ctrls" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_{ID}" /></object>',
+			'(mid|midi)' => array(
+				'id'		=> 206,
+				'image'		=> 'quicktime.gif',
+				'example'	=> 'http://www.notz.com/music/jazz/midi/lazybird.mid',
+				'match'		=> '#([^[]+)?\.(mid|midi)#si',
+				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="27"><param name="type" value="audio/x-midi" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
+								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="27" type="audio/x-midi" autoplay="false"></embed></object>'
 			),
-			// available ids: 209-300
+// 			'ram' => array(
+// 				'id'		=> 208,
+// 				'image'		=> 'ram.gif',
+// 				'example'	=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
+// 				'match'		=> '#([^[]+)?\.ram#si',
+// 				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_{ID}" /><param name="prefetch" value="false" /></object><br />
+// 								<object id="ctrls" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_{ID}" /></object>',
+// 			),
+			// available ids: 210-300
 		);
 	}
 
