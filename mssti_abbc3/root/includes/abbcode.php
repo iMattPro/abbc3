@@ -2206,6 +2206,49 @@ class abbcode
 }
 
 /**
+* Transform posted URLs from video sites into BBvideo embedded code
+* Not used in default installation. Part of add-on "Auto Video Embed From URLs"
+* Called only from posting.php and viewtopic.php
+*
+* @param  string	$text	string to transform
+* @return string	$text	string with embed code if applicable
+* @version 3.0.12
+*/
+function bbvideo_from_url($text)
+{
+	global $bbcode, $config, $user;
+	if (@$config['ABBC3_MOD'])
+	{
+		$user->add_lang('mods/abbcode');		
+
+		// if no BBCodes are on page, load them up
+		if (empty($bbcode))
+		{
+			$bbcode = new bbcode();
+			$bbcode->bbcode_cache_init();
+		}
+
+		// get array of all BBvideos
+		static $abbcode_video_ary = array();
+		if (empty($abbcode_video_ary))
+		{
+			$abbcode_video_ary = abbcode::video_init();
+		}
+
+		// check to see if any URLs can be converted into BBvideos
+		foreach ($abbcode_video_ary as $video_name => $video_data)
+		{
+			if (strpos($text, $video_name) !== false)
+			{
+				// Run URL matches through the BBvideo_pass function to turn them into embedded BBvideos
+				$text = preg_replace_callback('#<a class="postlink" href="(.*?)">(?:.*?)<\/a>#i', create_function('$matches', 'global $bbcode; return $bbcode->BBvideo_pass($matches[1], null, null);'), $text);
+			}
+		}
+	}
+	return $text;
+}
+
+/**
 * Transform an array into a serialized format
 * Because serialize a large array ( almost 70 key ) 
 * will return a large string to store into the config value
