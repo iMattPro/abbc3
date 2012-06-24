@@ -1996,14 +1996,6 @@ class abbcode
 //				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
 //								<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
 			),
-			'(m4a|m4p)' => array(
-				'id'		=> 209,
-				'image'		=> 'sound.gif',
-				'example'	=> 'http://urlto.m4a',
-				'match'		=> '#([^[]+)?\.(m4a|m4p)#si',
-				'replace'	=> '<object width="{WIDTH}" height="27"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
-								<embed src="$0" autoplay="false" loop="false" width="{WIDTH}" height="27" controller="true"></embed></object>',
-			),
 			'ram' => array(
 				'id'		=> 208,
 				'image'		=> 'ram.gif',
@@ -2012,7 +2004,7 @@ class abbcode
 				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_{ID}" /><param name="prefetch" value="false" /></object><br />
 								<object id="ctrls" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_{ID}" /></object>',
 			),
-			// available ids: 210-300
+			// available ids: 209-300
 		);
 	}
 
