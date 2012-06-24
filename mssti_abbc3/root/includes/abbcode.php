@@ -1948,11 +1948,11 @@ class abbcode
 // 				'match'		=> '#([^[]+)?\.(avi|divx|mkv)#sie',
 // 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}', '', array('type' => 'video/divx'), array('pluginspage' => 'http://go.divx.com/plugin/download/', 'custommode' => 'none'))",
 // 			),
-			'flv' => array(
+			'(flv|f4v)' => array(
 				'id'		=> 203,
 				'image'		=> 'flashflv.gif',
 				'example'	=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
-				'match'		=> '#([^[]+)?\.flv#sie',
+				'match'		=> '#([^[]+)?\.(flv|f4v)#sie',
 				'replace'	=> "\$this->auto_embed_video('./flashplayer/flowplayer-3.2.11.swf', '{WIDTH}', '{HEIGHT}', 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'playlist\':[{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'}]}')",
 			),
 			'swf' => array(
