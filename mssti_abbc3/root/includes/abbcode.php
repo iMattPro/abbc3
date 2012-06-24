@@ -1965,7 +1965,7 @@ class abbcode
 			'(mp4|m4v)' => array(
 				'id'		=> 209,
 				'image'		=> 'mov.gif',
-				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
+				'example'	=> 'http://www.mediacollege.com/video/format/mpeg4/videofilename.mp4',
 				'match'		=> '#([^[]+)?\.(mp4|m4v)#sie',
 				'replace'	=> "\$this->auto_embed_video('./flashplayer/flowplayer-3.2.11.swf', '{WIDTH}', '{HEIGHT}', 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'playlist\':[{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'}]}')",
 			),
