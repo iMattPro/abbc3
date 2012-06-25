@@ -2329,10 +2329,10 @@ function abbc3_add_all_ed2k_link($text, $post_id)
 */
 function abbc3_ed2k_make_clickable($link)
 {
-	global $user, $config, $phpbb_root_path;
+	global $abbcode, $user, $config, $phpbb_root_path;
 
-	$ed2k_icon = $this->abbcode_config['S_ABBC3_PATH'] . '/images/emule.gif';
-	$ed2k_stat = $this->abbcode_config['S_ABBC3_PATH'] . '/images/stats.gif';
+	$ed2k_icon = $abbcode->abbcode_config['S_ABBC3_PATH'] . '/images/emule.gif';
+	$ed2k_stat = $abbcode->abbcode_config['S_ABBC3_PATH'] . '/images/stats.gif';
 
 	$matches = preg_match_all("#(^|(?<=[^\w\"']))(ed2k://\|(file|server|friend)\|([^\\/\|:<>\*\?\"]+?)\|(\d+?)\|([a-f0-9]{32})\|(.*?)/?)(?![\"'])(?=([,\.]*?[\s<\[])|[,\.]*?$)#i", $link, $match);
 
