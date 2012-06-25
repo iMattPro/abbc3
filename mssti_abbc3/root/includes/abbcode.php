@@ -453,14 +453,6 @@ class abbcode
 	* @param string		$in 	post text between [table] & [/table]
 	* @return string	table
 	* @version 3.0.8
-	* @todo: 
-	* 	root/includes/funtions_content.php -> strip_bbcode()
-	* 	$table_ary = array(
-	*		"#\[tr=(.*?)\](.*?)\[/tr\]#is",
-	*		"#\[td=(.*?)\](.*?)\[/td\]#is",
-	*	);
-	*	$text = preg_replace($table_ary, '\2', $text);
-	*
 	*/
 	function table_pass($stx, $in)
 	{
@@ -490,22 +482,31 @@ class abbcode
 		$in	= str_replace(array("]\r\n", "]\r", "]\n", "\r\n[", "\r[", "\n[", '\"', '\'', '(', ')'), array("]\n", ']', ']', "\n[", '[', '[', '"', '&#39;', '&#40;', '&#41;'), trim($in));
 
 		$table_ary = array(
-			"#\[tr\](.*?)\[/tr\]#ies"			=> "'<tr>' . trim('\$1') . '</tr>'",
-			"#\[tr\=(.*?)\](.*?)\[/tr\]#ies"	=> "'<tr style=\"' . trim('\$1') . '\">' . trim('\$2') . '</tr>'",
-			"#\[td\](.*?)\[/td\]#ies"			=> "'<td>' . trim('\$1') . '</td>'",
-			"#\[td\=(.*?)\](.*?)\[/td\]#ies"	=> "'<td style=\"' . trim('\$1') . '\">' . trim('\$2') . '</td>'",
+			'#\[(tr)(?:\=(.*?))?\](.*?)\[/tr\]#is',
+			'#\[(td)(?:\=(.*?))?\](.*?)\[/td\]#is',
 		);
 
-		foreach ($table_ary as $abbcode_found => $abbcode_replace)
+		foreach ($table_ary as $table_regex)
 		{
-			if (preg_match($abbcode_found, $in))
+			if (preg_match($table_regex, $in))
 			{
-				// when using the /e modifier, preg_replace slashes double-quotes but does not seem to slash anything else
-				$in = str_replace('\"', '"', preg_replace($abbcode_found, $abbcode_replace, $in));
+				$in = preg_replace_callback($table_regex, array($this, 'parse_table_tags'), $in);
 			}
 		}
 
 		return '<table ' . (($stx) ? 'style="' . $stx . '" ' : '') . 'cellspacing="0" cellpadding="0">' . $in .'</table>';
+	}
+
+	/**
+	* Callback for parsing the tr and td table tags
+	*
+	* @param array		$matches
+	* @return 			html string
+	* @version 3.0.12
+	*/
+	function parse_table_tags($matches)
+	{
+		return '<' . $matches[1] . (!empty($matches[2]) ? ' style="' . trim($matches[2]) . '"' : '') . '>' . trim($matches[3]) . '</' . $matches[1] . '>';
 	}
 
 	/**
