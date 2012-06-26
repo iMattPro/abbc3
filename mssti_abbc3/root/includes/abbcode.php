@@ -1942,14 +1942,35 @@ class abbcode
 			// available ids: 11, 64-200
 
 			'file' => array(),
-// 			'(avi|divx|mkv)' => array(
-// 				'id'		=> 201,
-// 				'image'		=> 'avi.gif',
-// 				'example'	=> 'http://people.sc.fsu.edu/~jburkardt/data/avi/ccvt_box.avi',
-// 				'match'		=> '#([^[]+)?\.(avi|divx|mkv)#sie',
-// 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}', '', array('type' => 'video/divx'), array('pluginspage' => 'http://go.divx.com/plugin/download/', 'custommode' => 'none'))",
-// 			),
-			'(flv|f4v)' => array(
+			'(mp4|m4v)' => array(
+				'id'		=> 209,
+				'image'		=> 'mov.gif',
+				'example'	=> 'http://www.mediacollege.com/video/format/mpeg4/videofilename.mp4',
+				'match'		=> '#([^[]+)?\.(mp4|m4v)#sie',
+				'replace'	=> "\$this->auto_embed_video('./flashplayer/flowplayer-3.2.11.swf', '{WIDTH}', '{HEIGHT}', 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'playlist\':[{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'}]}')",
+			),
+			'(mov|dv|qt)' => array(
+				'id'		=> 205,
+				'image'		=> 'mov.gif',
+				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
+				'match'		=> '#([^[]+)?\.(mov|dv|qt)#si',
+				'replace'	=> '<object height="{HEIGHT}" width="{WIDTH}" ' . (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'msie') ? 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab#version=6,0,2,0"' : 'type="video/quicktime" data="$0"') . '><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>',
+			),
+			'(mpg|mpeg)' => array(
+				'id'		=> 201,
+				'image'		=> 'mpg.gif',
+				'example'	=> 'http://www.ray3d.com/video/trn_anaglyph_adj.mpg',
+				'match'		=> '#([^[]+)?\.(mpg|mpeg)#si',
+				'replace'	=> (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'mac') ? '<object height="{HEIGHT}" width="{WIDTH}" type="video/quicktime" data="$0"><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>' : '<object height="{HEIGHT}" width="{WIDTH}" classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param name="autostart" value="false" /><param name="uimode" value="full" /><param name="showcontrols" value="true" /><param name="url" value="$0" /><!--[if !IE]>--><object height="{HEIGHT}" width="{WIDTH}" type="video/x-ms-wmv" data="$0"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="url" value="$0" /></object><!--<![endif]--></object>'),
+			),
+			'(avi|wmv)' => array(
+				'id'		=> 204,
+				'image'		=> 'wmv.gif',
+				'example'	=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
+				'match'		=> '#([^[]+)?\.(avi|wmv)#si',
+				'replace'	=> (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'mac') ? '<object height="{HEIGHT}" width="{WIDTH}" type="video/quicktime" data="$0"><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>' : '<object height="{HEIGHT}" width="{WIDTH}" classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param name="autostart" value="false" /><param name="uimode" value="full" /><param name="showcontrols" value="true" /><param name="url" value="$0" /><!--[if !IE]>--><object height="{HEIGHT}" width="{WIDTH}" type="video/x-ms-wmv" data="$0"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="url" value="$0" /></object><!--<![endif]--></object>'),
+			),
+			'flv' => array(
 				'id'		=> 203,
 				'image'		=> 'flashflv.gif',
 				'example'	=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
@@ -1963,38 +1984,12 @@ class abbcode
 				'match'		=> '#([^[]+)?\.swf#sie',
 				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}')",
 			),
-			'(mp4|m4v)' => array(
-				'id'		=> 209,
-				'image'		=> 'mov.gif',
-				'example'	=> 'http://www.mediacollege.com/video/format/mpeg4/videofilename.mp4',
-				'match'		=> '#([^[]+)?\.(mp4|m4v)#sie',
-				'replace'	=> "\$this->auto_embed_video('./flashplayer/flowplayer-3.2.11.swf', '{WIDTH}', '{HEIGHT}', 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'playlist\':[{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'}]}')",
-			),
-			'(mov|mpg|mpeg)' => array(
-				'id'		=> 205,
-				'image'		=> 'mov.gif',
-				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
-				'match'		=> '#([^[]+)?\.(mov|mpg|mpeg)#si',
-				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="{HEIGHT}" scale="tofit"><param name="type" value="video/quicktime" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
-								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" scale="tofit" type="video/quicktime" autoplay="false"></embed></object>'
-			),
-			'wmv' => array(
-				'id'		=> 204,
-				'image'		=> 'wmv.gif',
-				'example'	=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
-				'match'		=> '#([^[]+)?\.wmv#si',
-				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0" /><param name="Showcontrols" value="true" /><param name="autoStart" value="false" /><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
-								<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
-			),
 			'mp3' => array(
 				'id'		=> 207,
 				'image'		=> 'sound.gif',
 				'example'	=> 'http://www.robtowns.com/music/first_noel.mp3',
 				'match'		=> '#([^[]+)?\.mp3#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.google.com/reader/ui/3523697345-audio-player.swf', '{WIDTH}', '27', 'audioUrl=$0')",
-//				'match'		=> '#([^[]+)?\.mp3#si',
-//				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
-//								<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
 			),
 			'(mid|midi)' => array(
 				'id'		=> 206,
@@ -2004,14 +1999,13 @@ class abbcode
 				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="27"><param name="type" value="audio/x-midi" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
 								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="27" type="audio/x-midi" autoplay="false"></embed></object>'
 			),
-// 			'ram' => array(
-// 				'id'		=> 208,
-// 				'image'		=> 'ram.gif',
-// 				'example'	=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
-// 				'match'		=> '#([^[]+)?\.ram#si',
-// 				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_{ID}" /><param name="prefetch" value="false" /></object><br />
-// 								<object id="ctrls" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_{ID}" /></object>',
-// 			),
+			'ram' => array(
+				'id'		=> 208,
+				'image'		=> 'ram.gif',
+				'example'	=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
+				'match'		=> '#([^[]+)?\.ram#si',
+				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="clip_{ID}" /><param name="prefetch" value="false" /></object><br /><object id="ctrls_{ID}" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="clip_{ID}" /></object>',
+			),
 			// available ids: 210-300
 		);
 	}
@@ -2466,7 +2460,7 @@ class linktest
 		*/
 		
 		// most popular hosts
-		$hosts['rapidshare']['rapidshare.com'] 		= array("@rapidshare\.com@i", 'curl', 1000/$this->CONVERSION, array('@<u>100 MB</u>@i'));
+		$hosts['rapidshare']['rapidshare.com'] 		= array("@rapidshare\.com@i", 'curl', 1000 / $this->CONVERSION, array('@<u>100 MB</u>@i'));
 		$hosts['rapidshare']['rapidshare.de'] 		= array("@rapidshare\.de@i", 'curl', 1, array('@>300 MB<@i'));
 		$hosts['other']['depositfiles.com'] 		= array("@depositfiles\.com@i", 'file', 1);
 		$hosts['other']['megashares.com'] 			= array("@megashares\.com@i", 'curl', 1, array('@ 10GB@i'));

@@ -544,7 +544,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] or [flash width,height]URL flash[/flash]',
 	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
 	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
-	'ABBC3_FLASH_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
