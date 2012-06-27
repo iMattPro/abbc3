@@ -2182,7 +2182,7 @@ class abbcode
 					$video_link = $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
 				}
 
-				$video_content = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width + 10, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
+				$video_content = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
 
 				return $video_content;
 			}

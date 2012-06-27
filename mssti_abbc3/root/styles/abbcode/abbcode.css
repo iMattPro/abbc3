@@ -677,6 +677,7 @@ span.anchor {
 }
 
 .bbvideocontent {
+/*
 	padding: 5px;
 	background-color: #555555;
 	text-align: center;
@@ -684,6 +685,11 @@ span.anchor {
 	-moz-border-radius: 0 0 3px 3px;
 	-webkit-border-radius: 0 0 3px 3px;
 	border-radius: 0 0 3px 3px;
+*/
+	padding: 0;
+	background-color: #555555;
+	line-height: 0em;
+	font-size: 0px;
 }
 
 .bbvideo_thumb {
