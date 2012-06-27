@@ -1524,7 +1524,7 @@ class abbcode
  				'image'		=> 'cnet.gif',
  				'example'	=> 'http://cnettv.cnet.com/kinect-controlled-motorized-skateboard/9742-1_53-50118306.html',
  				'match'		=> '#http://cnettv\.cnet\.com/[a-z0-9\-]*\/[0-9]{4}-[0-9]_[0-9]{2}-([0-9]{5,9})\.html#sie',
- 				'replace'	=> "\$this->auto_embed_video('http://www.cnet.com/av/video/embed/player.swf', '{WIDTH}', '{HEIGHT}', 'playerType=embedded&type=id&value=$1')",
+				'replace'	=> "\$this->auto_embed_video('http://www.cnet.com/av/video/embed/player.swf', '{WIDTH}', '{HEIGHT}', 'playerType=embedded&type=id&value=$1')",
  			),
 			'collegehumor.com' => array(
 				'id'		=> 4,
@@ -1631,7 +1631,6 @@ class abbcode
 				'example'	=> 'http://www.gametrailers.com/user-movie/first-gta-cw-screens/268358',
 				'match'		=> '#http://www.gametrailers.com/(?:user\-movie|player)/(.*?)/([0-9]+)(?:[^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://media.mtvnservices.com/mgid:moses:usermovie:gametrailers.com:$2', '{WIDTH}', '{HEIGHT}')",
-//				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?umid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gametrailers.com' => array(
 				'id'		=> 14,
@@ -1639,7 +1638,6 @@ class abbcode
 				'example'	=> 'http://www.gametrailers.com/video/world-premiere-facebreaker/30461',
 				'match'		=> '#http://www.gametrailers.com/(.*?)/([0-9]+)([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('http://media.mtvnservices.com/mgid:moses:video:gametrailers.com:$2', '{WIDTH}', '{HEIGHT}')",
-//				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?mid=$2', '{WIDTH}', '{HEIGHT}')",
 			),
 			'gamevideos.1up' => array(
 				'id'		=> 15,
