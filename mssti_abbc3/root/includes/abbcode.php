@@ -1925,19 +1925,17 @@ class abbcode
 				'id'		=> 43,
 				'image'		=> 'youtube.gif',
 				'example'	=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
-//				'match'		=> '#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#sie',
-//				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
 				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
-				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
+				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1?version=3&hl=en_US', '{WIDTH}', '{HEIGHT}')",
 			),
 			'youtu.be' => array(
 				'id'		=> 49,
 				'image'		=> 'youtube.gif',
 				'example'	=> 'http://youtu.be/sP4NMoJcFd4',
-//				'match'		=> '#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#sie',
-//				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
 				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
-				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
+				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1?version=3&hl=en_US', '{WIDTH}', '{HEIGHT}')",
 			),
 			// available ids: 11, 64-200
 
