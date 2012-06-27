@@ -37,12 +37,13 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</installation>
 		<history>
 			<entry>
-				<date>2012-06-23</date>
+				<date>2012-06-27</date>
 				<rev-version>3.0.12</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Feature] Added ColorboxJS to the Image Resizer methods.]]></change>
 					<change><![CDATA[[Change] Updated and relocated the included Flash Player.]]></change>
 					<change><![CDATA[[Change] Updated Lightbox2 from 2.0.5 to 2.51 (and included it with ABBC3).]]></change>
+					<change><![CDATA[[Change] Updated the appearance of BBvideos. No more borders or edges around the video.]]></change>
 					<change><![CDATA[[Change] Updated the appearance of the Hidden BBcode.]]></change>
 					<change><![CDATA[[Change] Updated Font BBcode to support fonts with unicode characters in their names.]]></change>
 					<change><![CDATA[[Change] New BBvideos: viddler.com]]></change>
