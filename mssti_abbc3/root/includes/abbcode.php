@@ -1861,7 +1861,7 @@ class abbcode
 				'image'		=> 'googlevid.gif',
 				'example'	=> 'http://video.google.com/videoplay?docid=-8351924403384451128',
 				'match'		=> '#http://video.google.(.*?)/(videoplay|googleplayer.swf)\?docid=([0-9A-Za-z-_]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://video.google.\$1/googleplayer.swf?docId=\$3', '{WIDTH}', '{HEIGHT}')",
+				'replace'	=> "\$this->auto_embed_video('http://video.google.$1/googleplayer.swf?docId=$3', '{WIDTH}', '{HEIGHT}')",
 			),
 			'videogamer.com' => array(
 				'id'		=> 63,
