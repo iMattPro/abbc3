@@ -690,6 +690,7 @@ span.anchor {
 	background-color: #555555;
 	line-height: 0em;
 	font-size: 0px;
+	overflow: hidden;
 }
 
 .bbvideo_thumb {
