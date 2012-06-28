@@ -48,7 +48,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 					<change><![CDATA[[Change] Updated Font BBcode to support fonts with unicode characters in their names.]]></change>
 					<change><![CDATA[[Change] New BBvideos: viddler.com]]></change>
 					<change><![CDATA[[Change] Updated BBvideos: Youtube now supports every type of Youtube url. Embed capability updated for comedians.jokes.com, gotgame.com, moddb.com, spike.com, streetfire.com, videogamer.com, wat.tv. Support for m4v and mp4 files.]]></change>
-					<change><![CDATA[[Change] Deleted BBvideos: We can not embed video from these sites so they have been removed from BBvideo: deviantart.com, ted.com, tu.tv. We have also removed support for directly embedding AVI, DIVX, MKV, and RAM files due to widespread browser inconsistencies and incompatability issues.]]></change>
+					<change><![CDATA[[Change] Deleted BBvideos: We can not embed video from these sites so they have been removed from BBvideo: deviantart.com, ted.com, tu.tv. We have also removed support for directly embedding DIVX and MKV files due to widespread browser inconsistencies and incompatability issues.]]></change>
 					<change><![CDATA[[Fix] Fixed an issue with youtu.be links not working in BBvideo]]></change>
 					<change><![CDATA[[Fix] Remove uneeded call to utf8_clean_string in bbcode.php]]></change>
 					<change><![CDATA[[Fix] Replace use of deprecated eregi function in abbcode.php]]></change>
