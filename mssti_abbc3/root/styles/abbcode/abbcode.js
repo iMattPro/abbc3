@@ -573,121 +573,124 @@ var kmrSimpleTabs = {
 
 /**
 * Funtion OGP video via AJAX - START
-**/
-
-/**
+*
 * Find the link to an SWF file and embed it in the page. Uses an AJAX request
 * to YQL service to retrieve meta tags from a given url as JSON data. 
-* Known issues - will not work with IE7 and below...need to use jQuery for that.
+* Known issues - will not work with IE7 and below or Opera 11 and below...will need to use jQuery for that.
 */
-function ogpEmbedVideo( url, width, height, id ) {	
-	if (url.match('^http'))
-	{
-		// construct YQL query to get a url's meta tags as JSON data
-		var yql = 'http://query.yahooapis.com/v1/public/yql',
-			yql_query = 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
-			yql_query_url = yql + '?q=' + encodeURIComponent(yql_query) + '&format=json',
-			ajaxReq = false;
+var ogpEmbedVideo = {
 
-		// IE8 and above (cross domain support for IE7 and below not allowed)
-		if (window.XDomainRequest)
+	init: function( url, width, height, id )
+	{	
+		if (url.match('^http'))
 		{
-			ajaxReq = new XDomainRequest();
-			ajaxReq.open("GET", yql_query_url, true);
-			ajaxReq.onload = function () {
-				document.getElementById(id).innerHTML = ogpEmbedCode( ajaxReq.responseText, width, height );
-			};
-			ajaxReq.send(null);
-		}
-		// Real Browsers
-		else if (window.XMLHttpRequest && !window.XDomainRequest)
-		{
-			ajaxReq = new XMLHttpRequest();
-			// Make the AJAX request
-			ajaxReq.open("GET", yql_query_url, true);
-			ajaxReq.onreadystatechange = function() {
-				if (ajaxReq.readyState === 4)
-				{
-					document.getElementById(id).innerHTML = ogpEmbedCode( ajaxReq.responseText, width, height );
-				}
-			};
-			ajaxReq.send(null);
-		}
-	}
-}
+			// construct YQL query to get a url's meta tags as JSON data
+			var yql = 'http://query.yahooapis.com/v1/public/yql',
+				yql_query = 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
+				yql_query_url = yql + '?q=' + encodeURIComponent(yql_query) + '&format=json',
+				ajaxReq = false;
 
-/**
-* Parse JSON data into an array of META tags. Find the Open Graph Protocol
-* meta tag with a URL for the SWF video file and wrap it in an embed tag.
-*/
-function ogpEmbedCode( str, width, height ) {
-
-	var embed = "Error loading video...",
-		meta = {},	
-		data = parseJSON( str );
-
-	if (data.query.results !== null)
-	{
-		for (var i = 0, l = data.query.results.meta.length; i < l; i++)
-		{
-			var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
-			if(name === null)
+			// IE8 and above (cross domain support for Opera 11 and below and IE7 and below not possible)
+			if (window.XDomainRequest)
 			{
-				continue;
+				ajaxReq = new XDomainRequest();
+				ajaxReq.open("GET", yql_query_url, true);
+				ajaxReq.onload = function () {
+					document.getElementById(id).innerHTML = ogpEmbedVideo.embed( ajaxReq.responseText, width, height );
+				};
+				ajaxReq.send(null);
 			}
-			meta[name] = data.query.results.meta[i].content;
+			// Real Browsers
+			else if (window.XMLHttpRequest && !window.XDomainRequest)
+			{
+				ajaxReq = new XMLHttpRequest();
+				ajaxReq.open("GET", yql_query_url, true);
+				ajaxReq.onreadystatechange = function() {
+					if (ajaxReq.readyState === 4)
+					{
+						document.getElementById(id).innerHTML = ogpEmbedVideo.embed( ajaxReq.responseText, width, height );
+					}
+				};
+				ajaxReq.send(null);
+			}
+		}
+	},
+	
+	/**
+	* Parse JSON data into an array of META tags. Find the Open Graph Protocol
+	* meta tag with a URL for the SWF video file and wrap it in an embed tag.
+	*/
+	embed: function( str, width, height )
+	{	
+		var code = "Error loading video...",
+			meta = {},	
+			data = ogpEmbedVideo.parseJSON( str );
+	
+		if (data.query.results !== null)
+		{
+			for (var i = 0, l = data.query.results.meta.length; i < l; i++)
+			{
+				var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
+				if(name === null)
+				{
+					continue;
+				}
+				meta[name] = data.query.results.meta[i].content;
+			}
+			
+			if ( meta["og:video"] || meta["og:video:url"] )
+			{
+		
+				var embed_src = (meta["og:video"] || meta["og:video:url"]),
+					embed_type = (meta["og:video:type"] || "application/x-shockwave-flash"),
+					embed_width = (width || meta["og:video:width"]),
+					embed_height = (height || meta["og:video:height"]);
+		
+				code = '<embed src="' + embed_src + '" type="' + embed_type + '" width="' + embed_width + '" height="' + embed_height + '" autostart="false"/>';
+			}
 		}
 		
-		if ( meta["og:video"] || meta["og:video:url"] )
+		return code;		
+	},
+	
+	/**
+	* Convert JSON string into JSON object using jQuery technique.
+	* Ref: http://code.jquery.com/jquery-1.7.2.js
+	*/
+	parseJSON : function( data )
+	{
+		if ( typeof data !== "string" || !data )
 		{
-	
-			var embed_src = (meta["og:video"] || meta["og:video:url"]),
-				embed_type = (meta["og:video:type"] || "application/x-shockwave-flash"),
-				embed_width = (width || meta["og:video:width"]),
-				embed_height = (height || meta["og:video:height"]);
-	
-			embed = '<embed src="' + embed_src + '" type="' + embed_type + '" width="' + embed_width + '" height="' + embed_height + '" autostart="false"/>';
+			return null;
 		}
-	}
 	
-	return embed;		
-}
-
-/**
-* Convert JSON string into JSON object using jQuery technique.
-* Ref: http://code.jquery.com/jquery-1.7.2.js
-*/
-function parseJSON( data ) {
-	if ( typeof data !== "string" || !data ) {
+		// Make sure leading/trailing whitespace is removed (IE can't handle it)
+		data = data.replace(/^\s+|\s+$/g, "");
+	
+		// Attempt to parse using the native JSON parser first
+		if ( window.JSON && window.JSON.parse )
+		{
+			return window.JSON.parse( data );
+		}
+	
+		// JSON RegExp
+		var rvalidchars = /^[\],:{}\s]*$/,
+			rvalidescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
+			rvalidtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+			rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g;
+	
+		// Make sure the incoming data is actual JSON
+		// Logic borrowed from http://json.org/json2.js
+		if ( rvalidchars.test( data.replace( rvalidescape, "@" )
+			.replace( rvalidtokens, "]" )
+			.replace( rvalidbraces, "")) ) {
+	
+			return ( new Function( "return " + data ) )();	
+		}
+	
 		return null;
 	}
-
-	// Make sure leading/trailing whitespace is removed (IE can't handle it)
-	data = data.replace(/^\s+|\s+$/g, "");
-
-	// Attempt to parse using the native JSON parser first
-	if ( window.JSON && window.JSON.parse ) {
-		return window.JSON.parse( data );
-	}
-
-	// JSON RegExp
-	var rvalidchars = /^[\],:{}\s]*$/,
-		rvalidescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
-		rvalidtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
-		rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g;
-
-	// Make sure the incoming data is actual JSON
-	// Logic borrowed from http://json.org/json2.js
-	if ( rvalidchars.test( data.replace( rvalidescape, "@" )
-		.replace( rvalidtokens, "]" )
-		.replace( rvalidbraces, "")) ) {
-
-		return ( new Function( "return " + data ) )();
-
-	}
-
-	return null;
-}
+};
 /**
 * Funtion OGP video via AJAX - END
 **/
@@ -696,42 +699,17 @@ function parseJSON( data ) {
 /**
 * Funtion OGP video via AJAX (jQuery version) - START
 *
-* Call method:	jQuery('.ogp_video').ogpEmbedVideo();
-* URL setup:	<a class="ogp_video" href="site.html" data-video-width="425" data-video-height="350">
+* Call method:	<script type="text/javascript">ogpEmbedVideo.init("site.html", "425", "350", "sample1");</script>
 *
 */
-// (function(jQuery){
+// var ogpEmbedVideo = {
 // 
-// 	/**
-// 	* Transform links with the ogp_video class into embedded video
-// 	* using AJAX and OGP over YQL
-// 	*/
-// 	jQuery.fn.ogpEmbedVideo = function(){	
-// 		return this.each(function(){
-// 
-// 			var elem = jQuery(this);
-// 			var url = elem.attr('href');
-// 			var options = {
-// 				videoWidth : elem.data("video-width"),
-// 				videoHeight : elem.data("video-height")
-// 			};
-// 
-// 			elem.wrap('<div class="ogp_video_container"></div>');
-// 
-// 			var container= elem.parent(jQuery(".ogp_video_container"));
-// 			
-// 			elem.remove();
-// 
-// 			embedOpenGraph(url, container, options);
-// 		});
-// 	};
-//
-//	/**
-//	* Use YQL service to perform cross-domain AJAX request of URL
-//	* URL's META tags are all we retrieve, in form of a JSON object
-//	*/
-// 	function embedOpenGraph(url, container, options) {	
-// 		if (url.match('^http')) {
+// 	init : function(url, width, height, id)
+// 	{	
+// 		var container= jQuery("#" + id);
+// 		
+// 		if (url.match('^http'))
+// 		{
 // 			container.html('loading...');
 // 			jQuery.ajax({
 // 				url: "http://query.yahooapis.com/v1/public/yql",
@@ -743,19 +721,15 @@ function parseJSON( data ) {
 // 					callback: "?"
 // 				},
 // 				success: function(data) {
-// 					container.html(ogpEmbedCode(data, options));
+// 					container.html(ogpEmbedVideo.embed(data, width, height));
 // 				}
 // 			});
 // 		}
-// 	}
-//
-//	/**
-//	* META tags parsed into a data.query.results JSON object
-//	* Find og:video URL link and construct an embed tag around it 
-//	*/
-// 	function ogpEmbedCode(data, options) {
+// 	},
 // 
-// 		var embed = "Error loading video...",
+// 	embed : function(data, width, height)
+// 	{	
+// 		var code = "Error loading video...",
 // 			meta = {};
 // 	
 // 		if (data.query.results !== null)
@@ -770,21 +744,20 @@ function parseJSON( data ) {
 // 				meta[name] = data.query.results.meta[i].content;
 // 			}
 // 	
-// 			if ( meta['og:video'] || meta['og:video:url'] ) {
+// 			if ( meta['og:video'] || meta['og:video:url'] )
+// 			{	
+// 				code = jQuery('<embed src="' + (meta['og:video'] || meta['og:video:url']) + '"/>');
 // 	
-// 				embed = jQuery('<embed src="' + (meta['og:video'] || meta['og:video:url']) + '"/>');
-// 	
-// 				embed
+// 				code
 // 					.attr('type', meta['og:video:type'] || "application/x-shockwave-flash")
-// 					.attr('width', options.videoWidth || meta['og:video:width'])
-// 					.attr('height', options.videoHeight || meta['og:video:height'])
+// 					.attr('width', width || meta['og:video:width'])
+// 					.attr('height', height || meta['og:video:height'])
 // 					.attr('autostart', 'false');
 // 			}
 // 		}
-// 		return embed;		
+// 		return code;		
 // 	}
-// 
-// })( jQuery );
+// };
 /**
 * Funtion OGP video via AJAX (jQuery version) - END
 */
