@@ -34,7 +34,7 @@ Features
 	gamespot.com, gametrailers.com, gamevideos.1up, godtube.com, gotgame.com, howcast.com, hulu.com, ign.com,
 	kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo,
 	photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com, scribd, sevenload.com, slideshare.net,
-	spike.com, streetfire.net, theonion.com, twitvid.com, ustream.tv, vbox7.com, veoh.com, video.google,
+	spike.com, streetfire.net, theonion.com, twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com, video.google,
 	videogamer.com, videu.de, vimeo.com, vsocial.com, wat.tv, wegame.com, xfire.com, youtu.be, youtube.com		
 
 
