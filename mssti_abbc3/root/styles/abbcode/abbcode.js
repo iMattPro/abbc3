@@ -691,76 +691,7 @@ var ogpEmbedVideo = {
 		return null;
 	}
 };
-/**
-* Funtion OGP video via AJAX - END
-**/
-
-
-/**
-* Funtion OGP video via AJAX (jQuery version) - START
-*
-* Call method:	<script type="text/javascript">ogpEmbedVideo.init("site.html", "425", "350", "sample1");</script>
-*
-*/
-// var ogpEmbedVideo = {
-// 
-// 	init : function(url, width, height, id)
-// 	{	
-// 		var container= jQuery("#" + id);
-// 		
-// 		if (url.match('^http'))
-// 		{
-// 			container.html('loading...');
-// 			jQuery.ajax({
-// 				url: "http://query.yahooapis.com/v1/public/yql",
-// 				dataType: "jsonp",
-// 				data: {
-// 					q: 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
-// 					format: "json",
-// 					//env: 'store://datatables.org/alltableswithkeys',
-// 					callback: "?"
-// 				},
-// 				success: function(data) {
-// 					container.html(ogpEmbedVideo.embed(data, width, height));
-// 				}
-// 			});
-// 		}
-// 	},
-// 
-// 	embed : function(data, width, height)
-// 	{	
-// 		var code = "Error loading video...",
-// 			meta = {};
-// 	
-// 		if (data.query.results !== null)
-// 		{
-// 			for (var i = 0, l = data.query.results.meta.length; i < l; i++)
-// 			{
-// 				var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
-// 				if (name === null)
-// 				{
-// 					continue;
-// 				}
-// 				meta[name] = data.query.results.meta[i].content;
-// 			}
-// 	
-// 			if ( meta['og:video'] || meta['og:video:url'] )
-// 			{	
-// 				code = jQuery('<embed src="' + (meta['og:video'] || meta['og:video:url']) + '"/>');
-// 	
-// 				code
-// 					.attr('type', meta['og:video:type'] || "application/x-shockwave-flash")
-// 					.attr('width', width || meta['og:video:width'])
-// 					.attr('height', height || meta['og:video:height'])
-// 					.attr('autostart', 'false');
-// 			}
-// 		}
-// 		return code;		
-// 	}
-// };
-/**
-* Funtion OGP video via AJAX (jQuery version) - END
-*/
+/** Funtion OGP video via AJAX - END **/
 
 
 /** Install the safety net to run once the main function - START **/
