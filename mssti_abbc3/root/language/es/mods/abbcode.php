@@ -534,14 +534,14 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
 	'ABBC3_BBVIDEO_MOVER'		=> 'Insertar video desde web',
-	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
+	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo anchura,altura]Video URL[/BBvideo]',
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
-	'ABBC3_BBVIDEO_SELECT'		=> 'Seleccione un tipo de vídeo',
+	'ABBC3_BBVIDEO_SELECT'		=> 'BBvideo sitios y los tipos',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Actualmente no hay vídeos permitidos. Por favor notifique al %sAdministrador del Sitio%s acerca de este problema.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBCode URL.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Formato del archivo',
-	'ABBC3_BBVIDEO_VIDEO'		=> 'Video desde',
 	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Video externo desde',
+	'ABBC3_BBVIDEO_VIDEO'		=> 'sitios permitidos',
 
 	// Flash (swf) Wizard
 	'ABBC3_FLASH_TAG'			=> 'flash',
