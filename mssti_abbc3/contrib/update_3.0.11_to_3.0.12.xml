@@ -44,6 +44,7 @@
 		<copy>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/adm/style/acp_abbcodes.html" to="adm/style/acp_abbcodes.html"/>
+			<file from="root/adm/style/posting_abbcode_wizards.html" to="adm/style/posting_abbcode_wizards.html"/>
 			<file from="root/flashplayer/*.*" to="flashplayer/*.*"/>
 			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
 			<file from="root/includes/acp/acp_abbcodes.php" to="includes/acp/acp_abbcodes.php"/>
@@ -57,7 +58,9 @@
 			<file from="root/styles/abbcode/colorbox/*.*" to="styles/abbcode/colorbox/*.*"/>
 			<file from="root/styles/abbcode/lightbox/*.*" to="styles/abbcode/lightbox/*.*"/>
 			<file from="root/styles/prosilver/template/abbcode.html" to="styles/prosilver/template/abbcode.html"/>
+			<file from="root/styles/prosilver/template/posting_abbcode_wizards.html" to="styles/prosilver/template/posting_abbcode_wizards.html"/>
 			<file from="root/styles/subsilver2/template/abbcode.html" to="styles/subsilver2/template/abbcode.html"/>
+			<file from="root/styles/subsilver2/template/posting_abbcode_wizards.html" to="styles/subsilver2/template/posting_abbcode_wizards.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
