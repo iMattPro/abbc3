@@ -248,8 +248,7 @@ $lang = array_merge($lang, array(
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Blocktext',
 	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]text[/align]',
-##	For translator:                                yes           yes
-	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]Dies ist<br />ein Beispieltext<br />' . $lang['SAMPLE_TEXT'] . '[/align]',
+	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Right Align
 	'ABBC3_ALIGNRIGHT_MOVER'	=> 'Rechtsbündiger Text',
@@ -317,8 +316,6 @@ $lang = array_merge($lang, array(
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Text mit Farbverlauf',
 	'ABBC3_GRAD_TIP'			=> 'Stellt den Text als Farbverlauf dar',
-
-##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',
 	'ABBC3_GRAD_MIN_ERROR'		=> 'Bitte zuerst den Text markieren: ',
 	'ABBC3_GRAD_MAX_ERROR'		=> 'Du darfst nur max. 119 Zeichen markieren : ',
@@ -373,7 +370,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HR_MOVER'			=> 'Trennlinie',
 	'ABBC3_HR_TIP'				=> '[hr]',
 	'ABBC3_HR_NOTE'				=> 'Hinweis: Erstellt eine Trennlinie, um den Text abzugrenzen',
-	'ABBC3_HR_VIEW'				=> '[hr]',
+	'ABBC3_HR_VIEW'				=> $lang['SAMPLE_TEXT'] . '[hr]' . $lang['SAMPLE_TEXT'],
 
 	// Message Box text direction right to Left
 	'ABBC3_DIRRTL_MOVER'		=> 'Text zum Lesen von Rechts nach Links',
@@ -540,7 +537,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SELECT'		=> 'BBvideo Sites und-typen',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Zur Zeit sind keine eingebette Videocodes erlaubt. Bitte informier den %sBoard Administrator%s darüber.<br />In der Zwischenzeit kannst du selbstverständlich die standard URL BBCodes verwenden.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Dateiformat',
-	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Externes Video von',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Zugelassene Sites',
 
 	// Flash (swf) Wizard
@@ -549,7 +545,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] oder [flash width,height]URL flash[/flash]',
 	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
 	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
-	'ABBC3_FLASH_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',

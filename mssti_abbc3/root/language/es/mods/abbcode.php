@@ -248,8 +248,7 @@ $lang = array_merge($lang, array(
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Texto justificado',
 	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]texto[/align]',
-##	For translator:                                yes           yes
-	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]This is <br />a sample text<br />' . $lang['SAMPLE_TEXT'] . '[/align]',
+	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Right Align
 	'ABBC3_ALIGNRIGHT_MOVER'	=> 'Texto alineado a la derecha',
@@ -317,8 +316,6 @@ $lang = array_merge($lang, array(
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Texto arcoiris',
 	'ABBC3_GRAD_TIP'			=> 'Seleccione el texto primero',
-
-##                                                  yes                    yes                     yes                     yes                      yes                     yes                      yes                     yes                     yes                      yes                     yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                      yes                     yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]E[/color][color=#F60009]s[/color][color=#EC0013]t[/color][color=#E3001C]o[/color] [color=#D0002F]e[/color][color=#C60039]s[/color] [color=#B3004C]u[/color][color=#AA0055]n[/color][color=#A1005E]a[/color] [color=#8E0071]m[/color][color=#84007B]u[/color][color=#7B0084]e[/color][color=#71008E]s[/color][color=#680097]t[/color][color=#5E00A1]r[/color][color=#5500AA]a[/color] [color=#4200BD]d[/color][color=#3900C6]e[/color] [color=#2600D9]t[/color][color=#1C00E3]e[/color][color=#1300EC]x[/color][color=#0900F6]t[/color][color=#0000FF]o[/color]',
 	'ABBC3_GRAD_MIN_ERROR'		=> 'Por favor, primero seleccione el texto : ',
 	'ABBC3_GRAD_MAX_ERROR'		=> 'Solo se permite un tamaño inferior a 120 caracteres : ',
@@ -540,7 +537,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SELECT'		=> 'BBvideo sitios y los tipos',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Actualmente no hay vídeos permitidos. Por favor notifique al %sAdministrador del Sitio%s acerca de este problema.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBCode URL.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Formato del archivo',
-	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Video externo desde',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'sitios permitidos',
 
 	// Flash (swf) Wizard
@@ -549,7 +545,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] o [flash width,height]URL flash[/flash]',
 	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
 	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
-	'ABBC3_FLASH_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
