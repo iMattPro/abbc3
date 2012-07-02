@@ -1994,8 +1994,7 @@ class abbcode
 				'image'		=> 'quicktime.gif',
 				'example'	=> 'http://www.notz.com/music/jazz/midi/lazybird.mid',
 				'match'		=> '#([^[]+)?\.(mid|midi)#si',
-				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="27"><param name="type" value="audio/x-midi" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
-								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="27" type="audio/x-midi" autoplay="false"></embed></object>'
+				'replace'	=> '<object width="{WIDTH}" height="27" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" /><!--[if !IE]>--><object width="{WIDTH}" height="27" type="audio/midi" data="$0"><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" /></object><!--<![endif]--></object>'
 			),
 			'ram' => array(
 				'id'		=> 208,
