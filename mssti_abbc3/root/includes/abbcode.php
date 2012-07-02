@@ -2181,7 +2181,7 @@ class abbcode
 				{
 					// this is for all linked video sites, narrow video names down to just the domain
 					preg_match('#([^/]+)#i', $video_name, $video_title);
-					$video_link = $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
+					$video_link = '<a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
 				}
 
 				$video_content = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
