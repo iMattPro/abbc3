@@ -1526,6 +1526,13 @@ class abbcode
  				'match'		=> '#http://cnettv\.cnet\.com/[a-z0-9\-]*\/[0-9]{4}-[0-9]_[0-9]{2}-([0-9]{5,9})\.html#sie',
 				'replace'	=> "\$this->auto_embed_video('http://www.cnet.com/av/video/embed/player.swf', '{WIDTH}', '{HEIGHT}', 'playerType=embedded&type=id&value=$1')",
  			),
+			'colbertnation.com' => array(
+				'id'		=> 64,
+				'image'		=> 'comedycentral.gif',
+				'example'	=> 'http://www.colbertnation.com/the-colbert-report-videos/180900/october-17-2005/intro---10-17-05',
+				'match'		=> '#http://(?:.*?)colbertnation.com/the-colbert-report-videos/([0-9]+)/([^[]*)?#si',
+				'replace'	=> '<iframe src="http://media.mtvnservices.com/embed/mgid:cms:video:colbertnation.com:$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+			),
 			'collegehumor.com' => array(
 				'id'		=> 4,
 				'image'		=> 'collegehumor.gif',
@@ -1808,6 +1815,13 @@ class abbcode
 				'match'		=> '#http://(.*?)streetfire.net/video/([^[]*)?#si',
 				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
+			'thedailyshow.com' => array(
+				'id'		=> 11,
+				'image'		=> 'comedycentral.gif',
+				'example'	=> 'http://www.thedailyshow.com/watch/thu-june-28-2012/roberts--rules-of-order',
+				'match'		=> '#http://(?:.*?)thedailyshow.com/watch/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
+			),
 			'theonion.com' => array(
 				'id'		=> 34,
 				'image'		=> 'theonion.gif',
@@ -1937,7 +1951,7 @@ class abbcode
 //				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
 //				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
 			),
-			// available ids: 11, 64-200
+			// available ids: 65-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(
