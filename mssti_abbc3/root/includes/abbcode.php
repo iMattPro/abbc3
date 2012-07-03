@@ -1866,7 +1866,7 @@ class abbcode
 				'match'		=> '#http://(?:.*?).viddler.com/v/([0-9A-Za-z-_]+)([^[]*)?#sie',
 				'replace'	=> "\$this->auto_embed_video('//www.viddler.com/player/$1/', '{WIDTH}', '{HEIGHT}', 'f=1&autoplay=f&loop=false&nologo=false&hd=false')",
 //				'match'		=> '#http://(?:.*?).viddler.com/v/([0-9A-Za-z-_]+)([^[]*)?#si',
-//				'replace'	=> '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&autoplay=0&player=full&loop=false&nologo=false&hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+//				'replace'	=> '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&amp;autoplay=0&amp;player=full&amp;loop=false&amp;nologo=false&amp;hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
 			'video.google' => array(
 				'id'		=> 39,
@@ -2181,7 +2181,7 @@ class abbcode
 				// create the icon image tag for the BBvideo info bar
 				$video_image = $video_image_path . '/images/' . $video_data['image'];
 				$video_image = (file_exists($video_image)) ? '<img src="' . $video_image . '" class="postimage" alt="" width="20" height="20" /> ' : '';
-				
+
 				// create a link to the video for the BBvideo info bar
 				if ($video_data['id'] > 200)
 				{
@@ -2196,6 +2196,7 @@ class abbcode
 					$video_link = '<a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
 				}
 
+				// Dump everything we've done into the BBvideo html template
 				$video_content = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
 
 				return $video_content;
