@@ -1488,8 +1488,9 @@ class abbcode
 				'id'		=> 52,
 				'image'		=> 'bliptv.gif',
 				'example'	=> 'http://blip.tv/disenchanted/disenchanted-ep-101-once-upon-a-crackhouse-6063266',
-				'match'		=> '#http://(.*?)blip.tv/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://blip.tv/oembed/?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)blip.tv/([^[]*)?#si',
+				'replace'	=> 'http://blip.tv/oembed/?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'break.com' => array(
 				'id'		=> 21,
@@ -1664,8 +1665,9 @@ class abbcode
 				'id'		=> 58,
 				'image'		=> 'gotgame.gif',
 				'example'	=> 'http://gotgame.com/2012/03/26/assassins-creed-3-interview-with-alex-hutchinson/',
-				'match'		=> '#http://(.*?)gotgame.com/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://gotgame.com/wp-content/plugins/oembed-provider/oembed-provider.php?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)gotgame.com/([^[]*)?#si',
+				'replace'	=> 'http://gotgame.com/wp-content/plugins/oembed-provider/oembed-provider.php?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'howcast.com' => array(
 				'id'		=> 28,
@@ -1678,8 +1680,9 @@ class abbcode
 				'id'		=> 53,
 				'image'		=> 'hulu.gif',
 				'example'	=> 'http://www.hulu.com/watch/308687/the-office-dwight-vs-jim-prank-tacular',
-				'match'		=> '#http://(.*?)hulu.com/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://www.hulu.com/api/oembed?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)hulu.com/([^[]*)?#si',
+				'replace'	=> 'http://www.hulu.com/api/oembed?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'ign.com' => array(
 				'id'		=> 16,
@@ -1757,8 +1760,9 @@ class abbcode
 				'id'		=> 54,
 				'image'		=> 'revision3.gif',
 				'example'	=> 'http://revision3.com/scamschool/fortheladies2',
-				'match'		=> '#http://(.*?)revision3.com/(.*?)/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://revision3.com/api/oembed/?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)revision3.com/(.*?)/([^[]*)?#si',
+				'replace'	=> 'http://revision3.com/api/oembed/?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'rutube.ru' => array(
 				'id'		=> 29,
@@ -1781,7 +1785,9 @@ class abbcode
 				'image'		=> 'scribd.gif',
 				'example'	=> 'http://www.scribd.com/doc/26886617/Dexter-Investigating-Cutting-Edge-Television',
 				'match'		=> '#http://www.scribd.com/.*#si',
-				'replace'	=> "\$this->oembed_url('http://www.scribd.com/services/oembed?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'replace'	=> 'http://www.scribd.com/services/oembed?url=$0&format=json',
+				'method'	=> 'oEmbed',
+//				'example'	=> '[scribd id=33988557 key=key-2l5cezbnj6qttpbzb75d mode=list]',
 //				'match'		=> '#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#si',
 //				'replace'	=> '<iframe class="scribd_iframe_embed" src="http://www.scribd.com/embeds/$3$10/content?start_page=1&view_mode=$7&access_key=$5$12" data-auto-height="false" data-aspect-ratio scrolling="no" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
@@ -1798,8 +1804,9 @@ class abbcode
 				'id'		=> 55,
 				'image'		=> 'slideshare.gif',
 				'example'	=> 'http://www.slideshare.net/chrisbrogan/social-media-for-publishers-presentation',
-				'match'		=> '#http://www.slideshare.net/(.*?)/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://www.slideshare.net/api/oembed/2?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.slideshare.net/(.*?)/([^[]*)?#si',
+				'replace'	=> 'http://www.slideshare.net/api/oembed/2?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'spike.com' => array(
 				'id'		=> 60,
@@ -2174,6 +2181,12 @@ class abbcode
 
 				// generate embedded video content
 				$video_content = preg_replace($video_data['match'], $video_data['replace'], $in);
+				
+				// For oEmbed videos, now is a good time to get the embed code
+				if (isset($video_data['method']) && $video_data['method'] == 'oEmbed')
+				{
+					$video_content = $this->oembed_url($video_content, $video_width, $video_height);
+				}
 
 				// replace variables in the video content string with values
 				$video_content = str_replace(array('{WIDTH}', '{HEIGHT}', '{ID}'), array($video_width, $video_height, $video_unique_id), $video_content);
