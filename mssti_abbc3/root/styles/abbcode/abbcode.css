@@ -339,7 +339,7 @@ dl.testlink {
 .spoilwrapper {
 /*	margin: 5px; */
 	padding: 0;
-	color: #000000;
+	color: #333333;
 	border: 1px solid #dbdbdb;
 	background-color: #ffffff;
 	line-height: 1.4em;
@@ -360,13 +360,18 @@ dl.testlink {
 	display: block;
 }
 
-.btnspoil a,
+.btnspoil a {
+	text-decoration: none;
+	color: #333333
+}
+
 .btnspoil a:hover {
 	text-decoration: none;
+	color: #d31141
 }
 
 .spoilcontent {	
-	color: #000000;
+	color: #333333;
 }
 /* Spoiler - END */
 
@@ -474,7 +479,7 @@ div.Rainbow {
 	border: 1px solid #000000;
 	font-size: 0.9em;
 	font-weight: normal;
-	color: #000000;
+	color: #333333;
 	overflow: hidden;
 }
 
@@ -529,6 +534,7 @@ div.Rainbow {
 
 .OffTopicText {
 	padding: 5px 10px;
+	color: #333333;
 }
 /* Offtopic bbcode - END */
 
@@ -539,6 +545,7 @@ div.Rainbow {
 	border: 1px dotted #000000; 
 	font-size: 0.9em; 
 	font-weight: normal;
+	color: #333333;
 	display: -moz-inline-box; /* For FF<3 */
 	-moz-box-orient: vertical; /* For FF<3 */
 	display: inline-block; /* IE <8 needs this tripped back to display: inline; to make it work on block elements */
@@ -618,6 +625,7 @@ ul.abbc3-gallery img {
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
+	color: #333333;
 }
 
 .hidden, .unhidden {
@@ -777,6 +785,7 @@ div.simpleTabsContent {
 	margin-top: 0 !important;
 	padding: 1em !important;
 	background-color: #ffffff;
+	color: #333333;
 }
 
 div.simpleTabsContent .simpleTabsTitles {
