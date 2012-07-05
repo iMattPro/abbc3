@@ -37,7 +37,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</installation>
 		<history>
 			<entry>
-				<date>2012-07-02</date>
+				<date>2012-07-05</date>
 				<rev-version>3.0.12</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Feature] Added ColorboxJS to the Image Resizer methods.]]></change>
@@ -46,9 +46,9 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 					<change><![CDATA[[Change] Updated the appearance of BBvideos. No more borders or edges around the video.]]></change>
 					<change><![CDATA[[Change] Updated the appearance of the Hidden BBcode.]]></change>
 					<change><![CDATA[[Change] Updated Font BBcode to support fonts with unicode characters in their names.]]></change>
-					<change><![CDATA[[Change] New BBvideos: colbertnation.com, thedailyshow.com, viddler.com]]></change>
+					<change><![CDATA[[Change] New BBvideos: 5min.com, colbertnation.com, dotsub.com, qik.com, thedailyshow.com, traileraddict.com, viddler.com, youku.com]]></change>
 					<change><![CDATA[[Change] Updated BBvideos: Youtube now supports every type of Youtube url. Scribd has been changed to work with URLs instead of the Wordpress code. Embed capability updated for comedians.jokes.com, gotgame.com, moddb.com, spike.com, streetfire.com, videogamer.com, wat.tv. Support for m4v and mp4 files.]]></change>
-					<change><![CDATA[[Change] Deleted BBvideos: We can not embed video from these sites so they have been removed from BBvideo: deviantart.com, ted.com, tu.tv. We have also removed support for directly embedding DIVX and MKV files due to widespread browser inconsistencies and incompatability issues.]]></change>
+					<change><![CDATA[[Change] Deleted BBvideos: We can not embed video from these sites so they have been removed: deviantart.com, ted.com, tu.tv. We have removed these sites because they appear to be gone: vsocial.com. We have also removed support for directly embedding DIVX and MKV files due to browser inconsistencies and incompatability issues.]]></change>
 					<change><![CDATA[[Fix] Fixed an issue with youtu.be links not working in BBvideo]]></change>
 					<change><![CDATA[[Fix] Remove uneeded call to utf8_clean_string in bbcode.php]]></change>
 					<change><![CDATA[[Fix] Replace use of deprecated eregi function in abbcode.php]]></change>

@@ -1478,6 +1478,14 @@ class abbcode
 		// Patterns and replacements for BBVIDEO bbcode processing
 		return array(
 			'video' => array(),
+			'5min.com' => array(
+				'id'		=> 41,
+				'image'		=> '5min.gif',
+				'example'	=> 'http://www.5min.com/Video/iPad-to-Embrace-New-Name-517297508',
+				'match'		=> '#http://(?:.*)?5min.com/Video/(?:.*)-([0-9]+)#si',
+				'replace'	=> 'http://embed.5min.com/$1/',
+				'method'	=> 'flash',
+			),
 			'allocine.fr' => array(
 				'id'		=> 46,
 				'image'		=> 'allocine.gif',
@@ -1590,6 +1598,13 @@ class abbcode
 //				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://www.dailymotion.com/embed/video/$2"></iframe>',
 				'replace'	=> 'http://www.dailymotion.com/swf/video/$2',
 				'method'	=> 'flash',
+			),
+			'dotsub.com' => array(
+				'id'		=> 66,
+				'image'		=> 'dotsub.gif',
+				'example'	=> 'http://dotsub.com/view/6a7db231-4d64-407d-8026-a845eaf6c4a9',
+				'match'		=> '#http://dotsub.com/view/(.+)#si',
+				'replace'	=> '<iframe src="http://dotsub.com/media/$1/embed/" frameborder="0" width="{WIDTH}" height="{HEIGHT}"></iframe>',
 			),
 			'ebaumsworld.com' => array(
 				'id'		=> 32,
@@ -1785,6 +1800,14 @@ class abbcode
 				'replace'	=> 'http://www.myvideo.$1/movie/$3',
 				'method'	=> 'flash',
 			),
+			'qik.com' => array(
+				'id'		=> 65,
+				'image'		=> 'qik.gif',
+				'example'	=> 'http://qik.com/video/43675514',
+				'match'		=> '#http://qik\.com/video/[0-9]+#si',
+				'replace'	=> 'http://qik.com/api/oembed?url=$0&format=json',
+				'method'	=> 'oEmbed',
+			),
 			'photobucket.com/albums' => array(
 				'id'		=> 26,
 				'image'		=> 'photobucket.gif',
@@ -1876,6 +1899,13 @@ class abbcode
 				'match'		=> '#http://((.*?)?)theonion.com/([^,]+),([0-9]+)([^[]*)?#si',
 				'replace'	=> '<iframe frameborder="no" width="{WIDTH}" height="{HEIGHT}" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>',
 			),
+			'traileraddict.com' => array(
+				'id'		=> 13,
+				'image'		=> 'traileraddict.gif',
+				'example'	=> 'http://www.traileraddict.com/trailer/abraham-lincoln-vampire-hunter/trailer-b',
+				'match'		=> '#http://www.traileraddict.com/trailer/.+#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
+			),
 			'twitvid.com' => array(
 				'id'		=> 12,
 				'image'		=> 'twitvid.gif',
@@ -1951,14 +1981,6 @@ class abbcode
 				'replace'	=> 'http://vimeo.com/moogaloop.swf?clip_id=$1&server=vimeo.com&fullscreen=1&show_title=1&show_byline=1&show_portrait=0&color=',
 				'method'	=> 'flash',
 			),
-			'vsocial.com' => array(
-				'id'		=> 41,
-				'image'		=> 'vsocial.gif',
-				'example'	=> 'http://www.vsocial.com/video/?d=2893',
-				'match'		=> '#http://www.vsocial.com/video/\?d=([^[]*)#si',
-				'replace'	=> 'http://static.vsocial.com/flash/ups.swf?d=$1&a=0',
-				'method'	=> 'flash',
-			),
 			'wat.tv' => array(
 				'id'		=> 62,
 				'image'		=> 'wattv.gif',
@@ -1991,6 +2013,14 @@ class abbcode
 				'match'		=> '#http://screen.yahoo.com/((([^-]+)?-)*)([0-9]+).html#si',
 				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://d.yimg.com/nl/vyc/site/player.html#shareUrl=http%3A%2F%2Fscreen.yahoo.com%$1$4.html&amp;browseCarouselUI=hide&amp;repeat=0&amp;lang=en-US&amp;vid=$4&amp;startScreenCarouselUI=hide"></iframe>',
 			),
+			'youku.com' => array(
+				'id'		=> 67,
+				'image'		=> 'youku.gif',
+				'example'	=> 'http://v.youku.com/v_show/id_XMzgxNzY3NTU2.html',
+				'match'		=> '#http://v.youku.com/v_show/id_(.+)\.html.*#si',
+				'replace'	=> 'http://player.youku.com/player.php/sid/$1/v.swf',
+				'method'	=> 'flash',
+			),
 			'youtube.com' => array(
 				'id'		=> 43,
 				'image'		=> 'youtube.gif',
@@ -2009,7 +2039,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 65-200
+			// available ids: 68-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(
