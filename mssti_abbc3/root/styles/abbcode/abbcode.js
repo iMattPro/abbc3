@@ -646,7 +646,7 @@ var ogpEmbedVideo = {
 					embed_width = (width || meta["og:video:width"]),
 					embed_height = (height || meta["og:video:height"]);
 		
-				code = '<embed src="' + embed_src + '" type="' + embed_type + '" width="' + embed_width + '" height="' + embed_height + '" autostart="false"/>';
+				code = '<embed src="' + embed_src + '" type="' + embed_type + '" width="' + embed_width + '" height="' + embed_height + '" autostart="false" allowfullScreen="true"/>';
 			}
 		}
 		
