@@ -2292,7 +2292,7 @@ class abbcode
 * @return string	$text	string with embed code if applicable
 * @version 3.0.12
 */
-function bbvideo_from_url($text)
+function url_to_bbvideo($text)
 {
 	global $bbcode, $config, $user;
 	if (@$config['ABBC3_MOD'])

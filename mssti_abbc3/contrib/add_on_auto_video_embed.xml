@@ -48,7 +48,7 @@
 			<edit>
 				<find><![CDATA[if (!sizeof($error))]]></find>
 				<action type="before-add"><![CDATA[	// MOD : MSSTI ABBC3 Convert URLs into BBvideos - Start
-	$preview_message = bbvideo_from_url($preview_message);
+	$preview_message = url_to_bbvideo($preview_message);
 	// MOD : MSSTI ABBC3 Convert URLs into BBvideos - End]]></action>
 			</edit>
 		</open>
@@ -56,7 +56,7 @@
 			<edit>
 				<find><![CDATA[$message = censor_text($row['post_text']);]]></find>
 				<action type="after-add"><![CDATA[	// MOD : MSSTI ABBC3 Convert URLs into BBvideos - Start
-	$message = bbvideo_from_url($message);
+	$message = url_to_bbvideo($message);
 	// MOD : MSSTI ABBC3 Convert URLs into BBvideos - End]]></action>
 			</edit>
 		</open>
