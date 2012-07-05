@@ -50,7 +50,7 @@ class abbcode
 	}
 
 	/**
-	* Initializate config vars...
+	* Initialize config vars...
 	*
 	* @param bool		$need_template
 	* @return mixeed
@@ -1473,6 +1473,8 @@ class abbcode
 	*/
 	function video_init()
 	{
+		global $user;
+
 		// Patterns and replacements for BBVIDEO bbcode processing
 		return array(
 			'video' => array(),
@@ -2024,21 +2026,21 @@ class abbcode
 				'image'		=> 'mov.gif',
 				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
 				'match'		=> '#([^[]+)?\.(mov|dv|qt)#si',
-				'replace'	=> '<object height="{HEIGHT}" width="{WIDTH}" ' . (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'msie') ? 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab#version=6,0,2,0"' : 'type="video/quicktime" data="$0"') . '><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>',
+				'replace'	=> '<object height="{HEIGHT}" width="{WIDTH}" ' . (strpos(strtolower($user->browser), 'msie') ? 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab#version=6,0,2,0"' : 'type="video/quicktime" data="$0"') . '><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>',
 			),
 			'(mpg|mpeg)' => array(
 				'id'		=> 201,
 				'image'		=> 'mpg.gif',
 				'example'	=> 'http://www.ray3d.com/video/trn_anaglyph_adj.mpg',
 				'match'		=> '#([^[]+)?\.(mpg|mpeg)#si',
-				'replace'	=> (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'mac') ? '<object height="{HEIGHT}" width="{WIDTH}" type="video/quicktime" data="$0"><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>' : '<object height="{HEIGHT}" width="{WIDTH}" classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param name="autostart" value="false" /><param name="uimode" value="full" /><param name="showcontrols" value="true" /><param name="url" value="$0" /><!--[if !IE]>--><object height="{HEIGHT}" width="{WIDTH}" type="video/x-ms-wmv" data="$0"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="url" value="$0" /></object><!--<![endif]--></object>'),
+				'replace'	=> (strpos(strtolower($user->browser), 'mac') ? '<object height="{HEIGHT}" width="{WIDTH}" type="video/quicktime" data="$0"><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>' : '<object height="{HEIGHT}" width="{WIDTH}" classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param name="autostart" value="false" /><param name="uimode" value="full" /><param name="showcontrols" value="true" /><param name="url" value="$0" /><!--[if !IE]>--><object height="{HEIGHT}" width="{WIDTH}" type="video/x-ms-wmv" data="$0"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="url" value="$0" /></object><!--<![endif]--></object>'),
 			),
 			'(avi|wmv)' => array(
 				'id'		=> 204,
 				'image'		=> 'wmv.gif',
 				'example'	=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
 				'match'		=> '#([^[]+)?\.(avi|wmv)#si',
-				'replace'	=> (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'mac') ? '<object height="{HEIGHT}" width="{WIDTH}" type="video/quicktime" data="$0"><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>' : '<object height="{HEIGHT}" width="{WIDTH}" classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param name="autostart" value="false" /><param name="uimode" value="full" /><param name="showcontrols" value="true" /><param name="url" value="$0" /><!--[if !IE]>--><object height="{HEIGHT}" width="{WIDTH}" type="video/x-ms-wmv" data="$0"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="url" value="$0" /></object><!--<![endif]--></object>'),
+				'replace'	=> (strpos(strtolower($user->browser), 'mac') ? '<object height="{HEIGHT}" width="{WIDTH}" type="video/quicktime" data="$0"><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>' : '<object height="{HEIGHT}" width="{WIDTH}" classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param name="autostart" value="false" /><param name="uimode" value="full" /><param name="showcontrols" value="true" /><param name="url" value="$0" /><!--[if !IE]>--><object height="{HEIGHT}" width="{WIDTH}" type="video/x-ms-wmv" data="$0"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="url" value="$0" /></object><!--<![endif]--></object>'),
 			),
 			'flv' => array(
 				'id'		=> 203,
