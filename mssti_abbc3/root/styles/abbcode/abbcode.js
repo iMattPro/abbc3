@@ -580,39 +580,69 @@ var kmrSimpleTabs = {
 */
 var ogpEmbedVideo = {
 
-	init: function( url, width, height, id )
-	{	
+	init : function( url, width, height, id )
+	{
 		if (url.match('^http'))
 		{
 			// construct YQL query to get a url's meta tags as JSON data
 			var yql = 'http://query.yahooapis.com/v1/public/yql',
 				yql_query = 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
-				yql_query_url = yql + '?q=' + encodeURIComponent(yql_query) + '&format=json',
-				ajaxReq = false;
-
-			// IE8 and above (cross domain support for Opera 11 and below and IE7 and below not possible)
-			if (window.XDomainRequest)
-			{
-				ajaxReq = new XDomainRequest();
-				ajaxReq.open("GET", yql_query_url, true);
-				ajaxReq.onload = function () {
-					document.getElementById(id).innerHTML = ogpEmbedVideo.embed( ajaxReq.responseText, width, height );
+				options = {
+					url : yql + '?q=' + encodeURIComponent(yql_query) + '&format=json',
+					width : width,
+					height : height,
+					id : id
 				};
-				ajaxReq.send(null);
-			}
-			// Real Browsers
-			else if (window.XMLHttpRequest && !window.XDomainRequest)
+			
+			ogpEmbedVideo.ajax( options );
+		}
+	},	
+	
+	/**
+	* The following cross-domain AJAX coding was originally devised by Alexandru Nedelcu
+	* Ref: http://bionicspirit.com/blog/2011/03/24/cross-domain-requests.html
+	* Currently Opera 11 and below and IE7 and below won't work! We need jQuery for them.
+	*/
+	ajax : function( options )
+	{
+		var xhr = null;
+
+		try {
+			xhr = new XMLHttpRequest();
+		} catch(e) {}	
+		
+		if (xhr && "withCredentials" in xhr)
+		{
+			xhr.open("GET", options.url, true);
+		}
+		else if (typeof XDomainRequest !== "undefined")
+		{
+			xhr = new XDomainRequest();
+			xhr.open("GET", options.url);
+		}
+		
+		if (xhr)
+		{
+			var handle_load = function (event_type)
 			{
-				ajaxReq = new XMLHttpRequest();
-				ajaxReq.open("GET", yql_query_url, true);
-				ajaxReq.onreadystatechange = function() {
-					if (ajaxReq.readyState === 4)
+				return function (XHRobj)
+				{
+					XHRobj = is_iexplorer() ? xhr : XHRobj;
+		
+					if (event_type === 'load' && (is_iexplorer() || XHRobj.readyState === 4))
 					{
-						document.getElementById(id).innerHTML = ogpEmbedVideo.embed( ajaxReq.responseText, width, height );
+						document.getElementById(options.id).innerHTML = ogpEmbedVideo.embed( XHRobj.responseText, options );
 					}
 				};
-				ajaxReq.send(null);
-			}
+			};
+		
+			try {
+			// withCredentials is not supported by IExplorer's XDomainRequest
+				xhr.withCredentials = false;
+			} catch(e) {}
+		
+			xhr.onload  = function (e) { handle_load('load')(is_iexplorer() ? e : e.target); };
+			xhr.send(null);
 		}
 	},
 	
@@ -620,7 +650,7 @@ var ogpEmbedVideo = {
 	* Parse JSON data into an array of META tags. Find the Open Graph Protocol
 	* meta tag with a URL for the SWF video file and wrap it in an embed tag.
 	*/
-	embed: function( str, width, height )
+	embed : function( str, options )
 	{	
 		var code = "Error loading video...",
 			meta = {},	
@@ -643,8 +673,8 @@ var ogpEmbedVideo = {
 		
 				var embed_src = (meta["og:video"] || meta["og:video:url"]),
 					embed_type = (meta["og:video:type"] || "application/x-shockwave-flash"),
-					embed_width = (width || meta["og:video:width"]),
-					embed_height = (height || meta["og:video:height"]);
+					embed_width = (options.width || meta["og:video:width"]),
+					embed_height = (options.height || meta["og:video:height"]);
 		
 				code = '<embed src="' + embed_src + '" type="' + embed_type + '" width="' + embed_width + '" height="' + embed_height + '" autostart="false" allowfullScreen="true"/>';
 			}
@@ -691,6 +721,10 @@ var ogpEmbedVideo = {
 		return null;
 	}
 };
+
+function is_iexplorer() { 
+	return navigator.userAgent.indexOf('MSIE') !== -1;
+}
 /** Funtion OGP video via AJAX - END **/
 
 
