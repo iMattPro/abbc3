@@ -532,7 +532,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_MOVER'		=> 'Insert web video',
 	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo width,height]Video URL[/BBvideo]',
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
-	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
+	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 560,340]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
 	'ABBC3_BBVIDEO_SELECT'		=> 'BBvideo sites and files',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBCode.',
 	'ABBC3_BBVIDEO_FILE'		=> 'File format',

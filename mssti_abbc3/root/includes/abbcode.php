@@ -110,9 +110,9 @@ class abbcode
 			// Thumbnails width
 			'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH'])) ? $config['ABBC3_MAX_THUM_WIDTH'] : $config['img_max_thumb_width'],
 			// Width for posted video ?
-			'ABBC3_VIDEO_WIDTH'		=> (isset($config['ABBC3_VIDEO_width'])) ? $config['ABBC3_VIDEO_width'] : 425,
+			'ABBC3_VIDEO_WIDTH'		=> (isset($config['ABBC3_VIDEO_width'])) ? $config['ABBC3_VIDEO_width'] : 560,
 			// Height for posted video ?
-			'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 350,
+			'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 340,
 			// Link to ABBC3 help page
 			'ABBC3_HELP_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=help'),
 			// ABBC3 mode 
