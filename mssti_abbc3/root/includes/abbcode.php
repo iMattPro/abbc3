@@ -1792,6 +1792,14 @@ class abbcode
 				'replace'	=> 'http://www.myvideo.$1/movie/$3',
 				'method'	=> 'flash',
 			),
+			'photobucket.com' => array(
+				'id'		=> 26,
+				'image'		=> 'photobucket.gif',
+				'example'	=> 'http://s0006.photobucket.com/albums/0006/pbhomepage/Ice%20Age/?action=view&current=TFEIT301100-H264_Oct27.mp4',
+				'match'		=> '#http://s(.*?).photobucket.com/(albums/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?#si',
+				'replace'	=> 'http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5',
+				'method'	=> 'flash',
+			),
 			'qik.com' => array(
 				'id'		=> 65,
 				'image'		=> 'qik.gif',
@@ -1799,14 +1807,6 @@ class abbcode
 				'match'		=> '#http://qik\.com/video/[0-9]+#si',
 				'replace'	=> 'http://qik.com/api/oembed?url=$0&format=json',
 				'method'	=> 'oEmbed',
-			),
-			'photobucket.com/albums' => array(
-				'id'		=> 26,
-				'image'		=> 'photobucket.gif',
-				'example'	=> 'http://s0006.photobucket.com/albums/0006/pbhomepage/Ice%20Age/?action=view&current=TFEIT301100-H264_Oct27.mp4',
-				'match'		=> '#http://s(.*?).photobucket.com/(albums/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?#si',
-				'replace'	=> 'http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5',
-				'method'	=> 'flash',
 			),
 			'revision3.com' => array(
 				'id'		=> 54,
@@ -2120,7 +2120,6 @@ class abbcode
 	* flickr.com => http://www.flickr.com/services/oembed/?url=$0&format=json,
 	* funnyordie.com => http://www.funnyordie.com/oembed?url=$0&format=json,
 	* photobucket.com => http://photobucket.com/oembed?url=$0&format=json,
-	* qik.com => http://qik.com/api/oembed?url=$0&format=json,
 	* smugmug.com => http://api.smugmug.com/services/oembed/?url=$0&format=json,
 	* viddler.com => http://lab.viddler.com/services/oembed/?url=$0&format=json,
 	* vimeo.com => http://vimeo.com/api/oembed.xml?url=$0&format=json,
@@ -2282,18 +2281,16 @@ class abbcode
 				$video_image = $video_image_path . '/images/' . $video_data['image'];
 				$video_image = (file_exists($video_image)) ? '<img src="' . $video_image . '" class="postimage" alt="" width="20" height="20" /> ' : '';
 
-				// create a link to the video for the BBvideo info bar
+				//create a direct link to the embedded video site or file
 				if ($video_data['id'] > 200)
 				{
-					// this is for direct file formats, they have an ID of 200+, get the correct extension
-					preg_match('#(?:[^[]+)?\.(' . $video_name . ')#si', $in, $video_title);
-					$video_link = $user->lang['ABBC3_BBVIDEO_FILE'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
+					// this is for direct file formats, they have an ID of 200+, get the extension
+					$video_link = $user->lang['ABBC3_BBVIDEO_FILE'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . (substr(strrchr($in, '.'), 1)) . '</a>';
 				}
 				else
 				{
-					// this is for all linked video sites, narrow video names down to just the domain
-					preg_match('#([^/]+)#i', $video_name, $video_title);
-					$video_link = '<a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
+					// this is for all linked video sites
+					$video_link = '<a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_name . '</a>';
 				}
 
 				// Dump everything we've done into the BBvideo html template
