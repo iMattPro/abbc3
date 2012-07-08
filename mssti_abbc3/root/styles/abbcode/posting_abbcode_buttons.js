@@ -300,7 +300,6 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 		/** Gradient requires its own function **/
 		case "abbc3_grad":
 		/** Extra Custom bbcodes - Start **/
-		case "deezer":
 		/** Extra Custom bbcodes - End **/
 
 			if (bbcode == "abbc3_grad")

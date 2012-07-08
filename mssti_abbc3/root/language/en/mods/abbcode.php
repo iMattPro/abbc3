@@ -653,12 +653,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_LIVELEAK_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
 
 // Custom BBCodes
-	// Deezer audio
-	'DEEZER_TAG'				=> 'Deezer',
-	'DEEZER_MOVER'				=> 'Insert audio from Deezer',
-	'DEEZER_TIP'				=> '[Deezer]Deezer audio URL[/Deezer]',
-	'DEEZER_EXAMPLE'			=> 'http://www.deezer.com/track/351534',
-	'DEEZER_VIEW'				=> '[Deezer]http://www.deezer.com/track/351534[/Deezer]',
 
 ));
 

@@ -600,19 +600,19 @@ Click on submit button
 ###################################################################################################
 #
 #-----[ OPEN ]-------------------------------------------------------
-# NOTE: You will have to make this change to each language you have installed and you may translate it in the correct language
+# NOTE: You will have to make this change to each language you have installed
 #
 language/en/mods/abbcode.php
 
 #
 #-----[ FIND ]-------------------------------------------------------
 #
-	// Custom BBCodes
+// Custom BBCodes
 #
 #-----[ AFTER, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find.
 #
-# USAGE: MUST start allways the tag name in upperase + _TAG / _MOVER / _TIP /_EXAMPLE or _VIEW. I use DEEZER for this example
+# USAGE: the tag name MUST start always with uppercase + _TAG / _MOVER / _TIP /_EXAMPLE or _VIEW. I use DEEZER for this example:
 #
 	// Deezer audio
 	'DEEZER_TAG'			=&gt; 'Deezer',
@@ -626,19 +626,18 @@ language/en/mods/abbcode.php
 ###################################################################################################
 #
 #-----[ OPEN ]-------------------------------------------------------
-# NOTE: You will have to make this change to ALL themes you have installed. I use "prosilver" as an example.
 #
-styles/prosilver/template/posting_abbcode_buttons.html
+styles/abbcode/posting_abbcode_buttons.js
 
 #
 #-----[ FIND ]-------------------------------------------------------
 #
-		/** This bbcodes needs extra data **/
+		/** Extra Custom bbcodes - Start **/
 #
-#-----[ BEFORE, ADD ]------------------------------------------------
-# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#-----[ AFTER, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line after the preceding line(s) to find.
 #
-		case "deezer" :
+		case "deezer":
 				</pre>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 			</div>
