@@ -618,7 +618,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLLEGEHUMOR_EXPLAIN'=> $lang['DEPRECATED_BBCODE'],
 
 	// Dailymotion video
-	'ABBC3_DM_MOVER'			=> 'Insert video from dailymotion', // from http://www.dailymotion.com/
+	'ABBC3_DM_MOVER'			=> 'Insert video from dailymotion',
 	'ABBC3_DM_TIP'				=> '[dm]Dailymotion ID[/dm]',
 	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport',
 	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport[/dm]',
@@ -628,7 +628,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_GAMESPOT_MOVER'		=> 'Insert video from Gamespot',
 	'ABBC3_GAMESPOT_TIP'		=> '[gamespot]Gamespot video URL[gamespot]',
 	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
-	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[gamespot]',
+	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[/gamespot]',
 	'ABBC3_GAMESPOT_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
 
 	// Gametrailers video

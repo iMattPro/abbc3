@@ -283,7 +283,7 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 		case "abbc3_testlink":
 		case "abbc3_click":
 		case "abbc3_table":
-		/** These bbcodes needs extra data **/
+		/** These bbcodes need extra data **/
 		case "abbc3_bbvideo":
 		case "abbc3_flash":
 		case "abbc3_flv":
