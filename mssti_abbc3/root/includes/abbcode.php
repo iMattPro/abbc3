@@ -1740,6 +1740,7 @@ class abbcode
 				'image'		=> 'liveleak.gif',
 				'example'	=> 'http://www.liveleak.com/view?i=166_1194290849',
 				'match'		=> '#http://www.liveleak.com/view\?i=([0-9A-Za-z-_]+)?(\&[^/]+)?#si',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.liveleak.com/ll_embed?f=$1" frameborder="0" allowfullscreen></iframe>',
 				'replace'	=> 'http://www.liveleak.com/e/$1',
 				'method'	=> 'flash',
 			),
@@ -1928,7 +1929,7 @@ class abbcode
 				'image'		=> 'veoh.gif',
 				'example'	=> 'http://www.veoh.com/watch/v27458670er62wkCt',
 				'match'		=> '#http://(.*?).veoh.com/([0-9A-Za-z-_\-/]+)?/([0-9A-Za-z-_]+)#si',
-				'replace'	=> 'http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1337&permalinkId=$3&player=videodetailsembedded&videoAutoPlay=0&id=anonymous',
+				'replace'	=> 'http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1361&permalinkId=$3&player=videodetailsembedded&videoAutoPlay=0&id=anonymous',
 				'method'	=> 'flash',
 			),
 			'viddler.com' => array(
