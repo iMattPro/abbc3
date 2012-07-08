@@ -2040,9 +2040,9 @@ class abbcode
 				'image'		=> 'mov.gif',
 				'example'	=> 'http://www.mediacollege.com/video/format/mpeg4/videofilename.mp4',
 				'match'		=> '#([^[]+)?\.(mp4|m4v)#si',
-				'replace'	=> './flashplayer/flowplayer-3.2.12.swf',
+				'replace'	=> './flowplayer/flowplayer.swf',
 				'method'	=> 'flash',
-				'flashvars'	=> 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'playlist\':[{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'}]}',
+				'flashvars'	=> 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'plugins\':{\'controls\':{\'url\':\'flowplayer.controls.swf\'}}}',
 			),
 			'(mov|dv|qt)' => array(
 				'id'		=> 205,
@@ -2070,9 +2070,9 @@ class abbcode
 				'image'		=> 'flashflv.gif',
 				'example'	=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
 				'match'		=> '#([^[]+)?\.flv#si',
-				'replace'	=> './flashplayer/flowplayer-3.2.12.swf',
+				'replace'	=> './flowplayer/flowplayer.swf',
 				'method'	=> 'flash',
-				'flashvars'	=> 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'playlist\':[{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'}]}',
+				'flashvars'	=> 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flow_{ID}\',\'plugins\':{\'controls\':{\'url\':\'flowplayer.controls.swf\'}}}',
 			),
 			'swf' => array(
 				'id'		=> 202,
