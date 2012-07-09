@@ -356,7 +356,7 @@ function abbc3_308($action, $version)
 		
 			// BBCODES TABLE - Start
 			// Remove the ABBC3 custom BBCodes first, before uninstalling anything else
-			$message .= abbc3_bbcode_handler($action, $version);
+			$message .= abbc3_bbcode_handler($action, $version, true);
 
 			// remove the table index
 			$umil->table_index_remove('phpbb_bbcodes', 'display_order');
@@ -457,8 +457,9 @@ function abbc3_309($action, $version)
 *
 * @param string		$action
 * @param string		$version
+* @param boolean	$remove_bbcodes
 */
-function abbc3_bbcode_handler($action, $version)
+function abbc3_bbcode_handler($action, $version, $remove_bbcodes = false)
 {
 	$message = '';
 
@@ -475,7 +476,11 @@ function abbc3_bbcode_handler($action, $version)
 		// Remove ALL ABBC3 BBCodes
 		case 'uninstall':
 			global $umil, $user;
-			$umil->table_row_remove('phpbb_bbcodes', array('abbcode' => '1'));
+			// use $remove_bbcodes to prevent ABBC3 BBcode deletion during a downgrade
+			if ($remove_bbcodes)
+			{
+				$umil->table_row_remove('phpbb_bbcodes', array('abbcode' => '1'));
+			}
 			$message .= $user->lang['INSTALLER_BBCODES_ADD'];
 		break;
 	}
@@ -588,15 +593,15 @@ function abbc3_add_bbcodes($action, $version)
 				}
 			}
 
-			// if any BBCode data is different, overwrite it, but preserve some BBCode data
+			// if any BBCode data is different, overwrite it, but preserve some user defined BBCode data
 			if ($update)
 			{
-				($row_exist['bbcode_order'] !== $bbcode_values['bbcode_order'])												? $sql_ary['bbcode_order'] = $bbcode_values['bbcode_order']				: true;
-				($row_exist['display_on_posting'] !== $bbcode_values['display_on_posting'])									? $sql_ary['display_on_posting'] = $bbcode_values['display_on_posting']	: true;
-				($row_exist['display_on_pm'] !== $bbcode_values['display_on_pm'])											? $sql_ary['display_on_pm'] = $bbcode_values['display_on_pm']			: true;
-				($row_exist['display_on_sig'] !== $bbcode_values['display_on_sig'])											? $sql_ary['display_on_sig'] = $bbcode_values['display_on_sig']			: true;
-				($row_exist['bbcode_image'] !== $bbcode_values['bbcode_image'])												? $sql_ary['bbcode_image'] = $bbcode_values['bbcode_image']				: true;
-				(isset($bbcode_values['bbcode_group']) && $row_exist['bbcode_group'] !== $bbcode_values['bbcode_group'])	? $sql_ary['bbcode_group'] = $bbcode_values['bbcode_group']				: true;
+				($row_exist['bbcode_order'] !== $bbcode_values['bbcode_order'])												? $sql_ary['bbcode_order'] = $row_exist['bbcode_order']				: true;
+				($row_exist['display_on_posting'] !== $bbcode_values['display_on_posting'])									? $sql_ary['display_on_posting'] = $row_exist['display_on_posting']	: true;
+				($row_exist['display_on_pm'] !== $bbcode_values['display_on_pm'])											? $sql_ary['display_on_pm'] = $row_exist['display_on_pm']			: true;
+				($row_exist['display_on_sig'] !== $bbcode_values['display_on_sig'])											? $sql_ary['display_on_sig'] = $row_exist['display_on_sig']			: true;
+				($row_exist['bbcode_image'] !== $bbcode_values['bbcode_image'])												? $sql_ary['bbcode_image'] = $row_exist['bbcode_image']				: true;
+				(isset($bbcode_values['bbcode_group']) && $row_exist['bbcode_group'] !== $bbcode_values['bbcode_group'])	? $sql_ary['bbcode_group'] = $row_exist['bbcode_group']				: true;
 
 				$result = $db->sql_query('UPDATE ' . BBCODES_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_ary) . ' WHERE bbcode_id = ' . $bbcode_id);
 
@@ -639,7 +644,7 @@ function abbc3_sync_bbcodes()
 
 	// These pseudo-BBCodes should not change the position order
 	$bbcode_tag_ary =  array('font=', 'size', 'highlight=', 'color');
-	$next_bbcode_order = sizeof($bbcode_tag_ary)+1;
+	$next_bbcode_order = sizeof($bbcode_tag_ary) + 1;
 
 	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_order 
 			FROM ' . BBCODES_TABLE . ' 
