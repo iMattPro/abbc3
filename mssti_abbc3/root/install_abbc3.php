@@ -107,6 +107,15 @@ $versions = array(
 			'abbc3_bbcode_handler',
 		),
 		
+		// remove abandoned BBcodes
+		'table_row_remove' => array(
+			array('phpbb_bbcodes', 
+				array(
+					'bbcode_tag' => 'gametrailers',
+				),
+			),
+		),
+
 		// purge the cache
 		'cache_purge' => array(),
 	),
@@ -2148,6 +2157,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'gamespot.gif',
 				'bbcode_group'			=> '0',
 			),
+		/*	Deprecated in v3.0.12
 			'gametrailers'		=> array(
 				'bbcode_tag'			=> 'gametrailers',
 				'bbcode_order'			=> 80,
@@ -2166,6 +2176,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'gametrailers.gif',
 				'bbcode_group'			=> '0',
 			),
+		*/
 			'ignvideo'		=> array(
 				'bbcode_tag'			=> 'ignvideo',
 				'bbcode_order'			=> 81,

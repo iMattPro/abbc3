@@ -631,13 +631,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[/gamespot]',
 	'ABBC3_GAMESPOT_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
 
-	// Gametrailers video
-	'ABBC3_GAMETRAILERS_MOVER'	=> 'Insert video from Gametrailers',
-	'ABBC3_GAMETRAILERS_TIP'	=> '[gametrailers]Gametrailers video URL[/gametrailers]',
-	'ABBC3_GAMETRAILERS_EXAMPLE'=> 'http://www.gametrailers.com/player/30461.html',
-	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/video/game-of-best-of-e3/701407[/gametrailers]',
-	'ABBC3_GAMETRAILERS_EXPLAIN'=> $lang['DEPRECATED_BBCODE'],
-
 	// IGN video
 	'ABBC3_IGNVIDEO_MOVER'		=> 'Insert video from IGN',
 	'ABBC3_IGNVIDEO_TIP'		=> '[ignvideo]IGN video URL[/ignvideo]',
