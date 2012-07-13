@@ -537,6 +537,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBCode.',
 	'ABBC3_BBVIDEO_FILE'		=> 'File format',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'Allowed sites',
+	'ABBC3_BBVIDEO_WATCH'		=> 'Watch on',
 
 	// Flash (swf) Wizard
 	'ABBC3_FLASH_TAG'			=> 'flash',

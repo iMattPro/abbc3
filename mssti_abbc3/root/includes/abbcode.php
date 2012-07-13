@@ -2268,8 +2268,8 @@ class abbcode
 
 				// perform match/replace from input URL to output code
 				$video_content = preg_replace($video_data['match'], $video_data['replace'], $in);
-				
-				// For oEmbed videos, now is a good time to get the embed code
+
+				// For oEmbed videos, now is the time to get the embed code
 				if (isset($video_data['method']) && $video_data['method'] == 'oEmbed')
 				{
 					$video_content = $this->oembed_url($video_content, $video_width, $video_height);
@@ -2283,15 +2283,16 @@ class abbcode
 				$video_image = (file_exists($video_image)) ? '<img src="' . $video_image . '" class="postimage" alt="" width="20" height="20" /> ' : '';
 
 				//create a direct link to the embedded video site or file
+				$video_link_string = '%1$s <a href="' . $in . '" onclick="window.open(this.href);return false;" >%2$s</a>';
 				if ($video_data['id'] > 200)
 				{
 					// this is for direct file formats, they have an ID of 200+, get the extension
-					$video_link = $user->lang['ABBC3_BBVIDEO_FILE'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . (substr(strrchr($in, '.'), 1)) . '</a>';
+					$video_link = sprintf($video_link_string, $user->lang['ABBC3_BBVIDEO_FILE'] . ' :', pathinfo(parse_url($in, PHP_URL_PATH ), PATHINFO_EXTENSION));
 				}
 				else
 				{
-					// this is for all linked video sites
-					$video_link = '<a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_name . '</a>';
+					// this is the link back to the video site
+					$video_link = sprintf($video_link_string, $user->lang['ABBC3_BBVIDEO_WATCH'], $video_name);
 				}
 
 				// Dump everything we've done into the BBvideo html template

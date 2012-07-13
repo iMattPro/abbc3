@@ -538,6 +538,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Actualmente no hay vídeos permitidos. Por favor notifique al %sAdministrador del Sitio%s acerca de este problema.<br />Mientras tanto, puede publicar enlaces a vídeos mediante el BBCode URL.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Formato del archivo',
 	'ABBC3_BBVIDEO_VIDEO'		=> 'sitios permitidos',
+	'ABBC3_BBVIDEO_WATCH'		=> 'Mira en',
 
 	// Flash (swf) Wizard
 	'ABBC3_FLASH_TAG'			=> 'flash',
