@@ -2420,7 +2420,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'first_pass_match'		=> '!\[flv(\=| )?(.*?)\](.*?)\[/flv\]!ies',
 				'first_pass_replace'	=> '\'[flv${1}${2}:$uid]\' . trim(\'${3}\') . \'[/flv:$uid]\'',
 				'second_pass_match'		=> '!\[flv((\=| )?(width\=)?([0-9]?[0-9]?[0-9])(,| )(height\=)?([0-9]?[0-9]?[0-9]))?:$uid\](.*?)\[/flv:$uid\]!sie',
-				'second_pass_replace'	=> "\$this->auto_embed_video('./flowplayer/flowplayer.swf', '\${4}', '\${7}', 'config={\\'clip\\':{\\'autoPlay\\':false,\\'autoBuffering\\':true,\\'url\\':\\'\${8}\\'},\\'playerId\\':\\'flow_{ID}\\',\\'plugins\\':{\\'controls\\':{\\'url\\':\\'flowplayer.controls.swf\\'}}}')",
+				'second_pass_replace'	=> "\$this->auto_embed_video('./flashplayer/flashplayer.swf', '\${4}', '\${7}', 'config={\\'clip\\':{\\'autoPlay\\':false,\\'autoBuffering\\':true,\\'url\\':\\'\${8}\\'},\\'playerId\\':\\'flashplayer_{ID}\\',\\'plugins\\':{\\'controls\\':{\\'url\\':\\'flashplayer.controls.swf\\'}}}')",
 				'display_on_posting'	=> 0,
 				'display_on_pm'			=> 0,
 				'display_on_sig'		=> 0,
