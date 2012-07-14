@@ -2245,13 +2245,13 @@ class abbcode
 			// find a BBvideo match for the video url
 			if (preg_match($video_data['match'], $in))
 			{
-				// if this video is not allowed, return a link 
+				// if this BBvideo is not allowed, return a link
 				if (!in_array($video_data['id'], $allowed_videos))
 				{
 					return make_clickable($in);
 				}
 
-				// if FLASH is not allowed, return as flash link 
+				// if user has flash animations disabled in UCP, return as [ flash ] link 
 				if (!$user->optionget('viewflash'))
 				{
 					return str_replace(array('$1', '$2'), array($in, '[ flash ]'), $this->bbcode_tpl('url', -1, true));

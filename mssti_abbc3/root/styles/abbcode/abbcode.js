@@ -652,7 +652,7 @@ var ogpEmbedVideo = {
 	*/
 	embed : function( str, options )
 	{	
-		var code = "Error loading video...",
+		var code = "Error loading video", //this text is not displayed to the user, for debug use only
 			meta = {},	
 			data = ogpEmbedVideo.parseJSON( str );
 	
