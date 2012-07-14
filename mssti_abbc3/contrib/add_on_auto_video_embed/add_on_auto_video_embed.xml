@@ -39,12 +39,12 @@
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
-			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
+			<link type="parent" href="../../install_ABBC3.xml" lang="en">Main Install Instructions</link>
 		</link-group>
 	</header>
 	<action-group>
 		<copy>
-			<file from="contrib/add_ons/includes/hooks/hook_bbvideo.php" to="includes/hooks/hook_bbvideo.php"/>
+			<file from="contrib/add_on_auto_video_embed/root/includes/hooks/hook_bbvideo.php" to="includes/hooks/hook_bbvideo.php"/>
 		</copy>
 	</action-group>
 </mod>

@@ -176,7 +176,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2 instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">German language pack</link>
-			<link type="contrib" href="contrib/add_on_auto_video_embed.xml" lang="en">Add-on : Auto Embed Video From URLs</link>
+			<link type="contrib" href="contrib/add_on_auto_video_embed/add_on_auto_video_embed.xml" lang="en">Add-on : Auto Embed Video From URLs</link>
 			<link type="contrib" href="contrib/add_on_YouTube_Lightboxes.xml" lang="en">Add-on : Open YouTube videos with Lightboxes</link>
 			<link type="contrib" href="contrib/add_on_Evil_Quick_Reply.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add_on_Embossed_Buttons.xml" lang="en">Add-on : Embossed BBCode Buttons</link>
