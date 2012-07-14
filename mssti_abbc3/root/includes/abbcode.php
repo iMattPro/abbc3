@@ -2308,7 +2308,7 @@ class abbcode
 
 /**
 * Transform posted URLs from video sites into BBvideo embedded code
-* Not used in default installation. Part of add-on "Auto Video Embed From URLs"
+* Not used in default installation. Part of add-on “Auto Embed Video From URLs”
 * Called only from posting.php and viewtopic.php
 *
 * @param  string	$text	string to transform
@@ -2317,35 +2317,35 @@ class abbcode
 */
 function url_to_bbvideo($text)
 {
-	global $bbcode, $config, $user;
-	if (@$config['ABBC3_MOD'])
+	global $bbcode, $user;
+
+	$user->add_lang('mods/abbcode');
+
+	// if no BBCodes are on page, load them up
+	if (empty($bbcode))
 	{
-		$user->add_lang('mods/abbcode');		
+		$bbcode = new bbcode();
+		$bbcode->bbcode_cache_init();
+	}
 
-		// if no BBCodes are on page, load them up
-		if (empty($bbcode))
-		{
-			$bbcode = new bbcode();
-			$bbcode->bbcode_cache_init();
-		}
+	// get array of all BBvideos
+	static $abbcode_video_ary = array();
+	if (empty($abbcode_video_ary))
+	{
+		$abbcode_video_ary = abbcode::video_init();
+	}
 
-		// get array of all BBvideos
-		static $abbcode_video_ary = array();
-		if (empty($abbcode_video_ary))
+	// check to see if any URLs can be converted into BBvideos
+	foreach ($abbcode_video_ary as $video_name => $video_data)
+	{
+		// For now we only will apply this to video sites...BBvideos with ID's less than 200
+		if ( (strpos($text, $video_name) !== false) && isset($video_data['id']) && ($video_data['id'] <= 200) )
 		{
-			$abbcode_video_ary = abbcode::video_init();
-		}
-
-		// check to see if any URLs can be converted into BBvideos
-		foreach ($abbcode_video_ary as $video_name => $video_data)
-		{
-			if ( (strpos($text, $video_name) !== false) && isset($video_data['id']) && ($video_data['id'] <= 200) )
-			{
-				// Run URL matches through the BBvideo_pass function to turn them into embedded BBvideos
-				$text = preg_replace_callback('#<a class="postlink" href="(.*?)">(?:.*?)<\/a>#i', create_function('$matches', 'global $bbcode; return $bbcode->BBvideo_pass($matches[1], null, null);'), $text);
-			}
+			// Run URL matches through the BBvideo_pass function to turn them into embedded BBvideos
+			$text = preg_replace_callback('#<a class="postlink" href="(.*?)">(?:.*?)<\/a>#i', create_function('$matches', 'global $bbcode; return $bbcode->BBvideo_pass($matches[1], null, null);'), $text);
 		}
 	}
+
 	return $text;
 }
 
