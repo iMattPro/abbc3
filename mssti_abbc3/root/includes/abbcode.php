@@ -1600,7 +1600,7 @@ class abbcode
 				'method'	=> 'flash',
 			),
 			'dotsub.com' => array(
-				'id'		=> 66,
+				'id'		=> 60,
 				'image'		=> 'dotsub.gif',
 				'example'	=> 'http://dotsub.com/view/6a7db231-4d64-407d-8026-a845eaf6c4a9',
 				'match'		=> '#http://dotsub.com/view/(.+)#si',
@@ -1864,13 +1864,6 @@ class abbcode
 				'replace'	=> 'http://www.slideshare.net/api/oembed/2?url=$0&format=json',
 				'method'	=> 'oEmbed',
 			),
-			'spike.com' => array(
-				'id'		=> 60,
-				'image'		=> 'spike.gif',
-				'example'	=> 'http://www.spike.com/video-clips/32xg36/winter-passing-trailer',
-				'match'		=> '#http://www.spike.com/([^[]*)?#si',
-				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
-			),
 			'streetfire.net' => array(
 				'id'		=> 61,
 				'image'		=> 'streetfire.gif',
@@ -2007,7 +2000,7 @@ class abbcode
 				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://d.yimg.com/nl/vyc/site/player.html#shareUrl=http%3A%2F%2Fscreen.yahoo.com%$1$4.html&amp;browseCarouselUI=hide&amp;repeat=0&amp;lang=en-US&amp;vid=$4&amp;startScreenCarouselUI=hide"></iframe>',
 			),
 			'youku.com' => array(
-				'id'		=> 67,
+				'id'		=> 66,
 				'image'		=> 'youku.gif',
 				'example'	=> 'http://v.youku.com/v_show/id_XMzgxNzY3NTU2.html',
 				'match'		=> '#http://v.youku.com/v_show/id_(.+)\.html.*#si',
@@ -2032,7 +2025,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 68-200
+			// available ids: 67-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(
@@ -2208,7 +2201,7 @@ class abbcode
 	* @param string		$w		value for video width
 	* @param string		$h		value for video Height
 	* @return embed video
-	* @version 3.0.11
+	* @version 3.0.12
 	*/
 	function BBvideo_pass($in, $w, $h)
 	{
