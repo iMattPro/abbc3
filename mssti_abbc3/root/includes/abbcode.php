@@ -2257,7 +2257,7 @@ class abbcode
 					return str_replace(array('$1', '$2'), array($in, '[ flash ]'), $this->bbcode_tpl('url', -1, true));
 				}
 
-				// Construct our own XHTML compliant embed code for flash-based embeds
+				// Construct XHTML compliant embed code for flash-based embeds
 				if (isset($video_data['method']) && $video_data['method'] == 'flash')
 				{
 					$flashvars 	 = (isset($video_data['flashvars']) ? $video_data['flashvars'] : '');

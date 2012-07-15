@@ -45,11 +45,11 @@
 	<action-group>
 		<open src="includes/abbcode.php">
 			<edit>
-				<find><![CDATA[// generate embedded video content]]></find>
-				<action type="before-add"><![CDATA[				// For youtube in highslide/lightview/shadowbox popups
-				if (($video_name === 'youtube.com' || $video_name === 'youtu.be') && $this->abbcode_config['S_ABBC3_RESIZE'] && ($this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'HighslideBox' || $this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'Lightview' || $this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'Shadowbox'))
+				<find><![CDATA[// Construct XHTML compliant embed code for flash-based embeds]]></find>
+				<action type="before-add"><![CDATA[				// ADD-ON: Open YouTube videos with Lightboxes - START
+				if (($video_name === 'youtube.com' || $video_name === 'youtu.be') && $this->abbcode_config['S_ABBC3_RESIZE'] && in_array($this->abbcode_config['S_ABBC3_RESIZE_METHOD'], array('HighslideBox', 'Lightview', 'Shadowbox', 'ColorBox')))
 				{
-					$identifier = (preg_match('#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#si', $in, $matches)) ? $matches[5] : (preg_match('#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#is', $in, $matches) ? $matches[1] : '');							  
+					$identifier = (preg_match($video_data['match'], $in, $matches) ? $matches[1] : '');
 					$bb_thumb = 'http://img.youtube.com/vi/' . $identifier . '/2.jpg';
 
 					switch ($this->abbcode_config['S_ABBC3_RESIZE_METHOD'])
@@ -72,15 +72,16 @@
 							$bb_attribs = 'rel="shadowbox;width=' . $video_width . ';height=' . $video_height . ';player=swf"';
 						break;
 
- 						case 'ColorBox':
+						case 'ColorBox':
 							$bb_class = 'ColorBox-YouTube';
-							$bb_link = 'http://www.youtube.com/embed/' . $identifier . '?rel=0&amp;wmode=transparent';
+							$bb_link = 'http://www.youtube.com/embed/' . $identifier . '?rel=0&amp;wmode=transparent&amp;autoplay=1';
 							$bb_attribs = 'onclick="jQuery.colorbox({href:this, iframe:true, innerWidth:' . $video_width . ', innerHeight:' . $video_height . '}); return false;"';
- 						break;						
-					} 
+						break;
+					}
 
 					return '<a href="' . $bb_link . '" class="' . $bb_class . '" ' . $bb_attribs . '><img class="bbvideo_thumb" alt="" title="YouTube Video" src="' . $bb_thumb . '" /></a>';
-				}]]></action>
+				}
+				// ADD-ON: Open YouTube videos with Lightboxes - END]]></action>
 			</edit>
 		</open>
 	</action-group>
