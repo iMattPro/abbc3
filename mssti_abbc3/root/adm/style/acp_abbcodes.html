@@ -4,8 +4,6 @@
 	<script type="text/javascript" defer="defer">
 	// <![CDATA[
 <!-- IF .options -->
-		/** Flag for the resizer method error **/
-		var resizer_error = 0;
 		onload = function()
 		{
 			var form_name = 'acp_abbcodes';
@@ -13,7 +11,6 @@
 			// Display warning and disable Image Resizers with missing JS scripts
 			if (!{ADVANCEDBOX_EXIST} || !{HIGHSLIDE_EXIST} || !{LITEBOX_EXIST} || !{LIGHTVIEW_EXIST} || !{SHADOWBOX_EXIST} || !{COLORBOX_EXIST})
 			{
-				resizer_error = 1;
 				var resizer_options = document.forms[form_name].elements['ABBC3_RESIZE_METHOD'];
 				if (resizer_options)
 				{
@@ -58,6 +55,9 @@
 						}
 					}
 				}
+
+				// Display the missing resizer script error block
+				dE('resizer_error', 1);
 			}
 		}
 
