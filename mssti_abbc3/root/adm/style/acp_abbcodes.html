@@ -10,7 +10,7 @@
 		{
 			var form_name = 'acp_abbcodes';
 
-			// Check wich options can be used for the resizer method
+			// Display warning and disable Image Resizers with missing JS scripts
 			if (!{ADVANCEDBOX_EXIST} || !{HIGHSLIDE_EXIST} || !{LITEBOX_EXIST} || !{LIGHTVIEW_EXIST} || !{SHADOWBOX_EXIST} || !{COLORBOX_EXIST})
 			{
 				resizer_error = 1;
@@ -55,67 +55,6 @@
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
-						}
-					}
-				}
-			}
-
-			var fieldset = document.getElementsByTagName('fieldset');
-
-			// Skip the first two fieldsets
-			for (var i = 2; i < fieldset.length; i++)
-			{
-				if (fieldset[i].id)
-				{
-					abbc_toggle(fieldset[i].id, 'true');
-				}
-			}
-		}
-
-		/**
-		* Funtion toggle an element visibility - START
-		**/
-		function abbc_toggle(id, type)
-		{
-			if (!type)
-			{
-				type = 'false';
-			}
-			var handle = document.getElementById('toggle_dl_' + id);
-
-			if (document.getElementById(id))
-			{
-				var dl = document.getElementsByTagName('dl');
-				for (var i = 0; i < dl.length; i++)
-				{
-					handle.style.cursor = 'pointer';
-					if (dl[i].parentNode.id == id)
-					{
-						if (dl[i].style.display == 'none')
-						{
-							dl[i].style.display = 'block';
-							handle.style.backgroundImage = 'url("images/toggle.gif")';
-							handle.style.backgroundRepeat = 'no-repeat';
-							handle.style.backgroundPosition = 'top left';
-
-							/** Show the resizer method error if we need it **/
-							if (id == 'fieldset_9' && type == 'false' && resizer_error)
-							{
-								dE('resizer_error', 1);
-							}
-						}
-						else
-						{
-							dl[i].style.display = 'none';
-							handle.style.backgroundImage = 'url("images/toggle.gif")';
-							handle.style.backgroundRepeat = 'no-repeat';
-							handle.style.backgroundPosition = 'top right';
-
-							/** Hide the resizer method error if we need it **/
-							if (id == 'fieldset_9' && type == 'false' && resizer_error)
-							{
-								dE('resizer_error', -1);
-							}
 						}
 					}
 				}
@@ -260,11 +199,7 @@
 		<!-- ENDIF -->
 
 		<fieldset id="fieldset_{options.S_ROW_COUNT}" >
-		<!-- IF options.S_FIRST_ROW -->
 			<legend>{options.LEGEND}</legend>
-		<!-- ELSE -->
-			<legend onclick="abbc_toggle('fieldset_{options.S_ROW_COUNT}'); return false;" style="vertical-align:top;">{options.LEGEND} &nbsp; <img src="./images/spacer.gif" width="18" height="18" id="toggle_dl_fieldset_{options.S_ROW_COUNT}" alt="{L_MENU_TOGGLE}" /></legend>
-		<!-- ENDIF -->
 
 	<!-- ELSE -->
 			<dl>
