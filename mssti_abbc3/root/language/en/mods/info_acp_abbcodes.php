@@ -81,7 +81,7 @@ $lang = array_merge($lang, array(
 ##	For translators :								Don't			Yes
 	'ABBCODES_WIZARD_SELECTOR'			=> array(	'0'			=> 'Disable wizards',
 													'1'			=> 'Pop Up window',
-													'2'			=> 'In post'),
+													'2'			=> 'AJAX (no pop up)'),
 
 	'ABBCODES_RESIZER'					=> 'Image Resizer',
 	'ABBCODES_RESIZE'					=> 'Resize large images',
