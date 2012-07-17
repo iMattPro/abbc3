@@ -1603,7 +1603,7 @@ class abbcode
 				'id'		=> 60,
 				'image'		=> 'dotsub.gif',
 				'example'	=> 'http://dotsub.com/view/6a7db231-4d64-407d-8026-a845eaf6c4a9',
-				'match'		=> '#http://dotsub.com/view/(.+)#si',
+				'match'		=> '#http://dotsub.com/view/(.*)#si',
 				'replace'	=> '<iframe src="http://dotsub.com/media/$1/embed/" frameborder="0" width="{WIDTH}" height="{HEIGHT}"></iframe>',
 			),
 			'ebaumsworld.com' => array(
@@ -1896,7 +1896,7 @@ class abbcode
 				'id'		=> 13,
 				'image'		=> 'traileraddict.gif',
 				'example'	=> 'http://www.traileraddict.com/trailer/abraham-lincoln-vampire-hunter/trailer-b',
-				'match'		=> '#http://www.traileraddict.com/trailer/.+#si',
+				'match'		=> '#http://www.traileraddict.com/trailer/.*#si',
 				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'twitvid.com' => array(
@@ -2010,7 +2010,7 @@ class abbcode
 				'id'		=> 66,
 				'image'		=> 'youku.gif',
 				'example'	=> 'http://v.youku.com/v_show/id_XMzgxNzY3NTU2.html',
-				'match'		=> '#http://v.youku.com/v_show/id_(.+)\.html.*#si',
+				'match'		=> '#http://v.youku.com/v_show/id_(.*)\.html.*#si',
 				'replace'	=> 'http://player.youku.com/player.php/sid/$1/v.swf',
 				'method'	=> 'flash',
 			),
@@ -2287,7 +2287,7 @@ class abbcode
 				if ($video_data['id'] > 200)
 				{
 					// this is for direct file formats, they have an ID of 200+, get the extension
-					$video_link = sprintf($video_link_string, $user->lang['ABBC3_BBVIDEO_FILE'] . ' :', pathinfo(parse_url($in, PHP_URL_PATH ), PATHINFO_EXTENSION));
+					$video_link = sprintf($video_link_string, $user->lang['ABBC3_BBVIDEO_FILE'] . ':', pathinfo(parse_url($in, PHP_URL_PATH ), PATHINFO_EXTENSION));
 				}
 				else
 				{
