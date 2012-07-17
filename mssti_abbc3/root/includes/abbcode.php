@@ -1942,14 +1942,6 @@ class abbcode
 				'method'	=> 'flash',
 				'flashvars'	=> 'f=1&autoplay=f&loop=false&nologo=false&hd=false',
 			),
-			'video.google' => array(
-				'id'		=> 39,
-				'image'		=> 'googlevid.gif',
-				'example'	=> 'http://video.google.com/videoplay?docid=-8351924403384451128',
-				'match'		=> '#http://video.google.(.*?)/(videoplay|googleplayer.swf)\?docid=([0-9A-Za-z-_]+)([^[]*)?#si',
-				'replace'	=> 'http://video.google.$1/googleplayer.swf?docId=$3',
-				'method'	=> 'flash',
-			),
 			'videogamer.com' => array(
 				'id'		=> 63,
 				'image'		=> 'videogamer.gif',

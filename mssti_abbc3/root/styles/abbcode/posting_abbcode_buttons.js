@@ -101,7 +101,6 @@ function bbcode_to_plain(data)
 			tr : [{'': ''}, '', ''],
 			td : [{'': ''}, '', ''],
 			video : [{'': ''}, '', ''],
-			gvideo : [{'': ''}, '', ''],
 			quicktime : [{'': ''}, '', ''],
 			ram : [{'': ''}, '', ''],
 			flv : [{'': ''}, '', ''],
@@ -295,7 +294,6 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 		case "abbc3_stream":
 		case "abbc3_veoh":
 		case "abbc3_collegehumor":
-		case "abbc3_gvideo":
 		case "abbc3_youtube":
 		/** Gradient requires its own function **/
 		case "abbc3_grad":

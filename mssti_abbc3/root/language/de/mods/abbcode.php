@@ -587,14 +587,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
 	'ABBC3_RAM_EXPLAIN'			=> $lang['DEPRECATED_BBCODE'],
 
-	// Google video Wizard
-	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
-	'ABBC3_GVIDEO_MOVER'		=> 'Ein Google Video einfügen',
-	'ABBC3_GVIDEO_TIP'			=> '[GVideo]URL Video[/GVideo]',
-	'ABBC3_GVIDEO_EXAMPLE'		=> 'http://video.google.com/videoplay?docid=-8351924403384451128',
-	'ABBC3_GVIDEO_VIEW'			=> '[GVideo]http://video.google.com/videoplay?docid=-8351924403384451128[/GVideo]',
-	'ABBC3_GVIDEO_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
-
 	// Youtube video Wizard
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',
 	'ABBC3_YOUTUBE_MOVER'		=> 'Ein YouTube Video einfügen',
