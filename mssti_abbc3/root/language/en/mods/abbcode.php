@@ -570,7 +570,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
 	'ABBC3_STREAM_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
-	// Quick time
+	// Quicktime
 	'ABBC3_QUICKTIME_TAG'		=> 'Quicktime',
 	'ABBC3_QUICKTIME_MOVER'		=> 'Insert Quicktime',
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quicktime[/quicktime]',
