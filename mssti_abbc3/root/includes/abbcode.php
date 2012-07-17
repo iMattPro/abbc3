@@ -1784,13 +1784,13 @@ class abbcode
 				'replace'	=> 'http://mediaservices.myspace.com/services/media/embed.aspx/m=$2',
 				'method'	=> 'flash',
 			),
-			'myvideo' => array(
+			'myvideo.de' => array(
 				'id'		=> 25,
 				'image'		=> 'myvideo.gif',
 				'example'	=> 'http://www.myvideo.de/watch/2668372',
-				'match'		=> '#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#si',
-//				'replace'	=> '<iframe src="http://www.myvideo.$1/embed/$3" style="width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no"></iframe>',
-				'replace'	=> 'http://www.myvideo.$1/movie/$3',
+				'match'		=> '#http://(.*?).myvideo.(.*?)/(.*?)/([^[]*)?#si',
+//				'replace'	=> '<iframe src="http://$1.myvideo.$2/embed/$4" style="width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no"></iframe>',
+				'replace'	=> 'http://$1.myvideo.$2/movie/$4',
 				'method'	=> 'flash',
 			),
 			'photobucket.com' => array(
