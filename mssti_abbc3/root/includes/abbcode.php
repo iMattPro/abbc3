@@ -1864,6 +1864,13 @@ class abbcode
 				'replace'	=> 'http://www.slideshare.net/api/oembed/2?url=$0&format=json',
 				'method'	=> 'oEmbed',
 			),
+			'snotr.com' => array(
+				'id'		=> 67,
+				'image'		=> 'snotr.gif',
+				'example'	=> 'http://www.snotr.com/video/8753/What_is_nothing',
+				'match'		=> '#http://(?:.*?)snotr.com/video/([0-9]+)/.*#si',
+				'replace'	=> '<iframe src="http://www.snotr.com/embed/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+			),
 			'streetfire.net' => array(
 				'id'		=> 61,
 				'image'		=> 'streetfire.gif',
@@ -2025,7 +2032,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 67-200
+			// available ids: 68-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(

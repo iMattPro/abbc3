@@ -34,7 +34,7 @@ Features
 	funnyordie.com, g4tv.com, gameprotv.com, gamespot.com, gametrailers.com, gamevideos.1up, godtube.com,
 	gotgame.com, howcast.com, hulu.com, ign.com, kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com,
 	msnbc.msn.com, myspace.com, myvideo, photobucket.com, qik.com, revision3.com, rutube.ru, sapo.pt,
-	screen.yahoo.com, scribd, sevenload.com, slideshare.net, streetfire.net, thedailyshow.com,
+	screen.yahoo.com, scribd, sevenload.com, slideshare.net, snotr.com, streetfire.net, thedailyshow.com,
 	theonion.com, traileraddict.com, twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com, video.google,
 	videogamer.com, videu.de, vimeo.com, wat.tv, wegame.com, xfire.com, youku.com, youtu.be, youtube.com
 
