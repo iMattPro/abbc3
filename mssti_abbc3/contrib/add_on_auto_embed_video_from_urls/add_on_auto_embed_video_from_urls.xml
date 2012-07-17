@@ -11,7 +11,7 @@
 		
 		1) This will automatically embed video from URL links (without [BBvideo] tag) in posts.
 		2) This follows the BBvideo settings in the ACP, so only video sites allowed for the BBvideo tag will be auto-embedded.
-		3) Limitations: The default height and width settings defined in the ACP for BBvideo will be used on all videos converted this way. Users can NOT adjust the video size like they can when using the BBvideo BBcode. This Add-On does not apply to URLs in signatures. It also does not work on URLs in posts that have been quoted by the [quote] tag.
+		3) Limitations: The default height and width settings defined in the ACP for BBvideo will be used on all videos converted this way. Users can NOT adjust the video size like they can when using the BBvideo BBcode. This Add-On does not apply to URLs in signatures or URLs inside most BBcode tags, like [quote], [url], [b], etc.
 
 		See the main install file for any additional information about the MOD.]]></description>
 		<author-group>
@@ -44,7 +44,7 @@
 	</header>
 	<action-group>
 		<copy>
-			<file from="contrib/add_on_auto_video_embed/root/includes/hooks/hook_bbvideo.php" to="includes/hooks/hook_bbvideo.php"/>
+			<file from="contrib/add_on_auto_embed_video_from_urls/root/includes/hooks/hook_bbvideo.php" to="includes/hooks/hook_bbvideo.php"/>
 		</copy>
 	</action-group>
 </mod>
