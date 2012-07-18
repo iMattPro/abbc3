@@ -221,12 +221,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SCRIPPET_MOVER'		=> 'Scrippet',
 	'ABBC3_SCRIPPET_TIP'		=> '[scrippet]Screenplay text[/scrippet]',
 ##	For translator:                 don't change the "<br />" and don't join the lines into one!
-	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY<br />
-									ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />
-									ANTONIUS<br />
-									Do you think in a thousand years, anyone will remember our names?<br />
-									IPSUM<br />
-									Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
+	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY<br />' . "\n" . 'ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />' . "\n" . 'ANTONIUS<br />' . "\n" . 'Do you think in a thousand years, anyone will remember our names?<br />' . "\n" . 'IPSUM<br />' . "\n" . 'Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
 
 	// Tabs
 	'ABBC3_TABS_MOVER'			=> 'Tabs',
