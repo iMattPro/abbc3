@@ -1544,7 +1544,7 @@ class abbcode
 				'flashvars'	=> 'playerType=embedded&type=id&value=$1',
 			),
 			'colbertnation.com' => array(
-				'id'		=> 64,
+				'id'		=> 63,
 				'image'		=> 'comedycentral.gif',
 				'example'	=> 'http://www.colbertnation.com/the-colbert-report-videos/180900/october-17-2005/intro---10-17-05',
 				'match'		=> '#http://(?:.*?)colbertnation.com/the-colbert-report-videos/([0-9]+)/([^[]*)?#si',
@@ -1668,14 +1668,6 @@ class abbcode
 				'replace'	=> 'http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf',
 				'method'	=> 'flash',
 				'flashvars'	=> 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$1%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F',
-			),
-			'gametrailers.com' => array(
-				'id'		=> 14,
-				'image'		=> 'gametrailers.gif',
-				'example'	=> 'http://www.gametrailers.com/video/world-premiere-facebreaker/30461',
-				'match'		=> '#http://www.gametrailers.com/(?:user\-movie|player|video)/([\w\-]+)\/([\w\-]+).*#si',
-				'replace'	=> 'http://media.mtvnservices.com/mgid:moses:video:gametrailers.com:$2',
-				'method'	=> 'flash',
 			),
 			'gamevideos.1up' => array(
 				'id'		=> 15,
@@ -1802,7 +1794,7 @@ class abbcode
 				'method'	=> 'flash',
 			),
 			'qik.com' => array(
-				'id'		=> 65,
+				'id'		=> 64,
 				'image'		=> 'qik.gif',
 				'example'	=> 'http://qik.com/video/43675514',
 				'match'		=> '#http:\/\/(qik\.com\/video\/.*|qik\.ly\/.*)#si',
@@ -1943,7 +1935,7 @@ class abbcode
 				'flashvars'	=> 'f=1&autoplay=f&loop=false&nologo=false&hd=false',
 			),
 			'videogamer.com' => array(
-				'id'		=> 63,
+				'id'		=> 14,
 				'image'		=> 'videogamer.gif',
 				'example'	=> 'http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html',
 				'match'		=> '#http://www.videogamer.com/([^[]*)?#si',
@@ -1999,7 +1991,7 @@ class abbcode
 				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://d.yimg.com/nl/vyc/site/player.html#shareUrl=http%3A%2F%2Fscreen.yahoo.com%$1$4.html&amp;browseCarouselUI=hide&amp;repeat=0&amp;lang=en-US&amp;vid=$4&amp;startScreenCarouselUI=hide"></iframe>',
 			),
 			'youku.com' => array(
-				'id'		=> 66,
+				'id'		=> 65,
 				'image'		=> 'youku.gif',
 				'example'	=> 'http://v.youku.com/v_show/id_XMzgxNzY3NTU2.html',
 				'match'		=> '#http://v.youku.com/v_show/id_(.*)\.html.*#si',
@@ -2024,7 +2016,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 67-200
+			// available ids: 66-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(

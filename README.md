@@ -31,12 +31,12 @@ Features
 	5min.com, allocine.fr, blip.tv, break.com, clipfish.de, clipmoon.com, cnbc.com, cnettv.cnet.com,
 	colbertnation.com, collegehumor.com, comedians.jokes.com, comedycentral.com, crackle.com, current.com,
 	dailymotion.com, dotsub.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com, g4tv.com,
-	gameprotv.com, gamespot.com, gametrailers.com, gamevideos.1up, godtube.com, gotgame.com, howcast.com,
-	hulu.com, ign.com, kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com,
-	myvideo.de, photobucket.com, qik.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com, scribd.com,
-	sevenload.com, slideshare.net, snotr.com, streetfire.net, thedailyshow.com, theonion.com, traileraddict.com,
-	twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de, vimeo.com, wat.tv,
-	wegame.com, xfire.com, youku.com, youtu.be, youtube.com
+	gameprotv.com, gamespot.com, gamevideos.1up, godtube.com, gotgame.com, howcast.com, hulu.com, ign.com,
+	kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo.de,
+	photobucket.com, qik.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com, scribd.com, sevenload.com,
+	slideshare.net, snotr.com, streetfire.net, thedailyshow.com, theonion.com, traileraddict.com, twitvid.com,
+	ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de, vimeo.com, wat.tv, wegame.com,
+	xfire.com, youku.com, youtu.be, youtube.com
 
 
 Deployment
