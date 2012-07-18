@@ -1098,15 +1098,15 @@ class abbcode
 					if (!$linktest_return)
 					{
 						$linktest_msg	= '<span class="abbc3_wrong">' . $user->lang['ABBC3_TESTLINK_WRONG'] . '</span>';
-						$linktest_pic	= '<img src="' . $error_icon . '" class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" title="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" />';
+						$linktest_pic	= '<img src="' . $error_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" title="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" />';
 					}
 					else
 					{
 						$linktest_msg	= '<span class="abbc3_good">' . $user->lang['ABBC3_TESTLINK_GOOD'] . '</span>';
-						$linktest_pic	= '<img src="' . $ok_icon . '"    class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_GOOD'] .'" title="' . $user->lang['ABBC3_TESTLINK_GOOD'] .'" />';
+						$linktest_pic	= '<img src="' . $ok_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_GOOD'] .'" title="' . $user->lang['ABBC3_TESTLINK_GOOD'] .'" />';
 					}
 
-					$linktest_value		= '<a href="' .$linktest_value . '" onclick="window.open(this.href);return false;" title="' .$linktest_value . '" >' . $linktest_value . '</a>';
+					$linktest_value		= '<a href="' . $linktest_value . '" onclick="window.open(this.href);return false;" title="' . $linktest_value . '" >' . $linktest_value . '</a>';
 					$linktest_result[]	= array('link' => $linktest_value, 'pic' => $linktest_pic, 'msg' => $linktest_msg);
 				}
 			}
@@ -1116,7 +1116,7 @@ class abbcode
 				foreach ($linktest_result as $linktest_data)
 				{
 					// If img_links is enabled use images, else use string
-					$linktest_echo .= (($this->img_links) ? $linktest_data['pic'] . '&nbsp;' . $linktest_data['link'] : $linktest_data['link'] . '&nbsp;' . $linktest_data['msg']) . "<br />";
+					$linktest_echo .= (($this->img_links) ? $linktest_data['pic'] . '&nbsp;' . $linktest_data['link'] : $linktest_data['link'] . '&nbsp;' . $linktest_data['msg']) . '<br />';
 				}
 			}
 			unset($linktest, $linktest_result);
@@ -2563,7 +2563,6 @@ class linktest
 		//$hosts['other']['sendspace.com'] 			= array("@sendspace\.com@i", 'file', 1);
 		//$hosts['other']['badongo.com'] 			= array("@badongo\.com@i", 'curl', 1);
 		//$hosts['other']['filecloud.com'] 			= array("@filecloud\.com@i", 'curl', 1);
-		//$hosts['other']['filefront.com'] 			= array("@filefront\.com@i", 'curl', 1);
 		//$hosts['other']['gigasize.com'] 			= array("@gigasize\.com@i", 'curl', 1);
 		//$hosts['other']['uploadmb.com'] 			= array("@uploadmb\.com@i", 'curl', pow(1000/self::CONVERSION, 2));
 		//$hosts['other']['speedshare.org'] 		= array("@speedshare\.org@i", 'curl', 1);
@@ -2598,6 +2597,7 @@ class linktest
 		//$hosts['other']['zshare.net'] 			= array("@zshare\.net@i", 'file', 1);*/
 
 		// No longer available hosts
+		//$hosts['other']['filefront.com'] 			= array("@filefront\.com@i", 'curl', 1);
 		//$hosts['other']['megaupload.com'] 		= array("@megaupload\.com@i", 'curl', 1);
 		//$hosts['other']['megarotic.com'] 			= array("@megarotic\.com@i", 'curl', 1);
 		
