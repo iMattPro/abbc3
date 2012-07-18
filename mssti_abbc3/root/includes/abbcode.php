@@ -1129,7 +1129,7 @@ class abbcode
 	*
 	* @param string		$in 	post text between [rapidshare] &[/rapidshare]
 	* @return string	link with text ok/wrong
-	* @version 3.0.8
+	* @version 3.0.12
 	*/
 	function rapidshare_pass($in)
 	{
@@ -1141,11 +1141,6 @@ class abbcode
 			return '<dl class="codebox codecontent" style="display:inline; padding: 0px;"><dd style="display:inline;color:#ff0000">'. $user->lang['LOGIN_EXPLAIN_VIEW'] . '</dd></dl>';
 		}
 
-		if (ini_get('allow_url_fopen') != 1)
-		{
-			return $user->lang['ABBC3_FOPEN_ERROR'] ;
-		}
-
 		if (empty($this->abbcode_config))
 		{
 			$this->abbcode_init(false);
@@ -1154,44 +1149,52 @@ class abbcode
 		$in = trim($in);
 		$ok_icon	= $this->abbcode_config['S_ABBC3_PATH'] . '/images/ok.gif';
 		$error_icon	= $this->abbcode_config['S_ABBC3_PATH'] . '/images/error.gif';
-		$rapidshare_echo	 = '';
+		$rapidshare_echo = '';
 
-		$rapidshare_links	 = explode("\n", $in);
+		// only 1 link allowed at a time. Display as broken bbcode if multiple links found
+		$rapidshare_links = explode("\n", $in);
 		if (sizeof($rapidshare_links) > 1)
 		{
 			// undo make_clickable_callback(); and Remove Comments from post content
-			return "[rapidshare]" . str_replace('\"', '',preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$2',$in)) . "[/rapidshare]";
+			return "[rapidshare]" . str_replace('\"', '', preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3', $in)) . "[/rapidshare]";
 		}
 
-		$rs_checkfiles = @fopen("http://rapidshare.com/cgi-bin/checkfiles.cgi?urls=" . $in, "r");
-		if ($rs_checkfiles !== false)
+		$rapidshare_link = '<a href="' . $in . '" title="' . $in . '" onclick="window.open(this.href);return false;">' . $in . '</a>';
+		$rapidshare_msg  = '<span class="abbc3_wrong">' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '</span>';
+		$rapidshare_pic  = '<img src="' . $error_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" />';	
+
+		// get fileid and filename from the rapidshare url
+		preg_match('/https?:\/\/(?:www.)?rapidshare.com\/.*\/([\d]+)\/(.*)/', $in, $matches);
+		$rs_file_id = $matches[1];
+		$rs_file_name = $matches[2];
+		$rs_api_url = 'http://api.rapidshare.com/cgi-bin/rsapi.cgi?sub=checkfiles&files=' . $rs_file_id . '&filenames=' . $rs_file_name;
+
+		// check if the file exists at rapidshare
+		if (function_exists ('curl_init'))
 		{
-			while (!feof ($rs_checkfiles))
-			{
-				$buffer = @fgets($rs_checkfiles, 4096);
-				if (stripos($buffer, 'File is on server number') !== false)
-				{
-					$rapidshare_msg = '<span class="abbc3_good">' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '</span>';
-					$rapidshare_pic = '<img src="' . $ok_icon . '" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" />';
-					break;
-				}
-				else
-				{
-					$rapidshare_msg = '<span class="abbc3_wrong">' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '</span>';
-					$rapidshare_pic = '<img src="' . $error_icon . '" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" />';
-					break;
-				}
-			}
-			fclose ($rs_checkfiles);
+			$curl = curl_init($rs_api_url);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+			$rapidshare_check = curl_exec($curl);
+			curl_close($curl);
 		}
 		else
 		{
-			$rapidshare_msg = '<span class="abbc3_wrong">' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '</span>';
-			$rapidshare_pic = '<img src="' . $error_icon . '" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" />';	
+			$rapidshare_check = @file_get_contents($rs_api_url);		
+		}
+
+		if ($rapidshare_check !== false)
+		{
+			$resp_arr = explode(',', $rapidshare_check);			
+			if($resp_arr[4] == 1) // 1=File OK (Anonymous downloading)
+			{
+				$rapidshare_msg = '<span class="abbc3_good">' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '</span>';
+				$rapidshare_pic = '<img src="' . $ok_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" />';
+			}
 		}
 
 		// If img_links is enabled use images, else use string
-		$rapidshare_echo .= '<a href="' . $in . '" title="' . $in . '" onclick="window.open(this.href);return false;">' . $in . '</a>' . (($this->img_links) ? '&nbsp;' . $rapidshare_pic : '&nbsp;' . $rapidshare_msg) . "<br />";
+		$rapidshare_echo .= (($this->img_links) ? $rapidshare_pic . '&nbsp;' . $rapidshare_link : $rapidshare_link . '&nbsp;' . $rapidshare_msg) . '<br />';
 
 		return '<dl class="testlink"><dd>'. $rapidshare_echo . '</dd></dl>';
 	}

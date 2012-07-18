@@ -490,12 +490,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 
 	// Rapid share checker
-	'ABBC3_FOPEN_ERROR'			=> '<strong>Error : </strong> Sorry, aber wie es aussieht, ist <strong>allow_url_fopen</strong> deaktiviert. Diese Fuktion erfordert es, daß die PHP Einstellung allow_url_fopen aktiviert ist.',
 	'ABBC3_RAPIDSHARE_TAG'		=> 'RapidShare',
 	'ABBC3_RAPIDSHARE_MOVER'	=> 'Füge eine Datei von RapidShare hinzu',
 	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...[/rapidshare]',
-	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
-	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
+	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip[/rapidshare]',
 	'ABBC3_RAPIDSHARE_GOOD'		=> 'Datei wurde auf dem Server gefunden!',
 	'ABBC3_RAPIDSHARE_WRONG'	=> 'Datei wurde nicht gefunden!',
 
@@ -506,8 +505,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_MOVER'		=> 'Füge eine Datei hinzu, die auf einer öffentlichen Seite gespeichert wurde',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
 	'ABBC3_TESTLINK_NOTE'		=> 'Gültige Server: rapidshare, depositfiles, megashares',
-	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
-	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
+	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'Datei wurde auf dem Server gefunden!',
 	'ABBC3_TESTLINK_WRONG'		=> 'Datei wurde nicht gefunden!',
 

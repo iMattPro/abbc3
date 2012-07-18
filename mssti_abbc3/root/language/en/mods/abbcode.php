@@ -484,12 +484,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 
 	// Rapid share checker
-	'ABBC3_FOPEN_ERROR'			=> '<strong>Error : </strong> Sorry but it appears that <strong>allow_url_fopen</strong> is disabled. This function requires the PHP directive allow_url_fopen to be enabled.',
 	'ABBC3_RAPIDSHARE_TAG'		=> 'rapidshare',
 	'ABBC3_RAPIDSHARE_MOVER'	=> 'Insert a file from rapidshare',
 	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...[/rapidshare]',
-	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
-	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
+	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip[/rapidshare]',
 	'ABBC3_RAPIDSHARE_GOOD'		=> 'File found on server!',
 	'ABBC3_RAPIDSHARE_WRONG'	=> 'File not found!',
 
@@ -500,8 +499,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_MOVER'		=> 'Insert a file stored on public server',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
 	'ABBC3_TESTLINK_NOTE'		=> 'Valid servers: rapidshare, depositfiles, megashares',
-	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
-	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
+	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'File found on server!',
 	'ABBC3_TESTLINK_WRONG'		=> 'File not found!',
 
