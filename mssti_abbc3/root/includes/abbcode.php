@@ -2508,7 +2508,7 @@ class linktest
 	* @param boolean supported (optional) - to only allow supported hosts or not
 	* @return array result - zero index is either a number or false
 	*/ 
-	function test($url, $format = 'MB', $supported = true)
+	function test($url, $format = 'MB', $supported = false)
 	{
 		// check for valid hostname in url
 		$pattern = '@^https?://?([^/]+)@i';
@@ -2556,7 +2556,6 @@ class linktest
 		$hosts['rapidshare']['rapidshare.de'] 		= array("@rapidshare\.de@i", 'curl', 1, array('@>300 MB<@i'));
 		$hosts['other']['depositfiles.com'] 		= array("@depositfiles\.com@i", 'file', 1);
 		$hosts['other']['megashares.com'] 			= array("@megashares\.com@i", 'curl', 1, array('@ 10GB@i'));
-		$hosts['other']['oron.com'] 				= array("@oron\.com@i", 'curl', 1);
 		
 		// lesser known hosts these hosts are commented out but can be used as needed
 		//$hosts['other']['filefactory.com'] 		= array("@filefactory\.com@i", 'curl', 1);
