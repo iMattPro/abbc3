@@ -12,6 +12,9 @@
 	border-style: none;
 	font-size: 10px;
 	padding-bottom:5px;
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	/* For Safari */
 	resize: none;
 }
@@ -72,11 +75,13 @@ hr.hrdotted {
 #abbc3posttable select {
 	height: 20px;
 	margin: 3px 0;
-	font-size: 1.0em;
+	padding: 1px;
+	font-size: 11px; /*1.0em*/
 }
 
 #acp #abbc3posttable select {
-	font-size: 1.0em;
+	font-size: 11px; /*1.0em*/
+	padding: 0;
 }
 
 #abbc3posttable option {
