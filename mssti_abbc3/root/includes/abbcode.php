@@ -2663,23 +2663,31 @@ class linktest
 	*/
 	function rapidshare()
 	{
+		preg_match('/https?:\/\/(?:www.)?rapidshare.com\/.*\/([\d]+)\/(.*)/', $this->url, $pieces);
+		$rs_file_id = $pieces[1];
+		$rs_file_name = $pieces[2];
+		$rs_api_url = 'http://api.rapidshare.com/cgi-bin/rsapi.cgi?sub=checkfiles&files=' . $rs_file_id . '&filenames=' . $rs_file_name;
+
+		$pattern	= '/[^,]+,[^,]+,[^,]+,[^,]+,1,.*/i';
+		$matches	= $this->match($rs_api_url, $pattern);
+
 		/** get rapidshare submit form url **/
-		$pattern	= '@<form.*.action="(.*)".*.method@i';
-		$matches	= $this->match($this->url, $pattern);
+	//	$pattern	= '@<form.*.action="(.*)".*.method@i';
+	//	$matches	= $this->match($this->url, $pattern);
 	//	$url		= $matches[1];
 	//	$params		= "dl.start=Free";
 		
 		// get rapidshare.de hidden param
-		if ($this->domain == 'rapidshare.de')
-		{
-			$pattern	= '@<input.*.hidden.*.value="(.*)">@i';
-			$matches	= $this->match($this->url, $pattern);
+	//	if ($this->domain == 'rapidshare.de')
+	//	{
+	//		$pattern	= '@<input.*.hidden.*.value="(.*)">@i';
+	//		$matches	= $this->match($this->url, $pattern);
 	//		$param		= $matches[1];
 	//		if (!is_null($param))
 	//		{
 	//			$params = "$params&uri=$param";
 	//		}
-		}
+	//	}
 		
 		// get file size
 	//	$this->url	= $url;
