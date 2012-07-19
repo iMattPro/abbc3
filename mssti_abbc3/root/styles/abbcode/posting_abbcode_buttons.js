@@ -181,7 +181,7 @@ function helpline2(help, help_box)
 **/
 function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 {
-	// If this is a regular custom bbcode, just do it quicly in the regolar way
+	// If this is a regular custom bbcode, just do it quickly in the regular way
 	if (!is_abbcode)
 	{
 		bbfontstyle(bbopen, bbclose);

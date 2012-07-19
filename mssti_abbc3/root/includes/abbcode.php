@@ -109,9 +109,9 @@ class abbcode
 			'POST_AUTHOR'			=> (isset($user->data['username'])) ? $user->data['username'] : '',
 			// Thumbnails width
 			'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH'])) ? $config['ABBC3_MAX_THUM_WIDTH'] : $config['img_max_thumb_width'],
-			// Width for posted video ?
+			// Width for posted video
 			'ABBC3_VIDEO_WIDTH'		=> (isset($config['ABBC3_VIDEO_width'])) ? $config['ABBC3_VIDEO_width'] : 560,
-			// Height for posted video ?
+			// Height for posted video
 			'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 340,
 			// Link to ABBC3 help page
 			'ABBC3_HELP_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=help'),
@@ -122,7 +122,7 @@ class abbcode
 			// Highlight picker
 			'ABBC3_HIGHLIGHT_MODE'	=> (isset($config['ABBC3_HIGHLIGHT_MODE'])) ? $config['ABBC3_HIGHLIGHT_MODE'] : 'phpbb',
 			// Link to ABBC3 wizards page
-			'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=wizards"),
+			'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=wizards'),
 			// 0=Disable wizards | 1=Pop Up window | 2=In post (Ajax)
 			'ABBC3_WIZARD_MODE'		=> (isset($config['ABBC3_WIZARD_MODE'])) ? (int) $config['ABBC3_WIZARD_MODE'] : 2,
 			// Width for pop-up wizard window ?
@@ -130,7 +130,7 @@ class abbcode
 			// Height for pop-up wizard window ?
 			'ABBC3_WIZARD_HEIGHT'	=> (isset($config['ABBC3_WIZARD_height'])) ? $config['ABBC3_WIZARD_height'] : 400,
 			// Link to ABBC3 tigra color picker page
-			'ABBC3_TIGRA_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=tigra"),
+			'ABBC3_TIGRA_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=tigra'),
 			// Cookie
 			'ABBC3_COOKIE_NAME'		=> $config['cookie_name'] . '_abbc3',
 		));
