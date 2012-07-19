@@ -1073,7 +1073,6 @@ class abbcode
 			$ok_icon	= $this->abbcode_config['S_ABBC3_PATH'] . '/images/ok.gif';
 			$error_icon	= $this->abbcode_config['S_ABBC3_PATH'] . '/images/error.gif';
 
-
 			$linktest		 = new linktest();
 			$linktest_links	 = explode("\n", $in);
 			$linktest_result = array();
@@ -1095,7 +1094,7 @@ class abbcode
 					}
 					$linktest_return	= $linktest->test($linktest_value);
 
-					if (!$linktest_return)
+					if (!$linktest_return || (sizeof($linktest_return) && $linktest_return[0] === false))
 					{
 						$linktest_msg	= '<span class="abbc3_wrong">' . $user->lang['ABBC3_TESTLINK_WRONG'] . '</span>';
 						$linktest_pic	= '<img src="' . $error_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" title="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" />';
@@ -2509,7 +2508,7 @@ class linktest
 	* @param boolean supported (optional) - to only allow supported hosts or not
 	* @return array result - zero index is either a number or false
 	*/ 
-	function test($url, $format = 'MB', $supported = false)
+	function test($url, $format = 'MB', $supported = true)
 	{
 		// check for valid hostname in url
 		$pattern = '@^https?://?([^/]+)@i';
@@ -2521,7 +2520,7 @@ class linktest
 		else
 		{
 			$result[0] = false;
-		//	Only for testing propose, commented out so I do not loose the code.
+		//	Only for testing propose, commented out so I do not lose the code.
 		//	$result[1] = 'invalid url';
 		//	$result[2] = "The link provided is not a valid url";
 			return $result;
@@ -2557,6 +2556,7 @@ class linktest
 		$hosts['rapidshare']['rapidshare.de'] 		= array("@rapidshare\.de@i", 'curl', 1, array('@>300 MB<@i'));
 		$hosts['other']['depositfiles.com'] 		= array("@depositfiles\.com@i", 'file', 1);
 		$hosts['other']['megashares.com'] 			= array("@megashares\.com@i", 'curl', 1, array('@ 10GB@i'));
+		$hosts['other']['oron.com'] 				= array("@oron\.com@i", 'curl', 1);
 		
 		// lesser known hosts these hosts are commented out but can be used as needed
 		//$hosts['other']['filefactory.com'] 		= array("@filefactory\.com@i", 'curl', 1);
@@ -2766,10 +2766,10 @@ class linktest
 				$html = file_get_contents($url);
 			}
 		}
-		
+
 		// uncomment line below to test unfiltered html
 		// echo "<xmp>$html</xmp>"; exit;
-		
+
 		// setup patterns for preg_replace to remove common-problem text
 		$patterns[] = '@<title>.*?</title>@i';
 		$patterns[] = '@<meta.*?>@i';
@@ -2785,7 +2785,7 @@ class linktest
 				$patterns[] = $value;
 			}
 		}
-		
+
 		// process patterns with preg_replace
 		foreach ($patterns as $value)
 		{
@@ -2795,7 +2795,7 @@ class linktest
 				$html = $test;
 			}
 		}
-		
+
 		// uncomment line below to test filtered html
 		// echo "<xmp>$html</xmp>"; exit;
 		
@@ -2828,7 +2828,7 @@ class linktest
 		$adjustment			= $this->adjustment;
 		$format['source']	= $sourceFormat;
 		$format['final']	= $this->format;
-		
+
 		// set multiplier and divsor for equation
 		foreach ($format as $key => $value)
 		{
@@ -2845,12 +2845,12 @@ class linktest
 				break;
 			}
 		}
-		
+
 		// convert size to KB then convert to final format
 		$size = $size * $adjustment;
 		$size = ($size * $x['source']) / $x['final'];
 		$result[0] = $size;
-		
+
 		return $result;
 	}
 }
