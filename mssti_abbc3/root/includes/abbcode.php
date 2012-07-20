@@ -102,7 +102,7 @@ class abbcode
 			// Bakground image
 			'ABBC3_BG'				=> (isset($config['ABBC3_BG'])) ? $config['ABBC3_BG'] : 'bg_abbc3.gif',
 			// Display icon division for tags ?
-			'ABBC3_TAB'				=> (isset($config['ABBC3_TAB'])) ? $config['ABBC3_TAB'] : 1,
+			'ABBC3_TAB'				=> (isset($config['ABBC3_TAB'])) ? $config['ABBC3_TAB'] : true,
 			// Resize posting textarea ?
 			'ABBC3_BOXRESIZE'		=> (isset($config['ABBC3_BOXRESIZE'])) ? $config['ABBC3_BOXRESIZE'] : true,
 			// Usename posting
@@ -1083,9 +1083,9 @@ class abbcode
 				if (trim($linktest_value) !== '')
 				{
 					// undo make_clickable_callback(); and Remove Comments from post content
-					$linktest_value		= trim(str_replace('\"', '',preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3',$linktest_value)));
+					$linktest_value	= trim(str_replace('\"', '', preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si', '$3', $linktest_value)));
 				//  After made changes in : http://www.phpbb.com/kb/article/links-opening-new-windows/
-				//	$linktest_value		= trim(str_replace('\"', '',preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?) onclick=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3', trim($linktest_value))));
+				//	$linktest_value	= trim(str_replace('\"', '', preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?) onclick=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si', '$3', trim($linktest_value))));
 
 					// if there is no scheme, then add http schema
 					if (!preg_match('#^[a-z0-9]+://#i', $linktest_value))
@@ -1155,7 +1155,7 @@ class abbcode
 		if (sizeof($rapidshare_links) > 1)
 		{
 			// undo make_clickable_callback(); and Remove Comments from post content
-			return "[rapidshare]" . str_replace('\"', '', preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3', $in)) . "[/rapidshare]";
+			return '[rapidshare]' . str_replace('\"', '', preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3', $in)) . '[/rapidshare]';
 		}
 
 		$rapidshare_link = '<a href="' . $in . '" title="' . $in . '" onclick="window.open(this.href);return false;">' . $in . '</a>';
