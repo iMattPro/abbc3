@@ -721,7 +721,7 @@ class abbcode
 				$in = $config['sitename'];
 			break;
 		}
-		return str_replace(array('{SEARCH_SITE}','{SEARCH_TEXT}', '{URL}' ,'{SEARCH_STRING}'), array(strtolower($in), strtolower($user->lang['SEARCH_MINI']), $search_link, $search), $this->bbcode_tpl('search'));
+		return str_replace(array('{SEARCH_SITE}','{SEARCH_TEXT}', '{URL}' ,'{SEARCH_STRING}'), array(strtolower($in), strtolower($user->lang['SEARCH']), $search_link, $search), $this->bbcode_tpl('search'));
 	}
 
 	/**
