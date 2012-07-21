@@ -7,7 +7,7 @@
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Add-on : Auto Embed Video From URLs.]]></title>
-		<description lang="en"><![CDATA[This file provides instructions to automatically embed video directly from plain URLs.
+		<description lang="en"><![CDATA[This file provides instructions to automatically embed video directly from plain URLs. This is especially useful with users who forget (or neglect) to use the BBvideo BBCode when posting a video site's URL. This add-on will embed their video automatically.
 		
 		1) This will automatically embed video from URL links (without [BBvideo] tag) in posts.
 		2) This follows the BBvideo settings in the ACP, so only video sites allowed for the BBvideo tag will be auto-embedded.
@@ -23,23 +23,15 @@
 					<contributions status="current" from="2010-03-02" position="Developer"/>
 				</contributions-group>
 			</author>
-			<author>
-				<realname><![CDATA[Gabriel Vazquez]]></realname>
-				<username><![CDATA[leviatan21]]></username>
-				<email><![CDATA[info@mssti.com]]></email>
-				<contributions-group>
-					<contributions status="past" from="2008-01-10" to="2012-03-01" position="Developer"/>
-				</contributions-group>
-			</author>
 		</author-group>
 		<mod-version>3.0.12</mod-version>
 		<installation>
 			<level>easy</level>
-			<time>120</time>
+			<time>60</time>
 			<target-version>3.0.10</target-version>
 		</installation>
 		<link-group>
-			<link type="parent" href="../../install_ABBC3.xml" lang="en">Main Install Instructions</link>
+			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
 		</link-group>
 	</header>
 	<action-group>
