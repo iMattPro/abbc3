@@ -2295,7 +2295,7 @@ class abbcode
 /**
 * Transform posted URLs from video sites into BBvideo embedded code
 * Not used in default installation. Part of add-on “Auto Embed Video From URLs”
-* Called only from posting.php and viewtopic.php
+* Called only from hook_bbvideo.php
 *
 * @param  string	$text	string to transform
 * @return string	$text	string with embed code if applicable
@@ -2304,8 +2304,6 @@ class abbcode
 function url_to_bbvideo($text)
 {
 	global $bbcode, $user;
-
-	$user->add_lang('mods/abbcode');
 
 	// if no BBCodes are on page, load them up
 	if (empty($bbcode))
@@ -2859,6 +2857,42 @@ class linktest
 		$result[0] = $size;
 
 		return $result;
+	}
+}
+
+/**
+* Process template blocks - This code block from ReIMG (c) 2011 DavidIQ.com
+* Not used in default installation. Part of add-on “Auto Embed Video From URLs”
+* Called only from hook_bbvideo.php
+*
+* @param  string	$block_name
+* @param  string	$block_section
+* @version 3.0.12
+*/
+function process_template_block_bbvideo($block_name, $block_section)
+{
+	global $template;
+
+	if (!empty($block_name) && !empty($block_section))
+	{
+		if (!empty($template->_tpldata[$block_name]))
+		{
+			foreach ($template->_tpldata[$block_name] as $row => $data)
+			{
+				// Alter the array
+				$template->alter_block_array($block_name, array(
+					$block_section => url_to_bbvideo($data[$block_section]),
+				), $row, 'change');
+			}
+		}
+	}
+
+	if (!empty($block_section))
+	{
+		if (isset($template->_tpldata['.'][0][$block_section]))
+		{
+			$template->assign_var($block_section, url_to_bbvideo($template->_tpldata['.'][0][$block_section]));
+		}
 	}
 }
 

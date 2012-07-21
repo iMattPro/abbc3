@@ -57,6 +57,8 @@ function url_to_bbvideo_hook(&$hook)
 		}
 	}
 
+	$user->add_lang('mods/abbcode');
+
 	//Message preview
 	process_template_block_bbvideo('', 'PREVIEW_MESSAGE');
 
@@ -81,39 +83,9 @@ function url_to_bbvideo_hook(&$hook)
 			{
 				// Alter the array
 				$template->alter_block_array('postrow', array(
-					'MESSAGE' 	=> url_to_bbvideo($data['MESSAGE']),
+					'MESSAGE' => url_to_bbvideo($data['MESSAGE']),
 				), $row, 'change');
 			}
-		}
-	}
-}
-
-/**
-* Process template blocks - This code block from ReIMG (c) 2011 DavidIQ.com
-*/
-function process_template_block_bbvideo($block_name, $block_section)
-{
-	global $template;
-
-	if (!empty($block_name) && !empty($block_section))
-	{
-		if (!empty($template->_tpldata[$block_name]))
-		{
-			foreach ($template->_tpldata[$block_name] as $row => $data)
-			{
-				// Alter the array
-				$template->alter_block_array($block_name, array(
-					$block_section 	=> url_to_bbvideo($data[$block_section]),
-				), $row, 'change');
-			}
-		}
-	}
-
-	if (!empty($block_section))
-	{
-		if (isset($template->_tpldata['.'][0][$block_section]))
-		{
-			$template->assign_var($block_section, url_to_bbvideo($template->_tpldata['.'][0][$block_section]));
 		}
 	}
 }
