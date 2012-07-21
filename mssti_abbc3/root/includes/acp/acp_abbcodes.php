@@ -41,7 +41,7 @@ class acp_abbcodes
 		// Set some default values in case the user didn't run the installer - Start
 		// Same default values as root/install_abbc3.php -> abbc3_308()
 		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.12';
-		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
+		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: 1;
 		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';
 		$config['ABBC3_TAB']				= (isset($config['ABBC3_TAB']))				? $config['ABBC3_TAB']				: 1;
 		$config['ABBC3_BOXRESIZE']			= (isset($config['ABBC3_BOXRESIZE']))		? $config['ABBC3_BOXRESIZE']		: 1;
@@ -79,7 +79,7 @@ class acp_abbcodes
 		$this->u_back 		= $this->u_action;
 		$this->submit		= (isset($_POST['submit'])) ? true : false;
 		$abbc3_root_path	= ($phpbb_admin_path) ? $phpbb_admin_path : $phpbb_root_path ;
-		$this->dir 			= $phpbb_root_path . 'styles/abbcode' ;
+		$this->dir 			= $phpbb_root_path . 'styles/abbcode';
 
 		// Execute overall actions
 		switch ($mode)
