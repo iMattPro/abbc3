@@ -59,6 +59,7 @@
 			<file from="root/styles/abbcode/colorbox/*.*" to="styles/abbcode/colorbox/*.*"/>
 			<file from="root/styles/abbcode/images/*.*" to="styles/abbcode/images/*.*"/>
 			<file from="root/styles/abbcode/lightbox/*.*" to="styles/abbcode/lightbox/*.*"/>
+			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/prosilver/template/abbcode.html" to="styles/prosilver/template/abbcode.html"/>
 			<file from="root/styles/prosilver/template/posting_abbcode_buttons.html" to="styles/prosilver/template/posting_abbcode_buttons.html"/>
 			<file from="root/styles/prosilver/template/posting_abbcode_wizards.html" to="styles/prosilver/template/posting_abbcode_wizards.html"/>

@@ -61,7 +61,7 @@ function bbcode_to_plain(data)
 		return str;
 	}
 	/**
-	* Check wich replacement we should apply
+	* Check which replacement we should apply
 	**/
 	function bbcode_to_plain_pattern(match_0, match_1, match_2, match_3)
 	{
@@ -69,23 +69,7 @@ function bbcode_to_plain(data)
 		{
 			match_3 = bbcode_to_plain_simple_replace(match_3);
 		}
-	/** alert( '0('+$0+') 1('+$1+') 2('+$2+') 3('+$3+')'); **/
-		switch (match_1)
-		{
-			case 'url':
-			case 'email':
-				if (match_3 != '' && match_2 != '')
-				{
-					match_3 = match_2;
-				}
-				break;
-			case 'click':
-					match_3 = match_2;
-				break;
-		}
-		/** Nothing to do ? **/
 		return match_3;
-	/** return '['+ match_1 + (match_2 ? '='+ match_2 : '') +']'+ match_3 +'[/'+ match_1 +']'; **/
 	}
 
 	var basic_bbcode_match   = bbcode_to_plain_create_regexp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');

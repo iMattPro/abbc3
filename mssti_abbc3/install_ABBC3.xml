@@ -37,7 +37,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</installation>
 		<history>
 			<entry>
-				<date>2012-07-17</date>
+				<date>2012-07-23</date>
 				<rev-version>3.0.12</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Feature] Added ColorboxJS to the Image Resizer methods.]]></change>
@@ -56,6 +56,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 					<change><![CDATA[[Fix] Remove uneeded call to utf8_clean_string in bbcode.php]]></change>
 					<change><![CDATA[[Fix] Replace use of deprecated eregi function in abbcode.php]]></change>
 					<change><![CDATA[[Fix] Fixed an issue where downgrading to previous versions could result in all ABBC3 BBcodes being uninstalled.]]></change>
+					<change><![CDATA[[Fix] Fixed an issue where the Remove BBcode tags button would return "undefined" for [url], [email] and [click] BBcode tags.]]></change>
 					<change><![CDATA[[Add-on] Instructions to automatically embed video directly from plain URLs (without [BBvideo] tag).]]></change>
 				</changelog>
 			</entry>
