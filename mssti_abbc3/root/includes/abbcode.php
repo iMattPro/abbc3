@@ -1865,6 +1865,13 @@ class abbcode
 				'match'		=> '#http://(?:.*?)snotr.com/video/([0-9]+)/.*#si',
 				'replace'	=> '<iframe src="http://www.snotr.com/embed/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
+			'spike.com' => array(
+				'id'		=> 66,
+				'image'		=> 'spike.gif',
+				'example'	=> 'http://www.spike.com/video-clips/32xg36/winter-passing-trailer',
+				'match'		=> '#http://www.spike.com/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
+			),
 			'streetfire.net' => array(
 				'id'		=> 61,
 				'image'		=> 'streetfire.gif',
@@ -2018,7 +2025,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 66-200
+			// available ids: 67-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(
