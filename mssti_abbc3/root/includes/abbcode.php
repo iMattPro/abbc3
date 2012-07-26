@@ -2334,6 +2334,7 @@ function url_to_bbvideo($text)
 		{
 			// Run URL matches through the BBvideo_pass function to turn them into embedded BBvideos
 			$text = preg_replace_callback('#<a class="postlink" href="(.*?)">(?:.*?)<\/a>#i', create_function('$matches', 'global $bbcode; return $bbcode->BBvideo_pass($matches[1], null, null);'), $text);
+			break;
 		}
 	}
 
