@@ -587,7 +587,7 @@ function ImgOnLoad()
 	return true;
 }
 
-/** Install the safety net to catch any images that needs to be resized - START **/
+/** Install the safety net to catch any images that need to be resized - START **/
 if (window.onload_functions) // prosilver
 {
 	onload_functions.push('ImgOnLoad()');
@@ -600,4 +600,4 @@ else if (typeof(window.attachEvent) !== 'undefined') // MSIE
 {
 	window.attachEvent('onload', ImgOnLoad);
 }
-/** Install the safety net to catch any images that needs to be resized - END **/
+/** Install the safety net to catch any images that need to be resized - END **/
