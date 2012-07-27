@@ -1630,9 +1630,8 @@ class abbcode
 				'image'		=> 'flickr.gif',
 				'example'	=> 'http://www.flickr.com/photos/chrismar/3071009125',
 				'match'		=> '#http://((.*?)?)flickr.com/(.*?)/(.*?)/([0-9]+)([^[]*)?#si',
-				'replace'	=> 'http://www.flickr.com/apps/video/stewart.swf',
-				'method'	=> 'flash',
-				'flashvars'	=> 'intl_lang=en-us&photo_id=$5',
+				'replace'	=> 'http://www.flickr.com/services/oembed/?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'funnyordie.com' => array(
 				'id'		=> 20,
@@ -2111,7 +2110,6 @@ class abbcode
 	*
 	* more examples of some popular oEmbed ready sites
 	* dailymotion.com => http://www.dailymotion.com/api/oembed?url=$0&format=json,
-	* flickr.com => http://www.flickr.com/services/oembed/?url=$0&format=json,
 	* funnyordie.com => http://www.funnyordie.com/oembed?url=$0&format=json,
 	* photobucket.com => http://photobucket.com/oembed?url=$0&format=json,
 	* smugmug.com => http://api.smugmug.com/services/oembed/?url=$0&format=json,
