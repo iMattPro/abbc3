@@ -2124,7 +2124,7 @@ class abbcode
 	{
 		$oembed_contents = @file_get_contents($url);
 		$oembed_data 	 = @json_decode($oembed_contents);
-		$embed_code 	 = (isset($oembed_data)) ? $oembed_data->html : '';
+		$embed_code 	 = (isset($oembed_data->html)) ? $oembed_data->html : '';
 		$embed_code 	 = preg_replace(array('/width="([0-9]{1,4})"/i', '/height="([0-9]{1,4})"/i'), array('width="' . $width . '"', 'height="' . $height . '"'), $embed_code);
 		return $embed_code;	
 	}
