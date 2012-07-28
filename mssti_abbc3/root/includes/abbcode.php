@@ -1531,9 +1531,9 @@ class abbcode
 			'cnbc.com' => array(
 				'id'		=> 47,
 				'image'		=> 'nbc.gif',
-				'example'	=> 'http://www.cnbc.com/id/15840232?video=1548022077&play=1',
-				'match'		=> '#http://www.cnbc.com/id/(\d+)(?:|/)\?video=(\d+)?([^[]*)?#si',
-				'replace'	=> 'http://plus.cnbc.com/rssvideosearch/action/player/id/$2/code/cnbcplayershare',
+				'example'	=> 'http://video.cnbc.com/gallery/?video=1548022077&play=1',
+				'match'		=> '#http://.*\.cnbc.com/[^?]+\?video=(\d+)?[^[]*?#si',
+				'replace'	=> 'http://plus.cnbc.com/rssvideosearch/action/player/id/$1/code/cnbcplayershare',
 				'method'	=> 'flash',
 			),
 			'cnettv.cnet.com' => array(
