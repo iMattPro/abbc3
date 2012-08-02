@@ -628,11 +628,11 @@ function abbc3_add_bbcodes($action, $version)
 	$message = '';
 	if (sizeof($ary_bbcode_modified))
 	{
-		$message .= "<p>" . $user->lang['LINE_MODIFIED'] . ' : ' . implode(', ', $ary_bbcode_modified) . "</p>";
+		$message .= '<p>' . $user->lang['LINE_MODIFIED'] . ' : ' . implode(', ', $ary_bbcode_modified) . '</p>';
 	}
 	if (sizeof($ary_bbcode_added))
 	{
-		$message .= "<p>" . $user->lang['LINE_ADDED'] . ' : ' . implode(', ', $ary_bbcode_added) . "</p>";
+		$message .= '<p>' . $user->lang['LINE_ADDED'] . ' : ' . implode(', ', $ary_bbcode_added) . '</p>';
 		
 	}
 
@@ -669,7 +669,7 @@ function abbc3_sync_bbcodes()
 	$db->sql_freeresult($result);
 
 	// Return a string
-	return "<p>" . $user->lang['ABBCODES_RESYNC_SUCCESS'] . "</p>";
+	return '<p>' . $user->lang['ABBCODES_RESYNC_SUCCESS'] . '</p>';
 }
 
 /**
