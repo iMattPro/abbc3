@@ -2331,7 +2331,7 @@ function url_to_bbvideo($text)
 		if ( (strpos($text, $video_name) !== false) && isset($video_data['id']) && ($video_data['id'] <= 200) )
 		{
 			// Run URL matches through the BBvideo_pass function to turn them into embedded BBvideos
-			$text = preg_replace_callback('#<a class="postlink" href="(.*?)">(?:.*?)<\/a>#i', create_function('$matches', 'global $bbcode; return $bbcode->BBvideo_pass($matches[1], null, null);'), $text);
+			$text = preg_replace_callback('#<!-- [lmw] --><a class="[^"]*" href="(.*?)">.*?<\/a><!-- [lmw] -->#i', create_function('$matches', 'global $bbcode; return $bbcode->BBvideo_pass($matches[1], null, null);'), $text);
 			break;
 		}
 	}
