@@ -2298,9 +2298,45 @@ class abbcode
 }
 
 /**
+* Transform an array into a serialized format
+* Because serialize a large array ( almost 70 key ) 
+* will return a large string to store into the config value
+* we need another way to manage it.
+*
+* @param mixed	$input	array or string to transform
+* @param bool	$mode	array to string (true) or string to array (false)
+* @version 3.0.8
+*/
+function video_serialize($input, $mode = true)
+{
+	global $user;
+	
+	$out = '';
+	if ($mode)
+	{
+		foreach ($input as $key => $value)
+		{
+			$out .= $value . ';';
+		}
+		
+		// The config table only stores 255 chars, so we need to prevent any instance where this might be exceeded.
+		if (strlen($out) > 255)
+		{
+			trigger_error($user->lang['ABBCODES_VIDEO_ERROR']);
+		}
+	}
+	else
+	{
+		$out = explode(';', $input, -1);
+	}
+
+	return $out;
+}
+
+/**
 * Transform posted URLs from video sites into BBvideo embedded code
 * Not used in default installation. Part of add-on “Auto Embed Video From URLs”
-* Called only from hook_bbvideo.php
+* Called only from hook_bbvideo.php when optionally installed
 *
 * @param  string	$text	string to transform
 * @return string	$text	string with embed code if applicable
@@ -2337,42 +2373,6 @@ function url_to_bbvideo($text)
 	}
 
 	return $text;
-}
-
-/**
-* Transform an array into a serialized format
-* Because serialize a large array ( almost 70 key ) 
-* will return a large string to store into the config value
-* we need another way to manage it.
-*
-* @param mixed	$input	array or string to transform
-* @param bool	$mode	array to string (true) or string to array (false)
-* @version 3.0.8
-*/
-function video_serialize($input, $mode = true)
-{
-	global $user;
-	
-	$out = '';
-	if ($mode)
-	{
-		foreach ($input as $key => $value)
-		{
-			$out .= $value . ';';
-		}
-		
-		// The config table only stores 255 chars, so we need to prevent any instance where this might be exceeded.
-		if (strlen($out) > 255)
-		{
-			trigger_error($user->lang['ABBCODES_VIDEO_ERROR']);
-		}
-	}
-	else
-	{
-		$out = explode(";", $input);
-	}
-
-	return $out;
 }
 
 // MOD : eD2k links - START
