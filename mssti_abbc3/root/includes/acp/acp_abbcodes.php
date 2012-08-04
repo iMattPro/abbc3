@@ -207,7 +207,16 @@ class acp_abbcodes
 		if ($this->submit)
 		{
 			$allowed_videos	= request_var('allowed_videos', array(0));
-			set_config('ABBC3_VIDEO_OPTIONS', video_serialize($allowed_videos, true));
+
+			$allowed_videos_string = video_serialize($allowed_videos, true);
+
+			// The config table only stores 255 chars, so we need to prevent any instance where this might be exceeded.
+			if (strlen($allowed_videos_string) > 255)
+			{
+				trigger_error($user->lang['ABBCODES_VIDEO_ERROR'] . adm_back_link($this->u_action), E_USER_WARNING);
+			}
+
+			set_config('ABBC3_VIDEO_OPTIONS', $allowed_videos_string);
 
 			add_log('admin', 'LOG_CONFIG_ABBCODES');
 

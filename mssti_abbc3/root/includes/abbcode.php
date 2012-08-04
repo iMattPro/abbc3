@@ -2309,28 +2309,22 @@ class abbcode
 */
 function video_serialize($input, $mode = true)
 {
-	global $user;
-	
-	$out = '';
+	if (empty($input) && $mode == true)
+	{
+		// return an empty string if necessary
+		return '';
+	}
+
 	if ($mode)
 	{
-		foreach ($input as $key => $value)
-		{
-			$out .= $value . ';';
-		}
-		
-		// The config table only stores 255 chars, so we need to prevent any instance where this might be exceeded.
-		if (strlen($out) > 255)
-		{
-			trigger_error($user->lang['ABBCODES_VIDEO_ERROR']);
-		}
+		//serialize array to string
+		return implode(';', $input) . ';';
 	}
 	else
 	{
-		$out = explode(';', $input, -1);
+		//unserialize string to array
+		return explode(';', $input, -1);
 	}
-
-	return $out;
 }
 
 /**
