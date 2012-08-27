@@ -33,7 +33,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		<installation>
 			<level>intermediate</level>
 			<time>1200</time>
-			<target-version>3.0.10</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 		<history>
 			<entry>

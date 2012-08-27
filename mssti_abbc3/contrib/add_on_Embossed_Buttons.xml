@@ -36,7 +36,7 @@
 		<installation>
 			<level>easy</level>
 			<time>120</time>
-			<target-version>3.0.10</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 		<link-group>
 			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
