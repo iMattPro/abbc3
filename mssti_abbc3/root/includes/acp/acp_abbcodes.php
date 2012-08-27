@@ -208,7 +208,7 @@ class acp_abbcodes
 		{
 			$allowed_videos	= request_var('allowed_videos', array(0));
 
-			$allowed_videos_string = video_serialize($allowed_videos, true);
+			$allowed_videos_string = implode(';', $allowed_videos);
 
 			// The config table only stores 255 chars, so we need to prevent any instance where this might be exceeded.
 			if (strlen($allowed_videos_string) > 255)
@@ -747,8 +747,7 @@ function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
 	global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
 
 	$abbcode_video_ary = abbcode::video_init();
-	// The video_serialize function is at root/includes/abbcode.php after the abbcode class
-	$allowed_videos = (!$current) ? array() : video_serialize($current, false);
+	$allowed_videos = (!$current) ? array() : explode(';', $current);
 
 	if (sizeof($abbcode_video_ary))
 	{

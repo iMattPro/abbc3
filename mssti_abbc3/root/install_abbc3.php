@@ -170,7 +170,7 @@ function abbc3_308($action, $version)
 		'ABBC3_WIZARD_height'	=> (isset($config['ABBC3_WIZARD_height']))		? $config['ABBC3_WIZARD_height']	: 400,
 		'ABBC3_VIDEO_width'		=> (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 560,
 		'ABBC3_VIDEO_height'	=> (isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 340,
-		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;56;57;58;59;60;61;62;63;64;65;66;207;209;',
+		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;56;57;58;59;60;61;62;63;64;65;66;207;209',
 		'ABBC3_VIDEO_WMODE'		=> (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0,
 		'ABBC3_UCP_MODE'		=> (isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1,
 	);
@@ -701,7 +701,7 @@ function bbvideo_updater($action, $version)
 			// Get users current video options config
 			$video_options = $umil->config_exists('ABBC3_VIDEO_OPTIONS', true);
 			// Split the config value into an array for processing
-			$video_options_array = explode(';', $video_options['config_value'], -1);
+			$video_options_array = array_filter(explode(';', $video_options['config_value']), 'strlen');
 			// Merge the new BBvideos array into the array from the config
 			$video_options_array = array_merge($video_options_array, $new_bbvideo_ids[$version]);
 			// Remove the old BBvideos array from the array from the config
@@ -711,14 +711,14 @@ function bbvideo_updater($action, $version)
 			// Sort the array
 			asort($video_options_array);
 			// Update the database with the new settings
-			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array) . ';');
+			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array));
 		break;
 
 		case 'uninstall':
 			// Get users current video options config
 			$video_options = $umil->config_exists('ABBC3_VIDEO_OPTIONS', true);
 			// Split the config value into an array for processing
-			$video_options_array = explode(';', $video_options['config_value'], -1);
+			$video_options_array = array_filter(explode(';', $video_options['config_value']), 'strlen');
 			// Diff the two arrays to remove any of the new BBvideo IDs
 			$video_options_array = array_diff($video_options_array, $new_bbvideo_ids[$version]);
 			// Put back the old BBvideos from the old BBvideos array
@@ -728,7 +728,7 @@ function bbvideo_updater($action, $version)
 			// Sort the array
 			asort($video_options_array);
 			// Update the database with the new settings
-			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array) . ';');
+			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array));
 		break;
 	}
 	

@@ -293,8 +293,7 @@ function abbcode_wizards($abbcode_bbcode, $form_name, $text_name, $in_admin)
 		if (empty($abbcode_video_ary))
 		{
 			$abbcode_video_ary = abbcode::video_init();
-			// The video_serialize function is at root/includes/abbcode.php after the abbcode class
-			$allowed_videos = video_serialize($config['ABBC3_VIDEO_OPTIONS'], false);
+			$allowed_videos = explode(';', $config['ABBC3_VIDEO_OPTIONS']);
 
 			foreach ($abbcode_video_ary as $video_name => $video_data)
 			{

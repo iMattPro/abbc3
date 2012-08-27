@@ -2217,7 +2217,7 @@ class abbcode
 			$abbcode_video_ary = abbcode::video_init();
 		}
 
-		$allowed_videos 	= video_serialize($config['ABBC3_VIDEO_OPTIONS'], false);
+		$allowed_videos 	= explode(';', $config['ABBC3_VIDEO_OPTIONS']);
 		$video_unique_id	= substr(base_convert(unique_id(), 16, 36), 0, 8);
 		$video_width		= (intval($w)) ? $w : $this->abbcode_config['ABBC3_VIDEO_WIDTH'];
 		$video_height		= (intval($h)) ? $h : $this->abbcode_config['ABBC3_VIDEO_HEIGHT'];
@@ -2294,36 +2294,6 @@ class abbcode
 		}
 		// if input did not match any BBvideos, return a link
 		return make_clickable($in);
-	}
-}
-
-/**
-* Transform an array into a serialized format
-* Because serialize a large array ( almost 70 key ) 
-* will return a large string to store into the config value
-* we need another way to manage it.
-*
-* @param mixed	$input	array or string to transform
-* @param bool	$mode	array to string (true) or string to array (false)
-* @version 3.0.8
-*/
-function video_serialize($input, $mode = true)
-{
-	if (empty($input) && $mode == true)
-	{
-		// return an empty string if necessary
-		return '';
-	}
-
-	if ($mode)
-	{
-		//serialize array to string
-		return implode(';', $input) . ';';
-	}
-	else
-	{
-		//unserialize string to array
-		return explode(';', $input, -1);
 	}
 }
 
