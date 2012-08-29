@@ -1671,6 +1671,13 @@ class abbcode
 				'method'	=> 'flash',
 				'flashvars'	=> 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$1%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F',
 			),
+			'gametrailers.com' => array(
+				'id'		=> 14,
+				'image'		=> 'gametrailers.gif',
+				'example'	=> 'http://www.gametrailers.com/videos/j3gx9q/facebreaker-world-premiere-exclusive-debut',
+				'match'		=> '#http://www.gametrailers.com/(?:user\-movie|player|video|videos)/([\w\-]+)\/([\w\-]+).*#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
+			),
 			'gamevideos.1up' => array(
 				'id'		=> 15,
 				'image'		=> 'gamevideos.gif',
@@ -1893,13 +1900,6 @@ class abbcode
 				'match'		=> '#http://((.*?)?)theonion.com/([^,]+),([0-9]+)([^[]*)?#si',
 				'replace'	=> '<iframe frameborder="no" width="{WIDTH}" height="{HEIGHT}" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>',
 			),
-			'traileraddict.com' => array(
-				'id'		=> 13,
-				'image'		=> 'traileraddict.gif',
-				'example'	=> 'http://www.traileraddict.com/trailer/abraham-lincoln-vampire-hunter/trailer-b',
-				'match'		=> '#http://www.traileraddict.com/trailer/.*#si',
-				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
-			),
 			'twitvid.com' => array(
 				'id'		=> 12,
 				'image'		=> 'twitvid.gif',
@@ -1944,7 +1944,7 @@ class abbcode
 				'flashvars'	=> 'f=1&autoplay=f&loop=false&nologo=false&hd=false',
 			),
 			'videogamer.com' => array(
-				'id'		=> 14,
+				'id'		=> 13,
 				'image'		=> 'videogamer.gif',
 				'example'	=> 'http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html',
 				'match'		=> '#http://www.videogamer.com/([^[]*)?#si',
