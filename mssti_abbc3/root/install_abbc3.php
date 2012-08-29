@@ -94,9 +94,6 @@ $versions = array(
 	'3.0.11'		=> array(
 		// enable some new BBvideo IDs
 		'custom' => 'bbvideo_updater',
-		
-		// purge the cache
-		'cache_purge' => array(),
 	),
 
 	// Version 3.0.12
