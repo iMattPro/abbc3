@@ -308,9 +308,6 @@ class acp_abbcodes
 
 			'SHADOWBOX_EXIST'					=> (@file_exists("$this->dir/shadowbox/shadowbox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_SHADOWBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "shadowbox.js", "3.0.3", "{$board_path}shadowbox/", "Shadowbox", "http://www.shadowbox-js.com/download.html"),
-
-			'COLORBOX_EXIST'					=> (@file_exists("$this->dir/colorbox/jquery.colorbox-min.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_COLORBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "jquery.colorbox-min.js", "1.3.19", "{$board_path}colorbox/", "ColorBox JS", "http://jacklmoore.com/colorbox/"),
 		));
 
 	}

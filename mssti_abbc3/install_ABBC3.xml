@@ -40,7 +40,6 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 				<date>2012-07-23</date>
 				<rev-version>3.0.12</rev-version>
 				<changelog lang="en">
-					<change><![CDATA[[Feature] Added ColorboxJS to the Image Resizer methods.]]></change>
 					<change><![CDATA[[Change] Updated and relocated the included Flash Player.]]></change>
 					<change><![CDATA[[Change] Updated Lightbox2 from 2.0.5 to 2.51 (and included it with ABBC3).]]></change>
 					<change><![CDATA[[Change] Updated the appearance of the [hidden] BBcode.]]></change>
