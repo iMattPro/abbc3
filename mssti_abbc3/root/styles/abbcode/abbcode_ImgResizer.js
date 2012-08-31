@@ -523,7 +523,6 @@ function ImgOnLoad()
 	{
 		case 'Shadowbox':
 			Shadowbox.init({
-				// a darker overlay looks better on this particular site
 				overlayOpacity: 0.8
 			});
 			Shadowbox.setup('a.shadowbox-gallery', {
