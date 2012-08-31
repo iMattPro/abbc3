@@ -13,7 +13,7 @@ Features
 * Supports phpBB3’s custom BBCodes.
 * BBCodes can be assigned to certain usergroups for private use.
 * BBCodes can be assigned to the Post, Private Message and Signature editors independently.
-* Image Resizer with various lightbox styled expanders (Highslide, Lightview, Lightbox2, and Shadowbox).
+* Image Resizer with various lightbox styled expanders (Highslide, Lightview, and Shadowbox).
 * Embed video in your posts, supports dozens of media sites and file formats (see below).
 * ABBC3 is very fast loading and is a sleek addition to your phpBB3 bulletin board.
 

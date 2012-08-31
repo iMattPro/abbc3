@@ -185,18 +185,6 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 			}
 		break;
 
-		case 'LiteBox':
-			if (mode === 'attach_parent')
-			{
-				ObjImage.parentNode.rel = 'lightbox[lightbox_gallery]';
-				return true;
-			}
-			else
-			{
-				anchor.rel = 'lightbox[lightbox_gallery]';
-			}
-		break;
-
 		case 'Lightview':
 			if (mode === 'attach_parent')
 			{
@@ -544,14 +532,6 @@ function ImgOnLoad()
 				continuous: true,
 				counterType: 'skip',
 				handleOversize: 'resize'
-			});
-		break;
-		
-		case 'LiteBox':
-			$(function() {			
-				var lightbox, options;
-				options = new LightboxOptions;
-				return lightbox = new Lightbox(options);
 			});
 		break;
 	}

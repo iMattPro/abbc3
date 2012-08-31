@@ -57,7 +57,6 @@
 			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
 			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
 			<file from="root/styles/abbcode/images/*.*" to="styles/abbcode/images/*.*"/>
-			<file from="root/styles/abbcode/lightbox/*.*" to="styles/abbcode/lightbox/*.*"/>
 			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
 			<file from="root/styles/prosilver/template/abbcode.html" to="styles/prosilver/template/abbcode.html"/>
 			<file from="root/styles/prosilver/template/posting_abbcode_buttons.html" to="styles/prosilver/template/posting_abbcode_buttons.html"/>
@@ -68,14 +67,8 @@
 		</copy>
 		<delete>
 			<file name="images/player.swf"/>
-			<file name="styles/abbcode/lightbox/builder.js"/>
-			<file name="styles/abbcode/lightbox/effects.js"/>
-			<file name="styles/abbcode/lightbox/prototype.js"/>
-			<file name="styles/abbcode/lightbox/scriptaculous.js"/>
-			<file name="styles/abbcode/lightbox/images/close.gif"/>
-			<file name="styles/abbcode/lightbox/images/closelabel.gif"/>
-			<file name="styles/abbcode/lightbox/images/nextlabel.gif"/>
-			<file name="styles/abbcode/lightbox/images/prevlabel.gif"/>
+			<file name="styles/abbcode/lightbox/images/*.*"/>
+			<file name="styles/abbcode/lightbox/*.*"/>
 		</delete>
 		<open src="includes/bbcode.php">
 			<edit>
@@ -84,6 +77,10 @@
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-		<diy-instructions lang="en"><![CDATA[Don't forget to run the install_abbc3.php installation script (click the highlighted link above if you are using AutoMOD)]]></diy-instructions>
+		<diy-instructions lang="en"><![CDATA[Don't forget to run the install_abbc3.php installation script (click the highlighted link above if you are using AutoMOD)
+
+END OF SUPPORT FOR SOME IMAGE RESIZER SCRIPTS:
+Lightbox2 has been removed from ABBC3.
+If you were using this as your Image Resizer Lightbox method, you should go to the ACP and choose another method right away.]]></diy-instructions>
 	</action-group>
 </mod>

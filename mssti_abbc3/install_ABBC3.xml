@@ -41,7 +41,6 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 				<rev-version>3.0.12</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Change] Updated and relocated the included Flash Player.]]></change>
-					<change><![CDATA[[Change] Updated Lightbox2 from 2.0.5 to 2.51 (and included it with ABBC3).]]></change>
 					<change><![CDATA[[Change] Updated the appearance of the [hidden] BBcode.]]></change>
 					<change><![CDATA[[Change] Updated the appearance of the [BBvideo] BBcode. No more dark borders around embedded videos.]]></change>
 					<change><![CDATA[[Change] New BBvideos: 5min.com, colbertnation.com, dotsub.com, qik.com, snotr.com, thedailyshow.com, viddler.com, youku.com]]></change>
@@ -51,6 +50,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 					<change><![CDATA[[Change] Deleted BBCode [gvideo]. Was one of the obsolete bbcodes, kept around for legacy posts, but Google Video services were shut down Aug 20 2012, so it has been permanently removed.]]></change>
 					<change><![CDATA[[Change] Updated [font] BBcode to support fonts with unicode characters in their names.]]></change>
 					<change><![CDATA[[Change] Updated [rapidshare] and [testlink] BBcodes to correctly check for valid rapidshare links.]]></change>
+					<change><![CDATA[[Change] Removed Lightbox2 from ABBC3 because the current version (2.51) requires modifications, does not support video, does not respect browser window sizes.]]></change>
 					<change><![CDATA[[Fix] Fixed an issue with youtu.be links not working in BBvideo]]></change>
 					<change><![CDATA[[Fix] Remove uneeded call to utf8_clean_string in bbcode.php]]></change>
 					<change><![CDATA[[Fix] Replace use of deprecated eregi function in abbcode.php]]></change>
