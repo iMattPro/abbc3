@@ -9,7 +9,7 @@
 			var form_name = 'acp_abbcodes';
 
 			// Display warning and disable Image Resizers with missing JS scripts
-			if (!{ADVANCEDBOX_EXIST} || !{HIGHSLIDE_EXIST} || !{LIGHTVIEW_EXIST} || !{SHADOWBOX_EXIST})
+			if (!{ADVANCEDBOX_EXIST} || !{HIGHSLIDE_EXIST} || !{LIGHTVIEW_EXIST} || !{PRETTYPHOTO_EXIST} || !{SHADOWBOX_EXIST})
 			{
 				var resizer_options = document.forms[form_name].elements['ABBC3_RESIZE_METHOD'];
 				if (resizer_options)
@@ -30,6 +30,12 @@
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
 						if (resizer_option == 'Lightview' && !{LIGHTVIEW_EXIST})
+						{
+							resizer_options[elements].disabled  = true;
+							resizer_options[elements].className = 'disabled';
+							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
+						}
+						if (resizer_option == 'prettyPhoto' && !{PRETTYPHOTO_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
@@ -175,6 +181,7 @@
 				<!-- IF not ADVANCEDBOX_EXIST --><div id="error_AdvancedBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_ADVANCEDBOX}</div><!-- ENDIF -->
 				<!-- IF not HIGHSLIDE_EXIST --><div id="error_HighslideBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_HIGHSLIDE}</div><!-- ENDIF -->
 				<!-- IF not LIGHTVIEW_EXIST --><div id="error_Lightview" class="small error"><hr />{L_NO_EXIST_EXPLAIN_LIHTVIEW}</div><!-- ENDIF -->
+				<!-- IF not PRETTYPHOTO_EXIST --><div id="error_prettyPhoto" class="small error"><hr />{L_NO_EXIST_EXPLAIN_PRETTYPHOTO}</div><!-- ENDIF -->
 				<!-- IF not SHADOWBOX_EXIST --><div id="error_Shadowbox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_SHADOWBOX}</div><!-- ENDIF -->
 			</div>
 			<!-- DEFINE $SHOW_WARNING = '0' -->

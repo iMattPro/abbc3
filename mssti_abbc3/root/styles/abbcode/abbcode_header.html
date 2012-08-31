@@ -20,6 +20,14 @@
 	<style type="text/css" media="screen, projection">#lightview .clearfix { height: auto; }</style>
 	<!-- ENDIF -->
 
+	<!-- IF S_ABBC3_RESIZE_METHOD eq 'prettyPhoto' -->
+	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/prettyPhoto/css/prettyPhoto.css?{S_ABBC3_VERSION}" />
+	<script type="text/javascript">
+		window.jQuery || document.write(unescape('%3Cscript src="{S_ABBC3_PATH}/prettyPhoto/js/jquery.min.js" type="text/javascript"%3E%3C/script%3E'));
+	</script>
+	<script type="text/javascript" src="{S_ABBC3_PATH}/prettyPhoto/js/jquery.prettyPhoto.js?{S_ABBC3_VERSION}"></script>
+	<!-- ENDIF -->
+
 	<!-- IF S_ABBC3_RESIZE_METHOD eq 'Shadowbox' -->
 	<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/shadowbox/shadowbox.css?{S_ABBC3_VERSION}" />
 	<script type="text/javascript" src="{S_ABBC3_PATH}/shadowbox/shadowbox.js?{S_ABBC3_VERSION}"></script>

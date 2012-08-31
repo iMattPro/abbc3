@@ -70,7 +70,7 @@ class abbcode
 			'S_ABBC3_PATH'			=> $phpbb_root_path . 'styles/abbcode',
 			// Resize larger images ?
 			'S_ABBC3_RESIZE'		=> (isset($config['ABBC3_RESIZE_METHOD'])) ? ($config['ABBC3_RESIZE_METHOD'] != 'none' ? true : false) : true,
-			// Options are : AdvancedBox | HighslideBox | Lightview | Shadowbox | pop-up | enlarge | samewindow | newwindow | none	
+			// Options are : AdvancedBox | HighslideBox | Lightview | prettyPhoto | Shadowbox | pop-up | enlarge | samewindow | newwindow | none	
 			'S_ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD'])) ? $config['ABBC3_RESIZE_METHOD'] : 'AdvancedBox',
 			// Display Resizer Info Bar ?
 			'S_ABBC3_RESIZE_BAR'	=> (isset($config['ABBC3_RESIZE_BAR'])) ? $config['ABBC3_RESIZE_BAR'] : true,

@@ -201,6 +201,18 @@ function wrap_by_anchor(ObjImage, objResizerDiv, mode)
 			}
 		break;
 
+		case 'prettyPhoto':
+			if (mode === 'attach_parent')
+			{
+				ObjImage.parentNode.rel = 'prettyPhoto[gallery]';
+				return true;
+			}
+			else
+			{
+				anchor.rel = 'prettyPhoto[gallery]';
+			}
+		break;
+
 		case 'Shadowbox':
 			if (mode === 'attach_parent')
 			{
@@ -521,6 +533,19 @@ function ImgOnLoad()
 
 	switch (ImageResizerMode)
 	{
+		case 'prettyPhoto':
+			$(function() {			
+				$("a[rel^='prettyPhoto']").prettyPhoto({
+					opacity: 0.60,
+					show_title: false,
+					deeplinking: false,
+					social_tools: false,
+					overlay_gallery: false,
+					theme: 'pp_default' /* light_rounded / dark_rounded / light_square / dark_square / facebook */
+				});
+			});
+		break;
+
 		case 'Shadowbox':
 			Shadowbox.init({
 				overlayOpacity: 0.8

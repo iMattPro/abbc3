@@ -97,6 +97,7 @@ $lang = array_merge($lang, array(
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'AdvancedBox JS',
 													'HighslideBox'	=> 'Highslide JS',
 													'Lightview'		=> 'Lightview JS',
+													'prettyPhoto'	=> 'PrettyPhoto JS',
 													'Shadowbox'		=> 'Shadowbox JS',
 													'pop-up'		=> 'Ventana emergente',
 													'enlarge'		=> 'Ampliar',

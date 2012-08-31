@@ -47,7 +47,7 @@
 			<edit>
 				<find><![CDATA[// Construct XHTML compliant embed code for flash-based embeds]]></find>
 				<action type="before-add"><![CDATA[				// ADD-ON: Open YouTube videos with Lightboxes - START
-				if (($video_name === 'youtube.com' || $video_name === 'youtu.be') && $this->abbcode_config['S_ABBC3_RESIZE'] && in_array($this->abbcode_config['S_ABBC3_RESIZE_METHOD'], array('HighslideBox', 'Lightview', 'Shadowbox')))
+				if (($video_name === 'youtube.com' || $video_name === 'youtu.be') && $this->abbcode_config['S_ABBC3_RESIZE'] && in_array($this->abbcode_config['S_ABBC3_RESIZE_METHOD'], array('HighslideBox', 'Lightview', 'prettyPhoto', 'Shadowbox')))
 				{
 					$identifier = (preg_match($video_data['match'], $in, $matches) ? $matches[1] : '');
 					$bb_thumb = 'http://img.youtube.com/vi/' . $identifier . '/2.jpg';
@@ -64,6 +64,12 @@
 							$bb_class = 'lightview';
 							$bb_link = 'http://www.youtube.com/v/' . $identifier . '&amp;fs=1&amp;rel=0&amp;autoplay=1';
 							$bb_attribs = 'rel="flash" title=" :: :: width: ' . $video_width . ', height: ' . $video_height . '"';
+						break;
+
+						case 'prettyPhoto':
+							$bb_class = 'prettyPhoto';
+							$bb_link = 'http://www.youtube.com/watch?v=' . $identifier . '&amp;width=' . $video_width . '&amp;height=' . $video_height;
+							$bb_attribs = 'rel="prettyPhoto"';
 						break;
 
 						case 'Shadowbox':

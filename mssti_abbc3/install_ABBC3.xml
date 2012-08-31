@@ -40,6 +40,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 				<date>2012-08-28</date>
 				<rev-version>3.0.12</rev-version>
 				<changelog lang="en">
+					<change><![CDATA[[Change] Added prettyPhoto lightbox styled image resizer.]]></change>
 					<change><![CDATA[[Change] Updated and relocated the included Flash Player.]]></change>
 					<change><![CDATA[[Change] Updated the appearance of the [hidden] BBcode.]]></change>
 					<change><![CDATA[[Change] Updated the appearance of the [BBvideo] BBcode. No more dark borders around embedded videos.]]></change>
