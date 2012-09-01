@@ -1,7 +1,7 @@
 /**
-* Function Rainbow text - START
-**/
-function Rainbow( )
+* Function Rainbow text
+*/
+function Rainbow()
 {
 	var myRainbowSpan = []; //new Array();
 	var elem = getElementsByClassName("Rainbow");
@@ -86,11 +86,10 @@ RainbowSpan.prototype.moveRainbow = function( )
 	}
 	this.hue+=this.hspd;
 };
-/** Funtion Rainbow text - End **/
 
 /**
-* Function Fade-in fade-out text - START
-**/
+* Function Fade-in fade-out text
+*/
 var FadeOut  = true;
 var FadePas  = 0;
 var FadeMax  = 100; // 255;
@@ -101,14 +100,13 @@ var FadeInterval;
 
 var fade_IE = ( window.navigator.userAgent.match(/(^|\W)(MSIE)\s+(\d+)(\.\d+)?/) ) ? true : false;
 
-/** Some css on-the-fly - Start **/
+// Some CSS on-the-fly
 if (fade_IE)
 {
-	document.write( "\n\r" + '<style type="text/css" media="all">'+ "\r" + '<!--' + "\r" );
-	document.write( '.fade_link { filter:alpha(opacity=50); width:100%; height:100%; }' );
-	document.write( "\r" + '-->' + "\r" + '</style>' + "\n\r");
+	document.write("\n\r" + '<style type="text/css" media="all">'+ "\r" + '<!--' + "\r");
+	document.write('.fade_link { filter:alpha(opacity=50); width:100%; height:100%; }');
+	document.write("\r" + '-->' + "\r" + '</style>' + "\n\r");
 }
-/** Some css on-the-fly - End **/
 
 function fade_ontimer()
 {
@@ -135,19 +133,18 @@ function fade_ontimer()
 		var elem = getElementsByClassName("fade_link");
 		for (var i=0; i < elem.length; i++)
 		{
-		/**	elem[i].style.color="rgb(" + FadePas + "," + FadePas + "," + FadePas + ")"; **/
+		//	elem[i].style.color="rgb(" + FadePas + "," + FadePas + "," + FadePas + ")";
 			if (fade_IE) { elem[i].style.filter = 'alpha(opacity=' + FadePas + ')'; } else { elem[i].style.opacity = elem[i].style.MozOpacity = elem[i].style.KHTMLOpacity = (FadePas/100); }
 		}
 	}
 	FadeInterval = setTimeout( 'fade_ontimer()', FadeInt );
 }
-/** Funtion Fade-in fade-out text - END **/
 
 /**
 * Developed by Robert Nyman, http://www.robertnyman.com
 * Code/licensing: http://code.google.com/p/getelementsbyclassname/
 * http://www.anieto2k.com/2008/07/04/getelementsbyclassname-version-2008/
-**/
+*/
 var getElementsByClassName = function (className, tag, elm){
 	if (document.getElementsByClassName) {
 		getElementsByClassName = function (className, tag, elm) {
@@ -224,8 +221,8 @@ var getElementsByClassName = function (className, tag, elm){
 };
 
 /**
-* My Special function Get element by class - START
-**/
+* My Special function Get element by class
+*/
 function MyGetElementsByClassName(classname)
 {
 	if (document.getElementsByTagName)
@@ -252,11 +249,10 @@ function MyGetElementsByClassName(classname)
 		return false;
 	}
 }
-/** Funtion Get element by class - END **/
 
 /**
-* Funtion toggle spoiler - START
-**/
+* Funtion toggle spoiler
+*/
 function abbc3_spoiler( el, hide_text, show_text )
 {
 	if ( el.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display !== '')
@@ -271,11 +267,10 @@ function abbc3_spoiler( el, hide_text, show_text )
 	}
 	el.blur();
 }
-/** Funtion toggle spoiler - END **/
 
 /**
-* Funtion toggle an element visibility - START
-**/
+* Funtion toggle an element visibility
+*/
 function abbc3_toggle( id )
 {
 	if (document.getElementById(id))
@@ -292,8 +287,8 @@ function abbc3_toggle( id )
 }
 
 /**
-* Funtion download ed2k tag - START
-**/
+* Funtion download ed2k tag
+*/
 function checkAll( str )
 {
 	var a = document.getElementsByName( str );
@@ -337,19 +332,18 @@ function download( str, count, first )
 		}
 	}
 }
-/** Funtion download ed2k tag - END **/
 
 /**
-* Funtion copy to clipboard - START
+* Funtion copy to clipboard
 *
 * specify whether contents should be auto copied to clipboard (memory)
 * Applies only to IE 4+
-**/
-var copytoclip = 1; /** 0=no, 1=yes **/
+*/
+var copytoclip = 1; // 0=no, 1=yes
 
 function HighlightAll( theField )
 {
-	var tempval = eval("document."+theField);
+	var tempval = eval("document." + theField);
 	var therange;
 	tempval.focus();
 	tempval.select();
@@ -360,11 +354,10 @@ function HighlightAll( theField )
 		therange.execCommand("Copy");
 	}
 }
-/** Funtion copy to clipboard - END **/
 
 /**
-* target compatibility for XHTML 1.0 Strict! - START
-**/
+* target compatibility for XHTML 1.0 Strict!
+*/
 function externalLinks( anchor )
 {
 	if ( anchor.getAttribute("href") && ( anchor.getAttribute("rel") === "external" || anchor.getAttribute("rel") === "gb_imageset[]" ) )
@@ -372,7 +365,6 @@ function externalLinks( anchor )
 		anchor.target = "_blank";
 	}
 }
-/** target compatibility for XHTML 1.0 Strict! - END **/
 
 /** simpleTabs v1.2
 * Author: Fotis Evangelou (Komrade Ltd.)
@@ -389,9 +381,7 @@ function externalLinks( anchor )
 * FEATURES TO COME:
 * - Enable cookie per tab set
 * - Enable tab selection via URL anchor
-**/
-
-/** Main SimpleTabs function **/
+*/
 var kmrSimpleTabs = {
 
 	init: function()
@@ -572,7 +562,7 @@ var kmrSimpleTabs = {
 };
 
 /**
-* Funtion OGP video via AJAX - START
+* Funtion OGP video via AJAX
 *
 * Find the link to an SWF file and embed it in the page. Uses an AJAX request
 * to YQL service to retrieve meta tags from a given url as JSON data. 
@@ -725,10 +715,8 @@ var ogpEmbedVideo = {
 function is_iexplorer() { 
 	return navigator.userAgent.indexOf('MSIE') !== -1;
 }
-/** Funtion OGP video via AJAX - END **/
 
-
-/** Install the safety net to run once the main function - START **/
+// Install the safety net to run once the main function
 if (window.onload_functions) // prosilver
 {
 	onload_functions.push('kmrSimpleTabs.init()');
@@ -741,4 +729,3 @@ else if (typeof(window.attachEvent) !== "undefined") // MSIE
 {
 	window.attachEvent("onload", kmrSimpleTabs.init);
 }
-/** Install the safety net to run once the main function - END **/
