@@ -185,12 +185,13 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 			<link type="contrib" href="contrib/add_on_Evil_Quick_Reply.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add_on_Embossed_Buttons.xml" lang="en">Add-on : Embossed BBCode Buttons</link>
 			<link type="contrib" href="contrib/add_on_ED2K.xml" lang="en">Add-on : Enhanced ED2K links.</link>
-			<link type="contrib" href="contrib/update_3.0.8_to_3.0.11.xml" lang="en">Update Instructions (3.0.8 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.8-PL1_to_3.0.11.xml" lang="en">Update Instructions (3.0.8-PL1 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.8-PL2_to_3.0.11.xml" lang="en">Update Instructions (3.0.8-PL2 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.9.3_to_3.0.11.xml" lang="en">Update Instructions (3.0.9.3 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.10_to_3.0.11.xml" lang="en">Update Instructions (3.0.10 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.11_to_3.0.12.xml" lang="en">Update Instructions (3.0.11 to 3.0.12)</link>
+			<link type="contrib" href="contrib/update_3.0.8_to_3.0.11.xml" lang="en">Update (3.0.8 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.8-PL1_to_3.0.11.xml" lang="en">Update (3.0.8-PL1 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.8-PL2_to_3.0.11.xml" lang="en">Update (3.0.8-PL2 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.9.3_to_3.0.11.xml" lang="en">Update (3.0.9.3 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.10_to_3.0.11.xml" lang="en">Update (3.0.10 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.11_to_3.0.12.xml" lang="en">Update (3.0.11 to 3.0.12)</link>
+			<link type="uninstall" href="contrib/uninstall_ABBC3.xml" lang="en">Uninstall ABBC3</link>
 		</link-group>
 	</header>
 	<action-group>
