@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.9.3 to 3.0.11]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.9.3 to version 3.0.11]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.9.3 to 3.0.12]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.9.3 to version 3.0.12]]></description>
 		<author-notes lang="en"><![CDATA[IMPORTANT:
 		This update includes many new icons and graphics inside the styles/abbcode folder.
 
@@ -34,7 +34,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.11</mod-version>
+		<mod-version>3.0.12</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>600</time>
@@ -49,6 +49,7 @@
 			<file from="root/abbcode_ajax.php" to="abbcode_ajax.php"/>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/adm/*.*" to="adm/*.*"/>
+			<file from="root/flashplayer/*.*" to="flashplayer/*.*"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
@@ -64,20 +65,21 @@
 			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.js" to="styles/abbcode/posting_abbcode_picker.js"/>
 			<file from="root/styles/abbcode/posting_abbcode_wizards.js" to="styles/abbcode/posting_abbcode_wizards.js"/>
-			<file from="root/styles/prosilver/template/abbcode.html" to="styles/prosilver/template/abbcode.html"/>
-			<file from="root/styles/prosilver/template/posting_abbcode_buttons.html" to="styles/prosilver/template/posting_abbcode_buttons.html"/>
-			<file from="root/styles/prosilver/template/posting_abbcode_help.html" to="styles/prosilver/template/posting_abbcode_help.html"/>
-			<file from="root/styles/subsilver2/template/abbcode.html" to="styles/subsilver2/template/abbcode.html"/>
-			<file from="root/styles/subsilver2/template/posting_abbcode_buttons.html" to="styles/subsilver2/template/posting_abbcode_buttons.html"/>
+			<file from="root/styles/abbcode/prettyPhoto/*.*" to="styles/abbcode/prettyPhoto/*.*"/>
+			<file from="root/styles/prosilver/template/*.*" to="styles/prosilver/template/*.*"/>
+			<file from="root/styles/subsilver2/template/*.*" to="styles/subsilver2/template/*.*"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
+			<file name="images/player.swf"/>
 			<file name="language/en/mods/acp_abbcodes.php"/>
 			<file name="styles/abbcode/abbc3_logo.png"/>
 			<file name="styles/abbcode/abbcode_ajax_loading.gif"/>
 			<file name="styles/abbcode/greybox/*.*"/>
 			<file name="styles/abbcode/images/bg/bg_button.gif"/>
 			<file name="styles/abbcode/images/bg/bg_tabs.gif"/>
+			<file name="styles/abbcode/lightbox/images/*.*"/>
+			<file name="styles/abbcode/lightbox/*.*"/>
 			<file name="styles/abbcode/loading.gif"/>
 			<file name="styles/abbcode/pixel.gif"/>
 			<file name="styles/abbcode/PopBox/images/*.*"/>
@@ -97,6 +99,12 @@
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = $bbcode_id" . ' and abbcode = 0' ;]]></find>
 				<action type="replace-with"><![CDATA[					WHERE bbcode_id = $bbcode_id" . ' AND abbcode = 0';]]></action>
+			</edit>
+		</open>
+		<open src="includes/bbcode.php">
+			<edit>
+				<find><![CDATA[			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></find>
+				<action type="replace-with"><![CDATA[			$sql .= " AND bbcode_match <> '.'";]]></action>
 			</edit>
 		</open>
 		<open src="includes/functions_content.php">
@@ -201,7 +209,8 @@ SUPPORT FOR NEW VERSIONS OF IMAGE RESIZER SCRIPTS HAS BEEN ADDED:
 Highslide v4.1.13: download a new "highslide-full.js" at http://highslide.com/download.php
 LightView v2.80: download a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
 
-END OF SUPPORT FOR OLDER IMAGE RESIZER SCRIPTS:
+END OF SUPPORT FOR SOME IMAGE RESIZER SCRIPTS:
+Lightbox2 has been removed from ABBC3.
 PopBox has been removed from ABBC3.
 GreyBox has been removed from ABBC3.
 If you were using one of these two as your Image Resizer Lightbox method, you should go to the ACP and choose another method right away.]]></diy-instructions>

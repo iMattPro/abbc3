@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.8-PL2 to 3.0.11]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL2 to version 3.0.11]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.8-PL2 to 3.0.12]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL2 to version 3.0.12]]></description>
 		<author-notes lang="en"><![CDATA[IMPORTANT:
 		This update includes many new icons and graphics inside the styles/abbcode folder.
 
@@ -34,7 +34,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.11</mod-version>
+		<mod-version>3.0.12</mod-version>
 		<installation>
 			<level>intermediate</level>
 			<time>600</time>
@@ -49,6 +49,7 @@
 			<file from="root/abbcode_ajax.php" to="abbcode_ajax.php"/>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/adm/*.*" to="adm/*.*"/>
+			<file from="root/flashplayer/*.*" to="flashplayer/*.*"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
@@ -56,6 +57,7 @@
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
+			<file name="images/player.swf"/>
 			<file name="language/en/mods/acp_abbcodes.php"/>
 			<file name="styles/abbcode/abbc3_logo.png"/>
 			<file name="styles/abbcode/abbcode_ajax_loading.gif"/>
@@ -76,11 +78,8 @@
 			<file name="styles/abbcode/ibox/*.*"/>
 			<file name="styles/abbcode/images/bg/bg_button.gif"/>
 			<file name="styles/abbcode/images/bg/bg_tabs.gif"/>
-			<file name="styles/abbcode/lightbox/blank.gif"/>
-			<file name="styles/abbcode/lightbox/closelabel.gif"/>
-			<file name="styles/abbcode/lightbox/loading.gif"/>
-			<file name="styles/abbcode/lightbox/nextlabel.gif"/>
-			<file name="styles/abbcode/lightbox/prevlabel.gif"/>
+			<file name="styles/abbcode/lightbox/images/*.*"/>
+			<file name="styles/abbcode/lightbox/*.*"/>
 			<file name="styles/abbcode/loading.gif"/>
 			<file name="styles/abbcode/pixel.gif"/>
 			<file name="styles/abbcode/PopBox/images/*.*"/>
@@ -121,7 +120,7 @@
 			</edit>
 			<edit>
 				<find><![CDATA[			$sql .= ' AND bbcode_match <> "." ';]]></find>
-				<action type="replace-with"><![CDATA[			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></action>
+				<action type="replace-with"><![CDATA[			$sql .= " AND bbcode_match <> '.'";]]></action>
 			</edit>
 		</open>
 		<open src="includes/functions_content.php">
@@ -237,7 +236,8 @@ Highslide v4.1.13: download a new "highslide-full.js" at http://highslide.com/do
 LightView v2.80: download a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
 LightBox v2.05: get a new "lightbox.js" at http://www.lokeshdhakar.com/projects/lightbox2/#download
 
-END OF SUPPORT FOR OLDER IMAGE RESIZER SCRIPTS:
+END OF SUPPORT FOR SOME IMAGE RESIZER SCRIPTS:
+Lightbox2 has been removed from ABBC3.
 PopBox has been removed from ABBC3.
 GreyBox has been removed from ABBC3.
 Ibox has been removed from ABBC3.

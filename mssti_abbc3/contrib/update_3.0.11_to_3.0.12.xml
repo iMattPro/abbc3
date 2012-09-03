@@ -6,12 +6,14 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Update from 3.0.11 to 3.0.12]]></title>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.11 to 3.0.12]]></title>
 		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.11 to version 3.0.12]]></description>
 		<author-notes lang="en"><![CDATA[IMPORTANT:
 		This update includes many new icons and graphics inside the styles/abbcode folder.
 
 		Make sure you upload every file listed in the File copy section. Any directory with *.* means ALL the contents of that directory (and all content in directories nested within) must be copied to your server.
+
+		Also, be sure to delete the old files listed in the Delete files section from your server. Any directory with *.* means you should delete that entire directory from your server. 
 
 		If you have any doubt - there is no harm in simply uploading every file included in this MOD's root folder to the appropriate locations on your server.]]></author-notes>
 		<author-group>
