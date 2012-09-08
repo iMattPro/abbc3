@@ -63,25 +63,21 @@ class abbcode
 
 		// For overall_header.html
 		$this->abbcode_config = array(
-			'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.12',
-			// Display ABBC3 ?
-			'S_ABBC3_MOD'			=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
-			// Where the files are stored
+			'S_ABBC3_VERSION'		=> $config['ABBC3_VERSION'],
+			'S_ABBC3_MOD'			=> $config['ABBC3_MOD'],
+
 			'S_ABBC3_PATH'			=> $phpbb_root_path . 'styles/abbcode',
-			// Resize larger images ?
-			'S_ABBC3_RESIZE'		=> (isset($config['ABBC3_RESIZE_METHOD'])) ? ($config['ABBC3_RESIZE_METHOD'] != 'none' ? true : false) : true,
-			// Options are : AdvancedBox | HighslideBox | Lightview | prettyPhoto | Shadowbox | pop-up | enlarge | samewindow | newwindow | none	
-			'S_ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD'])) ? $config['ABBC3_RESIZE_METHOD'] : 'AdvancedBox',
-			// Display Resizer Info Bar ?
-			'S_ABBC3_RESIZE_BAR'	=> (isset($config['ABBC3_RESIZE_BAR'])) ? $config['ABBC3_RESIZE_BAR'] : true,
-			// Resize if image is bigger than...
-			'S_ABBC3_MAX_IMG_WIDTH'	=> (isset($config['ABBC3_MAX_IMG_WIDTH'])) ? $config['ABBC3_MAX_IMG_WIDTH'] : $config['img_max_width'],
-			'S_ABBC3_MAX_IMG_HEIGHT'=> (isset($config['ABBC3_MAX_IMG_HEIGHT'])) ? $config['ABBC3_MAX_IMG_HEIGHT'] : false,
-			// Resize larger images in signatures ?
-			'S_ABBC3_RESIZE_SIGNATURE'=> (isset($config['ABBC3_RESIZE_SIGNATURE'])) ? $config['ABBC3_RESIZE_SIGNATURE'] : false,
-			// Resize if image is bigger than...
-			'S_ABBC3_MAX_SIG_WIDTH'	=> (isset($config['ABBC3_MAX_SIG_WIDTH'])) ? $config['ABBC3_MAX_SIG_WIDTH'] : $config['img_max_width'],
-			'S_ABBC3_MAX_SIG_HEIGHT'=> (isset($config['ABBC3_MAX_SIG_HEIGHT'])) ? $config['ABBC3_MAX_SIG_HEIGHT'] : false,
+
+			'S_ABBC3_RESIZE'		=> ($config['ABBC3_RESIZE_METHOD'] != 'none') ? true : false,
+			'S_ABBC3_RESIZE_METHOD'	=> $config['ABBC3_RESIZE_METHOD'],
+			'S_ABBC3_RESIZE_BAR'	=> $config['ABBC3_RESIZE_BAR'],
+
+			'S_ABBC3_MAX_IMG_WIDTH'		=> (isset($config['ABBC3_MAX_IMG_WIDTH'])) ? $config['ABBC3_MAX_IMG_WIDTH'] : $config['img_max_width'],
+			'S_ABBC3_MAX_IMG_HEIGHT'	=> (isset($config['ABBC3_MAX_IMG_HEIGHT'])) ? $config['ABBC3_MAX_IMG_HEIGHT'] : $config['img_max_height'],
+
+			'S_ABBC3_RESIZE_SIGNATURE'	=> $config['ABBC3_RESIZE_SIGNATURE'],
+			'S_ABBC3_MAX_SIG_WIDTH'		=> (isset($config['ABBC3_MAX_SIG_WIDTH'])) ? $config['ABBC3_MAX_SIG_WIDTH'] : $config['img_max_width'],
+			'S_ABBC3_MAX_SIG_HEIGHT'	=> (isset($config['ABBC3_MAX_SIG_HEIGHT'])) ? $config['ABBC3_MAX_SIG_HEIGHT'] : $config['img_max_height'],
 		);
 		/*
 		// Styles and admin variables depends on locations
@@ -100,40 +96,28 @@ class abbcode
 
 		// For posting_buttons.html -> posting_abbcode_buttons.html
 		$this->abbcode_config = array_merge($this->abbcode_config, array(
-			// Bakground image
-			'ABBC3_BG'				=> (isset($config['ABBC3_BG'])) ? $config['ABBC3_BG'] : 'bg_abbc3.gif',
-			// Display icon division for tags ?
-			'ABBC3_TAB'				=> (isset($config['ABBC3_TAB'])) ? $config['ABBC3_TAB'] : true,
-			// Resize posting textarea ?
-			'ABBC3_BOXRESIZE'		=> (isset($config['ABBC3_BOXRESIZE'])) ? $config['ABBC3_BOXRESIZE'] : true,
-			// Usename posting
-			'POST_AUTHOR'			=> (isset($user->data['username'])) ? $user->data['username'] : '',
-			// Thumbnails width
-			'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH'])) ? $config['ABBC3_MAX_THUM_WIDTH'] : $config['img_max_thumb_width'],
-			// Width for posted video
-			'ABBC3_VIDEO_WIDTH'		=> (isset($config['ABBC3_VIDEO_width'])) ? $config['ABBC3_VIDEO_width'] : 560,
-			// Height for posted video
-			'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 340,
-			// Link to ABBC3 help page
+			// Toolbar options
+			'ABBC3_BG'				=> $config['ABBC3_BG'],
+			'ABBC3_TAB'				=> $config['ABBC3_TAB'],
+			'ABBC3_BOXRESIZE'		=> $config['ABBC3_BOXRESIZE'],
+			'ABBC3_COMPACT'			=> $config['ABBC3_UCP_MODE'],
+			'ABBC3_COLOR_MODE'		=> $config['ABBC3_COLOR_MODE'],
+			'ABBC3_HIGHLIGHT_MODE'	=> $config['ABBC3_HIGHLIGHT_MODE'],
 			'ABBC3_HELP_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=help'),
-			// ABBC3 mode 
-			'ABBC3_COMPACT'			=> (isset($config['ABBC3_UCP_MODE'])) ? $config['ABBC3_UCP_MODE'] : false,
-			// Color picker
-			'ABBC3_COLOR_MODE'		=> (isset($config['ABBC3_COLOR_MODE'])) ? $config['ABBC3_COLOR_MODE'] : 'phpbb',
-			// Highlight picker
-			'ABBC3_HIGHLIGHT_MODE'	=> (isset($config['ABBC3_HIGHLIGHT_MODE'])) ? $config['ABBC3_HIGHLIGHT_MODE'] : 'phpbb',
-			// Link to ABBC3 wizards page
-			'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=wizards'),
-			// 0=Disable wizards | 1=Pop Up window | 2=In post (Ajax)
-			'ABBC3_WIZARD_MODE'		=> (isset($config['ABBC3_WIZARD_MODE'])) ? (int) $config['ABBC3_WIZARD_MODE'] : 2,
-			// Width for pop-up wizard window ?
-			'ABBC3_WIZARD_WIDTH'	=> (isset($config['ABBC3_WIZARD_width'])) ? $config['ABBC3_WIZARD_width'] : 700,
-			// Height for pop-up wizard window ?
-			'ABBC3_WIZARD_HEIGHT'	=> (isset($config['ABBC3_WIZARD_height'])) ? $config['ABBC3_WIZARD_height'] : 400,
-			// Link to ABBC3 tigra color picker page
 			'ABBC3_TIGRA_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=tigra'),
+			// Thumbnails
+			'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH'])) ? $config['ABBC3_MAX_THUM_WIDTH'] : $config['img_max_thumb_width'],
+			'ABBC3_VIDEO_WIDTH'		=> $config['ABBC3_VIDEO_width'],
+			'ABBC3_VIDEO_HEIGHT'	=> $config['ABBC3_VIDEO_height'],
+			// ABBC3 wizards
+			'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=wizards'),
+			'ABBC3_WIZARD_MODE'		=> (int) $config['ABBC3_WIZARD_MODE'],
+			'ABBC3_WIZARD_WIDTH'	=> $config['ABBC3_WIZARD_width'],
+			'ABBC3_WIZARD_HEIGHT'	=> $config['ABBC3_WIZARD_height'],
 			// Cookie
 			'ABBC3_COOKIE_NAME'		=> $config['cookie_name'] . '_abbc3',
+			// Usename posting
+			'POST_AUTHOR'			=> (isset($user->data['username'])) ? $user->data['username'] : '',
 		));
 	}
 
@@ -237,39 +221,24 @@ class abbcode
 		$db->sql_freeresult($result);
 
 		$template->assign_vars(array(
-			'S_POST_ID'					=> ($post_id) ? $post_id : 0, //request_var('p', 0),
+			'S_POST_ID'					=> ($post_id) ? $post_id : 0,
 			'S_ABBC3_IN_WIZARD'			=> false,
 			'S_ABBC3_IN_ADMIN'			=> (isset($phpbb_admin_path)) ? true : false,
 			'S_ABBC3_BG'				=> $this->abbcode_config['ABBC3_BG'],
-			// Display icon division for tags ?
 			'S_ABBC3_TAB'				=> $this->abbcode_config['ABBC3_TAB'],
-			// Resize posting textarea ?
 			'S_ABBC3_BOXRESIZE'			=> $this->abbcode_config['ABBC3_BOXRESIZE'],
-			// Usename posting 
 			'S_POST_AUTHOR'				=> (isset($user->data['username'])) ? $user->data['username'] : '',
-			// Width for posted video ?
 			'S_ABBC3_VIDEO_WIDTH'		=> $this->abbcode_config['ABBC3_VIDEO_WIDTH'],
-			// Height for posted video ?
 			'S_ABBC3_VIDEO_HEIGHT'		=> $this->abbcode_config['ABBC3_VIDEO_HEIGHT'],
-			// Link to ABBC3 tigra color picker page
 			'S_ABBC3_TIGRA_PAGE'		=> $this->abbcode_config['ABBC3_TIGRA_PAGE'],
-			// Link to ABBC3 help page
 			'S_ABBC3_HELP_PAGE'			=> $this->abbcode_config['ABBC3_HELP_PAGE'],
-			// Link to ABBC3 wizards page
 			'S_ABBC3_WIZARD_PAGE'		=> $this->abbcode_config['ABBC3_WIZARD_PAGE'],
-			// 0=Disable wizards | 1=Pop Up window | 2=In post (Ajax)
 			'S_ABBC3_WIZARD_MODE'		=> $this->abbcode_config['ABBC3_WIZARD_MODE'],
-			// Width for pop-up wizard window ?
 			'S_ABBC3_WIZARD_WIDTH'		=> $this->abbcode_config['ABBC3_WIZARD_WIDTH'],
-			// Height for pop-up wizard window ?
 			'S_ABBC3_WIZARD_HEIGHT'		=> $this->abbcode_config['ABBC3_WIZARD_HEIGHT'],
-			// Color picker
 			'S_ABBC3_COLOR_MODE'		=> $this->abbcode_config['ABBC3_COLOR_MODE'],
-			// Highlight picker
 			'S_ABBC3_HIGHLIGHT_MODE'	=> $this->abbcode_config['ABBC3_HIGHLIGHT_MODE'],
-			// Cookie
 			'S_ABBC3_COOKIE_NAME'		=> $this->abbcode_config['ABBC3_COOKIE_NAME'],
-			// Define the ABBC3 view, according this user preferences
 			'S_ABBC3_COMPACT'			=> ($this->abbcode_config['ABBC3_COMPACT'] && isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false,
 		));
 	}
@@ -289,7 +258,7 @@ class abbcode
 
 		$return_value = true;
 
-		// Check group bbcodes permissions - Start
+		// Check group bbcodes permissions
 		if ($bbcode_group)
 		{
 			// Always use arrays here ;)
@@ -337,9 +306,8 @@ class abbcode
 				return $return_value;
 			}
 		}
-		// Check group bbcodes permissions - End
 
-		// Check some bbcodes status permissions - Start
+		// Check some bbcodes status permissions
 		if ($auth_tag)
 		{
 			// if no mode is specified, use post settings
@@ -442,7 +410,6 @@ class abbcode
 				return $return_value;
 			}
 		}
-		// Check some bbcodes status permissions - End
 
 		return $return_value;
 	}
