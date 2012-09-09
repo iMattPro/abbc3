@@ -143,8 +143,8 @@ class acp_abbcodes
 				'legend2'				=> 'ABBCODES_WIZARD',
 				'ABBC3_WIZARD_width'	=> false,
 				'ABBC3_WIZARD_height'	=> false,
-				'ABBC3_WIZARD'			=> array('lang' => 'ABBCODES_WIZARD_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true,  'append'  => ' ' . $user->lang['PIXEL']),
 				'ABBC3_WIZARD_MODE'		=> array('lang'	=> 'ABBCODES_WIZARD_MODE',		'validate' => 'int',	'type' => 'custom',			'function'	=> 'get_radio', 'params' => array('config[ABBC3_WIZARD_MODE]', $user->lang['ABBCODES_WIZARD_SELECTOR'], $config['ABBC3_WIZARD_MODE'], 'ABBC3_WIZARD_MODE'), 'explain' => false),
+				'ABBC3_WIZARD'			=> array('lang' => 'ABBCODES_WIZARD_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true,  'append'  => ' ' . $user->lang['PIXEL']),
 
 				'legend3'				=> 'ABBCODES_RESIZER',
 				'ABBC3_RESIZE'			=> array('lang' => 'ABBCODES_RESIZE',									'type' => 'string',			'explain'	=> true, 'append' => ' <span id="ABBC3_RESIZE">' . $user->lang['ABBCODES_JAVASCRIPT_EXPLAIN'] . '</span>'),
