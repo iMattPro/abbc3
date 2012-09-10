@@ -78,7 +78,6 @@
 			<file name="styles/abbcode/ibox/*.*"/>
 			<file name="styles/abbcode/images/bg/bg_button.gif"/>
 			<file name="styles/abbcode/images/bg/bg_tabs.gif"/>
-			<file name="styles/abbcode/lightbox/images/*.*"/>
 			<file name="styles/abbcode/lightbox/*.*"/>
 			<file name="styles/abbcode/loading.gif"/>
 			<file name="styles/abbcode/pixel.gif"/>
@@ -238,13 +237,12 @@ $lang = array_merge($lang, array(
 SUPPORT FOR NEW VERSIONS OF IMAGE RESIZER SCRIPTS HAS BEEN ADDED:
 Highslide v4.1.13: download a new "highslide-full.js" at http://highslide.com/download.php
 LightView v2.80: download a new "lightview.js" at http://www.nickstakenburg.com/projects/lightview/
-LightBox v2.05: get a new "lightbox.js" at http://www.lokeshdhakar.com/projects/lightbox2/#download
 
 END OF SUPPORT FOR SOME IMAGE RESIZER SCRIPTS:
 Lightbox2 has been removed from ABBC3.
 PopBox has been removed from ABBC3.
 GreyBox has been removed from ABBC3.
 Ibox has been removed from ABBC3.
-If you were using one of these two as your Image Resizer Lightbox method, you should go to the ACP and choose another method right away.]]></diy-instructions>
+If you were using one of these as your Image Resizer Lightbox method, you should go to the ACP and choose another method right away.]]></diy-instructions>
 	</action-group>
 </mod>

@@ -756,12 +756,11 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, you should point your
-browser to the "install_abbc3.php" installation script (or click the highlighted link
-above if you are using AutoMOD) and follow the instructions. If the installation was
-successful, you can now use your forum.
+		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, point your browser to the "install_abbc3.php" script
+(or click the highlighted link above if you are using AutoMOD) and follow the instructions. Once that is complete,
+you can delete the "install_abbc3.php" script.
 
-You can configure ABBC3's settings in the ACP under the "POSTING" tab. In the left
-menu you will find the category "ADVANCED BBCODE BOX 3" with all our settings.]]></diy-instructions>
+You can configure ABBC3's settings in the ACP under the "POSTING" tab. In the left menu you will find the category
+"ADVANCED BBCODE BOX 3" with all its settings.]]></diy-instructions>
 	</action-group>
 </mod>
