@@ -7,13 +7,13 @@
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Add-on : Open YouTube videos with Lightboxes]]></title>
-		<description lang="en"><![CDATA[This file provides instructions to allow YouTube videos to open in the Highslide JS, Lightview or Shadowbox effect. This will only work for YouTube videos posted using ABBC3's BBVideo bbcode, and is compatible with the standard YouTube url and the shortened youtu.be url.]]></description>
+		<description lang="en"><![CDATA[This file provides instructions to allow YouTube videos to open in the Highslide, Lightview, prettyPhoto or Shadowbox effect. This will only work for YouTube videos posted using ABBC3's BBVideo bbcode, and is compatible with the standard YouTube url and the shortened youtu.be url.]]></description>
 		<author-notes lang="en"><![CDATA[
-		REQUIREMENTS - You must have Highslide JS, Lightview or Shadowbox as your chosen Image Resizer in ABBC3's settings page in the ACP.
+		REQUIREMENTS - You must have Highslide, Lightview, prettyPhoto or Shadowbox as your chosen Image Resizer in ABBC3's settings page in the ACP.
 
 		NOTICE: For compatability with Shadowbox, you must also check the "Flash (swf files)" box when downloading the shadowbox.js script from http://www.shadowbox-js.com/download.html.
 		
-		COMMENTS: At this time only YouTube is supported. While some of these scripts may support Flash, Vimeo and other sites, we chose to only support YouTube for now. This is mainly because of thumbnails. YouTube has the easiest way for this MOD to present a clickable thumbnail of the movie.]]></author-notes>
+		COMMENTS: At this time only YouTube is supported. While some of these scripts may support Flash, Vimeo and other sites, we chose to only support YouTube for now. This is mainly because as of right now YouTube has the easiest way for this MOD to present a clickable thumbnail of the movie.]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
@@ -32,11 +32,11 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.11</mod-version>
+		<mod-version>3.0.12</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>60</time>
-			<target-version>3.0.10</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 		<link-group>
 			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
@@ -45,11 +45,11 @@
 	<action-group>
 		<open src="includes/abbcode.php">
 			<edit>
-				<find><![CDATA[// generate embedded video content]]></find>
-				<action type="before-add"><![CDATA[				// For youtube in highslide/lightview/shadowbox popups
-				if (($video_name === 'youtube.com' || $video_name === 'youtu.be') && $this->abbcode_config['S_ABBC3_RESIZE'] && ($this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'HighslideBox' || $this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'Lightview' || $this->abbcode_config['S_ABBC3_RESIZE_METHOD'] === 'Shadowbox'))
+				<find><![CDATA[// Construct XHTML compliant embed code for flash-based embeds]]></find>
+				<action type="before-add"><![CDATA[				// ADD-ON: Open YouTube videos with Lightboxes - START
+				if (($video_name === 'youtube.com' || $video_name === 'youtu.be') && $this->abbcode_config['S_ABBC3_RESIZE'] && in_array($this->abbcode_config['S_ABBC3_RESIZE_METHOD'], array('HighslideBox', 'Lightview', 'prettyPhoto', 'Shadowbox')))
 				{
-					$identifier = (preg_match('#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#si', $in, $matches)) ? $matches[5] : (preg_match('#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#is', $in, $matches) ? $matches[1] : '');							  
+					$identifier = (preg_match($video_data['match'], $in, $matches) ? $matches[1] : '');
 					$bb_thumb = 'http://img.youtube.com/vi/' . $identifier . '/2.jpg';
 
 					switch ($this->abbcode_config['S_ABBC3_RESIZE_METHOD'])
@@ -57,24 +57,31 @@
 						case 'HighslideBox':
 							$bb_class = 'highslide';
 							$bb_link = 'http://www.youtube.com/embed/' . $identifier . '?rel=0&amp;wmode=transparent&amp;autoplay=1';
-							$bb_attribs = 'onclick="return hs.htmlExpand(this, {objectType: \'iframe\', width: ' . ($video_width + 10) . ', height: ' . ($video_height + 10) . ', allowSizeReduction: false, wrapperClassName: \'draggable-header no-footer\', numberPosition: null, preserveContent: false, objectLoadTime: \'after\'})"';
+							$bb_attribs = 'onclick="return hs.htmlExpand(this, {objectType: \'iframe\', width: ' . $video_width . ', height: ' . $video_height . ', allowSizeReduction: false, wrapperClassName: \'draggable-header no-footer\', numberPosition: null, preserveContent: false, objectLoadTime: \'after\'})"';
 						break;
 
 						case 'Lightview':
 							$bb_class = 'lightview';
 							$bb_link = 'http://www.youtube.com/v/' . $identifier . '&amp;fs=1&amp;rel=0&amp;autoplay=1';
-							$bb_attribs = 'rel="flash" title=" :: :: width: ' . ($video_width + 10) . ', height: ' . ($video_height + 10) . '"';
+							$bb_attribs = 'rel="flash" title=" :: :: width: ' . $video_width . ', height: ' . $video_height . '"';
+						break;
+
+						case 'prettyPhoto':
+							$bb_class = 'prettyPhoto';
+							$bb_link = 'http://www.youtube.com/watch?v=' . $identifier . '&amp;width=' . $video_width . '&amp;height=' . $video_height;
+							$bb_attribs = 'rel="prettyPhoto"';
 						break;
 
 						case 'Shadowbox':
 							$bb_class = 'shadowbox';
 							$bb_link = 'http://www.youtube.com/v/' . $identifier . '&amp;fs=1&amp;rel=0&amp;autoplay=1';
-							$bb_attribs = 'rel="shadowbox;width=' . ($video_width + 10) . ';height=' . ($video_height + 10) . ';player=swf"';
+							$bb_attribs = 'rel="shadowbox;width=' . $video_width . ';height=' . $video_height . ';player=swf"';
 						break;
-					} 
+					}
 
 					return '<a href="' . $bb_link . '" class="' . $bb_class . '" ' . $bb_attribs . '><img class="bbvideo_thumb" alt="" title="YouTube Video" src="' . $bb_thumb . '" /></a>';
-				}]]></action>
+				}
+				// ADD-ON: Open YouTube videos with Lightboxes - END]]></action>
 			</edit>
 		</open>
 	</action-group>

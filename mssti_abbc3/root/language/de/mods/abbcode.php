@@ -3,9 +3,10 @@
 *
 * abbcode [German]
 *
-* @package language
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @package Advanced BBCode Box 3
+* @version $Id$
+* @copyright (c) 2010 leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * @translator: femu - http://die-muellers.org
 *
 */
@@ -60,6 +61,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_NUMBER'		=> 'Bild %1$s von %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Diashow wiedergeben',
 	'ABBC3_RESIZE_PAUSE'		=> 'Diashow unterbrechen',
+	'ABBC3_RESIZE_IMAGE'		=> 'Bild',
+	'ABBC3_RESIZE_OF'			=> 'von',
 
 // Highslide JS - http://vikjavev.no/highslide/forum/viewtopic.php?t=2119
 	'ABBC3_HIGHSLIDE_LOADINGTEXT'		=> 'Lade ...',
@@ -246,8 +249,7 @@ $lang = array_merge($lang, array(
 	// Justify Align
 	'ABBC3_ALIGNJUSTIFY_MOVER'	=> 'Blocktext',
 	'ABBC3_ALIGNJUSTIFY_TIP'	=> '[align=justify]text[/align]',
-##	For translator:                                yes           yes
-	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]Dies ist<br />ein Beispieltext<br />' . $lang['SAMPLE_TEXT'] . '[/align]',
+	'ABBC3_ALIGNJUSTIFY_VIEW'	=> '[align=justify]' . $lang['SAMPLE_TEXT'] . '[/align]',
 
 	// Right Align
 	'ABBC3_ALIGNRIGHT_MOVER'	=> 'Rechtsbündiger Text',
@@ -315,8 +317,6 @@ $lang = array_merge($lang, array(
 	// Text Gradient
 	'ABBC3_GRAD_MOVER'			=> 'Text mit Farbverlauf',
 	'ABBC3_GRAD_TIP'			=> 'Stellt den Text als Farbverlauf dar',
-
-##												   yes                     yes                     yes                     yes                      yes                     yes                      yes                      yes                     yes                     yes                     yes                     yes                     yes                      yes                     yes                     yes                     yes
 	'ABBC3_GRAD_VIEW'			=> '[color=#FF0000]T[/color][color=#F2000D]h[/color][color=#E6001A]i[/color][color=#D90026]s[/color] [color=#BF0040]i[/color][color=#B3004D]s[/color] [color=#990066]a[/color] [color=#800080]s[/color][color=#73008C]a[/color][color=#660099]m[/color][color=#5900A6]p[/color][color=#4D00B3]l[/color][color=#4000BF]e[/color] [color=#2600D9]t[/color][color=#1A00E6]e[/color][color=#0D00F2]x[/color][color=#0000FF]t[/color]',
 	'ABBC3_GRAD_MIN_ERROR'		=> 'Bitte zuerst den Text markieren: ',
 	'ABBC3_GRAD_MAX_ERROR'		=> 'Du darfst nur max. 119 Zeichen markieren : ',
@@ -371,7 +371,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HR_MOVER'			=> 'Trennlinie',
 	'ABBC3_HR_TIP'				=> '[hr]',
 	'ABBC3_HR_NOTE'				=> 'Hinweis: Erstellt eine Trennlinie, um den Text abzugrenzen',
-	'ABBC3_HR_VIEW'				=> '[hr]',
+	'ABBC3_HR_VIEW'				=> $lang['SAMPLE_TEXT'] . '[hr]' . $lang['SAMPLE_TEXT'],
 
 	// Message Box text direction right to Left
 	'ABBC3_DIRRTL_MOVER'		=> 'Text zum Lesen von Rechts nach Links',
@@ -405,7 +405,7 @@ $lang = array_merge($lang, array(
 
 	// Table row cell wizard
 	'ABBC3_TABLE_MOVER'			=> 'Eine Tabelle einfügen',
-	'ABBC3_TABLE_TIP'			=> '[table=(ccs style)][tr=(ccs style)][td=(ccs style)]text[/td][/tr][/table]',
+	'ABBC3_TABLE_TIP'			=> '[table=(CSS style)][tr=(CSS style)][td=(CSS style)]text[/td][/tr][/table]',
 	'ABBC3_TABLE_VIEW'			=> '[table=width:50%;border:1px solid #cccccc][tr=text-align:center][td=border:1px solid #cccccc]' . $lang['SAMPLE_TEXT'] . '[/td][/tr][/table]',
 
 	'ABBC3_TABLE_STYLE'			=> 'Den Tabellen Stil eingeben',
@@ -491,12 +491,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 
 	// Rapid share checker
-	'ABBC3_FOPEN_ERROR'			=> '<strong>Error : </strong> Sorry, aber wie es aussieht, ist <strong>allow_url_fopen</strong> deaktiviert. Diese Fuktion erfordert es, daß die PHP Einstellung allow_url_fopen aktiviert ist.',
 	'ABBC3_RAPIDSHARE_TAG'		=> 'RapidShare',
 	'ABBC3_RAPIDSHARE_MOVER'	=> 'Füge eine Datei von RapidShare hinzu',
 	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...[/rapidshare]',
-	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
-	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
+	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip[/rapidshare]',
 	'ABBC3_RAPIDSHARE_GOOD'		=> 'Datei wurde auf dem Server gefunden!',
 	'ABBC3_RAPIDSHARE_WRONG'	=> 'Datei wurde nicht gefunden!',
 
@@ -507,8 +506,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_MOVER'		=> 'Füge eine Datei hinzu, die auf einer öffentlichen Seite gespeichert wurde',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
 	'ABBC3_TESTLINK_NOTE'		=> 'Gültige Server: rapidshare, depositfiles, megashares',
-	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
-	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
+	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'Datei wurde auf dem Server gefunden!',
 	'ABBC3_TESTLINK_WRONG'		=> 'Datei wurde nicht gefunden!',
 
@@ -532,14 +531,14 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
 	'ABBC3_BBVIDEO_MOVER'		=> 'Füge ein Web Video hinzu',
-	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
+	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo Breite,Höhe]Video URL[/BBvideo]',
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
 	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
-	'ABBC3_BBVIDEO_SELECT'		=> 'Wähle ein Video Typ',
+	'ABBC3_BBVIDEO_SELECT'		=> 'BBvideo Sites und-typen',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'Zur Zeit sind keine eingebette Videocodes erlaubt. Bitte informier den %sBoard Administrator%s darüber.<br />In der Zwischenzeit kannst du selbstverständlich die standard URL BBCodes verwenden.',
 	'ABBC3_BBVIDEO_FILE'		=> 'Dateiformat',
-	'ABBC3_BBVIDEO_VIDEO'		=> 'Video von',
-	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Externes Video von',
+	'ABBC3_BBVIDEO_VIDEO'		=> 'Zugelassene Sites',
+	'ABBC3_BBVIDEO_WATCH'		=> 'Ansehen auf',
 
 	// Flash (swf) Wizard
 	'ABBC3_FLASH_TAG'			=> 'flash',
@@ -547,7 +546,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] oder [flash width,height]URL flash[/flash]',
 	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
 	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
-	'ABBC3_FLASH_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
@@ -573,7 +571,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
 	'ABBC3_STREAM_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
-	// Quick time
+	// Quicktime
 	'ABBC3_QUICKTIME_TAG'		=> 'Quick Time',
 	'ABBC3_QUICKTIME_MOVER'		=> 'Eine Quick Time Datei einfügen',
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quick Time[/quicktime]',
@@ -588,14 +586,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAM_EXAMPLE'			=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
 	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
 	'ABBC3_RAM_EXPLAIN'			=> $lang['DEPRECATED_BBCODE'],
-
-	// Google video Wizard
-	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
-	'ABBC3_GVIDEO_MOVER'		=> 'Ein Google Video einfügen',
-	'ABBC3_GVIDEO_TIP'			=> '[GVideo]URL Video[/GVideo]',
-	'ABBC3_GVIDEO_EXAMPLE'		=> 'http://video.google.com/videoplay?docid=-8351924403384451128',
-	'ABBC3_GVIDEO_VIEW'			=> '[GVideo]http://video.google.com/videoplay?docid=-8351924403384451128[/GVideo]',
-	'ABBC3_GVIDEO_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Youtube video Wizard
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',

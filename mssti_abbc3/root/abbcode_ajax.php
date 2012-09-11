@@ -1,9 +1,10 @@
 <?php
 /**
 *
-* @package phpBB3
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @package Advanced BBCode Box 3
+* @version $Id$
+* @copyright (c) 2010 leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
 

@@ -1,7 +1,7 @@
 /**
-* Function Rainbow text - START
-**/
-function Rainbow( )
+* Function Rainbow text
+*/
+function Rainbow()
 {
 	var myRainbowSpan = []; //new Array();
 	var elem = getElementsByClassName("Rainbow");
@@ -86,11 +86,10 @@ RainbowSpan.prototype.moveRainbow = function( )
 	}
 	this.hue+=this.hspd;
 };
-/** Funtion Rainbow text - End **/
 
 /**
-* Function Fade-in fade-out text - START
-**/
+* Function Fade-in fade-out text
+*/
 var FadeOut  = true;
 var FadePas  = 0;
 var FadeMax  = 100; // 255;
@@ -101,14 +100,13 @@ var FadeInterval;
 
 var fade_IE = ( window.navigator.userAgent.match(/(^|\W)(MSIE)\s+(\d+)(\.\d+)?/) ) ? true : false;
 
-/** Some css on-the-fly - Start **/
+// Some CSS on-the-fly
 if (fade_IE)
 {
-	document.write( "\n\r" + '<style type="text/css" media="all">'+ "\r" + '<!--' + "\r" );
-	document.write( '.fade_link { filter:alpha(opacity=50); width:100%; height:100%; }' );
-	document.write( "\r" + '-->' + "\r" + '</style>' + "\n\r");
+	document.write("\n\r" + '<style type="text/css" media="all">'+ "\r" + '<!--' + "\r");
+	document.write('.fade_link { filter:alpha(opacity=50); width:100%; height:100%; }');
+	document.write("\r" + '-->' + "\r" + '</style>' + "\n\r");
 }
-/** Some css on-the-fly - End **/
 
 function fade_ontimer()
 {
@@ -135,19 +133,18 @@ function fade_ontimer()
 		var elem = getElementsByClassName("fade_link");
 		for (var i=0; i < elem.length; i++)
 		{
-		/**	elem[i].style.color="rgb(" + FadePas + "," + FadePas + "," + FadePas + ")"; **/
+		//	elem[i].style.color="rgb(" + FadePas + "," + FadePas + "," + FadePas + ")";
 			if (fade_IE) { elem[i].style.filter = 'alpha(opacity=' + FadePas + ')'; } else { elem[i].style.opacity = elem[i].style.MozOpacity = elem[i].style.KHTMLOpacity = (FadePas/100); }
 		}
 	}
 	FadeInterval = setTimeout( 'fade_ontimer()', FadeInt );
 }
-/** Funtion Fade-in fade-out text - END **/
 
 /**
 * Developed by Robert Nyman, http://www.robertnyman.com
 * Code/licensing: http://code.google.com/p/getelementsbyclassname/
 * http://www.anieto2k.com/2008/07/04/getelementsbyclassname-version-2008/
-**/
+*/
 var getElementsByClassName = function (className, tag, elm){
 	if (document.getElementsByClassName) {
 		getElementsByClassName = function (className, tag, elm) {
@@ -224,8 +221,8 @@ var getElementsByClassName = function (className, tag, elm){
 };
 
 /**
-* My Special function Get element by class - START
-**/
+* My Special function Get element by class
+*/
 function MyGetElementsByClassName(classname)
 {
 	if (document.getElementsByTagName)
@@ -252,11 +249,10 @@ function MyGetElementsByClassName(classname)
 		return false;
 	}
 }
-/** Funtion Get element by class - END **/
 
 /**
-* Funtion toggle spoiler - START
-**/
+* Funtion toggle spoiler
+*/
 function abbc3_spoiler( el, hide_text, show_text )
 {
 	if ( el.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display !== '')
@@ -271,11 +267,10 @@ function abbc3_spoiler( el, hide_text, show_text )
 	}
 	el.blur();
 }
-/** Funtion toggle spoiler - END **/
 
 /**
-* Funtion toggle an element visibility - START
-**/
+* Funtion toggle an element visibility
+*/
 function abbc3_toggle( id )
 {
 	if (document.getElementById(id))
@@ -292,8 +287,8 @@ function abbc3_toggle( id )
 }
 
 /**
-* Funtion download ed2k tag - START
-**/
+* Funtion download ed2k tag
+*/
 function checkAll( str )
 {
 	var a = document.getElementsByName( str );
@@ -337,19 +332,18 @@ function download( str, count, first )
 		}
 	}
 }
-/** Funtion download ed2k tag - END **/
 
 /**
-* Funtion copy to clipboard - START
+* Funtion copy to clipboard
 *
 * specify whether contents should be auto copied to clipboard (memory)
 * Applies only to IE 4+
-**/
-var copytoclip = 1; /** 0=no, 1=yes **/
+*/
+var copytoclip = 1; // 0=no, 1=yes
 
 function HighlightAll( theField )
 {
-	var tempval = eval("document."+theField);
+	var tempval = eval("document." + theField);
 	var therange;
 	tempval.focus();
 	tempval.select();
@@ -360,11 +354,10 @@ function HighlightAll( theField )
 		therange.execCommand("Copy");
 	}
 }
-/** Funtion copy to clipboard - END **/
 
 /**
-* target compatibility for XHTML 1.0 Strict! - START
-**/
+* target compatibility for XHTML 1.0 Strict!
+*/
 function externalLinks( anchor )
 {
 	if ( anchor.getAttribute("href") && ( anchor.getAttribute("rel") === "external" || anchor.getAttribute("rel") === "gb_imageset[]" ) )
@@ -372,7 +365,6 @@ function externalLinks( anchor )
 		anchor.target = "_blank";
 	}
 }
-/** target compatibility for XHTML 1.0 Strict! - END **/
 
 /** simpleTabs v1.2
 * Author: Fotis Evangelou (Komrade Ltd.)
@@ -389,9 +381,7 @@ function externalLinks( anchor )
 * FEATURES TO COME:
 * - Enable cookie per tab set
 * - Enable tab selection via URL anchor
-**/
-
-/** Main SimpleTabs function **/
+*/
 var kmrSimpleTabs = {
 
 	init: function()
@@ -571,7 +561,162 @@ var kmrSimpleTabs = {
 	}
 };
 
-/** Install the safety net to run once the main function - START **/
+/**
+* Funtion OGP video via AJAX
+*
+* Find the link to an SWF file and embed it in the page. Uses an AJAX request
+* to YQL service to retrieve meta tags from a given url as JSON data. 
+* Known issues - will not work with IE7 and below or Opera 11 and below...will need to use jQuery for that.
+*/
+var ogpEmbedVideo = {
+
+	init : function( url, width, height, id )
+	{
+		if (url.match('^http'))
+		{
+			// construct YQL query to get a url's meta tags as JSON data
+			var yql = 'http://query.yahooapis.com/v1/public/yql',
+				yql_query = 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
+				options = {
+					url : yql + '?q=' + encodeURIComponent(yql_query) + '&format=json',
+					width : width,
+					height : height,
+					id : id
+				};
+			
+			ogpEmbedVideo.ajax( options );
+		}
+	},	
+	
+	/**
+	* The following cross-domain AJAX coding was originally devised by Alexandru Nedelcu
+	* Ref: http://bionicspirit.com/blog/2011/03/24/cross-domain-requests.html
+	* Currently Opera 11 and below and IE7 and below won't work! We need jQuery for them.
+	*/
+	ajax : function( options )
+	{
+		var xhr = null;
+
+		try {
+			xhr = new XMLHttpRequest();
+		} catch(e) {}	
+		
+		if (xhr && "withCredentials" in xhr)
+		{
+			xhr.open("GET", options.url, true);
+		}
+		else if (typeof XDomainRequest !== "undefined")
+		{
+			xhr = new XDomainRequest();
+			xhr.open("GET", options.url);
+		}
+		
+		if (xhr)
+		{
+			var handle_load = function (event_type)
+			{
+				return function (XHRobj)
+				{
+					XHRobj = is_iexplorer() ? xhr : XHRobj;
+		
+					if (event_type === 'load' && (is_iexplorer() || XHRobj.readyState === 4))
+					{
+						document.getElementById(options.id).innerHTML = ogpEmbedVideo.embed( XHRobj.responseText, options );
+					}
+				};
+			};
+		
+			try {
+			// withCredentials is not supported by IExplorer's XDomainRequest
+				xhr.withCredentials = false;
+			} catch(e) {}
+		
+			xhr.onload  = function (e) { handle_load('load')(is_iexplorer() ? e : e.target); };
+			xhr.send(null);
+		}
+	},
+	
+	/**
+	* Parse JSON data into an array of META tags. Find the Open Graph Protocol
+	* meta tag with a URL for the SWF video file and wrap it in an embed tag.
+	*/
+	embed : function( str, options )
+	{	
+		var code = "Error loading video", //this text is not displayed to the user, for debug use only
+			meta = {},	
+			data = ogpEmbedVideo.parseJSON( str );
+	
+		if (data.query.results !== null)
+		{
+			for (var i = 0, l = data.query.results.meta.length; i < l; i++)
+			{
+				var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
+				if(name === null)
+				{
+					continue;
+				}
+				meta[name] = data.query.results.meta[i].content;
+			}
+			
+			if ( meta["og:video"] || meta["og:video:url"] )
+			{
+		
+				var embed_src = (meta["og:video"] || meta["og:video:url"]),
+					embed_type = (meta["og:video:type"] || "application/x-shockwave-flash"),
+					embed_width = (options.width || meta["og:video:width"]),
+					embed_height = (options.height || meta["og:video:height"]);
+		
+				code = '<embed src="' + embed_src + '" type="' + embed_type + '" width="' + embed_width + '" height="' + embed_height + '" autostart="false" allowfullScreen="true"/>';
+			}
+		}
+		
+		return code;		
+	},
+	
+	/**
+	* Convert JSON string into JSON object using jQuery technique.
+	* Ref: http://code.jquery.com/jquery-1.7.2.js
+	*/
+	parseJSON : function( data )
+	{
+		if ( typeof data !== "string" || !data )
+		{
+			return null;
+		}
+	
+		// Make sure leading/trailing whitespace is removed (IE can't handle it)
+		data = data.replace(/^\s+|\s+$/g, "");
+	
+		// Attempt to parse using the native JSON parser first
+		if ( window.JSON && window.JSON.parse )
+		{
+			return window.JSON.parse( data );
+		}
+	
+		// JSON RegExp
+		var rvalidchars = /^[\],:{}\s]*$/,
+			rvalidescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
+			rvalidtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+			rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g;
+	
+		// Make sure the incoming data is actual JSON
+		// Logic borrowed from http://json.org/json2.js
+		if ( rvalidchars.test( data.replace( rvalidescape, "@" )
+			.replace( rvalidtokens, "]" )
+			.replace( rvalidbraces, "")) ) {
+	
+			return ( new Function( "return " + data ) )();	
+		}
+	
+		return null;
+	}
+};
+
+function is_iexplorer() { 
+	return navigator.userAgent.indexOf('MSIE') !== -1;
+}
+
+// Install the safety net to run once the main function
 if (window.onload_functions) // prosilver
 {
 	onload_functions.push('kmrSimpleTabs.init()');
@@ -584,4 +729,3 @@ else if (typeof(window.attachEvent) !== "undefined") // MSIE
 {
 	window.attachEvent("onload", kmrSimpleTabs.init);
 }
-/** Install the safety net to run once the main function - END **/

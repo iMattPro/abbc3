@@ -4,16 +4,13 @@
 	<script type="text/javascript" defer="defer">
 	// <![CDATA[
 <!-- IF .options -->
-		/** Flag for the resizer method error **/
-		var resizer_error = 0;
 		onload = function()
 		{
 			var form_name = 'acp_abbcodes';
 
-			// Check wich options can be used for the resizer method
-			if (!{ADVANCEDBOX_EXIST} || !{HIGHSLIDE_EXIST} || !{LITEBOX_EXIST} || !{LIGHTVIEW_EXIST} || !{SHADOWBOX_EXIST})
+			// Display warning and disable Image Resizers with missing JS scripts
+			if (!{ADVANCEDBOX_EXIST} || !{HIGHSLIDE_EXIST} || !{LIGHTVIEW_EXIST} || !{PRETTYPHOTO_EXIST} || !{SHADOWBOX_EXIST})
 			{
-				resizer_error = 1;
 				var resizer_options = document.forms[form_name].elements['ABBC3_RESIZE_METHOD'];
 				if (resizer_options)
 				{
@@ -32,13 +29,13 @@
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
-						if (resizer_option == 'LiteBox' && !{LITEBOX_EXIST})
+						if (resizer_option == 'Lightview' && !{LIGHTVIEW_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
 							resizer_options[elements].text 		= '({LA_DISABLED}) - ' + resizer_options[elements].text;
 						}
-						if (resizer_option == 'Lightview' && !{LIGHTVIEW_EXIST})
+						if (resizer_option == 'prettyPhoto' && !{PRETTYPHOTO_EXIST})
 						{
 							resizer_options[elements].disabled  = true;
 							resizer_options[elements].className = 'disabled';
@@ -52,67 +49,9 @@
 						}
 					}
 				}
-			}
 
-			var fieldset = document.getElementsByTagName('fieldset');
-
-			// Skip the first two fieldsets
-			for (var i = 2; i < fieldset.length; i++)
-			{
-				if (fieldset[i].id)
-				{
-					abbc_toggle(fieldset[i].id, 'true');
-				}
-			}
-		}
-
-		/**
-		* Funtion toggle an element visibility - START
-		**/
-		function abbc_toggle(id, type)
-		{
-			if (!type)
-			{
-				type = 'false';
-			}
-			var handle = document.getElementById('toggle_dl_' + id);
-
-			if (document.getElementById(id))
-			{
-				var dl = document.getElementsByTagName('dl');
-				for (var i = 0; i < dl.length; i++)
-				{
-					handle.style.cursor = 'pointer';
-					if (dl[i].parentNode.id == id)
-					{
-						if (dl[i].style.display == 'none')
-						{
-							dl[i].style.display = 'block';
-							handle.style.backgroundImage = 'url("images/toggle.gif")';
-							handle.style.backgroundRepeat = 'no-repeat';
-							handle.style.backgroundPosition = 'top left';
-
-							/** Show the resizer method error if we need it **/
-							if (id == 'fieldset_9' && type == 'false' && resizer_error)
-							{
-								dE('resizer_error', 1);
-							}
-						}
-						else
-						{
-							dl[i].style.display = 'none';
-							handle.style.backgroundImage = 'url("images/toggle.gif")';
-							handle.style.backgroundRepeat = 'no-repeat';
-							handle.style.backgroundPosition = 'top right';
-
-							/** Hide the resizer method error if we need it **/
-							if (id == 'fieldset_9' && type == 'false' && resizer_error)
-							{
-								dE('resizer_error', -1);
-							}
-						}
-					}
-				}
+				// Display the missing resizer script error block
+				dE('resizer_error', 1);
 			}
 		}
 
@@ -238,11 +177,11 @@
 
 		<!-- IF $SHOW_WARNING -->
 			<div id="resizer_error" style="text-align: {S_CONTENT_FLOW_BEGIN}; display: none;">
-				<div class="errorbox"><h3 style="text-align: center;">{L_WARNING}</h3></div>
+				<div class="errorbox"><h3 style="text-align: center;">{L_INFORMATION}</h3></div>
 				<!-- IF not ADVANCEDBOX_EXIST --><div id="error_AdvancedBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_ADVANCEDBOX}</div><!-- ENDIF -->
 				<!-- IF not HIGHSLIDE_EXIST --><div id="error_HighslideBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_HIGHSLIDE}</div><!-- ENDIF -->
-				<!-- IF not LITEBOX_EXIST --><div id="error_LiteBox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_LITEBOX}</div><!-- ENDIF -->
 				<!-- IF not LIGHTVIEW_EXIST --><div id="error_Lightview" class="small error"><hr />{L_NO_EXIST_EXPLAIN_LIHTVIEW}</div><!-- ENDIF -->
+				<!-- IF not PRETTYPHOTO_EXIST --><div id="error_prettyPhoto" class="small error"><hr />{L_NO_EXIST_EXPLAIN_PRETTYPHOTO}</div><!-- ENDIF -->
 				<!-- IF not SHADOWBOX_EXIST --><div id="error_Shadowbox" class="small error"><hr />{L_NO_EXIST_EXPLAIN_SHADOWBOX}</div><!-- ENDIF -->
 			</div>
 			<!-- DEFINE $SHOW_WARNING = '0' -->
@@ -253,11 +192,7 @@
 		<!-- ENDIF -->
 
 		<fieldset id="fieldset_{options.S_ROW_COUNT}" >
-		<!-- IF options.S_FIRST_ROW -->
 			<legend>{options.LEGEND}</legend>
-		<!-- ELSE -->
-			<legend onclick="abbc_toggle('fieldset_{options.S_ROW_COUNT}'); return false;" style="vertical-align:top;">{options.LEGEND} &nbsp; <img src="./images/spacer.gif" width="18" height="18" id="toggle_dl_fieldset_{options.S_ROW_COUNT}" alt="{L_MENU_TOGGLE}" /></legend>
-		<!-- ENDIF -->
 
 	<!-- ELSE -->
 			<dl>

@@ -61,7 +61,7 @@ function bbcode_to_plain(data)
 		return str;
 	}
 	/**
-	* Check wich replacement we should apply
+	* Check which replacement we should apply
 	**/
 	function bbcode_to_plain_pattern(match_0, match_1, match_2, match_3)
 	{
@@ -69,23 +69,7 @@ function bbcode_to_plain(data)
 		{
 			match_3 = bbcode_to_plain_simple_replace(match_3);
 		}
-	/** alert( '0('+$0+') 1('+$1+') 2('+$2+') 3('+$3+')'); **/
-		switch (match_1)
-		{
-			case 'url':
-			case 'email':
-				if (match_3 != '' && match_2 != '')
-				{
-					match_3 = match_2;
-				}
-				break;
-			case 'click':
-					match_3 = match_2;
-				break;
-		}
-		/** Nothing to do ? **/
 		return match_3;
-	/** return '['+ match_1 + (match_2 ? '='+ match_2 : '') +']'+ match_3 +'[/'+ match_1 +']'; **/
 	}
 
 	var basic_bbcode_match   = bbcode_to_plain_create_regexp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
@@ -101,7 +85,6 @@ function bbcode_to_plain(data)
 			tr : [{'': ''}, '', ''],
 			td : [{'': ''}, '', ''],
 			video : [{'': ''}, '', ''],
-			gvideo : [{'': ''}, '', ''],
 			quicktime : [{'': ''}, '', ''],
 			ram : [{'': ''}, '', ''],
 			flv : [{'': ''}, '', ''],
@@ -182,7 +165,7 @@ function helpline2(help, help_box)
 **/
 function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 {
-	// If this is a regular custom bbcode, just do it quicly in the regolar way
+	// If this is a regular custom bbcode, just do it quickly in the regular way
 	if (!is_abbcode)
 	{
 		bbfontstyle(bbopen, bbclose);
@@ -283,7 +266,7 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 		case "abbc3_testlink":
 		case "abbc3_click":
 		case "abbc3_table":
-		/** These bbcodes needs extra data **/
+		/** These bbcodes need extra data **/
 		case "abbc3_bbvideo":
 		case "abbc3_flash":
 		case "abbc3_flv":
@@ -295,12 +278,10 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 		case "abbc3_stream":
 		case "abbc3_veoh":
 		case "abbc3_collegehumor":
-		case "abbc3_gvideo":
 		case "abbc3_youtube":
 		/** Gradient requires its own function **/
 		case "abbc3_grad":
 		/** Extra Custom bbcodes - Start **/
-		case "deezer":
 		/** Extra Custom bbcodes - End **/
 
 			if (bbcode == "abbc3_grad")

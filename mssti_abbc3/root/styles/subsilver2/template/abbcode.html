@@ -7,9 +7,9 @@
 <!-- BEGIN img_float --><img src="{URL}" alt="{L_IMAGE}" class="resize_me" style="float : {FLOAT}; padding : 0 10px 10px 10px;" /><!-- END img_float -->
 <!-- BEGIN img_float_bar --><div style="float : {FLOAT}; padding : 0 10px 10px 10px;"><img src="{URL}" alt="{L_IMAGE}" class="resize_me" /></div><!-- END img_float_bar -->
 
-<!-- BEGIN nfo --><table cellspacing="0" cellpadding="0" border="0" class="NFOTable"><tr><td class="codetitle">{NFO_TITLE} : </td></tr><tr><td class="codecontent nfo">{NFO_TEXT}</td></tr></table><!-- END nfo -->
+<!-- BEGIN nfo --><table cellspacing="0" cellpadding="0" border="0" class="NFOTable"><tr><td class="codetitle">{NFO_TITLE}: </td></tr><tr><td class="codecontent nfo">{NFO_TEXT}</td></tr></table><!-- END nfo -->
 
-<!-- BEGIN search -->{SEARCH_SITE} {SEARCH_TEXT} : <a href="{URL}" onclick="window.open(this.href);return false;">{SEARCH_STRING}</a><!-- END search -->
+<!-- BEGIN search -->{SEARCH_SITE} {SEARCH_TEXT} &rsaquo;&rsaquo;&rsaquo; <a href="{URL}" onclick="window.open(this.href);return false;">{SEARCH_STRING}</a><!-- END search -->
 
 <!-- BEGIN ed2k_file --><img src="{ED2K_ICON}" class="ed2k_img" alt="" title="" />&nbsp;<a href="{ED2K_URL}" class="postlink">{ED2K_NAME}</a>&nbsp;[{ED2K_SIZE}]&nbsp;<a href="http://ed2k.shortypower.org/?hash={ED2K_HASH}" onclick="window.open(this.href);return false;"><img src="{ED2K_STAT}" class="ed2k_img" alt="" title="" /></a><!-- END ed2k_file -->
 
@@ -19,8 +19,8 @@
 
 <!-- BEGIN spoiler --><div class="spoilwrapper"><div class="spoiltitle"><span class="btnspoil" onclick="javascript:abbc3_spoiler( this, {LA_SPOILER_HIDE}, {LA_SPOILER_SHOW} ); return false;"><a href="#" onclick="return false;">{SPOILER_SHOW}</a></span></div><div class="spoilcontent"><div style="display: none; padding: 5px;">{SPOILER_TEXT}</div></div></div><!-- END spoiler -->
 
-<!-- BEGIN unhidden --><div class="hiddenbox"><span class="hiddentitle">{HIDDEN_OFF}:</span><div>{UNHIDDEN_TEXT}</div></div><!-- END unhidden -->
-<!-- BEGIN hidden --><div class="hiddenbox"><span class="hiddentitle">{HIDDEN_ON}:</span><div class="hiddentext">{HIDDEN_TEXT}</div></div><!-- END hidden -->
+<!-- BEGIN unhidden --><div class="unhiddenbox"><span class="unhidden">{HIDDEN_OFF}:</span><div>{UNHIDDEN_TEXT}</div></div><!-- END unhidden -->
+<!-- BEGIN hidden --><div class="hiddenbox"><span class="hidden">{HIDDEN_ON}:</span><div class="hiddentext">{HIDDEN_TEXT}</div></div><!-- END hidden -->
 
 <!-- BEGIN bbvideo --><div class="bbvideo" style="width: {BBVIDEO_WIDTH}px;"><div class="bbvideotitle">{BBVIDEO_IMAGE}{BBVIDEO_LINK}</div><div class="bbvideocontent">{BBVIDEO_VIDEO}</div></div><!-- END bbvideo -->
 

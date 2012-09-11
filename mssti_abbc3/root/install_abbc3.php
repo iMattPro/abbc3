@@ -1,9 +1,10 @@
 <?php
 /**
 *
-* @package install
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @package Advanced BBCode Box 3
+* @version $Id$
+* @copyright (c) 2010 leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
 
@@ -76,24 +77,48 @@ $versions = array(
 	// Version 3.0.9.3
 	'3.0.9.3'		=> array(
 		'custom' => array(
-			//special changes for version 3.0.9
+			// special changes for version 3.0.9
 			'abbc3_309',
-			//enable some new BBvideo IDs
+			// enable some new BBvideo IDs
 			'bbvideo_updater',
 		),
 	),
 
 	// Version 3.0.10
 	'3.0.10'		=> array(
-		//enable some new BBvideo IDs
+		// enable some new BBvideo IDs
 		'custom' => 'bbvideo_updater',
 	),
 
 	// Version 3.0.11
 	'3.0.11'		=> array(
-		//enable some new BBvideo IDs
+		// enable some new BBvideo IDs
 		'custom' => 'bbvideo_updater',
+	),
+
+	// Version 3.0.12
+	'3.0.12'		=> array(
+		'custom' => array(
+			// enable some new BBvideo IDs
+			'bbvideo_updater',
+			// We have some BBCodes to update
+			'abbc3_bbcode_handler',
+		),
 		
+		// remove deprecated BBcodes
+		'table_row_remove' => array(
+			array('phpbb_bbcodes', 
+				array(
+					'bbcode_tag' => 'gametrailers',
+				),
+			),
+			array('phpbb_bbcodes', 
+				array(
+					'bbcode_tag' => 'gvideo',
+				),
+			),
+		),
+
 		// purge the cache
 		'cache_purge' => array(),
 	),
@@ -141,9 +166,9 @@ function abbc3_308($action, $version)
 		'ABBC3_WIZARD_MODE'		=> (isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 2,
 		'ABBC3_WIZARD_width'	=> (isset($config['ABBC3_WIZARD_width']))		? $config['ABBC3_WIZARD_width']		: 700,
 		'ABBC3_WIZARD_height'	=> (isset($config['ABBC3_WIZARD_height']))		? $config['ABBC3_WIZARD_height']	: 400,
-		'ABBC3_VIDEO_width'		=> (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425,
-		'ABBC3_VIDEO_height'	=> (isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 350,
-		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;101;102;103;104;105;106;107;108;109;110;207;',
+		'ABBC3_VIDEO_width'		=> (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 560,
+		'ABBC3_VIDEO_height'	=> (isset($config['ABBC3_VIDEO_height']))		? $config['ABBC3_VIDEO_height']		: 340,
+		'ABBC3_VIDEO_OPTIONS'	=> (isset($config['ABBC3_VIDEO_OPTIONS']))		? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;56;57;58;59;60;61;62;63;64;65;66;207;209',
 		'ABBC3_VIDEO_WMODE'		=> (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0,
 		'ABBC3_UCP_MODE'		=> (isset($config['ABBC3_UCP_MODE']))			? $config['ABBC3_UCP_MODE']			: 1,
 	);
@@ -334,7 +359,7 @@ function abbc3_308($action, $version)
 		
 			// BBCODES TABLE - Start
 			// Remove the ABBC3 custom BBCodes first, before uninstalling anything else
-			$message .= abbc3_bbcode_handler($action, $version);
+			$message .= abbc3_bbcode_handler($action, $version, true);
 
 			// remove the table index
 			$umil->table_index_remove('phpbb_bbcodes', 'display_order');
@@ -435,8 +460,9 @@ function abbc3_309($action, $version)
 *
 * @param string		$action
 * @param string		$version
+* @param boolean	$remove_bbcodes
 */
-function abbc3_bbcode_handler($action, $version)
+function abbc3_bbcode_handler($action, $version, $remove_bbcodes = false)
 {
 	$message = '';
 
@@ -453,7 +479,11 @@ function abbc3_bbcode_handler($action, $version)
 		// Remove ALL ABBC3 BBCodes
 		case 'uninstall':
 			global $umil, $user;
-			$umil->table_row_remove('phpbb_bbcodes', array('abbcode' => '1'));
+			// use $remove_bbcodes to prevent ABBC3 BBcode deletion during a downgrade
+			if ($remove_bbcodes)
+			{
+				$umil->table_row_remove('phpbb_bbcodes', array('abbcode' => '1'));
+			}
 			$message .= $user->lang['INSTALLER_BBCODES_ADD'];
 		break;
 	}
@@ -566,15 +596,15 @@ function abbc3_add_bbcodes($action, $version)
 				}
 			}
 
-			// if any BBCode data is different, overwrite it, but preserve some BBCode data
+			// if any BBCode data is different, overwrite it, but preserve some user defined BBCode data
 			if ($update)
 			{
-				($row_exist['bbcode_order'] !== $bbcode_values['bbcode_order'])												? $sql_ary['bbcode_order'] = $bbcode_values['bbcode_order']				: true;
-				($row_exist['display_on_posting'] !== $bbcode_values['display_on_posting'])									? $sql_ary['display_on_posting'] = $bbcode_values['display_on_posting']	: true;
-				($row_exist['display_on_pm'] !== $bbcode_values['display_on_pm'])											? $sql_ary['display_on_pm'] = $bbcode_values['display_on_pm']			: true;
-				($row_exist['display_on_sig'] !== $bbcode_values['display_on_sig'])											? $sql_ary['display_on_sig'] = $bbcode_values['display_on_sig']			: true;
-				($row_exist['bbcode_image'] !== $bbcode_values['bbcode_image'])												? $sql_ary['bbcode_image'] = $bbcode_values['bbcode_image']				: true;
-				(isset($bbcode_values['bbcode_group']) && $row_exist['bbcode_group'] !== $bbcode_values['bbcode_group'])	? $sql_ary['bbcode_group'] = $bbcode_values['bbcode_group']				: true;
+				($row_exist['bbcode_order'] !== $bbcode_values['bbcode_order'])												? $sql_ary['bbcode_order'] = $row_exist['bbcode_order']				: true;
+				($row_exist['display_on_posting'] !== $bbcode_values['display_on_posting'])									? $sql_ary['display_on_posting'] = $row_exist['display_on_posting']	: true;
+				($row_exist['display_on_pm'] !== $bbcode_values['display_on_pm'])											? $sql_ary['display_on_pm'] = $row_exist['display_on_pm']			: true;
+				($row_exist['display_on_sig'] !== $bbcode_values['display_on_sig'])											? $sql_ary['display_on_sig'] = $row_exist['display_on_sig']			: true;
+				($row_exist['bbcode_image'] !== $bbcode_values['bbcode_image'])												? $sql_ary['bbcode_image'] = $row_exist['bbcode_image']				: true;
+				(isset($bbcode_values['bbcode_group']) && $row_exist['bbcode_group'] !== $bbcode_values['bbcode_group'])	? $sql_ary['bbcode_group'] = $row_exist['bbcode_group']				: true;
 
 				$result = $db->sql_query('UPDATE ' . BBCODES_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_ary) . ' WHERE bbcode_id = ' . $bbcode_id);
 
@@ -596,11 +626,11 @@ function abbc3_add_bbcodes($action, $version)
 	$message = '';
 	if (sizeof($ary_bbcode_modified))
 	{
-		$message .= "<p>" . $user->lang['LINE_MODIFIED'] . ' : ' . implode(', ', $ary_bbcode_modified) . "</p>";
+		$message .= '<p>' . $user->lang['LINE_MODIFIED'] . ' : ' . implode(', ', $ary_bbcode_modified) . '</p>';
 	}
 	if (sizeof($ary_bbcode_added))
 	{
-		$message .= "<p>" . $user->lang['LINE_ADDED'] . ' : ' . implode(', ', $ary_bbcode_added) . "</p>";
+		$message .= '<p>' . $user->lang['LINE_ADDED'] . ' : ' . implode(', ', $ary_bbcode_added) . '</p>';
 		
 	}
 
@@ -617,7 +647,7 @@ function abbc3_sync_bbcodes()
 
 	// These pseudo-BBCodes should not change the position order
 	$bbcode_tag_ary =  array('font=', 'size', 'highlight=', 'color');
-	$next_bbcode_order = sizeof($bbcode_tag_ary)+1;
+	$next_bbcode_order = sizeof($bbcode_tag_ary) + 1;
 
 	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_order 
 			FROM ' . BBCODES_TABLE . ' 
@@ -637,7 +667,7 @@ function abbc3_sync_bbcodes()
 	$db->sql_freeresult($result);
 
 	// Return a string
-	return "<p>" . $user->lang['ABBCODES_RESYNC_SUCCESS'] . "</p>";
+	return '<p>' . $user->lang['ABBCODES_RESYNC_SUCCESS'] . '</p>';
 }
 
 /**
@@ -652,6 +682,7 @@ function bbvideo_updater($action, $version)
 		'3.0.9.3' => array('46','47','48','49','50'),
 		'3.0.10'  => array('51'),
 		'3.0.11'  => array('52', '53', '54', '55'),
+		'3.0.12'  => array('56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '209'),
 	);
 
 	// Array containing arrays of old BBvideo IDs removed from ABBC3
@@ -659,6 +690,7 @@ function bbvideo_updater($action, $version)
 		'3.0.9.3' => array(), // no BBvideos to remove
 		'3.0.10'  => array(), // no BBvideos to remove
 		'3.0.11'  => array('111', '112', '113', '114'),
+		'3.0.12'  => array('101', '102', '103', '104', '105', '106', '107', '108', '109', '110'),
 	);
 
 	switch ($action)
@@ -667,7 +699,7 @@ function bbvideo_updater($action, $version)
 			// Get users current video options config
 			$video_options = $umil->config_exists('ABBC3_VIDEO_OPTIONS', true);
 			// Split the config value into an array for processing
-			$video_options_array = explode(';', $video_options['config_value'], -1);
+			$video_options_array = array_filter(explode(';', $video_options['config_value']), 'strlen');
 			// Merge the new BBvideos array into the array from the config
 			$video_options_array = array_merge($video_options_array, $new_bbvideo_ids[$version]);
 			// Remove the old BBvideos array from the array from the config
@@ -677,14 +709,14 @@ function bbvideo_updater($action, $version)
 			// Sort the array
 			asort($video_options_array);
 			// Update the database with the new settings
-			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array) . ';');
+			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array));
 		break;
 
 		case 'uninstall':
 			// Get users current video options config
 			$video_options = $umil->config_exists('ABBC3_VIDEO_OPTIONS', true);
 			// Split the config value into an array for processing
-			$video_options_array = explode(';', $video_options['config_value'], -1);
+			$video_options_array = array_filter(explode(';', $video_options['config_value']), 'strlen');
 			// Diff the two arrays to remove any of the new BBvideo IDs
 			$video_options_array = array_diff($video_options_array, $new_bbvideo_ids[$version]);
 			// Put back the old BBvideos from the old BBvideos array
@@ -694,7 +726,7 @@ function bbvideo_updater($action, $version)
 			// Sort the array
 			asort($video_options_array);
 			// Update the database with the new settings
-			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array) . ';');
+			$umil->config_update('ABBC3_VIDEO_OPTIONS', implode(';', $video_options_array));
 		break;
 	}
 	
@@ -1701,45 +1733,9 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'email.gif',
 				'bbcode_group'			=> '0',
 			),
-			'web'		=> array(
-				'bbcode_tag'			=> 'web',
-				'bbcode_order'			=> 56,
-				'bbcode_id'				=> 1,
-				'bbcode_helpline'		=> 'ABBC3_WEB_TIP',
-				'bbcode_match'			=> '[web{TEXT}]{URL}[/web]',
-				'bbcode_tpl'			=> '<a src="{URL}">{TEXT}</a>',
-				'first_pass_match'		=> '!\[web(\=| )?(.*?)\](.*?)\[/web\]!ies',
-				'first_pass_replace'	=> '\'[web${1}${2}:$uid]\' . (!preg_match(\'#^[a-z][a-z\d+\-.]*:/{2}#i\', trim(\'${3}\')) ? \'http://${3}\' : \'${3}\') . \'[/web:$uid]\'',
-				'second_pass_match'		=> '!\[web((\=| )?(width\=)?([0-9]?[0-9]?[0-9][(%|\w+)?])(,| )(height\=)?([0-9]?[0-9]?[0-9][(%|\w+)?]))?:$uid\](.*?)\[/web:$uid\]!s',
-				'second_pass_replace'	=> '<iframe width="${4}" height="${7}" src="${8}" security="restricted" style="font-size: 2px;"></iframe>',
-				'display_on_posting'	=> 0,
-				'display_on_pm'			=> 0,
-				'display_on_sig'		=> 0,
-				'abbcode'				=> 1,
-				'bbcode_image'			=> 'web.gif',
-				'bbcode_group'			=> '0',
-			),
-			'ed2k'		=> array(
-				'bbcode_tag'			=> 'url=',
-				'bbcode_order'			=> 57,
-				'bbcode_id'				=> 0,
-				'bbcode_helpline'		=> 'ABBC3_ED2K_TIP',
-				'bbcode_match'			=> '.',
-				'bbcode_tpl'			=> '.',
-				'first_pass_match'		=> '.',
-				'first_pass_replace'	=> '.',
-				'second_pass_match'		=> '.',
-				'second_pass_replace'	=> '.',
-				'display_on_posting'	=> 1,
-				'display_on_pm'			=> 1,
-				'display_on_sig'		=> 0,
-				'abbcode'				=> 1,
-				'bbcode_image'			=> 'emule.gif',
-				'bbcode_group'			=> '0',
-			),
 			'img'		=> array(
 				'bbcode_tag'			=> 'img=',
-				'bbcode_order'			=> 58,
+				'bbcode_order'			=> 56,
 				'bbcode_id'				=> 1,
 				'bbcode_helpline'		=> 'ABBC3_IMG_TIP',
 				'bbcode_match'			=> '[img{TEXT}]{URL}[/img]',
@@ -1757,7 +1753,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 			'thumbnail'		=> array(
 				'bbcode_tag'			=> 'thumbnail',
-				'bbcode_order'			=> 59,
+				'bbcode_order'			=> 57,
 				'bbcode_id'				=> 1,
 				'bbcode_helpline'		=> 'ABBC3_THUMBNAIL_TIP',
 				'bbcode_match'			=> '[thumbnail{TEXT}]{URL}[/thumbnail]',
@@ -1775,7 +1771,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 			'imgshack'		=> array(
 				'bbcode_tag'			=> 'imgshack',
-				'bbcode_order'			=> 60,
+				'bbcode_order'			=> 58,
 				'bbcode_id'				=> 0,
 				'bbcode_helpline'		=> 'ABBC3_IMGSHACK_MOVER',
 				'bbcode_match'			=> '.',
@@ -1789,6 +1785,42 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'display_on_sig'		=> 1,
 				'abbcode'				=> 1,
 				'bbcode_image'			=> 'imgshack.gif',
+				'bbcode_group'			=> '0',
+			),
+			'web'		=> array(
+				'bbcode_tag'			=> 'web',
+				'bbcode_order'			=> 59,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_WEB_TIP',
+				'bbcode_match'			=> '[web{TEXT}]{URL}[/web]',
+				'bbcode_tpl'			=> '<a src="{URL}">{TEXT}</a>',
+				'first_pass_match'		=> '!\[web(\=| )?(.*?)\](.*?)\[/web\]!ies',
+				'first_pass_replace'	=> '\'[web${1}${2}:$uid]\' . (!preg_match(\'#^[a-z][a-z\d+\-.]*:/{2}#i\', trim(\'${3}\')) ? \'http://${3}\' : \'${3}\') . \'[/web:$uid]\'',
+				'second_pass_match'		=> '!\[web((\=| )?(width\=)?([0-9]?[0-9]?[0-9][(%|\w+)?])(,| )(height\=)?([0-9]?[0-9]?[0-9][(%|\w+)?]))?:$uid\](.*?)\[/web:$uid\]!s',
+				'second_pass_replace'	=> '<iframe width="${4}" height="${7}" src="${8}" security="restricted" style="font-size: 2px;"></iframe>',
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'web.gif',
+				'bbcode_group'			=> '0',
+			),
+			'ed2k'		=> array(
+				'bbcode_tag'			=> 'url=',
+				'bbcode_order'			=> 60,
+				'bbcode_id'				=> 0,
+				'bbcode_helpline'		=> 'ABBC3_ED2K_TIP',
+				'bbcode_match'			=> '.',
+				'bbcode_tpl'			=> '.',
+				'first_pass_match'		=> '.',
+				'first_pass_replace'	=> '.',
+				'second_pass_match'		=> '.',
+				'second_pass_replace'	=> '.',
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'emule.gif',
 				'bbcode_group'			=> '0',
 			),
 			'rapidshare'		=> array(
@@ -2025,27 +2057,9 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'ram.gif',
 				'bbcode_group'			=> '0',
 			),
-			'gvideo'		=> array(
-				'bbcode_tag'			=> 'gvideo',
-				'bbcode_order'			=> 74,
-				'bbcode_id'				=> 1,
-				'bbcode_helpline'		=> 'ABBC3_GVIDEO_TIP',
-				'bbcode_match'			=> '[GVideo]{URL}[/GVideo]',
-				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
-				'first_pass_match'		=> '!\[Gvideo\]http://video.google.(.*?)/videoplay\?docid\=(.*?)\[/Gvideo\]!ies',
-				'first_pass_replace'	=> '\'[Gvideo:$uid]http://video.google.${1}/videoplay?docid=${2}[/Gvideo:$uid]\'',
-				'second_pass_match'		=> '!\[Gvideo:$uid\]http://video.google.(.*?)/videoplay\?docid\=(.*?)\[/Gvideo:$uid\]!sie',
-				'second_pass_replace'	=> "\$this->auto_embed_video('http://video.google.\${1}/googleplayer.swf?docid=\${2}', '425', '350')",
-				'display_on_posting'	=> 0,
-				'display_on_pm'			=> 0,
-				'display_on_sig'		=> 0,
-				'abbcode'				=> 1,
-				'bbcode_image'			=> 'googlevid.gif',
-				'bbcode_group'			=> '0',
-			),
 			'youtube'		=> array(
 				'bbcode_tag'			=> 'youtube',
-				'bbcode_order'			=> 75,
+				'bbcode_order'			=> 74,
 				'bbcode_id'				=> 1,
 				'bbcode_helpline'		=> 'ABBC3_YOUTUBE_TIP',
 				'bbcode_match'			=> '[youtube]{URL}[/youtube]',
@@ -2063,7 +2077,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 			'veoh'		=> array(
 				'bbcode_tag'			=> 'veoh',
-				'bbcode_order'			=> 76,
+				'bbcode_order'			=> 75,
 				'bbcode_id'				=> 1,
 				'bbcode_helpline'		=> 'ABBC3_VEOH_TIP',
 				'bbcode_match'			=> '[veoh]{URL}[/veoh]',
@@ -2081,7 +2095,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 			'collegehumor'		=> array(
 				'bbcode_tag'			=> 'collegehumor',
-				'bbcode_order'			=> 77,
+				'bbcode_order'			=> 76,
 				'bbcode_id'				=> 1,
 				'bbcode_helpline'		=> 'ABBC3_COLLEGE_TIP',
 				'bbcode_match'			=> '[collegehumor]{URL}[/collegehumor]',
@@ -2099,7 +2113,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 			'dm'		=> array(
 				'bbcode_tag'			=> 'dm',
-				'bbcode_order'			=> 78,
+				'bbcode_order'			=> 77,
 				'bbcode_id'				=> 1,
 				'bbcode_helpline'		=> 'ABBC3_DMOTION_TIP',
 				'bbcode_match'			=> '[dm]{URL}[/dm]',
@@ -2117,7 +2131,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 			'gamespot'		=> array(
 				'bbcode_tag'			=> 'gamespot',
-				'bbcode_order'			=> 79,
+				'bbcode_order'			=> 78,
 				'bbcode_id'				=> 1,
 				'bbcode_helpline'		=> 'ABBC3_GAMESPOT_TIP',
 				'bbcode_match'			=> '[gamespot]{URL}[/gamespot]',
@@ -2131,6 +2145,61 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'display_on_sig'		=> 0,
 				'abbcode'				=> 1,
 				'bbcode_image'			=> 'gamespot.gif',
+				'bbcode_group'			=> '0',
+			),
+			'ignvideo'		=> array(
+				'bbcode_tag'			=> 'ignvideo',
+				'bbcode_order'			=> 79,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_IGNVIDEO_TIP',
+				'bbcode_match'			=> '[ignvideo]{URL}[/ignvideo]',
+				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
+				'first_pass_match'		=> '!\[ignvideo\](.*?)\[/ignvideo\]!ies',
+				'first_pass_replace'	=> '\'[ignvideo:$uid]${1}[/ignvideo:$uid]\'',
+				'second_pass_match'		=> '!\[ignvideo:$uid\](.*?)\[/ignvideo:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('http://videomedia.ign.com/ev/ev.swf', '433', '360', '\${1}')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'ign.gif',
+				'bbcode_group'			=> '0',
+			),
+			'liveleak'		=> array(
+				'bbcode_tag'			=> 'liveleak',
+				'bbcode_order'			=> 80,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_LIVELEAK_TIP',
+				'bbcode_match'			=> '[liveleak]{URL}[/liveleak]',
+				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
+				'first_pass_match'		=> '!\[liveleak\]http://www.liveleak.com/view\?i\=(.*?)\[/liveleak\]!ies',
+				'first_pass_replace'	=> '\'[liveleak:$uid]http://www.liveleak.com/view?i=${1}[/liveleak:$uid]\'',
+				'second_pass_match'		=> '!\[liveleak:$uid\]http://www.liveleak.com/view\?i\=(.*?)\[/liveleak:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('http://www.liveleak.com/e/\${1}', '450', '370')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'liveleak.gif',
+				'bbcode_group'			=> '0',
+			),
+		/*	Deprecated in v3.0.12
+			'gvideo'		=> array(
+				'bbcode_tag'			=> 'gvideo',
+				'bbcode_order'			=> 74,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_GVIDEO_TIP',
+				'bbcode_match'			=> '[GVideo]{URL}[/GVideo]',
+				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
+				'first_pass_match'		=> '!\[Gvideo\]http://video.google.(.*?)/videoplay\?docid\=(.*?)\[/Gvideo\]!ies',
+				'first_pass_replace'	=> '\'[Gvideo:$uid]http://video.google.${1}/videoplay?docid=${2}[/Gvideo:$uid]\'',
+				'second_pass_match'		=> '!\[Gvideo:$uid\]http://video.google.(.*?)/videoplay\?docid\=(.*?)\[/Gvideo:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('http://video.google.\${1}/googleplayer.swf?docid=\${2}', '425', '350')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'googlevid.gif',
 				'bbcode_group'			=> '0',
 			),
 			'gametrailers'		=> array(
@@ -2151,42 +2220,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_image'			=> 'gametrailers.gif',
 				'bbcode_group'			=> '0',
 			),
-			'ignvideo'		=> array(
-				'bbcode_tag'			=> 'ignvideo',
-				'bbcode_order'			=> 81,
-				'bbcode_id'				=> 1,
-				'bbcode_helpline'		=> 'ABBC3_IGNVIDEO_TIP',
-				'bbcode_match'			=> '[ignvideo]{URL}[/ignvideo]',
-				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
-				'first_pass_match'		=> '!\[ignvideo\](.*?)\[/ignvideo\]!ies',
-				'first_pass_replace'	=> '\'[ignvideo:$uid]${1}[/ignvideo:$uid]\'',
-				'second_pass_match'		=> '!\[ignvideo:$uid\](.*?)\[/ignvideo:$uid\]!sie',
-				'second_pass_replace'	=> "\$this->auto_embed_video('http://videomedia.ign.com/ev/ev.swf', '433', '360', '\${1}')",
-				'display_on_posting'	=> 0,
-				'display_on_pm'			=> 0,
-				'display_on_sig'		=> 0,
-				'abbcode'				=> 1,
-				'bbcode_image'			=> 'ign.gif',
-				'bbcode_group'			=> '0',
-			),
-			'liveleak'		=> array(
-				'bbcode_tag'			=> 'liveleak',
-				'bbcode_order'			=> 82,
-				'bbcode_id'				=> 1,
-				'bbcode_helpline'		=> 'ABBC3_LIVELEAK_TIP',
-				'bbcode_match'			=> '[liveleak]{URL}[/liveleak]',
-				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
-				'first_pass_match'		=> '!\[liveleak\]http://www.liveleak.com/view\?i\=(.*?)\[/liveleak\]!ies',
-				'first_pass_replace'	=> '\'[liveleak:$uid]http://www.liveleak.com/view?i=${1}[/liveleak:$uid]\'',
-				'second_pass_match'		=> '!\[liveleak:$uid\]http://www.liveleak.com/view\?i\=(.*?)\[/liveleak:$uid\]!sie',
-				'second_pass_replace'	=> "\$this->auto_embed_video('http://www.liveleak.com/e/\${1}', '450', '370')",
-				'display_on_posting'	=> 0,
-				'display_on_pm'			=> 0,
-				'display_on_sig'		=> 0,
-				'abbcode'				=> 1,
-				'bbcode_image'			=> 'liveleak.gif',
-				'bbcode_group'			=> '0',
-			),
+		*/
 		/*	Deprecated in v3.0.7
 			'upload'		=> array(
 				'bbcode_tag'			=> 'upload',
@@ -2269,7 +2303,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 			),
 			'ignvideo'		=> array(
 				'bbcode_tag'			=> 'ignvideo',
-				'bbcode_order'			=> 81,
+				'bbcode_order'			=> 79,
 				'bbcode_id'				=> 1,
 				'bbcode_helpline'		=> 'ABBC3_IGNVIDEO_TIP',
 				'bbcode_match'			=> '[ignvideo]{URL}[/ignvideo]',
@@ -2358,9 +2392,67 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_group'			=> '0',
 			),
 		),
+		// BBCodes new and/or changed in version 3.0.12
+		'3.0.12' => array(
+			// updated with INTEXT to support unicode characters for fonts with foreign language names
+			'font'			=> array(
+				'bbcode_tag'			=> 'font=',
+				'bbcode_order'			=> 1,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_FONT_TIP',
+				'bbcode_match'			=> '[font={INTTEXT}]{TEXT}[/font]',
+				'bbcode_tpl'			=> '<span style="font-family: {INTTEXT};">{TEXT}</span>',
+				'first_pass_match'		=> '!\[font\=([\p{L}\p{N}\-+,_. ]+)\](.*?)\[/font\]!iues',
+				'first_pass_replace'	=> '\'[font=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/font:$uid]\'',
+				'second_pass_match'		=> '!\[font\=([\p{L}\p{N}\-+,_. ]+):$uid\](.*?)\[/font:$uid\]!su',
+				'second_pass_replace'	=> '<span style="font-family: ${1};">${2}</span>',
+				'display_on_posting'	=> 1,
+				'display_on_pm'			=> 1,
+				'display_on_sig'		=> 1,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> ' ',
+				'bbcode_group'			=> '0',
+			),
+			'flv'		=> array(
+				'bbcode_tag'			=> 'flv',
+				'bbcode_order'			=> 69,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_FLV_TIP',
+				'bbcode_match'			=> '[flv{TEXT}]{URL}[/flv]',
+				'bbcode_tpl'			=> '<a src="{URL}">{TEXT}</a>',
+				'first_pass_match'		=> '!\[flv(\=| )?(.*?)\](.*?)\[/flv\]!ies',
+				'first_pass_replace'	=> '\'[flv${1}${2}:$uid]\' . trim(\'${3}\') . \'[/flv:$uid]\'',
+				'second_pass_match'		=> '!\[flv((\=| )?(width\=)?([0-9]?[0-9]?[0-9])(,| )(height\=)?([0-9]?[0-9]?[0-9]))?:$uid\](.*?)\[/flv:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('./flashplayer/flashplayer.swf', '\${4}', '\${7}', 'config={\\'clip\\':{\\'autoPlay\\':false,\\'autoBuffering\\':true,\\'url\\':\\'\${8}\\'},\\'playerId\\':\\'flashplayer_{ID}\\',\\'plugins\\':{\\'controls\\':{\\'url\\':\\'flashplayer.controls.swf\\'}}}')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'flashflv.gif',
+				'bbcode_group'			=> '0',
+			),
+			'youtube'		=> array(
+				'bbcode_tag'			=> 'youtube',
+				'bbcode_order'			=> 74,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_YOUTUBE_TIP',
+				'bbcode_match'			=> '[youtube]{URL}[/youtube]',
+				'bbcode_tpl'			=> '<a src="{URL}">{URL}</a>',
+				'first_pass_match'		=> '!\[youtube\](https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?)\[/youtube\]!ies',
+				'first_pass_replace'	=> '\'[youtube:$uid]${1}[/youtube:$uid]\'',
+				'second_pass_match'		=> '!\[youtube:$uid\]https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?\[/youtube:$uid\]!sie',
+				'second_pass_replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/\${1}?version=3&hl=en_US', '560', '340')",
+				'display_on_posting'	=> 0,
+				'display_on_pm'			=> 0,
+				'display_on_sig'		=> 0,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'youtube.gif',
+				'bbcode_group'			=> '0',
+			),
+		),
 	);
 
-	// return a string
+	// return an array
 	return $bbcode_data[$version];
 }
 

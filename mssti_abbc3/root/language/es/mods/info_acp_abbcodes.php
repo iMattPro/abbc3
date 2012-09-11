@@ -3,9 +3,10 @@
 *
 * info_acp_abbcodes [Spanish]
 *
-* @package language
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by VSE (Matt Friedman) and leviatan21 (Gabriel)
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @package Advanced BBCode Box 3
+* @version $Id$
+* @copyright (c) 2010 leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * @translator: leviatan21
 *
 */
@@ -95,8 +96,8 @@ $lang = array_merge($lang, array(
 ##	For translators :								Don't              Yes
 	'ABBCODES_RESIZE_METHODS'			=> array(	'AdvancedBox'	=> 'AdvancedBox JS',
 													'HighslideBox'	=> 'Highslide JS',
-													'LiteBox'		=> 'Lightbox2 JS',
 													'Lightview'		=> 'Lightview JS',
+													'prettyPhoto'	=> 'PrettyPhoto JS',
 													'Shadowbox'		=> 'Shadowbox JS',
 													'pop-up'		=> 'Ventana emergente',
 													'enlarge'		=> 'Ampliar',

@@ -13,7 +13,7 @@ Features
 * Supports phpBB3’s custom BBCodes.
 * BBCodes can be assigned to certain usergroups for private use.
 * BBCodes can be assigned to the Post, Private Message and Signature editors independently.
-* Image Resizer with various lightbox styled expanders (Highslide, Lightview, Lightbox2, and Shadowbox).
+* Image Resizer with various lightbox styled expanders (Highslide, Lightview, prettyPhoto, and Shadowbox).
 * Embed video in your posts, supports dozens of media sites and file formats (see below).
 * ABBC3 is very fast loading and is a sleek addition to your phpBB3 bulletin board.
 
@@ -28,15 +28,15 @@ Features
  
 ### Supported Video Sharing Sites
 
-	allocine.fr, blip.tv, break.com, clipfish.de, clipmoon.com, cnbc.com, cnettv.cnet.com, collegehumor.com,
-	comedians.comedycentral.com, comedians.jokes.com, comedycentral.com, crackle.com, current.com,
-	dailymotion.com, deviantart.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com, g4tv.com,
+	5min.com, allocine.fr, blip.tv, break.com, clipfish.de, clipmoon.com, cnbc.com, cnettv.cnet.com,
+	colbertnation.com, collegehumor.com, comedians.jokes.com, comedycentral.com, crackle.com, current.com,
+	dailymotion.com, dotsub.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com, g4tv.com,
 	gameprotv.com, gamespot.com, gametrailers.com, gamevideos.1up, godtube.com, gotgame.com, howcast.com,
-	hulu.com, ign.com, kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com,
-	myvideo, photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com, scribd, sevenload.com,
-	slideshare.net, spike.com, streetfire.net, ted.com, theonion.com, tu.tv, twitvid.com, ustream.tv, vbox7.com,
-	veoh.com, video.google, videogamer.com, videu.de, vimeo.com, vsocial.com, wat.tv, wegame.com, xfire.com,
-	youtu.be, youtube.com		
+	hulu.com, ign.com, kyte.tv, liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com,
+	myspace.com, myvideo.de, photobucket.com, qik.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com,
+	scribd.com, sevenload.com, slideshare.net, snotr.com, spike.com, streetfire.net, thedailyshow.com,
+	theonion.com, twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de,
+	vimeo.com, wat.tv, wegame.com, xfire.com, youku.com, youtu.be, youtube.com
 
 
 Deployment

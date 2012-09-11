@@ -3,9 +3,10 @@
 *
 * abbcode [English]
 *
-* @package language
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @package Advanced BBCode Box 3
+* @version $Id$
+* @copyright (c) 2010 leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
 
@@ -59,6 +60,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_RESIZE_NUMBER'		=> 'Image %1$s of %2$s',
 	'ABBC3_RESIZE_PLAY'			=> 'Play slideshow',
 	'ABBC3_RESIZE_PAUSE'		=> 'Pause slideshow',
+	'ABBC3_RESIZE_IMAGE'		=> 'Image',
+	'ABBC3_RESIZE_OF'			=> 'of',
 
 // Highslide JS - http://vikjavev.no/highslide/forum/viewtopic.php?t=2119
 	'ABBC3_HIGHSLIDE_LOADINGTEXT'		=> 'Loading...',
@@ -199,9 +202,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_MOVER'		=> 'Hide content from unregistered guests',
 	'ABBC3_HIDDEN_TIP'			=> '[hidden]text[/hidden]',
 	'ABBC3_HIDDEN_VIEW'			=> '[hidden]' . $lang['SAMPLE_TEXT'] . '[/hidden]',
-	'HIDDEN_OFF'				=> 'Content hidden from unregistered guests',
+	'HIDDEN_OFF'				=> 'Hidden Content (for members only)',
 	'HIDDEN_ON'					=> 'Hidden Content',
-	'HIDDEN_EXPLAIN'			=> 'This board requires you to be registered and logged-in before you can view hidden content.',
+	'HIDDEN_EXPLAIN'			=> 'This board requires you to be registered and logged-in to view hidden content.',
 
 	// Moderator
 	'ABBC3_MOD_MOVER'			=> 'Moderator message',
@@ -219,12 +222,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SCRIPPET_MOVER'		=> 'Scrippet',
 	'ABBC3_SCRIPPET_TIP'		=> '[scrippet]Screenplay text[/scrippet]',
 ##	For translator:                 don't change the "<br />" and don't join the lines into one!
-	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY<br />
-									ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />
-									ANTONIUS<br />
-									Do you think in a thousand years, anyone will remember our names?<br />
-									IPSUM<br />
-									Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
+	'ABBC3_SCRIPPET_VIEW'		=> '[scrippet]EXT. ANCIENT ROME - DAY<br />' . "\n" . 'ANTONIUS and IPSUM are walking down a tiny, crowded street.<br />' . "\n" . 'ANTONIUS<br />' . "\n" . 'Do you think in a thousand years, anyone will remember our names?<br />' . "\n" . 'IPSUM<br />' . "\n" . 'Not yours. But they’ll know mine. Because I intend to write something so profound that it will be remembered for the ages. Designers in the 20th Century call for Lorem Ipsum whenever they need to fill text blocks.[/scrippet]',
 
 	// Tabs
 	'ABBC3_TABS_MOVER'			=> 'Tabs',
@@ -401,7 +399,7 @@ $lang = array_merge($lang, array(
 
 	// Table row cell wizard
 	'ABBC3_TABLE_MOVER'			=> 'Insert a table',
-	'ABBC3_TABLE_TIP'			=> '[table=(ccs style)][tr=(ccs style)][td=(ccs style)]text[/td][/tr][/table]',
+	'ABBC3_TABLE_TIP'			=> '[table=(CSS style)][tr=(CSS style)][td=(CSS style)]text[/td][/tr][/table]',
 	'ABBC3_TABLE_VIEW'			=> '[table=width:50%;border:1px solid #cccccc][tr=text-align:center][td=border:1px solid #cccccc]' . $lang['SAMPLE_TEXT'] . '[/td][/tr][/table]',
 
 	'ABBC3_TABLE_STYLE'			=> 'Enter the table style',
@@ -487,12 +485,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 
 	// Rapid share checker
-	'ABBC3_FOPEN_ERROR'			=> '<strong>Error : </strong> Sorry but it appears that <strong>allow_url_fopen</strong> is disabled. This function requires the PHP directive allow_url_fopen to be enabled.',
 	'ABBC3_RAPIDSHARE_TAG'		=> 'rapidshare',
 	'ABBC3_RAPIDSHARE_MOVER'	=> 'Insert a file from rapidshare',
 	'ABBC3_RAPIDSHARE_TIP'		=> '[rapidshare]http://rapidshare.com/files/...[/rapidshare]',
-	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
-	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/rapidshare]',
+	'ABBC3_RAPIDSHARE_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip',
+	'ABBC3_RAPIDSHARE_VIEW'		=> '[rapidshare]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip[/rapidshare]',
 	'ABBC3_RAPIDSHARE_GOOD'		=> 'File found on server!',
 	'ABBC3_RAPIDSHARE_WRONG'	=> 'File not found!',
 
@@ -503,8 +500,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_TESTLINK_MOVER'		=> 'Insert a file stored on public server',
 	'ABBC3_TESTLINK_TIP'		=> '[testlink]http://rapidshare.com/files/...[/testlink]',
 	'ABBC3_TESTLINK_NOTE'		=> 'Valid servers: rapidshare, depositfiles, megashares',
-	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html',
-	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip.html[/testlink]',
+	'ABBC3_TESTLINK_EXAMPLE'	=> 'http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip',
+	'ABBC3_TESTLINK_VIEW'		=> '[testlink]http://rapidshare.com/files/86587996/MSSTI_ABBC3.zip[/testlink]',
 	'ABBC3_TESTLINK_GOOD'		=> 'File found on server!',
 	'ABBC3_TESTLINK_WRONG'		=> 'File not found!',
 
@@ -528,14 +525,14 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_TAG'			=> 'BBvideo',
 	'ABBC3_BBVIDEO_MOVER'		=> 'Insert web video',
-	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo]Video URL[/BBvideo]',
+	'ABBC3_BBVIDEO_TIP'			=> '[BBvideo width,height]Video URL[/BBvideo]',
 	'ABBC3_BBVIDEO_EXAMPLE'		=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
-	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 425,350]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
-	'ABBC3_BBVIDEO_SELECT'		=> 'Please select a video type',
+	'ABBC3_BBVIDEO_VIEW'		=> '[BBvideo 560,340]http://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
+	'ABBC3_BBVIDEO_SELECT'		=> 'BBvideo sites and files',
 	'ABBC3_BBVIDEO_SELECT_ERROR'=> 'There are no embedded video links currently allowed. Please notify the %sBoard Administrator%s about this problem.<br />In the meantime, you may post your video links using the standard URL BBCode.',
 	'ABBC3_BBVIDEO_FILE'		=> 'File format',
-	'ABBC3_BBVIDEO_VIDEO'		=> 'Video from',
-	'ABBC3_BBVIDEO_EXTERNAL'	=> 'Link to Video from',
+	'ABBC3_BBVIDEO_VIDEO'		=> 'Allowed sites',
+	'ABBC3_BBVIDEO_WATCH'		=> 'Watch on',
 
 	// Flash (swf) Wizard
 	'ABBC3_FLASH_TAG'			=> 'flash',
@@ -543,7 +540,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLASH_TIP'			=> '[flash width=# height=#]URL flash[/flash] or [flash width,height]URL flash[/flash]',
 	'ABBC3_FLASH_EXAMPLE'		=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
 	'ABBC3_FLASH_VIEW'			=> '[flash 250,200]http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf[/flash]',
-	'ABBC3_FLASH_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Flash (flv) Wizard
 	'ABBC3_FLV_TAG'				=> 'flash',
@@ -569,7 +565,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_STREAM_VIEW'			=> '[stream]http://www.robtowns.com/music/first_noel.mp3[/stream]',
 	'ABBC3_STREAM_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
-	// Quick time
+	// Quicktime
 	'ABBC3_QUICKTIME_TAG'		=> 'Quicktime',
 	'ABBC3_QUICKTIME_MOVER'		=> 'Insert Quicktime',
 	'ABBC3_QUICKTIME_TIP'		=> '[quicktime width=# height=#]URL Quicktime[/quicktime]',
@@ -584,14 +580,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_RAM_EXAMPLE'			=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
 	'ABBC3_RAM_VIEW'			=> '[ram width=250 height=200]http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram[/ram]',
 	'ABBC3_RAM_EXPLAIN'			=> $lang['DEPRECATED_BBCODE'],
-
-	// Google video Wizard
-	'ABBC3_GVIDEO_TAG'			=> 'Google Video',
-	'ABBC3_GVIDEO_MOVER'		=> 'Insert video from Google',
-	'ABBC3_GVIDEO_TIP'			=> '[GVideo]URL video[/GVideo]',
-	'ABBC3_GVIDEO_EXAMPLE'		=> 'http://video.google.com/videoplay?docid=-8351924403384451128',
-	'ABBC3_GVIDEO_VIEW'			=> '[GVideo]http://video.google.com/videoplay?docid=-8351924403384451128[/GVideo]',
-	'ABBC3_GVIDEO_EXPLAIN'		=> $lang['DEPRECATED_BBCODE'],
 
 	// Youtube video Wizard
 	'ABBC3_YOUTUBE_TAG'			=> 'Youtube Video',
@@ -618,7 +606,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLLEGEHUMOR_EXPLAIN'=> $lang['DEPRECATED_BBCODE'],
 
 	// Dailymotion video
-	'ABBC3_DM_MOVER'			=> 'Insert video from dailymotion', // from http://www.dailymotion.com/
+	'ABBC3_DM_MOVER'			=> 'Insert video from dailymotion',
 	'ABBC3_DM_TIP'				=> '[dm]Dailymotion ID[/dm]',
 	'ABBC3_DM_EXAMPLE'			=> 'http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport',
 	'ABBC3_DM_VIEW'				=> '[dm]http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport[/dm]',
@@ -628,15 +616,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_GAMESPOT_MOVER'		=> 'Insert video from Gamespot',
 	'ABBC3_GAMESPOT_TIP'		=> '[gamespot]Gamespot video URL[gamespot]',
 	'ABBC3_GAMESPOT_EXAMPLE'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
-	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[gamespot]',
+	'ABBC3_GAMESPOT_VIEW'		=> '[gamespot]http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8[/gamespot]',
 	'ABBC3_GAMESPOT_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
-
-	// Gametrailers video
-	'ABBC3_GAMETRAILERS_MOVER'	=> 'Insert video from Gametrailers',
-	'ABBC3_GAMETRAILERS_TIP'	=> '[gametrailers]Gametrailers video URL[/gametrailers]',
-	'ABBC3_GAMETRAILERS_EXAMPLE'=> 'http://www.gametrailers.com/player/30461.html',
-	'ABBC3_GAMETRAILERS_VIEW'	=> '[gametrailers]http://www.gametrailers.com/video/game-of-best-of-e3/701407[/gametrailers]',
-	'ABBC3_GAMETRAILERS_EXPLAIN'=> $lang['DEPRECATED_BBCODE'],
 
 	// IGN video
 	'ABBC3_IGNVIDEO_MOVER'		=> 'Insert video from IGN',
@@ -653,12 +634,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_LIVELEAK_EXPLAIN'	=> $lang['DEPRECATED_BBCODE'],
 
 // Custom BBCodes
-	// Deezer audio
-	'DEEZER_TAG'				=> 'Deezer',
-	'DEEZER_MOVER'				=> 'Insert audio from Deezer',
-	'DEEZER_TIP'				=> '[Deezer]Deezer audio URL[/Deezer]',
-	'DEEZER_EXAMPLE'			=> 'http://www.deezer.com/track/351534',
-	'DEEZER_VIEW'				=> '[Deezer]http://www.deezer.com/track/351534[/Deezer]',
 
 ));
 

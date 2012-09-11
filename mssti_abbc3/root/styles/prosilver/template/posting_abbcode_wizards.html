@@ -137,7 +137,7 @@
 						<option value=""> x </option>
 					</select>&nbsp;
 					&nbsp;
-					<select id="clr0" name="clr0" onchange="gradient_template(false);">
+					<select id="clr0" name="clr0" onchange="gradient_template();">
 						<option value="80,5,43,36,91" selected="selected">{L_ABBC3_GRAD_COLORS}</option>
 						<option value="25,0,0,0,118">1</option>
 						<option value="14,12,9,0,0">2</option>
@@ -195,7 +195,7 @@
 
 					<!-- IF S_BBVIDEO_OPTIONS -->
 					<dl>
-						<dt><label>{L_ABBC3_BBVIDEO_VIDEO}</label></dt>
+						<dt><label>{L_ABBC3_BBVIDEO_VIDEO}:</label></dt>
 						<dd>
 							<select id="abbc3_video" name="abbc3_video" onchange="if(this.options[this.selectedIndex].value != -1){this.form.posttext.value=this.form.abbc3_video.options[this.form.abbc3_video.selectedIndex].value;}">
 								{S_BBVIDEO_OPTIONS}

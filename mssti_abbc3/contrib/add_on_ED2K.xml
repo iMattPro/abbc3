@@ -32,11 +32,11 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.11</mod-version>
+		<mod-version>3.0.12</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>120</time>
-			<target-version>3.0.10</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 		<link-group>
 			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
@@ -53,10 +53,9 @@
 		if (strpos($message, "ed2k://") !== false)
 		{
 			// Make ed2k links work directly ( without [url] tag ) - Start
-			$magic_url_match[] = '#<!-- ([lmwe]) --><a class="(.*?)" href="(ed2k://(.*?))">(.*?)</a><!-- ([lmwe]) -->#ie';
-			$magic_url_replace[] = "abbc3_ed2k_make_clickable('\$3')";
+			$magic_url_match[] = '#<!-- ([lmwe]) --><a class="(.*?)" href="(ed2k://(.*?))">(.*?)</a><!-- ([lmwe]) -->#i';
 
-			$postrow['MESSAGE'] = preg_replace($magic_url_match, $magic_url_replace, $postrow['MESSAGE']);
+			$postrow['MESSAGE'] = preg_replace_callback($magic_url_match, create_function('$matches', 'return abbc3_ed2k_make_clickable($matches[3]);'), $postrow['MESSAGE']);
 			// Make ed2k links work directly ( without [url] tag ) - End
 
 			// Add all eD2k links feature - Start

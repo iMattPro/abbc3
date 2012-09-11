@@ -7,7 +7,7 @@
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3)]]></title>
-		<description lang="en"><![CDATA[ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and highly customizable toolbar. ABBC3 also adds many new and useful BBCodes giving users more ways to customize their posts. It also improves some of phpBB3's built-in BBCodes and supports your own custom BBCodes. Additional features include an Image Resizer with various Lightbox styled expanders, and Auto-Embed Video for dozens of media sites and file formats. ABBC3 is a sleek addition to your phpBB bulletin board. Javascript is required by this MOD.]]></description>
+		<description lang="en"><![CDATA[ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and highly customizable toolbar. ABBC3 also adds many new and useful BBCodes giving users more ways to customize their posts. It also improves some of phpBB3's built-in BBCodes and supports your own custom BBCodes. Additional features include an Image Resizer with various Lightbox styled expanders, and Auto-Embed Video for dozens of media sites and file formats. ABBC3 is a sleek addition to your phpBB bulletin board.]]></description>
 		<author-notes lang="en"><![CDATA[To learn more about ABBC3, please read the contrib/docs/README.HTML
 -------------------------------------------------------------------
 WARNING: Please be advised that this MOD might overwrite some custom BBCodes you already have and as a result, those BBCodes might not display correctly due to the changes introduced by ABBC3's BBCodes. If you are using custom BBCodes, please read the contrib/docs/README.HTML file for more information before you proceed.]]></author-notes>
@@ -29,13 +29,38 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.11</mod-version>
+		<mod-version>3.0.12</mod-version>
 		<installation>
 			<level>intermediate</level>
 			<time>1200</time>
-			<target-version>3.0.10</target-version>
+			<target-version>3.0.11</target-version>
 		</installation>
 		<history>
+			<entry>
+				<date>2012-08-28</date>
+				<rev-version>3.0.12</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[Change] Added prettyPhoto lightbox styled image resizer.]]></change>
+					<change><![CDATA[[Change] Updated and relocated the included Flash Player.]]></change>
+					<change><![CDATA[[Change] Updated the appearance of the [hidden] BBcode.]]></change>
+					<change><![CDATA[[Change] Updated the appearance of the [BBvideo] BBcode. No more dark borders around embedded videos.]]></change>
+					<change><![CDATA[[Change] New BBvideos: 5min.com, colbertnation.com, dotsub.com, qik.com, snotr.com, thedailyshow.com, viddler.com, youku.com]]></change>
+					<change><![CDATA[[Change] Updated BBvideos: Youtube now supports every type of Youtube url. Scribd has been changed to work with URLs instead of the Wordpress code. Embed capability updated for comedians.jokes.com, gotgame.com, moddb.com, spike.com, streetfire.com, videogamer.com, wat.tv. Support for m4v and mp4 files.]]></change>
+					<change><![CDATA[[Change] Deleted BBvideos: We can not embed video from these sites so they have been removed: deviantart.com, ted.com, tu.tv. We have removed these sites because they appear to be gone: vsocial.com, video.google.com. We have also removed support for directly embedding DIVX and MKV files due to platform compatibility issues.]]></change>
+					<change><![CDATA[[Change] Deleted BBCode [gametrailers]. Was one of the obsolete bbcodes, kept around for legacy posts, but gametrailer.com no longer supports the urls this bbcode used, so it has been permanently removed.]]></change>
+					<change><![CDATA[[Change] Deleted BBCode [gvideo]. Was one of the obsolete bbcodes, kept around for legacy posts, but Google Video services were shut down Aug 20 2012, so it has been permanently removed.]]></change>
+					<change><![CDATA[[Change] Updated [font] BBcode to support fonts with unicode characters in their names.]]></change>
+					<change><![CDATA[[Change] Updated [rapidshare] and [testlink] BBcodes to correctly check for valid rapidshare links.]]></change>
+					<change><![CDATA[[Change] Removed Lightbox2 from ABBC3 because the current version (2.51) requires modifications, does not support video, does not respect browser window sizes.]]></change>
+					<change><![CDATA[[Fix] Fixed an issue with youtu.be links not working in BBvideo]]></change>
+					<change><![CDATA[[Fix] Remove uneeded call to utf8_clean_string in bbcode.php]]></change>
+					<change><![CDATA[[Fix] Replace use of deprecated eregi function in abbcode.php]]></change>
+					<change><![CDATA[[Fix] Fixed an issue where downgrading to previous versions could result in all ABBC3 BBcodes being uninstalled.]]></change>
+					<change><![CDATA[[Fix] Fixed an issue where the Remove BBcode tags button would return "undefined" for [url], [email] and [click] BBcode tags.]]></change>
+					<change><![CDATA[[Fix] Fixed an minor style issue in subsilver2.]]></change>
+					<change><![CDATA[[Add-on] Instructions to automatically embed video directly from plain URLs (without [BBvideo] tag).]]></change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2012-04-15</date>
 				<rev-version>3.0.11</rev-version>
@@ -155,15 +180,18 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2 instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">German language pack</link>
+			<link type="contrib" href="contrib/add_on_auto_embed_video_from_urls.xml" lang="en">Add-on : Auto Embed Video From URLs</link>
 			<link type="contrib" href="contrib/add_on_YouTube_Lightboxes.xml" lang="en">Add-on : Open YouTube videos with Lightboxes</link>
 			<link type="contrib" href="contrib/add_on_Evil_Quick_Reply.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
 			<link type="contrib" href="contrib/add_on_Embossed_Buttons.xml" lang="en">Add-on : Embossed BBCode Buttons</link>
 			<link type="contrib" href="contrib/add_on_ED2K.xml" lang="en">Add-on : Enhanced ED2K links.</link>
-			<link type="contrib" href="contrib/update_3.0.8_to_3.0.11.xml" lang="en">Update Instructions (3.0.8 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.8-PL1_to_3.0.11.xml" lang="en">Update Instructions (3.0.8-PL1 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.8-PL2_to_3.0.11.xml" lang="en">Update Instructions (3.0.8-PL2 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.9.3_to_3.0.11.xml" lang="en">Update Instructions (3.0.9.3 to 3.0.11)</link>
-			<link type="contrib" href="contrib/update_3.0.10_to_3.0.11.xml" lang="en">Update Instructions (3.0.10 to 3.0.11)</link>
+			<link type="contrib" href="contrib/update_3.0.8_to_3.0.12.xml" lang="en">Update (3.0.8 to 3.0.12)</link>
+			<link type="contrib" href="contrib/update_3.0.8-PL1_to_3.0.12.xml" lang="en">Update (3.0.8-PL1 to 3.0.12)</link>
+			<link type="contrib" href="contrib/update_3.0.8-PL2_to_3.0.12.xml" lang="en">Update (3.0.8-PL2 to 3.0.12)</link>
+			<link type="contrib" href="contrib/update_3.0.9.3_to_3.0.12.xml" lang="en">Update (3.0.9.3 to 3.0.12)</link>
+			<link type="contrib" href="contrib/update_3.0.10_to_3.0.12.xml" lang="en">Update (3.0.10 to 3.0.12)</link>
+			<link type="contrib" href="contrib/update_3.0.11_to_3.0.12.xml" lang="en">Update (3.0.11 to 3.0.12)</link>
+			<link type="uninstall" href="contrib/uninstall_ABBC3.xml" lang="en">Uninstall ABBC3</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -171,7 +199,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 			<file from="root/abbcode_ajax.php" to="abbcode_ajax.php"/>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/adm/*.*" to="adm/*.*"/>
-			<file from="root/images/*.*" to="images/*.*"/>
+			<file from="root/flashplayer/*.*" to="flashplayer/*.*"/>
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
@@ -304,7 +332,7 @@ class bbcode extends abbcode
 				FROM ' . BBCODES_TABLE . '
 				WHERE ' . $db->sql_in_set('bbcode_id', $sql);]]></find>
 				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
+			$sql .= " AND bbcode_match <> '.'";
 // MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 			<edit>
@@ -728,12 +756,11 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
-		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, you should point your
-browser to the "install_abbc3.php" installation script (or click the highlighted link
-above if you are using AutoMOD) and follow the instructions. If the installation was
-successful, you can now use your forum.
+		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, point your browser to the "install_abbc3.php" script
+(or click the highlighted link above if you are using AutoMOD) and follow the instructions. Once that is complete,
+you can delete the "install_abbc3.php" script.
 
-You can configure ABBC3's settings in the ACP under the "POSTING" tab. In the left
-menu you will find the category "ADVANCED BBCODE BOX 3" with all our settings.]]></diy-instructions>
+You can configure ABBC3's settings in the ACP under the "POSTING" tab. In the left menu you will find the category
+"ADVANCED BBCODE BOX 3" with all its settings.]]></diy-instructions>
 	</action-group>
 </mod>

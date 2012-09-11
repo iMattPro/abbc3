@@ -12,7 +12,7 @@
 <meta name="description" content="Advanced BBCode Box 3 (aka ABBC3) Docs" />
 <title>phpBB3 &bull; Changelog</title>
 
-<link href="stylesheet.css" rel="stylesheet" type="text/css" media="screen, projection" />
+<link href="assets/stylesheet.css" rel="stylesheet" type="text/css" media="screen, projection" />
 
 </head>
 
@@ -24,7 +24,7 @@
 		<div class="headerbar">
 			<div class="inner"><span class="corners-top"><span></span></span>
 			<div id="doc-description">
-				<a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" id="logo"><img src="./images/abbc3_logo.png" alt="Advanced BBCode Box 3" /></a>
+				<a href="http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/" id="logo"><img src="./assets/abbc3_logo.png" alt="Advanced BBCode Box 3" /></a>
 				<h1>Advanced BBCode Box 3 (aka ABBC3) Document</h1>
 				<p style="display: none;"><a href="#start_here">Skip</a></p>
 			</div>
@@ -56,6 +56,7 @@
 					</li>
 					<li><a href="#changelog">Changelog</a>
 						<ol style="list-style-type: square;">
+							<li><a href="#abbc3_v3012">Changes in 3.0.12</a></li>
 							<li><a href="#abbc3_v3011">Changes in 3.0.11</a></li>
 							<li><a href="#abbc3_v3010">Changes in 3.0.10</a></li>
 							<li><a href="#abbc3_v3093">Changes in 3.0.9.3</a></li>
@@ -94,9 +95,9 @@
 				<a name="disclaimer"></a><h3>Disclaimer</h3>
 				<ul>
 					<li>This application is open source software released under the <a href="http://opensource.org/licenses/gpl-2.0.php" onclick="window.open(this.href);return false;">GNU General Public License v2</a>. Please see source code for more details.</li>
-					<li>I contacted "Disturbed One" the original developer of this MOD, and "freddie" the last developer of this MOD, 
+					<li>I (leviatan21) contacted "Disturbed One" the original developer of this MOD, and "freddie" the last developer of this MOD, 
 						and asked to upgrade the Advanced BBCode Box for phpbb2.x to phpbb3.x, 
-						Both declined to do the job, and agreed to let me (leviatan21) do it, so here I am ;)</li>
+						Both declined to do the job, and agreed to let me do it, so here I am ;)</li>
 					<li><span class="bad">This is <strong>not</strong> a <em>WYSIWYG</em> or a <em>Rich Text Editor</em></span></li>
 					<li>Tested on Windows Browsers:
 						<ul>
@@ -130,12 +131,12 @@
 					<li><strong>Image Resizer : </strong>
 						This addresses a shortcoming of the [img] BBCode, when someone posts a picture that exceeds the width of your forum.<br />				
 						AdvancedBox JS is a JavaScript application used to display images in full size.<br />				
-						You can also use ABBC3 with any of the other included scripts. These modifications are totally optional. Each script has its own support. ABBC3 is not responsible for any issues from using a 3rd party script. All questions/problems/bugs should be directed to the developer of the script you are using.
+						ABBC3 also has built-in support for the following methods, some of which use popular 3rd part scripts. Each 3rd party script has been tested and works with ABBC3 for the specified version. Any support problems from using a 3rd party script should be handled with that script's developer. ABBC3 is not responsible for any issues from using a 3rd party script.
 							<ul style="list-style-type: decimal;">
-								<li>Highslide <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Highslide</strong> for use of the library.</span></li>
-								<li>Litebox2</li>
-								<li>Lightview <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Light view</strong> for use of the library.</span></li>
-								<li>ShadowBox <span class="bad"><strong>Doesn't work in rtl languages</strong> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Shadow Box</strong> for use of the library.</span></li>
+								<li>Highslide 4.1.13 <span class="bad"><strong>Doesn't work in rtl languages</strong>. Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Highslide</strong> for use of the library.</span></li>
+								<li>Lightview 2.8.0 <span class="bad"> Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Lightview</strong> for use of the library.</span></li>
+								<li>prettyPhoto 3.1.4</li>
+								<li>ShadowBox 3.0.3 <span class="bad"><strong>Doesn't work in rtl languages</strong>. Requires that the site be NON-Commercial. If it's a commercial site you must buy <strong>Shadow Box</strong> for use of the library.</span></li>
 								<li>Pop-up window</li>
 								<li>Enlarge</li>
 								<li>Same window</li>
@@ -144,7 +145,7 @@
 					</li>
 					<li><strong>Buttons to Expand/Contract the text area</strong>
 						<ul style="list-style-type: decimal;">
-							<li> [ + ] Posting box Resizer : larger </li>
+							<li> [ + ] Posting box Resizer : taller </li>
 							<li> [ - ] Posting box Resizer : shorter </li>
 						</ul>
 					</li>
@@ -175,7 +176,7 @@
 							<li>Shadow text</li>
 							<li>Dropshadow text</li>
 							<li>Blur text</li>
-							<li>Wave text></li>
+							<li>Wave text</li>
 							<li>Fade text</li>
 							<li>Gradient text (aka Rainbow)</li>
 							<li>---------------------</li>
@@ -204,12 +205,12 @@
 							<li>Anchor</li>
 							<li>Hyperlink Wizard</li>
 							<li>Email Wizard</li>
-							<li>Web : Insert a website in the post via iframe <span class="bad">(Disabled by default. Note: allowing other websites to be inserted in posts can pose a security risk. Use at your own risk, or assign to trusted groups.)</span></li>
-							<li>Ed2k link Wizard</li>
 							<li>Image Wizard</li>
 							<li>Thumbnail Wizard</li>
 							<li>Imgshack Wizard</li>
-							<li>Rapidshare links <span class="bad">(Disabled by default. Requires the PHP directive allow_url_fopen to be enabled.)</span></li>
+							<li>Web : Insert a website in the post via iframe <span class="bad">(Disabled by default. Note: allowing other websites to be inserted in posts can pose a security risk. Use at your own risk, or assign to trusted groups.)</span></li>
+							<li>Ed2k link Wizard</li>
+							<li>Rapidshare links <span class="bad">(Disabled by default)</span></li>
 							<li>Link checker <span class="bad">(Disabled by default. Requires that you have CURL installed)</span></li>
 							<li>Click counter <span class="bad">(Disabled by default)</span></li>
 							<li>Search tag :
@@ -229,6 +230,7 @@
 								<strong>Video sites</strong>
 								<br />These videos will be embedded into posts. 
 								<ul style="list-style-type: decimal;">
+									<li>5min.com</li>
 									<li>allocine.fr</li>
 									<li>blip.tv</li>
 									<li>break.com</li>
@@ -236,11 +238,14 @@
 									<li>clipmoon.com</li>
 									<li>cnbc.com</li>
 									<li>cnettv.cnet.com</li>
+									<li>colbertnation.com</li>
 									<li>collegehumor.com</li>
+									<li>comedians.jokes.com</li>
 									<li>comedycentral.com</li>
 									<li>crackle.com</li>
 									<li>current.com</li>
 									<li>dailymotion.com</li>
+									<li>dotsub.com</li>
 									<li>ebaumsworld.com</li>
 									<li>facebook.com</li>
 									<li>flickr.com</li>
@@ -251,79 +256,73 @@
 									<li>gametrailers.com</li>
 									<li>gamevideos.1up</li>
 									<li>godtube.com</li>
+									<li>gotgame.com</li>
 									<li>howcast.com</li>
 									<li>hulu.com</li>
 									<li>ign.com</li>
 									<li>kyte.tv</li>
 									<li>liveleak.com</li>
 									<li>metacafe.com</li>
+									<li>moddb.com</li>
 									<li>mpora.com</li>
 									<li>msnbc.msn.com</li>
 									<li>myspace.com</li>
-									<li>myvideo</li>
+									<li>myvideo.de</li>
 									<li>photobucket.com</li>
+									<li>qik.com</li>
 									<li>revision3.com</li>
 									<li>rutube.ru</li>
 									<li>sapo.pt</li>
-									<li>scribd</li>
+									<li>scribd.com</li>
 									<li>sevenload.com</li>
 									<li>slideshare.net</li>
+									<li>snotr.com</li>
+									<li>spike.com</li>
+									<li>streetfire.net</li>
+									<li>thedailyshow.com</li>
 									<li>theonion.com</li>
 									<li>twitvid.com</li>
 									<li>ustream.tv</li>
 									<li>vbox7.com</li>
 									<li>veoh.com</li>
-									<li>video.google</li>
+									<li>viddler.com</li>
+									<li>videogamer.com</li>
 									<li>videu.de</li>
 									<li>vimeo.com</li>
-									<li>vsocial.com</li>
+									<li>wat.tv</li>
 									<li>wegame.com</li>
 									<li>xfire.com</li>
 									<li>screen.yahoo.com</li>
+									<li>youku.com</li>
 									<li>youtu.be</li>
 									<li>youtube.com</li>
-								</ul>
-								<strong>External videos</strong>
-								<br />ABBC3 can not be embed these videos into posts at this time, and instead presents a nice link to the video. 
-								<ul style="list-style-type: decimal;">
-									<li>comedians.jokes.com / comedians.comedycentral.com</li>
-									<li>deviantart.com</li>
-									<li>gotgame.com</li>
-									<li>moddb.com</li>
-									<li>spike.com</li>
-									<li>streetfire.net</li>
-									<li>ted.com</li>
-									<li>tu.tv</li>
-									<li>videogamer.com</li>
-									<li>wat.tv</li>
 								</ul>
 								<strong>File types</strong>
 								<br />These videos will be embedded into posts. 
 								<ul style="list-style-type: decimal;">
-									<li>DivX (.avi .divx .mkv) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
-									<li>QuickTime / MPEG (.mov .mp4 .mpeg) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
-									<li>Windows Media Video (.wmv) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
+									<li>HD Video (.mp4 .m4v) Uses the included Flash based player for widespread browser support.</li>
+									<li>QuickTime (.mov .dv .qt) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
+									<li>MPEG (.mpg .mpeg) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
+									<li>Windows Media Video (.wmv .avi) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
 									<li>Flash (.flv) <span class="bad">(Disabled by default)</span></li>
 									<li>Flash (.swf) <span class="bad">(Disabled by default)</span></li>
+									<li>QuickTime Audio (.mp3) Uses Google's free flash-based MP3 player for widespread browser support.</li>
 									<li>QuickTime MIDI (.mid .midi) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
-									<li>QuickTime Audio (.mp3)</li>
 									<li>Real Audio (.ram) <span class="bad">(Disabled by default)</span> Special plug-ins are required by the browser. Results may vary for all users.</li>
 								</ul>
 							</li>
 							<li>Scrippet <span class="bad">(Disabled by default)</span></li>
-							<li>Flash (swf) <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
+							<li>Flash (swf) <span class="bad">(Disabled by default)</span></li>
 							<li>Flash (flv) <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>Video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>Stream <span class="bad">( Disable by default )</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>Quicktime <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>Real media <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
-							<li>Google video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>Youtube video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>Veoh video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>CollegeHumor video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>DailyMotion video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>Gamespot video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
-							<li>GameTrailers video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>IGN video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>LiveLeak video <span class="bad">(Disabled by default)</span> This BBCode is obsolete and has been replaced by BBvideo.</li>
 							<li>--------------------</li>
@@ -371,10 +370,8 @@
 							<li>flv</li>
 							<li>font=</li>
 							<li>gamespot</li>
-							<li>gametrailers</li>
 							<li>glow=</li>
 							<li>grad</li>
-							<li>gvideo</li>
 							<li>hidden</li>
 							<li>highlight=</li>
 							<li>hr</li>
@@ -603,19 +600,19 @@ Click on submit button
 ###################################################################################################
 #
 #-----[ OPEN ]-------------------------------------------------------
-# NOTE: You will have to make this change to each language you have installed and you may translate it in the correct language
+# NOTE: You will have to make this change to each language you have installed
 #
 language/en/mods/abbcode.php
 
 #
 #-----[ FIND ]-------------------------------------------------------
 #
-	// Custom BBCodes
+// Custom BBCodes
 #
 #-----[ AFTER, ADD ]------------------------------------------------
 # NOTE: Add these lines on a new blank line after the preceding line(s) to find.
 #
-# USAGE: MUST start allways the tag name in upperase + _TAG / _MOVER / _TIP /_EXAMPLE or _VIEW. I use DEEZER for this example
+# USAGE: the tag name MUST start always with uppercase + _TAG / _MOVER / _TIP /_EXAMPLE or _VIEW. I use DEEZER for this example:
 #
 	// Deezer audio
 	'DEEZER_TAG'			=&gt; 'Deezer',
@@ -629,19 +626,18 @@ language/en/mods/abbcode.php
 ###################################################################################################
 #
 #-----[ OPEN ]-------------------------------------------------------
-# NOTE: You will have to make this change to ALL themes you have installed. I use "prosilver" as an example.
 #
-styles/prosilver/template/posting_abbcode_buttons.html
+styles/abbcode/posting_abbcode_buttons.js
 
 #
 #-----[ FIND ]-------------------------------------------------------
 #
-		/** This bbcodes needs extra data **/
+		/** Extra Custom bbcodes - Start **/
 #
-#-----[ BEFORE, ADD ]------------------------------------------------
-# NOTE: Add these lines on a new blank line before the preceding line(s) to find.
+#-----[ AFTER, ADD ]------------------------------------------------
+# NOTE: Add these lines on a new blank line after the preceding line(s) to find.
 #
-		case "deezer" :
+		case "deezer":
 				</pre>
 				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
 			</div>
@@ -651,6 +647,36 @@ styles/prosilver/template/posting_abbcode_buttons.html
 		<hr />
 		<a name="changelog"></a><h2>Changelog</h2>
 		<p>This is a non-exhaustive (but still near complete) changelog for Advanced BBCode Box 3 (aka ABBC3). Thanks to all those people who've contributed bug reports and code fixes.</p>
+
+		<div class="paragraph">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<div class="content">
+				<a name="abbc3_v3012"></a><h3>Changes in 3.0.12</h3>
+				<ul>
+					<li> [Change] Added prettyPhoto lightbox styled image resizer.</li>
+					<li> [Change] Updated and relocated the included Flash Player.</li>
+					<li> [Change] Updated the appearance of the [hidden] BBcode.</li>
+					<li> [Change] Updated the appearance of the [BBvideo] BBcode. No more dark borders around embedded videos.</li>
+					<li> [Change] New BBvideos: 5min.com, colbertnation.com, dotsub.com, qik.com, snotr.com, thedailyshow.com, viddler.com, youku.com</li>
+					<li> [Change] Updated BBvideos: Youtube now supports every type of Youtube url. Scribd has been changed to work with URLs instead of the Wordpress code. Embed capability updated for comedians.jokes.com, gotgame.com, moddb.com, spike.com, streetfire.com, videogamer.com, wat.tv. Support for m4v and mp4 files.</li>
+					<li> [Change] Deleted BBvideos: We can not embed video from these sites so they have been removed: deviantart.com, ted.com, tu.tv. We have removed these sites because they appear to be gone: vsocial.com, video.google.com. We have also removed support for directly embedding DIVX and MKV files due to platform compatibility issues.</li>
+					<li> [Change] Deleted BBCode [gametrailers]. Was one of the obsolete bbcodes, kept around for legacy posts, but gametrailer.com no longer supports the urls this bbcode used, so it has been permanently removed.</li>
+					<li> [Change] Deleted BBCode [gvideo]. Was one of the obsolete bbcodes, kept around for legacy posts, but Google Video services were shut down Aug 20 2012, so it has been permanently removed.</li>
+					<li> [Change] Updated [font] BBcode to support fonts with unicode characters in their names.</li>
+					<li> [Change] Updated [rapidshare] and [testlink] BBcodes to correctly check for valid rapidshare links.</li>
+					<li> [Change] Removed Lightbox2 from ABBC3 because the current version (2.51) requires modifications, does not support video, does not respect browser window sizes.</li>
+					<li> [Fix] Fixed an issue with youtu.be links not working in BBvideo</li>
+					<li> [Fix] Remove uneeded call to utf8_clean_string in bbcode.php</li>
+					<li> [Fix] Replace use of deprecated eregi function in abbcode.php</li>
+					<li> [Fix] Fixed an issue where downgrading to previous versions could result in all ABBC3 BBcodes being uninstalled.</li>
+					<li> [Fix] Fixed an issue where the Remove BBcode tags button would return "undefined" for [url], [email] and [click] BBcode tags.</li>
+					<li> [Fix] Fixed an minor style issue in subsilver2.</li>
+					<li> [Add-on] Instructions to automatically embed video directly from plain URLs (without [BBvideo] tag).</li>
+				</ul>
+				<div class="back2top"><a href="#wrap" class="top">Back to Top</a></div>
+			</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
 
 		<div class="paragraph">
 			<div class="inner"><span class="corners-top"><span></span></span>

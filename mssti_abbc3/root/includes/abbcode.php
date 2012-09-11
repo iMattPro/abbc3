@@ -1,9 +1,10 @@
 <?php
 /**
 *
-* @package phpBB3
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @package Advanced BBCode Box 3
+* @version $Id$
+* @copyright (c) 2010 leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
 
@@ -21,7 +22,7 @@ $abbcode = new abbcode();
 
 /**
 * Advanced BBCode Box 3 class
-* @package phpBB3
+* @package Advanced BBCode Box 3
 */
 class abbcode
 {
@@ -50,7 +51,7 @@ class abbcode
 	}
 
 	/**
-	* Initializate config vars...
+	* Initialize config vars...
 	*
 	* @param bool		$need_template
 	* @return mixeed
@@ -62,25 +63,21 @@ class abbcode
 
 		// For overall_header.html
 		$this->abbcode_config = array(
-			'S_ABBC3_VERSION'		=> (isset($config['ABBC3_VERSION'])) ? $config['ABBC3_VERSION'] : '3.0.11',
-			// Display ABBC3 ?
-			'S_ABBC3_MOD'			=> (isset($config['ABBC3_MOD'])) ? $config['ABBC3_MOD'] : true,
-			// Where the files are stored
+			'S_ABBC3_VERSION'		=> $config['ABBC3_VERSION'],
+			'S_ABBC3_MOD'			=> $config['ABBC3_MOD'],
+
 			'S_ABBC3_PATH'			=> $phpbb_root_path . 'styles/abbcode',
-			// Resize larger images ?
-			'S_ABBC3_RESIZE'		=> (isset($config['ABBC3_RESIZE_METHOD'])) ? ($config['ABBC3_RESIZE_METHOD'] != 'none' ? true : false) : true,
-			// Options are : AdvancedBox | HighslideBox | LiteBox | Lightview | Shadowbox | pop-up | enlarge | samewindow | newwindow | none	
-			'S_ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD'])) ? $config['ABBC3_RESIZE_METHOD'] : 'AdvancedBox',
-			// Display Resizer Info Bar ?
-			'S_ABBC3_RESIZE_BAR'	=> (isset($config['ABBC3_RESIZE_BAR'])) ? $config['ABBC3_RESIZE_BAR'] : true,
-			// Resize if image is bigger than...
-			'S_ABBC3_MAX_IMG_WIDTH'	=> (isset($config['ABBC3_MAX_IMG_WIDTH'])) ? $config['ABBC3_MAX_IMG_WIDTH'] : $config['img_max_width'],
-			'S_ABBC3_MAX_IMG_HEIGHT'=> (isset($config['ABBC3_MAX_IMG_HEIGHT'])) ? $config['ABBC3_MAX_IMG_HEIGHT'] : false,
-			// Resize larger images in signatures ?
-			'S_ABBC3_RESIZE_SIGNATURE'=> (isset($config['ABBC3_RESIZE_SIGNATURE'])) ? $config['ABBC3_RESIZE_SIGNATURE'] : false,
-			// Resize if image is bigger than...
-			'S_ABBC3_MAX_SIG_WIDTH'	=> (isset($config['ABBC3_MAX_SIG_WIDTH'])) ? $config['ABBC3_MAX_SIG_WIDTH'] : $config['img_max_width'],
-			'S_ABBC3_MAX_SIG_HEIGHT'=> (isset($config['ABBC3_MAX_SIG_HEIGHT'])) ? $config['ABBC3_MAX_SIG_HEIGHT'] : false,
+
+			'S_ABBC3_RESIZE'		=> ($config['ABBC3_RESIZE_METHOD'] != 'none') ? true : false,
+			'S_ABBC3_RESIZE_METHOD'	=> $config['ABBC3_RESIZE_METHOD'],
+			'S_ABBC3_RESIZE_BAR'	=> $config['ABBC3_RESIZE_BAR'],
+
+			'S_ABBC3_MAX_IMG_WIDTH'		=> (isset($config['ABBC3_MAX_IMG_WIDTH'])) ? $config['ABBC3_MAX_IMG_WIDTH'] : $config['img_max_width'],
+			'S_ABBC3_MAX_IMG_HEIGHT'	=> (isset($config['ABBC3_MAX_IMG_HEIGHT'])) ? $config['ABBC3_MAX_IMG_HEIGHT'] : $config['img_max_height'],
+
+			'S_ABBC3_RESIZE_SIGNATURE'	=> $config['ABBC3_RESIZE_SIGNATURE'],
+			'S_ABBC3_MAX_SIG_WIDTH'		=> (isset($config['ABBC3_MAX_SIG_WIDTH'])) ? $config['ABBC3_MAX_SIG_WIDTH'] : $config['img_max_width'],
+			'S_ABBC3_MAX_SIG_HEIGHT'	=> (isset($config['ABBC3_MAX_SIG_HEIGHT'])) ? $config['ABBC3_MAX_SIG_HEIGHT'] : $config['img_max_height'],
 		);
 		/*
 		// Styles and admin variables depends on locations
@@ -99,40 +96,28 @@ class abbcode
 
 		// For posting_buttons.html -> posting_abbcode_buttons.html
 		$this->abbcode_config = array_merge($this->abbcode_config, array(
-			// Bakground image
-			'ABBC3_BG'				=> (isset($config['ABBC3_BG'])) ? $config['ABBC3_BG'] : 'bg_abbc3.gif',
-			// Display icon division for tags ?
-			'ABBC3_TAB'				=> (isset($config['ABBC3_TAB'])) ? $config['ABBC3_TAB'] : 1,
-			// Resize posting textarea ?
-			'ABBC3_BOXRESIZE'		=> (isset($config['ABBC3_BOXRESIZE'])) ? $config['ABBC3_BOXRESIZE'] : true,
-			// Usename posting
-			'POST_AUTHOR'			=> (isset($user->data['username'])) ? $user->data['username'] : '',
-			// Thumbnails width
-			'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH'])) ? $config['ABBC3_MAX_THUM_WIDTH'] : $config['img_max_thumb_width'],
-			// Width for posted video ?
-			'ABBC3_VIDEO_WIDTH'		=> (isset($config['ABBC3_VIDEO_width'])) ? $config['ABBC3_VIDEO_width'] : 425,
-			// Height for posted video ?
-			'ABBC3_VIDEO_HEIGHT'	=> (isset($config['ABBC3_VIDEO_height'])) ? $config['ABBC3_VIDEO_height'] : 350,
-			// Link to ABBC3 help page
+			// Toolbar options
+			'ABBC3_BG'				=> $config['ABBC3_BG'],
+			'ABBC3_TAB'				=> $config['ABBC3_TAB'],
+			'ABBC3_BOXRESIZE'		=> $config['ABBC3_BOXRESIZE'],
+			'ABBC3_COMPACT'			=> $config['ABBC3_UCP_MODE'],
+			'ABBC3_COLOR_MODE'		=> $config['ABBC3_COLOR_MODE'],
+			'ABBC3_HIGHLIGHT_MODE'	=> $config['ABBC3_HIGHLIGHT_MODE'],
 			'ABBC3_HELP_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=help'),
-			// ABBC3 mode 
-			'ABBC3_COMPACT'			=> (isset($config['ABBC3_UCP_MODE'])) ? $config['ABBC3_UCP_MODE'] : false,
-			// Color picker
-			'ABBC3_COLOR_MODE'		=> (isset($config['ABBC3_COLOR_MODE'])) ? $config['ABBC3_COLOR_MODE'] : 'phpbb',
-			// Highlight picker
-			'ABBC3_HIGHLIGHT_MODE'	=> (isset($config['ABBC3_HIGHLIGHT_MODE'])) ? $config['ABBC3_HIGHLIGHT_MODE'] : 'phpbb',
-			// Link to ABBC3 wizards page
-			'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=wizards"),
-			// 0=Disable wizards | 1=Pop Up window | 2=In post (Ajax)
-			'ABBC3_WIZARD_MODE'		=> (isset($config['ABBC3_WIZARD_MODE'])) ? (int) $config['ABBC3_WIZARD_MODE'] : 2,
-			// Width for pop-up wizard window ?
-			'ABBC3_WIZARD_WIDTH'	=> (isset($config['ABBC3_WIZARD_width'])) ? $config['ABBC3_WIZARD_width'] : 700,
-			// Height for pop-up wizard window ?
-			'ABBC3_WIZARD_HEIGHT'	=> (isset($config['ABBC3_WIZARD_height'])) ? $config['ABBC3_WIZARD_height'] : 400,
-			// Link to ABBC3 tigra color picker page
-			'ABBC3_TIGRA_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", "mode=tigra"),
+			'ABBC3_TIGRA_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=tigra'),
+			// Thumbnails
+			'ABBC3_MAX_THUM_WIDTH'	=> (isset($config['ABBC3_MAX_THUM_WIDTH'])) ? $config['ABBC3_MAX_THUM_WIDTH'] : $config['img_max_thumb_width'],
+			'ABBC3_VIDEO_WIDTH'		=> $config['ABBC3_VIDEO_width'],
+			'ABBC3_VIDEO_HEIGHT'	=> $config['ABBC3_VIDEO_height'],
+			// ABBC3 wizards
+			'ABBC3_WIZARD_PAGE'		=> append_sid("{$phpbb_root_path}abbcode_page.$phpEx", 'mode=wizards'),
+			'ABBC3_WIZARD_MODE'		=> (int) $config['ABBC3_WIZARD_MODE'],
+			'ABBC3_WIZARD_WIDTH'	=> $config['ABBC3_WIZARD_width'],
+			'ABBC3_WIZARD_HEIGHT'	=> $config['ABBC3_WIZARD_height'],
 			// Cookie
 			'ABBC3_COOKIE_NAME'		=> $config['cookie_name'] . '_abbc3',
+			// Usename posting
+			'POST_AUTHOR'			=> (isset($user->data['username'])) ? $user->data['username'] : '',
 		));
 	}
 
@@ -236,39 +221,24 @@ class abbcode
 		$db->sql_freeresult($result);
 
 		$template->assign_vars(array(
-			'S_POST_ID'					=> ($post_id) ? $post_id : 0, //request_var('p', 0),
+			'S_POST_ID'					=> ($post_id) ? $post_id : 0,
 			'S_ABBC3_IN_WIZARD'			=> false,
 			'S_ABBC3_IN_ADMIN'			=> (isset($phpbb_admin_path)) ? true : false,
 			'S_ABBC3_BG'				=> $this->abbcode_config['ABBC3_BG'],
-			// Display icon division for tags ?
 			'S_ABBC3_TAB'				=> $this->abbcode_config['ABBC3_TAB'],
-			// Resize posting textarea ?
 			'S_ABBC3_BOXRESIZE'			=> $this->abbcode_config['ABBC3_BOXRESIZE'],
-			// Usename posting 
 			'S_POST_AUTHOR'				=> (isset($user->data['username'])) ? $user->data['username'] : '',
-			// Width for posted video ?
 			'S_ABBC3_VIDEO_WIDTH'		=> $this->abbcode_config['ABBC3_VIDEO_WIDTH'],
-			// Height for posted video ?
 			'S_ABBC3_VIDEO_HEIGHT'		=> $this->abbcode_config['ABBC3_VIDEO_HEIGHT'],
-			// Link to ABBC3 tigra color picker page
 			'S_ABBC3_TIGRA_PAGE'		=> $this->abbcode_config['ABBC3_TIGRA_PAGE'],
-			// Link to ABBC3 help page
 			'S_ABBC3_HELP_PAGE'			=> $this->abbcode_config['ABBC3_HELP_PAGE'],
-			// Link to ABBC3 wizards page
 			'S_ABBC3_WIZARD_PAGE'		=> $this->abbcode_config['ABBC3_WIZARD_PAGE'],
-			// 0=Disable wizards | 1=Pop Up window | 2=In post (Ajax)
 			'S_ABBC3_WIZARD_MODE'		=> $this->abbcode_config['ABBC3_WIZARD_MODE'],
-			// Width for pop-up wizard window ?
 			'S_ABBC3_WIZARD_WIDTH'		=> $this->abbcode_config['ABBC3_WIZARD_WIDTH'],
-			// Height for pop-up wizard window ?
 			'S_ABBC3_WIZARD_HEIGHT'		=> $this->abbcode_config['ABBC3_WIZARD_HEIGHT'],
-			// Color picker
 			'S_ABBC3_COLOR_MODE'		=> $this->abbcode_config['ABBC3_COLOR_MODE'],
-			// Highlight picker
 			'S_ABBC3_HIGHLIGHT_MODE'	=> $this->abbcode_config['ABBC3_HIGHLIGHT_MODE'],
-			// Cookie
 			'S_ABBC3_COOKIE_NAME'		=> $this->abbcode_config['ABBC3_COOKIE_NAME'],
-			// Define the ABBC3 view, according this user preferences
 			'S_ABBC3_COMPACT'			=> ($this->abbcode_config['ABBC3_COMPACT'] && isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false,
 		));
 	}
@@ -288,7 +258,7 @@ class abbcode
 
 		$return_value = true;
 
-		// Check group bbcodes permissions - Start
+		// Check group bbcodes permissions
 		if ($bbcode_group)
 		{
 			// Always use arrays here ;)
@@ -336,9 +306,8 @@ class abbcode
 				return $return_value;
 			}
 		}
-		// Check group bbcodes permissions - End
 
-		// Check some bbcodes status permissions - Start
+		// Check some bbcodes status permissions
 		if ($auth_tag)
 		{
 			// if no mode is specified, use post settings
@@ -441,7 +410,6 @@ class abbcode
 				return $return_value;
 			}
 		}
-		// Check some bbcodes status permissions - End
 
 		return $return_value;
 	}
@@ -453,14 +421,6 @@ class abbcode
 	* @param string		$in 	post text between [table] & [/table]
 	* @return string	table
 	* @version 3.0.8
-	* @todo: 
-	* 	root/includes/funtions_content.php -> strip_bbcode()
-	* 	$table_ary = array(
-	*		"#\[tr=(.*?)\](.*?)\[/tr\]#is",
-	*		"#\[td=(.*?)\](.*?)\[/td\]#is",
-	*	);
-	*	$text = preg_replace($table_ary, '\2', $text);
-	*
 	*/
 	function table_pass($stx, $in)
 	{
@@ -490,22 +450,31 @@ class abbcode
 		$in	= str_replace(array("]\r\n", "]\r", "]\n", "\r\n[", "\r[", "\n[", '\"', '\'', '(', ')'), array("]\n", ']', ']', "\n[", '[', '[', '"', '&#39;', '&#40;', '&#41;'), trim($in));
 
 		$table_ary = array(
-			"#\[tr\](.*?)\[/tr\]#ies"			=> "'<tr>' . trim('\$1') . '</tr>'",
-			"#\[tr\=(.*?)\](.*?)\[/tr\]#ies"	=> "'<tr style=\"' . trim('\$1') . '\">' . trim('\$2') . '</tr>'",
-			"#\[td\](.*?)\[/td\]#ies"			=> "'<td>' . trim('\$1') . '</td>'",
-			"#\[td\=(.*?)\](.*?)\[/td\]#ies"	=> "'<td style=\"' . trim('\$1') . '\">' . trim('\$2') . '</td>'",
+			'#\[(tr)(?:\=(.*?))?\](.*?)\[/tr\]#is',
+			'#\[(td)(?:\=(.*?))?\](.*?)\[/td\]#is',
 		);
 
-		foreach ($table_ary as $abbcode_found => $abbcode_replace)
+		foreach ($table_ary as $table_regex)
 		{
-			if (preg_match($abbcode_found, $in))
+			if (preg_match($table_regex, $in))
 			{
-				// when using the /e modifier, preg_replace slashes double-quotes but does not seem to slash anything else
-				$in = str_replace('\"', '"', preg_replace($abbcode_found, $abbcode_replace, $in));
+				$in = preg_replace_callback($table_regex, array($this, 'parse_table_tags'), $in);
 			}
 		}
 
 		return '<table ' . (($stx) ? 'style="' . $stx . '" ' : '') . 'cellspacing="0" cellpadding="0">' . $in .'</table>';
+	}
+
+	/**
+	* Callback for parsing the tr and td table tags
+	*
+	* @param array		$matches
+	* @return 			html string
+	* @version 3.0.12
+	*/
+	function parse_table_tags($matches)
+	{
+		return '<' . $matches[1] . (!empty($matches[2]) ? ' style="' . trim($matches[2]) . '"' : '') . '>' . trim($matches[3]) . '</' . $matches[1] . '>';
 	}
 
 	/**
@@ -523,7 +492,7 @@ class abbcode
 		$a_href	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($a_href));
 		$string	= str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim($string));
 
-		// If no id and no href, the bcode is not well formed
+		// If no id and no href, the bbcode is not well formed
 		if (!$a_id && !$a_href)
 		{
 			return '[anchor= ]' . $string . '[/anchor]';
@@ -720,7 +689,7 @@ class abbcode
 				$in = $config['sitename'];
 			break;
 		}
-		return str_replace(array('{SEARCH_SITE}','{SEARCH_TEXT}', '{URL}' ,'{SEARCH_STRING}'), array(strtolower($in), strtolower($user->lang['SEARCH_MINI']), $search_link, $search), $this->bbcode_tpl('search'));
+		return str_replace(array('{SEARCH_SITE}','{SEARCH_TEXT}', '{URL}' ,'{SEARCH_STRING}'), array(strtolower($in), strtolower($user->lang['SEARCH']), $search_link, $search), $this->bbcode_tpl('search'));
 	}
 
 	/**
@@ -1072,7 +1041,6 @@ class abbcode
 			$ok_icon	= $this->abbcode_config['S_ABBC3_PATH'] . '/images/ok.gif';
 			$error_icon	= $this->abbcode_config['S_ABBC3_PATH'] . '/images/error.gif';
 
-
 			$linktest		 = new linktest();
 			$linktest_links	 = explode("\n", $in);
 			$linktest_result = array();
@@ -1083,9 +1051,9 @@ class abbcode
 				if (trim($linktest_value) !== '')
 				{
 					// undo make_clickable_callback(); and Remove Comments from post content
-					$linktest_value		= trim(str_replace('\"', '',preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3',$linktest_value)));
+					$linktest_value	= trim(str_replace('\"', '', preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si', '$3', $linktest_value)));
 				//  After made changes in : http://www.phpbb.com/kb/article/links-opening-new-windows/
-				//	$linktest_value		= trim(str_replace('\"', '',preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?) onclick=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3', trim($linktest_value))));
+				//	$linktest_value	= trim(str_replace('\"', '', preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?) onclick=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si', '$3', trim($linktest_value))));
 
 					// if there is no scheme, then add http schema
 					if (!preg_match('#^[a-z0-9]+://#i', $linktest_value))
@@ -1094,18 +1062,18 @@ class abbcode
 					}
 					$linktest_return	= $linktest->test($linktest_value);
 
-					if (!$linktest_return)
+					if (!$linktest_return || (sizeof($linktest_return) && $linktest_return[0] === false))
 					{
 						$linktest_msg	= '<span class="abbc3_wrong">' . $user->lang['ABBC3_TESTLINK_WRONG'] . '</span>';
-						$linktest_pic	= '<img src="' . $error_icon . '" class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" title="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" />';
+						$linktest_pic	= '<img src="' . $error_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" title="' . $user->lang['ABBC3_TESTLINK_WRONG'] . '" />';
 					}
 					else
 					{
 						$linktest_msg	= '<span class="abbc3_good">' . $user->lang['ABBC3_TESTLINK_GOOD'] . '</span>';
-						$linktest_pic	= '<img src="' . $ok_icon . '"    class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_GOOD'] .'" title="' . $user->lang['ABBC3_TESTLINK_GOOD'] .'" />';
+						$linktest_pic	= '<img src="' . $ok_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_TESTLINK_GOOD'] .'" title="' . $user->lang['ABBC3_TESTLINK_GOOD'] .'" />';
 					}
 
-					$linktest_value		= '<a href="' .$linktest_value . '" onclick="window.open(this.href);return false;" title="' .$linktest_value . '" >' . $linktest_value . '</a>';
+					$linktest_value		= '<a href="' . $linktest_value . '" onclick="window.open(this.href);return false;" title="' . $linktest_value . '" >' . $linktest_value . '</a>';
 					$linktest_result[]	= array('link' => $linktest_value, 'pic' => $linktest_pic, 'msg' => $linktest_msg);
 				}
 			}
@@ -1115,7 +1083,7 @@ class abbcode
 				foreach ($linktest_result as $linktest_data)
 				{
 					// If img_links is enabled use images, else use string
-					$linktest_echo .= (($this->img_links) ? $linktest_data['pic'] . '&nbsp;' . $linktest_data['link'] : $linktest_data['link'] . '&nbsp;' . $linktest_data['msg']) . "<br />";
+					$linktest_echo .= (($this->img_links) ? $linktest_data['pic'] . '&nbsp;' . $linktest_data['link'] : $linktest_data['link'] . '&nbsp;' . $linktest_data['msg']) . '<br />';
 				}
 			}
 			unset($linktest, $linktest_result);
@@ -1128,7 +1096,7 @@ class abbcode
 	*
 	* @param string		$in 	post text between [rapidshare] &[/rapidshare]
 	* @return string	link with text ok/wrong
-	* @version 3.0.8
+	* @version 3.0.12
 	*/
 	function rapidshare_pass($in)
 	{
@@ -1140,11 +1108,6 @@ class abbcode
 			return '<dl class="codebox codecontent" style="display:inline; padding: 0px;"><dd style="display:inline;color:#ff0000">'. $user->lang['LOGIN_EXPLAIN_VIEW'] . '</dd></dl>';
 		}
 
-		if (ini_get('allow_url_fopen') != 1)
-		{
-			return $user->lang['ABBC3_FOPEN_ERROR'] ;
-		}
-
 		if (empty($this->abbcode_config))
 		{
 			$this->abbcode_init(false);
@@ -1153,44 +1116,52 @@ class abbcode
 		$in = trim($in);
 		$ok_icon	= $this->abbcode_config['S_ABBC3_PATH'] . '/images/ok.gif';
 		$error_icon	= $this->abbcode_config['S_ABBC3_PATH'] . '/images/error.gif';
-		$rapidshare_echo	 = '';
+		$rapidshare_echo = '';
 
-		$rapidshare_links	 = explode("\n", $in);
+		// only 1 link allowed at a time. Display as broken bbcode if multiple links found
+		$rapidshare_links = explode("\n", $in);
 		if (sizeof($rapidshare_links) > 1)
 		{
 			// undo make_clickable_callback(); and Remove Comments from post content
-			return "[rapidshare]" . str_replace('\"', '',preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$2',$in)) . "[/rapidshare]";
+			return '[rapidshare]' . str_replace('\"', '', preg_replace('#<!-- ([lmwe]) --><a class=(.*?) href=(.*?)>(.*?)</a><!-- ([lmwe]) -->#si','$3', $in)) . '[/rapidshare]';
 		}
 
-		$rs_checkfiles = @fopen("http://rapidshare.com/cgi-bin/checkfiles.cgi?urls=" . $in, "r");
-		if ($rs_checkfiles !== false)
+		$rapidshare_link = '<a href="' . $in . '" title="' . $in . '" onclick="window.open(this.href);return false;">' . $in . '</a>';
+		$rapidshare_msg  = '<span class="abbc3_wrong">' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '</span>';
+		$rapidshare_pic  = '<img src="' . $error_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" />';	
+
+		// get fileid and filename from the rapidshare url
+		preg_match('/https?:\/\/(?:www.)?rapidshare.com\/.*\/([\d]+)\/(.*)/', $in, $matches);
+		$rs_file_id = $matches[1];
+		$rs_file_name = $matches[2];
+		$rs_api_url = 'http://api.rapidshare.com/cgi-bin/rsapi.cgi?sub=checkfiles&files=' . $rs_file_id . '&filenames=' . $rs_file_name;
+
+		// check if the file exists at rapidshare
+		if (function_exists ('curl_init'))
 		{
-			while (!feof ($rs_checkfiles))
-			{
-				$buffer = @fgets($rs_checkfiles, 4096);
-				if (eregi('File is on server number', $buffer))
-				{
-					$rapidshare_msg = '<span class="abbc3_good">' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '</span>';
-					$rapidshare_pic = '<img src="' . $ok_icon . '" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" />';
-					break;
-				}
-				else
-				{
-					$rapidshare_msg = '<span class="abbc3_wrong">' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '</span>';
-					$rapidshare_pic = '<img src="' . $error_icon . '" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" />';
-					break;
-				}
-			}
-			fclose ($rs_checkfiles);
+			$curl = curl_init($rs_api_url);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+			$rapidshare_check = curl_exec($curl);
+			curl_close($curl);
 		}
 		else
 		{
-			$rapidshare_msg = '<span class="abbc3_wrong">' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '</span>';
-			$rapidshare_pic = '<img src="' . $error_icon . '" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_WRONG'] . '" />';	
+			$rapidshare_check = @file_get_contents($rs_api_url);		
+		}
+
+		if ($rapidshare_check !== false)
+		{
+			$resp_arr = explode(',', $rapidshare_check);			
+			if($resp_arr[4] == 1) // 1=File OK (Anonymous downloading)
+			{
+				$rapidshare_msg = '<span class="abbc3_good">' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '</span>';
+				$rapidshare_pic = '<img src="' . $ok_icon . '" style="vertical-align:bottom; padding:2px 0;" class="postimage" alt="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" title="' . $user->lang['ABBC3_RAPIDSHARE_GOOD'] . '" />';
+			}
 		}
 
 		// If img_links is enabled use images, else use string
-		$rapidshare_echo .= '<a href="' . $in . '" title="' . $in . '" onclick="window.open(this.href);return false;">' . $in . '</a>' . (($this->img_links) ? '&nbsp;' . $rapidshare_pic : '&nbsp;' . $rapidshare_msg) . "<br />";
+		$rapidshare_echo .= (($this->img_links) ? $rapidshare_pic . '&nbsp;' . $rapidshare_link : $rapidshare_link . '&nbsp;' . $rapidshare_msg) . '<br />';
 
 		return '<dl class="testlink"><dd>'. $rapidshare_echo . '</dd></dl>';
 	}
@@ -1472,169 +1443,215 @@ class abbcode
 	*/
 	function video_init()
 	{
+		global $user;
+
 		// Patterns and replacements for BBVIDEO bbcode processing
 		return array(
 			'video' => array(),
+			'5min.com' => array(
+				'id'		=> 41,
+				'image'		=> '5min.gif',
+				'example'	=> 'http://www.5min.com/Video/iPad-to-Embrace-New-Name-517297508',
+				'match'		=> '#http://(?:.*)?5min.com/Video/(?:.*)-([0-9]+)#si',
+				'replace'	=> 'http://embed.5min.com/$1/',
+				'method'	=> 'flash',
+			),
 			'allocine.fr' => array(
 				'id'		=> 46,
 				'image'		=> 'allocine.gif',
 				'example'	=> 'http://www.allocine.fr/video/player_gen_cmedia=19149857&cfilm=126693.html',
-				'match'		=> '#http://www.allocine.fr/video/player_gen_cmedia=(\d+)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.allocine.fr/blogvision/$1', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.allocine.fr/video/player_gen_cmedia=(\d+)?([^[]*)?#si',
+				'replace'	=> 'http://www.allocine.fr/blogvision/$1',
+				'method'	=> 'flash',
 			),
 			'blip.tv' => array(
 				'id'		=> 52,
 				'image'		=> 'bliptv.gif',
 				'example'	=> 'http://blip.tv/disenchanted/disenchanted-ep-101-once-upon-a-crackhouse-6063266',
-				'match'		=> '#http://(.*?)blip.tv/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://blip.tv/oembed/?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)blip.tv/([^[]*)?#si',
+				'replace'	=> 'http://blip.tv/oembed/?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'break.com' => array(
 				'id'		=> 21,
 				'image'		=> 'break.gif',
 				'example'	=> 'http://www.break.com/index/wakeboarding-boss-level-2315925',
-				'match'		=> '#http://(.*?)break.com/([^[]*)?-([0-9]+)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://embed.break.com/$3', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)break.com/([^[]*)?-([0-9]+)?([^[]*)?#si',
+				'replace'	=> 'http://embed.break.com/$3',
+				'method'	=> 'flash',
 			),
 			'clipfish.de' => array(
 				'id'		=> 2,
 				'image'		=> 'clipfish.gif',
 				'example'	=> 'http://www.clipfish.de/video/1856437/ac-dc-tnt/',
-				'match'		=> '#http://www.clipfish.de/video/([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.clipfish.de/cfng/flash/clipfish_player_3.swf?as=0&vid=$1', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.clipfish.de/video/([0-9]+)([^[]*)?#si',
+				'replace'	=> 'http://www.clipfish.de/cfng/flash/clipfish_player_3.swf?as=0&vid=$1',
+				'method'	=> 'flash',
 			),
 			'clipmoon.com' => array(
 				'id'		=> 3,
 				'image'		=> 'clipmoon.gif',
 				'example'	=> 'http://www.clipmoon.com/videos/9194d9/animation-versus-animator.html',
-				'match'		=> '#http://www.clipmoon.com/(.*?)/(([0-9A-Za-z-_]+)([0-9A-Za-z-_]{2}))/([^[]*)#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.clipmoon.com/flvplayer.swf?config=http://www.clipmoon.com/flvplayer.php?viewkey=$2&external=yes&vimg=http://www.clipmoon.com/thumb/$3.jpg', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.clipmoon.com/(.*?)/(([0-9A-Za-z-_]+)([0-9A-Za-z-_]{2}))/([^[]*)#si',
+				'replace'	=> 'http://www.clipmoon.com/flvplayer.swf?config=http://www.clipmoon.com/flvplayer.php?viewkey=$2&external=yes&vimg=http://www.clipmoon.com/thumb/$3.jpg',
+				'method'	=> 'flash',
 			),
 			'cnbc.com' => array(
 				'id'		=> 47,
 				'image'		=> 'nbc.gif',
-				'example'	=> 'http://www.cnbc.com/id/15840232?video=1548022077&play=1',
-				'match'		=> '#http://www.cnbc.com/id/(\d+)(?:|/)\?video=(\d+)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://plus.cnbc.com/rssvideosearch/action/player/id/$2/code/cnbcplayershare', '{WIDTH}', '{HEIGHT}')",
+				'example'	=> 'http://video.cnbc.com/gallery/?video=1548022077&play=1',
+				'match'		=> '#http://.*\.cnbc.com/[^?]+\?video=(\d+)?[^[]*?#si',
+				'replace'	=> 'http://plus.cnbc.com/rssvideosearch/action/player/id/$1/code/cnbcplayershare',
+				'method'	=> 'flash',
 			),
- 			'cnettv.cnet.com' => array(
- 				'id'		=> 27,
- 				'image'		=> 'cnet.gif',
- 				'example'	=> 'http://cnettv.cnet.com/kinect-controlled-motorized-skateboard/9742-1_53-50118306.html',
- 				'match'		=> '#http://cnettv\.cnet\.com/[a-z0-9\-]*\/[0-9]{4}-[0-9]_[0-9]{2}-([0-9]{5,9})\.html#sie',
- 				'replace'	=> "\$this->auto_embed_video('http://www.cnet.com/av/video/embed/player.swf', '{WIDTH}', '{HEIGHT}', 'playerType=embedded&type=id&value=$1')",
- 			),
+			'cnettv.cnet.com' => array(
+				'id'		=> 27,
+				'image'		=> 'cnet.gif',
+				'example'	=> 'http://cnettv.cnet.com/kinect-controlled-motorized-skateboard/9742-1_53-50118306.html',
+				'match'		=> '#http://cnettv\.cnet\.com/[a-z0-9\-]*\/[0-9]{4}-[0-9]_[0-9]{2}-([0-9]{5,9})\.html#si',
+				'replace'	=> 'http://www.cnet.com/av/video/embed/player.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'playerType=embedded&type=id&value=$1',
+			),
+			'colbertnation.com' => array(
+				'id'		=> 63,
+				'image'		=> 'comedycentral.gif',
+				'example'	=> 'http://www.colbertnation.com/the-colbert-report-videos/180900/october-17-2005/intro---10-17-05',
+				'match'		=> '#http://(?:.*?)colbertnation.com/the-colbert-report-videos/([0-9]+)/([^[]*)?#si',
+				'replace'	=> '<iframe src="http://media.mtvnservices.com/embed/mgid:cms:video:colbertnation.com:$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+			),
 			'collegehumor.com' => array(
 				'id'		=> 4,
 				'image'		=> 'collegehumor.gif',
 				'example'	=> 'http://www.collegehumor.com/video/6747386/skyrim-hoarders',
-				'match'		=> '#http://www.collegehumor.com/video/([0-9]+)/([^[]*)#sie',
-				'replace'	=> "\$this->auto_embed_video('http://0.static.collegehumor.cvcdn.com/moogaloop/moogaloop.internal.1.0.1.swf?clip_id=$1&use_node_id=true&fullscreen=1', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.collegehumor.com/video/([0-9]+)/([^[]*)#si',
+//				'replace'	=> '<iframe src="http://www.collegehumor.com/e/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>',
+				'replace'	=> 'http://0.static.collegehumor.cvcdn.com/moogaloop/moogaloop.internal.1.0.1.swf?clip_id=$1&use_node_id=true&fullscreen=1',
+				'method'	=> 'flash',
+			),
+			'comedians.jokes.com' => array(
+				'id'		=> 57,
+				'image'		=> 'comedians.gif',
+				'example'	=> 'http://comedians.jokes.com/bert-kreischer/videos/bert-kreischer---twelve-words',
+				'match'		=> '#http://comedians.(jokes|comedycentral).com/(.*?)/videos/([^[]*)#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'comedycentral.com' => array(
 				'id'		=> 1,
 				'image'		=> 'comedycentral.gif',
-				'example'	=> 'http://www.comedycentral.com/videos/index.jhtml?videoId=185763&title=weekly-evil-six-reasons-alaska',
-				'match'		=> '#http://(?:.*?)comedycentral.com/videos/index.jhtml\?videoId=([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://media.mtvnservices.com/mgid:cms:item:comedycentral.com:$1', '{WIDTH}', '{HEIGHT}', 'autoPlay=false')",
+				'example'	=> 'http://www.comedycentral.com/video-clips/l56fcp/futurama-trashy-robo-sluts',
+				'match'		=> '#http://(?:.*?)comedycentral.com/video-clips/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'crackle.com' => array(	
 				'id'		=> 5,
 				'image'		=> 'crackle.gif',
 				'example'	=> 'http://www.crackle.com/c/Breaking_Bad/Breaking_Bad/2451891',
-				'match'		=> '#http://((.*?)?)crackle.com/(.*?)/(.*?)/(.*?)/([0-9]+)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.crackle.com/p/$4/$5.swf', '{WIDTH}', '{HEIGHT}', 'id=$6&mu=0&ap=0')",
+				'match'		=> '#http://((.*?)?)crackle.com/(.*?)/(.*?)/(.*?)/([0-9]+)?([^[]*)?#si',
+				'replace'	=> 'http://www.crackle.com/p/$4/$5.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'id=$6&mu=0&ap=0',
 			),
 			'current.com' => array(
 				'id'		=> 8,
 				'image'		=> 'currenttv.gif',
 				'example'	=> 'http://current.com/shows/infomania/93263307_viral-video-film-school-blockbusters.htm',
-				'match'		=> '#http://current.com/(.*?)/(.*?)/([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://current.com/e/$3/en_US', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://current.com/(.*?)/(.*?)/([0-9]+)([^[]*)?#si',
+				'replace'	=> 'http://current.com/e/$3/en_US',
+				'method'	=> 'flash',
 			),
 			'dailymotion.com' => array(
 				'id'		=> 6,
 				'image'		=> 'dailymotion.gif',
 				'example'	=> 'http://www.dailymotion.com/video/x4ez1x_alberto-contra-el-heliocentrismo_sport',
-				'match'		=> '#http://www.dailymotion.com(.*?)/video/(([^[_]*)?([^[]*)?)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.dailymotion.com/swf/video/$3', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(?:.*?)dailymotion.com(?:.*?)/video/(([^[_]*)?([^[]*)?)?#si',
+//				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://www.dailymotion.com/embed/video/$2"></iframe>',
+				'replace'	=> 'http://www.dailymotion.com/swf/video/$2',
+				'method'	=> 'flash',
+			),
+			'dotsub.com' => array(
+				'id'		=> 60,
+				'image'		=> 'dotsub.gif',
+				'example'	=> 'http://dotsub.com/view/6a7db231-4d64-407d-8026-a845eaf6c4a9',
+				'match'		=> '#http://dotsub.com/view/(.*)#si',
+				'replace'	=> '<iframe src="http://dotsub.com/media/$1/embed/" frameborder="0" width="{WIDTH}" height="{HEIGHT}"></iframe>',
 			),
 			'ebaumsworld.com' => array(
 				'id'		=> 32,
 				'image'		=> 'ebaumsworld.gif',
 				'example'	=> 'http://www.ebaumsworld.com/video/watch/82424906/',
-				'match'		=> '#http://(.*?)ebaumsworld.com/video/watch/(.*?)/#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.ebaumsworld.com/player.swf', '{WIDTH}', '{HEIGHT}', 'id1=$2')",
+				'match'		=> '#http://(.*?)ebaumsworld.com/video/watch/(.*?)/#si',
+				'replace'	=> 'http://www.ebaumsworld.com/player.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'id1=$2',
 			),
 			'facebook.com' => array(
 				'id'		=> 50,
 				'image'		=> 'video.gif',
 				'example'	=> 'http://www.facebook.com/video/video.php?v=1587422536911',
-				'match'		=> '#http://www.facebook.com/video/video.php\?v=([0-9A-Za-z-_]+)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.facebook.com/v/$1', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.facebook.com/(?:.*)video.php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?#si',
+				'replace'	=> 'http://www.facebook.com/v/$1',
+				'method'	=> 'flash',
 			),
 			'flickr.com' => array(
 				'id'		=> 19,
 				'image'		=> 'flickr.gif',
 				'example'	=> 'http://www.flickr.com/photos/chrismar/3071009125',
-				'match'		=> '#http://((.*?)?)flickr.com/(.*?)/(.*?)/([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.flickr.com/apps/video/stewart.swf', '{WIDTH}', '{HEIGHT}', 'intl_lang=en-us&photo_id=$5')",
+				'match'		=> '#http://((.*?)?)flickr.com/(.*?)/(.*?)/([0-9]+)([^[]*)?#si',
+				'replace'	=> 'http://www.flickr.com/services/oembed/?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'funnyordie.com' => array(
 				'id'		=> 20,
 				'image'		=> 'funnyordie.gif',
 				'example'	=> 'http://www.funnyordie.com/videos/5ef1adb57b/between-two-ferns-with-zach-galifianakis',
-				'match'		=> '#http://((.*?)?)funnyordie.com/(.*?)/(.*?)/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://player.ordienetworks.com/flash/fodplayer.swf', '{WIDTH}', '{HEIGHT}', 'key=$4')",
+				'match'		=> '#http://(?:.*?)funnyordie.com/(.*?)/(.*?)/(?:[^[]*)?#si',
+//				'replace'	=> '<iframe src="http://www.funnyordie.com/embed/$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+				'replace'	=> 'http://player.ordienetworks.com/flash/fodplayer.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'key=$2',
 			),
 			'g4tv.com' => array(
 				'id'		=> 7,
 				'image'		=> 'g4tv.gif',
 				'example'	=> 'http://g4tv.com/videos/29265/Infamous-All-Access/',
-				'match'		=> '#http://(?:www\.)?g4tv.com/(.*?videos)/([0-9]+)/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.g4tv.com/lv3/$2', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(?:www\.)?g4tv.com/(.*?videos)/([0-9]+)/([^[]*)?#si',
+				'replace'	=> 'http://www.g4tv.com/lv3/$2',
+				'method'	=> 'flash',
 			),
 			'gameprotv.com' => array(
 				'id'		=> 9,
 				'image'		=> 'gameprotv.gif',
 				'example'	=> 'http://www.gameprotv.com/socom-4-us-navy-seals-trailer-video-6923.html',
-				'match'		=> '#http://www.gameprotv.com/(.*)-video-([0-9]+)?.([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.idg.es/player-viral.swf', '{WIDTH}', '{HEIGHT}', 'image=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.jpg&file=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.flv&plugins=adtonomy,viral-1')",
+				'match'		=> '#http://www.gameprotv.com/(.*)-video-([0-9]+)?.([^[]*)?#si',
+				'replace'	=> 'http://www.idg.es/player-viral.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'image=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.jpg&file=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.flv&plugins=adtonomy,viral-1',
 			),
 			'gamespot.com' => array(
 				'id'		=> 10,
 				'image'		=> 'gamespot.gif',
 				'example'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
-				'match'		=> '#http://www.gamespot.com(.*?)/video/(.*?)/(\d{7}?)(/[^/]+)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$3%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
-			),
-			'gamespot.com/showcases' => array(
-				'id'		=> 11,
-				'image'		=> 'gamespot.gif',
-				'example'	=> 'http://www.gamespot.com/showcases/ace-combat?sid=6345546',
-				'match'		=> '#http://www.gamespot.com/showcases/(.*?)\?sid=([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf', '{WIDTH}', '{HEIGHT}', 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$2%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F')",
-			),
-			'gametrailers.com/user-movie' => array(
-				'id'		=> 13,
-				'image'		=> 'gametrailers.gif',
-				'example'	=> 'http://www.gametrailers.com/user-movie/first-gta-cw-screens/268358',
-				'match'		=> '#http://www.gametrailers.com/(?:user\-movie|player)/(.*?)/([0-9]+)(?:[^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?umid=$2', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.gamespot.com(?:.*?)/(?:video|showcases)/(?:.*?)(?:/|\?sid=)(\d{7}?)(?:.*)?#si',
+// size issues	'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.gamespot.com/videoembed/$1&vidSize=480" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
+				'replace'	=> 'http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/proteus2.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'skin=http://image.com.com/gamespot/images/cne_flash/production/media_player/proteus/one/skins/gamespot.png&paramsURI=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$1%26mode%3Dembedded%26width%3D{WIDTH}%26height%3D{HEIGHT}%2F',
 			),
 			'gametrailers.com' => array(
 				'id'		=> 14,
 				'image'		=> 'gametrailers.gif',
-				'example'	=> 'http://www.gametrailers.com/video/world-premiere-facebreaker/30461',
-				'match'		=> '#http://www.gametrailers.com/(.*?)/([0-9]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.gametrailers.com/remote_wrap.php?mid=$2', '{WIDTH}', '{HEIGHT}')",
+				'example'	=> 'http://www.gametrailers.com/videos/j3gx9q/facebreaker-world-premiere-exclusive-debut',
+				'match'		=> '#http://www.gametrailers.com/(?:user\-movie|player|video|videos)/([\w\-]+)\/([\w\-]+).*#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'gamevideos.1up' => array(
 				'id'		=> 15,
 				'image'		=> 'gamevideos.gif',
 				'example'	=> 'http://gamevideos.1up.com/video/id/17766',
-				'match'		=> '#http://(?:www.)?gamevideos(?:.*?).com/video/id/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://gamevideos.1up.com/swf/gamevideos12.swf?embedded=1&fullscreen=1&autoplay=0&src=http://gamevideos.1up.com/do/videoListXML%3Fid%3D$1%26adPlay%3Dfalse', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(?:www.)?gamevideos(?:.*?).com/video/id/([^[]*)?#si',
+				'replace'	=> 'http://gamevideos.1up.com/swf/gamevideos12.swf?embedded=1&fullscreen=1&autoplay=0&src=http://gamevideos.1up.com/do/videoListXML%3Fid%3D$1%26adPlay%3Dfalse',
+				'method'	=> 'flash',
 			),
 			'godtube.com' => array(
 				'id'		=> 33,
@@ -1643,124 +1660,205 @@ class abbcode
 				'match'		=> '#http://www.godtube.com/watch/\?v=([^[]*)?#si',
 				'replace'	=> '<script type="text/javascript" src="http://www.godtube.com/embed/source/$1.js?w={WIDTH}&amp;h={HEIGHT}&amp;ap=false&amp;sl=false&amp;title=false"></script>',
 			),
+			'gotgame.com' => array(
+				'id'		=> 58,
+				'image'		=> 'gotgame.gif',
+				'example'	=> 'http://gotgame.com/2012/03/26/assassins-creed-3-interview-with-alex-hutchinson/',
+				'match'		=> '#http://(.*?)gotgame.com/([^[]*)?#si',
+				'replace'	=> 'http://gotgame.com/wp-content/plugins/oembed-provider/oembed-provider.php?url=$0&format=json',
+				'method'	=> 'oEmbed',
+			),
 			'howcast.com' => array(
 				'id'		=> 28,
 				'image'		=> 'howcast.gif',
 				'example'	=> 'http://www.howcast.com/videos/499089-How-to-Draw-Manga-How-to-Draw-Monsters',
-				'match'		=> '#http://(.*?)howcast.com/videos/([0-9]+)?-([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.howcast.com/flash/howcast_player.swf?file=$2&theme=black', '{WIDTH}', '{HEIGHT}', '&fs=true')",
+				'match'		=> '#http://(.*?)howcast.com/videos/([0-9]+)?-([^[]*)?#si',
+				'replace'	=> 'http://www.howcast.com/flash/howcast_player.swf?file=$2&theme=black',
+				'method'	=> 'flash',
+				'flashvars'	=> '&fs=true',
 			),
 			'hulu.com' => array(
 				'id'		=> 53,
 				'image'		=> 'hulu.gif',
 				'example'	=> 'http://www.hulu.com/watch/308687/the-office-dwight-vs-jim-prank-tacular',
-				'match'		=> '#http://(.*?)hulu.com/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://www.hulu.com/api/oembed?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)hulu.com/([^[]*)?#si',
+				'replace'	=> 'http://www.hulu.com/api/oembed?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'ign.com' => array(
 				'id'		=> 16,
 				'image'		=> 'ign.gif',
 				'example'	=> 'http://www.ign.com/videos/2012/04/05/double-dragon-neon-gameplay-trailer',
-				'match'		=> '#http://(.*?)ign\.com/videos/([0-9]+)/([0-9]+)/([0-9]+)/([^?]*)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://oystatic.ignimgs.com/src/core/js/../swf/IGNPlayer.swf', '{WIDTH}', '{HEIGHT}', 'url=$0')",
+				'match'		=> '#http://(.*?)ign\.com/videos/([0-9]+)/([0-9]+)/([0-9]+)/([^?]*)?([^[]*)?#si',
+				'replace'	=> 'http://oystatic.ignimgs.com/src/core/swf/IGNPlayer.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'url=$0',
 			),
 			'kyte.tv' => array(
 				'id'		=> 17,
 				'image'		=> 'kyte.gif',
 				'example'	=> 'http://www.kyte.tv/ch/182864',
-				'match'		=> '#http://www.kyte.tv/ch/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.kyte.tv/f/', '{WIDTH}', '{HEIGHT}', 'p=s&c=$1&tbid=1')",
+				'match'		=> '#http://www.kyte.tv/ch/([^[]*)?#si',
+				'replace'	=> 'http://www.kyte.tv/f/',
+				'method'	=> 'flash',
+				'flashvars'	=> 'p=s&c=$1&tbid=1',
 			),
 			'liveleak.com' => array(
 				'id'		=> 18,
 				'image'		=> 'liveleak.gif',
 				'example'	=> 'http://www.liveleak.com/view?i=166_1194290849',
-				'match'		=> '#http://www.liveleak.com/view\?i=([0-9A-Za-z-_]+)?(\&[^/]+)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.liveleak.com/e/$1', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.liveleak.com/view\?i=([0-9A-Za-z-_]+)?(\&[^/]+)?#si',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.liveleak.com/ll_embed?f=$1" frameborder="0" allowfullscreen></iframe>',
+				'replace'	=> 'http://www.liveleak.com/e/$1',
+				'method'	=> 'flash',
 			),
 			'metacafe.com' => array(
 				'id'		=> 22,
 				'image'		=> 'metacafe.gif',
 				'example'	=> 'http://www.metacafe.com/watch/966360/merry_christmas_with_crazy_frog/',
-				'match'		=> '#http://www.metacafe.com/watch/([0-9]+)?((/[^/]+)/?)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.metacafe.com/fplayer/$1/metacafe.swf', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.metacafe.com/watch/([0-9]+)?((/[^/]+)/?)?#si',
+				'replace'	=> 'http://www.metacafe.com/fplayer/$1/metacafe.swf',
+				'method'	=> 'flash',
+			),
+			'moddb.com' => array(
+				'id'		=> 59,
+				'image'		=> 'moddb.gif',
+				'example'	=> 'http://www.moddb.com/groups/humour-satire-parody/videos/flight-dc132-part-1',
+				'match'		=> '#http://www.moddb.com/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'mpora.com' => array(
 				'id'		=> 24,
 				'image'		=> 'mpora.gif',
 				'example'	=> 'http://video.mpora.com/watch/YaFmE9sfT/',
-				'match'		=> '#http://(.*?)mpora.com/watch/(.*?)/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://video.mpora.com/ep/$2/', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)mpora.com/watch/(.*?)/([^[]*)?#si',
+				'replace'	=> 'http://video.mpora.com/ep/$2/',
+				'method'	=> 'flash',
 			),
 			'msnbc.msn.com' => array(
 				'id'		=> 48,
 				'image'		=> 'nbc.gif',
 				'example'	=> 'http://www.msnbc.msn.com/id/21134540/vp/41172078#41190910',
-				'match'		=> '#http://www.msnbc.msn.com/id/(\d+)?/vp/(\d+)?\#(\d+)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.msnbc.msn.com/id/32545640', '{WIDTH}', '{HEIGHT}', 'launch=$3&width={WIDTH}&height={HEIGHT}')",
+				'match'		=> '#http://www.msnbc.msn.com/id/(\d+)?/vp/(\d+)?\#(\d+)?([^[]*)?#si',
+				'replace'	=> 'http://www.msnbc.msn.com/id/32545640',
+				'method'	=> 'flash',
+				'flashvars'	=> 'launch=$3&width={WIDTH}&height={HEIGHT}',
 			),
 			'myspace.com' => array(
 				'id'		=> 51,
 				'image'		=> 'vidsmyspace.gif',
 				'example'	=> 'http://www.myspace.com/video/vid/49776296',
-				'match'		=> '#http://(www.)?myspace.com/video/vid/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://mediaservices.myspace.com/services/media/embed.aspx/m=$2', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(www.)?myspace.com/video/vid/([^[]*)?#si',
+				'replace'	=> 'http://mediaservices.myspace.com/services/media/embed.aspx/m=$2',
+				'method'	=> 'flash',
 			),
-			'myvideo' => array(
+			'myvideo.de' => array(
 				'id'		=> 25,
 				'image'		=> 'myvideo.gif',
 				'example'	=> 'http://www.myvideo.de/watch/2668372',
-				'match'		=> '#http://www.myvideo.(.*?)/(.*?)/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.myvideo.$1/movie/$3', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?).myvideo.(.*?)/(.*?)/([^[]*)?#si',
+//				'replace'	=> '<iframe src="http://$1.myvideo.$2/embed/$4" style="width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no"></iframe>',
+				'replace'	=> 'http://$1.myvideo.$2/movie/$4',
+				'method'	=> 'flash',
 			),
-			'photobucket.com/albums' => array(
+			'photobucket.com' => array(
 				'id'		=> 26,
 				'image'		=> 'photobucket.gif',
-				'example'	=> 'http://s0006.photobucket.com/albums/0006/pbhomepage/Ice%20Age/?action=view&current=TFEIT301100-H264_Oct27.flv',
-				'match'		=> '#http://s(.*?).photobucket.com/(albums/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5', '{WIDTH}', '{HEIGHT}')",
+				'example'	=> 'http://s0006.photobucket.com/albums/0006/pbhomepage/Ice%20Age/?action=view&current=TFEIT301100-H264_Oct27.mp4',
+				'match'		=> '#http://s(.*?).photobucket.com/(albums/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?#si',
+				'replace'	=> 'http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5',
+				'method'	=> 'flash',
+			),
+			'qik.com' => array(
+				'id'		=> 64,
+				'image'		=> 'qik.gif',
+				'example'	=> 'http://qik.com/video/43675514',
+				'match'		=> '#http:\/\/(qik\.com\/video\/.*|qik\.ly\/.*)#si',
+				'replace'	=> 'http://qik.com/api/oembed?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'revision3.com' => array(
 				'id'		=> 54,
 				'image'		=> 'revision3.gif',
 				'example'	=> 'http://revision3.com/scamschool/fortheladies2',
-				'match'		=> '#http://(.*?)revision3.com/(.*?)/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://revision3.com/api/oembed/?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http:\/\/(.*revision3\.com\/.*)#si',
+				'replace'	=> 'http://revision3.com/api/oembed/?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'rutube.ru' => array(
 				'id'		=> 29,
 				'image'		=> 'rutube.gif',
 				'example'	=> 'http://rutube.ru/tracks/1415928.html?v=67eb8c2fcd74fddb722ce4cd820195da',
-				'match'		=> '#http://rutube.ru/(.*?)/(.*?).html\?v=([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://video.rutube.ru/$3', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://rutube.ru/(.*?)/(.*?).html\?v=([^[]*)?#si',
+				'replace'	=> 'http://video.rutube.ru/$3',
+				'method'	=> 'flash',
 			),
 			'sapo.pt' => array(
 				'id'		=> 30,
 				'image'		=> 'sapo.gif',
 				'example'	=> 'http://videos.sapo.pt/LguPabwSWikK0wzBmU1o',
-				'match'		=> '#http://(.*?)sapo.pt/(.*/)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://rd3.videos.sapo.pt/play?file=http://rd3.videos.sapo.pt/$3/mov/1', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?)sapo.pt/(.*/)?([^[]*)?#si',
+//				'replace'	=> '<iframe src="http://videos.sapo.pt/playhtml?file=http://rd3.videos.sapo.pt/$3/mov/1" frameborder="0" scrolling="no" width="{WIDTH}" height="{HEIGHT}"></iframe>',
+				'replace'	=> 'http://rd3.videos.sapo.pt/play?file=http://rd3.videos.sapo.pt/$3/mov/1',
+				'method'	=> 'flash',
 			),
-			'scribd' => array(
+			'scribd.com' => array(
 				'id'		=> 45,
 				'image'		=> 'scribd.gif',
-				'example'	=> '[scribd id=33988557 key=key-2l5cezbnj6qttpbzb75d mode=list]',
-				'match'		=> '#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#sie',
-				'replace'	=> "\$this->auto_embed_video('http://documents.scribd.com/ScribdViewer.swf?document_id=$3$10&access_key=$5$12&page=1&version=1&viewMode=$7', '{WIDTH}', '{HEIGHT}', '', array('id' => 'doc_$3$10', 'name' => 'doc_$3$10'), array('play' => 'true', 'loop' => 'true', 'scale' => 'showall', 'devicefont' => 'false', 'bgcolor' =>'#ffffff', 'menu' => 'true'))",
+				'example'	=> 'http://www.scribd.com/doc/26886617/Dexter-Investigating-Cutting-Edge-Television',
+				'match'		=> '#http:\/\/((?:www\.)?scribd\.com\/doc\/.*|(?:www\.)?scribd\.com\/mobile\/documents\/.*)#si',
+				'replace'	=> 'http://www.scribd.com/services/oembed?url=$0&format=json',
+				'method'	=> 'oEmbed',
+//				'example'	=> '[scribd id=33988557 key=key-2l5cezbnj6qttpbzb75d mode=list]',
+//				'match'		=> '#(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?(\s{0,1})mode=([a-z]+)?\])|(\[scribd(\s{0,1})id=(\d+)?(\s{0,1})key=([\d\w-]+)?\])#si',
+//				'replace'	=> '<iframe class="scribd_iframe_embed" src="http://www.scribd.com/embeds/$3$10/content?start_page=1&view_mode=$7&access_key=$5$12" data-auto-height="false" data-aspect-ratio scrolling="no" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+//				'replace'	=> 'http://documents.scribd.com/ScribdViewer.swf?document_id=$3$10&access_key=$5$12&page=1&version=1&viewMode=$7',
+//				'method'	=> 'flash',
+//				'attribs'	=> array('id' => 'doc_$3$10', 'name' => 'doc_$3$10'),
+//				'params'	=> array('play' => 'true', 'loop' => 'true', 'scale' => 'showall', 'devicefont' => 'false', 'bgcolor' =>'#ffffff', 'menu' => 'true'),
 			),
 			'sevenload.com' => array(
 				'id'		=> 31,
 				'image'		=> 'sevenload.gif',
 				'example'	=> 'http://en.sevenload.com/shows/Tekzilla/episodes/hMbjjr3-Windows-7-Enhancements-for-Power-Users-Tekzilla-Daily-Tip',
-				'match'		=> '#http://(.*?).sevenload.com/(?:.*?)(episodes|videos)/([^/[-]*)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://en.sevenload.com/pl/$3/{WIDTH}x{HEIGHT}/swf', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?).sevenload.com/(?:.*?)(episodes|videos)/([^/[-]*)?([^[]*)?#si',
+				'replace'	=> '<script type="text/javascript" src="http://en.sevenload.com/pl/$3/{WIDTH}x{HEIGHT}/0"></script>',
 			),
 			'slideshare.net' => array(
 				'id'		=> 55,
 				'image'		=> 'slideshare.gif',
 				'example'	=> 'http://www.slideshare.net/chrisbrogan/social-media-for-publishers-presentation',
-				'match'		=> '#http://www.slideshare.net/(.*?)/([^[]*)?#sie',
-				'replace'	=> "\$this->oembed_url('http://www.slideshare.net/api/oembed/2?url=$0&format=json', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.slideshare.net/(.*?)/([^[]*)?#si',
+				'replace'	=> 'http://www.slideshare.net/api/oembed/2?url=$0&format=json',
+				'method'	=> 'oEmbed',
+			),
+			'snotr.com' => array(
+				'id'		=> 39,
+				'image'		=> 'snotr.gif',
+				'example'	=> 'http://www.snotr.com/video/8753/What_is_nothing',
+				'match'		=> '#http://(?:.*?)snotr.com/video/([0-9]+)/.*#si',
+				'replace'	=> '<iframe src="http://www.snotr.com/embed/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+			),
+			'spike.com' => array(
+				'id'		=> 66,
+				'image'		=> 'spike.gif',
+				'example'	=> 'http://www.spike.com/video-clips/32xg36/winter-passing-trailer',
+				'match'		=> '#http://www.spike.com/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
+			),
+			'streetfire.net' => array(
+				'id'		=> 61,
+				'image'		=> 'streetfire.gif',
+				'example'	=> 'http://www.streetfire.net/video/standing-moto-double-fail_2381106.htm',
+				'match'		=> '#http://(.*?)streetfire.net/video/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
+			),
+			'thedailyshow.com' => array(
+				'id'		=> 11,
+				'image'		=> 'comedycentral.gif',
+				'example'	=> 'http://www.thedailyshow.com/watch/thu-june-28-2012/roberts--rules-of-order',
+				'match'		=> '#http://(?:.*?)thedailyshow.com/watch/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'theonion.com' => array(
 				'id'		=> 34,
@@ -1780,64 +1878,86 @@ class abbcode
 				'id'		=> 23,
 				'image'		=> 'ustream.gif',
 				'example'	=> 'http://www.ustream.tv/channel/9948292',
-				'match'		=> '#http://(?:www\.)ustream\.tv\/(?:channel/([0-9]{1,8}))#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.ustream.tv/flash/viewer.swf', '{WIDTH}', '{HEIGHT}', 'cid=$1&autoplay=false')",
+				'match'		=> '#http://(?:www\.)ustream\.tv\/(?:channel/([0-9]{1,8}))#si',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe>',
+				'replace'	=> 'http://www.ustream.tv/flash/viewer.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'cid=$1&autoplay=false',
 			),
 			'vbox7.com' => array(
 				'id'		=> 35,
 				'image'		=> 'vbox7.gif',
 				'example'	=> 'http://www.vbox7.com/play:93ab2ba5',
-				'match'		=> '#http://www.vbox7.com/play:([^[]+)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://i47.vbox7.com/player/ext.swf?vid=$1', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.vbox7.com/play:([^[]+)?#si',
+				'replace'	=> 'http://i47.vbox7.com/player/ext.swf?vid=$1',
+				'method'	=> 'flash',
 			),
 			'veoh.com' => array(
 				'id'		=> 36,
 				'image'		=> 'veoh.gif',
 				'example'	=> 'http://www.veoh.com/watch/v27458670er62wkCt',
-				'match'		=> '#http://(.*?).veoh.com/([0-9A-Za-z-_\-/]+)?/([0-9A-Za-z-_]+)#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1337&permalinkId=$3&player=videodetailsembedded&videoAutoPlay=0&id=anonymous', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(.*?).veoh.com/([0-9A-Za-z-_\-/]+)?/([0-9A-Za-z-_]+)#si',
+				'replace'	=> 'http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1361&permalinkId=$3&player=videodetailsembedded&videoAutoPlay=0&id=anonymous',
+				'method'	=> 'flash',
 			),
-			'video.google' => array(
-				'id'		=> 39,
-				'image'		=> 'googlevid.gif',
-				'example'	=> 'http://video.google.com/videoplay?docid=-8351924403384451128',
-				'match'		=> '#http://video.google.(.*?)/(videoplay|googleplayer.swf)\?docid=([0-9A-Za-z-_]+)([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://video.google.\$1/googleplayer.swf?docId=\$3', '{WIDTH}', '{HEIGHT}')",
+			'viddler.com' => array(
+				'id'		=> 56,
+				'image'		=> 'viddler.gif',
+				'example'	=> 'http://www.viddler.com/v/7a0d64f2',
+				'match'		=> '#http://(?:.*?).viddler.com/v/([0-9A-Za-z-_]+)([^[]*)?#si',
+//				'replace'	=> '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&amp;autoplay=0&amp;player=full&amp;loop=false&amp;nologo=false&amp;hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+				'replace'	=> '//www.viddler.com/player/$1/',
+				'method'	=> 'flash',
+				'flashvars'	=> 'f=1&autoplay=f&loop=false&nologo=false&hd=false',
+			),
+			'videogamer.com' => array(
+				'id'		=> 13,
+				'image'		=> 'videogamer.gif',
+				'example'	=> 'http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html',
+				'match'		=> '#http://www.videogamer.com/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'videu.de' => array(
 				'id'		=> 37,
 				'image'		=> 'videu.gif',
 				'example'	=> 'http://www.videu.de/video/38',
-				'match'		=> '#http://www.videu.de/video/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.videu.de/flv/player2.swf?iid=$1', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://www.videu.de/video/([^[]*)?#si',
+				'replace'	=> 'http://www.videu.de/flv/player2.swf?iid=$1',
+				'method'	=> 'flash',
 			),
 			'vimeo.com' => array(
 				'id'		=> 38,
 				'image'		=> 'vimeo.gif',
 				'example'	=> 'http://vimeo.com/3759030',
-				'match'		=> '#http://((.*?))vimeo.com/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://vimeo.com/moogaloop.swf?clip_id=$3&server=vimeo.com&fullscreen=1&show_title=1&show_byline=1&show_portrait=0&color=', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#http://(?:.*?)vimeo.com(?:/groups/(?:.*)/videos/|/)([^[]*)?#si',
+//				'replace'	=> '<iframe src="http://player.vimeo.com/video/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
+				'replace'	=> 'http://vimeo.com/moogaloop.swf?clip_id=$1&server=vimeo.com&fullscreen=1&show_title=1&show_byline=1&show_portrait=0&color=',
+				'method'	=> 'flash',
 			),
-			'vsocial.com' => array(
-				'id'		=> 41,
-				'image'		=> 'vsocial.gif',
-				'example'	=> 'http://www.vsocial.com/video/?d=2893',
-				'match'		=> '#http://www.vsocial.com/video/\?d=([^[]*)#sie',
-				'replace'	=> "\$this->auto_embed_video('http://static.vsocial.com/flash/ups.swf?d=$1&a=0', '{WIDTH}', '{HEIGHT}')",
+			'wat.tv' => array(
+				'id'		=> 62,
+				'image'		=> 'wattv.gif',
+				'example'	=> 'http://www.wat.tv/video/mords-moi-sans-hesitation-2ykhj_2g5h3_.html',
+				'match'		=> '#http://(.*?)wat.tv/video/([^[]*)?#si',
+				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
 			'wegame.com' => array(
 				'id'		=> 42,
 				'image'		=> 'wegame.gif',
 				'example'	=> 'http://www.wegame.com/watch/Clarity_Darkspear_VS_Heigan/',
-				'match'		=> '#http://www.wegame.com/watch/(.*?)/([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.wegame.com/static/flash/player.swf?xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true', '{WIDTH}', '{HEIGHT}', 'xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true')",
+				'match'		=> '#http://www.wegame.com/watch/(.*?)/([^[]*)?#si',
+				'replace'	=> 'http://www.wegame.com/static/flash/player.swf?xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true',
+				'method'	=> 'flash',
+				'flashvars'	=> 'xmlrequest=http://www.wegame.com/player/video/$1&embedPlayer=true',
 			),
 			'xfire.com' => array(
 				'id'		=> 44,
 				'image'		=> 'xfire.gif',
 				'example'	=> 'http://www.xfire.com/video/24c86/',
-				'match'		=> '#http://www.xfire.com/video/(.*?)/#sie',
-				'replace'	=> "\$this->auto_embed_video('http://media.xfire.com/swf/embedplayer.swf', '{WIDTH}', '{HEIGHT}', 'videoid=$1')",
+				'match'		=> '#http://www.xfire.com/video/(.*?)/#si',
+				'replace'	=> 'http://media.xfire.com/swf/embedplayer.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'videoid=$1',
 			),
 			'screen.yahoo.com' => array(
 				'id'		=> 40,
@@ -1846,160 +1966,104 @@ class abbcode
 				'match'		=> '#http://screen.yahoo.com/((([^-]+)?-)*)([0-9]+).html#si',
 				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://d.yimg.com/nl/vyc/site/player.html#shareUrl=http%3A%2F%2Fscreen.yahoo.com%$1$4.html&amp;browseCarouselUI=hide&amp;repeat=0&amp;lang=en-US&amp;vid=$4&amp;startScreenCarouselUI=hide"></iframe>',
 			),
+			'youku.com' => array(
+				'id'		=> 65,
+				'image'		=> 'youku.gif',
+				'example'	=> 'http://v.youku.com/v_show/id_XMzgxNzY3NTU2.html',
+				'match'		=> '#http://v.youku.com/v_show/id_(.*)\.html.*#si',
+				'replace'	=> 'http://player.youku.com/player.php/sid/$1/v.swf',
+				'method'	=> 'flash',
+			),
 			'youtube.com' => array(
 				'id'		=> 43,
 				'image'		=> 'youtube.gif',
 				'example'	=> 'http://www.youtube.com/watch?v=sP4NMoJcFd4',
-				'match'		=> '#http://((.*?)?)youtube.com/(|watch\?)v(/|=)([0-9A-Za-z-_]+)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://$2youtube.com/v/$5&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
+				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
+				'method'	=> 'flash',
 			),
 			'youtu.be' => array(
 				'id'		=> 49,
 				'image'		=> 'youtube.gif',
 				'example'	=> 'http://youtu.be/sP4NMoJcFd4',
-				'match'		=> '#http://youtu.be/([0-9A-Za-z-_]+)?([^[]*)?#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.youtube.com/v/$1&feature=youtu.be&hl=en&fs=1?rel=0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#https?://(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?#i', // matches every youtube URL
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
+				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
+				'method'	=> 'flash',
 			),
-			// available ids: 56-100
-
-			'external' => array(),
-			'comedians.jokes.com' => array(
-				'id'		=> 102,
-				'image'		=> 'comedians.gif',
-				'example'	=> 'http://comedians.jokes.com/bert-kreischer/videos/bert-kreischer---twelve-words',
-				'match'		=> '#http://comedians.(jokes|comedycentral).com/(.*?)/videos/([^[]*)#si',
-				'replace'	=> 'external',
-			),
-			'deviantart.com' => array(
-				'id'		=> 103,
-				'image'		=> 'deviantart.gif',
-				'example'	=> 'http://bossk.deviantart.com/art/COLLEGE-FRIES-trailer-106469587',
-				'match'		=> '#http://(.*?)deviantart.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'gotgame.com' => array(
-				'id'		=> 105,
-				'image'		=> 'gotgame.gif',
-				'example'	=> 'http://gotgame.com/2012/03/26/assassins-creed-3-interview-with-alex-hutchinson/',
-				'match'		=> '#http://(.*?)gotgame.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'moddb.com' => array(
-				'id'		=> 104,
-				'image'		=> 'moddb.gif',
-				'example'	=> 'http://www.moddb.com/groups/humour-satire-parody/videos/flight-dc132-part-1',
-				'match'		=> '#http://www.moddb.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'spike.com' => array(
-				'id'		=> 101,
-				'image'		=> 'spike.gif',
-				'example'	=> 'http://www.spike.com/video-clips/32xg36/winter-passing-trailer',
-				'match'		=> '#http://www.spike.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'streetfire.net' => array(
-				'id'		=> 107,
-				'image'		=> 'streetfire.gif',
-				'example'	=> 'http://www.streetfire.net/video/standing-moto-double-fail_2381106.htm',
-				'match'		=> '#http://(.*?)streetfire.net/video/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'ted.com' => array(
-				'id'		=> 106,
-				'image'		=> 'ted.gif',
-				'example'	=> 'http://www.ted.com/talks/jack_choi_on_the_virtual_dissection_table.html',
-				'match'		=> '#http://((.*?)?)ted.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'tu.tv' => array(
-				'id'		=> 108,
-				'image'		=> 'tutv.gif',
-				'example'	=> 'http://tu.tv/videos/el-gato-boxeador',
-				'match'		=> '#http://((.*?)?)tu.tv/videos/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'videogamer.com' => array(
-				'id'		=> 109,
-				'image'		=> 'videogamer.gif',
-				'example'	=> 'http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html',
-				'match'		=> '#http://www.videogamer.com/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			'wat.tv' => array(
-				'id'		=> 110,
-				'image'		=> 'wattv.gif',
-				'example'	=> 'http://www.wat.tv/video/mords-moi-sans-hesitation-2ykhj_2g5h3_.html',
-				'match'		=> '#http://(.*?)wat.tv/video/([^[]*)?#si',
-				'replace'	=> 'external',
-			),
-			// available ids: 111-200
+			// available ids: 67-200
 
 			'file' => array(),
-			'(avi|divx|mkv)' => array(
-				'id'		=> 201,
-				'image'		=> 'avi.gif',
-				'example'	=> 'http://people.sc.fsu.edu/~jburkardt/data/avi/ccvt_box.avi',
-				'match'		=> '#([^[]+)?\.(avi|divx|mkv)#sie',
-				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}', '', array('type' => 'video/divx'), array('pluginspage' => 'http://go.divx.com/plugin/download/', 'custommode' => 'none'))",
+			'(mp4|m4v)' => array(
+				'id'		=> 209,
+				'image'		=> 'mov.gif',
+				'example'	=> 'http://www.mediacollege.com/video/format/mpeg4/videofilename.mp4',
+				'match'		=> '#([^[]+)?\.(mp4|m4v)#si',
+				'replace'	=> './flashplayer/flashplayer.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flashplayer_{ID}\',\'plugins\':{\'controls\':{\'url\':\'flashplayer.controls.swf\'}}}',
 			),
-			'(mov|mp4|mpeg|mpg)' => array(
+			'(mov|dv|qt)' => array(
 				'id'		=> 205,
 				'image'		=> 'mov.gif',
 				'example'	=> 'http://trailers.apple.com/movies/wb/suckerpunch/suckerpunch-tlr2_480p.mov',
-				'match'		=> '#([^[]+)?\.(mov|mp4|mpeg|mpg)#si',
-				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="{HEIGHT}" scale="tofit"><param name="type" value="video/quicktime" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
-								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="{HEIGHT}" scale="tofit" type="video/quicktime" autoplay="false"></embed></object>'
+				'match'		=> '#([^[]+)?\.(mov|dv|qt)#si',
+				'replace'	=> '<object height="{HEIGHT}" width="{WIDTH}" ' . (strpos(strtolower($user->browser), 'msie') ? 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab#version=6,0,2,0"' : 'type="video/quicktime" data="$0"') . '><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>',
 			),
-			'wmv' => array(
+			'(mpg|mpeg)' => array(
+				'id'		=> 201,
+				'image'		=> 'mpg.gif',
+				'example'	=> 'http://www.ray3d.com/video/trn_anaglyph_adj.mpg',
+				'match'		=> '#([^[]+)?\.(mpg|mpeg)#si',
+				'replace'	=> (strpos(strtolower($user->browser), 'mac') ? '<object height="{HEIGHT}" width="{WIDTH}" type="video/quicktime" data="$0"><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>' : '<object height="{HEIGHT}" width="{WIDTH}" classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param name="autostart" value="false" /><param name="uimode" value="full" /><param name="showcontrols" value="true" /><param name="url" value="$0" /><!--[if !IE]>--><object height="{HEIGHT}" width="{WIDTH}" type="video/x-ms-wmv" data="$0"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="url" value="$0" /></object><!--<![endif]--></object>'),
+			),
+			'(avi|wmv)' => array(
 				'id'		=> 204,
 				'image'		=> 'wmv.gif',
 				'example'	=> 'http://www.mediacollege.com/video/format/windows-media/streaming/videofilename.wmv',
-				'match'		=> '#([^[]+)?\.wmv#si',
-				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}" type="video/x-ms-wmv"><param name="filename" value="$0" /><param name="Showcontrols" value="true" /><param name="autoStart" value="false" /><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="showdisplay" value="false" /><param name="showstatusbar" value="false" /><param name="autosize" value="true" /><param name="visible" value="true" /><param name="animationstart" value="false" /><param name="loop" value="false" />
-								<embed type="application/x-mplayer2" src="$0" width="{WIDTH}" height="{HEIGHT}" controller="true" showcontrols="true" showdisplay="false" showstatusbar="true" autosize="true" autostart="false" visible="true" animationstart="false" loop="false"></embed></object>',
+				'match'		=> '#([^[]+)?\.(avi|wmv)#si',
+				'replace'	=> (strpos(strtolower($user->browser), 'mac') ? '<object height="{HEIGHT}" width="{WIDTH}" type="video/quicktime" data="$0"><param name="src" value="$0" /><param name="scale" value="tofit" /><param name="controller" value="true" /><param name="autoplay" value="false" /></object>' : '<object height="{HEIGHT}" width="{WIDTH}" classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6"><param name="autostart" value="false" /><param name="uimode" value="full" /><param name="showcontrols" value="true" /><param name="url" value="$0" /><!--[if !IE]>--><object height="{HEIGHT}" width="{WIDTH}" type="video/x-ms-wmv" data="$0"><param name="autostart" value="false" /><param name="showcontrols" value="true" /><param name="url" value="$0" /></object><!--<![endif]--></object>'),
 			),
 			'flv' => array(
 				'id'		=> 203,
 				'image'		=> 'flashflv.gif',
 				'example'	=> 'http://www.mediacollege.com/video-gallery/testclips/20051210-w50s.flv',
-				'match'		=> '#([^[]+)?\.flv#sie',
-				'replace'	=> "\$this->auto_embed_video('./images/player.swf', '{WIDTH}', '{HEIGHT}', 'movie=$0&bgcolor=0x666666&fgcolor=0x000000&autoload=off&volume=70')",
+				'match'		=> '#([^[]+)?\.flv#si',
+				'replace'	=> './flashplayer/flashplayer.swf',
+				'method'	=> 'flash',
+				'flashvars'	=> 'config={\'clip\':{\'autoPlay\':false,\'autoBuffering\':true,\'url\':\'$0\'},\'playerId\':\'flashplayer_{ID}\',\'plugins\':{\'controls\':{\'url\':\'flashplayer.controls.swf\'}}}',
 			),
 			'swf' => array(
 				'id'		=> 202,
 				'image'		=> 'flash.gif',
 				'example'	=> 'http://flash-clocks.com/free-flash-clocks-blog-topics/free-flash-clock-177.swf',
-				'match'		=> '#([^[]+)?\.swf#sie',
-				'replace'	=> "\$this->auto_embed_video('$0', '{WIDTH}', '{HEIGHT}')",
+				'match'		=> '#([^[]+)?\.swf#si',
+				'replace'	=> '$0',
+				'method'	=> 'flash',
+			),
+			'mp3' => array(
+				'id'		=> 207,
+				'image'		=> 'sound.gif',
+				'example'	=> 'http://www.robtowns.com/music/first_noel.mp3',
+				'match'		=> '#([^[]+)?\.mp3#si',
+				'replace'	=> '<object width="{WIDTH}" height="27" type="application/x-shockwave-flash" data="http://www.google.com/reader/ui/3523697345-audio-player.swf" style="-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; border:solid 1px #555; border-top:0"><param name="movie" value="http://www.google.com/reader/ui/3523697345-audio-player.swf" /><param name="quality" value="high" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="pluginspage" value="http://www.macromedia.com/go/getflashplayer" /><param name="autoplay" value="false" /><param name="autostart" value="false" /><param name="flashvars" value="audioUrl=$0" /></object>',
 			),
 			'(mid|midi)' => array(
 				'id'		=> 206,
 				'image'		=> 'quicktime.gif',
 				'example'	=> 'http://www.notz.com/music/jazz/midi/lazybird.mid',
 				'match'		=> '#([^[]+)?\.(mid|midi)#si',
-				'replace'	=> '<object id="qtstream_{ID}" width="{WIDTH}" height="27"><param name="type" value="audio/x-midi" /><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" />
-								<embed name="qtstream_{ID}" src="$0" pluginspage="http://www.apple.com/quicktime/download/" enablejavascript="true" controller="true" loop="false" width="{WIDTH}" height="27" type="audio/x-midi" autoplay="false"></embed></object>'
-			),
-			'mp3' => array(
-				'id'		=> 207,
-				'image'		=> 'sound.gif',
-				'example'	=> 'http://www.robtowns.com/music/first_noel.mp3',
-				'match'		=> '#([^[]+)?\.mp3#sie',
-				'replace'	=> "\$this->auto_embed_video('http://www.google.com/reader/ui/3523697345-audio-player.swf', '{WIDTH}', '27', 'audioUrl=$0')",
-//				'match'		=> '#([^[]+)?\.mp3#si',
-//				'replace'	=> '<object width="{WIDTH}" height="{HEIGHT}"><param name="src" value="$0" /><param name="autoplay" value="false" /><param name="controller" value="true" />
-//								<embed src="$0" autostart="false" loop="false" width="{WIDTH}" height="{HEIGHT}" controller="true"></embed></object>',
+				'replace'	=> '<object width="{WIDTH}" height="27" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" /><!--[if !IE]>--><object width="{WIDTH}" height="27" type="audio/midi" data="$0"><param name="src" value="$0" /><param name="controller" value="true" /><param name="autoplay" value="false" /><param name="loop" value="false" /></object><!--<![endif]--></object>'
 			),
 			'ram' => array(
 				'id'		=> 208,
 				'image'		=> 'ram.gif',
 				'example'	=> 'http://service.real.com/help/library/guides/realone/IntroToStreaming/samples/ramfiles/startend.ram',
 				'match'		=> '#([^[]+)?\.ram#si',
-				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="ctrls_{ID}" /><param name="prefetch" value="false" /></object><br />
-								<object id="ctrls" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="ctrls_{ID}" /></object>',
+				'replace'	=> '<object id="rmstream{ID}" width="{WIDTH}" height="{HEIGHT}" type="audio/x-pn-realaudio-plugin" data="$0"><param name="src" value="$0" /><param name="autostart" value="false" /><param name="controls" value="ImageWindow" /><param name="console" value="clip_{ID}" /><param name="prefetch" value="false" /></object><br /><object id="ctrls_{ID}" type="audio/x-pn-realaudio-plugin" width="{WIDTH}" height="36"><param name="controls" value="ControlPanel" /><param name="console" value="clip_{ID}" /></object>',
 			),
-			// available ids: 209-300
+			// available ids: 210-300
 		);
 	}
 
@@ -2012,24 +2076,23 @@ class abbcode
 	* @return embed code
 	* @version 3.0.11
 	*
-	* more examples of some polular oEmbed ready sites
+	* more examples of some popular oEmbed ready sites
 	* dailymotion.com => http://www.dailymotion.com/api/oembed?url=$0&format=json,
-	* flickr.com => http://www.flickr.com/services/oembed/?url=$0&format=json,
 	* funnyordie.com => http://www.funnyordie.com/oembed?url=$0&format=json,
 	* photobucket.com => http://photobucket.com/oembed?url=$0&format=json,
-	* qik.com => http://qik.com/api/oembed?url=$0&format=json,
-	* scribd.com => http://www.scribd.com/services/oembed?url=$0&format=json,
 	* smugmug.com => http://api.smugmug.com/services/oembed/?url=$0&format=json,
 	* viddler.com => http://lab.viddler.com/services/oembed/?url=$0&format=json,
 	* vimeo.com => http://vimeo.com/api/oembed.xml?url=$0&format=json,
 	* wordpress.tv => http://wordpress.tv/oembed/?url=$0&format=json,
 	* youtube.com => http://www.youtube.com/oembed?url=$0&format=json,
+	* soundcloud.com => http://soundcloud.com/oembed?url=$0&format=json,
+	* tu.tv => http://tu.tv/oembed/?url=$0&format=json ( html entities are encoded :( )
 	*/
 	function oembed_url($url, $width, $height)
 	{
 		$oembed_contents = @file_get_contents($url);
 		$oembed_data 	 = @json_decode($oembed_contents);
-		$embed_code 	 = (isset($oembed_data)) ? $oembed_data->html : '';
+		$embed_code 	 = (isset($oembed_data->html)) ? $oembed_data->html : '';
 		$embed_code 	 = preg_replace(array('/width="([0-9]{1,4})"/i', '/height="([0-9]{1,4})"/i'), array('width="' . $width . '"', 'height="' . $height . '"'), $embed_code);
 		return $embed_code;	
 	}
@@ -2104,7 +2167,7 @@ class abbcode
 	* @param string		$w		value for video width
 	* @param string		$h		value for video Height
 	* @return embed video
-	* @version 3.0.11
+	* @version 3.0.12
 	*/
 	function BBvideo_pass($in, $w, $h)
 	{
@@ -2122,16 +2185,14 @@ class abbcode
 			$abbcode_video_ary = abbcode::video_init();
 		}
 
-		$allowed_videos 	= video_serialize($config['ABBC3_VIDEO_OPTIONS'], false);
+		$allowed_videos 	= explode(';', $config['ABBC3_VIDEO_OPTIONS']);
 		$video_unique_id	= substr(base_convert(unique_id(), 16, 36), 0, 8);
 		$video_width		= (intval($w)) ? $w : $this->abbcode_config['ABBC3_VIDEO_WIDTH'];
 		$video_height		= (intval($h)) ? $h : $this->abbcode_config['ABBC3_VIDEO_HEIGHT'];
 		$video_image_path	= $this->abbcode_config['S_ABBC3_PATH'];
 		$in					= trim($in);
 		$video_link			= '';
-		$video_image		= '';
 		$video_content		= '';
-		$out				= '';
 
 		foreach ($abbcode_video_ary as $video_name => $video_data)
 		{
@@ -2143,95 +2204,107 @@ class abbcode
 			// find a BBvideo match for the video url
 			if (preg_match($video_data['match'], $in))
 			{
-				// if this video is not allowed, return a link 
+				// if this BBvideo is not allowed, return a link
 				if (!in_array($video_data['id'], $allowed_videos))
 				{
-					$out = make_clickable($in);
-					break;
+					return make_clickable($in);
 				}
 
-				// if FLASH is not allowed, return as flash link 
+				// if user has flash animations disabled in UCP, return as [ flash ] link 
 				if (!$user->optionget('viewflash'))
 				{
-					$out = str_replace(array('$1', '$2'), array($in, '[ flash ]'), $this->bbcode_tpl('url', -1, true));
-					break;
+					return str_replace(array('$1', '$2'), array($in, '[ flash ]'), $this->bbcode_tpl('url', -1, true));
 				}
 
-				// create the icon image tag
+				// Construct XHTML compliant embed code for flash-based embeds
+				if (isset($video_data['method']) && $video_data['method'] == 'flash')
+				{
+					$flashvars 	 = (isset($video_data['flashvars']) ? $video_data['flashvars'] : '');
+					$params_ary  = (isset($video_data['params']) 	? $video_data['params']    : array());
+					$attribs_ary = (isset($video_data['attribs']) 	? $video_data['attribs']   : array());
+					$video_data['replace'] = $this->auto_embed_video($video_data['replace'], $video_width, $video_height, $flashvars, $attribs_ary, $params_ary);
+				}
+
+				// perform match/replace from input URL to output code
+				$video_content = preg_replace($video_data['match'], $video_data['replace'], $in);
+
+				// For oEmbed videos, now is the time to get the embed code
+				if (isset($video_data['method']) && $video_data['method'] == 'oEmbed')
+				{
+					$video_content = $this->oembed_url($video_content, $video_width, $video_height);
+				}
+
+				// replace variables in the video content string with values
+				$video_content = str_replace(array('{WIDTH}', '{HEIGHT}', '{ID}'), array($video_width, $video_height, $video_unique_id), $video_content);
+
+				// create the icon image tag for the BBvideo info bar
 				$video_image = $video_image_path . '/images/' . $video_data['image'];
 				$video_image = (file_exists($video_image)) ? '<img src="' . $video_image . '" class="postimage" alt="" width="20" height="20" /> ' : '';
-				
-				// create a link to the video
+
+				//create a direct link to the embedded video site or file
+				$video_link_string = '%1$s <a href="' . $in . '" onclick="window.open(this.href);return false;" >%2$s</a>';
 				if ($video_data['id'] > 200)
 				{
-					// this is for direct file formats, they have an ID of 200+, get the correct extension
-					preg_match('#(?:[^[]+)?\.(' . $video_name . ')#si', $in, $video_title);
-					$video_link = $user->lang['ABBC3_BBVIDEO_FILE'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
+					// this is for direct file formats, they have an ID of 200+, get the extension
+					$video_link = sprintf($video_link_string, $user->lang['ABBC3_BBVIDEO_FILE'] . ':', pathinfo(parse_url($in, PHP_URL_PATH ), PATHINFO_EXTENSION));
 				}
 				else
 				{
-					// this is for all linked video sites, narrow video names down to just the domain
-					preg_match('#([^/]+)#i', $video_name, $video_title);
-					$video_link = $user->lang['ABBC3_BBVIDEO_VIDEO'] . ' : <a href="' . $in . '" onclick="window.open(this.href);return false;" >' . $video_title[1] . '</a>';
+					// this is the link back to the video site
+					$video_link = sprintf($video_link_string, $user->lang['ABBC3_BBVIDEO_WATCH'], $video_name);
 				}
 
-				// generate output for bbvideos with no embedded content
-				if ($video_data['replace'] === 'external')
-				{
-					$out = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '<div class="bbvideocontent">{BBVIDEO_VIDEO}</div>'), array($video_width + 10, $video_image, $video_link, ''), $this->bbcode_tpl('bbvideo'));
-					break;
-				}
+				// Dump everything we've done into the BBvideo html template
+				$video_content = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
 
-				// generate embedded video content
-				$video_content = preg_replace($video_data['match'], $video_data['replace'], $in);
-
-				// replace variables in the match string with values
-				$video_content = str_replace(array('{WIDTH}', '{HEIGHT}', '{ID}'), array($video_width, $video_height, $video_unique_id), $video_content);
-
-				$out = str_replace(array('{BBVIDEO_WIDTH}', '{BBVIDEO_IMAGE}', '{BBVIDEO_LINK}', '{BBVIDEO_VIDEO}'), array($video_width + 10, $video_image, $video_link, $video_content), $this->bbcode_tpl('bbvideo'));
-				break;
+				return $video_content;
 			}
 		}
 		// if input did not match any BBvideos, return a link
-		$out = $out ? $out : make_clickable($in);
-		return $out;
+		return make_clickable($in);
 	}
 }
 
 /**
-* Transform an array into a serialized format
-* Because serialize a large array ( almost 70 key ) 
-* will return a large string to store into the config value
-* we need another way to manage it.
+* Transform posted URLs from video sites into BBvideo embedded code
+* Not used in default installation. Part of add-on “Auto Embed Video From URLs”
+* Called only from hook_bbvideo.php when optionally installed
 *
-* @param mixed	$input	array or string to transform
-* @param bool	$mode	array to string (true) or string to array (false)
-* @version 3.0.8
+* @param  string	$text	string to transform
+* @return string	$text	string with embed code if applicable
+* @version 3.0.12
 */
-function video_serialize($input, $mode = true)
+function url_to_bbvideo($text)
 {
-	global $user;
-	
-	$out = '';
-	if ($mode)
+	global $bbcode, $user;
+
+	// if no BBCodes are on page, load them up
+	if (empty($bbcode))
 	{
-		foreach ($input as $key => $value)
-		{
-			$out .= $value . ';';
-		}
-		
-		// The config table only stores 255 chars, so we need to prevent any instance where this might be exceeded.
-		if (strlen($out) > 255)
-		{
-			trigger_error($user->lang['ABBCODES_VIDEO_ERROR']);
-		}
-	}
-	else
-	{
-		$out = explode(";", $input);
+		$bbcode = new bbcode();
+		$bbcode->bbcode_cache_init();
 	}
 
-	return $out;
+	// get array of all BBvideos
+	static $abbcode_video_ary = array();
+	if (empty($abbcode_video_ary))
+	{
+		$abbcode_video_ary = abbcode::video_init();
+	}
+
+	// check to see if any URLs can be converted into BBvideos
+	foreach ($abbcode_video_ary as $video_name => $video_data)
+	{
+		// For now we only will apply this to video sites...BBvideos with ID's less than 200
+		if ( (strpos($text, $video_name) !== false) && isset($video_data['id']) && ($video_data['id'] <= 200) )
+		{
+			// Run URL matches through the BBvideo_pass function to turn them into embedded BBvideos
+			$text = preg_replace_callback('#<!-- [lmw] --><a class="[^"]*" href="(.*?)">.*?<\/a><!-- [lmw] -->#i', create_function('$matches', 'global $bbcode; return $bbcode->BBvideo_pass($matches[1], null, null);'), $text);
+			break;
+		}
+	}
+
+	return $text;
 }
 
 // MOD : eD2k links - START
@@ -2279,10 +2352,10 @@ function abbc3_add_all_ed2k_link($text, $post_id)
 */
 function abbc3_ed2k_make_clickable($link)
 {
-	global $user, $config, $phpbb_root_path;
+	global $abbcode, $user, $config, $phpbb_root_path;
 
-	$ed2k_icon = $this->abbcode_config['S_ABBC3_PATH'] . '/images/emule.gif';
-	$ed2k_stat = $this->abbcode_config['S_ABBC3_PATH'] . '/images/stats.gif';
+	$ed2k_icon = $abbcode->abbcode_config['S_ABBC3_PATH'] . '/images/emule.gif';
+	$ed2k_stat = $abbcode->abbcode_config['S_ABBC3_PATH'] . '/images/stats.gif';
 
 	$matches = preg_match_all("#(^|(?<=[^\w\"']))(ed2k://\|(file|server|friend)\|([^\\/\|:<>\*\?\"]+?)\|(\d+?)\|([a-f0-9]{32})\|(.*?)/?)(?![\"'])(?=([,\.]*?[\s<\[])|[,\.]*?$)#i", $link, $match);
 
@@ -2383,7 +2456,7 @@ class linktest
 		else
 		{
 			$result[0] = false;
-		//	Only for testing propose, commented out so I do not loose the code.
+		//	Only for testing propose, commented out so I do not lose the code.
 		//	$result[1] = 'invalid url';
 		//	$result[2] = "The link provided is not a valid url";
 			return $result;
@@ -2415,7 +2488,7 @@ class linktest
 		*/
 		
 		// most popular hosts
-		$hosts['rapidshare']['rapidshare.com'] 		= array("@rapidshare\.com@i", 'curl', 1000/$this->CONVERSION, array('@<u>100 MB</u>@i'));
+		$hosts['rapidshare']['rapidshare.com'] 		= array("@rapidshare\.com@i", 'curl', 1000 / $this->CONVERSION, array('@<u>100 MB</u>@i'));
 		$hosts['rapidshare']['rapidshare.de'] 		= array("@rapidshare\.de@i", 'curl', 1, array('@>300 MB<@i'));
 		$hosts['other']['depositfiles.com'] 		= array("@depositfiles\.com@i", 'file', 1);
 		$hosts['other']['megashares.com'] 			= array("@megashares\.com@i", 'curl', 1, array('@ 10GB@i'));
@@ -2425,7 +2498,6 @@ class linktest
 		//$hosts['other']['sendspace.com'] 			= array("@sendspace\.com@i", 'file', 1);
 		//$hosts['other']['badongo.com'] 			= array("@badongo\.com@i", 'curl', 1);
 		//$hosts['other']['filecloud.com'] 			= array("@filecloud\.com@i", 'curl', 1);
-		//$hosts['other']['filefront.com'] 			= array("@filefront\.com@i", 'curl', 1);
 		//$hosts['other']['gigasize.com'] 			= array("@gigasize\.com@i", 'curl', 1);
 		//$hosts['other']['uploadmb.com'] 			= array("@uploadmb\.com@i", 'curl', pow(1000/self::CONVERSION, 2));
 		//$hosts['other']['speedshare.org'] 		= array("@speedshare\.org@i", 'curl', 1);
@@ -2460,6 +2532,7 @@ class linktest
 		//$hosts['other']['zshare.net'] 			= array("@zshare\.net@i", 'file', 1);*/
 
 		// No longer available hosts
+		//$hosts['other']['filefront.com'] 			= array("@filefront\.com@i", 'curl', 1);
 		//$hosts['other']['megaupload.com'] 		= array("@megaupload\.com@i", 'curl', 1);
 		//$hosts['other']['megarotic.com'] 			= array("@megarotic\.com@i", 'curl', 1);
 		
@@ -2525,23 +2598,31 @@ class linktest
 	*/
 	function rapidshare()
 	{
+		preg_match('/https?:\/\/(?:www.)?rapidshare.com\/.*\/([\d]+)\/(.*)/', $this->url, $pieces);
+		$rs_file_id = $pieces[1];
+		$rs_file_name = $pieces[2];
+		$rs_api_url = 'http://api.rapidshare.com/cgi-bin/rsapi.cgi?sub=checkfiles&files=' . $rs_file_id . '&filenames=' . $rs_file_name;
+
+		$pattern	= '/[^,]+,[^,]+,[^,]+,[^,]+,1,.*/i';
+		$matches	= $this->match($rs_api_url, $pattern);
+
 		/** get rapidshare submit form url **/
-		$pattern	= '@<form.*.action="(.*)".*.method@i';
-		$matches	= $this->match($this->url, $pattern);
+	//	$pattern	= '@<form.*.action="(.*)".*.method@i';
+	//	$matches	= $this->match($this->url, $pattern);
 	//	$url		= $matches[1];
 	//	$params		= "dl.start=Free";
 		
 		// get rapidshare.de hidden param
-		if ($this->domain == 'rapidshare.de')
-		{
-			$pattern	= '@<input.*.hidden.*.value="(.*)">@i';
-			$matches	= $this->match($this->url, $pattern);
+	//	if ($this->domain == 'rapidshare.de')
+	//	{
+	//		$pattern	= '@<input.*.hidden.*.value="(.*)">@i';
+	//		$matches	= $this->match($this->url, $pattern);
 	//		$param		= $matches[1];
 	//		if (!is_null($param))
 	//		{
 	//			$params = "$params&uri=$param";
 	//		}
-		}
+	//	}
 		
 		// get file size
 	//	$this->url	= $url;
@@ -2628,10 +2709,10 @@ class linktest
 				$html = file_get_contents($url);
 			}
 		}
-		
+
 		// uncomment line below to test unfiltered html
 		// echo "<xmp>$html</xmp>"; exit;
-		
+
 		// setup patterns for preg_replace to remove common-problem text
 		$patterns[] = '@<title>.*?</title>@i';
 		$patterns[] = '@<meta.*?>@i';
@@ -2647,7 +2728,7 @@ class linktest
 				$patterns[] = $value;
 			}
 		}
-		
+
 		// process patterns with preg_replace
 		foreach ($patterns as $value)
 		{
@@ -2657,7 +2738,7 @@ class linktest
 				$html = $test;
 			}
 		}
-		
+
 		// uncomment line below to test filtered html
 		// echo "<xmp>$html</xmp>"; exit;
 		
@@ -2690,7 +2771,7 @@ class linktest
 		$adjustment			= $this->adjustment;
 		$format['source']	= $sourceFormat;
 		$format['final']	= $this->format;
-		
+
 		// set multiplier and divsor for equation
 		foreach ($format as $key => $value)
 		{
@@ -2707,13 +2788,49 @@ class linktest
 				break;
 			}
 		}
-		
+
 		// convert size to KB then convert to final format
 		$size = $size * $adjustment;
 		$size = ($size * $x['source']) / $x['final'];
 		$result[0] = $size;
-		
+
 		return $result;
+	}
+}
+
+/**
+* Process template blocks - This code block from ReIMG (c) 2011 DavidIQ.com
+* Not used in default installation. Part of add-on “Auto Embed Video From URLs”
+* Called only from hook_bbvideo.php
+*
+* @param  string	$block_name
+* @param  string	$block_section
+* @version 3.0.12
+*/
+function process_template_block_bbvideo($block_name, $block_section)
+{
+	global $template;
+
+	if (!empty($block_name) && !empty($block_section))
+	{
+		if (!empty($template->_tpldata[$block_name]))
+		{
+			foreach ($template->_tpldata[$block_name] as $row => $data)
+			{
+				// Alter the array
+				$template->alter_block_array($block_name, array(
+					$block_section => url_to_bbvideo($data[$block_section]),
+				), $row, 'change');
+			}
+		}
+	}
+
+	if (!empty($block_section))
+	{
+		if (isset($template->_tpldata['.'][0][$block_section]))
+		{
+			$template->assign_var($block_section, url_to_bbvideo($template->_tpldata['.'][0][$block_section]));
+		}
 	}
 }
 

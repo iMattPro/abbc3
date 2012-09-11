@@ -1,9 +1,10 @@
 <?php
 /**
 *
-* @package acp
-* @copyright (c) 2012 MSSTI Advanced BBCodes Box 3 by leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @package Advanced BBCode Box 3
+* @version $Id$
+* @copyright (c) 2010 leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
 
@@ -16,7 +17,7 @@ if (!defined('IN_PHPBB'))
 }
 
 /**
-* @package acp
+* @package Advanced BBCode Box 3
 */
 class acp_abbcodes
 {
@@ -25,61 +26,31 @@ class acp_abbcodes
 	var $new_config;
 	var $submit;
 	var $dir;
-	
+
 	function main($id, $mode)
 	{
 		global $db, $user, $auth, $template, $cache;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
-		
+
 		$user->add_lang(array('acp/styles', 'mods/info_acp_abbcodes', 'mods/abbcode'));
 
 		// Include files
 		require($phpbb_root_path . 'includes/abbcode.' . $phpEx);
 
-		$radio_ary = array(1 => 'ORDER_ALLOW_DENY', 0 => 'ORDER_DENY_ALLOW');
-
-		// Set some default values in case the user didn't run the installer - Start
-		// Same default values as root/install_abbc3.php -> abbc3_308()
-		$config['ABBC3_VERSION']			= (isset($config['ABBC3_VERSION']))			? $config['ABBC3_VERSION']			: '3.0.11';
-		$config['ABBC3_MOD']				= (isset($config['ABBC3_MOD']))				? $config['ABBC3_MOD']				: true;
-		$config['ABBC3_BG']					= (isset($config['ABBC3_BG']))				? $config['ABBC3_BG']				: 'bg_abbc3.gif';
-		$config['ABBC3_TAB']				= (isset($config['ABBC3_TAB']))				? $config['ABBC3_TAB']				: 1;
-		$config['ABBC3_BOXRESIZE']			= (isset($config['ABBC3_BOXRESIZE']))		? $config['ABBC3_BOXRESIZE']		: 1;
-		$config['ABBC3_RESIZE']				= (isset($config['ABBC3_RESIZE']))			? $config['ABBC3_RESIZE']			: 1;
-		$config['ABBC3_RESIZE_METHOD']		= (isset($config['ABBC3_RESIZE_METHOD']))	? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox';
-		$config['ABBC3_RESIZE_BAR']			= (isset($config['ABBC3_RESIZE_BAR']))		? $config['ABBC3_RESIZE_BAR']		: 1;
-		$config['ABBC3_MAX_IMG_WIDTH']		= (isset($config['ABBC3_MAX_IMG_WIDTH']))	? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width']	? $config['img_max_width'] : 500);
-		$config['ABBC3_MAX_IMG_HEIGHT']		= (isset($config['ABBC3_MAX_IMG_HEIGHT']))	? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'] ? $config['img_max_height'] : 0);
-		$config['ABBC3_RESIZE_SIGNATURE']	= (isset($config['ABBC3_RESIZE_SIGNATURE']))? $config['ABBC3_RESIZE_SIGNATURE']	: 0;
-		$config['ABBC3_MAX_SIG_WIDTH']		= (isset($config['ABBC3_MAX_SIG_WIDTH']))	? $config['ABBC3_MAX_SIG_WIDTH']	: ($config['max_sig_img_width'] ? $config['max_sig_img_width'] : 500);
-		$config['ABBC3_MAX_SIG_HEIGHT']		= (isset($config['ABBC3_MAX_SIG_HEIGHT']))	? $config['ABBC3_MAX_SIG_HEIGHT']	: 100;
-		$config['ABBC3_MAX_THUM_WIDTH']		= (isset($config['ABBC3_MAX_THUM_WIDTH']))	? $config['ABBC3_MAX_THUM_WIDTH']	: ($config['img_max_thumb_width'] ? $config['img_max_thumb_width'] / 2 : 200);
-		$config['ABBC3_COLOR_MODE']			= (isset($config['ABBC3_COLOR_MODE']))		? $config['ABBC3_COLOR_MODE']		: 'phpbb';
-		$config['ABBC3_HIGHLIGHT_MODE']		= (isset($config['ABBC3_HIGHLIGHT_MODE']))	? $config['ABBC3_HIGHLIGHT_MODE']	: 'dropdown';
-		$config['ABBC3_WIZARD_MODE']		= (isset($config['ABBC3_WIZARD_MODE']))		? $config['ABBC3_WIZARD_MODE']		: 2;
-		$config['ABBC3_WIZARD_width']		= (isset($config['ABBC3_WIZARD_width']))	? $config['ABBC3_WIZARD_width']		: 700;
-		$config['ABBC3_WIZARD_height']		= (isset($config['ABBC3_WIZARD_height']))	? $config['ABBC3_WIZARD_height']	: 400;
-		$config['ABBC3_VIDEO_width']		= (isset($config['ABBC3_VIDEO_width']))		? $config['ABBC3_VIDEO_width']		: 425;
-		$config['ABBC3_VIDEO_height']		= (isset($config['ABBC3_VIDEO_height']))	? $config['ABBC3_VIDEO_height']		: 350;
-		$config['ABBC3_VIDEO_OPTIONS']		= (isset($config['ABBC3_VIDEO_OPTIONS']))	? $config['ABBC3_VIDEO_OPTIONS']	: '1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;52;53;54;55;101;102;103;104;105;106;107;108;109;110;207;';
-		$config['ABBC3_VIDEO_WMODE']		= (isset($config['ABBC3_VIDEO_WMODE']))		? $config['ABBC3_VIDEO_WMODE']		: 0;
-		$config['ABBC3_UCP_MODE']			= (isset($config['ABBC3_UCP_MODE']))		? $config['ABBC3_UCP_MODE']			: 1;
-		// Set some default values in case the user didn't run the installer - End
-
 		// Set up general vars
-		$action				= request_var('action', '');
-		$bbcode_id			= request_var('bbcode_id', 0);
+		$action	= request_var('action', '');
+		$bbcode_id = request_var('bbcode_id', 0);
 
-		$this->tpl_name		= 'acp_abbcodes';
-		$this->page_title	= 'ACP_ABBC3_BBCODES';
-		$form_key			= 'acp_abbcodes';
+		$this->tpl_name = 'acp_abbcodes';
+		$this->page_title = 'ACP_ABBC3_BBCODES';
+		$form_key = 'acp_abbcodes';
 
 		add_form_key($form_key);
 
-		$this->u_back 		= $this->u_action;
-		$this->submit		= (isset($_POST['submit'])) ? true : false;
-		$abbc3_root_path	= ($phpbb_admin_path) ? $phpbb_admin_path : $phpbb_root_path ;
-		$this->dir 			= $phpbb_root_path . 'styles/abbcode' ;
+		$this->u_back = $this->u_action;
+		$this->submit = (isset($_POST['submit'])) ? true : false;
+		$abbc3_root_path = ($phpbb_admin_path) ? $phpbb_admin_path : $phpbb_root_path ;
+		$this->dir = $phpbb_root_path . 'styles/abbcode';
 
 		// Execute overall actions
 		switch ($mode)
@@ -172,8 +143,8 @@ class acp_abbcodes
 				'legend2'				=> 'ABBCODES_WIZARD',
 				'ABBC3_WIZARD_width'	=> false,
 				'ABBC3_WIZARD_height'	=> false,
-				'ABBC3_WIZARD'			=> array('lang' => 'ABBCODES_WIZARD_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true,  'append'  => ' ' . $user->lang['PIXEL']),
 				'ABBC3_WIZARD_MODE'		=> array('lang'	=> 'ABBCODES_WIZARD_MODE',		'validate' => 'int',	'type' => 'custom',			'function'	=> 'get_radio', 'params' => array('config[ABBC3_WIZARD_MODE]', $user->lang['ABBCODES_WIZARD_SELECTOR'], $config['ABBC3_WIZARD_MODE'], 'ABBC3_WIZARD_MODE'), 'explain' => false),
+				'ABBC3_WIZARD'			=> array('lang' => 'ABBCODES_WIZARD_SIZE',		'validate' => 'int',	'type' => 'dimension:3:4',	'explain'	=> true,  'append'  => ' ' . $user->lang['PIXEL']),
 
 				'legend3'				=> 'ABBCODES_RESIZER',
 				'ABBC3_RESIZE'			=> array('lang' => 'ABBCODES_RESIZE',									'type' => 'string',			'explain'	=> true, 'append' => ' <span id="ABBC3_RESIZE">' . $user->lang['ABBCODES_JAVASCRIPT_EXPLAIN'] . '</span>'),
@@ -237,7 +208,16 @@ class acp_abbcodes
 		if ($this->submit)
 		{
 			$allowed_videos	= request_var('allowed_videos', array(0));
-			set_config('ABBC3_VIDEO_OPTIONS', video_serialize($allowed_videos, true));
+
+			$allowed_videos_string = implode(';', $allowed_videos);
+
+			// The config table only stores 255 chars, so we need to prevent any instance where this might be exceeded.
+			if (strlen($allowed_videos_string) > 255)
+			{
+				trigger_error($user->lang['ABBCODES_VIDEO_ERROR'] . adm_back_link($this->u_action), E_USER_WARNING);
+			}
+
+			set_config('ABBC3_VIDEO_OPTIONS', $allowed_videos_string);
 
 			add_log('admin', 'LOG_CONFIG_ABBCODES');
 
@@ -320,11 +300,11 @@ class acp_abbcodes
 			'HIGHSLIDE_EXIST'					=> (@file_exists("$this->dir/highslide/highslide-full.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_HIGHSLIDE'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "highslide-full.js", "4.1.13", "{$board_path}highslide/", "Highslide JS", "http://highslide.com/download.php"),
 
-			'LITEBOX_EXIST'						=> (@file_exists("$this->dir/lightbox/lightbox.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_LITEBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightbox.js", "2.05", "{$board_path}lightbox/", "Lightbox2", "https://github.com/lokesh/lightbox2/tags"),
-
 			'LIGHTVIEW_EXIST'					=> (@file_exists("$this->dir/lightview/js/lightview.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.8.0", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
+
+			'PRETTYPHOTO_EXIST'					=> (@file_exists("$this->dir/prettyPhoto/js/jquery.prettyPhoto.js")) ? 1 : 0,
+			'L_NO_EXIST_EXPLAIN_PRETTYPHOTO'	=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "jquery.prettyPhoto.js", "3.1.4", "{$board_path}prettyPhoto/js/", "prettyPhoto", "http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/"),
 
 			'SHADOWBOX_EXIST'					=> (@file_exists("$this->dir/shadowbox/shadowbox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_SHADOWBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "shadowbox.js", "3.0.3", "{$board_path}shadowbox/", "Shadowbox", "http://www.shadowbox-js.com/download.html"),
@@ -765,8 +745,7 @@ function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
 	global $user, $config, $phpbb_admin_path, $phpbb_root_path, $phpEx;
 
 	$abbcode_video_ary = abbcode::video_init();
-	// The video_serialize function is at root/includes/abbcode.php after the abbcode class
-	$allowed_videos = (!$current) ? array() : video_serialize($current, false);
+	$allowed_videos = (!$current) ? array() : explode(';', $current);
 
 	if (sizeof($abbcode_video_ary))
 	{
@@ -776,7 +755,7 @@ function video_select($current, $name, $u_action, $ide = 'ABBC3_VIDEO_OPTIONS')
 		foreach ($abbcode_video_ary as $video_name => $video_data)
 		{
 			// Get option group labels
-			if ($video_name == 'video' || $video_name == 'external' || $video_name == 'file')
+			if ($video_name == 'video' || $video_name == 'file')
 			{
 				$video_options .= ($video_optgroup) ? '</optgroup>' . "\n" : '';
 				$video_options .= '<optgroup label="-- ' . $user->lang['ABBC3_BBVIDEO_' . strtoupper($video_name)] . ' --">' . "\n";
