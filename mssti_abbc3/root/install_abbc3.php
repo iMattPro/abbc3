@@ -120,7 +120,7 @@ $versions = array(
 		),
 
 		// purge the cache
-		'cache_purge' => array(),
+		'cache_purge' => '',
 	),
 );
 
