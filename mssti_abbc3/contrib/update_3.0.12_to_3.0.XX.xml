@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.12 to 3.0.XX]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.12 to version 3.0.XX]]></description>
+		<author-notes lang="en"><![CDATA[IMPORTANT:
+		Make sure you upload every file listed in the File copy section. Any directory with *.* means ALL the contents of that directory (and all content in directories nested within) must be copied to your server.
+
+		If you have any doubt - there is no harm in simply uploading every file included in this MOD's root folder to the appropriate locations on your server.]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Matt Friedman]]></realname>
+				<username><![CDATA[VSE]]></username>
+				<homepage><![CDATA[http://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/]]></homepage>
+				<contributions-group>
+					<contributions status="current" from="2010-03-02" position="Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Gabriel Vazquez]]></realname>
+				<username><![CDATA[leviatan21]]></username>
+				<email><![CDATA[info@mssti.com]]></email>
+				<contributions-group>
+					<contributions status="past" from="2008-01-10" to="2012-03-01" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+		<mod-version>3.0.XX</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>180</time>
+			<target-version>3.0.11</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install_ABBC3.xml" lang="en">Main Install Instructions</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
+			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
+			<file from="root/language/en/mods/abbcode.php" to="language/en/mods/abbcode.php"/>
+			<file from="root/umil/*.*" to="umil/*.*"/>
+		</copy>
+		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[Don't forget to run the install_abbc3.php installation script (click the highlighted link above if you are using AutoMOD)]]></diy-instructions>
+	</action-group>
+</mod>
