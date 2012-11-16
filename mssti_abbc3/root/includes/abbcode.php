@@ -1529,13 +1529,6 @@ class abbcode
 				'replace'	=> 'http://0.static.collegehumor.cvcdn.com/moogaloop/moogaloop.internal.1.0.1.swf?clip_id=$1&use_node_id=true&fullscreen=1',
 				'method'	=> 'flash',
 			),
-			'comedians.jokes.com' => array(
-				'id'		=> 57,
-				'image'		=> 'comedians.gif',
-				'example'	=> 'http://comedians.jokes.com/bert-kreischer/videos/bert-kreischer---twelve-words',
-				'match'		=> '#http://comedians.(jokes|comedycentral).com/(.*?)/videos/([^[]*)#si',
-				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
-			),
 			'comedycentral.com' => array(
 				'id'		=> 1,
 				'image'		=> 'comedycentral.gif',
@@ -1546,7 +1539,7 @@ class abbcode
 			'crackle.com' => array(	
 				'id'		=> 5,
 				'image'		=> 'crackle.gif',
-				'example'	=> 'http://www.crackle.com/c/Breaking_Bad/Breaking_Bad/2451891',
+				'example'	=> 'http://www.crackle.com/c/The_Walking_Dead/TS-19/2483060/',
 				'match'		=> '#http://((.*?)?)crackle.com/(.*?)/(.*?)/(.*?)/([0-9]+)?([^[]*)?#si',
 				'replace'	=> 'http://www.crackle.com/p/$4/$5.swf',
 				'method'	=> 'flash',
@@ -1588,9 +1581,9 @@ class abbcode
 			'facebook.com' => array(
 				'id'		=> 50,
 				'image'		=> 'video.gif',
-				'example'	=> 'http://www.facebook.com/video/video.php?v=1587422536911',
-				'match'		=> '#http://www.facebook.com/(?:.*)video.php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?#si',
-				'replace'	=> 'http://www.facebook.com/v/$1',
+				'example'	=> 'https://www.facebook.com/video/video.php?v=2031763147233',
+				'match'		=> '#https?://www.facebook.com/(?:.*)video.php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?#si',
+				'replace'	=> 'https://www.facebook.com/v/$1',
 				'method'	=> 'flash',
 			),
 			'flickr.com' => array(
@@ -1659,14 +1652,6 @@ class abbcode
 				'example'	=> 'http://www.godtube.com/watch/?v=9JJBE1NU',
 				'match'		=> '#http://www.godtube.com/watch/\?v=([^[]*)?#si',
 				'replace'	=> '<script type="text/javascript" src="http://www.godtube.com/embed/source/$1.js?w={WIDTH}&amp;h={HEIGHT}&amp;ap=false&amp;sl=false&amp;title=false"></script>',
-			),
-			'gotgame.com' => array(
-				'id'		=> 58,
-				'image'		=> 'gotgame.gif',
-				'example'	=> 'http://gotgame.com/2012/03/26/assassins-creed-3-interview-with-alex-hutchinson/',
-				'match'		=> '#http://(.*?)gotgame.com/([^[]*)?#si',
-				'replace'	=> 'http://gotgame.com/wp-content/plugins/oembed-provider/oembed-provider.php?url=$0&format=json',
-				'method'	=> 'oEmbed',
 			),
 			'howcast.com' => array(
 				'id'		=> 28,
@@ -1992,7 +1977,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 67-200
+			// available ids: 57, 58, 67-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(

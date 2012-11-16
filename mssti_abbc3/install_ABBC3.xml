@@ -37,6 +37,15 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</installation>
 		<history>
 			<entry>
+				<date>2012-11-16</date>
+				<rev-version>3.0.XX</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[Change] Deleted BBvideo for gotgame.com. Unable to embed from the url.]]></change>
+					<change><![CDATA[[Change] Deleted BBvideo for comedians.jokes.com. Content from this site has been moved to comedycentral.com.]]></change>
+					<change><![CDATA[[Fix] Fixed BBvideo for facebook.com videos.]]></change>
+				</changelog>
+			</entry>
+			<entry>
 				<date>2012-08-28</date>
 				<rev-version>3.0.12</rev-version>
 				<changelog lang="en">
