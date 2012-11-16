@@ -118,9 +118,17 @@ $versions = array(
 				),
 			),
 		),
+	),
 
+	// Version 3.0.XX
+	'3.0.XX'		=> array(
+		'custom' => array(
+			// We have some BBCodes to update
+			'abbc3_bbcode_handler',
+		),
+		
 		// purge the cache
-		'cache_purge' => array(),
+		'cache_purge' => '',
 	),
 );
 
