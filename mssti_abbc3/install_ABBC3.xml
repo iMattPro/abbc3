@@ -43,6 +43,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 					<change><![CDATA[[Change] Deleted BBvideo for gotgame.com. Unable to embed from the url.]]></change>
 					<change><![CDATA[[Change] Deleted BBvideo for comedians.jokes.com. Content from this site has been moved to comedycentral.com.]]></change>
 					<change><![CDATA[[Fix] Fixed BBvideo for facebook.com videos.]]></change>
+					<change><![CDATA[[Fix] Fixed BBcode [mod] to accept usernames that may contain brackets.]]></change>
 				</changelog>
 			</entry>
 			<entry>

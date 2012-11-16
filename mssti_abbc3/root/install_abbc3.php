@@ -118,7 +118,15 @@ $versions = array(
 				),
 			),
 		),
+	),
 
+	// Version 3.0.XX
+	'3.0.XX'		=> array(
+		'custom' => array(
+			// We have some BBCodes to update
+			'abbc3_bbcode_handler',
+		),
+		
 		// purge the cache
 		'cache_purge' => '',
 	),
@@ -2448,6 +2456,28 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'abbcode'				=> 1,
 				'bbcode_image'			=> 'youtube.gif',
 				'bbcode_group'			=> '0',
+			),
+		),
+		// BBCodes new and/or changed in version 3.0.XX
+		'3.0.XX' => array(
+			// Fixed first and second pass match/replace
+			'mod'		=> array(
+				'bbcode_tag'			=> 'mod=',
+				'bbcode_order'			=> 48,
+				'bbcode_id'				=> 1,
+				'bbcode_helpline'		=> 'ABBC3_MODERATOR_TIP',
+				'bbcode_match'			=> '[mod={TEXT1}]{TEXT2}[/mod]',
+				'bbcode_tpl'			=> '<table class="ModTable" width="100%" cellspacing="5" cellpadding="0" border="0"><tr><td class="exclamation" rowspan="2">&nbsp;!&nbsp;</td><td class="rowuser">{TEXT1}:</td></tr><tr><td class="rowtext">{TEXT2}</td></tr></table>',
+				'first_pass_match'		=> '!\[mod\=(&quot;(.*?)&quot;)?\](.*?)\[/mod\]!ies',
+				'first_pass_replace'	=> '\'[mod=${1}:$uid]\' . str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${3}\')) . \'[/mod:$uid]\'',
+				'second_pass_match'		=> '!\[mod\=(&quot;(.*?)&quot;)?:$uid\](.*?)\[/mod:$uid\]!ies',
+				'second_pass_replace'	=> "\$this->moderator_pass('$1', '$3')",
+				'display_on_posting'	=> 1,
+				'display_on_pm'			=> 1,
+				'display_on_sig'		=> 1,
+				'abbcode'				=> 1,
+				'bbcode_image'			=> 'moderator.gif',
+				'bbcode_group'			=> '5, 4',
 			),
 		),
 	);

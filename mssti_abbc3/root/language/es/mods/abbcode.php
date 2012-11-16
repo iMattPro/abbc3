@@ -209,9 +209,9 @@ $lang = array_merge($lang, array(
 
 	// Moderator
 	'ABBC3_MOD_MOVER'			=> 'Mensaje del moderator',
-	'ABBC3_MOD_TIP'				=> '[mod=nombre]texto[/mod]',
+	'ABBC3_MOD_TIP'				=> '[mod=“nombre”]texto[/mod]',
 ##	For translator:                      yes
-	'ABBC3_MOD_VIEW'			=> '[mod=Nombre_de_moderador]' . $lang['SAMPLE_TEXT'] . '[/mod]',
+	'ABBC3_MOD_VIEW'			=> '[mod=&quot;Nombre_de_moderador&quot;]' . $lang['SAMPLE_TEXT'] . '[/mod]',
 
 	// Off Topic
 	'OFFTOPIC'					=> 'Fuera de tema',
