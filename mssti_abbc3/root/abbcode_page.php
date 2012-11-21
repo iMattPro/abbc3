@@ -239,7 +239,7 @@ function abbcode_tigra_color_picker()
 	}
 
 	// Output page ...
-	page_header('Tigra Color Picker');
+	page_header($user->lang['ABBC3_COLOUR_TIGRA']);
 
 	$template->set_custom_template($abbcode->abbcode_config['S_ABBC3_PATH'], 'abbcode_picker');
 

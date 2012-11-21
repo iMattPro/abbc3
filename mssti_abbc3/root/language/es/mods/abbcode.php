@@ -164,6 +164,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_COLOR_VIEW'			=> '[color=red]' . $lang['SAMPLE_TEXT'] . '[/color]',
 
 	// Tigra Color & Highlight family Groups
+	'ABBC3_COLOUR_TIGRA'		=> 'Tigra Color Picker',
 	'ABBC3_COLOUR_SAFE'			=> 'Paleta segura para la Web',
 	'ABBC3_COLOUR_WIN'			=> 'Paleta del sistema Windows',
 	'ABBC3_COLOUR_GREY'			=> 'Paleta de escala de grises',
