@@ -44,6 +44,7 @@
 		<copy>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
+			<file from="root/includes/acp/acp_abbcode.php" to="includes/acp/acp_abbcode.php"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/abbcode.php" to="language/en/mods/abbcode.php"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>

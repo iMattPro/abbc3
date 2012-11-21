@@ -35,7 +35,10 @@ class acp_abbcodes
 		$user->add_lang(array('acp/styles', 'mods/info_acp_abbcodes', 'mods/abbcode'));
 
 		// Include files
-		require($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		if (!class_exists('abbcode'))
+		{
+			require($phpbb_root_path . 'includes/abbcode.' . $phpEx);
+		}
 
 		// Set up general vars
 		$action	= request_var('action', '');
@@ -638,6 +641,7 @@ class acp_abbcodes
 				));
 			}
 		}
+		$db->sql_freeresult($result);
 	}
 
 	/**
