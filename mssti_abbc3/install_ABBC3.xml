@@ -37,13 +37,14 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</installation>
 		<history>
 			<entry>
-				<date>2012-11-16</date>
+				<date>2012-11-23</date>
 				<rev-version>3.0.XX</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Change] Deleted BBvideo for gotgame.com. Unable to embed from the url.]]></change>
 					<change><![CDATA[[Change] Deleted BBvideo for comedians.jokes.com. Content from this site has been moved to comedycentral.com.]]></change>
 					<change><![CDATA[[Fix] Fixed BBvideo for facebook.com videos.]]></change>
 					<change><![CDATA[[Fix] Fixed BBcode [mod] to accept usernames that may contain brackets.]]></change>
+					<change><![CDATA[[New] Added Turkish language translation.]]></change>
 				</changelog>
 			</entry>
 			<entry>
@@ -190,6 +191,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2 instructions</link>
 			<link type="language" href="contrib/es.xml" lang="en">Spanish language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">German language pack</link>
+			<link type="language" href="contrib/tr.xml" lang="en">Turkish language pack</link>
 			<link type="contrib" href="contrib/add_on_auto_embed_video_from_urls.xml" lang="en">Add-on : Auto Embed Video From URLs</link>
 			<link type="contrib" href="contrib/add_on_YouTube_Lightboxes.xml" lang="en">Add-on : Open YouTube videos with Lightboxes</link>
 			<link type="contrib" href="contrib/add_on_Evil_Quick_Reply.xml" lang="en">Add-on : ABBC3 with Evil Quick Reply v1.0.1</link>
