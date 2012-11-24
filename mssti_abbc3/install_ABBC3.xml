@@ -45,6 +45,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 					<change><![CDATA[[Fix] Fixed BBvideo for facebook.com videos.]]></change>
 					<change><![CDATA[[Fix] Fixed BBcode [mod] to accept usernames that may contain brackets.]]></change>
 					<change><![CDATA[[New] Added Turkish language translation.]]></change>
+					<change><![CDATA[[Change] Update UMIL package to 1.0.5.]]></change>
 				</changelog>
 			</entry>
 			<entry>
