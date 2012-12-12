@@ -1733,8 +1733,8 @@ class abbcode
 				'id'		=> 51,
 				'image'		=> 'vidsmyspace.gif',
 				'example'	=> 'http://www.myspace.com/video/vid/49776296',
-				'match'		=> '#http://(www.)?myspace.com/video/vid/([^[]*)?#si',
-				'replace'	=> 'http://mediaservices.myspace.com/services/media/embed.aspx/m=$2',
+				'match'		=> '#http://www.?myspace.com/video/[^[]+/([0-9]+)?#si',
+				'replace'	=> 'http://mediaservices.myspace.com/services/media/embed.aspx/m=$1,t=1,mt=video',
 				'method'	=> 'flash',
 			),
 			'myvideo.de' => array(
