@@ -2256,12 +2256,18 @@ class abbcode
 * Called only from hook_bbvideo.php when optionally installed
 *
 * @param  string	$text	string to transform
-* @return string	$text	string with embed code if applicable
-* @version 3.0.12
+* @return string	$text	string with embed codes if applicable
+* @version 3.0.13
 */
 function url_to_bbvideo($text)
 {
-	global $bbcode, $user;
+	// Check to see if we have any links to process
+	if (strpos($text, '<a ') === false)
+	{
+		return($text);
+	}
+
+	global $bbcode;
 
 	// if no BBCodes are on page, load them up
 	if (empty($bbcode))
@@ -2277,16 +2283,28 @@ function url_to_bbvideo($text)
 		$abbcode_video_ary = abbcode::video_init();
 	}
 
-	// check to see if any URLs can be converted into BBvideos
-	foreach ($abbcode_video_ary as $video_name => $video_data)
+	// Get all magic urls in the post text
+	preg_match_all('#<!-- [lmw] --><a class="[^"]*" href="([^"]*)"[^>]*>.*?<\/a><!-- [lmw] -->#i', $text, $matches, PREG_SET_ORDER);
+	foreach ($matches as $links)
 	{
-		// For now we only will apply this to video sites...BBvideos with ID's less than 200
-		if ( (strpos($text, $video_name) !== false) && isset($video_data['id']) && ($video_data['id'] <= 200) )
+		$link = $links[0];
+		$url  = $links[1];
+		// Check for valid BBvideo sites
+		foreach ($abbcode_video_ary as $video_name => $video_data)
 		{
-			// Run URL matches through the BBvideo_pass function to turn them into embedded BBvideos
-			$text = preg_replace_callback('#<!-- [lmw] --><a class="[^"]*" href="([^"]*)"[^>]*>.*?<\/a><!-- [lmw] -->#i', create_function('$matches', 'global $bbcode; return $bbcode->BBvideo_pass($matches[1], null, null);'), $text);
-			break;
+			if (isset($video_data['match']) && preg_match($video_data['match'], $url))
+			{
+				$video_links[] = $link;
+				$embed_codes[] = $bbcode->BBvideo_pass($url, null, null);
+				break;
+			}
 		}
+	}
+
+	// Replace video links with embed codes
+	if (isset($video_links) && isset($embed_codes))
+	{
+		$text = str_replace($video_links, $embed_codes, $text);
 	}
 
 	return $text;
