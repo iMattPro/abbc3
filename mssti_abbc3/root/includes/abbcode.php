@@ -2310,7 +2310,6 @@ function url_to_bbvideo($text)
 	return $text;
 }
 
-// MOD : eD2k links - START
 /**
 * eD2k Add-on optionally called from viewtopic
 *	display table with ed2k links features
@@ -2415,7 +2414,6 @@ function abbc3_ed2k_humanize_size($size, $rounder = 0)
 	}
 	return sprintf($format, round($size, $rounder));
 }
-// MOD : eD2k links - END
 
 /**
  * linktest class
