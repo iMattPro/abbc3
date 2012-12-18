@@ -11,6 +11,7 @@
 		<author-notes lang="en"><![CDATA[To learn more about ABBC3, please read the contrib/docs/README.HTML
 -------------------------------------------------------------------
 WARNING: Please be advised that this MOD might overwrite some custom BBCodes you already have and as a result, those BBCodes might not display correctly due to the changes introduced by ABBC3's BBCodes. If you are using custom BBCodes, please read the contrib/docs/README.HTML file for more information before you proceed.]]></author-notes>
+		<github><![CDATA[https://github.com/VSEphpbb/Advanced-BBCode-Box-3]]></github>
 		<author-group>
 			<author>
 				<realname><![CDATA[Matt Friedman]]></realname>
