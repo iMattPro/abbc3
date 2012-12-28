@@ -38,7 +38,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</installation>
 		<history>
 			<entry>
-				<date>2012-12-17</date>
+				<date>2012-12-28</date>
 				<rev-version>3.0.XX</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Change] Deleted BBvideo for gotgame.com. Unable to embed from the url.]]></change>
@@ -46,7 +46,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 					<change><![CDATA[[Fix] Fixed BBvideo for facebook.com videos.]]></change>
 					<change><![CDATA[[Fix] Fixed BBcode [mod] to accept usernames that may contain brackets.]]></change>
 					<change><![CDATA[[Fix] Fixed an incompatability issue with the Automatic URL to BBVideo add-on and Prime Links MOD.]]></change>
-					<change><![CDATA[[New] Added Turkish language translation.]]></change>
+					<change><![CDATA[[New] Added Turkish and Arabic language translations.]]></change>
 					<change><![CDATA[[Change] Update MODX files to 1.2.6.]]></change>
 					<change><![CDATA[[Change] Update UMIL package to 1.0.5.]]></change>
 				</changelog>
@@ -193,8 +193,9 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</history>
 		<link-group>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">subsilver2 instructions</link>
-			<link type="language" href="contrib/es.xml" lang="en">Spanish language pack</link>
+			<link type="language" href="contrib/ar.xml" lang="en">Arabic language pack</link>
 			<link type="language" href="contrib/de.xml" lang="en">German language pack</link>
+			<link type="language" href="contrib/es.xml" lang="en">Spanish language pack</link>
 			<link type="language" href="contrib/tr.xml" lang="en">Turkish language pack</link>
 			<link type="contrib" href="contrib/add_on_auto_embed_video_from_urls.xml" lang="en">Add-on : Auto Embed Video From URLs</link>
 			<link type="contrib" href="contrib/add_on_YouTube_Lightboxes.xml" lang="en">Add-on : Open YouTube videos with Lightboxes</link>
