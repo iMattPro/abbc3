@@ -48,6 +48,7 @@
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/abbcode.php" to="language/en/mods/abbcode.php"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>
+			<file from="root/styles/abbcode/prettyPhoto/js/jquery.prettyPhoto.js" to="styles/abbcode/prettyPhoto/js/jquery.prettyPhoto.js"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<php-installer><![CDATA[install_abbc3.php]]></php-installer>
