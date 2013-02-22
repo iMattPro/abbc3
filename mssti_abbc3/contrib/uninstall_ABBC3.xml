@@ -128,14 +128,6 @@
 ]]></remove>
 			</edit>
 		</open>
-		<open src="adm/style/simple_header.html">
-			<edit>
-				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
-<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
-]]></remove>
-			</edit>
-		</open>
 		<open src="includes/bbcode.php">
 			<edit>
 				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
@@ -536,13 +528,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				</inline-edit>
 			</edit>
 		</open>
-		<open src="styles/prosilver/template/simple_header.html">
-			<edit>
-				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
-<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></remove>
-			</edit>
-		</open>
 		<open src="styles/prosilver/template/ucp_prefs_post.html">
 			<edit>
 				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
@@ -652,14 +637,6 @@ define('CLICKS_TABLE',				$table_prefix . 'clicks');
 				<inline-edit>
 					<inline-remove><![CDATA[ id="sig"]]></inline-remove>
 				</inline-edit>
-			</edit>
-		</open>
-		<open src="styles/subsilver2/template/simple_header.html">
-			<edit>
-				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<link rel="stylesheet" type="text/css" media="all" href="{T_IMAGESET_PATH}/abbcode/abbcode.css" />
-<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
-]]></remove>
 			</edit>
 		</open>
 		<open src="styles/subsilver2/template/ucp_pm_viewmessage.html">

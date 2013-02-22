@@ -133,15 +133,6 @@
 				</inline-edit>
 			</edit>
 		</open>
-		<open src="styles/subsilver2/template/simple_header.html">
-			<edit>
-				<find><![CDATA[</head>]]></find>
-				<action type="before-add"><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
-<link rel="stylesheet" type="text/css" media="all" href="{T_IMAGESET_PATH}/abbcode/abbcode.css" />
-<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
-]]></action>
-			</edit>
-		</open>
 		<open src="styles/subsilver2/template/ucp_pm_viewmessage.html">
 			<edit>
 				<find><![CDATA[				<!-- IF SIGNATURE -->]]></find>
