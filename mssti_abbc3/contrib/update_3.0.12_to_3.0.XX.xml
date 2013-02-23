@@ -43,12 +43,15 @@
 	<action-group>
 		<copy>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
+			<file from="root/adm/style/posting_abbcode_wizards.html" to="adm/style/posting_abbcode_wizards.html"/>
 			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
 			<file from="root/includes/acp/acp_abbcode.php" to="includes/acp/acp_abbcode.php"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/abbcode.php" to="language/en/mods/abbcode.php"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>
 			<file from="root/styles/abbcode/prettyPhoto/js/jquery.prettyPhoto.js" to="styles/abbcode/prettyPhoto/js/jquery.prettyPhoto.js"/>
+			<file from="root/styles/prosilver/template/posting_abbcode_buttons.html" to="styles/prosilver/template/posting_abbcode_buttons.html"/>
+			<file from="root/styles/subsilver2/template/posting_abbcode_buttons.html" to="styles/subsilver2/template/posting_abbcode_buttons.html"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<open src="adm/style/simple_header.html">
