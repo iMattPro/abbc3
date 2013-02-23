@@ -42,8 +42,8 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 				<rev-version>3.0.XX</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Update] Updated prettyPhoto to v3.1.5 (supports jQuery 1.9).]]></change>
-					<change><![CDATA[[Change] Deleted BBvideo for gotgame.com. Unable to embed from the url.]]></change>
-					<change><![CDATA[[Change] Deleted BBvideo for comedians.jokes.com. Content from this site has been moved to comedycentral.com.]]></change>
+					<change><![CDATA[[Update] Updated BBvideos for gamespot.com and gameprotv.com.]]></change>
+					<change><![CDATA[[Change] Deleted BBvideo for gotgame.com (unable to embed from the url) and comedians.jokes.com (moved to comedycentral.com).]]></change>
 					<change><![CDATA[[Fix] Remove old unused code from simple_header.html.]]></change>
 					<change><![CDATA[[Fix] Fix some HTML validation issues.]]></change>
 					<change><![CDATA[[Fix] Fixed BBvideo for facebook.com videos.]]></change>
