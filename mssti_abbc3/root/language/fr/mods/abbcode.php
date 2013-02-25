@@ -4,7 +4,7 @@
 * abbcode [French]
 *
 * @package Advanced BBCode Box 3
-* @version $Id: 3.0.12	24/01/2013	09h41	$
+* @version $Id$
 * @copyright (c) 2010 leviatan21 (Gabriel Vazquez) and VSE (Matt Friedman)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * @translators fr (c) darky - http://www.foruminfopc.fr/ and Team http://www.phpBB-fr.com/
