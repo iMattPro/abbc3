@@ -1851,6 +1851,15 @@ class abbcode
 				'match'		=> '#http://((.*?)?)theonion.com/([^,]+),([0-9]+)([^[]*)?#si',
 				'replace'	=> '<iframe frameborder="no" width="{WIDTH}" height="{HEIGHT}" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>',
 			),
+			'twitch.tv' => array(
+				'id'		=> 57,
+				'image'		=> 'twitch.gif',
+				'example'	=> 'http://www.twitch.tv/rzn732',
+				'match'		=> '#http://(.*?)twitch.tv/([^[]*)?#si',
+				'replace'	=> 'http://www.twitch.tv/widgets/live_embed_player.swf?channel=$2',
+				'method'	=> 'flash',
+				'flashvars'	=> 'hostname=www.twitch.tv&channel=$2&auto_play=false&start_volume=25',
+			),
 			'twitvid.com' => array(
 				'id'		=> 12,
 				'image'		=> 'twitvid.gif',
@@ -1976,7 +1985,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 57, 58, 67-200
+			// available ids: 58, 67-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(
