@@ -120,8 +120,8 @@ $versions = array(
 		),
 	),
 
-	// Version 3.0.XX
-	'3.0.XX'		=> array(
+	// Version 3.0.13
+	'3.0.13'		=> array(
 		'custom' => array(
 			// We have some BBCodes to update
 			'abbc3_bbcode_handler',
@@ -2458,8 +2458,8 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 				'bbcode_group'			=> '0',
 			),
 		),
-		// BBCodes new and/or changed in version 3.0.XX
-		'3.0.XX' => array(
+		// BBCodes new and/or changed in version 3.0.13
+		'3.0.13' => array(
 			// Fixed first and second pass match/replace
 			'mod'		=> array(
 				'bbcode_tag'			=> 'mod=',

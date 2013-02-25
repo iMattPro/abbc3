@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.12 to 3.0.XX]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.12 to version 3.0.XX]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.12 to 3.0.13]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.12 to version 3.0.13]]></description>
 		<author-notes lang="en"><![CDATA[IMPORTANT:
 		Make sure you upload every file listed in the File copy section. Any directory with *.* means ALL the contents of that directory (and all content in directories nested within) must be copied to your server.
 
@@ -30,7 +30,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.XX</mod-version>
+		<mod-version>3.0.13</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>180</time>
@@ -44,10 +44,10 @@
 		<copy>
 			<file from="root/abbcode_page.php" to="abbcode_page.php"/>
 			<file from="root/adm/style/posting_abbcode_wizards.html" to="adm/style/posting_abbcode_wizards.html"/>
-			<file from="root/includes/abbcode.php" to="includes/abbcode.php"/>
-			<file from="root/includes/acp/acp_abbcode.php" to="includes/acp/acp_abbcode.php"/>
+			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/abbcode.php" to="language/en/mods/abbcode.php"/>
+			<file from="root/styles/abbcode/images/*.*" to="styles/abbcode/images/*.*"/>
 			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>
 			<file from="root/styles/abbcode/prettyPhoto/js/jquery.prettyPhoto.js" to="styles/abbcode/prettyPhoto/js/jquery.prettyPhoto.js"/>
 			<file from="root/styles/prosilver/template/posting_abbcode_buttons.html" to="styles/prosilver/template/posting_abbcode_buttons.html"/>
