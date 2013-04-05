@@ -307,7 +307,7 @@ class acp_abbcodes
 			'L_NO_EXIST_EXPLAIN_LIHTVIEW'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "lightview.js", "2.8.0", "{$board_path}lightview/js/", "Lightview", "http://www.nickstakenburg.com/projects/lightview/"),
 
 			'PRETTYPHOTO_EXIST'					=> (@file_exists("$this->dir/prettyPhoto/js/jquery.prettyPhoto.js")) ? 1 : 0,
-			'L_NO_EXIST_EXPLAIN_PRETTYPHOTO'	=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "jquery.prettyPhoto.js", "3.1.4", "{$board_path}prettyPhoto/js/", "prettyPhoto", "http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/"),
+			'L_NO_EXIST_EXPLAIN_PRETTYPHOTO'	=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "jquery.prettyPhoto.js", "3.1.5", "{$board_path}prettyPhoto/js/", "prettyPhoto", "http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/"),
 
 			'SHADOWBOX_EXIST'					=> (@file_exists("$this->dir/shadowbox/shadowbox.js")) ? 1 : 0,
 			'L_NO_EXIST_EXPLAIN_SHADOWBOX'		=> sprintf($user->lang['NO_EXIST_EXPLAIN_OTHERS'], "shadowbox.js", "3.0.3", "{$board_path}shadowbox/", "Shadowbox", "http://www.shadowbox-js.com/download.html"),
