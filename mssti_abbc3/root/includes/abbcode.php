@@ -1461,8 +1461,16 @@ class abbcode
 				'image'		=> 'allocine.gif',
 				'example'	=> 'http://www.allocine.fr/video/player_gen_cmedia=19149857&cfilm=126693.html',
 				'match'		=> '#http://www.allocine.fr/video/player_gen_cmedia=(\d+)?([^[]*)?#si',
+//				'replace'	=> '<iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=$1" style="width:{WIDTH}px; height:{HEIGHT}px" frameborder="0"></iframe>',
 				'replace'	=> 'http://www.allocine.fr/blogvision/$1',
 				'method'	=> 'flash',
+			),
+			'on.aol.com' => array(
+				'id'		=> 58,
+				'image'		=> 'onaol.gif',
+				'example'	=> 'http://on.aol.com/video/ipad-to-embrace-new-name-517297508',
+				'match'		=> '#http://on.aol.com/video/(?:.*)-([0-9]+)#si',
+				'replace'	=> '<script type="text/javascript" src="http://pshared.5min.com/Scripts/PlayerSeed.js?sid=203&amp;width={WIDTH}&amp;height={HEIGHT}&amp;shuffle=0&amp;playList=$1"></script>',
 			),
 			'blip.tv' => array(
 				'id'		=> 52,
@@ -1574,17 +1582,17 @@ class abbcode
 				'image'		=> 'ebaumsworld.gif',
 				'example'	=> 'http://www.ebaumsworld.com/video/watch/82424906/',
 				'match'		=> '#http://(.*?)ebaumsworld.com/video/watch/(.*?)/#si',
+//				'replace'	=> '<iframe src="http://www.ebaumsworld.com/media/embed/$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 				'replace'	=> 'http://www.ebaumsworld.com/player.swf',
 				'method'	=> 'flash',
 				'flashvars'	=> 'id1=$2',
 			),
 			'facebook.com' => array(
 				'id'		=> 50,
-				'image'		=> 'video.gif',
+				'image'		=> 'facebook.gif',
 				'example'	=> 'https://www.facebook.com/video/video.php?v=2031763147233',
 				'match'		=> '#https?://www.facebook.com/(?:.*)video.php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?#si',
-				'replace'	=> 'https://www.facebook.com/v/$1',
-				'method'	=> 'flash',
+				'replace'	=> '<iframe src="https://www.facebook.com/video/embed?video_id=$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
 			'flickr.com' => array(
 				'id'		=> 19,
@@ -1626,6 +1634,7 @@ class abbcode
 				'image'		=> 'gamespot.gif',
 				'example'	=> 'http://www.gamespot.com/video/928334/6185856/lost-odyssey-official-trailer-8',
 				'match'		=> '#http://www.gamespot.com.*?(\d{7}?)([^[]*)?#si',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.gamespot.com/videoembed/$1&mapp=false&ads=0&onsite=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 				'replace'	=> 'http://image.com.com/gamespot/images/cne_flash/production/pharos/release/pharos.swf?ver=3',
 				'method'	=> 'flash',
 				'flashvars'	=> '&viewMode=sd&autoPlay=false&mapp=embedded_640&paramsXML=http%3A%2F%2Fwww.gamespot.com%2Fpages%2Fvideo_player%2Fxml.php%3Fid%3D$1%26width%3D{WIDTH}%26height%3D{HEIGHT}%26newplayer%3D1%26skin%3Dpharos_editorial.xml',
@@ -1674,6 +1683,7 @@ class abbcode
 				'image'		=> 'ign.gif',
 				'example'	=> 'http://www.ign.com/videos/2012/04/05/double-dragon-neon-gameplay-trailer',
 				'match'		=> '#http://(.*?)ign\.com/videos/([0-9]+)/([0-9]+)/([0-9]+)/([^?]*)?([^[]*)?#si',
+//				'replace'	=> '<iframe src="http://widgets.ign.com/video/embed/content.html?url=$0" width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" allowfullscreen></iframe>',
 				'replace'	=> 'http://oystatic.ignimgs.com/src/core/swf/IGNPlayer.swf',
 				'method'	=> 'flash',
 				'flashvars'	=> 'url=$0',
@@ -1701,6 +1711,7 @@ class abbcode
 				'image'		=> 'metacafe.gif',
 				'example'	=> 'http://www.metacafe.com/watch/966360/merry_christmas_with_crazy_frog/',
 				'match'		=> '#http://www.metacafe.com/watch/([0-9]+)?((/[^/]+)/?)?#si',
+//				'replace'	=> '<iframe src="http://www.metacafe.com/embed/$1/" width="{WIDTH}" height="{HEIGHT}" allowFullScreen frameborder=0></iframe>',
 				'replace'	=> 'http://www.metacafe.com/fplayer/$1/metacafe.swf',
 				'method'	=> 'flash',
 			),
@@ -1714,9 +1725,10 @@ class abbcode
 			'mpora.com' => array(
 				'id'		=> 24,
 				'image'		=> 'mpora.gif',
-				'example'	=> 'http://video.mpora.com/watch/YaFmE9sfT/',
-				'match'		=> '#http://(.*?)mpora.com/watch/(.*?)/([^[]*)?#si',
-				'replace'	=> 'http://video.mpora.com/ep/$2/',
+				'example'	=> 'http://mpora.com/videos/YaFmE9sfT',
+				'match'		=> '#http://(?:.*?)mpora.com/(?:.*?)/([^/]+)?#si',
+//				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://mpora.com/videos/$1/embed" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
+				'replace'	=> 'http://video.mpora.com/ep/$1/',
 				'method'	=> 'flash',
 			),
 			'msnbc.msn.com' => array(
@@ -1772,10 +1784,10 @@ class abbcode
 			'rutube.ru' => array(
 				'id'		=> 29,
 				'image'		=> 'rutube.gif',
-				'example'	=> 'http://rutube.ru/tracks/1415928.html?v=67eb8c2fcd74fddb722ce4cd820195da',
-				'match'		=> '#http://rutube.ru/(.*?)/(.*?).html\?v=([^[]*)?#si',
-				'replace'	=> 'http://video.rutube.ru/$3',
-				'method'	=> 'flash',
+				'example'	=> 'http://rutube.ru/video/238973b0c167d0a9f4f26686e42407e4/',
+				'match'		=> '#http://rutube.ru/(.*?)/([^[]*)?#si',
+				'replace'	=> 'http://rutube.ru/api/oembed/?format=json&url=$0',
+				'method'	=> 'oEmbed',
 			),
 			'sapo.pt' => array(
 				'id'		=> 30,
@@ -1850,6 +1862,14 @@ class abbcode
 				'example'	=> 'http://www.theonion.com/video/stephen-strasburg-ceremoniously-reinjures-arm-on-o,27866/',
 				'match'		=> '#http://((.*?)?)theonion.com/([^,]+),([0-9]+)([^[]*)?#si',
 				'replace'	=> '<iframe frameborder="no" width="{WIDTH}" height="{HEIGHT}" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>',
+			),
+			'tu.tv' => array(
+				'id'		=> 67,
+				'image'		=> 'tutv.gif',
+				'example'	=> 'http://tu.tv/videos/el-gato-boxeador',
+				'match'		=> '#http://((.*?)?)tu.tv/videos/([^[]*)?#si',
+				'replace'	=> 'http://tu.tv/oembed/?url=$0&format=json',
+				'method'	=> 'oEmbed',
 			),
 			'twitch.tv' => array(
 				'id'		=> 57,
@@ -1985,7 +2005,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 58, 67-200
+			// available ids: 68-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(
