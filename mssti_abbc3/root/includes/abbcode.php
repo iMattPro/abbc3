@@ -1816,9 +1816,9 @@ class abbcode
 			'sevenload.com' => array(
 				'id'		=> 31,
 				'image'		=> 'sevenload.gif',
-				'example'	=> 'http://en.sevenload.com/shows/Tekzilla/episodes/hMbjjr3-Windows-7-Enhancements-for-Power-Users-Tekzilla-Daily-Tip',
-				'match'		=> '#http://(.*?).sevenload.com/(?:.*?)(episodes|videos)/([^/[-]*)?([^[]*)?#si',
-				'replace'	=> '<script type="text/javascript" src="http://en.sevenload.com/pl/$3/{WIDTH}x{HEIGHT}/0"></script>',
+				'example'	=> 'http://www.sevenload.com/videos/moskovskii-most-po-vantam-5129e95932b0c28c55000079',
+				'match'		=> '#http://(?:.*?)\.sevenload.com/(?:.*?)(?:episodes|videos)/(?:.*)-([^[]*)?#si',
+				'replace'	=> '<iframe src="http://embed.sevenload.com/widgets/singlePlayer/$1/?autoplay=true&env=slcom-ext" style="width:{WIDTH}px;height:{HEIGHT}px;overflow:hidden;border:0 solid #000;" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 			),
 			'slideshare.net' => array(
 				'id'		=> 55,
