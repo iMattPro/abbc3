@@ -1825,7 +1825,7 @@ class abbcode
 				'image'		=> 'sevenload.gif',
 				'example'	=> 'http://www.sevenload.com/videos/moskovskii-most-po-vantam-5129e95932b0c28c55000079',
 				'match'		=> '#http://(?:.*?)\.sevenload.com/(?:.*?)(?:episodes|videos)/(?:.*)-([^[]*)?#si',
-				'replace'	=> '<iframe src="http://embed.sevenload.com/widgets/singlePlayer/$1/?autoplay=true&env=slcom-ext" style="width:{WIDTH}px;height:{HEIGHT}px;overflow:hidden;border:0 solid #000;" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
+				'replace'	=> '<iframe src="http://embed.sevenload.com/widgets/singlePlayer/$1/?autoplay=false&env=slcom-ext" style="width:{WIDTH}px;height:{HEIGHT}px;overflow:hidden;border:0 solid #000;" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 			),
 			'slideshare.net' => array(
 				'id'		=> 55,
@@ -1925,7 +1925,7 @@ class abbcode
 				'image'		=> 'viddler.gif',
 				'example'	=> 'http://www.viddler.com/v/7a0d64f2',
 				'match'		=> '#http://(?:.*?).viddler.com/v/([0-9A-Za-z-_]+)([^[]*)?#si',
-//				'replace'	=> '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&amp;autoplay=0&amp;player=full&amp;loop=false&amp;nologo=false&amp;hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+//				'replace'	=> '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&amp;autoplay=0&amp;player=full&amp;loop=false&amp;nologo=false&amp;hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>',
 				'replace'	=> '//www.viddler.com/player/$1/',
 				'method'	=> 'flash',
 				'flashvars'	=> 'f=1&autoplay=f&loop=false&nologo=false&hd=false',
@@ -2106,7 +2106,7 @@ class abbcode
 	* wordpress.tv => http://wordpress.tv/oembed/?url=$0&format=json,
 	* youtube.com => http://www.youtube.com/oembed?url=$0&format=json,
 	* soundcloud.com => http://soundcloud.com/oembed?url=$0&format=json,
-	* tu.tv => http://tu.tv/oembed/?url=$0&format=json ( html entities are encoded :( )
+	* tu.tv => http://tu.tv/oembed/?url=$0&format=json
 	*/
 	function oembed_url($url, $width, $height)
 	{
