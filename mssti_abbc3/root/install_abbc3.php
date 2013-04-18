@@ -693,7 +693,7 @@ function bbvideo_updater($action, $version)
 		'3.0.10'  => array('51'),
 		'3.0.11'  => array('52', '53', '54', '55'),
 		'3.0.12'  => array('56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '209'),
-		'3.0.13'  => array('67'),
+		'3.0.13'  => array('67, 68'),
 	);
 
 	// Array containing arrays of old BBvideo IDs removed from ABBC3

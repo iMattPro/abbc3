@@ -1798,6 +1798,13 @@ class abbcode
 				'replace'	=> 'http://rd3.videos.sapo.pt/play?file=http://rd3.videos.sapo.pt/$3/mov/1',
 				'method'	=> 'flash',
 			),
+			'screenr.com' => array(
+				'id'		=> 68,
+				'image'		=> 'screenr.gif',
+				'example'	=> 'http://www.screenr.com/fTK',
+				'match'		=> '#http://(?:.*?)\.screenr.com/([^[]*)?#si',
+				'replace'	=> '<iframe src="http://www.screenr.com/embed/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+			),
 			'scribd.com' => array(
 				'id'		=> 45,
 				'image'		=> 'scribd.gif',
@@ -2005,7 +2012,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 68-200
+			// available ids: 69-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(
