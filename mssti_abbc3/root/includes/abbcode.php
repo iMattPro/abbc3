@@ -1949,7 +1949,7 @@ class abbcode
 				'id'		=> 38,
 				'image'		=> 'vimeo.gif',
 				'example'	=> 'http://vimeo.com/3759030',
-				'match'		=> '#http://(?:.*?)vimeo.com(?:/groups/(?:.*)/videos/|/)([^[]*)?#si',
+				'match'		=> '#https?://(?:.*?)vimeo.com(?:/groups/(?:.*)/videos/|/)([^[]*)?#si',
 //				'replace'	=> '<iframe src="http://player.vimeo.com/video/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 				'replace'	=> 'http://vimeo.com/moogaloop.swf?clip_id=$1&server=vimeo.com&fullscreen=1&show_title=1&show_byline=1&show_portrait=0&color=',
 				'method'	=> 'flash',
