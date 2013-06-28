@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.8-PL2 to 3.0.12]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL2 to version 3.0.12]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.8 to 3.0.13]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8 to version 3.0.13]]></description>
 		<author-notes lang="en"><![CDATA[IMPORTANT:
 		This update includes many new icons and graphics inside the styles/abbcode folder.
 
@@ -34,7 +34,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.12</mod-version>
+		<mod-version>3.0.13</mod-version>
 		<installation>
 			<level>intermediate</level>
 			<time>600</time>
@@ -86,6 +86,20 @@
 			<file name="styles/abbcode/warning.gif"/>
 			<file name="styles/abbcode/zoomin.cur"/>
 		</delete>
+		<open src="adm/style/overall_header.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../styles/abbcode/abbcode_header.html -->]]></action>
+			</edit>
+		</open>
+		<open src="adm/style/simple_header.html">
+			<edit>
+				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+]]></remove>
+			</edit>
+		</open>
 		<open src="includes/acp/acp_bbcodes.php">
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' and abbcode = 0';]]></find>
@@ -148,8 +162,27 @@
 		</open>
 		<open src="includes/functions_display.php">
 			<edit>
+				<find><![CDATA[	$abbc3 = (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></find>
+				<action type="replace-with"><![CDATA[	$abbc3 = ($abbc3 && @$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;
+
+	$display = ($mode == 'signature' || $mode == 'sig') ? 'display_on_sig' : ($mode == 'compose' ? 'display_on_pm' : 'display_on_posting');]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[	$sql_where = ' AND abbcode = 0';
+	if ($abbc3 && @$config['ABBC3_MOD'])]]></find>
+				<action type="replace-with"><![CDATA[	if ($abbc3 && @$config['ABBC3_MOD'])]]></action>
+			</edit>
+			<edit>
 				<find><![CDATA[		// We need to check if ABBC3 is property initialized]]></find>
 				<action type="replace-with"><![CDATA[		// We need to check if ABBC3 is properly initialized]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		$sql_where = ' AND (abbcode = 0 AND bbcode_image = "")';]]></find>
+				<action type="replace-with"><![CDATA[		$sql_where = " $display = 1 AND (abbcode = 0 AND bbcode_image = '')";]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		$template->assign_vars(array('S_ABBC3_DISABLED' => true));]]></find>
+				<action type="before-add"><![CDATA[		$sql_where = " $display = 1 AND abbcode = 0";]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline]]></find>
@@ -157,6 +190,10 @@
 					<inline-find><![CDATA[bbcode_helpline]]></inline-find>
 					<inline-action type="after-add"><![CDATA[, bbcode_group]]></inline-action>
 				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[		WHERE display_on_posting = 1 ' . $sql_where . ']]></find>
+				<action type="replace-with"><![CDATA[		WHERE ' . $sql_where . ']]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[	while ($row = $db->sql_fetchrow($result))
@@ -201,8 +238,56 @@
 		</open>
 		<open src="includes/ucp/ucp_prefs.php">
 			<edit>
-				<find><![CDATA[				$user->add_lang('mods/acp_abbcodes');]]></find>
-				<action type="replace-with"><![CDATA[				$user->add_lang('mods/info_acp_abbcodes');]]></action>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+					'abbcode_mod'		=> request_var('abbcode_mod', (bool) (isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : true),
+					'abbcode_compact'	=> request_var('abbcode_compact', (bool) (isset($user->data['user_abbcode_compact'])) ? $user->data['user_abbcode_compact'] : false),
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+					'abbcode_mod'	=> request_var('abbcode_mod', (($user->data['user_abbcode_mod']) ? ($user->data['user_abbcode_compact'] ? 'compact' : 'standard') : 'limited')),
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+							'user_abbcode_mod'		=> $data['abbcode_mod'],
+							'user_abbcode_compact'	=> $data['abbcode_compact'],
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+							'user_abbcode_mod'		=> (($data['abbcode_mod'] == 'limited') ? 0 : 1),
+							'user_abbcode_compact'	=> (($data['abbcode_mod'] == 'compact') ? 1 : 0),
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+				$user->add_lang('mods/acp_abbcodes');
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+				$user->add_lang('mods/info_acp_abbcodes');
+
+				$abbc3_options = '';
+				$abbc3_modes = array('standard' => $user->lang['UCP_ABBC3_STANDARD'], 'compact' => $user->lang['UCP_ABBC3_COMPACT'], 'limited' => $user->lang['UCP_ABBC3_LIMITED']);
+
+				foreach ($abbc3_modes as $abbc3_mode => $abbc3_lang)
+				{
+					$abbc3_options .= '<option value="' . $abbc3_mode . '"' . (($data['abbcode_mod'] == $abbc3_mode) ? ' selected="selected"' : '') . '>';
+					$abbc3_options .= $abbc3_lang;
+					$abbc3_options .= '</option>';
+				}
+// MOD : MSSTI ABBC3 - End]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+					'S_ABBC3_VERSION'	=> @$config['ABBC3_VERSION'],
+					'S_ABBC3_MOD'		=> @$config['ABBC3_MOD'],
+					'S_ABBCODE_MOD'		=> $data['abbcode_mod'],
+					'S_ABBC3_UCP_MODE'	=> @$config['ABBC3_UCP_MODE'],
+					'S_ABBCODE_COMPACT'	=> $data['abbcode_compact'],
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
+					'S_ABBC3_VERSION'	=> @$config['ABBC3_VERSION'],
+					'S_ABBC3_MOD'		=> @$config['ABBC3_MOD'],
+					'S_ABBC3_UCP_MODE'	=> @$config['ABBC3_UCP_MODE'],
+					'S_ABBCODE_OPTIONS'	=> $abbc3_options,
+// MOD : MSSTI ABBC3 - End]]></action>
 			</edit>
 		</open>
 		<open src="language/en/acp/common.php">
@@ -216,6 +301,75 @@ $lang = array_merge($lang, array(
 	'LOG_CONFIG_ABBCODES_ERROR'	=> '<strong>Error while saving ABBC3 settings</strong>',
 ));
 // MOD : MSSTI ABBC3 - End]]></remove>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../abbcode/abbcode_header.html -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/simple_header.html">
+			<edit>
+				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></remove>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_prefs_post.html">
+			<edit>
+				<find><![CDATA[	<fieldset>
+	<dl>
+		<dt><label for="abbcode_mod1">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
+		<dd>
+			<label for="abbcode_mod1"><input type="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="abbcode_mod0"><input type="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="abbcode_compact0">{L_UCP_ABBC3_BBCODES}:</label><br /><span>{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></dt>
+		<dd>
+			<label for="abbcode_compact1"><input type="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+			<label for="abbcode_compact0"><input type="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+	</fieldset>]]></find>
+				<action type="replace-with"><![CDATA[	<fieldset>
+	<dl>
+		<dt><label for="abbcode_mod">{L_UCP_ABBC3_SETTINGS}:</label><br /><span>{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></dt>
+		<dd><select name="abbcode_mod" id="abbcode_mod">{S_ABBCODE_OPTIONS}</select></dd>
+	</dl>
+	</fieldset>]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE {S_ABBC3_OVERALL_HEADER} -->]]></find>
+				<action type="replace-with"><![CDATA[<!-- INCLUDE ./../../abbcode/abbcode_header.html -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/simple_header.html">
+			<edit>
+				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{T_IMAGESET_PATH}/abbcode/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+]]></remove>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/ucp_prefs_post.html">
+			<edit>
+				<find><![CDATA[<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_ABBC3_SETTINGS}:</b><br /><span class="gensmall">{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></td>
+	<td class="row2"><input type="radio" class="radio" name="abbcode_mod" id="abbcode_mod1" value="1"<!-- IF S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="abbcode_mod" id="abbcode_mod0" value="0"<!-- IF not S_ABBCODE_MOD --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+</tr>
+<tr>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_ABBC3_BBCODES}:</b><br /><span class="gensmall">{L_UCP_ABBC3_BBCODES_EXPLAIN}</span></td>
+	<td class="row2"><input type="radio" class="radio" name="abbcode_compact" id="abbcode_compact1" value="1"<!-- IF S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_YES}</span>&nbsp; &nbsp;<input type="radio" class="radio" name="abbcode_compact" id="abbcode_compact0" value="0"<!-- IF not S_ABBCODE_COMPACT --> checked="checked"<!-- ENDIF --> /><span class="gen">{L_NO}</span></td>
+</tr>]]></find>
+				<action type="replace-with"><![CDATA[<tr>
+	<td class="row1" width="50%"><b class="genmed">{L_UCP_ABBC3_SETTINGS}:</b><br /><span class="gensmall">{L_UCP_ABBC3_SETTINGS_EXPLAIN}</span></td>
+	<td class="row2"><select name="abbcode_mod" id="abbcode_mod">{S_ABBCODE_OPTIONS}</select></td>
+</tr>]]></action>
 			</edit>
 		</open>
 		<open src="styles/subsilver2/template/ucp_profile_signature.html">

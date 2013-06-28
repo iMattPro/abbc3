@@ -6,8 +6,8 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.8-PL1 to 3.0.12]]></title>
-		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.8-PL1 to version 3.0.12]]></description>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Update from 3.0.9.3 to 3.0.13]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for upgrading ABBC3 MOD from version 3.0.9.3 to version 3.0.13]]></description>
 		<author-notes lang="en"><![CDATA[IMPORTANT:
 		This update includes many new icons and graphics inside the styles/abbcode folder.
 
@@ -34,9 +34,9 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>3.0.12</mod-version>
+		<mod-version>3.0.13</mod-version>
 		<installation>
-			<level>intermediate</level>
+			<level>easy</level>
 			<time>600</time>
 			<target-version>3.0.11</target-version>
 		</installation>
@@ -53,7 +53,21 @@
 			<file from="root/includes/*.*" to="includes/*.*"/>
 			<file from="root/install_abbc3.php" to="install_abbc3.php"/>
 			<file from="root/language/en/mods/*.*" to="language/en/mods/*.*"/>
-			<file from="root/styles/*.*" to="styles/*.*"/>
+			<file from="root/styles/abbcode/abbcode_header.html" to="styles/abbcode/abbcode_header.html"/>
+			<file from="root/styles/abbcode/abbcode_ImgResizer.js" to="styles/abbcode/abbcode_ImgResizer.js"/>
+			<file from="root/styles/abbcode/abbcode.css" to="styles/abbcode/abbcode.css"/>
+			<file from="root/styles/abbcode/abbcode.js" to="styles/abbcode/abbcode.js"/>
+			<file from="root/styles/abbcode/AdvancedBox.js" to="styles/abbcode/AdvancedBox.js"/>
+			<file from="root/styles/abbcode/highslide/*.*" to="styles/abbcode/highslide/*.*"/>
+			<file from="root/styles/abbcode/images/*.*" to="styles/abbcode/images/*.*"/>
+			<file from="root/styles/abbcode/lightview/*.*" to="styles/abbcode/lightview/*.*"/>
+			<file from="root/styles/abbcode/posting_abbcode_buttons.js" to="styles/abbcode/posting_abbcode_buttons.js"/>
+			<file from="root/styles/abbcode/posting_abbcode_picker.html" to="styles/abbcode/posting_abbcode_picker.html"/>
+			<file from="root/styles/abbcode/posting_abbcode_picker.js" to="styles/abbcode/posting_abbcode_picker.js"/>
+			<file from="root/styles/abbcode/posting_abbcode_wizards.js" to="styles/abbcode/posting_abbcode_wizards.js"/>
+			<file from="root/styles/abbcode/prettyPhoto/*.*" to="styles/abbcode/prettyPhoto/*.*"/>
+			<file from="root/styles/prosilver/template/*.*" to="styles/prosilver/template/*.*"/>
+			<file from="root/styles/subsilver2/template/*.*" to="styles/subsilver2/template/*.*"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
 		<delete>
@@ -62,22 +76,9 @@
 			<file name="styles/abbcode/abbc3_logo.png"/>
 			<file name="styles/abbcode/abbcode_ajax_loading.gif"/>
 			<file name="styles/abbcode/greybox/*.*"/>
-			<file name="styles/abbcode/highslide/controlbar-white-small.gif"/>
-			<file name="styles/abbcode/highslide/geckodimmer.png"/>
-			<file name="styles/abbcode/highslide/loader.gif"/>
-			<file name="styles/abbcode/highslide/outlines/*.*"/>
-			<file name="styles/abbcode/highslide/zoomin.cur"/>
-			<file name="styles/abbcode/highslide/zoomout.cur"/>
-			<file name="styles/abbcode/ibox/skins/classic/icons/*.*"/>
-			<file name="styles/abbcode/ibox/skins/classic/*.*"/>
-			<file name="styles/abbcode/ibox/skins/darkbox/*.*"/>
-			<file name="styles/abbcode/ibox/skins/lightbox/images/*.*"/>
-			<file name="styles/abbcode/ibox/skins/lightbox/*.*"/>
-			<file name="styles/abbcode/ibox/skins/*.*"/>
-			<file name="styles/abbcode/ibox/images/*.*"/>
-			<file name="styles/abbcode/ibox/*.*"/>
 			<file name="styles/abbcode/images/bg/bg_button.gif"/>
 			<file name="styles/abbcode/images/bg/bg_tabs.gif"/>
+			<file name="styles/abbcode/lightbox/images/*.*"/>
 			<file name="styles/abbcode/lightbox/*.*"/>
 			<file name="styles/abbcode/loading.gif"/>
 			<file name="styles/abbcode/pixel.gif"/>
@@ -86,6 +87,14 @@
 			<file name="styles/abbcode/warning.gif"/>
 			<file name="styles/abbcode/zoomin.cur"/>
 		</delete>
+		<open src="adm/style/simple_header.html">
+			<edit>
+				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+]]></remove>
+			</edit>
+		</open>
 		<open src="includes/acp/acp_bbcodes.php">
 			<edit>
 				<find><![CDATA[					WHERE bbcode_id = ' . $bbcode_id . ' and abbcode = 0';]]></find>
@@ -102,70 +111,40 @@
 		</open>
 		<open src="includes/bbcode.php">
 			<edit>
-				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
-		// Try to avoid duplicates anchor ID's inside quotes
-		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)?\[anchor(=(.*?)([\s]?))?#is', $message))
-		{
-			$message = preg_replace('#(\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?))?\[anchor((=|)(.*?)([\s]))?#is',"$1[anchor$5quoted$6$7", $message);
-		}
-// MOD : MSSTI ABBC3 - End]]></find>
-				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
-		// Try to avoid duplicates anchor ID's inside quotes
-		if (preg_match('#\[quote(?:=&quot;(.*?)&quot;)?:' . $this->bbcode_uid . '\](.*?)\[anchor=(.*?)?\sgoto=(.*?)?:' . $this->bbcode_uid . '\](.*?)\[/anchor:' . $this->bbcode_uid . '\](.*?)\[/quote:' . $this->bbcode_uid . '\]#is', $message))
-		{
-			$message = preg_replace('#(\[anchor=(.*?)(\s)goto=(.*?):' . $this->bbcode_uid . '\](.*?)\[/anchor:' . $this->bbcode_uid . '\]?)#is', "[anchor=quoted$2 goto=quoted$4:" . $this->bbcode_uid . "]$5[/anchor:" . $this->bbcode_uid . "]", $message);
-		}
-// MOD : MSSTI ABBC3 - End]]></action>
-			</edit>
-			<edit>
-				<find><![CDATA[			$sql .= ' AND bbcode_match <> "." ';]]></find>
+				<find><![CDATA[			$sql .= " AND bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";]]></find>
 				<action type="replace-with"><![CDATA[			$sql .= " AND bbcode_match <> '.'";]]></action>
 			</edit>
 		</open>
 		<open src="includes/functions_content.php">
 			<edit>
-				<find><![CDATA[				'L_DOWNLOAD_COUNT'		=> $l_download_count
-			);]]></find>
-				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
-			global $abbcode;
-			// We need to check if ABBC3 is properly initialized for attached images and the ABBC3 img resizer
-			if (@$config['ABBC3_MOD'])
-			{
-				// For attached images being resized in private messages only when bbcodes are not present
-				if (!class_exists('abbcode'))
-				{
-					include($phpbb_root_path . 'includes/abbcode.' . $phpEx);
-				}
-				// For attached image resizer regular messages when bbcodes are not present
- 				if ($abbcode->abbcode_config['S_ABBC3_RESIZE'] && !isset($template->_rootref['S_ABBC3_RESIZE']) && ($display_cat == ATTACHMENT_CATEGORY_IMAGE || $display_cat == ATTACHMENT_CATEGORY_THUMB))
- 				{
-					$abbcode->abbcode_init();
- 				}
-			}
-// MOD : MSSTI ABBC3 - End
-]]></action>
+				<find><![CDATA[			// We need to check if ABBC3 is property initialized for attached images and the ABBC3 img resizer]]></find>
+				<action type="replace-with"><![CDATA[			// We need to check if ABBC3 is properly initialized for attached images and the ABBC3 img resizer]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[				// For attached image resizer in private message only when bbcodes are not present]]></find>
+				<action type="replace-with"><![CDATA[				// For attached images being resized in private messages only when bbcodes are not present]]></action>
 			</edit>
 		</open>
 		<open src="includes/functions_display.php">
-			<edit>
-				<find><![CDATA[	$abbc3 = (@$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></find>
-				<action type="replace-with"><![CDATA[	$abbc3 = ($abbc3 && @$config['ABBC3_UCP_MODE'] && isset($user->data['user_abbcode_mod'])) ? $user->data['user_abbcode_mod'] : $abbc3;]]></action>
-			</edit>
 			<edit>
 				<find><![CDATA[		// We need to check if ABBC3 is property initialized]]></find>
 				<action type="replace-with"><![CDATA[		// We need to check if ABBC3 is properly initialized]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[	$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline]]></find>
-				<inline-edit>
-					<inline-find><![CDATA[bbcode_helpline]]></inline-find>
-					<inline-action type="after-add"><![CDATA[, bbcode_group]]></inline-action>
-				</inline-edit>
-			</edit>
-			<edit>
-				<find><![CDATA[	while ($row = $db->sql_fetchrow($result))
-	{]]></find>
-				<action type="after-add"><![CDATA[// MOD : MSSTI ABBC3 - Start
+				<find><![CDATA[// MOD : MSSTI ABBC3 - Start
+		// Check phpbb permissions status
+		// Check ABBC3 groups permission
+		// try to make it as quicky as it can be 
+		$auth_tag = preg_replace('#\=(.*)?#', '', strtoupper(trim($row['bbcode_tag'])));
+		if (isset($row['bbcode_group']) && $row['bbcode_group'])
+		{
+			if (!$this->abbcode_permissions($auth_tag, $row['bbcode_group']))
+			{
+				continue;
+			}
+		}
+// MOD : MSSTI ABBC3 - End]]></find>
+				<action type="replace-with"><![CDATA[// MOD : MSSTI ABBC3 - Start
 		if ($abbc3 && @$config['ABBC3_MOD'])
 		{
 			// Check phpbb permissions status
@@ -186,7 +165,7 @@
 		<open src="includes/message_parser.php">
 			<edit>
 				<remove><![CDATA[// MOD : MSSTI ABBC3 - Start
-			$sql .= ' WHERE bbcode_match <> "." ';
+			$sql .= " WHERE bbcode_match <> '" . $db->sql_escape(utf8_clean_string('.')) . "'";
 // MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
 			<edit>
@@ -222,6 +201,21 @@ $lang = array_merge($lang, array(
 // MOD : MSSTI ABBC3 - End]]></remove>
 			</edit>
 		</open>
+		<open src="styles/prosilver/template/simple_header.html">
+			<edit>
+				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{S_ABBC3_PATH}/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->]]></remove>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/simple_header.html">
+			<edit>
+				<remove><![CDATA[<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - Start //-->
+<link rel="stylesheet" type="text/css" media="all" href="{T_IMAGESET_PATH}/abbcode/abbcode.css" />
+<!-- MOD : MSSTI ABBC3 (v{S_ABBC3_VERSION}) - End //-->
+]]></remove>
+			</edit>
+		</open>
 		<open src="styles/subsilver2/template/ucp_profile_signature.html">
 			<edit>
 				<find><![CDATA[<textarea class="post"]]></find>
@@ -242,7 +236,6 @@ END OF SUPPORT FOR SOME IMAGE RESIZER SCRIPTS:
 Lightbox2 has been removed from ABBC3.
 PopBox has been removed from ABBC3.
 GreyBox has been removed from ABBC3.
-Ibox has been removed from ABBC3.
 If you were using one of these as your Image Resizer Lightbox method, you should go to the ACP and choose another method right away.]]></diy-instructions>
 	</action-group>
 </mod>
