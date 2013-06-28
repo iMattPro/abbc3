@@ -163,7 +163,7 @@ function abbc3_308($action, $version)
 		'ABBC3_TAB'				=> (isset($config['ABBC3_TAB']))				? $config['ABBC3_TAB']				: 1,
 		'ABBC3_BOXRESIZE'		=> (isset($config['ABBC3_BOXRESIZE']))			? $config['ABBC3_BOXRESIZE']		: 1,
 		'ABBC3_RESIZE'			=> (isset($config['ABBC3_RESIZE']))				? $config['ABBC3_RESIZE']			: 1,
-		'ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD']))		? $config['ABBC3_RESIZE_METHOD']	: 'AdvancedBox',
+		'ABBC3_RESIZE_METHOD'	=> (isset($config['ABBC3_RESIZE_METHOD']))		? $config['ABBC3_RESIZE_METHOD']	: 'prettyPhoto',
 		'ABBC3_RESIZE_BAR'		=> (isset($config['ABBC3_RESIZE_BAR']))			? $config['ABBC3_RESIZE_BAR']		: 1,
 		'ABBC3_MAX_IMG_WIDTH'	=> (isset($config['ABBC3_MAX_IMG_WIDTH']))		? $config['ABBC3_MAX_IMG_WIDTH']	: ($config['img_max_width'] ? $config['img_max_width'] : 500),
 		'ABBC3_MAX_IMG_HEIGHT'	=> (isset($config['ABBC3_MAX_IMG_HEIGHT']))		? $config['ABBC3_MAX_IMG_HEIGHT']	: ($config['img_max_height'] ? $config['img_max_height'] : 0),

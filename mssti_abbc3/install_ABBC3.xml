@@ -38,13 +38,14 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 		</installation>
 		<history>
 			<entry>
-				<date>2013-04-18</date>
+				<date>2013-06-28</date>
 				<rev-version>3.0.13</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Update] Updated prettyPhoto to v3.1.5 (supports jQuery 1.9).]]></change>
 					<change><![CDATA[[Update] Added new BBvideos for twitch.tv, on.aol.com, screenr.com and tu.tv.]]></change>
 					<change><![CDATA[[Update] Updated BBvideos for facebook.com, gamespot.com, gameprotv.com, mpora.com, rutube.ru, sevenload.com.]]></change>
 					<change><![CDATA[[Change] Deleted BBvideo for gotgame.com (unable to embed from the url) and comedians.jokes.com (moved to comedycentral.com).]]></change>
+					<change><![CDATA[[Change] Make prettyPhoto the default image resizer on installation.]]></change>
 					<change><![CDATA[[Fix] Remove old unused code from simple_header.html.]]></change>
 					<change><![CDATA[[Fix] Fix some HTML validation issues.]]></change>
 					<change><![CDATA[[Fix] Fixed BBcode [mod] to accept usernames that may contain brackets.]]></change>
