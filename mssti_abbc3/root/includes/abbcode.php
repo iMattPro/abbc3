@@ -1461,9 +1461,7 @@ class abbcode
 				'image'		=> 'allocine.gif',
 				'example'	=> 'http://www.allocine.fr/video/player_gen_cmedia=19149857&cfilm=126693.html',
 				'match'		=> '#http://www.allocine.fr/video/player_gen_cmedia=(\d+)?([^[]*)?#si',
-//				'replace'	=> '<iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=$1" style="width:{WIDTH}px; height:{HEIGHT}px" frameborder="0"></iframe>',
-				'replace'	=> 'http://www.allocine.fr/blogvision/$1',
-				'method'	=> 'flash',
+				'replace'	=> '<iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=$1" style="width:{WIDTH}px; height:{HEIGHT}px" frameborder="0"></iframe>',
 			),
 			'on.aol.com' => array(
 				'id'		=> 58,
@@ -1708,7 +1706,7 @@ class abbcode
 			'mpora.com' => array(
 				'id'		=> 24,
 				'image'		=> 'mpora.gif',
-				'example'	=> 'http://mpora.com/videos/YaFmE9sfT',
+				'example'	=> 'http://mpora.com/videos/AAdihftgw4t7',
 				'match'		=> '#http://(?:.*?)mpora.com/(?:.*?)/([^/]+)?#si',
 //				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://mpora.com/videos/$1/embed" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>',
 				'replace'	=> 'http://video.mpora.com/ep/$1/',
@@ -1726,10 +1724,9 @@ class abbcode
 			'myspace.com' => array(
 				'id'		=> 51,
 				'image'		=> 'vidsmyspace.gif',
-				'example'	=> 'http://www.myspace.com/video/vid/49776296',
-				'match'		=> '#http://www.?myspace.com/video/[^[]+/([0-9]+)?#si',
-				'replace'	=> 'http://mediaservices.myspace.com/services/media/embed.aspx/m=$1,t=1,mt=video',
-				'method'	=> 'flash',
+				'example'	=> 'https://myspace.com/jasonmraz/video/-quot-lucky-quot-official-video-with-colbie-caillat/49776296',
+				'match'		=> '#http(s)?://(www.)?myspace.com/.*/video/(.*)/([0-9]+)?#si',
+				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" src="http$1://myspace.com/play/video/$3-$4-$4" frameborder="0" allowtransparency="true" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
 			),
 			'myvideo.de' => array(
 				'id'		=> 25,
@@ -1965,9 +1962,9 @@ class abbcode
 			'screen.yahoo.com' => array(
 				'id'		=> 40,
 				'image'		=> 'yahoovid.gif',
-				'example'	=> 'http://screen.yahoo.com/fred-armisen-28463551.html',
+				'example'	=> 'http://screen.yahoo.com/man-steel-trailer-5-163029535.html',
 				'match'		=> '#http://screen.yahoo.com/((([^-]+)?-)*)([0-9]+).html#si',
-				'replace'	=> '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://d.yimg.com/nl/vyc/site/player.html#shareUrl=http%3A%2F%2Fscreen.yahoo.com%$1$4.html&amp;browseCarouselUI=hide&amp;repeat=0&amp;lang=en-US&amp;vid=$4&amp;startScreenCarouselUI=hide"></iframe>',
+				'replace'	=> '<iframe width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" src="$0?format=embed&player_autoplay=false"></iframe>',
 			),
 			'youku.com' => array(
 				'id'		=> 65,
