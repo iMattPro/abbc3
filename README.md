@@ -34,9 +34,9 @@ Features
 	gamespot.com, gametrailers.com, gamevideos.1up, godtube.com, howcast.com, hulu.com, ign.com,
 	liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo.de,
 	photobucket.com, qik.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com, screenr.com, scribd.com,
-	sevenload.com, slideshare.net, snotr.com, spike.com, streetfire.net, thedailyshow.com, theonion.com,
-	tu.tv, twitch.tv, twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de,
-	vimeo.com, wat.tv, wegame.com, xfire.com, youku.com, youtu.be, youtube.com
+	sevenload.com, slideshare.net, snotr.com, spike.com, streetfire.net, testtube.com, thedailyshow.com,
+	theonion.com, tu.tv, twitch.tv, twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com,
+	videogamer.com, videu.de, vimeo.com, wat.tv, wegame.com, xfire.com, youku.com, youtu.be, youtube.com
 
 
 Deployment

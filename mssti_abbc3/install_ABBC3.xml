@@ -42,7 +42,7 @@ WARNING: Please be advised that this MOD might overwrite some custom BBCodes you
 				<rev-version>3.0.13</rev-version>
 				<changelog lang="en">
 					<change><![CDATA[[Update] Updated prettyPhoto to v3.1.5 (supports jQuery 1.9).]]></change>
-					<change><![CDATA[[Update] Added new BBvideos for twitch.tv, on.aol.com, screenr.com and tu.tv.]]></change>
+					<change><![CDATA[[Update] Added new BBvideos for twitch.tv, on.aol.com, screenr.com, testtube.com and tu.tv.]]></change>
 					<change><![CDATA[[Update] Updated BBvideos for allocine.fr, facebook.com, gamespot.com, gameprotv.com, mpora.com, myspace.com, rutube.ru, sevenload.com and screen.yahoo.com.]]></change>
 					<change><![CDATA[[Change] Deleted BBvideos for current.com, gotgame.com, kyte.tv (unable to embed from the url) and comedians.jokes.com (moved to comedycentral.com).]]></change>
 					<change><![CDATA[[Change] Make prettyPhoto the default image resizer on installation.]]></change>

@@ -1836,6 +1836,14 @@ class abbcode
 				'match'		=> '#http://(.*?)streetfire.net/video/([^[]*)?#si',
 				'replace'	=> '<div id="embed_{ID}"><script type="text/javascript">ogpEmbedVideo.init("$0", "{WIDTH}", "{HEIGHT}", "embed_{ID}");</script></div>',
 			),
+			'testtube.com' => array(
+				'id'		=> 54,
+				'image'		=> 'testtube.gif',
+				'example'	=> 'http://testtube.com/scamschool/fortheladies2',
+				'match'		=> '#http:\/\/(.*testtube\.com\/.*)#si',
+				'replace'	=> 'http://testtube.com/api/oembed/?url=$0&format=json',
+				'method'	=> 'oEmbed',
+			),
 			'thedailyshow.com' => array(
 				'id'		=> 11,
 				'image'		=> 'comedycentral.gif',
