@@ -480,8 +480,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_THUMBNAIL_EXAMPLE'	=> 'http://www.google.com/intl/en_com/images/logo_plain.png',
 	'ABBC3_THUMBNAIL_VIEW'		=> '[thumbnail]http://www.google.com/intl/en_com/images/logo_plain.png[/thumbnail]',
 
-	// Imgshack
-	'ABBC3_IMGSHACK_MOVER'		=> 'Insert image from imageshack',
+	// imgshack
+	'ABBC3_IMGSHACK_MOVER'		=> 'Insert image from an image hosting service',
 	'ABBC3_IMGSHACK_TIP'		=> '[url=http://imageshack.us][img]http://image_url[/img][/url]',
 	'ABBC3_IMGSHACK_VIEW'		=> '[url=http://img22.imageshack.us/my.php?image=abbc3v1012newscreen.gif][img]http://img22.imageshack.us/img22/6241/abbc3v1012newscreen.th.gif[/img][/url]',
 

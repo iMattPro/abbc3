@@ -249,9 +249,8 @@ function bbstyle2(bbcode, bbopen, bbclose, is_abbcode)
 			break;
 		case "abbc3_imgshack":
 			popup('http://imageshack.us/', popup_width, popup_height);
-		//	tinypic ¿?
-		//	popup('http://ipostimage.org/', popup_width, popup_height);
-		//	popup('http://www.imageposter.com/uploads/?mode=phpbb&forumurl=' + escape(document.location.href), '_imagehost', 'resizable=yes,width=500,height=400', popup_width, popup_height);	*/
+		//	popup('http://postimage.org/', popup_width, popup_height);
+		//	popup('http://tinypic.com/', popup_width, popup_height);
 			break;
 	/** We make life easier for some bbcodes - End **/	
 
