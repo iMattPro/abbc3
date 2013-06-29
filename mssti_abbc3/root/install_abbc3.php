@@ -107,12 +107,12 @@ $versions = array(
 		
 		// remove deprecated BBcodes
 		'table_row_remove' => array(
-			array('phpbb_bbcodes', 
+			array('phpbb_bbcodes',
 				array(
 					'bbcode_tag' => 'gametrailers',
 				),
 			),
-			array('phpbb_bbcodes', 
+			array('phpbb_bbcodes',
 				array(
 					'bbcode_tag' => 'gvideo',
 				),
@@ -2464,7 +2464,7 @@ function get_abbc3_bbcodes($action = 'install', $version = '3.0.8')
 		),
 		// BBCodes new and/or changed in version 3.0.13
 		'3.0.13' => array(
-			// Fixed first and second pass match/replace
+			// Modified first and second pass match/replace
 			'mod'		=> array(
 				'bbcode_tag'			=> 'mod=',
 				'bbcode_order'			=> 48,
