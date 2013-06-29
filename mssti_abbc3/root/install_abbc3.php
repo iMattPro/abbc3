@@ -123,8 +123,6 @@ $versions = array(
 	// Version 3.0.13
 	'3.0.13'		=> array(
 		'custom' => array(
-			// enable some new BBvideo IDs
-			'bbvideo_updater',
 			// We have some BBCodes to update
 			'abbc3_bbcode_handler',
 		),
@@ -693,7 +691,6 @@ function bbvideo_updater($action, $version)
 		'3.0.10'  => array('51'),
 		'3.0.11'  => array('52', '53', '54', '55'),
 		'3.0.12'  => array('56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '209'),
-		'3.0.13'  => array('67, 68'),
 	);
 
 	// Array containing arrays of old BBvideo IDs removed from ABBC3
@@ -702,7 +699,6 @@ function bbvideo_updater($action, $version)
 		'3.0.10'  => array(), // no BBvideos to remove
 		'3.0.11'  => array('111', '112', '113', '114'),
 		'3.0.12'  => array('101', '102', '103', '104', '105', '106', '107', '108', '109', '110'),
-		'3.0.13'  => array(), // no BBvideos to remove
 	);
 
 	switch ($action)

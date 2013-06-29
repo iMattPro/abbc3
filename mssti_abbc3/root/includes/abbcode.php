@@ -1553,14 +1553,6 @@ class abbcode
 				'method'	=> 'flash',
 				'flashvars'	=> 'id=$6&mu=0&ap=0',
 			),
-			'current.com' => array(
-				'id'		=> 8,
-				'image'		=> 'currenttv.gif',
-				'example'	=> 'http://current.com/shows/infomania/93263307_viral-video-film-school-blockbusters.htm',
-				'match'		=> '#http://current.com/(.*?)/(.*?)/([0-9]+)([^[]*)?#si',
-				'replace'	=> 'http://current.com/e/$3/en_US',
-				'method'	=> 'flash',
-			),
 			'dailymotion.com' => array(
 				'id'		=> 6,
 				'image'		=> 'dailymotion.gif',
@@ -1688,15 +1680,6 @@ class abbcode
 				'method'	=> 'flash',
 				'flashvars'	=> 'url=$0',
 			),
-			'kyte.tv' => array(
-				'id'		=> 17,
-				'image'		=> 'kyte.gif',
-				'example'	=> 'http://www.kyte.tv/ch/182864',
-				'match'		=> '#http://www.kyte.tv/ch/([^[]*)?#si',
-				'replace'	=> 'http://www.kyte.tv/f/',
-				'method'	=> 'flash',
-				'flashvars'	=> 'p=s&c=$1&tbid=1',
-			),
 			'liveleak.com' => array(
 				'id'		=> 18,
 				'image'		=> 'liveleak.gif',
@@ -1799,7 +1782,7 @@ class abbcode
 				'method'	=> 'flash',
 			),
 			'screenr.com' => array(
-				'id'		=> 68,
+				'id'		=> 17,
 				'image'		=> 'screenr.gif',
 				'example'	=> 'http://www.screenr.com/fTK',
 				'match'		=> '#http://(?:.*?)\.screenr.com/([^[]*)?#si',
@@ -1871,7 +1854,7 @@ class abbcode
 				'replace'	=> '<iframe frameborder="no" width="{WIDTH}" height="{HEIGHT}" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>',
 			),
 			'tu.tv' => array(
-				'id'		=> 67,
+				'id'		=> 8,
 				'image'		=> 'tutv.gif',
 				'example'	=> 'http://tu.tv/videos/el-gato-boxeador',
 				'match'		=> '#http://((.*?)?)tu.tv/videos/([^[]*)?#si',
@@ -2012,7 +1995,7 @@ class abbcode
 				'replace'	=> 'http://www.youtube.com/v/$1?version=3&hl=en_US',
 				'method'	=> 'flash',
 			),
-			// available ids: 69-200
+			// available ids: 67-200
 
 			'file' => array(),
 			'(mp4|m4v)' => array(
