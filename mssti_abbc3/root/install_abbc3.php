@@ -77,8 +77,8 @@ $versions = array(
 	// Version 3.0.9.3
 	'3.0.9.3'		=> array(
 		'custom' => array(
-			// special changes for version 3.0.9
-			'abbc3_309',
+			// Image resizer updates (replace Ibox with Shadowbox)
+			'image_resizer_updater',
 			// enable some new BBvideo IDs
 			'bbvideo_updater',
 		),
@@ -427,43 +427,6 @@ function abbc3_308($action, $version)
 }
 
 /**
-* Here is our custom function that will be called for version 3.0.9.3
-* Ibox was replaced by Shadowbox. Need to update database entries using Ibox to Shadowbox.
-*
-* @param string $action The action (install|update|uninstall) will be sent through this.
-* @param string $version The version this is being run for will be sent through this.
-*/
-function abbc3_309($action, $version)
-{
-	global $umil, $user;
-	
-	switch ($action)
-	{
-		case 'update':
-			// Get the resizer method
-			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
-			// If resizer method is set to Ibox, we need to switch it to Shadowbox
-			if ($resizer['config_value'] == 'Ibox')
-			{
-				$umil->config_update('ABBC3_RESIZE_METHOD', 'Shadowbox');
-			}
-		break;
-
-		case 'uninstall':
-			// Get the resizer method
-			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
-			// If resizer method is set to Shadowbox, we need to switch it to Ibox
-			if ($resizer['config_value'] == 'Shadowbox')
-			{
-				$umil->config_update('ABBC3_RESIZE_METHOD', 'Ibox');
-			}
-		break;
-	}
-	
-	return $user->lang['INSTALLER_RESIZE_CHECK'];
-}
-
-/**
 * Install, update or remove ABBC3 custom BBCodes
 *
 * @param string		$action
@@ -740,6 +703,51 @@ function bbvideo_updater($action, $version)
 	
 	// Return a string
 	return $user->lang['INSTALLER_BBVIDEO_UPDATER'];
+}
+
+/**
+* Image Resizer Updater - to be called when image resizers are deprecated or replaced
+*/
+function image_resizer_updater($action, $version)
+{
+	global $umil, $user;
+	
+	// Array containing names of replacement image resizers
+	$new_resizer = array(
+		'3.0.9'  => 'Shadowbox',
+		//'3.0.13' => 'prettyPhoto',
+	);
+
+	// Array containing names of deprecated image resizers
+	$old_resizer = array(
+		'3.0.9'  => 'Ibox',
+		//'3.0.13' => 'AdvancedBox',
+	);
+
+	switch ($action)
+	{
+		case 'update':
+			// Get the current resizer method config setting
+			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
+			// If the current resizer method is deprecated, we need to update it to the new option
+			if ($resizer['config_value'] == $old_resizer[$version])
+			{
+				$umil->config_update('ABBC3_RESIZE_METHOD', $new_resizer[$version]);
+			}
+		break;
+
+// 		case 'uninstall':
+// 			// Get the resizer method
+// 			$resizer = $umil->config_exists('ABBC3_RESIZE_METHOD', true);
+// 			// If resizer method is set to Shadowbox, we need to switch it to Ibox
+// 			if ($resizer['config_value'] == $new_resizer[$version])
+// 			{
+// 				$umil->config_update('ABBC3_RESIZE_METHOD', $old_resizer[$version]);
+// 			}
+// 		break;
+	}
+
+	return $user->lang['INSTALLER_RESIZE_CHECK'];
 }
 
 /**
