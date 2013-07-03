@@ -691,7 +691,8 @@ span.anchor {
 	height: 97px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border-radius:5px;
+	border-radius: 5px;
+	cursor: url("images/abbc3/zoomin.cur"), pointer !important;
 }
 /* bbvideo - End */
 
