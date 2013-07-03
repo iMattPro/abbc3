@@ -714,13 +714,13 @@ function image_resizer_updater($action, $version)
 	
 	// Array containing names of replacement image resizers
 	$new_resizer = array(
-		'3.0.9'  => 'Shadowbox',
+		'3.0.9.3'  => 'Shadowbox',
 		//'3.0.13' => 'prettyPhoto',
 	);
 
 	// Array containing names of deprecated image resizers
 	$old_resizer = array(
-		'3.0.9'  => 'Ibox',
+		'3.0.9.3'  => 'Ibox',
 		//'3.0.13' => 'AdvancedBox',
 	);
 
