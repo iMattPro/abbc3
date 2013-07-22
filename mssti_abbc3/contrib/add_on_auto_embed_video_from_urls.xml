@@ -6,7 +6,7 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Advanced BBCode Box 3 (aka ABBC3) - Add-on : Auto Embed Video From URLs.]]></title>
+		<title lang="en"><![CDATA[Advanced BBCode Box 3 - Add-on : Auto Embed Video From URLs.]]></title>
 		<description lang="en"><![CDATA[This file provides instructions to automatically embed video directly from plain URLs. This is especially useful with users who forget (or neglect) to use the BBvideo BBCode when posting a video site's URL. This add-on will embed their video automatically.
 		
 		1) This will automatically embed video from URL links (without [BBvideo] tag) in posts.
