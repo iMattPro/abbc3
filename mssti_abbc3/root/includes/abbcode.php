@@ -1580,9 +1580,9 @@ class abbcode
 			'facebook.com' => array(
 				'id'		=> 50,
 				'image'		=> 'facebook.gif',
-				'example'	=> 'https://www.facebook.com/video/video.php?v=2031763147233',
-				'match'		=> '#https?://www.facebook.com/(?:.*)video.php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?#si',
-				'replace'	=> '<iframe src="https://www.facebook.com/video/embed?video_id=$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
+				'example'	=> 'https://www.facebook.com/photo.php?v=2031763147233',
+				'match'		=> '#https?://www.facebook.com/(?:.*)(video|photo).php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?#si',
+				'replace'	=> '<iframe src="https://www.facebook.com/video/embed?video_id=$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>',
 			),
 			'flickr.com' => array(
 				'id'		=> 19,
