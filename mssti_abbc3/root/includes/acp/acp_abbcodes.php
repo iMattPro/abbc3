@@ -294,7 +294,6 @@ class acp_abbcodes
 			'U_ACTION'			=> $this->u_action,
 
 			'ABBC3_VERSION'				=> $config['ABBC3_VERSION'],
-			'S_VERSION_UP_TO_DATE'		=> $this->abbc3_version_compare($config['ABBC3_VERSION']),
 
 			// Check which options can be used for the resize method
 			'ADVANCEDBOX_EXIST'					=> (@file_exists("$this->dir/AdvancedBox.js")) ? 1 : 0,
@@ -642,50 +641,6 @@ class acp_abbcodes
 			}
 		}
 		$db->sql_freeresult($result);
-	}
-
-	/**
-	* Obtains the latest version information
-	* @param string 	$current_version 	version information
-	* @param int 		$ttl 				Cache version information for $ttl seconds. Defaults to 86400 (24 hours).
-	* 
-	* @return bool 		false on failure.
-	*/
-	function abbc3_version_compare($current_version = '', $version_up_to_date = true, $ttl = 86400)
-	{
-		global $cache, $template;
-		
-		$info = $cache->get('abbc3_versioncheck');
-
-		if ($info === false)
-		{
-			$errstr = '';
-			$errno = 0;
-
-			$info = get_remote_file('mattfriedman.me', '/software', 'abbc3.txt', $errstr, $errno);
-			if ($info === false)
-			{
-				$template->assign_var('S_VERSIONCHECK_FAIL', true);
-				$cache->destroy('abbc3_versioncheck');
-			}
-		}
-
-		if ($info !== false)
-		{
-			$cache->put('abbc3_versioncheck', $info, $ttl);
-			$latest_version_info = explode("\n", $info);
-
-			$latest_version = strtolower(trim($latest_version_info[0]));
-			$current_version = strtolower(trim($current_version));
-			$version_up_to_date = version_compare($current_version, $latest_version, '<') ? false : true;
-
-			$template->assign_vars(array(
-				'LATEST_VERSION'	=> $latest_version,
-				'U_VERSIONCHECK'	=> ($version_up_to_date) ? false : $latest_version_info[1],
-			));
-		}
-
-		return $version_up_to_date;
 	}
 }
 
