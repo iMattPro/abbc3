@@ -662,7 +662,7 @@ class acp_abbcodes
 			$errstr = '';
 			$errno = 0;
 
-			$info = get_remote_file('orcamx.vlexofree.com', '/software', 'abbc3.txt', $errstr, $errno);
+			$info = get_remote_file('mattfriedman.me', '/software', 'abbc3.txt', $errstr, $errno);
 			if ($info === false)
 			{
 				$template->assign_var('S_VERSIONCHECK_FAIL', true);
