@@ -1,0 +1,5 @@
+services:
+    abbc3.manager:
+        class: vse\abbc3\core\manager
+        arguments:
+            - @user
