@@ -373,10 +373,14 @@ class convert extends \phpbb\db\migration\migration
 			'video',
 			'wave=',		// Text_effect_pass
 			'web',
-
-			// can't convert over
-			'hr',
-			'tab=',
+	 		'scrippet',		// scrippets_pass
+	 		'search',		// search_pass
+			'thumbnail',	// thumb_pass
+			'hr',			// no closing
+			'tab=',			// no closing
+	 		'tabs',			// simpleTabs_pass
+	 		'table=',		// table_pass
+	 		'anchor=',		// anchor_pass
 
 			// not really bbcodes
 			'copy',
@@ -394,14 +398,6 @@ class convert extends \phpbb\db\migration\migration
 			'marq=down',		// replaced by marq=
 			'marq=left',		// replaced by marq=
 			'marq=right',		// replaced by marq=
-
-			// Scripted (keep if convertable)
-	//		'thumbnail',	// thumb_pass
-	// 		'tabs',			// simpleTabs_pass
-	// 		'table=',		// table_pass
-	// 		'anchor=',		// anchor_pass
-	// 		'search',		// search_pass
-	// 		'scrippet',		// scrippets_pass
 
 			// updated bbcodes
 	//		'align=center',	// replaced by align=
