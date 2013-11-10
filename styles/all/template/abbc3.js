@@ -18,11 +18,11 @@
 				"regex": /http:\/\/www.allocine.fr\/video\/player_gen_cmedia=(\d+)?([^[]*)?/i,
 				"embed": '<iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=$1" style="width:[WIDTH]px; height:[HEIGHT]px" frameborder="0"></iframe>'
 			},
-// 			{
-// 				"site" : "on.aol.com",
-// 				"regex": /http:\/\/on.aol.com\/video\/(?:.*)-([0-9]+)/i,
-// 				"embed": '<script type="text/javascript" src="http://pshared.5min.com/Scripts/PlayerSeed.js?sid=203&amp;width=[WIDTH}&amp;height=[HEIGHT]&amp;shuffle=0&amp;playList=$1"><\/script>'
-// 			},
+			{
+				"site" : "on.aol.com",
+				"type" : "ogp",
+				"regex": /http:\/\/on.aol.com\/video\/(?:.*)-([0-9]+)/i
+			},
 			{
 				"site" : "blip.tv",
 				"type" : 'oembed',
