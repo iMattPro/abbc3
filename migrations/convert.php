@@ -13,7 +13,7 @@ class convert extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['abbc3_version']) && version_compare($this->config['abbc3_version'], '3.1.0', '>=');
+		return isset($this->config['ABBC3_VERSION']) && version_compare($this->config['ABBC3_VERSION'], '3.1.0', '>=');
 	}
 
 	static public function depends_on()
@@ -24,12 +24,10 @@ class convert extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return array(
-			// Custom functions
 			array('custom', array(array($this, 'delete_abbc3_bbcodes'))),
 			array('custom', array(array($this, 'update_abbc3_bbcodes'))),
 
-			// Keep track of version in the database
-			array('config.add', array('abbc3_version', '3.1.0')),
+			array('config.update', array('ABBC3_VERSION', '3.1.0')),
 		);
 	}
 
