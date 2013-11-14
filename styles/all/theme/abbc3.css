@@ -1,4 +1,4 @@
-/* Hidden block - Start */
+/* Hidden block  */
 .hiddenbox, .unhiddenbox {
 	padding: 8px;
 	font-size: 1em;
@@ -35,9 +35,8 @@
 .hiddentext {
 	color: #80001c;
 }
-/* Hidden block - End */
 
-/* Moderator bbcode - START */
+/* Moderator bbcode */
 .ModTable {
 	background-color: #FFFFFF;
 	border: 1px solid #000000;
@@ -66,9 +65,8 @@
 	border-bottom: 1px solid #000000;
 	font-weight: bold;
 }
-/* Moderator bbcode - END */
 
-/* Spoiler - START */
+/* Spoiler */
 .spoilwrapper {
     padding: 0;
     color: #333333;
@@ -99,9 +97,8 @@
     display: none;
     padding: 5px;
 }
-/* Spoiler - END */
 
-/* NFO bbcode - START */
+/* NFO bbcode */
 .NFOTable { width: 100%; }
 /* IE6 Only */
 * html.nfo {
@@ -129,9 +126,8 @@
 	font-family: "Courier New", monospace;
 	background-color: #ffffff;
 }
-/* NFO bbcode - END */
 
-/* Offtopic bbcode - START */
+/* Offtopic bbcode */
 .OffTopic {
 	position: relative;
 	font-size: 0.9em;
@@ -167,9 +163,8 @@
 	padding: 5px 10px;
 	color: #333333;
 }
-/* Offtopic bbcode - END */
 
-/* Marquee bbcode - Start */
+/* Marquee bbcode */
 .abbc3-marquee {
 	margin: 10px 0;
 	padding: 5px;
@@ -177,4 +172,4 @@
 	-moz-box-orient: vertical; /* For FF<3 */
 	display: inline-block; /* IE <8 needs this tripped back to display: inline; to make it work on block elements */
 }
-/* Marquee bbcode - End */
+/* Marquee bbcode */
