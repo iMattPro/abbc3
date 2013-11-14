@@ -70,6 +70,6 @@ class listener implements EventSubscriberInterface
 	{
 		global $phpbb_container;
 
- 		$phpbb_container->get('abbc3.manager')->parse_bbcodes($event);
+ 		$phpbb_container->get('vse.abbc3.manager')->parse_bbcodes($event);
 	}
 }
