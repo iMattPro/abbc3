@@ -1,10 +1,9 @@
-ABBC3 Survival Kit for phpBB 3.1
-=================================
+# ABBC3 Survival Kit for phpBB 3.1
 
-ABBC3 was a popular MOD for phpBB 3.0. It is not being updated into an extension for phpBB 3.1. Instead, this "Survival Kit" will allow users upgrading to phpBB 3.1 to keep many of the BBcodes and their functionality that ABBC3 provided.
+ABBC3 was a popular MOD for phpBB 3.0. It is not being updated into an extension for phpBB 3.1. Instead, this "Survival Kit" will allow users upgrading to phpBB 3.1 to keep many of the BBcodes that ABBC3 provided.
 
-##Surviving Features:
-* Custom BBCodes:
+## Surviving Features:
+* Custom BBcodes:
 
 	Font Family, Highlight Text, Strike through text, Superscript, Subscript, Glow, Shadow, Dropshadow,
 	Blur, Fade text, Justify Align, Right Align, Center Align, Left Align, LTR/RTL Direction, Preformat
@@ -22,27 +21,24 @@ ABBC3 was a popular MOD for phpBB 3.0. It is not being updated into an extension
 	twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de, vimeo.com, wat.tv,
 	wegame.com, xfire.com, youku.com, youtu.be, youtube.com
 
-##Discontinued Features:
-* Customizable icon-based BBCode toolbar.
-* BBCodes group and posting page permissions/assignments.
+## Discontinued Features:
+* Customizable icon-based BBcode toolbar.
+* BBcodes group and posting page permissions/assignments.
 * Image Resizers.
-* Deleted BBCodes/Buttons:
+* Removed BBcodes:
 
 	Anchor, Cut, Copy, Paste, Plain, Horizontal line, Wave, Rainbow text, Indent, Ed2k links, Imgshack,
 	Rapidshare links, Click counter, FLV, Quicktime mov, Real Player ram, Scrippet, Search text, Stream,
 	Tables, Tabs, Thumbnail images, Video, Web.
 
-* Deleted BBvideos:
+* Removed BBvideos:
 
 	qik.com, revision3.com, testtube.com, tu.tv
 
-Requirements
-------------
-
-* phpBB 3.0.10 or newer.
+## Requirements
+* phpBB 3.1-dev or higher
+* PHP 5.3.3 or higher
 * Javascript is required by this MOD.
 
-License
--------
-
-GNU General Public License v2
+## License
+[GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
