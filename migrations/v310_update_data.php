@@ -9,57 +9,82 @@
 
 namespace vse\abbc3\migrations;
 
-class convert extends \phpbb\db\migration\migration
+class v310_update_data extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['ABBC3_VERSION']) && version_compare($this->config['ABBC3_VERSION'], '3.1.0', '>=');
+		return isset($this->config['abbc3_version']) && version_compare($this->config['abbc3_version'], '3.1.0', '>=');
 	}
 
 	static public function depends_on()
 	{
-		return array('\phpbb\db\migration\data\v310\dev');
+		return array('\vse\abbc3\migrations\v310_update_schema');
 	}
 
 	public function update_data()
 	{
 		return array(
-			array('custom', array(array($this, 'delete_abbc3_bbcodes'))),
 			array('custom', array(array($this, 'update_abbc3_bbcodes'))),
 
-			array('config.update', array('ABBC3_VERSION', '3.1.0')),
+			array('config.add', array('abbc3_version', '3.1.0')),
 		);
 	}
 
-	public function delete_abbc3_bbcodes()
-	{
-		$abbc3_bbcode_deprecated = $this->abbc3_bbcodes();
-
-		// Add all breaks and divisions to the array
-		$sql = 'SELECT bbcode_tag
-			FROM ' . BBCODES_TABLE . "
-			WHERE bbcode_tag LIKE 'break%' OR bbcode_tag LIKE 'division%' ";
-
-		$result = $this->db->sql_query($sql);
-		while ($row = $this->db->sql_fetchrow($result))
-		{
-			$abbc3_bbcode_deprecated[] = $row['bbcode_tag'];
-		}
-		$this->db->sql_freeresult($result);
-
-		// Delete all the unwanted bbcodes
-		$sql = 'DELETE FROM ' . BBCODES_TABLE . '
-			WHERE ' . $this->db->sql_in_set('bbcode_tag', $abbc3_bbcode_deprecated);
-		$this->db->sql_query($sql);
-	}
-	
 	public function update_abbc3_bbcodes()
 	{
 		$bbcode_data = $this->abbc3_bbcode_data();
 
 		foreach ($bbcode_data as $bbcode_name => $bbcode_array)
 		{
-			$this->db->sql_query('UPDATE ' . BBCODES_TABLE . ' SET ' . $this->db->sql_build_array('UPDATE', $bbcode_array) . " WHERE lower(bbcode_tag) = '" . strtolower($bbcode_name) ."'");
+			$sql = 'SELECT bbcode_id
+					FROM ' . $this->table_prefix . "bbcodes
+					WHERE lower(bbcode_tag) = '" . strtolower($bbcode_name) . "' or lower(bbcode_tag) = '" . strtolower($bbcode_array['bbcode_tag']) . "'";
+			$result = $this->db->sql_query($sql);
+			$row_exists = $this->db->sql_fetchrow($result);
+			$this->db->sql_freeresult($result);
+
+			if ($row_exists)
+			{
+				// Update exisiting BBcode
+				$bbcode_id = $row_exists['bbcode_id'];
+
+				$sql = 'UPDATE ' . $this->table_prefix . 'bbcodes
+						SET ' . $this->db->sql_build_array('UPDATE', $bbcode_array) . '
+						WHERE bbcode_id = ' . $bbcode_id;
+				$this->db->sql_query($sql);
+			}
+			else
+			{
+				// Create new BBcode
+				$sql = 'SELECT MAX(bbcode_id) as max_bbcode_id
+					FROM ' . $this->table_prefix . 'bbcodes';
+				$result = $this->db->sql_query($sql);
+				$row = $this->db->sql_fetchrow($result);
+				$this->db->sql_freeresult($result);
+
+				if ($row)
+				{
+					$bbcode_id = $row['max_bbcode_id'] + 1;
+
+					// Make sure it is greater than the core bbcode ids...
+					if ($bbcode_id <= NUM_CORE_BBCODES)
+					{
+						$bbcode_id = NUM_CORE_BBCODES + 1;
+					}
+				}
+				else
+				{
+					$bbcode_id = NUM_CORE_BBCODES + 1;
+				}
+
+				if ($bbcode_id <= BBCODE_LIMIT)
+				{
+					$bbcode_array['bbcode_id'] = (int) $bbcode_id;
+					$bbcode_array['display_on_posting'] = 1;
+
+					$this->db->sql_query('INSERT INTO ' . $this->table_prefix . 'bbcodes ' . $this->db->sql_build_array('INSERT', $bbcode_array));
+				}
+			}
 		}
 	}
 
@@ -266,66 +291,6 @@ class convert extends \phpbb\db\migration\migration
 				'second_pass_match'		=> '!\[pre:$uid\](.*?)\[/pre:$uid\]!s',
 				'second_pass_replace'	=> '<pre>${1}</pre>',
 			),
-			'collegehumor' => array(
-				'bbcode_tag'			=> 'collegehumor',
-				'bbcode_helpline'		=> 'CollegHumor Video: [collegehumor]URL[/collegehumor]',
-				'bbcode_match'			=> '[collegehumor]{URL}[/collegehumor]',
-				'bbcode_tpl'			=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,340">{URL}</a>',
-				'first_pass_match'		=> '!\[collegehumor\](?:([a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))\[/collegehumor\]!ie',
-				'first_pass_replace'	=> '\'[collegehumor:$uid]\'.$this->bbcode_specialchars((\'${1}\') ? \'${1}\' : \'http://${2}\').\'[/collegehumor:$uid]\'',
-				'second_pass_match'		=> '!\[collegehumor:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/collegehumor:$uid\]!s',
-				'second_pass_replace'	=> '<a href="${1}" class="bbvideo" data-bbvideo="560,340">${1}</a>',
-			),
-			'dm' => array(
-				'bbcode_tag'			=> 'dm',
-				'bbcode_helpline'		=> 'Daily Motion Video: [dm]URL[/dm]',
-				'bbcode_match'			=> '[dm]{URL}[/dm]',
-				'bbcode_tpl'			=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,340">{URL}</a>',
-				'first_pass_match'		=> '!\[dm\](?:([a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))\[/dm\]!ie',
-				'first_pass_replace'	=> '\'[dm:$uid]\'.$this->bbcode_specialchars((\'${1}\') ? \'${1}\' : \'http://${2}\').\'[/dm:$uid]\'',
-				'second_pass_match'		=> '!\[dm:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/dm:$uid\]!s',
-				'second_pass_replace'	=> '<a href="${1}" class="bbvideo" data-bbvideo="560,340">${1}</a>',
-			),
-			'gamespot' => array(
-				'bbcode_tag'			=> 'gamespot',
-				'bbcode_helpline'		=> 'GameSpot Video: [gamespot]URL[/gamespot]',
-				'bbcode_match'			=> '[gamespot]{URL}[/gamespot]',
-				'bbcode_tpl'			=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,340">{URL}</a>',
-				'first_pass_match'		=> '!\[gamespot\](?:([a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))\[/gamespot\]!ie',
-				'first_pass_replace'	=> '\'[gamespot:$uid]\'.$this->bbcode_specialchars((\'${1}\') ? \'${1}\' : \'http://${2}\').\'[/gamespot:$uid]\'',
-				'second_pass_match'		=> '!\[gamespot:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/gamespot:$uid\]!s',
-				'second_pass_replace'	=> '<a href="${1}" class="bbvideo" data-bbvideo="560,340">${1}</a>',
-			),
-			'ignvideo' => array(
-				'bbcode_tag'			=> 'ignvideo',
-				'bbcode_helpline'		=> 'IGN Video: [ignvideo]URL[/ignvideo]',
-				'bbcode_match'			=> '[ignvideo]{URL}[/ignvideo]',
-				'bbcode_tpl'			=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,340">{URL}</a>',
-				'first_pass_match'		=> '!\[ignvideo\](?:([a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))\[/ignvideo\]!ie',
-				'first_pass_replace'	=> '\'[ignvideo:$uid]\'.$this->bbcode_specialchars((\'${1}\') ? \'${1}\' : \'http://${2}\').\'[/ignvideo:$uid]\'',
-				'second_pass_match'		=> '!\[ignvideo:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/ignvideo:$uid\]!s',
-				'second_pass_replace'	=> '<a href="${1}" class="bbvideo" data-bbvideo="560,340">${1}</a>',
-			),
-			'liveleak' => array(
-				'bbcode_tag'			=> 'liveleak',
-				'bbcode_helpline'		=> 'LiveLeak Video: [liveleak]URL[/liveleak]',
-				'bbcode_match'			=> '[liveleak]{URL}[/liveleak]',
-				'bbcode_tpl'			=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,340">{URL}</a>',
-				'first_pass_match'		=> '!\[liveleak\](?:([a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))\[/liveleak\]!ie',
-				'first_pass_replace'	=> '\'[liveleak:$uid]\'.$this->bbcode_specialchars((\'${1}\') ? \'${1}\' : \'http://${2}\').\'[/liveleak:$uid]\'',
-				'second_pass_match'		=> '!\[liveleak:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/liveleak:$uid\]!s',
-				'second_pass_replace'	=> '<a href="${1}" class="bbvideo" data-bbvideo="560,340">${1}</a>',
-			),
-			'veoh' => array(
-				'bbcode_tag'			=> 'veoh',
-				'bbcode_helpline'		=> 'Veoh Video: [veoh]URL[/veoh]',
-				'bbcode_match'			=> '[veoh]{URL}[/veoh]',
-				'bbcode_tpl'			=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,340">{URL}</a>',
-				'first_pass_match'		=> '!\[veoh\](?:([a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))\[/veoh\]!ie',
-				'first_pass_replace'	=> '\'[veoh:$uid]\'.$this->bbcode_specialchars((\'${1}\') ? \'${1}\' : \'http://${2}\').\'[/veoh:$uid]\'',
-				'second_pass_match'		=> '!\[veoh:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/veoh:$uid\]!s',
-				'second_pass_replace'	=> '<a href="${1}" class="bbvideo" data-bbvideo="560,340">${1}</a>',
-			),
 			'youtube' => array(
 				'bbcode_tag'			=> 'youtube',
 				'bbcode_helpline'		=> 'YouTube Video: [youtube]URL[/youtube]',
@@ -336,96 +301,6 @@ class convert extends \phpbb\db\migration\migration
 				'second_pass_match'		=> '!\[youtube:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/youtube:$uid\]!s',
 				'second_pass_replace'	=> '<a href="${1}" class="bbvideo" data-bbvideo="560,340">${1}</a>',
 			),
-		);
-	}
-
-	public function abbc3_bbcodes()
-	{
-		return array(
-			// exist in core
-			'b',
-			'code',
-			'color',
-			'email',
-			'flash',
-			'i',
-			'img=',
-			'listb',
-			'listitem',
-			'listo',
-			'quote',
-			'size',			
-			'u',
-			'url',
-			'url=',
-
-			// deprecated
-			'click',		// click_pass
-			'ed2k',
-			'flv',			// auto_embed_video
-			'quicktime',
-			'ram',
-			'rapidshare',	// rapidshare_pass
-			'stream',
-			'testlink',		// testlink_pass
-			'video',
-			'wave=',		// Text_effect_pass
-			'web',
-	 		'scrippet',		// scrippets_pass
-	 		'search',		// search_pass
-			'thumbnail',	// thumb_pass
-			'hr',			// no closing
-			'tab=',			// no closing
-	 		'tabs',			// simpleTabs_pass
-	 		'table=',		// table_pass
-	 		'anchor=',		// anchor_pass
-
-			// not really bbcodes
-			'copy',
-			'cut',
-			'grad',
-			'paste',
-			'plain',
-			'imgshack',
-
-			// replaced by new bbcodes
-			'align=justify',	// replaced by align=
-			'align=left',		// replaced by align=
-			'align=right',		// replaced by align=
-			'dir=rtl',			// replaced by dir=
-			'marq=down',		// replaced by marq=
-			'marq=left',		// replaced by marq=
-			'marq=right',		// replaced by marq=
-
-			// updated bbcodes
-	//		'align=center',	// replaced by align=
-	//		'blur=',		// Text_effect_pass
-	//		'collegehumor',	// auto_embed_video
-	//		'dir=ltr',		// replaced by dir=
-	//		'dm',			// auto_embed_video
-	//		'dropshadow=',	// Text_effect_pass
-	//		'fade',
-	//		'font=',
-	//		'gamespot',		// auto_embed_video
-	//		'glow=',		// Text_effect_pass
-	//		'highlight=',
-	//		'ignvideo',		// auto_embed_video
-	//		'liveleak',		// auto_embed_video
-	//		'marq=up',		// replaced by marq=
-	//		'mod=',			// mod_pass
-	//		'nfo',			// nfo_pass
-	//		'offtopic',		// offtopic_pass
-	//		'pre',
-	//		's',
-	//		'shadow=',		// Text_effect_pass
-	//		'spoil',		// spoil_pass
-	//		'sub',
-	//		'sup',
-	//		'veoh',			// auto_embed_video
-	//		'youtube',		// BBvideo_pass
-	// 		'BBvideo',		// BBvideo_pass
-	// 		'hidden',		// hidden_pass
-
 		);
 	}
 }
