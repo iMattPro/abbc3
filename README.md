@@ -17,9 +17,9 @@ ABBC3 was a popular MOD for phpBB 3.0. It is not being updated into an extension
 	gamespot.com, gametrailers.com, gamevideos.1up, godtube.com, howcast.com, hulu.com, ign.com,
 	liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo.de,
 	photobucket.com, rutube.ru, sapo.pt, screen.yahoo.com, screenr.com, scribd.com, sevenload.com,
-	slideshare.net, snotr.com, spike.com, streetfire.net, thedailyshow.com, theonion.com, twitch.tv,
-	twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de, vimeo.com, wat.tv,
-	wegame.com, xfire.com, youku.com, youtu.be, youtube.com
+	slideshare.net, snotr.com, soundcloud.com, spike.com, streetfire.net, thedailyshow.com, theonion.com,
+	twitch.tv, twitvid.com, ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de,
+	vimeo.com, wat.tv, wegame.com, xfire.com, youku.com, youtu.be, youtube.com
 
 ## Discontinued Features:
 * Customizable icon-based BBcode toolbar.

@@ -301,6 +301,16 @@ class v310_update_data extends \phpbb\db\migration\migration
 				'second_pass_match'		=> '!\[youtube:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/youtube:$uid\]!s',
 				'second_pass_replace'	=> '<a href="${1}" class="bbvideo" data-bbvideo="560,340">${1}</a>',
 			),
+			'soundcloud' => array(
+				'bbcode_tag'			=> 'soundcloud',
+				'bbcode_helpline'		=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+				'bbcode_match'			=> '[soundcloud]{URL}[/soundcloud]',
+				'bbcode_tpl'			=> '<object height="81" width="100%"><param name="movie" value="http://player.soundcloud.com/player.swf?url={URL}&amp;g=bb"></param><param name="allowscriptaccess" value="always"></param><embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url={URL}&amp;g=bb" type="application/x-shockwave-flash" width="100%"></embed></object>',
+				'first_pass_match'		=> '!\[soundcloud\](?:([a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))\[/soundcloud\]!ie',
+				'first_pass_replace'	=> '\'[soundcloud:$uid]\'.$this->bbcode_specialchars((\'${1}\') ? \'${1}\' : \'http://${2}\').\'[/soundcloud:$uid]\'',
+				'second_pass_match'		=> '!\[soundcloud:$uid\](?i)((?:[a-z][a-z\d+\-.]*:/{2}(?:(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+|[0-9.]+|\[[a-z0-9.]+:[a-z0-9.]+:[a-z0-9.:]+\])(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?)|(?:www\.(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})+(?::\d*)?(?:/(?:[a-z0-9\-._~\!$&\'()*+,;=:@|]+|%[\dA-F]{2})*)*(?:\?(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?(?:#(?:[a-z0-9\-._~\!$&\'()*+,;=:@/?|]+|%[\dA-F]{2})*)?))(?-i)\[/soundcloud:$uid\]!s',
+				'second_pass_replace'	=> '<object height="81" width="100%"><param name="movie" value="http://player.soundcloud.com/player.swf?url=${1}&amp;g=bb"></param><param name="allowscriptaccess" value="always"></param><embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=${1}&amp;g=bb" type="application/x-shockwave-flash" width="100%"></embed></object>',
+			),
 		);
 	}
 }
