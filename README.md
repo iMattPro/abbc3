@@ -5,9 +5,10 @@ ABBC3 was a popular MOD for phpBB 3.0. It is not being updated into an extension
 ## Surviving Features:
 * Custom BBcodes:
 
-	Font Family, Highlight Text, Strike through text, Superscript, Subscript, Glow, Shadow, Dropshadow,
-	Blur, Fade text, Justify Align, Right Align, Center Align, Left Align, LTR/RTL Direction, Preformat
-	text, Scrolling marquee text, Spoiler, Hidden, Moderator Message, Off Topic, NFO, Email, BBvideo
+	Copy, Paste, Plain, Font Family, Highlight Text, Strike through text, Superscript, Subscript, Glow,
+	Shadow, Dropshadow, Blur, Fade text, Justify Align, Right Align, Center Align, Left Align, LTR/RTL
+	Direction, Preformat text, Scrolling marquee text, Spoiler, Hidden, Moderator Message, Off Topic, NFO,
+	Email, BBvideo
 
 * Embed video in your posts, supported video sharing sites:
 
@@ -27,9 +28,9 @@ ABBC3 was a popular MOD for phpBB 3.0. It is not being updated into an extension
 * Image Resizers.
 * Removed BBcodes:
 
-	Anchor, Cut, Copy, Paste, Plain, Horizontal line, Wave, Rainbow text, Indent, Ed2k links, Imgshack,
-	Rapidshare links, Click counter, FLV, Quicktime mov, Real Player ram, Scrippet, Search text, Stream,
-	Tables, Tabs, Thumbnail images, Video, Web.
+	Anchor, Horizontal line, Wave, Rainbow text, Indent, Ed2k links, Imgshack, Rapidshare links, Click
+	counter, FLV, Quicktime mov, Real Player ram, Scrippet, Search text, Stream, Tables, Tabs, Thumbnail
+	images, Video, Web.
 
 * Removed BBvideos:
 

@@ -1,3 +1,103 @@
+<script>
+
+var copy_paste = '';
+
+/**
+* Strip all bbcodes from the selected text
+*/
+function bbcode_to_plain(data) {
+	if (data.indexOf('[') < 0) {
+		return data;
+	}
+
+	function bbcode_to_plain_simple_replace(str) {
+		return str.replace(basic_bbcode_match, bbcode_to_plain_pattern);
+	}
+
+	function bbcode_to_plain_pattern(match_0, match_1, match_2, match_3) {
+		if (match_3 && match_3.indexOf('[') > -1) {
+			match_3 = bbcode_to_plain_simple_replace(match_3);
+		}
+		return match_3;
+	}
+
+	var basic_bbcode_match = new RegExp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
+
+	return bbcode_to_plain_simple_replace(data);
+}
+
+/**
+* Apply special bbcodes
+*/
+function bbspecial(bbcode) {
+	theSelection = false;
+
+	var textarea = document.forms[form_name].elements[text_name];
+
+	textarea.focus();
+
+	var selLength, selStart, selEnd, s1, s2, s3;
+
+	if ((clientVer >= 4) && is_ie && is_win) {
+		// Get text selection
+		theSelection = document.selection.createRange().text;
+	} else if (document.forms[form_name].elements[text_name].selectionEnd
+			&& (document.forms[form_name].elements[text_name].selectionEnd - document.forms[form_name].elements[text_name].selectionStart > 0)) {
+		selLength = textarea.textLength;
+		selLength = (typeof(selLength) === 'undefined' || selLength === '' || selLength === null) ? textarea.value.length : selLength;
+		selStart = textarea.selectionStart;
+		selEnd = textarea.selectionEnd;
+
+		if (selEnd === 1 || selEnd === 2) {
+			selEnd = selLength;
+		}
+
+		s1 = (textarea.value).substring(0, selStart);
+		s2 = (textarea.value).substring(selStart, selEnd);
+		s3 = (textarea.value).substring(selEnd, selLength);
+		theSelection = s2;
+	}
+
+	switch (bbcode) {
+		case "abbc3_plain":
+			if (typeof(theSelection) === 'undefined' || theSelection === '' || theSelection === null) {
+				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
+				return;
+			} else {
+				try {
+					var tempSelection = bbcode_to_plain(theSelection);
+
+					if ((clientVer >= 4) && is_ie && is_win) {
+						document.selection.createRange().text = tempSelection;
+					}
+					else if (textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0)) {
+						textarea.value = s1 + tempSelection + s3;
+						selEnd = textarea.selectionEnd = (textarea.value).substring(0, selStart).length + tempSelection.length;
+					}
+				} catch (e) {}
+			}
+		break;
+		case "abbc3_copy":
+			if (typeof(theSelection) === 'undefined' || theSelection === '' || theSelection === null) {
+				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
+				return;
+			} else {
+				copy_paste = theSelection;
+			}
+		break;
+		case "abbc3_paste":
+			if (copy_paste) {
+				bbfontstyle(copy_paste, '');
+			} else {
+				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_PASTE_ERROR}");
+			}
+		break;
+	}
+
+	theSelection = '';
+}
+
+</script>
 <!-- BLOCK core_bbcode_buttons -->
 	<input type="button" class="abbc3_button" accesskey="b" name="addbbcode0" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/bold.gif');" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" />
 	<input type="button" class="abbc3_button" accesskey="i" name="addbbcode2" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/italic.gif');" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" />
@@ -30,6 +130,9 @@
 			<!-- ENDIF -->
 		<!-- ENDIF -->
 	</select>
+	<input type="button" class="abbc3_button" name="copybbcode" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/copy.gif');" onclick="bbspecial('abbc3_copy');" title="{L_ABBC3_COPY_BBCODE}">
+	<input type="button" class="abbc3_button" name="pastebbcode" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/paste.gif');" onclick="bbspecial('abbc3_paste');" title="{L_ABBC3_PASTE_BBCODE}">
+	<input type="button" class="abbc3_button" name="plainbbcode" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/plain.gif');" onclick="bbspecial('abbc3_plain');" title="{L_ABBC3_PLAIN_BBCODE}">
 <!-- ENDBLOCK -->
 <!-- BLOCK custom_bbcode_buttons -->
 	<br />
