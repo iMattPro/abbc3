@@ -173,3 +173,28 @@
 	display: inline-block; /* IE <8 needs this tripped back to display: inline; to make it work on block elements */
 }
 /* Marquee bbcode */
+
+/* abbc3 bbcode buttons */
+.abbc3_button {
+	min-width: 22px;
+	width: auto !important;
+	width: 22px;
+	height: 22px !important;
+	background-color: #fff;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	margin: 6px 0 !important;
+	border: 1px solid #b4bac0 !important;
+}
+
+.abbc3_button:hover {
+	background-color: #ffffdf !important;
+	border: 1px solid #bc2a4d !important;
+}
+
+.abbc3_select  {
+	height: 22px;
+	background-color: #fff;
+	margin: 6px 0 !important;
+	border: 1px solid #b4bac0 !important;
+}

@@ -27,4 +27,10 @@ $lang = array_merge($lang, array(
 	'HIDDEN_ON'					=> 'Hidden Content',
 	'HIDDEN_OFF'				=> 'Hidden Content (for members only)',
 	'HIDDEN_EXPLAIN'			=> 'This board requires you to be registered and logged-in to view hidden content.',
+
+	// Font BBcode
+	'ABBC3_FONT_BBCODE'			=> 'Font Menu',
+	'ABBC3_FONT_FANCY'			=> 'Fancy fonts',
+	'ABBC3_FONT_SAFE'			=> 'Safe fonts',
+	'ABBC3_FONT_WIN'			=> 'Windows fonts',
 ));
