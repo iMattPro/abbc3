@@ -23,15 +23,8 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'SAMPLE_TEXT'				=> 'The quick brown fox jumps over the lazy dog',
-));
-
-$lang = array_merge($lang, array(
-	// Hidden
-	'ABBC3_HIDDEN_MOVER'		=> 'Hide content from unregistered guests',
-	'ABBC3_HIDDEN_TIP'			=> '[hidden]text[/hidden]',
-	'ABBC3_HIDDEN_VIEW'			=> '[hidden]' . $lang['SAMPLE_TEXT'] . '[/hidden]',
-	'HIDDEN_OFF'				=> 'Hidden Content (for members only)',
+	// Hidden BBcode
 	'HIDDEN_ON'					=> 'Hidden Content',
+	'HIDDEN_OFF'				=> 'Hidden Content (for members only)',
 	'HIDDEN_EXPLAIN'			=> 'This board requires you to be registered and logged-in to view hidden content.',
 ));
