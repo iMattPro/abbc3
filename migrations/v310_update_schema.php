@@ -29,6 +29,22 @@ class v310_update_schema extends \phpbb\db\migration\migration
 					'bbcode_id'		=> array('USINT', 0),
 				),
 			),
+			'add_columns'		=> array(
+				$this->table_prefix . 'bbcodes'		=> array(
+					'bbcode_order'	=> array('USINT', 0),
+				),
+			),
+		);
+	}
+
+	public function revert_schema()
+	{
+		return array(
+			'drop_columns'		=> array(
+				$this->table_prefix . 'bbcodes'		=> array(
+					'bbcode_order',
+				),
+			),
 		);
 	}
 }

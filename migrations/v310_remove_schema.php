@@ -37,7 +37,7 @@ class v310_remove_schema extends \phpbb\db\migration\migration
 					'display_on_sig',
 					'abbcode',
 					'bbcode_image',
-					'bbcode_order',
+//					'bbcode_order',
 					'bbcode_group',
 				),
 			),

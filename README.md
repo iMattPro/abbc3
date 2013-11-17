@@ -3,6 +3,7 @@
 ABBC3 was a popular MOD for phpBB 3.0. It is not being updated into an extension for phpBB 3.1. Instead, this "Survival Kit" will allow users upgrading to phpBB 3.1 to keep many of the BBcodes that ABBC3 provided.
 
 ## Surviving Features:
+* Customizable icon-based BBcode toolbar (pending future template system changes in phpBB 3.1)
 * Custom BBcodes:
 
 	Copy, Paste, Plain, Font Family, Highlight Text, Strike through text, Superscript, Subscript, Glow,
@@ -23,7 +24,6 @@ ABBC3 was a popular MOD for phpBB 3.0. It is not being updated into an extension
 	vimeo.com, wat.tv, wegame.com, xfire.com, youku.com, youtu.be, youtube.com
 
 ## Discontinued Features:
-* Customizable icon-based BBcode toolbar.
 * BBcodes group and posting page permissions/assignments.
 * Image Resizers.
 * Removed BBcodes:

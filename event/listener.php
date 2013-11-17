@@ -25,6 +25,7 @@ class listener implements EventSubscriberInterface
 			'core.modify_text_for_display_after'		=> 'parse_abbcodes_after',
 			'core.display_custom_bbcodes_modify_row'	=> 'custom_bbcode_icons',
 			'core.display_custom_bbcodes'				=> 'setup_bbcode_icons',
+			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql', // needs to be requested
 		);
 	}
 
@@ -119,6 +120,22 @@ class listener implements EventSubscriberInterface
 		$template->assign_vars(array(
 			'ABBC3_BBCODE_ICONS' => $phpbb_root_path . 'ext/vse/abbc3/images/icons',
 		));
+	}
+
+	/**
+	* Modify the SQL statement to order by bbcode_order
+	*
+	* @param object $event The event object
+	* @return null
+	* @access public
+	*/
+	public function custom_bbcode_modify_sql($event)
+	{
+		$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
+			FROM ' . BBCODES_TABLE . '
+			WHERE display_on_posting = 1
+			ORDER BY bbcode_order';
+		$event['sql'] = $sql;
 	}
 
 	/*
