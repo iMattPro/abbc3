@@ -172,7 +172,6 @@
 	-moz-box-orient: vertical; /* For FF<3 */
 	display: inline-block; /* IE <8 needs this tripped back to display: inline; to make it work on block elements */
 }
-/* Marquee bbcode */
 
 /* abbc3 bbcode buttons */
 .abbc3_button {
