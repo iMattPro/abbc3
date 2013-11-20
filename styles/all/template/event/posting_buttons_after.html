@@ -29,7 +29,7 @@ function bbcode_to_plain(data) {
 /**
 * Apply special bbcodes
 */
-function bbspecial(bbcode) {
+function bbspecial(bbcode, bbcodeId) {
 	theSelection = false;
 
 	var textarea = document.forms[form_name].elements[text_name];
@@ -59,6 +59,7 @@ function bbspecial(bbcode) {
 	}
 
 	switch (bbcode) {
+
 		case "abbc3_plain":
 			if (typeof(theSelection) === 'undefined' || theSelection === '' || theSelection === null) {
 				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
@@ -77,6 +78,7 @@ function bbspecial(bbcode) {
 				} catch (e) {}
 			}
 		break;
+
 		case "abbc3_copy":
 			if (typeof(theSelection) === 'undefined' || theSelection === '' || theSelection === null) {
 				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
@@ -85,6 +87,7 @@ function bbspecial(bbcode) {
 				copy_paste = theSelection;
 			}
 		break;
+
 		case "abbc3_paste":
 			if (copy_paste) {
 				bbfontstyle(copy_paste, '');
@@ -92,6 +95,47 @@ function bbspecial(bbcode) {
 				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_PASTE_ERROR}");
 			}
 		break;
+
+		case "align=":
+			bbfontstyle("[align=center]", "[/align]");
+		break;
+
+		case "dir=":
+			bbfontstyle("[dir=rtl]", "[/dir]");
+		break;
+
+		case "marq=":
+			bbfontstyle("[marq=up]", "[/marq]");
+		break;
+
+		case "mod=":
+			bbfontstyle("[mod=\"{L_USERNAME}\"]", "[/mod]");
+		break;
+
+		case "highlight=":
+			bbfontstyle("[highlight=yellow]", "[/highlight]");
+		break;
+
+		case "glow=":
+			bbfontstyle("[glow=red]", "[/glow]");
+		break;
+
+		case "shadow=":
+			bbfontstyle("[shadow=blue]", "[/shadow]");
+		break;
+
+		case "dropshadow=":
+			bbfontstyle("[dropshadow=blue]", "[/dropshadow]");
+		break;
+
+		case "blur=":
+			bbfontstyle("[blur=blue]", "[/blur]");
+		break;
+		
+		default:
+			bbstyle(bbcodeId);
+		break;
+
 	}
 
 	theSelection = '';
@@ -182,7 +226,7 @@ function bbspecial(bbcode) {
 						</optgroup>
 					</select>
 				<!-- ELSE -->
-					<input type="button" class="abbc3_button" name="addbbcode{custom_tags.BBCODE_ID}" value="<!-- IF not custom_tags.BBCODE_IMG -->{custom_tags.BBCODE_TAG}<!-- ENDIF -->"<!-- IF custom_tags.BBCODE_IMG --> style="background-image:url('{custom_tags.BBCODE_IMG}');"<!-- ENDIF --> onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+					<input type="button" class="abbc3_button" name="addbbcode{custom_tags.BBCODE_ID}" value="<!-- IF not custom_tags.BBCODE_IMG -->{custom_tags.BBCODE_TAG}<!-- ENDIF -->"<!-- IF custom_tags.BBCODE_IMG --> style="background-image:url('{custom_tags.BBCODE_IMG}');"<!-- ENDIF --> onclick="bbspecial('{custom_tags.BBCODE_TAG}', {custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
 				<!-- ENDIF -->
 			<!-- END custom_tags -->
 		</div>
