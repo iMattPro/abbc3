@@ -266,6 +266,11 @@
 				"regex": /http:\/\/(.*?)streetfire.net\/video\/([^[]*)?/i
 			},
 			{
+				"site" : "ted.com",
+				"regex": /http:\/\/.*?ted.com\/talks\/([a-zA-Z0-9-_]+).html/i,
+				"embed": '<iframe src="http://embed.ted.com/talks/$1.html" width="[WIDTH]" height="[HEIGHT]" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+			},
+			{
 				"site" : "thedailyshow.com",
 				"type" : "ogp",
 				"regex": /http:\/\/(?:.*?)thedailyshow.com\/watch\/([^[]*)?/i
