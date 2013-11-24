@@ -47,7 +47,7 @@ class parser
 	* @return null
 	* @access public
 	*/
-	public function parse_bbcodes($event)
+	public function post_parse_bbcodes($event)
 	{
 		// hidden bbcode
 		$event['text'] = preg_replace_callback('#<!-- ABBC3_BBCODE_HIDDEN -->(.*?)<!-- ABBC3_BBCODE_HIDDEN -->#', array($this, 'hidden_pass'), $event['text']);

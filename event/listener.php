@@ -17,15 +17,24 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class listener implements EventSubscriberInterface
 {
 
+	protected $acp_manager;
+
 	static public function getSubscribedEvents()
 	{
 		return array(
 			'core.user_setup'							=> 'load_abbc3_on_setup',
-			'core.modify_text_for_display_before'		=> 'parse_abbcodes_before',
-			'core.modify_text_for_display_after'		=> 'parse_abbcodes_after',
-			'core.display_custom_bbcodes'				=> 'setup_bbcode_icons',
+			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before',
+			'core.modify_text_for_display_after'		=> 'parse_bbcodes_after',
+
+			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
 			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql', // needs to be requested
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
+			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes', // needs to be requested
+
+			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_display_form', // needs to be requested
+			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_display_bbcodes', // needs to be requested
+			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create', // needs to be requested
+			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_edit_add', // needs to be requested
 		);
 	}
 
@@ -55,7 +64,7 @@ class listener implements EventSubscriberInterface
 	* @return void
 	* @access public
 	*/
-	public function parse_abbcodes_before($event)
+	public function parse_bbcodes_before($event)
 	{
 		global $phpbb_container;
 
@@ -71,11 +80,11 @@ class listener implements EventSubscriberInterface
 	* @return void
 	* @access public
 	*/
-	public function parse_abbcodes_after($event)
+	public function parse_bbcodes_after($event)
 	{
 		global $phpbb_container;
 
- 		$phpbb_container->get('vse.abbc3.manager')->parse_bbcodes($event);
+		$phpbb_container->get('vse.abbc3.parser')->post_parse_bbcodes($event);
 	}
 
 	/**
@@ -94,9 +103,24 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Alter custom bbcodes to display an icon
+	* Setup custom BBcode variables
 	*
-	* Uses GIF images named exactly the same as the bbcode_tag
+	* @param object $event The event object
+	* @return void
+	* @access public
+	*/
+	public function setup_custom_bbcodes($event)
+	{
+		global $user, $template, $phpbb_root_path;
+
+		$template->assign_vars(array(
+			'ABBC3_BBCODE_ICONS'	=> $phpbb_root_path . 'ext/vse/abbc3/images/icons',
+			'ABBC3_USERNAME'		=> $user->data['username'],
+		));
+	}
+
+	/**
+	* Alter custom BBCodes display
 	*
 	* @param object $event The event object
 	* @return void
@@ -104,56 +128,150 @@ class listener implements EventSubscriberInterface
 	*/
 	public function display_custom_bbcodes($event)
 	{
-		global $phpbb_root_path;
+		global $phpbb_container;
 
-		$row = $event['row'];
-		$custom_tags = $event['custom_tags'];
-		
-		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
-
-		static $images = array();
-		
-		if (empty($images))
-		{
-			$images = $this->get_images();
-		}
-
-		$custom_tags['BBCODE_IMG'] = (isset($images['ext/' . $bbcode_img])) ? $phpbb_root_path . 'ext/vse/' . $bbcode_img : '';
-
-		$event['custom_tags'] = $custom_tags;
+		$event['custom_tags'] = $phpbb_container->get('vse.abbc3.bbcodes')->display_custom_bbcodes($event);
 	}
 
-	/**
-	* Setup BBcode icon parameters
+	/*
+	* Set custom BBCodes permissions
 	*
 	* @param object $event The event object
 	* @return void
 	* @access public
 	*/
-	public function setup_bbcode_icons($event)
+	public function allow_custom_bbcodes($event)
 	{
-		global $template, $phpbb_root_path;
+		global $phpbb_container;
 
-		$template->assign_vars(array(
-			'ABBC3_BBCODE_ICONS' => $phpbb_root_path . 'ext/vse/abbc3/images/icons',
-		));
+		$event['bbcodes'] = $phpbb_container->get('vse.abbc3.bbcodes')->allow_custom_bbcodes($event);
+	}
+	
+	/**
+	* Load the BBCode ACP Manager
+	*
+	* @return void
+	* @access public
+	*/
+	public function load_acp_manager()
+	{
+		global $phpbb_container;
+
+		$this->acp_manager = $phpbb_container->get('vse.abbc3.acp_manager');
 	}
 
-	/*
-	* Get image paths/names from ABBC3's icons folder
+	/**
+	* Add some additional elements to the BBCodes template
 	*
-	* @return	Array of file data from ext/vse/abbc3/styles/all/theme/images/icons
-	* @access	private
+	* @param object $event The event object
+	* @return void
+	* @access public
 	*/
-	private function get_images()
+	public function acp_bbcodes_display_bbcodes($event)
 	{
-		global $phpbb_root_path, $phpbb_extension_manager;
+		$row = $event['row'];
+		$bbcodes_array = $event['bbcodes_array'];
 
-		$finder = $phpbb_extension_manager->get_finder();
+		$bbcodes_array['BBCODE_ID'] = $row['bbcode_id'];
+		$bbcodes_array['U_MOVE_UP'] = $event['this_u_action'] . '&amp;action=move_up&amp;order=' . $row['bbcode_order'];
+		$bbcodes_array['U_MOVE_DOWN'] = $event['this_u_action'] . '&amp;action=move_down&amp;order=' . $row['bbcode_order'];
 
-		return $finder
-			->extension_suffix('.gif')
-			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $phpbb_root_path . 'ext/vse/abbc3');
+		$event['bbcodes_array'] = $bbcodes_array;
+	}
+
+	/**
+	* Add the Group select form field on BBCode edit page
+	*
+	* @param object $event The event object
+	* @return void
+	* @access public
+	*/
+	public function acp_bbcodes_edit_add($event)
+	{
+		if (!$this->acp_manager)
+		{
+			$this->load_acp_manager();
+		}
+
+		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : false;
+
+		$tpl_ary = $event['tpl_ary'];
+		$tpl_ary['S_GROUP_OPTIONS'] = $this->acp_manager->abbc3_group_select_options($bbcode_group);
+		$event['tpl_ary'] = $tpl_ary;
+	}
+
+	/**
+	* Handle BBCode order changes when moving them up/down
+	*
+	* @param object $event The event object
+	* @return void
+	* @access public
+	*/
+	public function acp_bbcodes_display_form($event)
+	{
+		if (!$this->acp_manager)
+		{
+			$this->load_acp_manager();
+		}
+
+		// Move up/down action
+		switch($event['action'])
+		{
+			case 'move_up':
+			case 'move_down':
+
+				$this->acp_manager->move($event['action']);
+
+			break;
+		}
+
+		// Resync bbcode_order
+		$this->acp_manager->resynchronize_bbcode_order();
+
+		// Add some additional template variables
+		$template_data = $event['template_data'];		
+		$template_data['U_AJAX_REQUEST'] = append_sid($this->acp_manager->ajax_page);
+		$template_data['IMG_AJAX_IMAGE'] = $this->acp_manager->ajax_icon;
+		$event['template_data'] = $template_data;
+
+		// Change SQL so that it orders by bbcode_order
+		$event['sql'] = 'SELECT *
+			FROM ' . BBCODES_TABLE . '
+			ORDER BY bbcode_order';
+	}
+
+	/**
+	* Handle BBCode order and group data during modify/create routines
+	*
+	* @param object $event The event object
+	* @return void
+	* @access public
+	*/
+	public function acp_bbcodes_modify_create($event)
+	{
+		if (!$this->acp_manager)
+		{
+			$this->load_acp_manager();
+		}
+
+		$sql_ary = $event['sql_ary'];
+
+		// Set a new bbcode order value on create
+		if ($event['action'] == 'create')
+		{
+			$sql_ary['bbcode_order'] = $this->acp_manager->get_max_order() + 1;
+		}
+
+		// Get the bbcode groups from the form
+		$bbcode_group = $this->acp_manager->get_bbcode_group_form_data();
+		$sql_ary['bbcode_group'] = $bbcode_group;
+
+		// Return sql_ary array
+		$event['sql_ary'] = $sql_ary;
+
+		// Supply bbcode groups to hidden form fields
+		$hidden_fields = $event['hidden_fields'];
+		$hidden_fields['bbcode_group'] = $bbcode_group;
+		$event['hidden_fields'] = $hidden_fields;
 	}
 }

@@ -190,47 +190,49 @@ function bbspecial(bbcode, bbcodeId) {
 	<!-- IF .custom_tags -->
 		<div class="abbc3_toolbar_custom" style="border-top:0;">
 			<!-- BEGIN custom_tags -->
-				<!-- IF custom_tags.BBCODE_TAG eq 'font=' -->
-					<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{custom_tags.BBCODE_HELPLINE}">
-						<option selected="selected" >{L_ABBC3_FONT_BBCODE}</option>
-						<optgroup label="{L_ABBC3_FONT_SAFE}">
-							<option style="font-family: Arial;" value="Arial">Arial</option>
-							<option style="font-family: Arial Black;" value="Arial Black">Arial Black</option>
-							<option style="font-family: Comic Sans MS;" value="Comic Sans MS">Comic Sans MS</option>
-							<option style="font-family: Courier New;" value="Courier New">Courier New</option>
-							<option style="font-family: Georgia;" value="Georgia">Georgia</option>
-							<option style="font-family: Impact;" value="Impact">Impact</option>
-							<option style="font-family: Times New Roman;" value="Times New Roman">Times New Roman</option>
-							<option style="font-family: Trebuchet MS;" value="Trebuchet MS">Trebuchet MS</option>
-							<option style="font-family: Verdana;" value="Verdana">Verdana</option>
-						</optgroup>
-						<optgroup label="{L_ABBC3_FONT_FANCY}">
-							<option style="font-family: Bradley Hand ITC;" value="Bradley Hand ITC" >Bradley Hand ITC</option>
-							<option style="font-family: Century Gothic;" value="Century Gothic" >Century Gothic</option>
-							<option style="font-family: Curlz MT;" value="Curlz MT">Curlz MT</option>
-							<option style="font-family: cursive;" value="cursive">Cursive</option>
-							<option style="font-family: fantasy;" value="fantasy">Fantasy</option>
-							<option style="font-family: French Script MT;" value="French Script MT">French Script MT</option>
-							<option style="font-family: Garamond;" value="Garamond">Garamond</option>
-							<option style="font-family: Garamond Bold;" value="Garamond Bold">Garamond Bold</option>
-							<option style="font-family: Goudy Stout;" value="Goudy Stout">Goudy Stout</option>
-							<option style="font-family: Helvetica;" value="Helvetica">Helvetica</option>
-							<option style="font-family: monospace;" value="monospace">Monospace</option>
-							<option style="font-family: OCR A Extended;" value="OCR A Extended">OCR A Extended</option>
-							<option style="font-family: Script MT Bold;" value="Script MT Bold">Script MT Bold</option>
-						</optgroup>
-						<optgroup label="{L_ABBC3_FONT_WIN}">
-							<option style="font-family: Lucida Console;" value="Lucida Console">Lucida Console</option>
-							<option style="font-family: Lucida Sans Unicode;" value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-							<option style="font-family: Microsoft Sans Serif;" value="Microsoft Sans Serif">Microsoft Sans Serif</option>
-							<option style="font-family: MS Mincho;" value="MS Mincho">MS Mincho</option>
-							<option style="font-family: Palatino Linotype;" value="Palatino Linotype">Palatino Linotype</option>
-							<option style="font-family: Symbol;" value="Symbol">Symbol</option>
-							<option style="font-family: Tahoma;" value="Tahoma">Tahoma</option>
-						</optgroup>
-					</select>
-				<!-- ELSE -->
-					<input type="button" class="abbc3_button" name="addbbcode{custom_tags.BBCODE_ID}" value="<!-- IF not custom_tags.BBCODE_IMG -->{custom_tags.BBCODE_TAG}<!-- ENDIF -->"<!-- IF custom_tags.BBCODE_IMG --> style="background-image:url('{custom_tags.BBCODE_IMG}');"<!-- ENDIF --> onclick="bbspecial('{custom_tags.BBCODE_TAG}', {custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+				<!-- IF custom_tags.S_CUSTOM_BBCODE_ALLOWED -->
+					<!-- IF custom_tags.BBCODE_TAG eq 'font=' -->
+						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{custom_tags.BBCODE_HELPLINE}">
+							<option selected="selected" >{L_ABBC3_FONT_BBCODE}</option>
+							<optgroup label="{L_ABBC3_FONT_SAFE}">
+								<option style="font-family: Arial;" value="Arial">Arial</option>
+								<option style="font-family: Arial Black;" value="Arial Black">Arial Black</option>
+								<option style="font-family: Comic Sans MS;" value="Comic Sans MS">Comic Sans MS</option>
+								<option style="font-family: Courier New;" value="Courier New">Courier New</option>
+								<option style="font-family: Georgia;" value="Georgia">Georgia</option>
+								<option style="font-family: Impact;" value="Impact">Impact</option>
+								<option style="font-family: Times New Roman;" value="Times New Roman">Times New Roman</option>
+								<option style="font-family: Trebuchet MS;" value="Trebuchet MS">Trebuchet MS</option>
+								<option style="font-family: Verdana;" value="Verdana">Verdana</option>
+							</optgroup>
+							<optgroup label="{L_ABBC3_FONT_FANCY}">
+								<option style="font-family: Bradley Hand ITC;" value="Bradley Hand ITC" >Bradley Hand ITC</option>
+								<option style="font-family: Century Gothic;" value="Century Gothic" >Century Gothic</option>
+								<option style="font-family: Curlz MT;" value="Curlz MT">Curlz MT</option>
+								<option style="font-family: cursive;" value="cursive">Cursive</option>
+								<option style="font-family: fantasy;" value="fantasy">Fantasy</option>
+								<option style="font-family: French Script MT;" value="French Script MT">French Script MT</option>
+								<option style="font-family: Garamond;" value="Garamond">Garamond</option>
+								<option style="font-family: Garamond Bold;" value="Garamond Bold">Garamond Bold</option>
+								<option style="font-family: Goudy Stout;" value="Goudy Stout">Goudy Stout</option>
+								<option style="font-family: Helvetica;" value="Helvetica">Helvetica</option>
+								<option style="font-family: monospace;" value="monospace">Monospace</option>
+								<option style="font-family: OCR A Extended;" value="OCR A Extended">OCR A Extended</option>
+								<option style="font-family: Script MT Bold;" value="Script MT Bold">Script MT Bold</option>
+							</optgroup>
+							<optgroup label="{L_ABBC3_FONT_WIN}">
+								<option style="font-family: Lucida Console;" value="Lucida Console">Lucida Console</option>
+								<option style="font-family: Lucida Sans Unicode;" value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+								<option style="font-family: Microsoft Sans Serif;" value="Microsoft Sans Serif">Microsoft Sans Serif</option>
+								<option style="font-family: MS Mincho;" value="MS Mincho">MS Mincho</option>
+								<option style="font-family: Palatino Linotype;" value="Palatino Linotype">Palatino Linotype</option>
+								<option style="font-family: Symbol;" value="Symbol">Symbol</option>
+								<option style="font-family: Tahoma;" value="Tahoma">Tahoma</option>
+							</optgroup>
+						</select>
+					<!-- ELSE -->
+						<input type="button" class="abbc3_button" name="addbbcode{custom_tags.BBCODE_ID}" value="<!-- IF not custom_tags.BBCODE_IMG -->{custom_tags.BBCODE_TAG}<!-- ENDIF -->"<!-- IF custom_tags.BBCODE_IMG --> style="background-image:url('{custom_tags.BBCODE_IMG}');"<!-- ENDIF --> onclick="bbspecial('{custom_tags.BBCODE_TAG}', {custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+					<!-- ENDIF -->
 				<!-- ENDIF -->
 			<!-- END custom_tags -->
 		</div>

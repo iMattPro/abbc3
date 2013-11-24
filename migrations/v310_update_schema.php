@@ -32,6 +32,7 @@ class v310_update_schema extends \phpbb\db\migration\migration
 			'add_columns'		=> array(
 				$this->table_prefix . 'bbcodes'		=> array(
 					'bbcode_order'	=> array('USINT', 0),
+					'bbcode_group'	=> array('VCHAR:255', ''),
 				),
 			),
 		);
@@ -43,6 +44,7 @@ class v310_update_schema extends \phpbb\db\migration\migration
 			'drop_columns'		=> array(
 				$this->table_prefix . 'bbcodes'		=> array(
 					'bbcode_order',
+					'bbcode_group',
 				),
 			),
 		);

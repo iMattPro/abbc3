@@ -6,7 +6,7 @@ ABBC3 was a popular MOD for phpBB 3.0. Due to the changes in the new Extensions 
 
 ## Surviving Features:
 * Customizable icon-based BBcode toolbar (pending future template system changes in phpBB 3.1)
-* BBcode group permissions (pending future template system changes in phpBB 3.1)
+* Custom BBcode group permissions (pending future template system changes in phpBB 3.1)
 * Custom BBcodes:
 
 	Copy, Paste, Plain, Font Family, Highlight Text, Strike through text, Superscript, Subscript, Glow,

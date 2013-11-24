@@ -38,7 +38,7 @@ class v310_remove_schema extends \phpbb\db\migration\migration
 					'abbcode',
 					'bbcode_image',
 //					'bbcode_order',
-					'bbcode_group',
+//					'bbcode_group',
 				),
 			),
 		);

@@ -3,6 +3,20 @@ services:
         class: vse\abbc3\core\parser
         arguments:
             - @user
+    vse.abbc3.bbcodes:
+        class: vse\abbc3\core\bbcodes
+        arguments:
+            - @dbal.conn
+            - @user
+            - %core.root_path%
+    vse.abbc3.acp_manager:
+        class: vse\abbc3\core\acp_manager
+        arguments:
+            - @dbal.conn
+            - @request
+            - @user
+            - %core.root_path%
+            - %core.php_ext%
     vse.abbc3.listener:
         class: vse\abbc3\event\listener
         tags:

@@ -45,4 +45,6 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'The BBCode order has been resynchronised.',
+	'ABBC3_BBCODE_GROUP'		=> 'Manage groups that can use this BBCode',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'If no groups are selected, then all users can use this BBCode. Use CTRL+CLICK (or CMD+CLICK on Mac) to select/deselect more than one group.',
 ));
