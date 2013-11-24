@@ -105,11 +105,11 @@ class v310_update_data extends \phpbb\db\migration\migration
 				'bbcode_tag'			=> 'glow=',
 				'bbcode_helpline'		=> 'Glow text: [glow=color]text[/glow]',
 				'bbcode_match'			=> '[glow={COLOR}]{TEXT}[/glow]',
-				'bbcode_tpl'			=> '<span class="glow" style="display: inline-block; padding: 0 0.5em; color: #ffffff; text-shadow: 0 0 1.0em {COLOR}, 0 0 1.0em {COLOR}, 0 0 1.2em {COLOR};">{TEXT}</span>',
 				'first_pass_match'		=> '!\[glow\=([a-z]+|#[0-9abcdef]+)\](.*?)\[/glow\]!ies',
 				'first_pass_replace'	=> '\'[glow=${1}:$uid]\'.str_replace(array("\r\n", \'\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/glow:$uid]\'',
 				'second_pass_match'		=> '!\[glow\=([a-zA-Z]+|#[0-9abcdefABCDEF]+):$uid\](.*?)\[/glow:$uid\]!s',
 				'second_pass_replace'	=> '<span class="glow" style="display: inline-block; padding: 0 0.5em; color: #ffffff; text-shadow: 0 0 1.0em ${1}, 0 0 1.0em ${1}, 0 0 1.2em ${1};">${2}</span>',
+				'bbcode_tpl'			=> '<span class="glow" style="display: inline-block; padding: 0 0.5em; color: #ffffff; text-shadow: 0 0 1em {COLOR}, 0 0 1em {COLOR}, 0 0 1.2em {COLOR};">{TEXT}</span>',
 			),
 			'shadow=' => array(
 				'bbcode_tag'			=> 'shadow=',
