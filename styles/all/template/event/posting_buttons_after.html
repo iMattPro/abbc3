@@ -109,7 +109,7 @@ function bbspecial(bbcode, bbcodeId) {
 		break;
 
 		case "mod=":
-			bbfontstyle("[mod=\"{L_USERNAME}\"]", "[/mod]");
+			bbfontstyle("[mod={ABBC3_USERNAME}]", "[/mod]");
 		break;
 
 		case "highlight=":
@@ -130,6 +130,10 @@ function bbspecial(bbcode, bbcodeId) {
 
 		case "blur=":
 			bbfontstyle("[blur=blue]", "[/blur]");
+		break;
+		
+		case "BBvideo=":
+			bbfontstyle("[BBvideo=560,340]", "[/BBvideo]");
 		break;
 		
 		default:

@@ -10,7 +10,7 @@
 namespace vse\abbc3\core;
 
 /**
-* ABBC3 core manager class
+* ABBC3 core parser class
 */
 class parser
 {
@@ -18,7 +18,7 @@ class parser
 	protected $user;
 	
 	/**
-	* ABBC3 manager constructor method
+	* ABBC3 parser constructor method
 	* 
 	* @param \phpbb\user $user
 	*/
@@ -49,6 +49,7 @@ class parser
 	*/
 	public function parse_bbcodes($event)
 	{
+		// hidden bbcode
 		$event['text'] = preg_replace_callback('#<!-- ABBC3_BBCODE_HIDDEN -->(.*?)<!-- ABBC3_BBCODE_HIDDEN -->#', array($this, 'hidden_pass'), $event['text']);
 	}
 

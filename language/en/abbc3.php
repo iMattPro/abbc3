@@ -38,10 +38,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_COPY_BBCODE'			=> 'Copy selected text',
 	'ABBC3_PASTE_BBCODE'		=> 'Paste copied text',
 	'ABBC3_PASTE_ERROR'			=> 'You must first copy a selection of text, then paste it',
-	'ABBC3_PLAIN_BBCODE'		=> 'Remove all BBcode tags from the selected text',
+	'ABBC3_PLAIN_BBCODE'		=> 'Remove all BBCode tags from the selected text',
 
 	'ABBC3_ERROR'				=> 'Error',
 	'ABBC3_NOSELECT_ERROR'		=> 'No text was seleted.',
 
+	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'The BBCode order has been resynchronised.',
 ));

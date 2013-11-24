@@ -33,7 +33,7 @@ class listener implements EventSubscriberInterface
 	* Load common files during user setup
 	*
 	* @param object $event The event object
-	* @return null
+	* @return void
 	* @access public
 	*/
 	public function load_abbc3_on_setup($event)
@@ -52,7 +52,7 @@ class listener implements EventSubscriberInterface
 	* This is used to change old/malformed ABBC3 BBcodes to a newer structure
 	*
 	* @param object $event The event object
-	* @return null
+	* @return void
 	* @access public
 	*/
 	public function parse_abbcodes_before($event)
@@ -68,7 +68,7 @@ class listener implements EventSubscriberInterface
 	* This is used on ABBC3 BBcodes that require additional post-processing
 	*
 	* @param object $event The event object
-	* @return null
+	* @return void
 	* @access public
 	*/
 	public function parse_abbcodes_after($event)
@@ -82,16 +82,15 @@ class listener implements EventSubscriberInterface
 	* Modify the SQL statement to gather custom bbcode data
 	*
 	* @param object $event The event object
-	* @return null
+	* @return void
 	* @access public
 	*/
 	public function custom_bbcode_modify_sql($event)
 	{
-		$sql = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline
+		$event['sql'] = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline, bbcode_group
 			FROM ' . BBCODES_TABLE . '
 			WHERE display_on_posting = 1
 			ORDER BY bbcode_order';
-		$event['sql'] = $sql;
 	}
 
 	/**
@@ -100,7 +99,7 @@ class listener implements EventSubscriberInterface
 	* Uses GIF images named exactly the same as the bbcode_tag
 	*
 	* @param object $event The event object
-	* @return null
+	* @return void
 	* @access public
 	*/
 	public function display_custom_bbcodes($event)
@@ -128,7 +127,7 @@ class listener implements EventSubscriberInterface
 	* Setup BBcode icon parameters
 	*
 	* @param object $event The event object
-	* @return null
+	* @return void
 	* @access public
 	*/
 	public function setup_bbcode_icons($event)
