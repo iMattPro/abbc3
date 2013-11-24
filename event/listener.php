@@ -57,7 +57,9 @@ class listener implements EventSubscriberInterface
 	*/
 	public function parse_abbcodes_before($event)
 	{
-		$event['text'] = preg_replace('#\[(bbvideo)([0-9,= ]+)?:([A-Za-z0-9]+)\]([^[]+)\[/\1:\3\]#is', '[bbvideo:$3]$4[/bbvideo:$3]', $event['text']);
+		global $phpbb_container;
+
+		$phpbb_container->get('vse.abbc3.parser')->pre_parse_bbcodes($event);
 	}
 
 	/**
