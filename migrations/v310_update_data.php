@@ -38,7 +38,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 		{
 			$sql = 'SELECT bbcode_id
 					FROM ' . $this->table_prefix . "bbcodes
-					WHERE lower(bbcode_tag) = '" . strtolower($bbcode_name) . "' or lower(bbcode_tag) = '" . strtolower($bbcode_array['bbcode_tag']) . "'";
+					WHERE LOWER(bbcode_tag) = '" . strtolower($bbcode_name) . "' OR LOWER(bbcode_tag) = '" . strtolower($bbcode_array['bbcode_tag']) . "'";
 			$result = $this->db->sql_query($sql);
 			$row_exists = $this->db->sql_fetchrow($result);
 			$this->db->sql_freeresult($result);
@@ -56,7 +56,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			else
 			{
 				// Create new BBcode
-				$sql = 'SELECT MAX(bbcode_id) as max_bbcode_id
+				$sql = 'SELECT MAX(bbcode_id) AS max_bbcode_id
 					FROM ' . $this->table_prefix . 'bbcodes';
 				$result = $this->db->sql_query($sql);
 				$row = $this->db->sql_fetchrow($result);

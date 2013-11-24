@@ -86,7 +86,7 @@ class acp_manager
 	*/
 	public function get_max_order()
 	{
-		$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
+		$sql = 'SELECT MAX(bbcode_order) AS max_bbcode_order
 			FROM ' . BBCODES_TABLE;
 		$result = $this->db->sql_query($sql);
 		$max_order = (int) $this->db->sql_fetchfield('max_bbcode_order');
