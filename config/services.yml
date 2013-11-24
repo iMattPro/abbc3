@@ -1,6 +1,6 @@
 services:
-    vse.abbc3.manager:
-        class: vse\abbc3\core\manager
+    vse.abbc3.parser:
+        class: vse\abbc3\core\parser
         arguments:
             - @user
     vse.abbc3.listener:

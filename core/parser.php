@@ -12,7 +12,7 @@ namespace vse\abbc3\core;
 /**
 * ABBC3 core manager class
 */
-class manager
+class parser
 {
 	/** @var \phpbb\user */
 	protected $user;
