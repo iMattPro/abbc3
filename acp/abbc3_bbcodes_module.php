@@ -18,7 +18,7 @@ class abbc3_bbcodes_module
 
 	function main($id, $mode)
 	{
-		global $db, $user, $auth, $template, $cache, $request;
+		global $db, $user, $auth, $template, $cache, $request, $phpbb_dispatcher;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 
 		$user->add_lang('acp/posting');
@@ -90,7 +90,7 @@ class abbc3_bbcodes_module
 			case 'edit':
 			case 'add':
 
-				$template->assign_vars(array(
+				$tpl_ary = array(
 					'S_EDIT_BBCODE'		=> true,
 					'U_BACK'			=> $this->u_action,
 					'U_ACTION'			=> $this->u_action . '&amp;action=' . (($action == 'add') ? 'create' : 'modify') . (($bbcode_id) ? "&amp;bbcode=$bbcode_id" : ''),
@@ -99,8 +99,22 @@ class abbc3_bbcodes_module
 					'BBCODE_MATCH'			=> $bbcode_match,
 					'BBCODE_TPL'			=> $bbcode_tpl,
 					'BBCODE_HELPLINE'		=> $bbcode_helpline,
-					'DISPLAY_ON_POSTING'	=> $display_on_posting)
+					'DISPLAY_ON_POSTING'	=> $display_on_posting,
 				);
+
+				/**
+				* Modify bbcode template before we display the add/edit form
+				*
+				* @event core.acp_bbcodes_edit_add
+				* @var	string	action		Type of the action: add|edit
+				* @var	array	tpl_ary		Array with bbcodes add/edit data
+				* @var	int		bbcode_id	The id of the bbcode (being edited)
+				* @since 3.1-A3
+				*/
+				$vars = array('action', 'tpl_ary', 'bbcode_id');
+				extract($phpbb_dispatcher->trigger_event('core.acp_bbcodes_edit_add', compact($vars)));
+
+				$template->assign_vars($tpl_ary);
 
 				$bbcode_tokens = array('TEXT', 'SIMPLETEXT', 'INTTEXT', 'IDENTIFIER', 'NUMBER', 'EMAIL', 'URL', 'LOCAL_URL', 'RELATIVE_URL', 'COLOR');
 				foreach ($bbcode_tokens as $token)
@@ -117,6 +131,26 @@ class abbc3_bbcodes_module
 
 			case 'modify':
 			case 'create':
+
+				$sql_ary = $hidden_fields = array();
+				
+				/**
+				* Modify bbcode data before modify/create
+				*
+				* @event core.acp_bbcodes_modify_create
+				* @var	string	action				Type of the action: modify|create
+				* @var	array	sql_ary				Array with new bbcode data
+				* @var	int		bbcode_id			The id of the bbcode (being modified)
+				* @var	int		display_on_posting	display_on_posting var from thr form
+				* @var	string	bbcode_match		bbcode_match var from thr form
+				* @var	string	bbcode_tpl			bbcode_tpl var from thr form
+				* @var	string	bbcode_helpline		bbcode_helpline var from thr form
+				* @var	array	hidden_fields		Array of hidden fields for use when
+				*									submitting form when $warn_text is true
+				* @since 3.1-A3
+				*/
+				$vars = array('action', 'sql_ary', 'bbcode_id', 'display_on_posting', 'bbcode_match', 'bbcode_tpl', 'bbcode_helpline', 'hidden_fields');
+				extract($phpbb_dispatcher->trigger_event('core.acp_bbcodes_modify_create', compact($vars)));
 
 				$warn_text = preg_match('%<[^>]*\{text[\d]*\}[^>]*>%i', $bbcode_tpl);
 				if (!$warn_text || confirm_box(true))
@@ -172,7 +206,7 @@ class abbc3_bbcodes_module
 						trigger_error($user->lang['BBCODE_HELPLINE_TOO_LONG'] . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 
-					$sql_ary = array(
+					$sql_ary = array_merge($sql_ary, array(
 						'bbcode_tag'				=> $data['bbcode_tag'],
 						'bbcode_match'				=> $bbcode_match,
 						'bbcode_tpl'				=> $bbcode_tpl,
@@ -182,7 +216,7 @@ class abbc3_bbcodes_module
 						'first_pass_replace'		=> $data['first_pass_replace'],
 						'second_pass_match'			=> $data['second_pass_match'],
 						'second_pass_replace'		=> $data['second_pass_replace']
-					);
+					));
 
 					if ($action == 'create')
 					{
@@ -214,16 +248,6 @@ class abbc3_bbcodes_module
 
 						$sql_ary['bbcode_id'] = (int) $bbcode_id;
 
-// BEGIN Custom BBCode Sorting
-					// Get new order...
-					$sql = 'SELECT MAX(bbcode_order) as max_bbcode_order
-						FROM ' . BBCODES_TABLE;
-					$result = $db->sql_query($sql);
-					$max_order = (int) $db->sql_fetchfield('max_bbcode_order');
-					$db->sql_freeresult($result);
-					$sql_ary['bbcode_order'] = $max_order + 1;
-// END Custom BBCode Sorting	
-
 						$db->sql_query('INSERT INTO ' . BBCODES_TABLE . $db->sql_build_array('INSERT', $sql_ary));
 						$cache->destroy('sql', BBCODES_TABLE);
 
@@ -248,13 +272,13 @@ class abbc3_bbcodes_module
 				}
 				else
 				{
-					confirm_box(false, $user->lang['BBCODE_DANGER'], build_hidden_fields(array(
+					confirm_box(false, $user->lang['BBCODE_DANGER'], build_hidden_fields(array_merge($hidden_fields, array(
 						'action'				=> $action,
 						'bbcode'				=> $bbcode_id,
 						'bbcode_match'			=> $bbcode_match,
 						'bbcode_tpl'			=> htmlspecialchars($bbcode_tpl),
 						'bbcode_helpline'		=> $bbcode_helpline,
-						'display_on_posting'	=> $display_on_posting,
+						'display_on_posting'	=> $display_on_posting)
 						))
 					, 'confirm_bbcode.html');
 				}
@@ -302,80 +326,57 @@ class abbc3_bbcodes_module
 				}
 
 			break;
- // BEGIN Custom BBCode Sorting				
-			case 'move_up':
-			case 'move_down':
-
-				$order = request_var('order', 0);
-				$order_total = $order * 2 + (($action == 'move_up') ? -1 : 1);
-
-				$sql = 'UPDATE ' . BBCODES_TABLE . '
-					SET bbcode_order = ' . $order_total . ' - bbcode_order
-					WHERE bbcode_order IN (' . $order . ', ' . (($action == 'move_up') ? $order - 1 : $order + 1) . ')';
-				$db->sql_query($sql);
-
-			break;
-// END Custom BBCode Sorting	
 		}
 
-		$template->assign_vars(array(
-			'U_ACTION'		=> $this->u_action . '&amp;action=add')
+		$this_u_action = $this->u_action;
+
+		$template_data = array(
+			'U_ACTION'		=> $this->u_action . '&amp;action=add',
 		);
 
 		$sql = 'SELECT *
 			FROM ' . BBCODES_TABLE . '
 			ORDER BY bbcode_tag';
-// BEGIN Custom BBCode Sorting		
-		$template->assign_vars(array(
-			'U_AJAX_REQUEST'	=> append_sid($phpbb_root_path . 'ext/vse/abbc3/acp/abbc3_ajax.' . $phpEx),
-			'IMG_AJAX_IMAGE'		=> $phpbb_root_path . 'ext/vse/abbc3/images/accepted.png',
-		));
 
-		// By default, check that order is valid and fix it if necessary
-		$sql = 'SELECT bbcode_id, bbcode_order
-			FROM ' . BBCODES_TABLE . '
-			ORDER BY bbcode_order';
+		/**
+		*  Modify bbcode template data before we display the form
+		*
+		* @event core.acp_bbcodes_display_form
+		* @var	string	action			Type of the action: modify|create
+		* @var	string	sql				SQL statement to get bbcode data
+		* @var	array	template_data	Array with form template data
+		* @var	object	this_u_action	$this->u_action object
+		* @since 3.1-A3
+		*/
+		$vars = array('action', 'sql', 'template_data', 'this_u_action');
+		extract($phpbb_dispatcher->trigger_event('core.acp_bbcodes_display_form', compact($vars)));
+
 		$result = $db->sql_query($sql);
 
-		if ($row = $db->sql_fetchrow($result))
-		{
-			$order = 0;
-			do
-			{
-				++$order;
-				
-				if ($row['bbcode_order'] != $order)
-				{
-					$sql = 'UPDATE ' . BBCODES_TABLE . "
-						SET bbcode_order = $order
-						WHERE bbcode_id = {$row['bbcode_id']}";
-					$db->sql_query($sql);
-				}
-			}
-			while ($row = $db->sql_fetchrow($result));
-		}
-		$db->sql_freeresult($result);
-
-		$sql = 'SELECT *
-			FROM ' . BBCODES_TABLE . '
-			ORDER BY bbcode_order';
-// END Custom BBCode Sorting
-		$result = $db->sql_query($sql);
+		$template->assign_vars($template_data);
 
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$template->assign_block_vars('bbcodes', array(
+			$bbcodes_array = array(
 				'BBCODE_TAG'		=> $row['bbcode_tag'],
-// BEGIN BBCode Order
-//				'ON_POSTING'		=> ($row['display_on_posting']) ? $user->lang['YES'] : $user->lang['NO'],
-				'BBCODE_ID'			=> $row['bbcode_id'],
-				'U_MOVE_UP'			=> $this->u_action . '&amp;action=move_up&amp;order=' . $row['bbcode_order'],
-				'U_MOVE_DOWN'		=> $this->u_action . '&amp;action=move_down&amp;order=' . $row['bbcode_order'],
-
-// END BBCode Order	
 				'U_EDIT'			=> $this->u_action . '&amp;action=edit&amp;bbcode=' . $row['bbcode_id'],
-				'U_DELETE'			=> $this->u_action . '&amp;action=delete&amp;bbcode=' . $row['bbcode_id'])
+				'U_DELETE'			=> $this->u_action . '&amp;action=delete&amp;bbcode=' . $row['bbcode_id'],
 			);
+
+			/**
+			*  Modify display of bbcodes in the form
+			*
+			* @event core.acp_bbcodes_display_bbcodes
+			* @var	array	row				Array with current bbcode data
+			* @var	array	bbcodes_array	Array of bbcodes template data
+			* @var	object	this_u_action	$this->u_action object
+			* @since 3.1-A3
+			*/
+			$vars = array('bbcodes_array', 'row', 'this_u_action');
+			extract($phpbb_dispatcher->trigger_event('core.acp_bbcodes_display_bbcodes', compact($vars)));
+
+			$template->assign_block_vars('bbcodes', $bbcodes_array);
+
 		}
 		$db->sql_freeresult($result);
 	}
