@@ -30,6 +30,7 @@ class listener implements EventSubscriberInterface
 			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql', // needs to be requested in functions_display
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
 
+			'core.modify_text_for_format_display_after'	=> 'parse_bbcodes_after', // needs to be requested in message_parser
 			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes', // needs to be requested in message parser
 
 			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_display_form', // needs to be requested in acp_bbcodes
