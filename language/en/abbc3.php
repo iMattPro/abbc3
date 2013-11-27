@@ -28,6 +28,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_OFF'			=> 'Hidden Content (for members only)',
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'This board requires you to be registered and logged-in to view hidden content.',
 
+	// Spoiler BBcode
+	'ABBC3_SPOILER_SHOW'		=> 'Show Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> 'Hide Spoiler',
+
+	// Off Topic BBcode
+	'ABBC3_OFFTOPIC'			=> 'Off Topic',
+
 	// Font BBcode
 	'ABBC3_FONT_BBCODE'			=> 'Font Menu',
 	'ABBC3_FONT_FANCY'			=> 'Fancy fonts',
