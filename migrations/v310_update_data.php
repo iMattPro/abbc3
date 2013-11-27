@@ -37,14 +37,14 @@ class v310_update_data extends \phpbb\db\migration\migration
 		{
 			include($this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
 		}
-		$bbcode_module = new \acp_bbcodes();
+		$bbcode_tool = new \acp_bbcodes();
 			
 		$bbcode_data = $this->abbc3_bbcode_data();
 
 		foreach ($bbcode_data as $bbcode_name => $bbcode_array)
 		{
 			// Build the BBCodes
-			$data = $bbcode_module->build_regexp($bbcode_array['bbcode_match'], $bbcode_array['bbcode_tpl']);
+			$data = $bbcode_tool->build_regexp($bbcode_array['bbcode_match'], $bbcode_array['bbcode_tpl']);
 
 			$bbcode_array += array(
 				'bbcode_tag'			=> $data['bbcode_tag'],

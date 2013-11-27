@@ -109,18 +109,18 @@ class bbcodes
 	/*
 	* Determine if a usergroup is allowed to use a custom BBCode
 	*
-	* @param mixed $bbcode_group Allowed group IDs
+	* @param mixed $group_ids Allowed group IDs
 	* @return bool Return true if allowed to use BBcode
 	* @access private
 	*/
-	private function bbcode_group_permissions($bbcode_group = 0)
+	private function bbcode_group_permissions($group_ids = 0)
 	{
-		if ($bbcode_group)
+		if ($group_ids)
 		{
 			// Convert string to an array
-			if (!is_array($bbcode_group))
+			if (!is_array($group_ids))
 			{
-				$bbcode_group = explode(',', $bbcode_group);
+				$group_ids = explode(',', $group_ids);
 			}
 
 			// Get the user's group IDs (only run this once)
@@ -142,11 +142,11 @@ class bbcodes
 			}
 
 			// Is the user in a group that is allowed to use this bbcode?
-			if (!empty($bbcode_group) && !empty($this->user->data['group_id_set']))
+			if (!empty($group_ids) && !empty($this->user->data['group_id_set']))
 			{
 				foreach ($this->user->data['group_id_set'] as $group_id)
 				{
-					if (in_array($group_id, $bbcode_group))
+					if (in_array($group_id, $group_ids))
 					{
 						return true;
 					}

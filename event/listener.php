@@ -16,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class listener implements EventSubscriberInterface
 {
-
+	/** @var \vse\abbc3\core\acp_manager */
 	protected $acp_manager;
 
 	static public function getSubscribedEvents()
@@ -27,14 +27,15 @@ class listener implements EventSubscriberInterface
 			'core.modify_text_for_display_after'		=> 'parse_bbcodes_after',
 
 			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
-			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql', // needs to be requested
+			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql', // needs to be requested in functions_display
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
-			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes', // needs to be requested
 
-			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_display_form', // needs to be requested
-			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_display_bbcodes', // needs to be requested
-			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create', // needs to be requested
-			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_edit_add', // needs to be requested
+			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes', // needs to be requested in message parser
+
+			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_display_form', // needs to be requested in acp_bbcodes
+			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_display_bbcodes', // needs to be requested in acp_bbcodes
+			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create', // needs to be requested in acp_bbcodes
+			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_edit_add', // needs to be requested in acp_bbcodes
 		);
 	}
 

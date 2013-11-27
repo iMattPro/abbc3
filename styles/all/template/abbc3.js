@@ -1,4 +1,8 @@
 ;(function( $, window, document ){
+
+	/**
+	* BBvideo function
+	*/
 	$.fn.bbvideo = function( options ) {
 
 		var settings = $.extend( {
@@ -380,14 +384,18 @@
 			}
 		];
 
-		// Perform an oEmbed request for an embed code
+		/**
+		* Perform an oEmbed request for an embed code
+		*/
 		function oembedRequest(el, url, dimensions) {
 			$.getJSON(url + "&callback=?", function (data) {
 				embedWrapper(el, data.html.replace(/width="([0-9]{1,4})"/gi, 'width="' + dimensions.width + '"').replace(/height="([0-9]{1,4})"/gi, 'height="' + dimensions.height + '"'));
 			});
 		}
 
-		// Perform an OGP request for an embed code
+		/**
+		* Perform an OGP request for an embed code
+		*/
 		function ogpRequest(el, url, regex, dimensions) {
 			if (url.match(regex)) {
 				$.ajax({
@@ -432,7 +440,9 @@
 			}
 		}
 
-		// Construct and return a flash object embed code
+		/**
+		* Construct and return a flash object embed code
+		*/
 		function flashCode(url, flashVars, dimensions) {
 			return '<object width="' + dimensions.width + '" height="' + dimensions.height + '" type="application/x-shockwave-flash" data="' + url + '">' +
 					'<param name="movie" value="' + url + '" />' +
@@ -447,7 +457,9 @@
 					'</object>';
 		}
 
-		// Insert embed code, wrapped in a div tag, after the URL
+		/**
+		* Insert embed code, wrapped in a div tag, after the URL
+		*/
 		function embedWrapper(container, content) {
 			container.after(content).wrap("<div />");
 		}
@@ -493,13 +505,20 @@
 		});
 	};
 
+	/**
+	* DOM READY
+	*/
 	$(document).ready(function() {
+
+		/**
+		* Attach bbvideo listener
+		*/
 		$(".bbvideo").bbvideo();
 
 		/**
 		* Function Fade-in fade-out text
 		*/
-		var elem = jQuery(".fadeEffect");
+		var elem = $(".fadeEffect");
 		function fadeText() {
 			elem.fadeIn(1000)
 				.delay(1000)
@@ -510,11 +529,12 @@
 		/**
 		* Funtion toggle spoiler
 		*/
-		jQuery(".btnspoil").on("click", function () {
-			var spoiler = jQuery(this).closest("div").next(".spoilcontent");
+		$(".btnspoil").on("click", function () {
+			var spoiler = $(this).closest("div").next(".spoilcontent");
 			spoiler.toggle();
-			jQuery(this).html(spoiler.is(":visible") ? jQuery(this).data("hide") : jQuery(this).data("show"));
+			($(this).html(spoiler.is(":visible")) ? $(this).data("hide") : $(this).data("show"));
 		});
+
 	});
 
 })( jQuery, window, document );

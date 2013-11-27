@@ -63,7 +63,7 @@ class parser
 	private function bbvideo_pass($matches)
 	{
 		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : "[bbvideo=560,340:$matches[3]]$matches[4][/bbvideo:$matches[3]]";
- 	}	
+	}
 
 	/**
 	* BBcode [hidden]text[/hidden]
@@ -80,7 +80,7 @@ class parser
 				array('{HIDDEN_ON}', '{HIDDEN_TEXT}'),
 				array($this->user->lang['ABBC3_HIDDEN_ON'], $this->user->lang['ABBC3_HIDDEN_EXPLAIN']),
 				'<dl class="hiddenbox"><dt class="hidden">{HIDDEN_ON}</dt><dd class="hiddentext">{HIDDEN_TEXT}</dd></dl>'
-			);	
+			);
 		}
 		else
 		{
@@ -90,5 +90,5 @@ class parser
 				'<dl class="unhiddenbox"><dt class="unhidden">{HIDDEN_OFF}</dt><dd>{UNHIDDEN_TEXT}</dd></dl>'
 			);
 		}
- 	}	
+	}
 }
