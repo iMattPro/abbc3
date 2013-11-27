@@ -20,7 +20,7 @@
 			{
 				"site" : "allocine.fr",
 				"regex": /http:\/\/www.allocine.fr\/video\/player_gen_cmedia=(\d+)?([^[]*)?/i,
-				"embed": '<iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=$1" style="width:[WIDTH]px; height:[HEIGHT]px" frameborder="0"></iframe>'
+				"embed": '<iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=$1" style="width:{WIDTH}px; height:{HEIGHT}px" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "on.aol.com",
@@ -66,12 +66,12 @@
 			{
 				"site" : "colbertnation.com",
 				"regex": /http:\/\/(?:.*?)colbertnation.com\/the-colbert-report-videos\/([0-9]+)\/([^[]*)?/i,
-				"embed": '<iframe src="http://media.mtvnservices.com/embed/mgid:cms:video:colbertnation.com:$1" width="[WIDTH]" height="[HEIGHT]" frameborder="0"></iframe>'
+				"embed": '<iframe src="http://media.mtvnservices.com/embed/mgid:cms:video:colbertnation.com:$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "collegehumor.com",
 				"regex": /http:\/\/www.collegehumor.com\/video\/([0-9]+)\/([^[]*)/i,
-				"embed": '<iframe src="http://www.collegehumor.com/e/$1" width="[WIDTH]" height="[HEIGHT]" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>'
+				"embed": '<iframe src="http://www.collegehumor.com/e/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>'
 			},
 			{
 				"site" : "comedycentral.com",
@@ -87,22 +87,22 @@
 			{
 				"site" : "dailymotion.com",
 				"regex": /http:\/\/(?:.*?)dailymotion.com(?:.*?)\/video\/(([^[_]*)?([^[]*)?)?/i,
-				"embed": '<iframe frameborder="0" width="[WIDTH]" height="[HEIGHT]" src="http://www.dailymotion.com/embed/video/$2"></iframe>'
+				"embed": '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://www.dailymotion.com/embed/video/$2"></iframe>'
 			},
 			{
 				"site" : "dotsub.com",
 				"regex": /http:\/\/dotsub.com\/view\/(.*)/i,
-				"embed": '<iframe src="http://dotsub.com/media/$1/embed/" frameborder="0" width="[WIDTH]" height="[HEIGHT]"></iframe>'
+				"embed": '<iframe src="http://dotsub.com/media/$1/embed/" frameborder="0" width="{WIDTH}" height="{HEIGHT}"></iframe>'
 			},
 			{
 				"site" : "ebaumsworld.com",
 				"regex": /http:\/\/(.*?)ebaumsworld.com\/video\/watch\/(.*?)\//i,
-				"embed": '<iframe src="http://www.ebaumsworld.com/media/embed/$2" width="[WIDTH]" height="[HEIGHT]" frameborder="0"></iframe>'
+				"embed": '<iframe src="http://www.ebaumsworld.com/media/embed/$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "facebook.com",
 				"regex": /https?:\/\/www.facebook.com\/(?:.*)(video|photo).php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?/i,
-				"embed": '<iframe src="https://www.facebook.com/video/embed?video_id=$2" width="[WIDTH]" height="[HEIGHT]" frameborder="0"></iframe>'
+				"embed": '<iframe src="https://www.facebook.com/video/embed?video_id=$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "flickr.com",
@@ -113,7 +113,7 @@
 			{
 				"site" : "funnyordie.com",
 				"regex": /http:\/\/(?:.*?)funnyordie.com\/(.*?)\/(.*?)\/(?:[^[]*)?/i,
-				"embed": '<iframe src="http://www.funnyordie.com/embed/$2" width="[WIDTH]" height="[HEIGHT]" frameborder="0"></iframe>'
+				"embed": '<iframe src="http://www.funnyordie.com/embed/$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "g4tv.com",
@@ -146,7 +146,7 @@
 			{
 				"site" : "godtube.com",
 				"regex": /http:\/\/www.godtube.com\/watch\/\?v=([^[]*)?/i,
-				"embed": '<iframe width="[WIDTH]" height="[HEIGHT]" frameborder="0" scrolling="no" src="http://www.godtube.com/embed/watch/$1/?w=[WIDTH]&h=[HEIGHT]&ap=false&sl=true&title=true&dp=true"></iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" src="http://www.godtube.com/embed/watch/$1/?w={WIDTH}&h={HEIGHT}&ap=false&sl=true&title=true&dp=true"></iframe>'
 			},
 			{
 				"site" : "howcast.com",
@@ -163,17 +163,17 @@
 			{
 				"site" : "ign.com",
 				"regex": /http:\/\/(.*?)ign\.com\/videos\/([0-9]+)\/([0-9]+)\/([0-9]+)\/([^?]*)?([^[]*)?/i,
-				"embed": '<iframe src="http://widgets.ign.com/video/embed/content.html?url=$&" width="[WIDTH]" height="[HEIGHT]" scrolling="no" frameborder="0" allowfullscreen></iframe>'
+				"embed": '<iframe src="http://widgets.ign.com/video/embed/content.html?url=$&" width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" allowfullscreen></iframe>'
 			},
 			{
 				"site" : "liveleak.com",
 				"regex": /http:\/\/www.liveleak.com\/view\?i=([0-9A-Za-z-_]+)?(\&[^\/]+)?/i,
-				"embed": '<iframe width="[WIDTH]" height="[HEIGHT]" src="http://www.liveleak.com/ll_embed?f=$1" frameborder="0" allowfullscreen></iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.liveleak.com/ll_embed?f=$1" frameborder="0" allowfullscreen></iframe>'
 			},
 			{
 				"site" : "metacafe.com",
 				"regex": /http:\/\/www.metacafe.com\/watch\/([0-9]+)?((\/[^\/]+)\/?)?/i,
-				"embed": '<iframe src="http://www.metacafe.com/embed/$1/" width="[WIDTH]" height="[HEIGHT]" allowFullScreen frameborder=0></iframe>'
+				"embed": '<iframe src="http://www.metacafe.com/embed/$1/" width="{WIDTH}" height="{HEIGHT}" allowFullScreen frameborder=0></iframe>'
 			},
 			{
 				"site" : "moddb.com",
@@ -183,23 +183,23 @@
 			{
 				"site" : "mpora.com",
 				"regex": /http:\/\/(?:.*?)mpora.com\/(?:.*?)\/([^\/]+)?/i,
-				"embed": '<iframe width="[WIDTH]" height="[HEIGHT]" src="http://mpora.com/videos/$1/embed" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://mpora.com/videos/$1/embed" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			},
 			{
 				"site" : "msnbc.msn.com",
 				"type" : "flash",
 				"regex": /http:\/\/www.msnbc.msn.com\/id\/(\d+)?\/vp\/(\d+)?\#(\d+)?([^[]*)?/i,
-				"embed": ['http://www.msnbc.msn.com/id/32545640', 'launch=$3&amp;width=[WIDTH]&amp;height=[HEIGHT]']
+				"embed": ['http://www.msnbc.msn.com/id/32545640', 'launch=$3&amp;width={WIDTH}&amp;height={HEIGHT}']
 			},
 			{
 				"site" : "myspace.com",
 				"regex": /http(s)?:\/\/(www.)?myspace.com\/.*\/video\/(.*)\/([0-9]+)?/i,
-				"embed": '<iframe width="[WIDTH]" height="[HEIGHT]" src="http$1://myspace.com/play/video/$3-$4-$4" frameborder="0" allowtransparency="true" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http$1://myspace.com/play/video/$3-$4-$4" frameborder="0" allowtransparency="true" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
 			},
 			{
 				"site" : "myvideo.de",
 				"regex": /http:\/\/(.*?).myvideo.(.*?)\/(.*?)\/([^[]*)?/i,
-				"embed": '<iframe src="http://$1.myvideo.$2/embed/$4" style="width:[WIDTH]px;height:[HEIGHT]px;border:0px none;padding:0;margin:0;" width="[WIDTH]" height="[HEIGHT]" frameborder="0" scrolling="no"></iframe>'
+				"embed": '<iframe src="http://$1.myvideo.$2/embed/$4" style="width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no"></iframe>'
 			},
 			{
 				"site" : "photobucket.com",
@@ -231,22 +231,22 @@
 			{
 				"site" : "sapo.pt",
 				"regex": /http:\/\/(.*?)sapo.pt\/(.*\/)?([^[]*)?/i,
-				"embed": '<iframe src="http://videos.sapo.pt/playhtml?file=http://rd3.videos.sapo.pt/$3/mov/1" frameborder="0" scrolling="no" width="[WIDTH]" height="[HEIGHT]"></iframe>'
+				"embed": '<iframe src="http://videos.sapo.pt/playhtml?file=http://rd3.videos.sapo.pt/$3/mov/1" frameborder="0" scrolling="no" width="{WIDTH}" height="{HEIGHT}"></iframe>'
 			},
 			{
 				"site" : "screenr.com",
 				"regex": /http:\/\/(?:.*?)\.screenr.com\/([^[]*)?/i,
-				"embed": '<iframe src="http://www.screenr.com/embed/$1" width="[WIDTH]" height="[HEIGHT]" frameborder="0"></iframe>'
+				"embed": '<iframe src="http://www.screenr.com/embed/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "scribd.com",
 				"regex": /http:\/\/(?:www\.)?scribd\.com\/(mobile\/documents|doc)\/(.*?)\/([^[]*)?/i,
-				"embed": '<iframe class="scribd_iframe_embed" src="http://www.scribd.com/embeds/$2/content?start_page=1&view_mode=scroll" data-auto-height="false" data-aspect-ratio="undefined" scrolling="no" width="[WIDTH]" height="[HEIGHT]" frameborder="0"></iframe>'
+				"embed": '<iframe class="scribd_iframe_embed" src="http://www.scribd.com/embeds/$2/content?start_page=1&view_mode=scroll" data-auto-height="false" data-aspect-ratio="undefined" scrolling="no" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "sevenload.com",
 				"regex": /http:\/\/(?:.*?)\.sevenload.com\/(?:.*?)(?:episodes|videos)\/(?:.*)-([^[]*)?/i,
-				"embed": '<iframe src="http://embed.sevenload.com/widgets/singlePlayer/$1/?autoplay=false&env=slcom-ext" style="width:[WIDTH]px;height:[HEIGHT]px;overflow:hidden;border:0 solid #000;" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+				"embed": '<iframe src="http://embed.sevenload.com/widgets/singlePlayer/$1/?autoplay=false&env=slcom-ext" style="width:{WIDTH}px;height:{HEIGHT}px;overflow:hidden;border:0 solid #000;" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			},
 			{
 				"site" : "slideshare.net",
@@ -257,7 +257,7 @@
 			{
 				"site" : "snotr.com",
 				"regex": /http:\/\/(?:.*?)snotr.com\/video\/([0-9]+)\/.*/i,
-				"embed": '<iframe src="http://www.snotr.com/embed/$1" width="[WIDTH]" height="[HEIGHT]" frameborder="0"></iframe>'
+				"embed": '<iframe src="http://www.snotr.com/embed/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "spike.com",
@@ -272,7 +272,7 @@
 			{
 				"site" : "ted.com",
 				"regex": /http:\/\/.*?ted.com\/talks\/([a-zA-Z0-9-_]+).html/i,
-				"embed": '<iframe src="http://embed.ted.com/talks/$1.html" width="[WIDTH]" height="[HEIGHT]" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+				"embed": '<iframe src="http://embed.ted.com/talks/$1.html" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			},
 			{
 				"site" : "thedailyshow.com",
@@ -282,7 +282,7 @@
 			{
 				"site" : "theonion.com",
 				"regex": /http:\/\/((.*?)?)theonion.com\/([^,]+),([0-9]+)([^[]*)?/i,
-				"embed": '<iframe frameborder="no" width="[WIDTH]" height="[HEIGHT]" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>'
+				"embed": '<iframe frameborder="no" width="{WIDTH}" height="{HEIGHT}" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>'
 			},
 // 			{
 // 				"site" : "tu.tv",
@@ -304,12 +304,12 @@
 			{
 				"site" : "twitvid.com",
 				"regex": /http:\/\/twitvid.com\/([^[]*)?/i,
-				"embed": '<iframe src="http://www.twitvid.com/embed.php?guid=$1&amp;autoplay=0" title="Twitvid video player" type="text/html" width="[WIDTH]" height="[HEIGHT]" frameborder="0"></iframe>'
+				"embed": '<iframe src="http://www.twitvid.com/embed.php?guid=$1&amp;autoplay=0" title="Twitvid video player" type="text/html" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			},
 			{
 				"site" : "ustream.tv",
 				"regex": /http:\/\/(?:www\.)ustream\.tv\/(?:channel\/([0-9]{1,8}))/i,
-				"embed": '<iframe width="[WIDTH]" height="[HEIGHT]" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe>'
 			},
 			{
 				"site" : "vbox7.com",
@@ -326,7 +326,7 @@
 			{
 				"site" : "viddler.com",
 				"regex": /http:\/\/(?:.*?).viddler.com\/v\/([0-9A-Za-z-_]+)([^[]*)?/i,
-				"embed": '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&autoplay=0&player=full&loop=false&nologo=false&hd=false" width="[WIDTH]" height="[HEIGHT]" frameborder="0" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>'
+				"embed": '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&autoplay=0&player=full&loop=false&nologo=false&hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>'
 			},
 			{
 				"site" : "videogamer.com",
@@ -342,7 +342,7 @@
 			{
 				"site" : "vimeo.com",
 				"regex": /https?:\/\/(?:.*?)vimeo.com(?:\/groups\/(?:.*)\/videos\/|\/)([^[]*)?/i,
-				"embed": '<iframe src="http://player.vimeo.com/video/$1" width="[WIDTH]" height="[HEIGHT]" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+				"embed": '<iframe src="http://player.vimeo.com/video/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			},
 			{
 				"site" : "wat.tv",
@@ -364,7 +364,7 @@
 			{
 				"site" : "screen.yahoo.com",
 				"regex": /http:\/\/screen.yahoo.com\/((([^-]+)?-)*)([0-9]+).html/i,
-				"embed": '<iframe width="[WIDTH]" height="[HEIGHT]" scrolling="no" frameborder="0" src="$&?format=embed&player_autoplay=false"></iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" src="$&?format=embed&player_autoplay=false"></iframe>'
 			},
 			{
 				"site" : "youku.com",
@@ -375,12 +375,12 @@
 			{
 				"site" : "youtu.be",
 				"regex": /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?/i,
-				"embed": '<iframe width="[WIDTH]" height="[HEIGHT]" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
 			},
 			{
 				"site" : "youtube.com",
 				"regex": /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?/i,
-				"embed": '<iframe width="[WIDTH]" height="[HEIGHT]" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
 			}
 		];
 
@@ -446,7 +446,7 @@
 		function flashCode(url, flashVars, dimensions) {
 			return '<object width="' + dimensions.width + '" height="' + dimensions.height + '" type="application/x-shockwave-flash" data="' + url + '">' +
 					'<param name="movie" value="' + url + '" />' +
-					(flashVars !== undefined ? '<param name="flashvars" value="' + flashVars.replace(/&/g, '&amp;').replace(/\[WIDTH\]/g, dimensions.width).replace(/\[HEIGHT\]/g, dimensions.height) + '" />' : '') +
+					(flashVars !== undefined ? '<param name="flashvars" value="' + flashVars.replace(/&/g, '&amp;').replace(/{WIDTH}/g, dimensions.width).replace(/{HEIGHT}/g, dimensions.height) + '" />' : '') +
 					'<param name="quality" value="high" />' +
 					'<param name="allowFullScreen" value="true" />' +
 					'<param name="allowScriptAccess" value="always" />' +
@@ -495,7 +495,7 @@
 							break;
 
 						default:
-							embedWrapper(el, url.replace(bbvideos[i].regex, bbvideos[i].embed.replace(/\[WIDTH\]/g, dimensions.width).replace(/\[HEIGHT\]/g, dimensions.height)));
+							embedWrapper(el, url.replace(bbvideos[i].regex, bbvideos[i].embed.replace(/{WIDTH}/g, dimensions.width).replace(/{HEIGHT}/g, dimensions.height)));
 							break;
 					}
 
