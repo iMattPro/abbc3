@@ -179,7 +179,7 @@ class acp_manager
 		// By default, check that order is valid and fix it if necessary
 		$sql = 'SELECT bbcode_id, bbcode_order
 			FROM ' . BBCODES_TABLE . '
-			ORDER BY bbcode_order';
+			ORDER BY bbcode_order, bbcode_id';
 		$result = $this->db->sql_query($sql);
 
 		if ($row = $this->db->sql_fetchrow($result))
