@@ -345,6 +345,11 @@
 				"embed": '<iframe src="http://player.vimeo.com/video/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			},
 			{
+				"site" : "vine.co",
+				"regex": /https:\/\/vine\.co\/v\/([a-zA-Z0-9]{1,13})/i,
+				"embed": '<iframe class="vine-embed" src="https://vine.co/v/$1/embed/simple" width="480" height="480" frameborder="0"></iframe>'
+			},
+			{
 				"site" : "wat.tv",
 				"type" : "ogp",
 				"regex": /http:\/\/(.*?)wat.tv\/video\/([^[]*)?/i
