@@ -24,9 +24,9 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	// Hidden BBcode
-	'HIDDEN_ON'					=> 'Hidden Content',
-	'HIDDEN_OFF'				=> 'Hidden Content (for members only)',
-	'HIDDEN_EXPLAIN'			=> 'This board requires you to be registered and logged-in to view hidden content.',
+	'ABBC3_HIDDEN_ON'			=> 'Hidden Content',
+	'ABBC3_HIDDEN_OFF'			=> 'Hidden Content (for members only)',
+	'ABBC3_HIDDEN_EXPLAIN'		=> 'This board requires you to be registered and logged-in to view hidden content.',
 
 	// Font BBcode
 	'ABBC3_FONT_BBCODE'			=> 'Font Menu',
