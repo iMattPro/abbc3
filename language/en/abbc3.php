@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* ie6nomore [English]
+* abbc3 [English]
 *
 * @package language
 * @copyright (c) 2013 Matt Friedman 

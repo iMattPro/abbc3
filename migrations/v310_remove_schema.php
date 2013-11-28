@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package ABBC3
+* @package Advanced BBCode Box 3
 * @copyright (c) 2013 Matt Friedman
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
