@@ -86,7 +86,7 @@ class parser
 		{
 			return str_replace(
 				array('{HIDDEN_OFF}', '{UNHIDDEN_TEXT}'),
-				array($this->user->lang['ABBC3_HIDDEN_OFF'], $matches[0]),
+				array($this->user->lang['ABBC3_HIDDEN_OFF'], $matches[1]),
 				'<dl class="unhiddenbox"><dt class="unhidden">{HIDDEN_OFF}</dt><dd>{UNHIDDEN_TEXT}</dd></dl>'
 			);
 		}
