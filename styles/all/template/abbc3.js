@@ -543,7 +543,7 @@
 		$(".btnspoil").on("click", function () {
 			var spoiler = $(this).closest("div").next(".spoilcontent");
 			spoiler.toggle();
-			($(this).html(spoiler.is(":visible")) ? $(this).data("hide") : $(this).data("show"));
+			$(this).html(spoiler.is(":visible") ? $(this).data("hide") : $(this).data("show"));
 		});
 
 	});
