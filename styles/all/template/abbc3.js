@@ -42,9 +42,8 @@
 			},
 			{
 				"site" : "break.com",
-				"type" : "flash",
 				"regex": /http:\/\/(.*?)break.com\/([^[]*)?-([0-9]+)?([^[]*)?/i,
-				"embed": ['http://embed.break.com/$3']
+				"embed": '<iframe scrolling="no" marginheight="0" marginwidth="0" width="{WIDTH}" height="{HEIGHT}" frameborder="0" src="http://www.break.com/embed/$3" allowfullscreen ></iframe>'
 			},
 			{
 				"site" : "clipfish.de",
