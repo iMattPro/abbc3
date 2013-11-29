@@ -415,7 +415,7 @@
 					data: {
 						q: 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
 						format: "json",
-						//env: 'store://datatables.org/alltableswithkeys',
+						env: 'store://datatables.org/alltableswithkeys',
 						callback: "?"
 					},
 					success: function( data ) {
