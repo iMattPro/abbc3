@@ -217,7 +217,7 @@
 // 				"site" : "qik.com",
 // 				"type" : "oembed",
 // 				"regex": /http:\/\/(qik\.com\/video\/.*|qik\.ly\/.*)/i,
-// 				"embed": 'http://qik.com/api/oembed?url=$&&format=json'
+// 				"embed": 'http://qik.com/api/oembed.json?url=$&&format=json'
 // 			},
 // 			{
 // 				"site" : "revision3.com",
