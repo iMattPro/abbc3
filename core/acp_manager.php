@@ -151,9 +151,9 @@ class acp_manager
 		$this->db->sql_freeresult($result);
 
 		$sql = 'SELECT group_id, group_name, group_type
-				FROM ' . GROUPS_TABLE . '
-				WHERE ' . $this->db->sql_in_set('group_id', array_map('intval', $exclude_ids), true) .' 
-				ORDER BY group_type DESC, group_name ASC';
+			FROM ' . GROUPS_TABLE . '
+			WHERE ' . $this->db->sql_in_set('group_id', array_map('intval', $exclude_ids), true) .' 
+			ORDER BY group_type DESC, group_name ASC';
 		$result = $this->db->sql_query($sql);
 
 		$group_options = '';
@@ -163,6 +163,7 @@ class acp_manager
 			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . ucfirst(strtolower((($row['group_type'] == GROUP_SPECIAL) ? $this->user->lang['G_' . $row['group_name']] : $row['group_name']))) . '</option>';
 		}
 		$this->db->sql_freeresult($result);
+
 		return $group_options;
 	}
 

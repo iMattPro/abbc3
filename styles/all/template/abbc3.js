@@ -5,16 +5,16 @@
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
-;(function( $, window, document ){
+;(function ($, window, document){
 
 	/**
 	* BBvideo function
 	*/
-	$.fn.bbvideo = function( options ) {
+	$.fn.bbvideo = function (options) {
 
-		var settings = $.extend( {
-			'width'  : '560',
-			'height' : '340'
+		var settings = $.extend({
+			width: 560,
+			height: 340
 		}, options);
 
 		var bbvideos = [
@@ -415,20 +415,17 @@
 					data: {
 						q: 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
 						format: "json",
-						env: 'store://datatables.org/alltableswithkeys',
+						env: "store://datatables.org/alltableswithkeys",
 						callback: "?"
 					},
-					success: function( data ) {
+					success: function (data) {
 						var embedCode = '',
 							meta = {};
 
-						if (data.query.results !== null)
-						{
-							for (var i = 0, l = data.query.results.meta.length; i < l; i++)
-							{
+						if (data.query.results !== null) {
+							for (var i = 0, l = data.query.results.meta.length; i < l; i++) {
 								var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
-								if (name === null)
-								{
+								if (name === null) {
 									continue;
 								}
 								meta[name] = data.query.results.meta[i].content;
@@ -475,12 +472,12 @@
 			container.after(content).wrap("<div />");
 		}
 
-		return this.each(function() {
+		return this.each(function () {
 			var el = $(this),
 				url = el.attr("href"),
 				dimensions = {
-					"width" : settings.width,
-					"height": settings.height
+					width: settings.width,
+					height: settings.height
 				};
 
 			if (el.data("bbvideo").length) {
@@ -519,7 +516,7 @@
 	/**
 	* DOM READY
 	*/
-	$(document).ready(function() {
+	$(document).ready(function () {
 
 		/**
 		* Attach bbvideo listener
@@ -530,12 +527,11 @@
 		* Function Fade-in fade-out text
 		*/
 		var elem = $(".fadeEffect");
-		function fadeText() {
+		(function fadeText() {
 			elem.fadeIn(1000)
 				.delay(1000)
 				.fadeOut(1000, fadeText);
-		}
-		fadeText();
+		})();
 
 		/**
 		* Funtion toggle spoiler
@@ -548,4 +544,4 @@
 
 	});
 
-})( jQuery, window, document );
+})(jQuery, window, document);
