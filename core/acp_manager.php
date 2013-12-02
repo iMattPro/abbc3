@@ -189,7 +189,7 @@ class acp_manager
 			do
 			{
 				++$order;
-				
+
 				if ($row['bbcode_order'] != $order)
 				{
 					$sql = 'UPDATE ' . BBCODES_TABLE . "
