@@ -33,7 +33,7 @@ $lang = array_merge($lang, array(
 	'SPOILER_HIDE'				=> '&#9660; Ocultar Spoiler',
 
 	// Off Topic BBcode
-	'OFFTOPIC'					=> 'Off Topic',
+	'OFFTOPIC'					=> 'OFF TOPIC',
 
 	// Font BBcode
 	'ABBC3_FONT_BBCODE'			=> 'Menú de fuentes',

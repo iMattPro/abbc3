@@ -134,33 +134,31 @@
 /* Offtopic bbcode */
 .OffTopic {
 	position: relative;
+	margin: 5px 0;
 	font-size: 0.9em;
 	font-weight: normal;
-	padding: 15px 5px 5px 5px;
-	margin: 1em 1px 0 25px;
+	padding: 39px 19px 14px;
 	background: #fff;
-	border: 2px solid #dbdbdb;
-	-moz-border-radius: 12px;
-	-webkit-border-radius: 12px;
-	border-radius: 12px;
+	border: 1px solid #ddd;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
 }
 
 .OffTopicTitle {
 	position: absolute;
-	top: -12px;
-	left: 10px;
-	height: 18px;
-	font-family: "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
+	top: -1px;
+	left: -1px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: bold;
 	font-size: 12px;
-	line-height: 18px;
-	color: #2277DD;
-	background: #fff;
-	padding: 1px 10px 0 10px;
-	border: solid 2px #dbdbdb;
-	-moz-border-radius: 16px;
-	-webkit-border-radius: 16px;
-	border-radius: 16px;
+	color: #9da0a4; /*#2277DD*/
+	background: #f5f5f5;
+	padding: 5px 12px;
+	border: 1px solid #ddd;
+	-moz-border-radius: 4px 0 4px 0;
+	-webkit-border-radius: 4px 0 4px 0;
+	border-radius: 4px 0 4px 0;
 }
 
 .OffTopicText {
