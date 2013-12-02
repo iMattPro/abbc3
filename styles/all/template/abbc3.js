@@ -534,12 +534,14 @@
 		})();
 
 		/**
-		* Funtion toggle spoiler
+		* Function spoiler toggle
 		*/
 		$(".btnspoil").on("click", function () {
-			var spoiler = $(this).closest("div").next(".spoilcontent");
-			spoiler.toggle();
-			$(this).html(spoiler.is(":visible") ? $(this).data("hide") : $(this).data("show"));
+			var trigger = $(this),
+				spoiler = trigger.closest("div").next(".spoilcontent");
+			spoiler.slideToggle("fast", function () {
+				trigger.html(spoiler.is(":visible") ? trigger.data("hide") : trigger.data("show"));
+			});
 		});
 
 	});

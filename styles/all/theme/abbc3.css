@@ -68,18 +68,23 @@
 
 /* Spoiler */
 .spoilwrapper {
-    padding: 0;
+	margin: 5px 0;
+	font-weight: normal;
+	padding: 4px 10px;
+	background-color: #fff;
+	border: 1px solid #dbdbdb;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
     color: #333333;
-    border: 1px solid #dbdbdb;
-    background-color: #ffffff;
-    line-height: 1.4em;
 }
+
 .spoiltitle {
     margin: 0;
     padding: 0;
-    border-bottom: 1px solid #CCCCCC;
     width: 100%;
 }
+
 .btnspoil {
     margin: 2px 5px;
     text-transform: uppercase;
@@ -89,13 +94,16 @@
     cursor: pointer;
     color: #333;
 }
+
 .btnspoil:hover {
     color: #d31141
 }
+
 .spoilcontent {
     color: #333333;
     display: none;
     padding: 5px;
+    border-top: 1px solid #ccc;
 }
 
 /* NFO bbcode */
