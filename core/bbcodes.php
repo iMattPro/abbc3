@@ -130,8 +130,8 @@ class bbcodes
 
 				$sql = 'SELECT * 
 					FROM ' . USER_GROUP_TABLE . ' 
-					WHERE user_id = ' . $this->user->data['user_id'] . ' 
 					AND user_pending = 0 ';
+					WHERE user_id = ' . (int) $this->user->data['user_id'] . ' 
 				$result = $this->db->sql_query($sql);
 
 				while ($row = $this->db->sql_fetchrow($result))

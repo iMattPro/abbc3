@@ -120,7 +120,7 @@ class acp_manager
 	{
 		$sql = 'SELECT bbcode_group
 			FROM ' . BBCODES_TABLE . '
-			WHERE bbcode_id = ' . $bbcode_id;
+			WHERE bbcode_id = ' . (int) $bbcode_id;
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
