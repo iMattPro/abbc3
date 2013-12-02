@@ -1,38 +1,34 @@
 /* Hidden block  */
-.hiddenbox, .unhiddenbox {
-	padding: 8px;
-	font-size: 1em;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
-	color: #333333;
-}
-
-.hidden, .unhidden {
-	margin-bottom: 8px;
-	font-weight: bold;
-	display: block;
-}
-
-.hiddenbox {
-	background-color: #f3e3e6;
-	border: 1px solid #e599aa;
-}
-
-.hidden {
-	color: #80001c;
-}
-
-.unhiddenbox {
+.hidebox {
+	position: relative;
+	margin: 5px 0;
+	font-weight: normal;
+	padding: 39px 19px 14px;
 	background-color: #c5e3bf;
-	border: 1px solid #548b54;
+	border: 1px solid #72B173;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
 }
 
-.unhidden {
+.hideboxTitle {
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
 	color: #2f4f2f;
+	padding: 5px 12px;
+	border: 1px solid #72B173;
+	-moz-border-radius: 4px 0 4px 0;
+	-webkit-border-radius: 4px 0 4px 0;
+	border-radius: 4px 0 4px 0;
 }
 
-.hiddentext {
+.hideMe {
+	background-color: #f2dede;
+	border-color: #ebccd1;
 	color: #80001c;
 }
 
