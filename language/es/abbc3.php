@@ -29,11 +29,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Este foro requiere que este registrado e identificado para ver el contenido oculto.',
 
 	// Spoiler BBcode
-	'SPOILER_SHOW'				=> '&#9658; Mostrar Spoiler',
-	'SPOILER_HIDE'				=> '&#9660; Ocultar Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> '&#9658; Mostrar Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> '&#9660; Ocultar Spoiler',
 
 	// Off Topic BBcode
-	'OFFTOPIC'					=> 'OFF TOPIC',
+	'ABBC3_OFFTOPIC'			=> 'OFF TOPIC',
 
 	// Font BBcode
 	'ABBC3_FONT_BBCODE'			=> 'Menú de fuentes',

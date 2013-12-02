@@ -182,7 +182,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'spoil' => array(
 				'bbcode_helpline'	=> 'ABBC3_SPOILER_HELPLINE',
 				'bbcode_match'		=> '[spoil]{TEXT}[/spoil]',
-				'bbcode_tpl'		=> '<div class="spoilwrapper"><div class="spoiltitle"><span class="btnspoil" data-show="{L_SPOILER_SHOW}" data-hide="{L_SPOILER_HIDE}">{L_SPOILER_SHOW}</span></div><div style="display: none;" class="spoilcontent">{TEXT}</div></div>',
+				'bbcode_tpl'		=> '<div class="spoilwrapper"><div class="spoiltitle"><span class="btnspoil" data-show="{L_ABBC3_SPOILER_SHOW}" data-hide="{L_ABBC3_SPOILER_HIDE}">{L_ABBC3_SPOILER_SHOW}</span></div><div style="display: none;" class="spoilcontent">{TEXT}</div></div>',
 			),
 			'hidden' => array(
 				'bbcode_helpline'	=> 'ABBC3_HIDDEN_HELPLINE',
@@ -192,7 +192,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'offtopic' => array(
 				'bbcode_helpline'	=> 'ABBC3_OFFTOPIC_HELPLINE',
 				'bbcode_match'		=> '[offtopic]{TEXT}[/offtopic]',
-				'bbcode_tpl'		=> '<div class="OffTopic"><div class="OffTopicTitle">{L_OFFTOPIC}</div><div class="OffTopicText">{TEXT}</div></div>',
+				'bbcode_tpl'		=> '<div class="OffTopic"><div class="OffTopicTitle">{L_ABBC3_OFFTOPIC}</div><div class="OffTopicText">{TEXT}</div></div>',
 			),
 			'mod=' => array(
 				'bbcode_helpline'	=> 'ABBC3_MOD_HELPLINE',
