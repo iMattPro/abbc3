@@ -11,7 +11,7 @@
 * @ignore
 */
 define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../../../../';
+$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../../../../';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
 
@@ -27,16 +27,16 @@ if (!isset($user->data['session_admin']) || !$user->data['session_admin'] || !$a
 }
 
 // Set some common vars
-$action	= request_var('action', '');
+$action	= $request->variable('action', '');
 
 // Based on code from Subject Prefix >> copyright (c) 2010 Erik Frèrejean ( erikfrerejean@phpbb.com ) http://www.erikfrerejean.nl
 if ($action == 'move')
 {
 	// Get the table
-	$tablename = request_var('tablename', '');
+	$tablename = $request->variable('tablename', '');
 
 	// Fetch the posted list
-	$bbcodeslist = request_var($tablename, array(0 => ''));
+	$bbcodeslist = $request->variable($tablename, array(0 => ''));
 
 	// Run through the list
 	foreach ($bbcodeslist as $order => $bbcode_id)
