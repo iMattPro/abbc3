@@ -103,34 +103,15 @@
 }
 
 /* NFO bbcode */
-.NFOTable { width: 100%; }
-
-/* IE6 Only */
-* html.nfo {
-	line-height: 86%;
-	letter-spacing: -2.9px;
-	font-size: 10px;
-	font-family: Terminal;
-}
-
-/* IE7 Only */
-*:first-child + html .nfo {
-	line-height: 86%;
-	letter-spacing: -2.9px;
-	font-size: 10px;
-	font-family: Terminal;
-}
-
-.nfotitle { font-weight: bold; }
-
 .nfo {
 	color: #000000;
 	font-weight: normal;
-	line-height: 70%;
-	letter-spacing: -2.5px;
-	font-size: 9px;
-	font-family: "Courier New", monospace;
+	line-height: normal;
+	font-size: 10pt;
+	font-family: Terminal, monospace;
 	background-color: #ffffff;
+	white-space: pre;
+	padding: 5px;
 }
 
 /* Offtopic bbcode */
