@@ -30,11 +30,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'To forum wymaga zarejestrowania i zalogowania się, aby zobaczyć ukrytą zawartość.',
 
 	// Spoiler BBcode
-	'ABBC3_SPOILER_SHOW'		=> 'Pokaż Spoiler',
-	'ABBC3_SPOILER_HIDE'		=> 'Ukryj Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> '&#9658; Pokaż Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> '&#9660; Ukryj Spoiler',
 
 	// Off Topic BBcode
-	'ABBC3_OFFTOPIC'			=> 'Off Topic',
+	'ABBC3_OFFTOPIC'			=> 'OFF TOPIC',
 
 	// Font BBcode
 	'ABBC3_FONT_BBCODE'			=> 'Menu czcionek',
