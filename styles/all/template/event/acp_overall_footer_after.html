@@ -434,6 +434,13 @@ jQuery(document).ready(function() {
 		"width": "260px"
 	});
 
+	// get bbcode ids from the delete button, and create tr row IDs on the fly for use by tableDnD
+	jQuery("#down > tbody").find("tr").each(function () {
+    	var url = $(this).find("a").last().attr("href");
+    	if (url) var id = url.split("bbcode=");
+    	if (id) $(this).attr("id", "bbcode_" + id[1]);
+	});
+
 	// Remove the move buttons since we are using drag and drop now
 //	jQuery(".moveButtons").remove();
 
