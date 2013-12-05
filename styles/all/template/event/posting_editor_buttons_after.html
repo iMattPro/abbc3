@@ -1,5 +1,5 @@
 <script>
-
+// <![CDATA[
 var copy_paste = '';
 
 /**
@@ -144,11 +144,10 @@ function bbspecial(bbcode, bbcodeId) {
 
 	theSelection = '';
 }
-
+// ]]>
 </script>
 
-<div id="format-buttons">
-<!-- BLOCK core_bbcode_buttons -->
+<div id="abbc3-buttons">
 	<div class="abbc3_toolbar_core">
 		<input type="button" class="abbc3_button" accesskey="b" name="addbbcode0" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/bold.gif');" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" />
 		<input type="button" class="abbc3_button" accesskey="i" name="addbbcode2" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/italic.gif');" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" />
@@ -170,7 +169,7 @@ function bbspecial(bbcode, bbcodeId) {
 			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/flash.gif');" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />
 		<!-- ENDIF -->
 		<input type="button" class="abbc3_button" name="bbpalette" id="bbpalette" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/fontcolor.gif');" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
-		<select class="abbc3_select" name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
+		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
 			<option value="50">{L_FONT_TINY}</option>
 			<option value="85">{L_FONT_SMALL}</option>
 			<option value="100" selected="selected">{L_FONT_NORMAL}</option>
@@ -185,8 +184,6 @@ function bbspecial(bbcode, bbcodeId) {
 		<input type="button" class="abbc3_button" name="pastebbcode" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/paste.gif');" onclick="bbspecial('abbc3_paste');" title="{L_ABBC3_PASTE_BBCODE}">
 		<input type="button" class="abbc3_button" name="plainbbcode" value="" style="background-image:url('{ABBC3_BBCODE_ICONS}/plain.gif');" onclick="bbspecial('abbc3_plain');" title="{L_ABBC3_PLAIN_BBCODE}">
 	</div>
-<!-- ENDBLOCK -->
-<!-- BLOCK custom_bbcode_buttons -->
 	<!-- IF .custom_tags -->
 		<div class="abbc3_toolbar_custom" style="border-top:0;">
 			<!-- BEGIN custom_tags -->
@@ -237,5 +234,4 @@ function bbspecial(bbcode, bbcodeId) {
 			<!-- END custom_tags -->
 		</div>
 	<!-- ENDIF -->
-<!-- ENDBLOCK -->
 </div>
