@@ -188,6 +188,7 @@
 .abbc3_button:hover {
 	background-color: #ffffdf !important;
 	border: 1px solid #bc2a4d !important;
+	cursor: pointer;
 }
 
 .abbc3_select  {
@@ -205,4 +206,9 @@
 	display: block;
 	width: 80%;
 	background: transparent url('./images/bg_abbc3_silver.gif');
+}
+
+/* tweak for subsilver styles */
+form td .abbc3_toolbar_core, form td .abbc3_toolbar_custom {
+	width: 98%;
 }
