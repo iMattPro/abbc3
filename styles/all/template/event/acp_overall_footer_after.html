@@ -403,9 +403,9 @@ jQuery.fn.extend(
 );
 
 /**
- * The BBcode table draggable rows and AJAX stuff
- * Based on code from Subject Prefix >> copyright (c) 2010 Erik Frèrejean ( erikfrerejean@phpbb.com ) http://www.erikfrerejean.nl
- */
+* The BBcode table draggable rows and AJAX stuff
+* Based on code from Subject Prefix >> copyright (c) 2010 Erik Frèrejean ( erikfrerejean@phpbb.com ) http://www.erikfrerejean.nl
+*/
 
 jQuery(document).ready(function() {
 	var msg_timer;
@@ -442,7 +442,9 @@ jQuery(document).ready(function() {
 	});
 
 	// Remove the move buttons since we are using drag and drop now
-//	jQuery(".moveButtons").remove();
+// 	jQuery(".mover").on("click", function (e) {
+// 		e.preventDefault();
+// 	});
 
 	// Init drag-drop
 	jQuery("#down").tableDnD({
@@ -450,9 +452,9 @@ jQuery(document).ready(function() {
 		onDrop : function(table, row) {
 
 			// Fix row colors
-			jQuery("tbody > tr", table).each(function(index) {
-				fixColouring(this, index);
-			});
+// 			jQuery("tbody > tr", table).each(function(index) {
+// 				fixColouring(this, index);
+// 			});
 
 			// Now send this change to the server so we can store it ^^
 			jQuery.ajax({
@@ -474,20 +476,20 @@ jQuery(document).ready(function() {
 	});
 });
 
-function fixColouring(ele, index) {
-	var rowClassCorrect	= (index % 2 == 0) ? "row1" : "row2";
-	var rowClassIncorrect = (index % 2 == 0) ? "row2" : "row1";
-	
-	// If incorrect class remove the class.
-	if (jQuery(ele).hasClass(rowClassIncorrect)) {
-		jQuery(ele).removeClass(rowClassIncorrect);
-	}
-	
-	// If needed assign the new class
-	if (jQuery(ele).hasClass(rowClassCorrect) === false) {
-		jQuery(ele).addClass(rowClassCorrect);
-	}
-}
+// function fixColouring(ele, index) {
+// 	var rowClassCorrect	= (index % 2 == 0) ? "row1" : "row2";
+// 	var rowClassIncorrect = (index % 2 == 0) ? "row2" : "row1";
+// 	
+// 	// If incorrect class remove the class.
+// 	if (jQuery(ele).hasClass(rowClassIncorrect)) {
+// 		jQuery(ele).removeClass(rowClassIncorrect);
+// 	}
+// 	
+// 	// If needed assign the new class
+// 	if (jQuery(ele).hasClass(rowClassCorrect) === false) {
+// 		jQuery(ele).addClass(rowClassCorrect);
+// 	}
+// }
 
 // ]]>
 </script>
