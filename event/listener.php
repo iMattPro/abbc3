@@ -174,9 +174,8 @@ class listener implements EventSubscriberInterface
 		$row = $event['row'];
 		$bbcodes_array = $event['bbcodes_array'];
 
-		$bbcodes_array['BBCODE_ID'] = $row['bbcode_id'];
-		$bbcodes_array['U_MOVE_UP'] = $event['this_u_action'] . '&amp;action=move_up&amp;order=' . $row['bbcode_order'];
-		$bbcodes_array['U_MOVE_DOWN'] = $event['this_u_action'] . '&amp;action=move_down&amp;order=' . $row['bbcode_order'];
+		$bbcodes_array['U_MOVE_UP'] = $event['this_u_action'] . '&amp;action=move_up&amp;id=' . $row['bbcode_id'];
+		$bbcodes_array['U_MOVE_DOWN'] = $event['this_u_action'] . '&amp;action=move_down&amp;id=' . $row['bbcode_id'];
 
 		$event['bbcodes_array'] = $bbcodes_array;
 	}

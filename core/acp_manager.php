@@ -67,12 +67,26 @@ class acp_manager
 	*/
 	public function move($action)
 	{
-		$order = $this->request->variable('order', 0);
-		$order_total = $order * 2 + (($action == 'move_up') ? -1 : 1);
+		$bbcode_id = $this->request->variable('id', 0);
+
+		// Get current order id...
+		$sql = 'SELECT bbcode_order as current_order
+			FROM ' . BBCODES_TABLE . "
+			WHERE bbcode_id = $bbcode_id";
+		$result = $this->db->sql_query($sql);
+		$current_order = (int) $this->db->sql_fetchfield('current_order');
+		$this->db->sql_freeresult($result);
+
+		if ($current_order == 0 && $action == 'move_up')
+		{
+			break;
+		}
+
+		$order_total = $current_order * 2 + (($action == 'move_up') ? -1 : 1);
 
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
 			SET bbcode_order = ' . $order_total . ' - bbcode_order
-			WHERE bbcode_order IN (' . $order . ', ' . (($action == 'move_up') ? $order - 1 : $order + 1) . ')';
+			WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
 		$this->db->sql_query($sql);
 	}
 
