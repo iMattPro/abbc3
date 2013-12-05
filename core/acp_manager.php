@@ -52,7 +52,7 @@ class acp_manager
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 
-		$this->ajax_page = $this->root_path . 'ext/vse/abbc3/acp/abbc3_ajax.' . $this->php_ext;
+		$this->ajax_page = $this->root_path . 'ext/vse/abbc3/core/abbc3_ajax.' . $this->php_ext;
 		$this->ajax_icon = $this->root_path . 'ext/vse/abbc3/images/accepted.png';
 	}
 
