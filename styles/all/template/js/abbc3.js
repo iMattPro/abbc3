@@ -466,10 +466,10 @@
 		}
 
 		/**
-		* Insert embed code, wrapped in a div tag, after the URL
+		* Insert embed code, after the URL, wrapped in a div tag
 		*/
-		function embedWrapper(container, content) {
-			container.after(content).wrap("<div />");
+		function embedWrapper(el, content) {
+			el.after(content).wrap("<div />");
 		}
 
 		return this.each(function () {
