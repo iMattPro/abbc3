@@ -177,8 +177,8 @@
 	background-position: center !important;
 	background-repeat: no-repeat !important;
 	margin: 4px 0 !important;
-/*	border: 1px solid #b4bac0 !important;*/
 	border: 1px solid transparent !important;
+	font-size: 11px;
 }
 
 .abbc3_button:hover {
@@ -206,3 +206,7 @@
 
 /* tweak for subsilver styles */
 form td .abbc3_buttons_row { width: 98%; }
+
+/* tweak for ACP user signature */
+#user_signature #abbc3_buttons { margin-left: 96px; }
+#user_signature #abbc3_buttons .abbc3_buttons_row { width: 95%; }
