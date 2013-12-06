@@ -159,9 +159,7 @@
 }
 
 /* hide native phpbb bbcode buttons */
-#format-buttons, #core-bbcode-buttons, #custom-bbcode-buttons {
-	display: none;
-}
+#format-buttons, #core-bbcode-buttons, #custom-bbcode-buttons { display: none; }
 
 /* abbc3 bbcode buttons */
 #abbc3_buttons { margin: 15px 0 2px 0; }
