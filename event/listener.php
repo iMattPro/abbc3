@@ -197,7 +197,7 @@ class listener implements EventSubscriberInterface
 		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : false;
 
 		$tpl_ary = $event['tpl_ary'];
-		$tpl_ary['S_GROUP_OPTIONS'] = $this->acp_manager->abbc3_group_select_options($bbcode_group);
+		$tpl_ary['S_GROUP_OPTIONS'] = $this->acp_manager->bbcode_group_select_options($bbcode_group);
 		$event['tpl_ary'] = $tpl_ary;
 	}
 
@@ -261,7 +261,7 @@ class listener implements EventSubscriberInterface
 		// Set a new bbcode order value on create
 		if ($event['action'] == 'create')
 		{
-			$sql_ary['bbcode_order'] = $this->acp_manager->get_max_order() + 1;
+			$sql_ary['bbcode_order'] = $this->acp_manager->get_max_bbcode_order() + 1;
 		}
 
 		// Get the bbcode groups from the form

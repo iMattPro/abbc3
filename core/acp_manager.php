@@ -136,7 +136,7 @@ class acp_manager
 	* @return int The maximum order
 	* @access public
 	*/
-	public function get_max_order()
+	public function get_max_bbcode_order()
 	{
 		$sql = 'SELECT MAX(bbcode_order) AS max_bbcode_order
 			FROM ' . BBCODES_TABLE;
@@ -187,7 +187,7 @@ class acp_manager
 	* @return string HTML markup of user groups select box for the form
 	* @access public
 	*/
-	public function abbc3_group_select_options($select_id = false)
+	public function bbcode_group_select_options($select_id = false)
 	{
 		// Exclude bots
 		$sql = 'SELECT group_id
