@@ -220,6 +220,7 @@ class listener implements EventSubscriberInterface
 		{
 			case 'move_up':
 			case 'move_down':
+			case 'drag_drop':
 
 				$this->acp_manager->move($event['action']);
 
@@ -230,8 +231,8 @@ class listener implements EventSubscriberInterface
 		$this->acp_manager->resynchronize_bbcode_order();
 
 		// Add some additional template variables
-		$template_data = $event['template_data'];		
-		$template_data['U_AJAX_REQUEST'] = append_sid($this->acp_manager->ajax_page);
+		$template_data = $event['template_data'];
+		$template_data['U_DRAG_DROP'] = str_replace('&amp;', '&', $event['this_u_action'] . '&amp;action=drag_drop');
 		$template_data['IMG_AJAX_IMAGE'] = $this->acp_manager->ajax_icon;
 		$event['template_data'] = $template_data;
 

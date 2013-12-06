@@ -44,14 +44,14 @@ jQuery(document).ready(function() {
 	jQuery("#down").tableDnD({
 		onDragClass : "row3",
 		onDrop : function(table, row) {
-			// Now send this change to the server so we can store it ^^
+			// Send this change to the server
 			jQuery.ajax({
-				type    : "POST",
-				url     : "{U_AJAX_REQUEST}&action=move&tablename=" + jQuery(table).attr("id"),
-				data    : jQuery.tableDnD.serialize(),
-				success : function(html) {
+				type: "POST",
+				url: "{U_DRAG_DROP}&tablename=" + jQuery(table).attr("id"),
+				data: jQuery.tableDnD.serialize(),
+				success: function(res) {
 					// Show the message
-					if (html === "success") {
+					if (res.success) {
 						clearTimeout(msg_timer);
 						msg_successBox.stop(true, true).hide().fadeIn(500);
 						msg_timer = setTimeout(function(){

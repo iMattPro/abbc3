@@ -52,48 +52,78 @@ class acp_manager
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 
-		$this->ajax_page = $this->root_path . 'ext/vse/abbc3/core/abbc3_ajax.' . $this->php_ext;
 		$this->ajax_icon = $this->root_path . 'ext/vse/abbc3/images/accepted.png';
 	}
 
 	/**
-	* Update the database BBCode order fields on move up/down
+	* Update the database BBCode order fields on move up/down or drag_drop
 	*
-	* Based on Custom BBCode Sorting Mod by RMcGirr83
-	*
-	* @param string $action The action move_up|move_down
+	* @param string $action The action move_up|move_down|drag_drop
 	* @return void
 	* @access public
 	*/
 	public function move($action)
 	{
-		$bbcode_id = $this->request->variable('id', 0);
-
-		// Get current order id...
-		$sql = 'SELECT bbcode_order as current_order
-			FROM ' . BBCODES_TABLE . "
-			WHERE bbcode_id = $bbcode_id";
-		$result = $this->db->sql_query($sql);
-		$current_order = (int) $this->db->sql_fetchfield('current_order');
-		$this->db->sql_freeresult($result);
-
-		if ($current_order == 0 && $action == 'move_up')
+		if ($action == 'drag_drop')
 		{
-			break;
+			if (!$this->request->is_ajax())
+			{
+				return;
+			}
+			
+			// Get the table
+			$tablename = $this->request->variable('tablename', '');
+
+			// Fetch the posted list
+			$bbcodes_list = $this->request->variable($tablename, array(0 => ''));
+
+			// Run through the list
+			foreach ($bbcodes_list as $order => $bbcode_id)
+			{
+				// First one is the header, skip it
+				if ($order == 0)
+				{
+					continue;
+				}
+
+				// Update in the db
+				$this->db->sql_query('UPDATE ' . BBCODES_TABLE . ' SET bbcode_order = ' . $order . ' WHERE bbcode_id = ' . (int) $bbcode_id);
+			}
+
+			// return an AJAX JSON response
+			$json_response = new \phpbb\json_response;
+			$json_response->send(array(
+				'success' => true,
+			));
 		}
+		else
+		{
+			$bbcode_id = $this->request->variable('id', 0);
 
-		$order_total = $current_order * 2 + (($action == 'move_up') ? -1 : 1);
+			// Get current order
+			$sql = 'SELECT bbcode_order as current_order
+				FROM ' . BBCODES_TABLE . "
+				WHERE bbcode_id = $bbcode_id";
+			$result = $this->db->sql_query($sql);
+			$current_order = (int) $this->db->sql_fetchfield('current_order');
+			$this->db->sql_freeresult($result);
 
-		$sql = 'UPDATE ' . BBCODES_TABLE . '
-			SET bbcode_order = ' . $order_total . ' - bbcode_order
-			WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
-		$this->db->sql_query($sql);
+			if ($current_order == 0 && $action == 'move_up')
+			{
+				return;
+			}
+
+			$order_total = $current_order * 2 + (($action == 'move_up') ? -1 : 1);
+
+			$sql = 'UPDATE ' . BBCODES_TABLE . '
+				SET bbcode_order = ' . $order_total . ' - bbcode_order
+				WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
+			$this->db->sql_query($sql);
+		}
 	}
 
 	/**
 	* Retrieve the maximum value from the bbcode_order field stored in the db
-	*
-	* Based on Custom BBCode Sorting Mod by RMcGirr83
 	*
 	* @return int The maximum order
 	* @access public
