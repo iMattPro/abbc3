@@ -8,7 +8,7 @@
 jQuery(document).ready(function() {
 	var msg_timer;
 	var msg_successBox = jQuery('<div class="successbox" style="display:none;"><img style="float:left; padding-right:8px;" src="{IMG_AJAX_IMAGE}" width="48" height="48" alt="" /><h3>{LA_INFORMATION}</h3><p>{LA_ABBC3_BBCODE_ORDERED}</p></div>').appendTo("body");
-	
+
 	// Re-style the sucessbox to look like a growl notification
 	msg_successBox.css({
 		"position": "fixed",
@@ -39,21 +39,10 @@ jQuery(document).ready(function() {
     	if (id) $(this).attr("id", "bbcode_" + id[1]);
 	});
 
-	// Remove the move buttons since we are using drag and drop now
-// 	jQuery(".mover").on("click", function (e) {
-// 		e.preventDefault();
-// 	});
-
 	// Init drag-drop
 	jQuery("#down").tableDnD({
 		onDragClass : "row3",
 		onDrop : function(table, row) {
-
-			// Fix row colors
-// 			jQuery("tbody > tr", table).each(function(index) {
-// 				fixColouring(this, index);
-// 			});
-
 			// Now send this change to the server so we can store it ^^
 			jQuery.ajax({
 				type    : "POST",
@@ -73,21 +62,6 @@ jQuery(document).ready(function() {
 		}
 	});
 });
-
-// function fixColouring(ele, index) {
-// 	var rowClassCorrect	= (index % 2 == 0) ? "row1" : "row2";
-// 	var rowClassIncorrect = (index % 2 == 0) ? "row2" : "row1";
-// 	
-// 	// If incorrect class remove the class.
-// 	if (jQuery(ele).hasClass(rowClassIncorrect)) {
-// 		jQuery(ele).removeClass(rowClassIncorrect);
-// 	}
-// 	
-// 	// If needed assign the new class
-// 	if (jQuery(ele).hasClass(rowClassCorrect) === false) {
-// 		jQuery(ele).addClass(rowClassCorrect);
-// 	}
-// }
 
 // ]]>
 </script>
