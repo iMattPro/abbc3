@@ -119,6 +119,14 @@ class acp_manager
 				SET bbcode_order = ' . $order_total . ' - bbcode_order
 				WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
 			$this->db->sql_query($sql);
+
+			if ($this->request->is_ajax())
+			{
+				$json_response = new \phpbb\json_response;
+				$json_response->send(array(
+					'success' => (bool) $this->db->sql_affectedrows(),
+				));
+			}
 		}
 	}
 
