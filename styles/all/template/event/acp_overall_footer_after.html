@@ -33,18 +33,16 @@ jQuery(document).ready(function() {
 		"z-index": "50"
 	});
 
-	// get bbcode ids from the delete button, and create tr row IDs on the fly for use by tableDnD
+	// Get bbcode ids from the delete button, and create tr row IDs on the fly for use by tableDnD
 	jQuery("#down > tbody").find("tr").each(function () {
-    	var url = $(this).find("a").last().attr("href");
-    	if (url) var id = url.split("bbcode=");
-    	if (id) $(this).attr("id", "bbcode_" + id[1]);
+		var url = $(this).find("a").last().attr("href");
+		if (url) $(this).attr("id", "bbcode_" + url.split("bbcode=")[1]);
 	});
 
-	// Init drag-drop
+	// Enable table row drag-drop
 	jQuery("#down").tableDnD({
 		onDragClass : "row3",
 		onDrop : function(table, row) {
-			// Send this change to the server
 			jQuery.ajax({
 				type: "POST",
 				url: "{U_DRAG_DROP}&tablename=" + jQuery(table).attr("id"),
