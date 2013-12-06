@@ -164,13 +164,9 @@
 }
 
 /* abbc3 bbcode buttons */
-#abbc3-buttons {
-	margin: 15px 0 2px 0;
-}
+#abbc3_buttons { margin: 15px 0 2px 0; }
 
-#abbc3-buttons input, #abbc3-buttons select {
-	vertical-align: middle;
-}
+#abbc3_buttons input, #abbc3_buttons select { vertical-align: middle; }
 
 .abbc3_button {
 	min-width: 22px;
@@ -198,7 +194,7 @@
 	border: 1px solid #b4bac0 !important;
 }
 
-.abbc3_toolbar_core, .abbc3_toolbar_custom {
+.abbc3_buttons_row {
 	margin: 0 !important;
 	min-height: 30px;
 	padding:0 2px;
@@ -209,6 +205,4 @@
 }
 
 /* tweak for subsilver styles */
-form td .abbc3_toolbar_core, form td .abbc3_toolbar_custom {
-	width: 98%;
-}
+form td .abbc3_buttons_row { width: 98%; }
