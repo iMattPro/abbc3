@@ -212,7 +212,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'BBvideo' => array(
 				'bbcode_helpline'	=> 'ABBC3_BBVIDEO_HELPLINE',
 				'bbcode_match'		=> '[BBvideo={NUMBER1},{NUMBER2}]{URL}[/BBvideo]',
-				'bbcode_tpl'		=> '<a href="{URL}" class="bbvideo" data-bbvideo="{NUMBER1},{NUMBER2}">{URL}</a>',
+				'bbcode_tpl'		=> '<a href="{URL}" class="bbvideo" data-bbvideo="{NUMBER1},{NUMBER2}" target="_blank">{URL}</a>',
 			),
 			'youtube' => array(
 				'bbcode_helpline'	=> 'ABBC3_YOUTUBE_HELPLINE',
