@@ -33,10 +33,10 @@ class listener implements EventSubscriberInterface
 			'core.modify_text_for_format_display_after'	=> 'parse_bbcodes_after', // needs to be requested in message_parser
 			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes', // needs to be requested in message parser
 
-			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_display_form', // needs to be requested in acp_bbcodes
-			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_display_bbcodes', // needs to be requested in acp_bbcodes
+			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_custom_sorting', // needs to be requested in acp_bbcodes
+			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_custom_sorting_buttons', // needs to be requested in acp_bbcodes
 			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create', // needs to be requested in acp_bbcodes
-			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_edit_add', // needs to be requested in acp_bbcodes
+			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_group_select_box', // needs to be requested in acp_bbcodes
 		);
 	}
 
@@ -169,7 +169,7 @@ class listener implements EventSubscriberInterface
 	* @return void
 	* @access public
 	*/
-	public function acp_bbcodes_display_bbcodes($event)
+	public function acp_bbcodes_custom_sorting_buttons($event)
 	{
 		$row = $event['row'];
 		$bbcodes_array = $event['bbcodes_array'];
@@ -187,7 +187,7 @@ class listener implements EventSubscriberInterface
 	* @return void
 	* @access public
 	*/
-	public function acp_bbcodes_edit_add($event)
+	public function acp_bbcodes_group_select_box($event)
 	{
 		if (!$this->acp_manager)
 		{
@@ -208,7 +208,7 @@ class listener implements EventSubscriberInterface
 	* @return void
 	* @access public
 	*/
-	public function acp_bbcodes_display_form($event)
+	public function acp_bbcodes_custom_sorting($event)
 	{
 		if (!$this->acp_manager)
 		{
