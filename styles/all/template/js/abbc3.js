@@ -210,7 +210,7 @@
 			{
 				"site" : "photobucket.com",
 				"type" : "flash",
-				"regex": /http:\/\/s(.*?).photobucket.com\/(albums\/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?/i,
+				"regex": /http:\/\/[a-z](.*?).photobucket.com\/(albums\/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?/i,
 				"embed": ['http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5']
 			},
 // 			{
