@@ -15,8 +15,6 @@ services:
             - @dbal.conn
             - @request
             - @user
-            - %core.root_path%
-            - %core.php_ext%
     vse.abbc3.listener:
         class: vse\abbc3\event\listener
         tags:

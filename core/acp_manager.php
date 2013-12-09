@@ -22,18 +22,6 @@ class acp_manager
 
 	/** @var \phpbb\user */
 	protected $user;
-	
-	/** @var string phpBB root path */
-	protected $root_path;
-
-	/** @var string phpBB file extension */
-	protected $php_ext;
-
-	/** @var string path to ajax script */
-	public $ajax_page;
-
-	/** @var string path to ajax success icon */
-	public $ajax_icon;
 
 	/**
 	* ABBC3 acp manager constructor method
@@ -44,15 +32,11 @@ class acp_manager
 	* @param $root_path
 	* @param $php_ext
 	*/
-	public function __construct(\phpbb\db\driver\driver $db, \phpbb\request\request $request, \phpbb\user $user, $root_path, $php_ext)
+	public function __construct(\phpbb\db\driver\driver $db, \phpbb\request\request $request, \phpbb\user $user)
 	{
 		$this->db = $db;
 		$this->request = $request;
 		$this->user = $user;
-		$this->root_path = $root_path;
-		$this->php_ext = $php_ext;
-
-		$this->ajax_icon = $this->root_path . 'ext/vse/abbc3/images/accepted.png';
 	}
 
 	/**
@@ -101,11 +85,11 @@ class acp_manager
 			$bbcode_id = $this->request->variable('id', 0);
 
 			// Get current order
-			$sql = 'SELECT bbcode_order as current_order
+			$sql = 'SELECT bbcode_order
 				FROM ' . BBCODES_TABLE . "
 				WHERE bbcode_id = $bbcode_id";
 			$result = $this->db->sql_query($sql);
-			$current_order = (int) $this->db->sql_fetchfield('current_order');
+			$current_order = (int) $this->db->sql_fetchfield('bbcode_order');
 			$this->db->sql_freeresult($result);
 
 			if ($current_order == 0 && $action == 'move_up')

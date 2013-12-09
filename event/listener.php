@@ -210,6 +210,8 @@ class listener implements EventSubscriberInterface
 	*/
 	public function acp_bbcodes_custom_sorting($event)
 	{
+		global $phpbb_root_path;
+
 		if (!$this->acp_manager)
 		{
 			$this->load_acp_manager();
@@ -232,8 +234,8 @@ class listener implements EventSubscriberInterface
 
 		// Add some additional template variables
 		$template_data = $event['template_data'];
-		$template_data['U_DRAG_DROP'] = str_replace('&amp;', '&', $event['this_u_action'] . '&amp;action=drag_drop');
-		$template_data['IMG_AJAX_IMAGE'] = $this->acp_manager->ajax_icon;
+		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['this_u_action'] . '&amp;action=drag_drop');
+		$template_data['IMG_AJAX_IMAGE'] = $phpbb_root_path . 'ext/vse/abbc3/images/accepted.png';
 		$event['template_data'] = $template_data;
 
 		// Change SQL so that it orders by bbcode_order

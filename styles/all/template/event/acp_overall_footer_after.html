@@ -45,7 +45,7 @@ jQuery(document).ready(function() {
 		onDrop : function(table, row) {
 			jQuery.ajax({
 				type: "POST",
-				url: "{U_DRAG_DROP}&tablename=" + jQuery(table).attr("id"),
+				url: "{UA_DRAG_DROP}&tablename=" + jQuery(table).attr("id"),
 				data: jQuery.tableDnD.serialize(),
 				success: function(res) {
 					// Show the message

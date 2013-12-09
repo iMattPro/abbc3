@@ -85,7 +85,7 @@
 				"regex": /http:\/\/(?:.*?)comedycentral.com\/video-clips\/([^[]*)?/i
 			},
 			{
-				"site" : "crackle.com",	
+				"site" : "crackle.com",
 				"type" : "flash",
 				"regex": /http:\/\/((.*?)?)crackle.com\/(.*?)\/(.*?)\/(.*?)\/([0-9]+)?([^[]*)?/i,
 				"embed": ['http://www.crackle.com/p/$4/$5.swf', 'id=$6&amp;mu=0&amp;ap=0']
