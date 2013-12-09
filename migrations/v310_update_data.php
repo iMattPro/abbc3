@@ -127,12 +127,12 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'pre' => array(
 				'bbcode_helpline'	=> 'ABBC3_PREFORMAT_HELPLINE',
 				'bbcode_match'		=> '[pre]{TEXT}[/pre]',
-				'bbcode_tpl'		=> '<pre>{TEXT}</pre>',
+				'bbcode_tpl'		=> '<pre class="abbc3_pre">{TEXT}</pre>',
 			),
 			's' => array(
 				'bbcode_helpline'	=> 'ABBC3_STRIKE_HELPLINE',
 				'bbcode_match'		=> '[s]{TEXT}[/s]',
-				'bbcode_tpl'		=> '<span style="text-decoration: line-through;">{TEXT}</span>',
+				'bbcode_tpl'		=> '<span class="abbc3_strike">{TEXT}</span>',
 			),
 			'sup' => array(
 				'bbcode_helpline'	=> 'ABBC3_SUP_HELPLINE',
