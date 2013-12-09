@@ -536,7 +536,7 @@
 		/**
 		* Function spoiler toggle
 		*/
-		$(".btnspoil").on("click", function () {
+		$(".spoilbtn").on("click", function () {
 			var trigger = $(this),
 				spoiler = trigger.closest("div").next(".spoilcontent");
 			spoiler.slideToggle("fast", function () {

@@ -182,7 +182,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'spoil' => array(
 				'bbcode_helpline'	=> 'ABBC3_SPOILER_HELPLINE',
 				'bbcode_match'		=> '[spoil]{TEXT}[/spoil]',
-				'bbcode_tpl'		=> '<div class="spoilwrapper"><div class="spoiltitle"><span class="btnspoil" data-show="{L_ABBC3_SPOILER_SHOW}" data-hide="{L_ABBC3_SPOILER_HIDE}">{L_ABBC3_SPOILER_SHOW}</span></div><div style="display: none;" class="spoilcontent">{TEXT}</div></div>',
+				'bbcode_tpl'		=> '<div class="spoilwrapper"><div class="spoiltitle"><span class="spoilbtn" data-show="{L_ABBC3_SPOILER_SHOW}" data-hide="{L_ABBC3_SPOILER_HIDE}">{L_ABBC3_SPOILER_SHOW}</span></div><div style="display: none;" class="spoilcontent">{TEXT}</div></div>',
 			),
 			'hidden' => array(
 				'bbcode_helpline'	=> 'ABBC3_HIDDEN_HELPLINE',
