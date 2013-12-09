@@ -208,6 +208,12 @@
 				"embed": '<iframe src="http://$1.myvideo.$2/embed/$4" style="width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no"></iframe>'
 			},
 			{
+				"site" : "nbcnews.com",
+				"type" : "flash",
+				"regex": /http:\/\/www.nbcnews.com\/video\/.+?\/(\d+)\/#?(\d+)?/i,
+				"embed": ['http://www.msnbc.msn.com/id/32545640', 'launch=$1&amp;width={WIDTH}&amp;height={HEIGHT}']
+			},
+			{
 				"site" : "photobucket.com",
 				"type" : "flash",
 				"regex": /http:\/\/[a-z](.*?).photobucket.com\/(albums\/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?/i,
