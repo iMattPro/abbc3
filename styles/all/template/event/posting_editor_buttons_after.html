@@ -59,7 +59,6 @@ function bbspecial(bbcode, bbcodeId) {
 	}
 
 	switch (bbcode) {
-
 		case "abbc3_plain":
 			if (typeof(theSelection) === 'undefined' || theSelection === '' || theSelection === null) {
 				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
@@ -77,7 +76,7 @@ function bbspecial(bbcode, bbcodeId) {
 					}
 				} catch (e) {}
 			}
-		break;
+			break;
 
 		case "abbc3_copy":
 			if (typeof(theSelection) === 'undefined' || theSelection === '' || theSelection === null) {
@@ -86,7 +85,7 @@ function bbspecial(bbcode, bbcodeId) {
 			} else {
 				copy_paste = theSelection;
 			}
-		break;
+			break;
 
 		case "abbc3_paste":
 			if (copy_paste) {
@@ -94,52 +93,51 @@ function bbspecial(bbcode, bbcodeId) {
 			} else {
 				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_PASTE_ERROR}");
 			}
-		break;
+			break;
 
 		case "align=":
 			bbfontstyle("[align=center]", "[/align]");
-		break;
+			break;
 
 		case "dir=":
 			bbfontstyle("[dir=rtl]", "[/dir]");
-		break;
+			break;
 
 		case "marq=":
 			bbfontstyle("[marq=up]", "[/marq]");
-		break;
+			break;
 
 		case "mod=":
 			bbfontstyle("[mod={ABBC3_USERNAME}]", "[/mod]");
-		break;
+			break;
 
 		case "highlight=":
 			bbfontstyle("[highlight=yellow]", "[/highlight]");
-		break;
+			break;
 
 		case "glow=":
 			bbfontstyle("[glow=red]", "[/glow]");
-		break;
+			break;
 
 		case "shadow=":
 			bbfontstyle("[shadow=blue]", "[/shadow]");
-		break;
+			break;
 
 		case "dropshadow=":
 			bbfontstyle("[dropshadow=blue]", "[/dropshadow]");
-		break;
+			break;
 
 		case "blur=":
 			bbfontstyle("[blur=blue]", "[/blur]");
-		break;
-		
+			break;
+
 		case "BBvideo=":
 			bbfontstyle("[BBvideo=560,340]", "[/BBvideo]");
-		break;
+			break;
 		
 		default:
 			bbstyle(bbcodeId);
-		break;
-
+			break;
 	}
 
 	theSelection = '';

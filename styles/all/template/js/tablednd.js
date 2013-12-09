@@ -122,7 +122,7 @@ jQuery.tableDnD = {
 
     /** This function makes all the rows on the table draggable apart from those marked as "NoDrag" */
     makeDraggable: function(table) {
-		
+
         var config = table.tableDnDConfig;
 		if (config.dragHandle) {
 			// We only need to add the event to the specified cells
@@ -151,7 +151,7 @@ jQuery.tableDnD = {
 			});
 		}
 	},
-	
+
 	initialiseDrag: function(dragObject, table, target, evnt, config) {
         jQuery.tableDnD.dragObject = dragObject;
         jQuery.tableDnD.currentTable = table;

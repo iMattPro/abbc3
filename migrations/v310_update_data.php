@@ -38,7 +38,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			include($this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
 		}
 		$bbcode_tool = new \acp_bbcodes();
-			
+
 		$bbcode_data = $this->abbc3_bbcode_data();
 
 		foreach ($bbcode_data as $bbcode_name => $bbcode_array)
@@ -53,7 +53,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 				'second_pass_match'		=> $data['second_pass_match'],
 				'second_pass_replace'	=> $data['second_pass_replace']
 			);
-			
+
 			$sql = 'SELECT bbcode_id
 					FROM ' . $this->table_prefix . "bbcodes
 					WHERE LOWER(bbcode_tag) = '" . strtolower($bbcode_name) . "' OR LOWER(bbcode_tag) = '" . strtolower($bbcode_array['bbcode_tag']) . "'";

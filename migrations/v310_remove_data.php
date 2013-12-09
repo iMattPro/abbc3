@@ -112,7 +112,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 			WHERE ' . $this->db->sql_in_set('bbcode_tag', $abbc3_bbcode_deprecated);
 		$this->db->sql_query($sql);
 	}
-	
+
 	public function abbc3_bbcodes()
 	{
 		return array(
@@ -128,7 +128,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 			'listitem',
 			'listo',
 			'quote',
-			'size',			
+			'size',
 			'u',
 			'url',
 			'url=',

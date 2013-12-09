@@ -453,16 +453,16 @@
 		*/
 		function flashCode(url, flashVars, dimensions) {
 			return '<object width="' + dimensions.width + '" height="' + dimensions.height + '" type="application/x-shockwave-flash" data="' + url + '">' +
-					'<param name="movie" value="' + url + '" />' +
-					(flashVars !== undefined ? '<param name="flashvars" value="' + flashVars.replace(/&/g, '&amp;').replace(/{WIDTH}/g, dimensions.width).replace(/{HEIGHT}/g, dimensions.height) + '" />' : '') +
-					'<param name="quality" value="high" />' +
-					'<param name="allowFullScreen" value="true" />' +
-					'<param name="allowScriptAccess" value="always" />' +
-					'<param name="pluginspage" value="http://www.macromedia.com/go/getflashplayer" />' +
-					'<param name="autoplay" value="false" />' +
-					'<param name="autostart" value="false" />' +
-					'<param name="wmode" value="transparent" />' +
-					'</object>';
+				'<param name="movie" value="' + url + '" />' +
+				(flashVars !== undefined ? '<param name="flashvars" value="' + flashVars.replace(/&/g, '&amp;').replace(/{WIDTH}/g, dimensions.width).replace(/{HEIGHT}/g, dimensions.height) + '" />' : '') +
+				'<param name="quality" value="high" />' +
+				'<param name="allowFullScreen" value="true" />' +
+				'<param name="allowScriptAccess" value="always" />' +
+				'<param name="pluginspage" value="http://www.macromedia.com/go/getflashplayer" />' +
+				'<param name="autoplay" value="false" />' +
+				'<param name="autostart" value="false" />' +
+				'<param name="wmode" value="transparent" />' +
+				'</object>';
 		}
 
 		/**

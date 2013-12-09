@@ -19,7 +19,7 @@ class bbcodes
 
 	/** @var \phpbb\user */
 	protected $user;
-	
+
 	/** @var string phpBB root path */
 	protected $root_path;
 
@@ -50,11 +50,11 @@ class bbcodes
 	{
 		$row = $event['row'];
 		$custom_tags = $event['custom_tags'];
-		
+
 		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
 
 		static $images = array();
-		
+
 		if (empty($images))
 		{
 			$images = $this->get_images();
@@ -151,7 +151,7 @@ class bbcodes
 						return true;
 					}
 				}
-				
+
 				return false;
 			}
 		}

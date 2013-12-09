@@ -148,7 +148,7 @@ class listener implements EventSubscriberInterface
 
 		$event['bbcodes'] = $phpbb_container->get('vse.abbc3.bbcodes')->allow_custom_bbcodes($event);
 	}
-	
+
 	/**
 	* Load the BBCode ACP Manager
 	*

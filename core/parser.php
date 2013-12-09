@@ -16,7 +16,7 @@ class parser
 {
 	/** @var \phpbb\user */
 	protected $user;
-	
+
 	/**
 	* ABBC3 parser constructor method
 	* 

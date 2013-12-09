@@ -70,7 +70,7 @@ class acp_manager
 			{
 				return;
 			}
-			
+
 			// Get the table
 			$tablename = $this->request->variable('tablename', '');
 
