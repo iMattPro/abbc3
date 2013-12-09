@@ -60,10 +60,7 @@ function bbspecial(bbcode, bbcodeId) {
 
 	switch (bbcode) {
 		case "abbc3_plain":
-			if (typeof(theSelection) === 'undefined' || theSelection === '' || theSelection === null) {
-				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
-				return;
-			} else {
+			if (theSelection) {
 				try {
 					var tempSelection = bbcode_to_plain(theSelection);
 
@@ -75,15 +72,18 @@ function bbspecial(bbcode, bbcodeId) {
 						selEnd = textarea.selectionEnd = (textarea.value).substring(0, selStart).length + tempSelection.length;
 					}
 				} catch (e) {}
+			} else {
+				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
+				return;
 			}
 			break;
 
 		case "abbc3_copy":
-			if (typeof(theSelection) === 'undefined' || theSelection === '' || theSelection === null) {
+			if (theSelection) {
+				copy_paste = theSelection;
+			} else {
 				alert("{LA_ABBC3_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
 				return;
-			} else {
-				copy_paste = theSelection;
 			}
 			break;
 
