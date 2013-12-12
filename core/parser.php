@@ -79,7 +79,7 @@ class parser
 			return str_replace(
 				array('{HIDDEN_ON}', '{HIDDEN_TEXT}'),
 				array($this->user->lang['ABBC3_HIDDEN_ON'], $this->user->lang['ABBC3_HIDDEN_EXPLAIN']),
-				'<div class="hidebox hideMe"><div class="hideboxTitle hideMe">{HIDDEN_ON}</div><div class="hideMe">{HIDDEN_TEXT}</div></div>'
+				'<div class="hidebox hidebox_hidden"><div class="hidebox_title hidebox_hidden">{HIDDEN_ON}</div><div class="hidebox_hidden">{HIDDEN_TEXT}</div></div>'
 			);
 		}
 		else
@@ -87,7 +87,7 @@ class parser
 			return str_replace(
 				array('{HIDDEN_OFF}', '{UNHIDDEN_TEXT}'),
 				array($this->user->lang['ABBC3_HIDDEN_OFF'], $matches[1]),
-				'<div class="hidebox"><div class="hideboxTitle">{HIDDEN_OFF}</div><div>{UNHIDDEN_TEXT}</div></div>'
+				'<div class="hidebox"><div class="hidebox_title">{HIDDEN_OFF}</div><div>{UNHIDDEN_TEXT}</div></div>'
 			);
 		}
 	}

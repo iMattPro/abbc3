@@ -177,7 +177,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'marq=up' => array(
 				'bbcode_helpline'	=> 'ABBC3_MARQUEE_HELPLINE',
 				'bbcode_match'		=> '[marq={SIMPLETEXT}]{TEXT}[/marq]',
-				'bbcode_tpl'		=> '<marquee direction="{SIMPLETEXT}" scrolldelay="100" onmouseover="this.scrollDelay=10000000;" onmouseout="this.scrollDelay=100;">{TEXT}</marquee>',
+				'bbcode_tpl'		=> '<marquee class="abbc3_marquee" direction="{SIMPLETEXT}" scrolldelay="100" onmouseover="this.scrollDelay=10000000;" onmouseout="this.scrollDelay=100;">{TEXT}</marquee>',
 			),
 			'spoil' => array(
 				'bbcode_helpline'	=> 'ABBC3_SPOILER_HELPLINE',
@@ -192,7 +192,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'offtopic' => array(
 				'bbcode_helpline'	=> 'ABBC3_OFFTOPIC_HELPLINE',
 				'bbcode_match'		=> '[offtopic]{TEXT}[/offtopic]',
-				'bbcode_tpl'		=> '<div class="OffTopic"><div class="OffTopicTitle">{L_ABBC3_OFFTOPIC}</div><div class="OffTopicText">{TEXT}</div></div>',
+				'bbcode_tpl'		=> '<div class="offtopic"><div class="offtopic_title">{L_ABBC3_OFFTOPIC}</div><div class="offtopic_text">{TEXT}</div></div>',
 			),
 			'mod=' => array(
 				'bbcode_helpline'	=> 'ABBC3_MOD_HELPLINE',

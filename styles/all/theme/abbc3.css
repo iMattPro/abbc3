@@ -32,7 +32,7 @@ sup {
 	border-radius: 4px;
 }
 
-.hideboxTitle {
+.hidebox_title {
 	position: absolute;
 	top: -1px;
 	left: -1px;
@@ -47,7 +47,7 @@ sup {
 	border-radius: 4px 0 4px 0;
 }
 
-.hideMe {
+.hidebox_hidden {
 	background-color: #f2dede;
 	border-color: #ebccd1;
 	color: #80001c;
@@ -134,7 +134,7 @@ sup {
 }
 
 /* Offtopic BBCode */
-.OffTopic {
+.offtopic {
 	position: relative;
 	margin: 5px 0;
 	font-size: 0.9em;
@@ -147,7 +147,7 @@ sup {
 	border-radius: 4px;
 }
 
-.OffTopicTitle {
+.offtopic_title {
 	position: absolute;
 	top: -1px;
 	left: -1px;
@@ -163,13 +163,13 @@ sup {
 	border-radius: 4px 0 4px 0;
 }
 
-.OffTopicText {
+.offtopic_text {
 	padding: 5px 10px;
 	color: #333333;
 }
 
 /* Marquee BBCode */
-.abbc3-marquee {
+.abbc3_marquee {
 	margin: 10px 0;
 	padding: 5px;
 	display: -moz-inline-box; /* For FF<3 */
