@@ -148,7 +148,7 @@ class acp_manager
 	/**
 	* Get the bbcode_group data from the database
 	*
-	* @param int $bbcode_id Custom bbcode id
+	* @param int $bbcode_id Custom BBCode id
 	* @return array Custom BBCode user group ids
 	* @access public
 	*/

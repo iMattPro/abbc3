@@ -24,19 +24,19 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	// Hidden BBcode
+	// Hidden BBCode
 	'ABBC3_HIDDEN_ON'			=> 'Ukryta zawartość',
 	'ABBC3_HIDDEN_OFF'			=> 'Ukryta zawartość (tylko dla użytkowników)',
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'To forum wymaga zarejestrowania i zalogowania się, aby zobaczyć ukrytą zawartość.',
 
-	// Spoiler BBcode
+	// Spoiler BBCode
 	'ABBC3_SPOILER_SHOW'		=> '&#9658; Pokaż Spoiler',
 	'ABBC3_SPOILER_HIDE'		=> '&#9660; Ukryj Spoiler',
 
-	// Off Topic BBcode
+	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'OFF TOPIC',
 
-	// Font BBcode
+	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Menu czcionek',
 	'ABBC3_FONT_FANCY'			=> 'Czcionki ozdobne',
 	'ABBC3_FONT_SAFE'			=> 'Bezpieczne Czcionki',
@@ -66,7 +66,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUP_HELPLINE'		=> 'Indeks górny: [sup]tekst[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Film z YouTube: [youtube]URL[/youtube]',
 
-	// Utility BBcodes
+	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopiuj zaznaczony tekst',
 	'ABBC3_PASTE_BBCODE'		=> 'Wklej skopiowany tekst',
 	'ABBC3_PASTE_ERROR'			=> 'Najpierw należy skopiować fragment tekstu, a następnie wkleić go',

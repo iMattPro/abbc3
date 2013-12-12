@@ -58,9 +58,9 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Alter bbcodes before they are processed by phpBB
+	* Alter BBCodes before they are processed by phpBB
 	*
-	* This is used to change old/malformed ABBC3 BBcodes to a newer structure
+	* This is used to change old/malformed ABBC3 BBCodes to a newer structure
 	*
 	* @param object $event The event object
 	* @return void
@@ -74,9 +74,9 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Alter bbcodes after they are processed by phpBB
+	* Alter BBCodes after they are processed by phpBB
 	*
-	* This is used on ABBC3 BBcodes that require additional post-processing
+	* This is used on ABBC3 BBCodes that require additional post-processing
 	*
 	* @param object $event The event object
 	* @return void
@@ -90,7 +90,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Modify the SQL statement to gather custom bbcode data
+	* Modify the SQL statement to gather custom BBCode data
 	*
 	* @param object $event The event object
 	* @return void
@@ -105,7 +105,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Setup custom BBcode variables
+	* Setup custom BBCode variables
 	*
 	* @param object $event The event object
 	* @return void
@@ -260,20 +260,20 @@ class listener implements EventSubscriberInterface
 
 		$sql_ary = $event['sql_ary'];
 
-		// Set a new bbcode order value on create
+		// Set a new BBCode order value on create
 		if ($event['action'] == 'create')
 		{
 			$sql_ary['bbcode_order'] = $this->acp_manager->get_max_bbcode_order() + 1;
 		}
 
-		// Get the bbcode groups from the form
+		// Get the BBCode groups from the form
 		$bbcode_group = $this->acp_manager->get_bbcode_group_form_data();
 		$sql_ary['bbcode_group'] = $bbcode_group;
 
 		// Return sql_ary array
 		$event['sql_ary'] = $sql_ary;
 
-		// Supply bbcode groups to hidden form fields
+		// Supply BBCode groups to hidden form fields
 		$hidden_fields = $event['hidden_fields'];
 		$hidden_fields['bbcode_group'] = $bbcode_group;
 		$event['hidden_fields'] = $hidden_fields;

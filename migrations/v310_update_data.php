@@ -63,7 +63,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 
 			if ($row_exists)
 			{
-				// Update exisiting BBcode
+				// Update exisiting BBCode
 				$bbcode_id = $row_exists['bbcode_id'];
 
 				$sql = 'UPDATE ' . $this->table_prefix . 'bbcodes
@@ -73,7 +73,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			}
 			else
 			{
-				// Create new BBcode
+				// Create new BBCode
 				$sql = 'SELECT MAX(bbcode_id) AS max_bbcode_id
 					FROM ' . $this->table_prefix . 'bbcodes';
 				$result = $this->db->sql_query($sql);
@@ -84,7 +84,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 				{
 					$bbcode_id = $row['max_bbcode_id'] + 1;
 
-					// Make sure it is greater than the core bbcode ids...
+					// Make sure it is greater than the core BBCode ids...
 					if ($bbcode_id <= NUM_CORE_BBCODES)
 					{
 						$bbcode_id = NUM_CORE_BBCODES + 1;

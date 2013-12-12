@@ -1,7 +1,7 @@
 {
     "name": "vse/abbc3",
     "type": "phpbb-extension",
-    "description": "Allows you to continue using many of the BBcodes added by older installations of Advanced BBcode Box 3",
+    "description": "Allows you to continue using many of the BBCodes added by older installations of Advanced BBCode Box 3",
     "version": "3.1.0",
     "time": "2013-10-04",
     "licence": "GPL-2.0",
@@ -16,6 +16,6 @@
         "phpbb/phpbb": "3.1.*@dev"
     },
     "extra": {
-        "display-name": "Advanced BBcode Box"
+        "display-name": "Advanced BBCode Box"
     }
 }

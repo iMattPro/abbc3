@@ -110,7 +110,7 @@ class bbcodes
 	* Determine if a usergroup is allowed to use a custom BBCode
 	*
 	* @param mixed $group_ids Allowed group IDs
-	* @return bool Return true if allowed to use BBcode
+	* @return bool Return true if allowed to use BBCode
 	* @access private
 	*/
 	private function bbcode_group_permissions($group_ids = 0)
@@ -141,7 +141,7 @@ class bbcodes
 				$this->db->sql_freeresult($result);
 			}
 
-			// Is the user in a group that is allowed to use this bbcode?
+			// Is the user in a group that is allowed to use this BBCode?
 			if (!empty($group_ids) && !empty($this->user->data['group_id_set']))
 			{
 				foreach ($this->user->data['group_id_set'] as $group_id)

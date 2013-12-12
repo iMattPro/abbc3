@@ -23,19 +23,19 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	// Hidden BBcode
+	// Hidden BBCode
 	'ABBC3_HIDDEN_ON'			=> 'Hidden Content',
 	'ABBC3_HIDDEN_OFF'			=> 'Hidden Content (for members only)',
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'This board requires you to be registered and logged-in to view hidden content.',
 
-	// Spoiler BBcode
+	// Spoiler BBCode
 	'ABBC3_SPOILER_SHOW'		=> '&#9658; Show Spoiler',
 	'ABBC3_SPOILER_HIDE'		=> '&#9660; Hide Spoiler',
 
-	// Off Topic BBcode
+	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'OFF TOPIC',
 
-	// Font BBcode
+	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Font Menu',
 	'ABBC3_FONT_FANCY'			=> 'Fancy fonts',
 	'ABBC3_FONT_SAFE'			=> 'Safe fonts',
@@ -65,7 +65,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUP_HELPLINE'		=> 'Superscript text: [sup]text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]URL[/youtube]',
 
-	// Utility BBcodes
+	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copy selected text',
 	'ABBC3_PASTE_BBCODE'		=> 'Paste copied text',
 	'ABBC3_PASTE_ERROR'			=> 'You must first copy a selection of text, then paste it',

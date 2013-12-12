@@ -28,7 +28,7 @@ class parser
 	}
 
 	/**
-	* Pre-Parser for special custom BBcodes created by ABBC3
+	* Pre-Parser for special custom BBCodes created by ABBC3
 	*
 	* @param object $event The event object
 	* @return null
@@ -36,12 +36,12 @@ class parser
 	*/
 	public function pre_parse_bbcodes($event)
 	{
-		// bbvideo bbcode
+		// bbvideo BBCode
 		$event['text'] = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?:([A-Za-z0-9]+)\]([^[]+)\[/\1:\3\]#is', array($this, 'bbvideo_pass'), $event['text']);
 	}
 
 	/**
-	* Post-Parser for special custom BBcodes created by ABBC3
+	* Post-Parser for special custom BBCodes created by ABBC3
 	*
 	* @param object $event The event object
 	* @return null
@@ -49,12 +49,12 @@ class parser
 	*/
 	public function post_parse_bbcodes($event)
 	{
-		// hidden bbcode
+		// hidden BBCode
 		$event['text'] = preg_replace_callback('#<!-- ABBC3_BBCODE_HIDDEN -->(.*?)<!-- ABBC3_BBCODE_HIDDEN -->#', array($this, 'hidden_pass'), $event['text']);
 	}
 
 	/**
-	* BBcode [bbvideo=width,height]url[/bbvideo]
+	* BBCode [bbvideo=width,height]url[/bbvideo]
 	*
 	* @param array $matches
 	* @return null
@@ -66,7 +66,7 @@ class parser
 	}
 
 	/**
-	* BBcode [hidden]text[/hidden]
+	* BBCode [hidden]text[/hidden]
 	*
 	* @param array $matches
 	* @return null

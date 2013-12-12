@@ -53,7 +53,7 @@ sup {
 	color: #80001c;
 }
 
-/* Moderator bbcode */
+/* Moderator BBCode */
 .ModTable {
 	background-color: #FFFFFF;
 	border: 1px solid #000000;
@@ -121,7 +121,7 @@ sup {
 
 .spoilbtn:hover { color: #d31141 }
 
-/* NFO bbcode */
+/* NFO BBCode */
 .nfo {
 	color: #000000;
 	font-weight: normal;
@@ -133,7 +133,7 @@ sup {
 	padding: 5px;
 }
 
-/* Offtopic bbcode */
+/* Offtopic BBCode */
 .OffTopic {
 	position: relative;
 	margin: 5px 0;
@@ -168,7 +168,7 @@ sup {
 	color: #333333;
 }
 
-/* Marquee bbcode */
+/* Marquee BBCode */
 .abbc3-marquee {
 	margin: 10px 0;
 	padding: 5px;
@@ -177,10 +177,10 @@ sup {
 	display: inline-block; /* IE <8 needs this tripped back to display: inline; to make it work on block elements */
 }
 
-/* hide native phpbb bbcode buttons */
+/* hide native phpbb BBCode buttons */
 #format-buttons, #core-bbcode-buttons, #custom-bbcode-buttons { display: none; }
 
-/* abbc3 bbcode buttons */
+/* abbc3 BBCode buttons */
 #abbc3_buttons { margin: 15px 0 2px 0; }
 
 #abbc3_buttons input, #abbc3_buttons select { vertical-align: middle; }

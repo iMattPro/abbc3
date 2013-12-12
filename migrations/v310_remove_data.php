@@ -107,7 +107,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 		}
 		$this->db->sql_freeresult($result);
 
-		// Delete all the unwanted bbcodes
+		// Delete all the unwanted BBCodes
 		$sql = 'DELETE FROM ' . $this->table_prefix . 'bbcodes
 			WHERE ' . $this->db->sql_in_set('bbcode_tag', $abbc3_bbcode_deprecated);
 		$this->db->sql_query($sql);
@@ -133,7 +133,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 			'url',
 			'url=',
 
-			// not really bbcodes
+			// not really BBCodes
 			'copy',
 			'cut',
 			'grad',
@@ -170,7 +170,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 			'liveleak',		// auto_embed_video
 			'veoh',			// auto_embed_video
 
-			// replaced by new bbcodes
+			// replaced by new BBCodes
 			'align=justify',	// replaced by align=
 			'align=left',		// replaced by align=
 			'align=right',		// replaced by align=
@@ -179,7 +179,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 			'marq=left',		// replaced by marq=
 			'marq=right',		// replaced by marq=
 
-			// updated bbcodes
+			// updated BBCodes
 	//		'align=center',	// replaced by align=
 	//		'blur=',		// Text_effect_pass
 	//		'dir=ltr',		// replaced by dir=
