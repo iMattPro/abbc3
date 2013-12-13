@@ -90,7 +90,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Modify the SQL statement to gather custom BBCode data
+	* Modify the SQL array to gather custom BBCode data
 	*
 	* @param object $event The event object
 	* @return void
@@ -98,10 +98,10 @@ class listener implements EventSubscriberInterface
 	*/
 	public function custom_bbcode_modify_sql($event)
 	{
-		$event['sql'] = 'SELECT bbcode_id, bbcode_tag, bbcode_helpline, bbcode_group
-			FROM ' . BBCODES_TABLE . '
-			WHERE display_on_posting = 1
-			ORDER BY bbcode_order';
+		$sql_ary = $event['sql_ary'];
+		$sql_ary['SELECT'] .= ', b.bbcode_group';
+		$sql_ary['ORDER_BY'] = 'b.bbcode_order';
+		$event['sql_ary'] = $sql_ary;
 	}
 
 	/**
@@ -174,8 +174,8 @@ class listener implements EventSubscriberInterface
 		$row = $event['row'];
 		$bbcodes_array = $event['bbcodes_array'];
 
-		$bbcodes_array['U_MOVE_UP'] = $event['this_u_action'] . '&amp;action=move_up&amp;id=' . $row['bbcode_id'];
-		$bbcodes_array['U_MOVE_DOWN'] = $event['this_u_action'] . '&amp;action=move_down&amp;id=' . $row['bbcode_id'];
+		$bbcodes_array['U_MOVE_UP'] = $event['u_action'] . '&amp;action=move_up&amp;id=' . $row['bbcode_id'];
+		$bbcodes_array['U_MOVE_DOWN'] = $event['u_action'] . '&amp;action=move_down&amp;id=' . $row['bbcode_id'];
 
 		$event['bbcodes_array'] = $bbcodes_array;
 	}
@@ -234,14 +234,14 @@ class listener implements EventSubscriberInterface
 
 		// Add some additional template variables
 		$template_data = $event['template_data'];
-		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['this_u_action'] . '&amp;action=drag_drop');
+		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['u_action'] . '&amp;action=drag_drop');
 		$template_data['IMG_AJAX_IMAGE'] = $phpbb_root_path . 'ext/vse/abbc3/images/accepted.png';
 		$event['template_data'] = $template_data;
 
 		// Change SQL so that it orders by bbcode_order
-		$event['sql'] = 'SELECT *
-			FROM ' . BBCODES_TABLE . '
-			ORDER BY bbcode_order';
+		$sql_ary = $event['sql_ary'];
+		$sql_ary['ORDER_BY'] = 'b.bbcode_order';
+		$event['sql_ary'] = $sql_ary;
 	}
 
 	/**
