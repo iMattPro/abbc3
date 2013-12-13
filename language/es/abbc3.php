@@ -33,7 +33,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> '&#9660; Ocultar Spoiler',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'OFF TOPIC',
+	'ABBC3_OFFTOPIC'			=> 'Off Topic',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Menú de fuentes',
@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Alinear texto: [align=center|left|right|justify]texto[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Incrustar cualquier URL de sitios web de videos: [BBvideo=width,height]Video URL[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Incrustar cualquier URL de sitios web de videos: [BBvideo=width,height]http://video_url[/BBvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Texto esfumado: [blur=color]texto[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Dirección del texto: [dir=ltr|rtl]texto[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Texto con sombra: [dropshadow=color]texto[/dropshadow]',
@@ -51,7 +51,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_FONT_HELPLINE'		=> 'Tipo de fuente: [font=Comic Sans MS]texto[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Texto con resplandor: [glow=color]texto[/glow]',
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Ocultar texto para invitados: [hidden]texto[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Texto resaltado: [highlight=yellow]texto[/highlight]',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Texto resaltado: [highlight=yellow]texto[/highlight]  Tip: puede usar código de color=#FF0000',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Texto marquesina: [marq=up|down|left|right]texto[/marq]',
 	'ABBC3_MOD_HELPLINE'		=> 'Texto de alerta: [mod=username]texto[/mod]',
 	'ABBC3_NFO_HELPLINE'		=> 'Texto NFO ASCII: [nfo]NFO texto[/nfo]',
@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Texto tachado: [s]texto[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Texto subíndice: [sub]texto[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texto superíndice: [sup]texto[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vídeo de YouTube: [youtube]URL[/youtube]',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vídeo de YouTube: [youtube]http://youtube_url[/youtube]',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copiar el texto seleccionado',

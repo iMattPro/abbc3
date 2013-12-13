@@ -33,7 +33,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> '&#9660; Hide Spoiler',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'OFF TOPIC',
+	'ABBC3_OFFTOPIC'			=> 'Off Topic',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Font Menu',
@@ -43,27 +43,27 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Align text: [align=center|left|right|justify]text[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Embed any video site url: [BBvideo=width,height]Video URL[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Embed any video site url: [BBvideo=width,height]http://video_url[/BBvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Blur text: [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Text direction: [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Drop shadow text: [dropshadow=color]text[/dropshadow]',
 	'ABBC3_FADE_HELPLINE'		=> 'Fade text: [fade]text[/fade]',
-	'ABBC3_FONT_HELPLINE'		=> 'Font Type: [font=Comic Sans MS]text[/font]',
+	'ABBC3_FONT_HELPLINE'		=> 'Font type: [font=Comic Sans MS]text[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Glow text: [glow=color]text[/glow]',
-	'ABBC3_HIDDEN_HELPLINE'		=> 'Hide text from guests: [hidden]text[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Highlight text: [highlight=yellow]text[/highlight]',
+	'ABBC3_HIDDEN_HELPLINE'		=> 'Hide from guests: [hidden]text[/hidden]',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Highlight text: [highlight=yellow]text[/highlight]  Tip: you can also use color=#FF0000',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Marquee text: [marq=up|down|left|right]text[/marq]',
-	'ABBC3_MOD_HELPLINE'		=> 'Alert text: [mod=username]text[/mod]',
-	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii art text: [nfo]NFO text[/nfo]',
-	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic text: [offtopic]text[/offtopic]',
+	'ABBC3_MOD_HELPLINE'		=> 'Alert message: [mod=username]text[/mod]',
+	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii art text: [nfo]text[/nfo]',
+	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic message: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Preformatted text: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Shadow text: [shadow=color]text[/shadow]',
 	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
-	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler text: [spoil]text[/spoil]',
+	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler message: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Strike-through text: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript text: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Superscript text: [sup]text[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]URL[/youtube]',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copy selected text',

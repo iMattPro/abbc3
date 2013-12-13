@@ -34,7 +34,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> '&#9660; Ukryj Spoiler',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'OFF TOPIC',
+	'ABBC3_OFFTOPIC'			=> 'Off Topic',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Menu czcionek',
@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Wyrównaj tekst: [align=center|left|right|justify]tekst[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Osadź dowolny plik wideo: [BBvideo=szerokość,wysokość]Adres URL[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Osadź dowolny plik wideo: [BBvideo=szerokość,wysokość]http://video_url[/BBvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Rozmycie tekstu: [blur=color]tekst[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Kierunek tekstu: [dir=ltr|rtl]tekst[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Tekst z twardym cieniem: [dropshadow=color]tekst[/dropshadow]',
@@ -52,7 +52,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_FONT_HELPLINE'		=> 'Rodzaj czcionki: [font=Comic Sans MS]tekst[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Poświata tekstu: [glow=color]tekst[/glow]',
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Ukryj tekst dla gośći: [hidden]tekst[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Wyróżnij tekst: [highlight=yellow]tekst[/highlight]',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Wyróżnij tekst: [highlight=yellow]tekst[/highlight]  Podpowiedź: możesz również opisać kolor HEXami',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Pływający tekst: [marq=up|down|left|right]tekst[/marq]',
 	'ABBC3_MOD_HELPLINE'		=> 'Wiadomość moderatora: [mod=username]tekst[/mod]',
 	'ABBC3_NFO_HELPLINE'		=> 'Informacja NFO: [nfo]NFO tekst[/nfo]',
@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Przekreślenie tekstu: [s]tekst[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Indeks dolny: [sub]tekst[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Indeks górny: [sup]tekst[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'Film z YouTube: [youtube]URL[/youtube]',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'Film z YouTube: [youtube]http://youtube_url[/youtube]',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopiuj zaznaczony tekst',
