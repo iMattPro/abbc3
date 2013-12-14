@@ -54,10 +54,10 @@ class parser
 	}
 
 	/**
-	* BBCode [bbvideo=width,height]url[/bbvideo]
+	* Convert BBvideo from older ABBC3 posts to the new format
 	*
 	* @param array $matches
-	* @return null
+	* @return string BBvideo in the correct BBCode format
 	* @access private
 	*/
 	private function bbvideo_pass($matches)
@@ -66,10 +66,10 @@ class parser
 	}
 
 	/**
-	* BBCode [hidden]text[/hidden]
+	* Convert Hidden BBCode into its final appearance
 	*
 	* @param array $matches
-	* @return null
+	* @return string HTML render of hidden bbcode
 	* @access private
 	*/
 	private function hidden_pass($matches)
