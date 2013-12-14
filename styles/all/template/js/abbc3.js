@@ -5,7 +5,7 @@
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
-;(function ($, window, document){
+;(function ($, window, document) {
 
 	/**
 	* BBvideo function
@@ -487,7 +487,7 @@
 				};
 
 			if (el.data("bbvideo").length) {
-				dimensions.width  = el.data("bbvideo").split(",")[0].trim() || settings.width;
+				dimensions.width = el.data("bbvideo").split(",")[0].trim() || settings.width;
 				dimensions.height = el.data("bbvideo").split(",")[1].trim() || settings.height;
 			}
 
@@ -498,19 +498,19 @@
 					switch (bbvideos[i].type) {
 						case "flash":
 							embedWrapper(el, url.replace(bbvideos[i].regex, flashCode(bbvideos[i].embed[0], bbvideos[i].embed[1], dimensions)));
-						break;
+							break;
 
 						case "ogp":
 							ogpRequest(el, url, bbvideos[i].regex, dimensions);
-						break;
+							break;
 
 						case "oembed":
 							oembedRequest(el, url.replace(bbvideos[i].regex, bbvideos[i].embed), dimensions);
-						break;
+							break;
 
 						default:
 							embedWrapper(el, url.replace(bbvideos[i].regex, bbvideos[i].embed.replace(/{WIDTH}/g, dimensions.width).replace(/{HEIGHT}/g, dimensions.height)));
-						break;
+							break;
 					}
 
 					break;
