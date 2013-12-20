@@ -74,6 +74,18 @@ $lang = array_merge($lang, array(
 	'ABBC3_PLAIN_BBCODE'		=> 'Usuń wszystkie znacznki BBCode z zaznaczonego tekstu',
 	'ABBC3_NOSELECT_ERROR'		=> 'Tekst nie został wybrany.',
 
+	// BBCode Wizards
+	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Wstawić do wiadomość',
+	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Przykład',
+
+	// BBvideo Wizard
+	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo dozwolone witryny',
+	'ABBC3_BBVIDEO_LINK'		=> 'URL wideo',
+	'ABBC3_BBVIDEO_PRESETS'		=> 'Presets rozmiar',
+	'ABBC3_BBVIDEO_DIMENSIONS'	=> 'Szerokość x Wysokość wideo',
+	'ABBC3_BBVIDEO_HEIGHT'		=> '315',
+	'ABBC3_BBVIDEO_WIDTH'		=> '560',
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Kolejność BBCode została zsynchronizowana.',
 	'ABBC3_BBCODE_GROUP'		=> 'Zarządzaj grupami, które mogą używać tego BBCode',

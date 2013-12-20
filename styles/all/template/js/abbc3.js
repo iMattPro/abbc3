@@ -428,6 +428,38 @@
 	};
 
 	/**
+	* Show the bbcode wizard (scope must be global)
+	*/
+	bbwizard = function (href, bbcode) {
+		var wizard = $("#bbcode_wizard");
+		if (!wizard.is(":visible")) {	
+			$.ajax({
+				url: href,
+				dataType: "html",
+				beforeSend: function () {
+					// Clear the bbwizard div
+					wizard.hide().empty();
+				},
+				success: function (data) {
+					// Append the new html to the bbwizard div and show it
+					wizard.append(data).fadeIn("fast");
+				},
+				error: function () {
+					// On AJAX error, revert to default bbcode application
+					switch (bbcode) {
+						case "bbvideo":
+							bbfontstyle("[BBvideo=560,315]", "[/BBvideo]");
+							break;
+						default:
+							bbfontstyle("[" + bbcode + "]", "[/" + bbcode + "]");
+							break;
+					}
+				}
+			});
+		}
+	};
+
+	/**
 	* DOM READY
 	*/
 	$(document).ready(function () {
@@ -456,6 +488,41 @@
 			spoiler.slideToggle("fast", function () {
 				trigger.html(spoiler.is(":visible") ? trigger.data("hide") : trigger.data("show"));
 			});
+		});
+
+		/**
+		* BBCode Wizard functions
+		*/
+		var wizard = $("#bbcode_wizard");
+		// Click on body to dismiss bbcode wizard
+		$('body').on("click", function () {
+			wizard.fadeOut('fast');
+		});
+		// Click on bbcode wizard submit button to apply bbcode to message
+		wizard.on("click", "#bbvideo_wizard_submit", function () {
+			bbfontstyle("[BBvideo=" + $("#bbvideo_wizard_width").val() + "," + $("#bbvideo_wizard_height").val() + "]" + $("#bbvideo_wizard_link").val() + "", "[/BBvideo]");
+			wizard.fadeOut('fast');
+		})
+		// Click on bbcode wizard cancel button to dismiss bbcode wizard
+		.on("click", "#bbvideo_wizard_cancel", function () {
+			wizard.fadeOut('fast');
+		})
+		// Change bbvideo allowed sites option updates bbvideo example
+		.on("change", "#bbvideo_wizard_sites", function () {
+			$("#bbvideo_wizard_example").val($(this).val());
+		})
+		// Change bbvideo size presets updates bbvideo height and width
+		.on("change", "#bbvideo_wizard_size_presets", function () {
+			if ($(this).val().length != 0) {
+				var dims = $(this).val().split("x");
+				$("#bbvideo_wizard_width").val(dims[0]);
+				$("#bbvideo_wizard_height").val(dims[1]);
+			}
+		})
+		// Prevent clicks on bbcode wizard from bubbling up 
+		// to the body and prematurely dismissing itself
+		.click(function (event) {
+			event.stopPropagation();
 		});
 
 	});

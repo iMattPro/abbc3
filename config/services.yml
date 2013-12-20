@@ -19,3 +19,10 @@ services:
         class: vse\abbc3\event\listener
         tags:
             - { name: event.listener }
+    vse.abbc3.wizard:
+        class: vse\abbc3\controller\wizard
+        arguments:
+            - @controller.helper
+            - @request
+            - @template
+            - @user

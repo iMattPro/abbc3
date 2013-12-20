@@ -211,3 +211,31 @@ form td .abbc3_buttons_row { width: 98% }
 /* tweaks for ACP user signature */
 #user_signature #abbc3_buttons { margin-left: 96px }
 #user_signature #abbc3_buttons .abbc3_buttons_row { width: 95% }
+
+/* bbcode wizard */
+#bbcode_wizard {
+	font-size: 0.9em;
+	display: none;
+	background: white;
+	-webkit-box-shadow: 2px 2px 4px #555555;
+	-moz-box-shadow: 2px 2px 4px #555555;
+	box-shadow: 2px 2px 4px #555555;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	border-radius: 11px;
+	border: 5px solid #12A3EB;
+	padding: 5px;
+	position: absolute;
+	width: 500px;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	z-index: 500;
+}
+
+/* responsive design */
+@media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
+	#bbcode_wizard {
+		width: 300px !important;
+	}
+}

@@ -1,6 +1,8 @@
 <script>
 // <![CDATA[
 var copy_paste = '';
+var bbvideoHeight = '{L_ABBC3_BBVIDEO_HEIGHT}';
+var bbvideoWidth = '{L_ABBC3_BBVIDEO_WIDTH}';
 
 /**
 * Strip all BBCodes from the selected text
@@ -136,7 +138,11 @@ function bbspecial(bbcode, bbcodeId) {
 			break;
 
 		case "BBvideo=":
-			bbfontstyle("[BBvideo=560,315]", "[/BBvideo]");
+			if (theSelection) {
+				bbfontstyle("[BBvideo=" + bbvideoWidth + "," + bbvideoHeight + "]", "[/BBvideo]");
+			} else {
+				bbwizard("{U_ABBC3_BBVIDEO_WIZARD}", "bbvideo");
+			}
 			break;
 
 		default:
@@ -237,3 +243,4 @@ function bbspecial(bbcode, bbcodeId) {
 		</div>
 	<!-- ENDIF -->
 </div>
+<div id="bbcode_wizard"></div>

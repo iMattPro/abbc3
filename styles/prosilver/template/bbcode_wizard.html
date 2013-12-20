@@ -1,0 +1,47 @@
+<form>
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<fieldset>
+			<dl>
+				<dt><label for="bbvideo_wizard_sites">{L_ABBC3_BBVIDEO_SITES}{L_COLON}</label></dt>
+				<dd>
+					<select id="bbvideo_wizard_sites" name="bbvideo_wizard_sites">
+						{S_ABBC3_BBVIDEO_SITES}
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt><label for="bbvideo_wizard_example">{L_ABBC3_BBCODE_WIZ_EXAMPLE}{L_COLON}</label></dt>
+				<dd>
+					<input type="text" id="bbvideo_wizard_example" name="bbvideo_wizard_example" readonly="readonly" value="{ABBC3_BBVIDEO_LINK_EX}" size="45" class="inputbox autowidth disabled" />
+				</dd>
+			</dl>
+			<hr />
+			<dl>
+				<dt><label for="bbvideo_wizard_link">{L_ABBC3_BBVIDEO_LINK}{L_COLON}</label></dt>
+				<dd>
+					<input type="text" id="bbvideo_wizard_link" name="bbvideo_wizard_link" value="" class="inputbox autowidth" size="45" />
+				</dd>
+			</dl>
+			<dl>
+				<dt><label for="bbvideo_wizard_width">{L_ABBC3_BBVIDEO_DIMENSIONS}{L_COLON}</label></dt>
+				<dd>
+					<input type="number" id="bbvideo_wizard_width" name="bbvideo_wizard_width" value="{L_ABBC3_BBVIDEO_WIDTH}" class="inputbox autowidth" min="0" max="9999" size="4" /> x <input type="number" id="bbvideo_wizard_height" name="bbvideo_wizard_height" value="{L_ABBC3_BBVIDEO_HEIGHT}" class="inputbox autowidth" min="0" max="9999" size="4" />
+					<select id="bbvideo_wizard_size_presets" name="bbvideo_wizard_size_presets">
+						<option value="">{L_ABBC3_BBVIDEO_PRESETS}</option>
+						{S_ABBC3_BBVIDEO_SIZES}
+					</select>
+				</dd>
+			</dl>
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<div class="panel" style="margin-bottom: 0px;">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<fieldset class="submit-buttons">
+			<input type="button" name="bbvideo_wizard_submit" id="bbvideo_wizard_submit" value="{L_ABBC3_BBCODE_WIZ_SUBMIT}" class="button1" />&nbsp;
+			<input type="button" name="bbvideo_wizard_cancel" id="bbvideo_wizard_cancel" value="{L_CANCEL}" class="button2" />
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</form>

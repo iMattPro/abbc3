@@ -113,11 +113,12 @@ class listener implements EventSubscriberInterface
 	*/
 	public function setup_custom_bbcodes($event)
 	{
-		global $user, $template, $phpbb_root_path;
+		global $user, $template, $phpbb_root_path, $phpbb_container;
 
 		$template->assign_vars(array(
 			'ABBC3_USERNAME'			=> $user->data['username'],
 			'ABBC3_BBCODE_ICONS'		=> $phpbb_root_path . 'ext/vse/abbc3/images/icons',
+			'U_ABBC3_BBVIDEO_WIZARD'	=> $phpbb_container->get('controller.helper')->url('wizard/bbcode/bbvideo'),
 		));
 	}
 
