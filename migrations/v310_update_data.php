@@ -223,6 +223,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 				'bbcode_helpline'	=> 'ABBC3_YOUTUBE_HELPLINE',
 				'bbcode_match'		=> '[youtube]{URL}[/youtube]',
 				'bbcode_tpl'		=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,315">{URL}</a>',
+				'display_on_posting'=> 0,
 			),
 		);
 	}
