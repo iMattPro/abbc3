@@ -121,8 +121,8 @@ class v310_update_data extends \phpbb\db\migration\migration
 			),
 			'align=center' => array(
 				'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
-				'bbcode_match'		=> '[align={SIMPLETEXT}]{TEXT}[/align]',
-				'bbcode_tpl'		=> '<span style="text-align: {SIMPLETEXT}; display: block;">{TEXT}</span>',
+				'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
+				'bbcode_tpl'		=> '<span style="text-align:{IDENTIFIER}; display:block;">{TEXT}</span>',
 			),
 			'float=' => array(
 				'bbcode_helpline'	=> 'ABBC3_FLOAT_HELPLINE',
@@ -176,13 +176,13 @@ class v310_update_data extends \phpbb\db\migration\migration
 			),
 			'dir=ltr' => array(
 				'bbcode_helpline'	=> 'ABBC3_DIR_HELPLINE',
-				'bbcode_match'		=> '[dir={SIMPLETEXT}]{TEXT}[/dir]',
-				'bbcode_tpl'		=> '<bdo dir="{SIMPLETEXT}">{TEXT}</bdo>',
+				'bbcode_match'		=> '[dir={IDENTIFIER}]{TEXT}[/dir]',
+				'bbcode_tpl'		=> '<bdo dir="{IDENTIFIER}">{TEXT}</bdo>',
 			),
 			'marq=up' => array(
 				'bbcode_helpline'	=> 'ABBC3_MARQUEE_HELPLINE',
-				'bbcode_match'		=> '[marq={SIMPLETEXT}]{TEXT}[/marq]',
-				'bbcode_tpl'		=> '<marquee class="abbc3_marquee" direction="{SIMPLETEXT}" scrolldelay="100" onmouseover="this.scrollDelay=10000000;" onmouseout="this.scrollDelay=100;">{TEXT}</marquee>',
+				'bbcode_match'		=> '[marq={IDENTIFIER}]{TEXT}[/marq]',
+				'bbcode_tpl'		=> '<marquee class="abbc3_marquee" direction="{IDENTIFIER}" scrolldelay="100" onmouseover="this.scrollDelay=10000000;" onmouseout="this.scrollDelay=100;">{TEXT}</marquee>',
 			),
 			'spoil' => array(
 				'bbcode_helpline'	=> 'ABBC3_SPOILER_HELPLINE',
