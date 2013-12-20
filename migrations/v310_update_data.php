@@ -147,22 +147,22 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'glow=' => array(
 				'bbcode_helpline'	=> 'ABBC3_GLOW_HELPLINE',
 				'bbcode_match'		=> '[glow={COLOR}]{TEXT}[/glow]',
-				'bbcode_tpl'		=> '<span class="glow" style="display: inline-block; padding: 0 0.5em; color: #ffffff; text-shadow: 0 0 1em {COLOR}, 0 0 1em {COLOR}, 0 0 1.2em {COLOR};">{TEXT}</span>',
+				'bbcode_tpl'		=> '<span class="glow" style="display: inline; padding: 0 6px; color: #ffffff; text-shadow: 0 0 1em {COLOR}, 0 0 1em {COLOR}, 0 0 1.2em {COLOR};">{TEXT}</span>',
 			),
 			'shadow=' => array(
 				'bbcode_helpline'	=> 'ABBC3_SHADOW_HELPLINE',
 				'bbcode_match'		=> '[shadow={COLOR}]{TEXT}[/shadow]',
-				'bbcode_tpl'		=> '<span class="shadow" style="display: inline-block; padding: 0 0.5em; color: {COLOR}; text-shadow: -0.2em 0.2em 0.2em #999;">{TEXT}</span>',
+				'bbcode_tpl'		=> '<span class="shadow" style="display: inline; padding: 0 6px; color: {COLOR}; text-shadow: -2px 2px 2px #999;">{TEXT}</span>',
 			),
 			'dropshadow=' => array(
 				'bbcode_helpline'	=> 'ABBC3_DROPSHADOW_HELPLINE',
 				'bbcode_match'		=> '[dropshadow={COLOR}]{TEXT}[/dropshadow]',
-				'bbcode_tpl'		=> '<span class="dropshadow" style="display: inline-block; padding: 0 0.5em; color: {COLOR}; text-shadow: -0.1em 0.1em 0.05em #999;">{TEXT}</span>',
+				'bbcode_tpl'		=> '<span class="dropshadow" style="display: inline; padding: 0 6px; color: {COLOR}; text-shadow: -1px 1px 0 #999;">{TEXT}</span>',
 			),
 			'blur=' => array(
 				'bbcode_helpline'	=> 'ABBC3_BLUR_HELPLINE',
 				'bbcode_match'		=> '[blur={COLOR}]{TEXT}[/blur]',
-				'bbcode_tpl'		=> '<span class="blur" style="display: inline-block; padding: 0 0.5em; color: transparent; text-shadow: 0 0 0.2em {COLOR};">{TEXT}</span>',
+				'bbcode_tpl'		=> '<span class="blur" style="display: inline; padding: 0 6px; color: transparent; text-shadow: 0 0 0.2em {COLOR};">{TEXT}</span>',
 			),
 			'fade' => array(
 				'bbcode_helpline'	=> 'ABBC3_FADE_HELPLINE',
