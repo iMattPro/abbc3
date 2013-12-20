@@ -124,6 +124,11 @@ class v310_update_data extends \phpbb\db\migration\migration
 				'bbcode_match'		=> '[align={SIMPLETEXT}]{TEXT}[/align]',
 				'bbcode_tpl'		=> '<span style="text-align: {SIMPLETEXT}; display: block;">{TEXT}</span>',
 			),
+			'float=' => array(
+				'bbcode_helpline'	=> 'ABBC3_FLOAT_HELPLINE',
+				'bbcode_match'		=> '[float={IDENTIFIER}]{TEXT}[/float]',
+				'bbcode_tpl'		=> '<div style="float:{IDENTIFIER}; padding:0 10px;">{TEXT}</div>',
+			),
 			'pre' => array(
 				'bbcode_helpline'	=> 'ABBC3_PREFORMAT_HELPLINE',
 				'bbcode_match'		=> '[pre]{TEXT}[/pre]',

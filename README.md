@@ -12,8 +12,9 @@ ABBC3 was a popular MOD for phpBB 3.0. Due to the changes in the new Extensions 
 
 		Copy, Paste, Plain, Font Family, Highlight Text, Strike through text, Superscript,
 		Subscript, Glow, Shadow, Dropshadow, Blur, Fade text, Justify Align, Right Align,
-		Center Align, Left Align, LTR/RTL Direction, Preformatted text, Scrolling marquee
-		text, Spoiler, Hidden, Moderator Message, Off Topic, NFO, Email, YouTube, BBvideo
+		Center Align, Left Align, Float Left, Float Right, LTR/RTL Direction, Preformatted
+		text, Scrolling marquee text, Spoiler, Hidden, Moderator Message, Off Topic, NFO,
+		Email, YouTube, BBvideo
 
 * Embed video in your posts with BBvideo, supported video sharing sites:
 
