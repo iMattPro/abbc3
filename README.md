@@ -5,9 +5,9 @@ ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and customizabl
 ABBC3 was a popular MOD for phpBB 3.0. Due to the changes in the new Extensions system for phpBB 3.1, ABBC3 will be significantly changed. It can not simply be ported over from 3.0 to 3.1. ABBC3 will be re-focused on providing a professional looking BBCode toolbar along with a suite of useful custom BBCodes. The following is a list of what is changing.
 
 ## Surviving Features:
-* Customizable icon-based BBCode toolbar (pending future template system changes in phpBB 3.1)
-* Custom BBCode sorting/arrangement (pending future template system changes in phpBB 3.1)
-* Custom BBCode group permissions (pending future template system changes in phpBB 3.1)
+* Customizable icon-based BBCode toolbar
+* Custom BBCode sorting/arrangement
+* Custom BBCode group permissions
 * Custom BBCodes:
 
 		Copy, Paste, Plain, Font Family, Highlight Text, Strike through text, Superscript,

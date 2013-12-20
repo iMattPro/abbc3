@@ -48,6 +48,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_DIR_HELPLINE'		=> 'Dirección del texto: [dir=ltr|rtl]texto[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Texto con sombra: [dropshadow=color]texto[/dropshadow]',
 	'ABBC3_FADE_HELPLINE'		=> 'Texto descolorido: [fade]texto[/fade]',
+	'ABBC3_FLOAT_HELPLINE'		=> 'Flotador texto: [float=left|right]texto[/float]',
 	'ABBC3_FONT_HELPLINE'		=> 'Tipo de fuente: [font=Comic Sans MS]texto[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Texto con resplandor: [glow=color]texto[/glow]',
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Ocultar texto para invitados: [hidden]texto[/hidden]',
@@ -70,8 +71,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PASTE_BBCODE'		=> 'Pegar el texto seleccionado',
 	'ABBC3_PASTE_ERROR'			=> 'Primero debe copiar un texto seleccionado, a continuación, péguelo',
 	'ABBC3_PLAIN_BBCODE'		=> 'Quitar todas las etiquetas BBCode del texto seleccionado',
-
-	'ABBC3_ERROR'				=> 'Error',
 	'ABBC3_NOSELECT_ERROR'		=> 'No hay texto seleccionado.',
 
 	// ACP

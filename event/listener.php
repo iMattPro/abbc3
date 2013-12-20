@@ -116,8 +116,8 @@ class listener implements EventSubscriberInterface
 		global $user, $template, $phpbb_root_path;
 
 		$template->assign_vars(array(
-			'ABBC3_BBCODE_ICONS'	=> $phpbb_root_path . 'ext/vse/abbc3/images/icons',
-			'ABBC3_USERNAME'		=> $user->data['username'],
+			'ABBC3_USERNAME'			=> $user->data['username'],
+			'ABBC3_BBCODE_ICONS'		=> $phpbb_root_path . 'ext/vse/abbc3/images/icons',
 		));
 	}
 
