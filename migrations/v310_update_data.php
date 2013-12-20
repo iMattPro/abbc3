@@ -217,7 +217,7 @@ class v310_update_data extends \phpbb\db\migration\migration
 			'youtube' => array(
 				'bbcode_helpline'	=> 'ABBC3_YOUTUBE_HELPLINE',
 				'bbcode_match'		=> '[youtube]{URL}[/youtube]',
-				'bbcode_tpl'		=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,340">{URL}</a>',
+				'bbcode_tpl'		=> '<a href="{URL}" class="bbvideo" data-bbvideo="560,315">{URL}</a>',
 			),
 		);
 	}

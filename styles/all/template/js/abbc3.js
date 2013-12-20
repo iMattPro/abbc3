@@ -14,7 +14,7 @@
 
 		var settings = $.extend({
 			width: 560,
-			height: 340
+			height: 315
 		}, options);
 
 		var bbvideos = [
