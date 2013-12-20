@@ -39,6 +39,15 @@ class wizard
 		$this->user = $user;
 	}
 
+	/**
+	* BBCode wizard controller accessed with the URL /wizard/bbcode/{mode}
+	* (where {mode} is the placeholder for a string of the bbcode name)
+	* intended to be accessed via AJAX only
+	*
+	* @param strng	$mode		Mode taken from the URL 
+	* @return Symfony\Component\HttpFoundation\Response A Symfony Response object
+	* @access public
+	*/
 	public function bbcode_wizard($mode)
 	{
 		if (!$this->request->is_ajax())
@@ -85,6 +94,12 @@ class wizard
 		}
 	}
 	
+	/*
+	* Return an array of allowed BBvideo sites and example URLs
+	*
+	* @return array Allowed BBvideo sites and URLs
+	* @access private
+	*/
 	private function bbvideo_sites()
 	{
 		return array(
@@ -125,8 +140,6 @@ class wizard
 			'nbcnews.com' => 'http://www.nbcnews.com/video/nbc-news/53875621/#53875621',
 			'on.aol.com' => 'http://on.aol.com/video/ipad-to-embrace-new-name-517297508',
 			'photobucket.com' => 'http://s0006.photobucket.com/albums/0006/pbhomepage/Ice%20Age/?action=view&current=TFEIT301100-H264_Oct27.mp4',
-//			'qik.com' => 'http://qik.com/video/43675514',
-//			'revision3.com' => 'http://revision3.com/scamschool/fortheladies2',
 			'rutube.ru' => 'http://rutube.ru/video/238973b0c167d0a9f4f26686e42407e4/',
 			'sapo.pt' => 'http://videos.sapo.pt/LguPabwSWikK0wzBmU1o',
 			'screenr.com' => 'http://www.screenr.com/fTK',
@@ -137,10 +150,8 @@ class wizard
 			'spike.com' => 'http://www.spike.com/video-clips/32xg36/winter-passing-trailer',
 			'streetfire.net' => 'http://www.streetfire.net/video/standing-moto-double-fail_2381106.htm',
 			'ted.com' => 'http://www.ted.com/talks/henry_evans_and_chad_jenkins_meet_the_robots_for_humanity.html',
-//			'testtube.com' => 'http://testtube.com/scamschool/fortheladies2',
 			'thedailyshow.com' => 'http://www.thedailyshow.com/watch/thu-june-28-2012/roberts--rules-of-order',
 			'theonion.com' => 'http://www.theonion.com/video/stephen-strasburg-ceremoniously-reinjures-arm-on-o,27866/',
-//			'tu.tv' => 'http://tu.tv/videos/el-gato-boxeador',
 			'twitch.tv' => 'http://www.twitch.tv/rzn732',
 			'twitvid.com' => 'http://twitvid.com/0U73M',
 			'ustream.tv' => 'http://www.ustream.tv/channel/9948292',
@@ -161,6 +172,12 @@ class wizard
 		);
 	}
 
+	/*
+	* Return an array of commonly used size dimensions for embedded video
+	*
+	* @return array Size dimensions
+	* @access private
+	*/
 	private function bbvideo_size_presets()
 	{
 		return array(
