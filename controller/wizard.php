@@ -181,10 +181,10 @@ class wizard
 	private function bbvideo_size_presets()
 	{
 		return array(
-			'560 x 315',
-			'640 x 360',
-			'853 x 480',
-			'1280 x 720',
+			$this->user->lang['ABBC3_BBVIDEO_PRESETS_SM'],
+			$this->user->lang['ABBC3_BBVIDEO_PRESETS_MD'],
+			$this->user->lang['ABBC3_BBVIDEO_PRESETS_LG'],
+			$this->user->lang['ABBC3_BBVIDEO_PRESETS_XL'],
 		);
 	}
 }

@@ -80,10 +80,14 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo sitios permitidos',
 	'ABBC3_BBVIDEO_LINK'		=> 'URL del video',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Presets Tamaño',
 	'ABBC3_BBVIDEO_DIMENSIONS'	=> 'Ancho x Altura Vídeo',
 	'ABBC3_BBVIDEO_HEIGHT'		=> '315',
 	'ABBC3_BBVIDEO_WIDTH'		=> '560',
+	'ABBC3_BBVIDEO_PRESETS'		=> 'Presets Tamaño',
+	'ABBC3_BBVIDEO_PRESETS_SM'	=> '560 x 315',
+	'ABBC3_BBVIDEO_PRESETS_MD'	=> '640 x 360',
+	'ABBC3_BBVIDEO_PRESETS_LG'	=> '853 x 480',
+	'ABBC3_BBVIDEO_PRESETS_XL'	=> '1280 x 720',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'El orden de los BBCodes ha sido resincronizado.',
