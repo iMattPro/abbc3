@@ -62,7 +62,7 @@ class parser
 	*/
 	private function bbvideo_pass($matches)
 	{
-		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : "[bbvideo=560,315:$matches[3]]$matches[4][/bbvideo:$matches[3]]";
+		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : '[bbvideo=' . $this->user->lang['ABBC3_BBVIDEO_WIDTH'] . ',' . $this->user->lang['ABBC3_BBVIDEO_HEIGHT'] . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
 	}
 
 	/**

@@ -81,9 +81,9 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo dozwolone witryny',
 	'ABBC3_BBVIDEO_LINK'		=> 'URL wideo',
-	'ABBC3_BBVIDEO_DIMENSIONS'	=> 'Szerokość x Wysokość wideo',
-	'ABBC3_BBVIDEO_HEIGHT'		=> '315',
+	'ABBC3_BBVIDEO_SIZE'		=> 'Szerokość x Wysokość wideo',
 	'ABBC3_BBVIDEO_WIDTH'		=> '560',
+	'ABBC3_BBVIDEO_HEIGHT'		=> '315',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Presets rozmiar',
 	'ABBC3_BBVIDEO_PRESETS_SM'	=> '560 x 315',
 	'ABBC3_BBVIDEO_PRESETS_MD'	=> '640 x 360',
