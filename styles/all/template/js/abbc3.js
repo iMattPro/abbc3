@@ -5,6 +5,11 @@
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
+
+// global scope vars
+var requestRunning = false;
+var bbwizard;
+
 ;(function ($, window, document) {
 
 	/**
@@ -431,31 +436,37 @@
 	* Show the bbcode wizard (scope must be global)
 	*/
 	bbwizard = function (href, bbcode) {
-		var wizard = $("#bbcode_wizard");
-		if (!wizard.is(":visible")) {	
-			$.ajax({
-				url: href,
-				dataType: "html",
-				beforeSend: function () {
-					// Clear the bbwizard div
-					wizard.hide().empty();
-				},
-				success: function (data) {
-					// Append the new html to the bbwizard div and show it
-					wizard.append(data).fadeIn("fast");
-				},
-				error: function () {
-					// On AJAX error, revert to default bbcode application
-					switch (bbcode) {
-						case "bbvideo":
-							bbfontstyle("[BBvideo=560,315]", "[/BBvideo]");
-							break;
-						default:
-							bbfontstyle("[" + bbcode + "]", "[/" + bbcode + "]");
-							break;
+		if (!requestRunning) {
+			var wizard = $("#bbcode_wizard");
+			if (!wizard.is(":visible")) {	
+				requestRunning = true;
+				$.ajax({
+					url: href,
+					dataType: "html",
+					beforeSend: function () {
+						// Clear the bbwizard div
+						wizard.hide().empty();
+					},
+					success: function (data) {
+						// Append the new html to the bbwizard div and show it
+						wizard.append(data).fadeIn("fast");
+					},
+					error: function () {
+						// On AJAX error, revert to default bbcode application
+						switch (bbcode) {
+							case "bbvideo":
+								bbfontstyle("[BBvideo=560,315]", "[/BBvideo]");
+								break;
+							default:
+								bbfontstyle("[" + bbcode + "]", "[/" + bbcode + "]");
+								break;
+						}
+					},
+					complete: function () {
+						requestRunning = false;
 					}
-				}
-			});
+				});
+			}
 		}
 	};
 
@@ -491,7 +502,7 @@
 		});
 
 		/**
-		* BBCode Wizard functions
+		* BBCode Wizard listener events
 		*/
 		var wizard = $("#bbcode_wizard");
 		// Click on body to dismiss bbcode wizard
@@ -499,12 +510,14 @@
 			wizard.fadeOut('fast');
 		});
 		// Click on bbcode wizard submit button to apply bbcode to message
-		wizard.on("click", "#bbvideo_wizard_submit", function () {
+		wizard.on("click", "#bbvideo_wizard_submit", function (event) {
+			event.preventDefault();
 			bbfontstyle("[BBvideo=" + $("#bbvideo_wizard_width").val() + "," + $("#bbvideo_wizard_height").val() + "]" + $("#bbvideo_wizard_link").val() + "", "[/BBvideo]");
 			wizard.fadeOut('fast');
 		})
 		// Click on bbcode wizard cancel button to dismiss bbcode wizard
-		.on("click", "#bbvideo_wizard_cancel", function () {
+		.on("click", "#bbvideo_wizard_cancel", function (event) {
+			event.preventDefault();
 			wizard.fadeOut('fast');
 		})
 		// Change bbvideo allowed sites option updates bbvideo example
@@ -513,7 +526,7 @@
 		})
 		// Change bbvideo size presets updates bbvideo height and width
 		.on("change", "#bbvideo_wizard_size_presets", function () {
-			if ($(this).val().length != 0) {
+			if ($(this).val().length !== 0) {
 				var dims = $(this).val().split("x");
 				$("#bbvideo_wizard_width").val(dims[0]);
 				$("#bbvideo_wizard_height").val(dims[1]);
