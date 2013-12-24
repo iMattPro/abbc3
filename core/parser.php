@@ -37,7 +37,7 @@ class parser
 	public function pre_parse_bbcodes($event)
 	{
 		// bbvideo BBCode
-		$event['text'] = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?:([A-Za-z0-9]+)\]([^[]+)\[/\1:\3\]#is', array($this, 'bbvideo_pass'), $event['text']);
+		$event['text'] = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?:(' . $event['uid'] . ')\]([^[]+)\[/\1:\3\]#is', array($this, 'bbvideo_pass'), $event['text']);
 	}
 
 	/**
