@@ -47,7 +47,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BLUR_HELPLINE'		=> 'Blur text: [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Text direction: [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Drop shadow text: [dropshadow=color]text[/dropshadow]',
-	'ABBC3_FADE_HELPLINE'		=> 'Fade text: [fade]text[/fade]',
+	'ABBC3_FADE_HELPLINE'		=> 'Text fadein / fadeout: [fade]text[/fade]',
 	'ABBC3_FLOAT_HELPLINE'		=> 'Float text: [float=left|right]text[/float]',
 	'ABBC3_FONT_HELPLINE'		=> 'Font type: [font=Comic Sans MS]text[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Glow text: [glow=color]text[/glow]',
