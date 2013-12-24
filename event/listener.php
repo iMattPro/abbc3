@@ -19,24 +19,36 @@ class listener implements EventSubscriberInterface
 	/** @var \vse\abbc3\core\acp_manager */
 	protected $acp_manager;
 
+	/**
+	* Assign functions defined in this class to event listeners in the core
+	*
+	* @return array
+	* @static
+	* @access public
+	*/
 	static public function getSubscribedEvents()
 	{
 		return array(
 			'core.user_setup'							=> 'load_abbc3_on_setup',
+
+			// functions_content.php events
 			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before',
 			'core.modify_text_for_display_after'		=> 'parse_bbcodes_after',
 
+			// functions_display.php events
 			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
-			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql', // needs to be requested in functions_display
+			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql',
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
 
-			'core.modify_format_display_text_after'		=> 'parse_bbcodes_after', // needs to be requested in message_parser
-			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes', // needs to be requested in message parser
+			// message_parser.php events
+			'core.modify_format_display_text_after'		=> 'parse_bbcodes_after',
+			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes',
 
-			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_custom_sorting', // needs to be requested in acp_bbcodes
-			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_custom_sorting_buttons', // needs to be requested in acp_bbcodes
-			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create', // needs to be requested in acp_bbcodes
-			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_group_select_box', // needs to be requested in acp_bbcodes
+			// acp_bbcodes.php events
+			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_custom_sorting',
+			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_custom_sorting_buttons',
+			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create',
+			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_group_select_box',
 		);
 	}
 
@@ -44,7 +56,7 @@ class listener implements EventSubscriberInterface
 	* Load common files during user setup
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function load_abbc3_on_setup($event)
@@ -63,7 +75,7 @@ class listener implements EventSubscriberInterface
 	* This is used to change old/malformed ABBC3 BBCodes to a newer structure
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function parse_bbcodes_before($event)
@@ -79,7 +91,7 @@ class listener implements EventSubscriberInterface
 	* This is used on ABBC3 BBCodes that require additional post-processing
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function parse_bbcodes_after($event)
@@ -93,7 +105,7 @@ class listener implements EventSubscriberInterface
 	* Modify the SQL array to gather custom BBCode data
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function custom_bbcode_modify_sql($event)
@@ -108,7 +120,7 @@ class listener implements EventSubscriberInterface
 	* Setup custom BBCode variables
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function setup_custom_bbcodes($event)
@@ -126,7 +138,7 @@ class listener implements EventSubscriberInterface
 	* Alter custom BBCodes display
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function display_custom_bbcodes($event)
@@ -140,7 +152,7 @@ class listener implements EventSubscriberInterface
 	* Set custom BBCodes permissions
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function allow_custom_bbcodes($event)
@@ -153,7 +165,7 @@ class listener implements EventSubscriberInterface
 	/**
 	* Load the BBCode ACP Manager
 	*
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function load_acp_manager()
@@ -167,7 +179,7 @@ class listener implements EventSubscriberInterface
 	* Add some additional elements to the BBCodes template
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function acp_bbcodes_custom_sorting_buttons($event)
@@ -185,7 +197,7 @@ class listener implements EventSubscriberInterface
 	* Add the Group select form field on BBCode edit page
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function acp_bbcodes_group_select_box($event)
@@ -206,7 +218,7 @@ class listener implements EventSubscriberInterface
 	* Handle BBCode order changes when moving them up/down
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function acp_bbcodes_custom_sorting($event)
@@ -249,7 +261,7 @@ class listener implements EventSubscriberInterface
 	* Handle BBCode order and group data during modify/create routines
 	*
 	* @param object $event The event object
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function acp_bbcodes_modify_create($event)

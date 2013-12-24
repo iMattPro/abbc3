@@ -43,7 +43,7 @@ class acp_manager
 	* Update the database BBCode order fields on move up/down or drag_drop
 	*
 	* @param string $action The action move_up|move_down|drag_drop
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function move($action)
@@ -208,7 +208,7 @@ class acp_manager
 	*
 	* Based on Custom BBCode Sorting Mod by RMcGirr83
 	*
-	* @return void
+	* @return null
 	* @access public
 	*/
 	public function resynchronize_bbcode_order()
