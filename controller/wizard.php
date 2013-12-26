@@ -11,16 +11,16 @@ namespace vse\abbc3\controller;
 
 class wizard
 {
-	/* @var \phpbb\controller\helper */
+	/** @var \phpbb\controller\helper */
 	protected $helper;
 
-	/* @var \phpbb\request\request */
+	/** @var \phpbb\request\request */
 	protected $request;
 
-	/* @var \phpbb\template\template */
+	/** @var \phpbb\template\template */
 	protected $template;
 
-	/* @var \phpbb\user */
+	/** @var \phpbb\user */
 	protected $user;
 
 	/**
@@ -94,7 +94,7 @@ class wizard
 		}
 	}
 	
-	/*
+	/**
 	* Return an array of allowed BBvideo sites and example URLs
 	*
 	* @return array Allowed BBvideo sites and URLs
@@ -172,7 +172,7 @@ class wizard
 		);
 	}
 
-	/*
+	/**
 	* Return an array of commonly used size dimensions for embedded video
 	*
 	* @return array Size dimensions

@@ -17,7 +17,7 @@ class acp_manager
 	/** @var \phpbb\db\driver\driver */
 	protected $db;
 
-	/* @var \phpbb\request\request */
+	/** @var \phpbb\request\request */
 	protected $request;
 
 	/** @var \phpbb\user */

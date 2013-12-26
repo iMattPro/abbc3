@@ -148,7 +148,7 @@ class listener implements EventSubscriberInterface
 		$event['custom_tags'] = $phpbb_container->get('vse.abbc3.bbcodes')->display_custom_bbcodes($event);
 	}
 
-	/*
+	/**
 	* Set custom BBCodes permissions
 	*
 	* @param object $event The event object

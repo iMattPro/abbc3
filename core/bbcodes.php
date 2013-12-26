@@ -66,7 +66,7 @@ class bbcodes
 		return $custom_tags;
 	}
 
-	/*
+	/**
 	* Set custom BBCodes to 'disabled' if they are not allowed to be used
 	*
 	* @param object $event The event object
@@ -88,7 +88,7 @@ class bbcodes
 		return $bbcodes;
 	}
 
-	/*
+	/**
 	* Get image paths/names from ABBC3's icons folder
 	*
 	* @return Array of file data from ext/vse/abbc3/styles/all/theme/images/icons
@@ -106,7 +106,7 @@ class bbcodes
 			->find_from_extension('abbc3', $this->root_path . 'ext/vse/abbc3');
 	}
 
-	/*
+	/**
 	* Determine if a usergroup is allowed to use a custom BBCode
 	*
 	* @param mixed $group_ids Allowed group IDs
