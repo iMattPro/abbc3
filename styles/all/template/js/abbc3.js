@@ -471,6 +471,36 @@ var bbwizard;
 	};
 
 	/**
+	* Insert BBCode into message (position cursor after insertion)
+	*/
+	var bbinsert = function (bbopen, bbclose) {
+		var textarea;
+
+		if (is_ie) {
+			textarea = document.forms[form_name].elements[text_name];
+			textarea.focus();
+			baseHeight = document.selection.createRange().duplicate().boundingHeight;
+		}
+
+		//initInsertions();
+		insert_text(bbopen + bbclose);
+
+		// The new position for the cursor after adding the bbcode
+		if (is_ie) {
+			var text = bbopen + bbclose;
+			var pos = textarea.innerHTML.indexOf(text);
+			if (pos > 0) {
+				var new_pos = pos + text.length;
+				var range = textarea.createTextRange();
+				range.move("character", new_pos);
+				range.select();
+				storeCaret(textarea);
+				textarea.focus();
+			}
+		}
+	};
+
+	/**
 	* DOM READY
 	*/
 	$(document).ready(function () {
@@ -512,7 +542,7 @@ var bbwizard;
 		// Click on bbcode wizard submit button to apply bbcode to message
 		wizard.on("click", "#bbvideo_wizard_submit", function (event) {
 			event.preventDefault();
-			bbfontstyle("[BBvideo=" + $("#bbvideo_wizard_width").val() + "," + $("#bbvideo_wizard_height").val() + "]" + $("#bbvideo_wizard_link").val() + "", "[/BBvideo]");
+			bbinsert("[BBvideo=" + $("#bbvideo_wizard_width").val() + "," + $("#bbvideo_wizard_height").val() + "]" + $("#bbvideo_wizard_link").val() + "", "[/BBvideo]");
 			wizard.fadeOut('fast');
 		})
 		// Click on bbcode wizard cancel button to dismiss bbcode wizard
