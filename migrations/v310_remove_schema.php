@@ -18,7 +18,7 @@ class v310_remove_schema extends \phpbb\db\migration\migration
 
 	static public function depends_on()
 	{
-		return array('\phpbb\db\migration\data\v310\dev');
+		return array('\vse\abbc3\migrations\v310_remove_data');
 	}
 
 	public function update_schema()
@@ -27,6 +27,13 @@ class v310_remove_schema extends \phpbb\db\migration\migration
 			'drop_tables'	=> array(
 				$this->table_prefix . 'clicks',
 			),
+
+			'drop_keys'	=> array(
+				$this->table_prefix . 'bbcodes'		=> array(
+					'display_order',
+				),
+			),
+
 			'drop_columns'		=> array(
 				$this->table_prefix . 'users'		=> array(
 					'user_abbcode_mod',
@@ -37,8 +44,12 @@ class v310_remove_schema extends \phpbb\db\migration\migration
 					'display_on_sig',
 					'abbcode',
 					'bbcode_image',
-//					'bbcode_order',
-//					'bbcode_group',
+				),
+			),
+
+			'change_columns'	=> array(
+				$this->table_prefix . 'bbcodes'		=> array(
+					'bbcode_id'		=> array('USINT', 0),
 				),
 			),
 		);

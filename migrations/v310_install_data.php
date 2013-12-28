@@ -9,7 +9,7 @@
 
 namespace vse\abbc3\migrations;
 
-class v310_update_data extends \phpbb\db\migration\migration
+class v310_install_data extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
@@ -18,19 +18,19 @@ class v310_update_data extends \phpbb\db\migration\migration
 
 	static public function depends_on()
 	{
-		return array('\vse\abbc3\migrations\v310_update_schema');
+		return array('\vse\abbc3\migrations\v310_install_schema');
 	}
 
 	public function update_data()
 	{
 		return array(
-			array('custom', array(array($this, 'update_abbc3_bbcodes'))),
+			array('custom', array(array($this, 'install_abbc3_bbcodes'))),
 
 			array('config.add', array('abbc3_version', '3.1.0')),
 		);
 	}
 
-	public function update_abbc3_bbcodes()
+	public function install_abbc3_bbcodes()
 	{
 		// Load the acp_bbcode class
 		if (!class_exists('acp_bbcodes'))

@@ -26,7 +26,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 
 	static public function depends_on()
 	{
-		return array('\vse\abbc3\migrations\v310_remove_schema');
+		return array('\phpbb\db\migration\data\v310\dev');
 	}
 
 	public function update_data()
@@ -47,7 +47,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 
 			// Custom functions
 			array('custom', array(array($this, 'remove_abbc3_configs'))),
-			array('custom', array(array($this, 'delete_abbc3_bbcodes'))),
+			array('custom', array(array($this, 'remove_abbc3_bbcodes'))),
 		);
 	}
 
@@ -91,7 +91,7 @@ class v310_remove_data extends \phpbb\db\migration\migration
 		$this->db->sql_query($sql);
 	}
 
-	public function delete_abbc3_bbcodes()
+	public function remove_abbc3_bbcodes()
 	{
 		$abbc3_bbcode_deprecated = $this->abbc3_bbcodes();
 
