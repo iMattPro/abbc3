@@ -40,7 +40,7 @@ class acp_manager
 	}
 
 	/**
-	* Update the database BBCode order fields on move up/down or drag_drop
+	* Update BBCode order fields in the db on move up/down or drag_drop
 	*
 	* @param string $action The action move_up|move_down|drag_drop
 	* @return null
@@ -70,8 +70,11 @@ class acp_manager
 					continue;
 				}
 
-				// Update in the db
-				$this->db->sql_query('UPDATE ' . BBCODES_TABLE . ' SET bbcode_order = ' . $order . ' WHERE bbcode_id = ' . (int) $bbcode_id);
+				// Update the db
+				$sql = 'UPDATE ' . BBCODES_TABLE . '
+					SET bbcode_order = ' . $order . '
+					WHERE bbcode_id = ' . (int) $bbcode_id;
+				$this->db->sql_query($sql);
 			}
 
 			// return an AJAX JSON response
@@ -92,6 +95,7 @@ class acp_manager
 			$current_order = (int) $this->db->sql_fetchfield('bbcode_order');
 			$this->db->sql_freeresult($result);
 
+			// First one can't be moved up
 			if ($current_order == 0 && $action == 'move_up')
 			{
 				return;
@@ -99,11 +103,13 @@ class acp_manager
 
 			$order_total = $current_order * 2 + (($action == 'move_up') ? -1 : 1);
 
+			// Update the db
 			$sql = 'UPDATE ' . BBCODES_TABLE . '
 				SET bbcode_order = ' . $order_total . ' - bbcode_order
 				WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
 			$this->db->sql_query($sql);
 
+			// return a JSON response if this was an AJAX request
 			if ($this->request->is_ajax())
 			{
 				$json_response = new \phpbb\json_response;
