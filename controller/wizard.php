@@ -134,7 +134,6 @@ class wizard
 			'metacafe.com' => 'http://www.metacafe.com/watch/966360/merry_christmas_with_crazy_frog/',
 			'moddb.com' => 'http://www.moddb.com/groups/humour-satire-parody/videos/flight-dc132-part-1',
 			'mpora.com' => 'http://mpora.com/videos/AAdihftgw4t7',
-			'msnbc.msn.com' => 'http://www.msnbc.msn.com/id/21134540/vp/41172078#41190910',
 			'myspace.com' => 'https://myspace.com/jasonmraz/video/-quot-lucky-quot-official-video-with-colbie-caillat/49776296',
 			'myvideo.de' => 'http://www.myvideo.de/watch/2668372',
 			'nbcnews.com' => 'http://www.nbcnews.com/video/nbc-news/53875621/#53875621',
