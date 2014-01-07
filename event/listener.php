@@ -19,6 +19,29 @@ class listener implements EventSubscriberInterface
 	/** @var \vse\abbc3\core\acp_manager */
 	protected $acp_manager;
 
+	/** @var ContainerBuilder */
+	protected $phpbb_container;
+
+	/** @var phpbb_template */
+	protected $template;
+
+	/** @var phpbb_user */
+	protected $user;
+
+	/** @var string */
+	protected $root_path;
+
+	public function __construct()
+	{
+		global $phpbb_container;
+
+		$this->template = $phpbb_container->get('template');
+		$this->user = $phpbb_container->get('user');
+		$this->root_path = $phpbb_container->getParameter('core.root_path');
+
+		$this->phpbb_container = $phpbb_container;
+	}
+
 	/**
 	* Assign functions defined in this class to event listeners in the core
 	*
@@ -80,9 +103,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function parse_bbcodes_before($event)
 	{
-		global $phpbb_container;
-
-		$phpbb_container->get('vse.abbc3.parser')->pre_parse_bbcodes($event);
+		$this->phpbb_container->get('vse.abbc3.parser')->pre_parse_bbcodes($event);
 	}
 
 	/**
@@ -96,9 +117,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function parse_bbcodes_after($event)
 	{
-		global $phpbb_container;
-
-		$phpbb_container->get('vse.abbc3.parser')->post_parse_bbcodes($event);
+		$this->phpbb_container->get('vse.abbc3.parser')->post_parse_bbcodes($event);
 	}
 
 	/**
@@ -125,12 +144,10 @@ class listener implements EventSubscriberInterface
 	*/
 	public function setup_custom_bbcodes($event)
 	{
-		global $user, $template, $phpbb_root_path, $phpbb_container;
-
-		$template->assign_vars(array(
-			'ABBC3_USERNAME'			=> $user->data['username'],
-			'ABBC3_BBCODE_ICONS'		=> $phpbb_root_path . 'ext/vse/abbc3/images/icons',
-			'U_ABBC3_BBVIDEO_WIZARD'	=> $phpbb_container->get('controller.helper')->url('wizard/bbcode/bbvideo'),
+		$this->template->assign_vars(array(
+			'ABBC3_USERNAME'			=> $this->user->data['username'],
+			'ABBC3_BBCODE_ICONS'		=> $this->root_path . 'ext/vse/abbc3/images/icons',
+			'U_ABBC3_BBVIDEO_WIZARD'	=> $this->phpbb_container->get('controller.helper')->url('wizard/bbcode/bbvideo'),
 		));
 	}
 
@@ -143,9 +160,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function display_custom_bbcodes($event)
 	{
-		global $phpbb_container;
-
-		$event['custom_tags'] = $phpbb_container->get('vse.abbc3.bbcodes')->display_custom_bbcodes($event);
+		$event['custom_tags'] = $this->phpbb_container->get('vse.abbc3.bbcodes')->display_custom_bbcodes($event);
 	}
 
 	/**
@@ -157,9 +172,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function allow_custom_bbcodes($event)
 	{
-		global $phpbb_container;
-
-		$event['bbcodes'] = $phpbb_container->get('vse.abbc3.bbcodes')->allow_custom_bbcodes($event);
+		$event['bbcodes'] = $this->phpbb_container->get('vse.abbc3.bbcodes')->allow_custom_bbcodes($event);
 	}
 
 	/**
@@ -170,9 +183,10 @@ class listener implements EventSubscriberInterface
 	*/
 	public function load_acp_manager()
 	{
-		global $phpbb_container;
-
-		$this->acp_manager = $phpbb_container->get('vse.abbc3.acp_manager');
+		if (is_null($this->acp_manager))
+		{
+			$this->acp_manager = $this->phpbb_container->get('vse.abbc3.acp_manager');
+		}
 	}
 
 	/**
@@ -202,10 +216,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function acp_bbcodes_group_select_box($event)
 	{
-		if (!$this->acp_manager)
-		{
-			$this->load_acp_manager();
-		}
+		$this->load_acp_manager();
 
 		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : false;
 
@@ -223,12 +234,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function acp_bbcodes_custom_sorting($event)
 	{
-		global $phpbb_root_path;
-
-		if (!$this->acp_manager)
-		{
-			$this->load_acp_manager();
-		}
+		$this->load_acp_manager();
 
 		// Move up/down action
 		switch($event['action'])
@@ -248,7 +254,7 @@ class listener implements EventSubscriberInterface
 		// Add some additional template variables
 		$template_data = $event['template_data'];
 		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['u_action'] . '&amp;action=drag_drop');
-		$template_data['IMG_AJAX_IMAGE'] = $phpbb_root_path . 'ext/vse/abbc3/images/accepted.png';
+		$template_data['IMG_AJAX_IMAGE'] = $this->root_path . 'ext/vse/abbc3/images/accepted.png';
 		$event['template_data'] = $template_data;
 
 		// Change SQL so that it orders by bbcode_order
@@ -266,10 +272,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function acp_bbcodes_modify_create($event)
 	{
-		if (!$this->acp_manager)
-		{
-			$this->load_acp_manager();
-		}
+		$this->load_acp_manager();
 
 		$sql_ary = $event['sql_ary'];
 
