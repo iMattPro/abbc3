@@ -187,7 +187,7 @@ class listener implements EventSubscriberInterface
 	* @return null
 	* @access public
 	*/
-	public function load_acp_manager()
+	public function use_acp_manager()
 	{
 		if (is_null($this->acp_manager))
 		{
@@ -222,7 +222,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function acp_bbcodes_group_select_box($event)
 	{
-		$this->load_acp_manager();
+		$this->use_acp_manager();
 
 		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : false;
 
@@ -240,7 +240,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function acp_bbcodes_custom_sorting($event)
 	{
-		$this->load_acp_manager();
+		$this->use_acp_manager();
 
 		// Move up/down action
 		switch($event['action'])
@@ -278,7 +278,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function acp_bbcodes_modify_create($event)
 	{
-		$this->load_acp_manager();
+		$this->use_acp_manager();
 
 		$sql_ary = $event['sql_ary'];
 
