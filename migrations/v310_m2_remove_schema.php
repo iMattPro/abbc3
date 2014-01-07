@@ -9,7 +9,7 @@
 
 namespace vse\abbc3\migrations;
 
-class v310_remove_schema extends \phpbb\db\migration\migration
+class v310_m2_remove_schema extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
@@ -18,7 +18,7 @@ class v310_remove_schema extends \phpbb\db\migration\migration
 
 	static public function depends_on()
 	{
-		return array('\vse\abbc3\migrations\v310_remove_data');
+		return array('\vse\abbc3\migrations\v310_m1_remove_data');
 	}
 
 	public function update_schema()

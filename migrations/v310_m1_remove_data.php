@@ -9,7 +9,7 @@
 
 namespace vse\abbc3\migrations;
 
-class v310_remove_data extends \phpbb\db\migration\migration
+class v310_m1_remove_data extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
