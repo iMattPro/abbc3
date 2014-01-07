@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Advanced BBCode Box 3
+* @package Advanced BBCode Box 3.1
 * @copyright (c) 2013 Matt Friedman
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -24,13 +24,13 @@ class acp_manager
 	protected $user;
 
 	/**
-	* ABBC3 acp manager constructor method
+	* Constructor
 	* 
 	* @param \phpbb\db\driver\driver $db
 	* @param \phpbb\request\request $request
 	* @param \phpbb\user $user
-	* @param $root_path
-	* @param $php_ext
+	* @return \vse\abbc3\core\acp_manager
+	* @access public
 	*/
 	public function __construct(\phpbb\db\driver\driver $db, \phpbb\request\request $request, \phpbb\user $user)
 	{
@@ -212,7 +212,7 @@ class acp_manager
 	/**
 	* Resynchronize the Custom BBCodes order field
 	*
-	* Based on Custom BBCode Sorting Mod by RMcGirr83
+	* Based on Custom BBCode Sorting MOD by RMcGirr83
 	*
 	* @return null
 	* @access public

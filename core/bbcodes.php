@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Advanced BBCode Box 3
+* @package Advanced BBCode Box 3.1
 * @copyright (c) 2013 Matt Friedman
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -10,7 +10,7 @@
 namespace vse\abbc3\core;
 
 /**
-* ABBC3 acp manager class
+* ABBC3 core BBCodes class
 */
 class bbcodes
 {
@@ -24,11 +24,13 @@ class bbcodes
 	protected $root_path;
 
 	/**
-	* ABBC3 bbcodes constructor method
+	* Constructor
 	* 
 	* @param \phpbb\db\driver\driver $db
 	* @param \phpbb\user $user
 	* @param $root_path
+	* @return \vse\abbc3\core\bbcodes
+	* @access public
 	*/
 	public function __construct(\phpbb\db\driver\driver $db, \phpbb\user $user, $root_path)
 	{
@@ -43,7 +45,7 @@ class bbcodes
 	* Uses GIF images named exactly the same as the bbcode_tag
 	*
 	* @param object $event The event object
-	* @return array The event object
+	* @return array The custom_tags data array
 	* @access public
 	*/
 	public function display_custom_bbcodes($event)
@@ -70,7 +72,7 @@ class bbcodes
 	* Set custom BBCodes to 'disabled' if they are not allowed to be used
 	*
 	* @param object $event The event object
-	* @return array The event object
+	* @return array The bbcodes data array
 	* @access public
 	*/
 	public function allow_custom_bbcodes($event)
@@ -156,6 +158,7 @@ class bbcodes
 			}
 		}
 
+		// If we get here, there were no group restrictions so everyone can use this BBCode
 		return true;
 	}
 }

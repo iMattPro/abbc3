@@ -1,8 +1,8 @@
-# Advanced BBCode Box for phpBB 3.1
+# Advanced BBCode Box 3.1
 
-ABBC3 replaces phpBB3's BBCode buttons with icons in a beautiful and customizable toolbar. ABBC3 also adds many new and useful custom BBCodes giving users more ways to customize their posts, including BBvideo (auto-embed videos from dozens of media sites using just the url). Custom BBCodes can be arranged and sorted in any order and can be assigned to specific group-use only.
+Replace phpBB3's BBCode buttons with icons in an attractive and customizable toolbar. This extension also adds many new and useful custom BBCodes giving users more ways to customize their posts, including BBvideo (embed videos from dozens of media sites). Custom BBCodes can be arranged and sorted in any order and assigned to specific usergroups (such as Moderators and Admins only).
 
-ABBC3 was a popular MOD for phpBB 3.0. Due to the changes in the new Extensions system for phpBB 3.1, ABBC3 will be significantly changed. It can not simply be ported over from 3.0 to 3.1. ABBC3 will be re-focused on providing a professional looking BBCode toolbar along with a suite of useful custom BBCodes. The following is a list of what is changing.
+ABBC3 was a popular MOD for phpBB 3.0. Due to the changes in the new Extensions system for phpBB 3.1, ABBC3.1 will be significantly changed. It can not simply be ported over from 3.0 to 3.1. The following is a list of what is changing.
 
 ## Surviving Features:
 * Customizable icon-based BBCode toolbar
@@ -52,7 +52,7 @@ ABBC3 was a popular MOD for phpBB 3.0. Due to the changes in the new Extensions 
 ## Requirements
 * phpBB 3.1-dev or higher
 * PHP 5.3.3 or higher
-* Javascript is required by this MOD.
+* Javascript is required by this extension.
 
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)

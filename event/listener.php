@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Advanced BBCode Box 3
+* @package Advanced BBCode Box 3.1
 * @copyright (c) 2013 Matt Friedman
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -31,6 +31,12 @@ class listener implements EventSubscriberInterface
 	/** @var string */
 	protected $root_path;
 
+	/**
+	* Constructor
+	* 
+	* @return \vse\abbc3\event\listener
+	* @access public
+	*/
 	public function __construct()
 	{
 		global $phpbb_container;
@@ -54,20 +60,20 @@ class listener implements EventSubscriberInterface
 		return array(
 			'core.user_setup'							=> 'load_abbc3_on_setup',
 
-			// functions_content.php events
+			// functions_content events
 			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before',
 			'core.modify_text_for_display_after'		=> 'parse_bbcodes_after',
 
-			// functions_display.php events
+			// functions_display events
 			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
 			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql',
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
 
-			// message_parser.php events
+			// message_parser events
 			'core.modify_format_display_text_after'		=> 'parse_bbcodes_after',
 			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes',
 
-			// acp_bbcodes.php events
+			// acp_bbcodes events
 			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_custom_sorting',
 			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_custom_sorting_buttons',
 			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create',

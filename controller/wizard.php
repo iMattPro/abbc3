@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package Advanced BBCode Box 3
+* @package Advanced BBCode Box 3.1
 * @copyright (c) 2013 Matt Friedman
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -9,6 +9,9 @@
 
 namespace vse\abbc3\controller;
 
+/**
+* ABBC3 BBCode Wizard class
+*/
 class wizard
 {
 	/** @var \phpbb\controller\helper */
@@ -30,6 +33,8 @@ class wizard
 	* @param \phpbb\request\request      $request     Request object
 	* @param \phpbb\template\template    $template    Template object
 	* @param \phpbb\user                 $user        User object
+	* @return \vse\abbc3\controller\wizard
+	* @access public
 	*/
 	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user)
 	{
@@ -41,7 +46,7 @@ class wizard
 
 	/**
 	* BBCode wizard controller accessed with the URL /wizard/bbcode/{mode}
-	* (where {mode} is the placeholder for a string of the bbcode name)
+	* (where {mode} is a placeholder for a string of the bbcode tag name)
 	* intended to be accessed via AJAX only
 	*
 	* @param strng	$mode		Mode taken from the URL 
@@ -59,7 +64,7 @@ class wizard
 		{
 			case 'bbvideo':
 
-				// Construct BBVideo allowed site select options
+				// Construct BBvideo allowed site select options
 				$select_options = '';
 				$bbvideo_selected = 'youtube.com';
 				$bbvideo_sites_array = $this->bbvideo_sites();
@@ -68,7 +73,7 @@ class wizard
 					$select_options .= '<option value="' . $example . '"' . (($site == $bbvideo_selected) ? ' selected="selected"' : '') . '>' . $site . '</option>';
 				}
 
-				// Construct BBVideo size preset select options
+				// Construct BBvideo size preset select options
 				$size_preset_options = '';
 				$bbvideo_size_presets_array = $this->bbvideo_size_presets();
 				foreach($bbvideo_size_presets_array as $preset)
