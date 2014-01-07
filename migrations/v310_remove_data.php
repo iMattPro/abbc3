@@ -24,11 +24,6 @@ class v310_remove_data extends \phpbb\db\migration\migration
 		return $module_id == false;
 	}
 
-	static public function depends_on()
-	{
-		return array('\phpbb\db\migration\data\v310\dev');
-	}
-
 	public function update_data()
 	{
 		return array(

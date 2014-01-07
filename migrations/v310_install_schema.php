@@ -11,11 +11,6 @@ namespace vse\abbc3\migrations;
 
 class v310_install_schema extends \phpbb\db\migration\migration
 {
-	public function effectively_installed()
-	{
-		return isset($this->config['abbc3_version']) && version_compare($this->config['abbc3_version'], '3.1.0', '>=');
-	}
-
 	static public function depends_on()
 	{
 		return array('\vse\abbc3\migrations\v310_remove_schema');
