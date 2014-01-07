@@ -11,6 +11,11 @@ namespace vse\abbc3\migrations;
 
 class v310_m3_install_schema extends \phpbb\db\migration\migration
 {
+	public function effectively_installed()
+	{
+		return $this->db_tools->sql_column_exists($this->table_prefix . 'bbcodes', 'bbcode_order');
+	}
+
 	static public function depends_on()
 	{
 		return array('\vse\abbc3\migrations\v310_m2_remove_schema');
