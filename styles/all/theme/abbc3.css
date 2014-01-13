@@ -1,24 +1,26 @@
-/* superscript and subscript */
+/* [sub] subscript */
 sub {
 	vertical-align: sub;
 	font-size: smaller;
 }
+
+/* [sup] superscript */
 sup {
 	vertical-align: super;
 	font-size: smaller;
 }
 
-/* pre-formatted text */
+/* [pre] pre-formatted text */
 .abbc3_pre {
 	display: block;
 	font-family: monospace;
 	white-space: pre;
 }
 
-/* strike through text */
+/* [s] strike through text */
 .abbc3_strike { text-decoration: line-through }
 
-/* Hidden block  */
+/* [hidden] hide BBCode */
 .hidebox {
 	position: relative;
 	margin: 5px 0;
@@ -50,7 +52,7 @@ sup {
 	color: #80001c;
 }
 
-/* Moderator BBCode */
+/* [mod] moderator BBCode */
 .ModTable {
 	background-color: #FFFFFF;
 	border: 1px solid #000000;
@@ -76,7 +78,7 @@ sup {
 	font-weight: bold;
 }
 
-/* Spoiler */
+/* [spoil] spoiler BBCode */
 .spoilwrapper {
 	margin: 5px 0;
 	font-weight: normal;
@@ -111,7 +113,7 @@ sup {
 }
 .spoilbtn:hover { color: #d31141 }
 
-/* NFO BBCode */
+/* [nfo] NFO BBCode */
 .nfo {
 	color: #000000;
 	font-weight: normal;
@@ -123,7 +125,7 @@ sup {
 	padding: 5px;
 }
 
-/* Offtopic BBCode */
+/* [offtopic] off topic BBCode */
 .offtopic {
 	position: relative;
 	margin: 5px 0;
@@ -154,7 +156,7 @@ sup {
 	color: #333333;
 }
 
-/* Marquee BBCode */
+/* [marq] marquee BBCode */
 .abbc3_marquee {
 	margin: 10px 0;
 	padding: 5px;
@@ -168,7 +170,7 @@ sup {
 #core-bbcode-buttons,
 #custom-bbcode-buttons { display: none }
 
-/* abbc3 BBCode buttons */
+/* ABBC3 BBCode buttons */
 #abbc3_buttons { margin: 15px 0 2px 0 }
 #abbc3_buttons input,
 #abbc3_buttons select { vertical-align: middle }
@@ -213,7 +215,7 @@ form td .abbc3_buttons_row { width: 98% }
 #user_signature #abbc3_buttons { margin-left: 96px }
 #user_signature #abbc3_buttons .abbc3_buttons_row { width: 95% }
 
-/* bbcode wizard */
+/* BBCode wizard */
 #bbcode_wizard {
 	font-size: 0.9em;
 	display: none;
