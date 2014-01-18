@@ -57,7 +57,7 @@ class wizard
 	{
 		if (!$this->request->is_ajax())
 		{
-			return $this->helper->error($this->user->lang['GENERAL_ERROR']);
+			return $this->helper->error($this->user->lang('GENERAL_ERROR'));
 		}
 
 		switch ($mode)
@@ -93,7 +93,7 @@ class wizard
 
 			default:
 
-				return $this->helper->error($this->user->lang['GENERAL_ERROR']);
+				return $this->helper->error($this->user->lang('GENERAL_ERROR'));
 
 			break;
 		}
@@ -185,10 +185,10 @@ class wizard
 	private function bbvideo_size_presets()
 	{
 		return array(
-			$this->user->lang['ABBC3_BBVIDEO_PRESETS_SM'],
-			$this->user->lang['ABBC3_BBVIDEO_PRESETS_MD'],
-			$this->user->lang['ABBC3_BBVIDEO_PRESETS_LG'],
-			$this->user->lang['ABBC3_BBVIDEO_PRESETS_XL'],
+			$this->user->lang('ABBC3_BBVIDEO_PRESETS_SM'),
+			$this->user->lang('ABBC3_BBVIDEO_PRESETS_MD'),
+			$this->user->lang('ABBC3_BBVIDEO_PRESETS_LG'),
+			$this->user->lang('ABBC3_BBVIDEO_PRESETS_XL'),
 		);
 	}
 }

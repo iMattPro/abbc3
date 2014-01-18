@@ -64,7 +64,7 @@ class parser
 	*/
 	private function bbvideo_pass($matches)
 	{
-		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : '[bbvideo=' . $this->user->lang['ABBC3_BBVIDEO_WIDTH'] . ',' . $this->user->lang['ABBC3_BBVIDEO_HEIGHT'] . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
+		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : '[bbvideo=' . $this->user->lang('ABBC3_BBVIDEO_WIDTH') . ',' . $this->user->lang('ABBC3_BBVIDEO_HEIGHT') . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
 	}
 
 	/**
@@ -80,7 +80,7 @@ class parser
 		{
 			return str_replace(
 				array('{HIDDEN_ON}', '{HIDDEN_TEXT}'),
-				array($this->user->lang['ABBC3_HIDDEN_ON'], $this->user->lang['ABBC3_HIDDEN_EXPLAIN']),
+				array($this->user->lang('ABBC3_HIDDEN_ON'), $this->user->lang('ABBC3_HIDDEN_EXPLAIN')),
 				'<div class="hidebox hidebox_hidden"><div class="hidebox_title hidebox_hidden">{HIDDEN_ON}</div><div class="hidebox_hidden">{HIDDEN_TEXT}</div></div>'
 			);
 		}
@@ -88,7 +88,7 @@ class parser
 		{
 			return str_replace(
 				array('{HIDDEN_OFF}', '{UNHIDDEN_TEXT}'),
-				array($this->user->lang['ABBC3_HIDDEN_OFF'], $matches[1]),
+				array($this->user->lang('ABBC3_HIDDEN_OFF'), $matches[1]),
 				'<div class="hidebox"><div class="hidebox_title">{HIDDEN_OFF}</div><div>{UNHIDDEN_TEXT}</div></div>'
 			);
 		}
