@@ -197,7 +197,7 @@ class v310_m4_install_data extends \phpbb\db\migration\migration
 			'mod=' => array(
 				'bbcode_helpline'	=> 'ABBC3_MOD_HELPLINE',
 				'bbcode_match'		=> '[mod={TEXT1}]{TEXT2}[/mod]',
-				'bbcode_tpl'		=> '<table class="ModTable"><tr><td class="exclamation" rowspan="2">&nbsp;!&nbsp;</td><td class="rowuser">{TEXT1} {L_MESSAGE}:</td></tr><tr><td class="rowtext">{TEXT2}</td></tr></table>',
+				'bbcode_tpl'		=> '<table class="ModTable"><tr><td class="exclamation" rowspan="2">&nbsp;!&nbsp;</td><td class="rowuser">{L_MESSAGE} {L_FROM}{L_COLON} {TEXT1}</td></tr><tr><td class="rowtext">{TEXT2}</td></tr></table>',
 			),
 			'nfo' => array(
 				'bbcode_helpline'	=> 'ABBC3_NFO_HELPLINE',
