@@ -237,6 +237,10 @@ var bbwizard;
 				"regex": /http:\/\/((.*?)?)theonion.com\/([^,]+),([0-9]+)([^[]*)?/i,
 				"embed": '<iframe frameborder="no" width="{WIDTH}" height="{HEIGHT}" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>'
 			}, {
+				"site" : "tudou.com",
+				"regex": /http:\/\/.*?tudou.com\/programs\/view\/(.+)\//i,
+				"embed": '<iframe src="http://www.tudou.com/programs/view/html5embed.action?code=$1&resourceId=0_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:{WIDTH}px;height:{HEIGHT}px;"></iframe>'
+			}, {
 				"site" : "twitch.tv",
 				"type" : "flash",
 				"regex": /http:\/\/(.*?)twitch.tv\/([^[]*)?/i,

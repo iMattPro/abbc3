@@ -156,6 +156,7 @@ class wizard
 			'ted.com' => 'http://www.ted.com/talks/henry_evans_and_chad_jenkins_meet_the_robots_for_humanity.html',
 			'thedailyshow.com' => 'http://www.thedailyshow.com/watch/thu-june-28-2012/roberts--rules-of-order',
 			'theonion.com' => 'http://www.theonion.com/video/stephen-strasburg-ceremoniously-reinjures-arm-on-o,27866/',
+			'tudou.com' => 'http://www.tudou.com/programs/view/fP78-keWP6c/',
 			'twitch.tv' => 'http://www.twitch.tv/rzn732',
 			'twitvid.com' => 'http://twitvid.com/0U73M',
 			'ustream.tv' => 'http://www.ustream.tv/channel/9948292',
