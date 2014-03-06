@@ -33,7 +33,7 @@ class listener implements EventSubscriberInterface
 
 	/**
 	* Constructor
-	* 
+	*
 	* @return \vse\abbc3\event\listener
 	* @access public
 	*/

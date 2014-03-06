@@ -19,7 +19,7 @@ class parser
 
 	/**
 	* Constructor
-	* 
+	*
 	* @param \phpbb\user $user
 	* @return \vse\abbc3\core\parser
 	* @access public

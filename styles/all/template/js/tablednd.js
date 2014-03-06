@@ -231,7 +231,7 @@ jQuery.tableDnD = {
         }
 		if (ev.type == 'touchmove') {
 			// prevent touch device screen scrolling
-			event.preventDefault(); 
+			event.preventDefault();
 		}
 
         var dragObj = jQuery(jQuery.tableDnD.dragObject);

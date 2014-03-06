@@ -442,7 +442,7 @@ var bbwizard;
 	bbwizard = function (href, bbcode) {
 		if (!requestRunning) {
 			var wizard = $("#bbcode_wizard");
-			if (!wizard.is(":visible")) {	
+			if (!wizard.is(":visible")) {
 				requestRunning = true;
 				$.ajax({
 					url: href,
@@ -566,7 +566,7 @@ var bbwizard;
 				$("#bbvideo_wizard_height").val(dims[1]);
 			}
 		})
-		// Prevent clicks on bbcode wizard from bubbling up 
+		// Prevent clicks on bbcode wizard from bubbling up
 		// to the body and prematurely dismissing itself
 		.click(function (event) {
 			event.stopPropagation();

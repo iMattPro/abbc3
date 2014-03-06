@@ -49,7 +49,7 @@ class wizard
 	* (where {mode} is a placeholder for a string of the bbcode tag name)
 	* intended to be accessed via AJAX only
 	*
-	* @param strng	$mode		Mode taken from the URL 
+	* @param strng	$mode		Mode taken from the URL
 	* @return Symfony\Component\HttpFoundation\Response A Symfony Response object
 	* @access public
 	*/
@@ -98,7 +98,7 @@ class wizard
 			break;
 		}
 	}
-	
+
 	/**
 	* Return an array of allowed BBvideo sites and example URLs
 	*

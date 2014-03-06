@@ -25,7 +25,7 @@ class bbcodes
 
 	/**
 	* Constructor
-	* 
+	*
 	* @param \phpbb\db\driver\driver $db
 	* @param \phpbb\user $user
 	* @param $root_path
@@ -130,9 +130,9 @@ class bbcodes
 			{
 				$this->user->data['group_id_set'] = array();
 
-				$sql = 'SELECT * 
-					FROM ' . USER_GROUP_TABLE . ' 
-					WHERE user_id = ' . (int) $this->user->data['user_id'] . ' 
+				$sql = 'SELECT *
+					FROM ' . USER_GROUP_TABLE . '
+					WHERE user_id = ' . (int) $this->user->data['user_id'] . '
 					AND user_pending = 0';
 				$result = $this->db->sql_query($sql);
 
