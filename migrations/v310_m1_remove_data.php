@@ -148,16 +148,16 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 			'video',
 			'wave=',		// Text_effect_pass
 			'web',
-	 		'scrippet',		// scrippets_pass
-	 		'search',		// search_pass
+			'scrippet',		// scrippets_pass
+			'search',		// search_pass
 			'thumbnail',	// thumb_pass
 			'hr',			// no closing
 			'tab=',			// no closing
-	 		'tabs',			// simpleTabs_pass
-	 		'table=',		// table_pass
-	 		'anchor=',		// anchor_pass
-	 		'upload',
-	 		'html',
+			'tabs',			// simpleTabs_pass
+			'table=',		// table_pass
+			'anchor=',		// anchor_pass
+			'upload',
+			'html',
 			'collegehumor',	// auto_embed_video
 			'dm',			// auto_embed_video
 			'gamespot',		// auto_embed_video
@@ -194,8 +194,8 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 	//		'sub',
 	//		'sup',
 	//		'youtube',		// BBvideo_pass
-	// 		'BBvideo',		// BBvideo_pass
-	// 		'hidden',		// hidden_pass
+	//		'BBvideo',		// BBvideo_pass
+	//		'hidden',		// hidden_pass
 		);
 	}
 }
