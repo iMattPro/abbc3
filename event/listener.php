@@ -153,7 +153,7 @@ class listener implements EventSubscriberInterface
 		$this->template->assign_vars(array(
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
 			'ABBC3_BBCODE_ICONS'		=> $this->root_path . 'ext/vse/abbc3/images/icons',
-			'U_ABBC3_BBVIDEO_WIZARD'	=> $this->phpbb_container->get('controller.helper')->url('wizard/bbcode/bbvideo'),
+			'U_ABBC3_BBVIDEO_WIZARD'	=> $this->phpbb_container->get('controller.helper')->route('abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
 		));
 	}
 
