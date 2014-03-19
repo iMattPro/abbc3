@@ -162,6 +162,7 @@ class wizard
 			'ustream.tv' => 'http://www.ustream.tv/channel/9948292',
 			'vbox7.com' => 'http://www.vbox7.com/play:93ab2ba5',
 			'veoh.com' => 'http://www.veoh.com/watch/v27458670er62wkCt',
+			'vevo.com' => 'http://www.vevo.com/watch/USUV71300904',
 			'viddler.com' => 'http://www.viddler.com/v/7a0d64f2',
 			'videogamer.com' => 'http://www.videogamer.com/videos/dead_space_developer_diary_zero_gravity.html',
 			'videu.de' => 'http://www.videu.de/video/38',

@@ -264,6 +264,10 @@ var bbwizard;
 				"regex": /http:\/\/(.*?).veoh.com\/([0-9A-Za-z-_\-\/]+)?\/([0-9A-Za-z-_]+)/i,
 				"embed": ['http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1361&amp;permalinkId=$3&amp;player=videodetailsembedded&amp;videoAutoPlay=0&amp;id=anonymous']
 			}, {
+				"site" : "vevo.com",
+				"regex": /http:\/\/(?:www\.)?vevo\.com\/watch\/([^?]*)?/i,
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://cache.vevo.com/m/html/embed.html?video=$1" frameborder="0" allowfullscreen></iframe>'
+			}, {
 				"site" : "viddler.com",
 				"regex": /http:\/\/(?:.*?).viddler.com\/v\/([0-9A-Za-z-_]+)([^[]*)?/i,
 				"embed": '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&autoplay=0&player=full&loop=false&nologo=false&hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>'
