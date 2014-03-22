@@ -35,7 +35,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 * Javascript is required by this extension.
 
 ## Deprecated ABBC 3.0 Information:
-ABBC 3.0 is a popular MOD for phpBB 3.0. Due to the changes in the new Extensions system for phpBB 3.1, ABBC 3.1 has been re-built from scratch. It can not simply be ported over from 3.0 to 3.1. The following is a list of what has been removed:
+[ABBC 3.0](https://github.com/VSEphpbb/Advanced-BBCode-Box-3) is a popular MOD for phpBB 3.0. Due to the changes in the new Extensions system for phpBB 3.1, ABBC 3.1 has been re-built from scratch. It can not simply be ported over from 3.0 to 3.1. The following is a list of what has been removed:
 
 * BBCode posting page assignments are no longer available (display on posting, on signature, on private message)
 * BBCode toolbar user options (no more "compact mode" or "disabled mode")
