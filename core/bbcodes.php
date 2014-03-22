@@ -94,9 +94,9 @@ class bbcodes
 	* Get image paths/names from ABBC3's icons folder
 	*
 	* @return Array of file data from ext/vse/abbc3/styles/all/theme/images/icons
-	* @access private
+	* @access protected
 	*/
-	private function get_images()
+	protected function get_images()
 	{
 		global $phpbb_extension_manager;
 
@@ -113,9 +113,9 @@ class bbcodes
 	*
 	* @param mixed $group_ids Allowed group IDs
 	* @return bool Return true if allowed to use BBCode
-	* @access private
+	* @access protected
 	*/
-	private function bbcode_group_permissions($group_ids = 0)
+	protected function bbcode_group_permissions($group_ids = 0)
 	{
 		if ($group_ids)
 		{

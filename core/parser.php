@@ -60,9 +60,9 @@ class parser
 	*
 	* @param array $matches
 	* @return string BBvideo in the correct BBCode format
-	* @access private
+	* @access protected
 	*/
-	private function bbvideo_pass($matches)
+	protected function bbvideo_pass($matches)
 	{
 		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : '[bbvideo=' . $this->user->lang('ABBC3_BBVIDEO_WIDTH') . ',' . $this->user->lang('ABBC3_BBVIDEO_HEIGHT') . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
 	}
@@ -72,9 +72,9 @@ class parser
 	*
 	* @param array $matches
 	* @return string HTML render of hidden bbcode
-	* @access private
+	* @access protected
 	*/
-	private function hidden_pass($matches)
+	protected function hidden_pass($matches)
 	{
 		if ($this->user->data['user_id'] == ANONYMOUS || $this->user->data['is_bot'])
 		{
