@@ -29,10 +29,41 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de, vimeo.com,
 		vine.co, wat.tv, wegame.com, xfire.com, youku.com, youtu.be, youtube.com
 
+### Languages supported:
+* English
+* German
+* Polish
+* Spanish
+
 ## Requirements
-* phpBB 3.1-dev or higher
+* phpBB 3.1-b1 or higher
 * PHP 5.3.3 or higher
 * Javascript is required by this extension.
+
+## Installation
+You can install this on the latest copy of the develop branch ([phpBB 3.1-dev](https://github.com/phpbb/phpbb3)) by following the steps below:
+
+**Manual:**
+
+1. Copy the entire contents of this repo to to `phpBB/ext/vse/abbc3/`
+2. Navigate in the ACP to `Customise -> Extension Management -> Extensions`.
+3. Click `Enable`.
+
+**Git CLI:**
+
+1. From the board root run the following git command:
+`git clone -b extension https://github.com/VSEphpbb/abbc3.git phpBB/ext/vse/abbc3`
+2. Navigate in the ACP to `Customise -> Extension Management -> Extensions`.
+3. Click `Enable`.
+
+Note: This extension is in development. Installation is only recommended for testing purposes and is not supported on live boards. This extension will be officially released following phpBB 3.1.0.
+
+## Uninstallation
+Navigate in the ACP to `Customise -> Extension Management -> Extensions` and click `Disable`.
+
+To permanently uninstall, click `Delete Data` and then you can safely delete the `/ext/vse/abbc3` folder.
+
+* * *
 
 ## Deprecated ABBC 3.0 Information:
 [ABBC 3.0](https://github.com/VSEphpbb/Advanced-BBCode-Box-3) is a popular MOD for phpBB 3.0. Due to the changes in the new Extensions system for phpBB 3.1, ABBC 3.1 has been re-built from scratch. It can not simply be ported over from 3.0 to 3.1. The following is a list of what has been removed:
@@ -55,5 +86,9 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 	- sites: `qik.com, revision3.com, testtube.com, tu.tv`
 	- files: `mp4, m4v, mov, dv, qt, mpg, mpeg, avi, wmv, flv, swf, mp3, mid, midi, ram`
 
+* * *
+
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
+
+© 2013 - Matt Friedman (VSE)
