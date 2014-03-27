@@ -86,10 +86,10 @@ class bbcodes_test extends \extension_database_test_case
 		$this->user->data['user_id'] = $user_id;
 
 		$bbcodes_manager = $this->bbcodes_manager();
-		
+
 		$bbcodes = array($data['bbcode_tag'] => array('bbcode_id' => $data['bbcode_id']));
 		$rowset = array($data);
-		
+
 		$this->assertEquals($expected, $bbcodes_manager->allow_custom_bbcodes($bbcodes, $rowset));
 	}
 

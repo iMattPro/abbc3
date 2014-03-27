@@ -29,7 +29,7 @@ class acp_bbcode_group_data_test extends acp_base
 	public function test_get_bbcode_group_data($data, $expected)
 	{
 		$acp_manager = $this->acp_manager();
-		
+
 		$this->assertEquals($expected, $acp_manager->get_bbcode_group_data($data));
 	}
 }

@@ -39,7 +39,7 @@ class acp_bbcode_group_select_test extends acp_base
 	public function test_bbcode_group_select_options($data, $expected)
 	{
 		$acp_manager = $this->acp_manager();
-		
+
 		$this->assertEquals($expected, $acp_manager->bbcode_group_select_options($data));
 	}
 }
