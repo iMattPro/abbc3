@@ -99,7 +99,7 @@ class acp_manager
 			$this->db->sql_freeresult($result);
 
 			// First one can't be moved up
-			if ($current_order == 0 && $action == 'move_up')
+			if ($current_order <= 1 && $action == 'move_up')
 			{
 				return;
 			}
