@@ -11,24 +11,70 @@ namespace vse\abbc3\tests\core;
 
 class acp_bbcode_group_select_test extends acp_base
 {
-	public static function bbcode_group_select_data()
+	/**
+	* Get an instance of phpbb\user
+	*
+	* @access public
+	*/
+	public function get_user_instance()
 	{
+		// Must do this for testing with the user class
+		global $config;
+		$config['default_lang'] = 'en';
+
+		// Get instance of phpbb\user (dataProvider is called before setUp(), so this must be done here)
+		$this->user = new \phpbb\user();
+
+		$this->user->add_lang('common');
+	}
+
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->get_user_instance();
+	}
+
+	public function bbcode_group_select_data()
+	{
+		$this->get_user_instance();
+
 		return array(
 			array(
 				array(''),
-				'<option value="5">' . ucfirst(strtolower('G_ADMINISTRATORS')) . '</option><option value="4">' . ucfirst(strtolower('G_GLOBAL_MODERATORS')) . '</option><option value="1">' . ucfirst(strtolower('G_GUESTS')) . '</option><option value="2">' . ucfirst(strtolower('G_REGISTERED')) . '</option><option value="3">' . ucfirst(strtolower('G_REGISTERED_COPPA')) . '</option>'
+				'<option value="5">' . $this->user->lang('G_ADMINISTRATORS') . 
+				'</option><option value="4">' . $this->user->lang('G_GLOBAL_MODERATORS') . 
+				'</option><option value="1">' . $this->user->lang('G_GUESTS') . 
+				'</option><option value="2">' . $this->user->lang('G_REGISTERED') . 
+				'</option><option value="3">' . $this->user->lang('G_REGISTERED_COPPA') . 
+				'</option>'
 			),
 			array(
 				array(1),
-				'<option value="5">' . ucfirst(strtolower('G_ADMINISTRATORS')) . '</option><option value="4">' . ucfirst(strtolower('G_GLOBAL_MODERATORS')) . '</option><option value="1" selected="selected">' . ucfirst(strtolower('G_GUESTS')) . '</option><option value="2">' . ucfirst(strtolower('G_REGISTERED')) . '</option><option value="3">' . ucfirst(strtolower('G_REGISTERED_COPPA')) . '</option>'
+				'<option value="5">' . $this->user->lang('G_ADMINISTRATORS') . 
+				'</option><option value="4">' . $this->user->lang('G_GLOBAL_MODERATORS') . 
+				'</option><option value="1" selected="selected">' . $this->user->lang('G_GUESTS') . 
+				'</option><option value="2">' . $this->user->lang('G_REGISTERED') . 
+				'</option><option value="3">' . $this->user->lang('G_REGISTERED_COPPA') . 
+				'</option>'
 			),
 			array(
 				array(2,3),
-				'<option value="5">' . ucfirst(strtolower('G_ADMINISTRATORS')) . '</option><option value="4">' . ucfirst(strtolower('G_GLOBAL_MODERATORS')) . '</option><option value="1">' . ucfirst(strtolower('G_GUESTS')) . '</option><option value="2" selected="selected">' . ucfirst(strtolower('G_REGISTERED')) . '</option><option value="3" selected="selected">' . ucfirst(strtolower('G_REGISTERED_COPPA')) . '</option>'
+				'<option value="5">' . $this->user->lang('G_ADMINISTRATORS') . 
+				'</option><option value="4">' . $this->user->lang('G_GLOBAL_MODERATORS') . 
+				'</option><option value="1">' . $this->user->lang('G_GUESTS') . 
+				'</option><option value="2" selected="selected">' . $this->user->lang('G_REGISTERED') . 
+				'</option><option value="3" selected="selected">' . $this->user->lang('G_REGISTERED_COPPA') . 
+				'</option>'
 			),
 			array(
 				array(4,5,6),
-				'<option value="5" selected="selected">' . ucfirst(strtolower('G_ADMINISTRATORS')) . '</option><option value="4" selected="selected">' . ucfirst(strtolower('G_GLOBAL_MODERATORS')) . '</option><option value="1">' . ucfirst(strtolower('G_GUESTS')) . '</option><option value="2">' . ucfirst(strtolower('G_REGISTERED')) . '</option><option value="3">' . ucfirst(strtolower('G_REGISTERED_COPPA')) . '</option>'
+				'<option value="5" selected="selected">' . $this->user->lang('G_ADMINISTRATORS') . 
+				'</option><option value="4" selected="selected">' . $this->user->lang('G_GLOBAL_MODERATORS') . 
+				'</option><option value="1">' . $this->user->lang('G_GUESTS') . 
+				'</option><option value="2">' . $this->user->lang('G_REGISTERED') . 
+				'</option><option value="3">' . $this->user->lang('G_REGISTERED_COPPA') . 
+				'</option>'
 			),
 		);
 	}
