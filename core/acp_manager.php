@@ -77,6 +77,9 @@ class acp_manager
 				$this->db->sql_query($sql);
 			}
 
+			// Resync bbcode_order
+			$this->resynchronize_bbcode_order();
+
 			// return an AJAX JSON response
 			$json_response = new \phpbb\json_response;
 			$json_response->send(array(
@@ -108,6 +111,9 @@ class acp_manager
 				SET bbcode_order = ' . $order_total . ' - bbcode_order
 				WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
 			$this->db->sql_query($sql);
+
+			// Resync bbcode_order
+			$this->resynchronize_bbcode_order();
 
 			// return a JSON response if this was an AJAX request
 			if ($this->request->is_ajax())
@@ -215,9 +221,9 @@ class acp_manager
 	* Based on Custom BBCode Sorting MOD by RMcGirr83
 	*
 	* @return null
-	* @access public
+	* @access protected
 	*/
-	public function resynchronize_bbcode_order()
+	protected function resynchronize_bbcode_order()
 	{
 		// By default, check that order is valid and fix it if necessary
 		$sql = 'SELECT bbcode_id, bbcode_order

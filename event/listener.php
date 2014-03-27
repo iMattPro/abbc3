@@ -254,9 +254,6 @@ class listener implements EventSubscriberInterface
 			break;
 		}
 
-		// Resync bbcode_order
-		$this->acp_manager->resynchronize_bbcode_order();
-
 		// Add some additional template variables
 		$template_data = $event['template_data'];
 		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['u_action'] . '&amp;action=drag_drop');
