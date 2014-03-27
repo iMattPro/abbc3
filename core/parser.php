@@ -63,7 +63,7 @@ class parser
 	/**
 	* Convert BBvideo from older ABBC3 posts to the new format
 	*
-	* @param array $matches
+	* @param array $matches 1=bbvideo, 2=width,height, 3=uid, 4=url
 	* @return string BBvideo in the correct BBCode format
 	* @access protected
 	*/

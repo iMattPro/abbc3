@@ -55,7 +55,7 @@ class acp_manager
 				return;
 			}
 
-			// Get the table
+			// Get the bbcodes html table's name
 			$tablename = $this->request->variable('tablename', '');
 
 			// Fetch the posted list
