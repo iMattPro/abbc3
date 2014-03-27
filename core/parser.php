@@ -32,27 +32,32 @@ class parser
 	/**
 	* Pre-Parser for special custom BBCodes created by ABBC3
 	*
-	* @param object $event The event object
-	* @return null
+	* @param string $text The text to parse
+	* @param string $uid The BBCode UID
+	* @return string The parsed text
 	* @access public
 	*/
-	public function pre_parse_bbcodes($event)
+	public function pre_parse_bbcodes($text, $uid)
 	{
-		// bbvideo BBCode
-		$event['text'] = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?:(' . $event['uid'] . ')\]([^[]+)\[/\1:\3\]#is', array($this, 'bbvideo_pass'), $event['text']);
+		// bbvideo BBCodes (convert from older ABBC3 installations)
+		$text = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?:(' . $uid . ')\]([^[]+)\[/\1:\3\]#is', array($this, 'bbvideo_pass'), $text);
+
+		return $text;
 	}
 
 	/**
 	* Post-Parser for special custom BBCodes created by ABBC3
 	*
-	* @param object $event The event object
-	* @return null
+	* @param string $text The text to parse
+	* @return string The parsed text
 	* @access public
 	*/
-	public function post_parse_bbcodes($event)
+	public function post_parse_bbcodes($text)
 	{
 		// hidden BBCode
-		$event['text'] = preg_replace_callback('#<!-- ABBC3_BBCODE_HIDDEN -->(.*?)<!-- ABBC3_BBCODE_HIDDEN -->#', array($this, 'hidden_pass'), $event['text']);
+		$text = preg_replace_callback('#<!-- ABBC3_BBCODE_HIDDEN -->(.*?)<!-- ABBC3_BBCODE_HIDDEN -->#', array($this, 'hidden_pass'), $text);
+
+		return $text;
 	}
 
 	/**

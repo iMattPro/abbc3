@@ -109,7 +109,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function parse_bbcodes_before($event)
 	{
-		$this->phpbb_container->get('vse.abbc3.parser')->pre_parse_bbcodes($event);
+		$event['text'] = $this->phpbb_container->get('vse.abbc3.parser')->pre_parse_bbcodes($event['text'], $event['uid']);
 	}
 
 	/**
@@ -123,7 +123,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function parse_bbcodes_after($event)
 	{
-		$this->phpbb_container->get('vse.abbc3.parser')->post_parse_bbcodes($event);
+		$event['text'] = $this->phpbb_container->get('vse.abbc3.parser')->post_parse_bbcodes($event['text']);
 	}
 
 	/**
@@ -166,7 +166,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function display_custom_bbcodes($event)
 	{
-		$event['custom_tags'] = $this->phpbb_container->get('vse.abbc3.bbcodes')->display_custom_bbcodes($event);
+		$event['custom_tags'] = $this->phpbb_container->get('vse.abbc3.bbcodes')->display_custom_bbcodes($event['custom_tags'], $event['row']);
 	}
 
 	/**
@@ -178,7 +178,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function allow_custom_bbcodes($event)
 	{
-		$event['bbcodes'] = $this->phpbb_container->get('vse.abbc3.bbcodes')->allow_custom_bbcodes($event);
+		$event['bbcodes'] = $this->phpbb_container->get('vse.abbc3.bbcodes')->allow_custom_bbcodes($event['bbcodes'], $event['rowset']);
 	}
 
 	/**

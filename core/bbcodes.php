@@ -44,15 +44,13 @@ class bbcodes
 	*
 	* Uses GIF images named exactly the same as the bbcode_tag
 	*
-	* @param object $event The event object
-	* @return array The custom_tags data array
+	* @param array $custom_tags Template data of the bbcode
+	* @param array $row The data of the bbcode
+	* @return array Update template data of the bbcode
 	* @access public
 	*/
-	public function display_custom_bbcodes($event)
+	public function display_custom_bbcodes($custom_tags, $row)
 	{
-		$row = $event['row'];
-		$custom_tags = $event['custom_tags'];
-
 		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
 
 		static $images = array();
@@ -71,15 +69,14 @@ class bbcodes
 	/**
 	* Set custom BBCodes to 'disabled' if they are not allowed to be used
 	*
-	* @param object $event The event object
+	* @param array $bbcodes Array of bbcode data for use in parsing
+	* @param array $rowset Array of bbcode data from the database
 	* @return array The bbcodes data array
 	* @access public
 	*/
-	public function allow_custom_bbcodes($event)
+	public function allow_custom_bbcodes($bbcodes, $rowset)
 	{
-		$bbcodes = $event['bbcodes'];
-
-		foreach ($event['rowset'] as $row)
+		foreach ($rowset as $row)
 		{
 			if (!$this->bbcode_group_permissions($row['bbcode_group']))
 			{
