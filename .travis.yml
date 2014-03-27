@@ -1,0 +1,28 @@
+language: php
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+
+env:
+  - DB=mariadb
+  - DB=mysql
+  - DB=postgres
+
+before_script:
+  # MUST UPDATE THIS FOR YOUR EXTENSION
+  - VENDOR="vse"
+  - NAME="abbc3"
+  
+  # clone test framework
+  - git clone "git://github.com/phpbb-extensions/test-framework.git" "./../../test-framework"
+  
+  # run the prepare-travis.sh file from the cloned repo to finish the setup
+  - ./../../test-framework/prepare-travis.sh "$VENDOR" "$NAME" "$DB"
+
+  # Go to the root phpBB repository that was cloned from prepare-travis.sh,
+  # so the script path and relative paths are correct
+  - cd ../../phpbb
+
+script:
+  - ./phpBB/vendor/bin/phpunit --configuration ./phpBB/ext/$VENDOR/$NAME/travis/phpunit-$DB-travis.xml
