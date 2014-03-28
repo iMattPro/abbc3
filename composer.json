@@ -5,7 +5,7 @@
     "homepage": "https://github.com/VSEphpbb/abbc3",
     "version": "3.1.0",
     "keywords": ["phpbb", "extension", "bbcodes", "bbvideo"],
-    "licence": "GPL-2.0",
+    "license": "GPL-2.0",
     "authors": [
         {
             "name": "Matt Friedman (VSE)",
