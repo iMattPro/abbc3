@@ -113,12 +113,12 @@ class parser_test extends \phpbb_test_case
 			array(
 				2,	// registered user
 				'<!-- ABBC3_BBCODE_HIDDEN -->Hello world<!-- ABBC3_BBCODE_HIDDEN -->',
-				'<div class="hidebox"><div class="hidebox_title">' . $this->user->lang('ABBC3_HIDDEN_OFF') . '</div><div>Hello world</div></div>',
+				'<div class="hidebox hidebox_visible"><div class="hidebox_title hidebox_visible">' . $this->user->lang('ABBC3_HIDDEN_OFF') . '</div><div class="hidebox_visible">Hello world</div></div>',
 			),
 			array(
 				2,	// registered user
 				'This is a test <!-- ABBC3_BBCODE_HIDDEN -->Hello world<!-- ABBC3_BBCODE_HIDDEN --> message',
-				'This is a test <div class="hidebox"><div class="hidebox_title">' . $this->user->lang('ABBC3_HIDDEN_OFF') . '</div><div>Hello world</div></div> message',
+				'This is a test <div class="hidebox hidebox_visible"><div class="hidebox_title hidebox_visible">' . $this->user->lang('ABBC3_HIDDEN_OFF') . '</div><div class="hidebox_visible">Hello world</div></div> message',
 			),
 		);
 	}

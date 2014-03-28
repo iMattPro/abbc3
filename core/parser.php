@@ -83,19 +83,25 @@ class parser
 	{
 		if ($this->user->data['user_id'] == ANONYMOUS || $this->user->data['is_bot'])
 		{
-			return str_replace(
-				array('{HIDDEN_ON}', '{HIDDEN_TEXT}'),
-				array($this->user->lang('ABBC3_HIDDEN_ON'), $this->user->lang('ABBC3_HIDDEN_EXPLAIN')),
-				'<div class="hidebox hidebox_hidden"><div class="hidebox_title hidebox_hidden">{HIDDEN_ON}</div><div class="hidebox_hidden">{HIDDEN_TEXT}</div></div>'
-			);
+			$replacements = array(
+				$this->user->lang('ABBC3_HIDDEN_ON'),
+				$this->user->lang('ABBC3_HIDDEN_EXPLAIN'),
+				'hidebox_hidden',
+			);			
 		}
 		else
 		{
-			return str_replace(
-				array('{HIDDEN_OFF}', '{UNHIDDEN_TEXT}'),
-				array($this->user->lang('ABBC3_HIDDEN_OFF'), $matches[1]),
-				'<div class="hidebox"><div class="hidebox_title">{HIDDEN_OFF}</div><div>{UNHIDDEN_TEXT}</div></div>'
-			);
+			$replacements = array(
+				$this->user->lang('ABBC3_HIDDEN_OFF'),
+				$matches[1],
+				'hidebox_visible',
+			);			
 		}
+
+		return str_replace(
+			array('{HIDDEN_TITLE}', '{HIDDEN_CONTENT}', '{HIDDEN_CLASS}'),
+			$replacements,
+			'<div class="hidebox {HIDDEN_CLASS}"><div class="hidebox_title {HIDDEN_CLASS}">{HIDDEN_TITLE}</div><div class="{HIDDEN_CLASS}">{HIDDEN_CONTENT}</div></div>'
+		);
 	}
 }
