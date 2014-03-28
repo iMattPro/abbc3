@@ -112,7 +112,14 @@ class wizard
 	*/
 	private function bbvideo_sites()
 	{
-		return json_decode(file_get_contents($this->root_path . 'ext/vse/abbc3/assets/bbvideo.json'), true);
+		$bbvideo_json_file = $this->root_path . 'ext/vse/abbc3/assets/bbvideo.json';
+
+		if (!file_exists($bbvideo_json_file))
+		{
+			throw new \phpbb\extension\exception('The required file does not exist: ' . $bbvideo_json_file);
+		}
+
+		return json_decode(file_get_contents($bbvideo_json_file), true);
 	}
 
 	/**
