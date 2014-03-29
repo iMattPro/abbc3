@@ -229,9 +229,9 @@ var bbwizard;
 				"regex": /http:\/\/.*?ted.com\/talks\/([a-zA-Z0-9-_]+).html/i,
 				"embed": '<iframe src="http://embed.ted.com/talks/$1.html" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			}, {
-				"site" : "thedailyshow.com",
+				"site" : "thedailyshow.cc.com",
 				"type" : "ogp",
-				"regex": /http:\/\/(?:.*?)thedailyshow.com\/watch\/([^[]*)?/i
+				"regex": /http:\/\/(?:.*?)thedailyshow.cc.com\/videos\/([^[]*)?/i
 			}, {
 				"site" : "theonion.com",
 				"regex": /http:\/\/((.*?)?)theonion.com\/([^,]+),([0-9]+)([^[]*)?/i,
