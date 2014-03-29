@@ -90,7 +90,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_PRESETS_XL'	=> '1280 x 720',
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'The BBCode order has been resynchronised.',
+	'ABBC3_BBCODE_ORDERED'		=> 'The BBCode order has been updated.',
 	'ABBC3_BBCODE_GROUP'		=> 'Manage groups that can use this BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'If no groups are selected, then all users can use this BBCode. Use CTRL+CLICK (or CMD+CLICK on Mac) to select/deselect more than one group.',
 ));
