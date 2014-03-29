@@ -252,7 +252,7 @@ var bbwizard;
 			}, {
 				"site" : "ustream.tv",
 				"regex": /http:\/\/(?:www\.)ustream\.tv\/(?:channel\/([0-9]{1,8}))/i,
-				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe>'
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>'
 			}, {
 				"site" : "vbox7.com",
 				"type" : "flash",
@@ -396,7 +396,9 @@ var bbwizard;
 		* Insert embed code, after the URL, wrapped in a div tag
 		*/
 		function embedWrapper(el, content) {
-			el.after(content).wrap("<div />");
+			if (el.attr("href") !== content) {
+				el.after(content).wrap("<div />");
+			}
 		}
 
 		return this.each(function () {
@@ -407,7 +409,7 @@ var bbwizard;
 					height: settings.height
 				};
 
-			if (el.data("bbvideo").length) {
+			if (el.data("bbvideo") !== undefined && el.data("bbvideo").length) {
 				dimensions.width = el.data("bbvideo").split(",")[0].trim() || settings.width;
 				dimensions.height = el.data("bbvideo").split(",")[1].trim() || settings.height;
 			}
