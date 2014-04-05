@@ -47,14 +47,14 @@ You can install this on the latest copy of the develop branch ([phpBB 3.1-dev](h
 
 **Manual:**
 
-1. Copy the entire contents of this repo to to `phpBB/ext/vse/abbc3/`
+1. Copy the entire contents of this repo to `phpBB/ext/vse/abbc3/`
 2. Navigate in the ACP to `Customise -> Extension Management -> Extensions`.
 3. Click `Enable`.
 
 **Git CLI:**
 
 1. From the board root run the following git command:
-`git clone -b extension https://github.com/VSEphpbb/abbc3.git phpBB/ext/vse/abbc3`
+`git clone -b master https://github.com/VSEphpbb/abbc3.git phpBB/ext/vse/abbc3`
 2. Navigate in the ACP to `Customise -> Extension Management -> Extensions`.
 3. Click `Enable`.
 
