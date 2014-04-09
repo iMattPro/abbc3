@@ -87,7 +87,7 @@ class parser
 				$this->user->lang('ABBC3_HIDDEN_ON'),
 				$this->user->lang('ABBC3_HIDDEN_EXPLAIN'),
 				'hidebox_hidden',
-			);			
+			);
 		}
 		else
 		{
@@ -95,7 +95,7 @@ class parser
 				$this->user->lang('ABBC3_HIDDEN_OFF'),
 				$matches[1],
 				'hidebox_visible',
-			);			
+			);
 		}
 
 		return str_replace(
