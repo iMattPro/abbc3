@@ -207,8 +207,8 @@ class listener implements EventSubscriberInterface
 		$row = $event['row'];
 		$bbcodes_array = $event['bbcodes_array'];
 
-		$bbcodes_array['U_MOVE_UP'] = $event['u_action'] . '&amp;action=move_up&amp;id=' . $row['bbcode_id'];
-		$bbcodes_array['U_MOVE_DOWN'] = $event['u_action'] . '&amp;action=move_down&amp;id=' . $row['bbcode_id'];
+		$bbcodes_array['U_MOVE_UP'] = $event['u_action'] . '&amp;action=move_up&amp;id=' . $row['bbcode_id'] . '&amp;hash=' . generate_link_hash('move_up' . $row['bbcode_id']);
+		$bbcodes_array['U_MOVE_DOWN'] = $event['u_action'] . '&amp;action=move_down&amp;id=' . $row['bbcode_id'] . '&amp;hash=' . generate_link_hash('move_down' . $row['bbcode_id']);
 
 		$event['bbcodes_array'] = $bbcodes_array;
 	}

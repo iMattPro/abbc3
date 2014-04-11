@@ -90,6 +90,11 @@ class acp_manager
 		{
 			$bbcode_id = $this->request->variable('id', 0);
 
+			if (!check_link_hash($this->request->variable('hash', ''), $action . $bbcode_id))
+			{
+				trigger_error($this->user->lang['FORM_INVALID'], E_USER_WARNING);
+			}
+
 			// Get current order
 			$sql = 'SELECT bbcode_order
 				FROM ' . BBCODES_TABLE . "
