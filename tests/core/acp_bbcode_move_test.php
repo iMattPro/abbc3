@@ -80,7 +80,11 @@ class acp_bbcode_move_test extends acp_base
 
 		$this->request->expects($this->any())
 			->method('variable')
-			->will($this->returnValue($item)
+			->with($this->anything())
+			->will($this->returnValueMap(array(
+				array('id', 0, false, \phpbb\request\request_interface::REQUEST, $item),
+				array('hash', '', false, \phpbb\request\request_interface::REQUEST, generate_link_hash($action . $item))
+			))
 		);
 
 		$acp_manager = $this->acp_manager();
