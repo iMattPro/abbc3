@@ -255,9 +255,8 @@ var bbwizard;
 				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>'
 			}, {
 				"site" : "vbox7.com",
-				"type" : "flash",
 				"regex": /http:\/\/www.vbox7.com\/play:([^[]+)?/i,
-				"embed": ['http://i47.vbox7.com/player/ext.swf?vid=$1']
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://vbox7.com/emb/external.php?vid=$1" frameborder="0" allowfullscreen></iframe>'
 			}, {
 				"site" : "veoh.com",
 				"type" : "flash",
@@ -303,9 +302,8 @@ var bbwizard;
 				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" src="$&?format=embed&player_autoplay=false"></iframe>'
 			}, {
 				"site" : "youku.com",
-				"type" : "flash",
 				"regex": /http:\/\/v.youku.com\/v_show\/id_(.*)\.html.*/i,
-				"embed": ['http://player.youku.com/player.php/sid/$1/v.swf']
+				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://player.youku.com/embed/$1" frameborder=0 allowfullscreen></iframe>'
 			}, {
 				"site" : "youtu.be",
 				"regex": /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?/i,
