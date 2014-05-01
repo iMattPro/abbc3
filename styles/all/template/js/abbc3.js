@@ -293,11 +293,6 @@ var bbwizard;
 				"type" : "ogp",
 				"regex": /http:\/\/(.*?)wat.tv\/video\/([^[]*)?/i
 			}, {
-				"site" : "wegame.com",
-				"type" : "flash",
-				"regex": /http:\/\/www.wegame.com\/watch\/(.*?)\/([^[]*)?/i,
-				"embed": ['http://www.wegame.com/static/flash/player.swf?xmlrequest=http://www.wegame.com/player/video/$1&amp;embedPlayer=true', 'xmlrequest=http://www.wegame.com/player/video/$1&amp;embedPlayer=true']
-			}, {
 				"site" : "xfire.com",
 				"type" : "flash",
 				"regex": /http:\/\/www.xfire.com\/video\/(.*?)\//i,
