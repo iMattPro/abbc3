@@ -25,6 +25,8 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	* Constructor
 	*
+	* @param \vse\abbc3\core\acp_manager $acp_manager
+	* @param string $root_path
 	* @return \vse\abbc3\event\listener
 	* @access public
 	*/

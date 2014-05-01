@@ -37,6 +37,12 @@ class listener implements EventSubscriberInterface
 	/**
 	* Constructor
 	*
+	* @param \vse\abbc3\core\parser $abbc3_parser
+	* @param \vse\abbc3\core\bbcodes $abbc3_bbcodes
+	* @param \phpbb\controller\helper $helper
+	* @param \phpbb\template\template $template
+	* @param \phpbb\user $user
+	* @param string $root_path
 	* @return \vse\abbc3\event\listener
 	* @access public
 	*/
