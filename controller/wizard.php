@@ -108,9 +108,9 @@ class wizard
 	* Return an array of allowed BBvideo sites and example URLs (stored in bbvideo.json)
 	*
 	* @return array Allowed BBvideo sites and URLs
-	* @access private
+	* @access protected
 	*/
-	private function bbvideo_sites()
+	protected function bbvideo_sites()
 	{
 		$bbvideo_json_file = $this->root_path . 'ext/vse/abbc3/assets/bbvideo.json';
 
@@ -126,9 +126,9 @@ class wizard
 	* Return an array of commonly used size dimensions for embedded video
 	*
 	* @return array Size dimensions
-	* @access private
+	* @access protected
 	*/
-	private function bbvideo_size_presets()
+	protected function bbvideo_size_presets()
 	{
 		return array(
 			$this->user->lang('ABBC3_BBVIDEO_PRESETS_SM'),
