@@ -50,8 +50,8 @@ class v310_m4_install_data extends \phpbb\db\migration\migration
 			);
 
 			$sql = 'SELECT bbcode_id
-					FROM ' . $this->table_prefix . "bbcodes
-					WHERE LOWER(bbcode_tag) = '" . strtolower($bbcode_name) . "' OR LOWER(bbcode_tag) = '" . strtolower($bbcode_array['bbcode_tag']) . "'";
+				FROM ' . $this->table_prefix . "bbcodes
+				WHERE LOWER(bbcode_tag) = '" . strtolower($bbcode_name) . "' OR LOWER(bbcode_tag) = '" . strtolower($bbcode_array['bbcode_tag']) . "'";
 			$result = $this->db->sql_query($sql);
 			$row_exists = $this->db->sql_fetchrow($result);
 			$this->db->sql_freeresult($result);
@@ -62,8 +62,8 @@ class v310_m4_install_data extends \phpbb\db\migration\migration
 				$bbcode_id = $row_exists['bbcode_id'];
 
 				$sql = 'UPDATE ' . $this->table_prefix . 'bbcodes
-						SET ' . $this->db->sql_build_array('UPDATE', $bbcode_array) . '
-						WHERE bbcode_id = ' . $bbcode_id;
+					SET ' . $this->db->sql_build_array('UPDATE', $bbcode_array) . '
+					WHERE bbcode_id = ' . $bbcode_id;
 				$this->db->sql_query($sql);
 			}
 			else

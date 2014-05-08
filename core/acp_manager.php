@@ -241,6 +241,7 @@ class acp_manager
 			$order = 0;
 			do
 			{
+				// pre-increment $order
 				++$order;
 
 				if ($row['bbcode_order'] != $order)
