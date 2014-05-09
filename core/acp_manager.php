@@ -92,7 +92,7 @@ class acp_manager
 
 			if (!check_link_hash($this->request->variable('hash', ''), $action . $bbcode_id))
 			{
-				trigger_error($this->user->lang['FORM_INVALID'], E_USER_WARNING);
+				trigger_error($this->user->lang('FORM_INVALID'), E_USER_WARNING);
 			}
 
 			// Get current order
