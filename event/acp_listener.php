@@ -116,7 +116,7 @@ class acp_listener implements EventSubscriberInterface
 
 		// Change SQL so that it orders by bbcode_order
 		$sql_ary = $event['sql_ary'];
-		$sql_ary['ORDER_BY'] = 'b.bbcode_order';
+		$sql_ary['ORDER_BY'] = 'b.bbcode_order, b.bbcode_id';
 		$event['sql_ary'] = $sql_ary;
 	}
 
