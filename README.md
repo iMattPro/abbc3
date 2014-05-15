@@ -27,9 +27,10 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com,
 		myvideo.de, photobucket.com, rutube.ru, sapo.pt, screen.yahoo.com, screenr.com,
 		scribd.com, sevenload.com, slideshare.net, snotr.com, soundcloud.com, spike.com,
-		streetfire.net, ted.com, thedailyshow.com, theonion.com, twitch.tv, twitvid.com,
-		ustream.tv, vbox7.com, veoh.com, viddler.com, videogamer.com, videu.de, vimeo.com,
-		vine.co, wat.tv, wegame.com, xfire.com, youku.com, youtu.be, youtube.com
+		streetfire.net, ted.com, thedailyshow.cc.com, theonion.com, tudou.com, twitch.tv,
+		twitvid.com, ustream.tv, vbox7.com, veoh.com, vevo.com, viddler.com,
+		videogamer.com, videu.de, vimeo.com, vine.co, wat.tv, xfire.com, youku.com,
+		youtu.be, youtube.com
 
 ### Languages supported:
 * English
