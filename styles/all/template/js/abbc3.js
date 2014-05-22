@@ -255,7 +255,7 @@ var bbwizard;
 				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>'
 			}, {
 				"site" : "vbox7.com",
-				"regex": /http:\/\/www.vbox7.com\/play:([^[]+)?/i,
+				"regex": /http:\/\/(?:.*?)vbox7.com\/play:([^[]+)?/i,
 				"embed": '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://vbox7.com/emb/external.php?vid=$1" frameborder="0" allowfullscreen></iframe>'
 			}, {
 				"site" : "veoh.com",
