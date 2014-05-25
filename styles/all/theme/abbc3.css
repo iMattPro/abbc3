@@ -160,9 +160,7 @@ sup {
 .abbc3_marquee {
 	margin: 10px 0;
 	padding: 5px;
-	display: -moz-inline-box; /* For FF<3 */
-	-moz-box-orient: vertical; /* For FF<3 */
-	display: inline-block; /* IE <8 needs this tripped back to display: inline; to make it work on block elements */
+	display: inline-block;
 }
 
 /* hide native phpbb BBCode buttons */
