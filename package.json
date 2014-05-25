@@ -1,0 +1,19 @@
+{
+  "name": "abbc3",
+  "version": "3.1.0",
+  "author": "Matt Friedman",
+  "license": "GPL-2.0",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.6.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-csslint": "^0.1.4",
+    "gulp-jshint": "^1.6.1",
+    "gulp-minify-css": "^0.3.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^0.3.0",
+    "jshint-stylish": "^0.2.0"
+  }
+}
