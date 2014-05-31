@@ -102,7 +102,7 @@ class bbcodes
 		return $finder
 			->extension_suffix('.gif')
 			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $this->root_path . 'ext/vse/abbc3');
+			->find_from_extension('abbc3', $this->root_path . 'ext/vse/abbc3/');
 	}
 
 	/**
