@@ -60,7 +60,7 @@ class bbcodes
 			$images = $this->get_images();
 		}
 
-		$custom_tags['BBCODE_IMG'] = (isset($images['ext/' . $bbcode_img])) ? $this->root_path . 'ext/vse/' . $bbcode_img : '';
+		$custom_tags['BBCODE_IMG'] = (isset($images['ext/' . $bbcode_img])) ? 'ext/vse/' . $bbcode_img : '';
 		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = (!empty($row['bbcode_group'])) ? $this->bbcode_group_permissions($row['bbcode_group']) : true;
 
 		return $custom_tags;

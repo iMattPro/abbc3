@@ -157,26 +157,26 @@ function bbspecial(bbcode, bbcodeId) {
 
 <div id="abbc3_buttons">
 	<div class="abbc3_buttons_row">
-		<input type="button" class="abbc3_button" accesskey="b" name="addbbcode0" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/bold.gif');" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="i" name="addbbcode2" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/italic.gif');" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="u" name="addbbcode4" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/underline.gif');" onclick="bbstyle(4)" title="{L_BBCODE_U_HELP}" />
+		<input type="button" class="abbc3_button" accesskey="b" name="addbbcode0" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/bold.gif');" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" />
+		<input type="button" class="abbc3_button" accesskey="i" name="addbbcode2" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/italic.gif');" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" />
+		<input type="button" class="abbc3_button" accesskey="u" name="addbbcode4" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/underline.gif');" onclick="bbstyle(4)" title="{L_BBCODE_U_HELP}" />
 		<!-- IF S_BBCODE_QUOTE -->
-			<input type="button" class="abbc3_button" accesskey="q" name="addbbcode6" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/quote.gif');" onclick="bbstyle(6)" title="{L_BBCODE_Q_HELP}" />
+			<input type="button" class="abbc3_button" accesskey="q" name="addbbcode6" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/quote.gif');" onclick="bbstyle(6)" title="{L_BBCODE_Q_HELP}" />
 		<!-- ENDIF -->
-		<input type="button" class="abbc3_button" accesskey="c" name="addbbcode8" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/code.gif');" onclick="bbstyle(8)" title="{L_BBCODE_C_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="l" name="addbbcode10" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/listb.gif');" onclick="bbstyle(10)" title="{L_BBCODE_L_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="o" name="addbbcode12" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/listo.gif');" onclick="bbstyle(12)" title="{L_BBCODE_O_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="y" name="addlistitem" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/listitem.gif');" onclick="bbstyle(-1)" title="{L_BBCODE_LISTITEM_HELP}" />
+		<input type="button" class="abbc3_button" accesskey="c" name="addbbcode8" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/code.gif');" onclick="bbstyle(8)" title="{L_BBCODE_C_HELP}" />
+		<input type="button" class="abbc3_button" accesskey="l" name="addbbcode10" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/listb.gif');" onclick="bbstyle(10)" title="{L_BBCODE_L_HELP}" />
+		<input type="button" class="abbc3_button" accesskey="o" name="addbbcode12" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/listo.gif');" onclick="bbstyle(12)" title="{L_BBCODE_O_HELP}" />
+		<input type="button" class="abbc3_button" accesskey="y" name="addlistitem" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/listitem.gif');" onclick="bbstyle(-1)" title="{L_BBCODE_LISTITEM_HELP}" />
 		<!-- IF S_BBCODE_IMG -->
-			<input type="button" class="abbc3_button" accesskey="p" name="addbbcode14" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/img.gif');" onclick="bbstyle(14)" title="{L_BBCODE_P_HELP}" />
+			<input type="button" class="abbc3_button" accesskey="p" name="addbbcode14" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/img.gif');" onclick="bbstyle(14)" title="{L_BBCODE_P_HELP}" />
 		<!-- ENDIF -->
 		<!-- IF S_LINKS_ALLOWED -->
-			<input type="button" class="abbc3_button" accesskey="w" name="addbbcode16" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/url.gif');" onclick="bbstyle(16)" title="{L_BBCODE_W_HELP}" />
+			<input type="button" class="abbc3_button" accesskey="w" name="addbbcode16" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/url.gif');" onclick="bbstyle(16)" title="{L_BBCODE_W_HELP}" />
 		<!-- ENDIF -->
 		<!-- IF S_BBCODE_FLASH -->
-			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/flash.gif');" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />
+			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/flash.gif');" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />
 		<!-- ENDIF -->
-		<input type="button" class="abbc3_button" name="abbc3_bbpalette" id="abbc3_bbpalette" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/fontcolor.gif');" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
+		<input type="button" class="abbc3_button" name="abbc3_bbpalette" id="abbc3_bbpalette" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/fontcolor.gif');" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
 		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
 			<option value="50">{L_FONT_TINY}</option>
 			<option value="85">{L_FONT_SMALL}</option>
@@ -188,9 +188,9 @@ function bbspecial(bbcode, bbcodeId) {
 				<!-- ENDIF -->
 			<!-- ENDIF -->
 		</select>
-		<input type="button" class="abbc3_button" name="copybbcode" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/copy.gif');" onclick="bbspecial('abbc3_copy');" title="{L_ABBC3_COPY_BBCODE}">
-		<input type="button" class="abbc3_button" name="pastebbcode" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/paste.gif');" onclick="bbspecial('abbc3_paste');" title="{L_ABBC3_PASTE_BBCODE}">
-		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{ABBC3_BBCODE_ICONS}/plain.gif');" onclick="bbspecial('abbc3_plain');" title="{L_ABBC3_PLAIN_BBCODE}">
+		<input type="button" class="abbc3_button" name="copybbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/copy.gif');" onclick="bbspecial('abbc3_copy');" title="{L_ABBC3_COPY_BBCODE}">
+		<input type="button" class="abbc3_button" name="pastebbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/paste.gif');" onclick="bbspecial('abbc3_paste');" title="{L_ABBC3_PASTE_BBCODE}">
+		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/plain.gif');" onclick="bbspecial('abbc3_plain');" title="{L_ABBC3_PLAIN_BBCODE}">
 	</div>
 	<!-- IF .custom_tags -->
 		<div class="abbc3_buttons_row" style="border-top:0;">
@@ -236,7 +236,7 @@ function bbspecial(bbcode, bbcodeId) {
 							</optgroup>
 						</select>
 					<!-- ELSE -->
-						<input type="button" class="abbc3_button" name="addbbcode{custom_tags.BBCODE_ID}" value=" <!-- IF not custom_tags.BBCODE_IMG -->{custom_tags.BBCODE_TAG}<!-- ENDIF --> "<!-- IF custom_tags.BBCODE_IMG --> style="background-image:url('{custom_tags.BBCODE_IMG}');"<!-- ENDIF --> onclick="bbspecial('{custom_tags.BBCODE_TAG}', {custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+						<input type="button" class="abbc3_button" name="addbbcode{custom_tags.BBCODE_ID}" value=" <!-- IF not custom_tags.BBCODE_IMG -->{custom_tags.BBCODE_TAG}<!-- ENDIF --> "<!-- IF custom_tags.BBCODE_IMG --> style="background-image:url('{ROOT_PATH}{custom_tags.BBCODE_IMG}');"<!-- ENDIF --> onclick="bbspecial('{custom_tags.BBCODE_TAG}', {custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
 					<!-- ENDIF -->
 				<!-- ENDIF -->
 			<!-- END custom_tags -->
