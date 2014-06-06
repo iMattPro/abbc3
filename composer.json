@@ -18,6 +18,11 @@
         "phpbb/phpbb": "3.1.*@dev"
     },
     "extra": {
-        "display-name": "Advanced BBCode Box"
+        "display-name": "Advanced BBCode Box",
+        "version-check": {
+            "host": "vsephpbb.github.io",
+            "directory": "/abbc3",
+            "filename": "version.json"
+        }
     }
 }
