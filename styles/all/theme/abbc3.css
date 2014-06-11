@@ -209,9 +209,9 @@ sup {
 }
 /* tweaks for subsilver styles */
 form td .abbc3_buttons_row { width: 98% }
-/* tweaks for ACP user signature */
-#user_signature #abbc3_buttons { margin-left: 96px }
-#user_signature #abbc3_buttons .abbc3_buttons_row { width: 95% }
+/* tweaks for ACP bbcode editor */
+#main #abbc3_buttons { margin-left: 96px }
+#main #abbc3_buttons .abbc3_buttons_row { width: 95% }
 
 /* BBCode wizard */
 #bbcode_wizard {
