@@ -9,8 +9,13 @@
 
 namespace vse\abbc3\tests\core;
 
-class bbcodes_test extends \extension_database_test_case
+class bbcodes_test extends \phpbb_database_test_case
 {
+	static protected function setup_extensions()
+	{
+		return array('vse/abbc3');
+	}
+
 	protected $db;
 	protected $user;
 	protected $root_path;

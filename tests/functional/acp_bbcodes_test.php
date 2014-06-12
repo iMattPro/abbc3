@@ -12,15 +12,18 @@ namespace vse\abbc3\tests\functional;
 /**
 * @group functional
 */
-class acp_bbcodes_test extends \extension_functional_test_case
+class acp_bbcodes_test extends \phpbb_functional_test_case
 {
+	static protected function setup_extensions()
+	{
+		return array('vse/abbc3');
+	}
+
 	public function setUp()
 	{
 		parent::setUp();
 		$this->login();
 		$this->admin_login();
-		$this->set_extension('vse', 'abbc3', 'Advanced BBCode Box');
-		$this->enable_extension();
 	}
 
 	/**

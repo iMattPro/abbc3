@@ -9,8 +9,13 @@
 
 namespace vse\abbc3\tests\core;
 
-class acp_base extends \extension_database_test_case
+class acp_base extends \phpbb_database_test_case
 {
+	static protected function setup_extensions()
+	{
+		return array('vse/abbc3');
+	}
+
 	protected $db;
 	protected $request;
 	protected $user;
