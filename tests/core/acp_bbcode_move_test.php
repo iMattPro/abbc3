@@ -9,6 +9,8 @@
 
 namespace vse\abbc3\tests\core;
 
+require_once dirname(__FILE__) . '/../../../../../includes/functions.php';
+
 class acp_bbcode_move_test extends acp_base
 {
 	public static function bbcode_move_data()
