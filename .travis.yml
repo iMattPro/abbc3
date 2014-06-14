@@ -29,7 +29,7 @@ matrix:
 env:
   global:
     - EXTNAME="vse/abbc3"
-    - SNIFF="0"        # Should we run code sniffer on your code?
+    - SNIFF="1"        # Should we run code sniffer on your code?
     - IMAGE_ICC="1"    # Should we run icc profile sniffer on your images?
     - PHPBB_BRANCH="develop-ascraeus"
 
