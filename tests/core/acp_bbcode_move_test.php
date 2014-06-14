@@ -72,6 +72,9 @@ class acp_bbcode_move_test extends acp_base
 	*/
 	public function test_bbcode_move($item, $action, $expected)
 	{
+		global $user;
+		$user = new \phpbb_mock_user; // mock the user to prevent hhvm errors with generate_link_hash()
+
 		if ($action == 'drag_drop')
 		{
 			$this->request->expects($this->any())
