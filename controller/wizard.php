@@ -62,7 +62,7 @@ class wizard
 	{
 		if (!$this->request->is_ajax())
 		{
-			return $this->helper->error($this->user->lang('GENERAL_ERROR'));
+			return $this->helper->error($this->user->lang('GENERAL_ERROR'), 200);
 		}
 
 		switch ($mode)
@@ -98,7 +98,7 @@ class wizard
 
 			default:
 
-				return $this->helper->error($this->user->lang('GENERAL_ERROR'));
+				return $this->helper->error($this->user->lang('GENERAL_ERROR'), 200);
 
 			break;
 		}
