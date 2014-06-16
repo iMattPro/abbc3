@@ -1,12 +1,12 @@
 <?php
 /**
 *
-* abbc3 [French]
+* Advanced BBCode Box 3.1 [French]
+* Translated by ForumsFaciles - http://www.forumsfaciles.fr
 *
-* @package language
 * @copyright (c) 2013 Matt Friedman
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @translator: ForumsFaciles - http://www.forumsfaciles.fr
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
 */
 
 /**
