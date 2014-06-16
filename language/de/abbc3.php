@@ -1,12 +1,12 @@
 <?php
 /**
 *
-* abbc3 [German]
+* Advanced BBCode Box 3.1 [German]
+* Translated by wintstar - http://www.wintstar.de
 *
-* @package language
 * @copyright (c) 2013 Matt Friedman
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
-* @translator: wintstar - http://www.wintstar.de
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
 */
 
 /**
