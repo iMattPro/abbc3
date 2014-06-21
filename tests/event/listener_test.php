@@ -27,15 +27,15 @@ class listener_test extends \phpbb_test_case
 		global $user, $phpbb_dispatcher, $phpbb_root_path;
 
 		// Mock some global classes that may be called during code execution
- 		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
+		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
 
 		// Load/Mock classes required by the event listener class
 		$this->parser = new \vse\abbc3\tests\mock\parser();
 		$this->bbcodes = new \vse\abbc3\tests\mock\bbcodes();
- 		$this->config = new \phpbb\config\config(array());
- 		$this->template = new \vse\abbc3\tests\mock\template();
- 		$this->user = $this->getMock('\phpbb\user');
- 		$this->user->data['username'] = 'admin';
+		$this->config = new \phpbb\config\config(array());
+		$this->template = new \vse\abbc3\tests\mock\template();
+		$this->user = $this->getMock('\phpbb\user');
+		$this->user->data['username'] = 'admin';
 		$this->controller_helper = new \phpbb_mock_controller_helper(
 			$this->template,
 			$this->user,
