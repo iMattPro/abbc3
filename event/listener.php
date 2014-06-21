@@ -67,7 +67,7 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'							=> 'load_abbc3_on_setup',
+			'core.user_setup'							=> 'load_language_on_setup',
 
 			// functions_content events
 			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before',
@@ -91,7 +91,7 @@ class listener implements EventSubscriberInterface
 	* @return null
 	* @access public
 	*/
-	public function load_abbc3_on_setup($event)
+	public function load_language_on_setup($event)
 	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = array(
