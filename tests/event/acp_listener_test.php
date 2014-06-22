@@ -18,34 +18,17 @@ class acp_listener_test extends \phpbb_test_case
 	protected $listener;
 
 	/**
-	* Setup test environment
-	*
-	* @access public
-	*/
-	public function setUp()
-	{
-		parent::setUp();
-
-		global $phpbb_dispatcher, $phpbb_root_path;
-
-		// Mock some global classes that may be called during code execution
-		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
-
-		// Load/Mock classes required by the event listener class
-		$this->acp_manager = new \vse\abbc3\tests\mock\acp_manager();
-		$this->root_path = $phpbb_root_path;
-	}
-
-	/**
 	* Create our event listener
 	*
 	* @access protected
 	*/
 	protected function set_listener()
 	{
+		global $phpbb_root_path;
+
 		$this->listener = new \vse\abbc3\event\acp_listener(
-			$this->acp_manager,
-			$this->root_path
+			new \vse\abbc3\tests\mock\acp_manager(),
+			$phpbb_root_path
 		);
 	}
 
