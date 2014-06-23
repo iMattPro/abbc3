@@ -15,7 +15,7 @@ namespace vse\abbc3\core;
 */
 class acp_manager
 {
-	/** @var \phpbb\db\driver\driver */
+	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
 	/** @var \phpbb\request\request */
@@ -27,13 +27,13 @@ class acp_manager
 	/**
 	* Constructor
 	*
-	* @param \phpbb\db\driver\driver $db
+	* @param \phpbb\db\driver\driver_interface $db
 	* @param \phpbb\request\request $request
 	* @param \phpbb\user $user
 	* @return \vse\abbc3\core\acp_manager
 	* @access public
 	*/
-	public function __construct(\phpbb\db\driver\driver $db, \phpbb\request\request $request, \phpbb\user $user)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, \phpbb\user $user)
 	{
 		$this->db = $db;
 		$this->request = $request;

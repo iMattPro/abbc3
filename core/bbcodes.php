@@ -15,7 +15,7 @@ namespace vse\abbc3\core;
 */
 class bbcodes
 {
-	/** @var \phpbb\db\driver\driver */
+	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
 	/** @var \phpbb\user */
@@ -27,13 +27,13 @@ class bbcodes
 	/**
 	* Constructor
 	*
-	* @param \phpbb\db\driver\driver $db
+	* @param \phpbb\db\driver\driver_interface $db
 	* @param \phpbb\user $user
 	* @param $root_path
 	* @return \vse\abbc3\core\bbcodes
 	* @access public
 	*/
-	public function __construct(\phpbb\db\driver\driver $db, \phpbb\user $user, $root_path)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\user $user, $root_path)
 	{
 		$this->db = $db;
 		$this->user = $user;
