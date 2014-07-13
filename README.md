@@ -40,7 +40,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 * Spanish
 
 ## Requirements
-* phpBB 3.1.0-b4 or higher
+* phpBB 3.1.0-RC2 or higher
 * PHP 5.3.3 or higher
 * Javascript is required by this extension.
 
