@@ -34,7 +34,7 @@ class listener_test extends \phpbb_test_case
 		$this->bbcodes = new \vse\abbc3\tests\mock\bbcodes();
 		$this->config = new \phpbb\config\config(array());
 		$this->template = new \vse\abbc3\tests\mock\template();
-		$this->user = $this->getMock('\phpbb\user');
+		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
 		$this->user->data['username'] = 'admin';
 		$this->controller_helper = new \phpbb_mock_controller_helper(
 			$this->template,
