@@ -32,7 +32,7 @@ class acp_base extends \phpbb_database_test_case
 
 		$this->db = $this->new_dbal();
 		$this->request = $this->getMock('\phpbb\request\request');
-		$this->user = new \phpbb\user;
+		$this->user = new \phpbb\user('\phpbb\datetime');
 	}
 
 	protected function acp_manager()
