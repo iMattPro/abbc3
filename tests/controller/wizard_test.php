@@ -50,7 +50,7 @@ class wizard_test extends \phpbb_test_case
 			new \vse\abbc3\tests\mock\controller_helper(),
 			$request,
 			new \vse\abbc3\tests\mock\template(),
-			new \phpbb\user(),
+			new \phpbb\user('\phpbb\datetime'),
 			$phpbb_root_path
 		);
 

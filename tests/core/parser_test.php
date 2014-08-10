@@ -30,7 +30,7 @@ class parser_test extends \phpbb_test_case
 		$phpbb_extension_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
 
 		// Get instance of phpbb\user (dataProvider is called before setUp(), so this must be done here)
-		$this->user = new \phpbb\user();
+		$this->user = new \phpbb\user('\phpbb\datetime');
 
 		$this->user->add_lang_ext('vse/abbc3', 'abbc3');
 	}

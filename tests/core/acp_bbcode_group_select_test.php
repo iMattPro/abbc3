@@ -24,7 +24,7 @@ class acp_bbcode_group_select_test extends acp_base
 		$config['default_lang'] = 'en';
 
 		// Get instance of phpbb\user (dataProvider is called before setUp(), so this must be done here)
-		$this->user = new \phpbb\user();
+		$this->user = new \phpbb\user('\phpbb\datetime');
 
 		$this->user->add_lang('common');
 	}
