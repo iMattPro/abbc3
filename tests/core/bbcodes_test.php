@@ -33,7 +33,7 @@ class bbcodes_test extends \phpbb_database_test_case
 		parent::setUp();
 
 		$this->db = $this->new_dbal();
-		$this->user = new \phpbb\user;
+		$this->user = new \phpbb\user('\phpbb\datetime');
 		$this->root_path = $phpbb_root_path;
 		$phpbb_extension_manager = new \phpbb_mock_extension_manager(dirname(__FILE__) . '/../../../../../phpBB/');
 	}
