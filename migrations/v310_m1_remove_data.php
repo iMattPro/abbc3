@@ -100,8 +100,9 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 
 		// Add all breaks and divisions to the array
 		$sql = 'SELECT bbcode_tag
-			FROM ' . $this->table_prefix . "bbcodes
-			WHERE bbcode_tag LIKE 'break%' OR bbcode_tag LIKE 'division%' ";
+			FROM ' . $this->table_prefix . 'bbcodes
+			WHERE bbcode_tag ' . $this->db->sql_like_expression('break' . $this->db->get_any_char()) . '
+			OR bbcode_tag ' . $this->db->sql_like_expression('division' . $this->db->get_any_char());
 
 		$result = $this->db->sql_query($sql);
 		while ($row = $this->db->sql_fetchrow($result))
