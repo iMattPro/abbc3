@@ -33,11 +33,11 @@ env:
     - IMAGE_ICC="1"    # Should we run icc profile sniffer on your images?
     - PHPBB_BRANCH="develop-ascraeus"
 
-#branches:
-#  only:
-#    - master
-#    - develop
-#    - /^develop-.*$/
+branches:
+  only:
+    - master
+    - develop
+    - /^develop-.*$/
 
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
