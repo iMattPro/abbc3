@@ -100,6 +100,11 @@ class v310_m4_install_data extends \phpbb\db\migration\migration
 				}
 			}
 		}
+
+		// Resynchronize BBCodes
+		global $request, $user;
+		$bbcode_mgr = new \vse\abbc3\core\acp_manager($this->db, $request, $user);
+		$bbcode_mgr->resynchronize_bbcode_order();
 	}
 
 	public function abbc3_bbcode_data()
