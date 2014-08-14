@@ -36,7 +36,7 @@ class acp_manager extends \vse\abbc3\core\acp_manager
 	{
 	}
 
-	protected function resynchronize_bbcode_order()
+	public function resynchronize_bbcode_order()
 	{
 	}
 }

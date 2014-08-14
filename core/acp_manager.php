@@ -227,9 +227,9 @@ class acp_manager
 	* Based on Custom BBCode Sorting MOD by RMcGirr83
 	*
 	* @return null
-	* @access protected
+	* @access public
 	*/
-	protected function resynchronize_bbcode_order()
+	public function resynchronize_bbcode_order()
 	{
 		// By default, check that order is valid and fix it if necessary
 		$sql = 'SELECT bbcode_id, bbcode_order
