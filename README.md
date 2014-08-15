@@ -11,24 +11,26 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 * Supports phpBB3’s custom BBCodes.
 * New BBCodes:
 
-		Copy, Paste, Plain, Font Family, Highlight text, Strike through text, Superscript,
-		Subscript, Glow text, Shadow text, Dropshadow text, Blur text, Fade In/Out, Align (Left,
-		Right Center, Justify), Float (Left, Right), LTR/RTL Direction, Preformatted text,
-		Marquee scroll, Spoiler, Hidden, Moderator Message, Off Topic, NFO/ascii text,
-		YouTube, BBvideo
+		Copy, Paste, Plain, Font Family, Highlight text, Strike through text,
+		Superscript, Subscript, Glow text, Shadow text, Dropshadow text, Blur text, Fade
+		In/Out, Align (Left, Right Center, Justify), Float (Left, Right), LTR/RTL
+		Direction, Preformatted text, Marquee scroll, Spoiler, Hidden, Moderator
+		Message, Off Topic, NFO/ascii text, YouTube, BBvideo
 
 * Embed video in your posts with BBvideo, supported video sharing sites:
 
-		5min.com, allocine.fr, on.aol.com, blip.tv, break.com, clipfish.de, clipmoon.com, cnbc.com,
-		cnettv.cnet.com, colbertnation.com, collegehumor.com, comedycentral.com, crackle.com,
-		dailymotion.com, dotsub.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com,
-		g4tv.com, gameprotv.com, gamespot.com, gametrailers.com, gamevideos.1up, godtube.com,
-		howcast.com, hulu.com, ign.com, liveleak.com, metacafe.com, moddb.com, mpora.com,
-		msnbc.msn.com, myspace.com, myvideo.de, photobucket.com, rutube.ru, sapo.pt, screen.yahoo.com,
-		screenr.com, scribd.com, sevenload.com, slideshare.net, snotr.com, soundcloud.com, spike.com,
-		streetfire.net, ted.com, thedailyshow.cc.com, theonion.com, tudou.com, twitch.tv, twitvid.com,
-		ustream.tv, vbox7.com, veoh.com, vevo.com, viddler.com, videogamer.com, videu.de, vimeo.com,
-		vine.co, wat.tv, xfire.com, youku.com, youtu.be, youtube.com
+		5min.com, allocine.fr, on.aol.com, blip.tv, break.com, clipfish.de,
+		clipmoon.com, cnbc.com, cnettv.cnet.com, colbertnation.com, collegehumor.com,
+		comedycentral.com, crackle.com, dailymotion.com, dotsub.com, ebaumsworld.com,
+		facebook.com, flickr.com, funnyordie.com, g4tv.com, gameprotv.com, gamespot.com,
+		gametrailers.com, godtube.com, howcast.com, hulu.com, ign.com, liveleak.com,
+		metacafe.com, moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo.de,
+		photobucket.com, rutube.ru, sapo.pt, screen.yahoo.com, screenr.com, scribd.com,
+		sevenload.com, slideshare.net, snotr.com, soundcloud.com, spike.com,
+		streetfire.net, ted.com, thedailyshow.cc.com, theonion.com, tudou.com,
+		twitch.tv, twitvid.com, ustream.tv, vbox7.com, veoh.com, vevo.com, viddler.com,
+		videogamer.com, videu.de, vimeo.com, vine.co, wat.tv, youku.com, youtu.be,
+		youtube.com
 
 ### Languages supported:
 * English

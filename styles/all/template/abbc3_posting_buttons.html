@@ -1,5 +1,5 @@
 <script>
-// <![CDATA[
+
 var copy_paste = '';
 var bbvideoHeight = '{LA_ABBC3_BBVIDEO_HEIGHT}';
 var bbvideoWidth = '{LA_ABBC3_BBVIDEO_WIDTH}';
@@ -61,7 +61,7 @@ function bbspecial(bbcode, bbcodeId) {
 	}
 
 	switch (bbcode) {
-		case "abbc3_plain":
+		case 'abbc3_plain':
 			if (theSelection) {
 				try {
 					var tempSelection = bbcode_to_plain(theSelection);
@@ -75,73 +75,73 @@ function bbspecial(bbcode, bbcodeId) {
 					}
 				} catch (e) {}
 			} else {
-				alert("{LA_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
+				alert('{LA_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}');
 				return;
 			}
 			break;
 
-		case "abbc3_copy":
+		case 'abbc3_copy':
 			if (theSelection) {
 				copy_paste = theSelection;
 			} else {
-				alert("{LA_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}");
+				alert('{LA_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}');
 				return;
 			}
 			break;
 
-		case "abbc3_paste":
+		case 'abbc3_paste':
 			if (copy_paste) {
 				bbfontstyle(copy_paste, '');
 			} else {
-				alert("{LA_ERROR}{L_COLON} {LA_ABBC3_PASTE_ERROR}");
+				alert('{LA_ERROR}{L_COLON} {LA_ABBC3_PASTE_ERROR}');
 			}
 			break;
 
-		case "align=":
-			bbfontstyle("[align=center]", "[/align]");
+		case 'align=':
+			bbfontstyle('[align=center]', '[/align]');
 			break;
 
-		case "float=":
-			bbfontstyle("[float=left]", "[/float]");
+		case 'float=':
+			bbfontstyle('[float=left]', '[/float]');
 			break;
 
-		case "dir=":
-			bbfontstyle("[dir=rtl]", "[/dir]");
+		case 'dir=':
+			bbfontstyle('[dir=rtl]', '[/dir]');
 			break;
 
-		case "marq=":
-			bbfontstyle("[marq=left]", "[/marq]");
+		case 'marq=':
+			bbfontstyle('[marq=left]', '[/marq]');
 			break;
 
-		case "mod=":
-			bbfontstyle("[mod={ABBC3_USERNAME}]", "[/mod]");
+		case 'mod=':
+			bbfontstyle('[mod={ABBC3_USERNAME}]', '[/mod]');
 			break;
 
-		case "highlight=":
-			bbfontstyle("[highlight=yellow]", "[/highlight]");
+		case 'highlight=':
+			bbfontstyle('[highlight=yellow]', '[/highlight]');
 			break;
 
-		case "glow=":
-			bbfontstyle("[glow=red]", "[/glow]");
+		case 'glow=':
+			bbfontstyle('[glow=red]', '[/glow]');
 			break;
 
-		case "shadow=":
-			bbfontstyle("[shadow=blue]", "[/shadow]");
+		case 'shadow=':
+			bbfontstyle('[shadow=blue]', '[/shadow]');
 			break;
 
-		case "dropshadow=":
-			bbfontstyle("[dropshadow=blue]", "[/dropshadow]");
+		case 'dropshadow=':
+			bbfontstyle('[dropshadow=blue]', '[/dropshadow]');
 			break;
 
-		case "blur=":
-			bbfontstyle("[blur=blue]", "[/blur]");
+		case 'blur=':
+			bbfontstyle('[blur=blue]', '[/blur]');
 			break;
 
-		case "BBvideo=":
+		case 'BBvideo=':
 			if (theSelection) {
-				bbfontstyle("[BBvideo=" + bbvideoWidth + "," + bbvideoHeight + "]", "[/BBvideo]");
+				bbfontstyle('[BBvideo=' + bbvideoWidth + ',' + bbvideoHeight + ']', '[/BBvideo]');
 			} else {
-				bbwizard("{U_ABBC3_BBVIDEO_WIZARD}", "bbvideo");
+				bbwizard('{U_ABBC3_BBVIDEO_WIZARD}', 'bbvideo');
 			}
 			break;
 
@@ -152,7 +152,7 @@ function bbspecial(bbcode, bbcodeId) {
 
 	theSelection = '';
 }
-// ]]>
+
 </script>
 
 <div id="abbc3_buttons">
