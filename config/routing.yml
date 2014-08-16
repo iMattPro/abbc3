@@ -1,4 +1,4 @@
-abbc3_bbcode_wizard:
+vse_abbc3_bbcode_wizard:
     pattern: /wizard/bbcode/{mode}
     defaults: { _controller: vse.abbc3.wizard:bbcode_wizard }
     requirements:
