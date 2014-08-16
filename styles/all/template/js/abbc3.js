@@ -504,19 +504,10 @@ $(document).ready(function() {
 	$('.bbvideo').bbvideo();
 
 	/**
-	* Function Fade-in fade-out text
-	*/
-	var elem = $('.fadeEffect');
-	(function fadeText() {
-		elem.fadeIn(1000)
-			.delay(1000)
-			.fadeOut(1000, fadeText);
-	})();
-
-	/**
 	* Function spoiler toggle
 	*/
-	$('.spoilbtn').on('click', function() {
+	$('body').on('click', '.spoilbtn', function(event) {
+		event.preventDefault();
 		var trigger = $(this),
 			spoiler = trigger.closest('div').next('.spoilcontent');
 		spoiler.slideToggle('fast', function() {

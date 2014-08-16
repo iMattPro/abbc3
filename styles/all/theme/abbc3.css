@@ -163,6 +163,22 @@ sup {
 	display: inline-block;
 }
 
+/* [fade] fade text in/out effect */
+.fadeEffect {
+	-webkit-animation: fade 2s infinite;
+	animation: fade 2s infinite;
+}
+@-webkit-keyframes fade {
+	50% {
+		opacity: 0;
+	}
+}
+@keyframes fade {
+	50% {
+		opacity: 0;
+	}
+}
+
 /* hide native phpbb BBCode buttons */
 #format-buttons,
 #core-bbcode-buttons,
