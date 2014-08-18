@@ -42,8 +42,8 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'blip.tv',
 			'type' : 'oembed',
-			'regex': /http:\/\/(.*?)blip.tv\/([^[]*)?/i,
-			'embed': 'http://blip.tv/oembed/?url=$&&format=json'
+			'regex': /https?:\/\/(.*?)blip.tv\/([^[]*)?/i,
+			'embed': '//blip.tv/oembed/?url=$&&format=json'
 		}, {
 			'site' : 'break.com',
 			'regex': /http:\/\/(.*?)break.com\/([^[]*)?-([0-9]+)?([^[]*)?/i,
@@ -86,8 +86,8 @@ $.fn.bbvideo = function(options) {
 			'embed': ['http://www.crackle.com/p/$4/$5.swf', 'id=$6&amp;mu=0&amp;ap=0']
 		}, {
 			'site' : 'dailymotion.com',
-			'regex': /http:\/\/(?:.*?)dailymotion.com(?:.*?)\/video\/(([^[_]*)?([^[]*)?)?/i,
-			'embed': '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="http://www.dailymotion.com/embed/video/$2"></iframe>'
+			'regex': /https?:\/\/(?:.*?)dailymotion.com(?:.*?)\/video\/(([^[_]*)?([^[]*)?)?/i,
+			'embed': '<iframe frameborder="0" width="{WIDTH}" height="{HEIGHT}" src="//www.dailymotion.com/embed/video/$2"></iframe>'
 		}, {
 			'site' : 'dotsub.com',
 			'regex': /http:\/\/dotsub.com\/view\/(.*)/i,
@@ -103,8 +103,8 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'flickr.com',
 			'type' : 'oembed',
-			'regex': /http:\/\/((.*?)?)flickr.com\/(.*?)\/(.*?)\/([0-9]+)([^[]*)?/i,
-			'embed': 'http://flickr.com/services/oembed/?url=$&&format=json&jsoncallback=?'
+			'regex': /https?:\/\/((.*?)?)flickr.com\/(.*?)\/(.*?)\/([0-9]+)([^[]*)?/i,
+			'embed': '//flickr.com/services/oembed/?url=$&&format=json&jsoncallback=?'
 		}, {
 			'site' : 'funnyordie.com',
 			'regex': /http:\/\/(?:.*?)funnyordie.com\/(.*?)\/(.*?)\/(?:[^[]*)?/i,
@@ -139,8 +139,8 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'hulu.com',
 			'type' : 'oembed',
-			'regex': /http:\/\/(.*?)hulu.com\/([^[]*)?/i,
-			'embed': 'http://www.hulu.com/api/oembed?url=$&&format=json'
+			'regex': /https?:\/\/(.*?)hulu.com\/([^[]*)?/i,
+			'embed': '//www.hulu.com/api/oembed?url=$&&format=json'
 		}, {
 			'site' : 'ign.com',
 			'regex': /http:\/\/(.*?)ign\.com\/videos\/([0-9]+)\/([0-9]+)\/([0-9]+)\/([^?]*)?([^[]*)?/i,
@@ -198,8 +198,8 @@ $.fn.bbvideo = function(options) {
 			'embed': '<iframe src="http://www.screenr.com/embed/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 		}, {
 			'site' : 'scribd.com',
-			'regex': /http:\/\/(?:www\.)?scribd\.com\/(mobile\/documents|doc)\/(.*?)\/([^[]*)?/i,
-			'embed': '<iframe class="scribd_iframe_embed" src="http://www.scribd.com/embeds/$2/content?start_page=1&view_mode=scroll" data-auto-height="false" data-aspect-ratio="undefined" scrolling="no" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
+			'regex': /https?:\/\/(?:www\.)?scribd\.com\/(mobile\/documents|doc)\/(.*?)\/([^[]*)?/i,
+			'embed': '<iframe class="scribd_iframe_embed" src="//www.scribd.com/embeds/$2/content?start_page=1&view_mode=scroll" data-auto-height="false" data-aspect-ratio="undefined" scrolling="no" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 		}, {
 			'site' : 'sevenload.com',
 			'regex': /http:\/\/(?:.*?)\.sevenload.com\/(?:.*?)(?:episodes|videos)\/(?:.*)-([^[]*)?/i,
@@ -207,8 +207,8 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'slideshare.net',
 			'type' : 'oembed',
-			'regex': /http:\/\/www.slideshare.net\/(.*?)\/([^[]*)?/i,
-			'embed': 'http://www.slideshare.net/api/oembed/2?url=$&&format=json'
+			'regex': /https?:\/\/www.slideshare.net\/(.*?)\/([^[]*)?/i,
+			'embed': '//www.slideshare.net/api/oembed/2?url=$&&format=json'
 		}, {
 			'site' : 'snotr.com',
 			'regex': /http:\/\/(?:.*?)snotr.com\/video\/([0-9]+)\/.*/i,
@@ -223,8 +223,8 @@ $.fn.bbvideo = function(options) {
 			'regex': /http:\/\/(.*?)streetfire.net\/video\/([^[]*)?/i
 		}, {
 			'site' : 'ted.com',
-			'regex': /http:\/\/.*?ted.com\/talks\/([a-zA-Z0-9-_]+).html/i,
-			'embed': '<iframe src="http://embed.ted.com/talks/$1.html" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+			'regex': /https?:\/\/.*?ted.com\/talks\/([a-zA-Z0-9-_]+).html/i,
+			'embed': '<iframe src="//embed.ted.com/talks/$1.html" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 		}, {
 			'site' : 'thedailyshow.cc.com',
 			'type' : 'ogp',
@@ -279,7 +279,7 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'vimeo.com',
 			'regex': /https?:\/\/(?:.*?)vimeo.com(?:\/groups\/(?:.*)\/videos\/|\/)([^[]*)?/i,
-			'embed': '<iframe src="http://player.vimeo.com/video/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+			'embed': '<iframe src="//player.vimeo.com/video/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 		}, {
 			'site' : 'vine.co',
 			'regex': /https:\/\/vine\.co\/v\/([a-zA-Z0-9]{1,13})/i,
@@ -322,7 +322,7 @@ $.fn.bbvideo = function(options) {
 	function ogpRequest(el, url, regex, dimensions) {
 		if (url.match(regex)) {
 			$.ajax({
-				url: 'http://query.yahooapis.com/v1/public/yql',
+				url: '//query.yahooapis.com/v1/public/yql',
 				dataType: 'jsonp',
 				data: {
 					q: 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
