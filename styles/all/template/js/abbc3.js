@@ -146,6 +146,10 @@ $.fn.bbvideo = function(options) {
 			'regex': /http:\/\/(.*?)ign\.com\/videos\/([0-9]+)\/([0-9]+)\/([0-9]+)\/([^?]*)?([^[]*)?/i,
 			'embed': '<iframe src="http://widgets.ign.com/video/embed/content.html?url=$&" width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" allowfullscreen></iframe>'
 		}, {
+			'site' : 'instagram.com',
+			'regex': /https?:\/\/.*?instagram.com\/p\/(.*)\/([^[]*)?/i,
+			'embed': '<iframe src="//instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe>'
+		}, {
 			'site' : 'liveleak.com',
 			'regex': /http:\/\/www.liveleak.com\/view\?i=([0-9A-Za-z-_]+)?(\&[^\/]+)?/i,
 			'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.liveleak.com/ll_embed?f=$1" frameborder="0" allowfullscreen></iframe>'
