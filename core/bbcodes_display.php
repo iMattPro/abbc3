@@ -11,9 +11,9 @@
 namespace vse\abbc3\core;
 
 /**
-* ABBC3 core BBCodes class
+* ABBC3 core BBCodes display class
 */
-class bbcodes
+class bbcodes_display
 {
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
@@ -30,7 +30,7 @@ class bbcodes
 	* @param \phpbb\db\driver\driver_interface $db
 	* @param \phpbb\user $user
 	* @param $root_path
-	* @return \vse\abbc3\core\bbcodes
+	* @return \vse\abbc3\core\bbcodes_display
 	* @access public
 	*/
 	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\user $user, $root_path)

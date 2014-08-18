@@ -30,8 +30,8 @@ class listener_test extends \phpbb_test_case
 		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
 
 		// Load/Mock classes required by the event listener class
-		$this->parser = new \vse\abbc3\tests\mock\parser();
-		$this->bbcodes = new \vse\abbc3\tests\mock\bbcodes();
+		$this->parser = new \vse\abbc3\tests\mock\bbcodes_parser();
+		$this->bbcodes = new \vse\abbc3\tests\mock\bbcodes_display();
 		$this->config = new \phpbb\config\config(array());
 		$this->template = new \vse\abbc3\tests\mock\template();
 		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));

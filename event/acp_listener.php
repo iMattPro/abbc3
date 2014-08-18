@@ -33,8 +33,8 @@ class acp_listener implements EventSubscriberInterface
 	*/
 	public function __construct(\vse\abbc3\core\acp_manager $acp_manager, $root_path)
 	{
-		$this->root_path = $root_path;
 		$this->acp_manager = $acp_manager;
+		$this->root_path = $root_path;
 	}
 
 	/**

@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\mock;
 
-class bbcodes extends \vse\abbc3\core\bbcodes
+class bbcodes_parser extends \vse\abbc3\core\bbcodes_parser
 {
 	public function __construct()
 	{

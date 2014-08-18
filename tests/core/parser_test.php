@@ -44,7 +44,7 @@ class parser_test extends \phpbb_test_case
 
 	protected function get_parser()
 	{
-		return new \vse\abbc3\core\parser($this->user);
+		return new \vse\abbc3\core\bbcodes_parser($this->user);
 	}
 
 	public function pre_parse_data()

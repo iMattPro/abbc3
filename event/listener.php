@@ -17,11 +17,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class listener implements EventSubscriberInterface
 {
-	/** @var \vse\abbc3\core\parser */
-	protected $abbc3_parser;
+	/** @var \vse\abbc3\core\bbcodes_parser */
+	protected $bbcodes_parser;
 
-	/** @var \vse\abbc3\core\bbcodes */
-	protected $abbc3_bbcodes;
+	/** @var \vse\abbc3\core\bbcodes_display */
+	protected $bbcodes_display;
 
 	/** @var \phpbb\controller\helper */
 	protected $helper;
@@ -38,8 +38,8 @@ class listener implements EventSubscriberInterface
 	/**
 	* Constructor
 	*
-	* @param \vse\abbc3\core\parser $abbc3_parser
-	* @param \vse\abbc3\core\bbcodes $abbc3_bbcodes
+	* @param \vse\abbc3\core\bbcodes_parser $bbcodes_parser
+	* @param \vse\abbc3\core\bbcodes_display $bbcodes_display
 	* @param \phpbb\controller\helper $helper
 	* @param \phpbb\template\template $template
 	* @param \phpbb\user $user
@@ -47,10 +47,10 @@ class listener implements EventSubscriberInterface
 	* @return \vse\abbc3\event\listener
 	* @access public
 	*/
-	public function __construct(\vse\abbc3\core\parser $abbc3_parser, \vse\abbc3\core\bbcodes $abbc3_bbcodes, \phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, $root_path)
+	public function __construct(\vse\abbc3\core\bbcodes_parser $bbcodes_parser, \vse\abbc3\core\bbcodes_display $bbcodes_display, \phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, $root_path)
 	{
-		$this->abbc3_parser = $abbc3_parser;
-		$this->abbc3_bbcodes = $abbc3_bbcodes;
+		$this->bbcodes_parser = $bbcodes_parser;
+		$this->bbcodes_display = $bbcodes_display;
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
@@ -112,7 +112,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function parse_bbcodes_before($event)
 	{
-		$event['text'] = $this->abbc3_parser->pre_parse_bbcodes($event['text'], $event['uid']);
+		$event['text'] = $this->bbcodes_parser->pre_parse_bbcodes($event['text'], $event['uid']);
 	}
 
 	/**
@@ -126,7 +126,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function parse_bbcodes_after($event)
 	{
-		$event['text'] = $this->abbc3_parser->post_parse_bbcodes($event['text']);
+		$event['text'] = $this->bbcodes_parser->post_parse_bbcodes($event['text']);
 	}
 
 	/**
@@ -169,7 +169,7 @@ class listener implements EventSubscriberInterface
 	*/
 	public function display_custom_bbcodes($event)
 	{
-		$event['custom_tags'] = $this->abbc3_bbcodes->display_custom_bbcodes($event['custom_tags'], $event['row']);
+		$event['custom_tags'] = $this->bbcodes_display->display_custom_bbcodes($event['custom_tags'], $event['row']);
 	}
 
 	/**
@@ -181,6 +181,6 @@ class listener implements EventSubscriberInterface
 	*/
 	public function allow_custom_bbcodes($event)
 	{
-		$event['bbcodes'] = $this->abbc3_bbcodes->allow_custom_bbcodes($event['bbcodes'], $event['rowset']);
+		$event['bbcodes'] = $this->bbcodes_display->allow_custom_bbcodes($event['bbcodes'], $event['rowset']);
 	}
 }

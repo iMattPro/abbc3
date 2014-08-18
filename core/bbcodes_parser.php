@@ -11,9 +11,9 @@
 namespace vse\abbc3\core;
 
 /**
-* ABBC3 core parser class
+* ABBC3 core BBCodes parser class
 */
-class parser
+class bbcodes_parser
 {
 	/** @var \phpbb\user */
 	protected $user;
@@ -22,7 +22,7 @@ class parser
 	* Constructor
 	*
 	* @param \phpbb\user $user
-	* @return \vse\abbc3\core\parser
+	* @return \vse\abbc3\core\bbcodes_parser
 	* @access public
 	*/
 	public function __construct(\phpbb\user $user)

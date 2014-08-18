@@ -40,7 +40,7 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	protected function bbcodes_manager()
 	{
-		return new \vse\abbc3\core\bbcodes($this->db, $this->user, $this->root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->db, $this->user, $this->root_path);
 	}
 
 	public function bbcode_data()
