@@ -56,7 +56,7 @@ class bbcodes_parser
 	public function post_parse_bbcodes($text)
 	{
 		// hidden BBCode
-		$text = preg_replace_callback('#<!-- ABBC3_BBCODE_HIDDEN -->(.*?)<!-- ABBC3_BBCODE_HIDDEN -->#', array($this, 'hidden_pass'), $text);
+		$text = preg_replace_callback('#<!-- ABBC3_BBCODE_HIDDEN -->(.*?)<!-- ABBC3_BBCODE_HIDDEN -->#s', array($this, 'hidden_pass'), $text);
 
 		return $text;
 	}
