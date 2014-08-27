@@ -7,6 +7,7 @@ services:
         class: vse\abbc3\core\bbcodes_display
         arguments:
             - @dbal.conn
+            - @ext.manager
             - @user
             - %core.root_path%
     vse.abbc3.acp_manager:

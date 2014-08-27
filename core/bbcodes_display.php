@@ -18,6 +18,9 @@ class bbcodes_display
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+	/** @var \phpbb\extension\manager */
+	protected $extension_manager;
+
 	/** @var \phpbb\user */
 	protected $user;
 
@@ -27,15 +30,17 @@ class bbcodes_display
 	/**
 	* Constructor
 	*
-	* @param \phpbb\db\driver\driver_interface $db
-	* @param \phpbb\user $user
+	* @param \phpbb\db\driver\driver_interface $db Database connection
+	* @param \phpbb\extension\manager $extension_manager Extension manager object
+	* @param \phpbb\user $user User object
 	* @param $root_path
 	* @return \vse\abbc3\core\bbcodes_display
 	* @access public
 	*/
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\user $user, $root_path)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\extension\manager $extension_manager, \phpbb\user $user, $root_path)
 	{
 		$this->db = $db;
+		$this->extension_manager = $extension_manager;
 		$this->user = $user;
 		$this->root_path = $root_path;
 	}
@@ -96,9 +101,7 @@ class bbcodes_display
 	*/
 	protected function get_images()
 	{
-		global $phpbb_extension_manager;
-
-		$finder = $phpbb_extension_manager->get_finder();
+		$finder = $this->extension_manager->get_finder();
 
 		return $finder
 			->extension_suffix('.gif')

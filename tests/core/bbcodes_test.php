@@ -20,6 +20,7 @@ class bbcodes_test extends \phpbb_database_test_case
 	protected $db;
 	protected $user;
 	protected $root_path;
+	protected $ext_manager;
 
 	public function getDataSet()
 	{
@@ -35,12 +36,12 @@ class bbcodes_test extends \phpbb_database_test_case
 		$this->db = $this->new_dbal();
 		$this->user = new \phpbb\user('\phpbb\datetime');
 		$this->root_path = $phpbb_root_path;
-		$phpbb_extension_manager = new \phpbb_mock_extension_manager(dirname(__FILE__) . '/../../../../../phpBB/');
+		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(dirname(__FILE__) . '/../../../../../phpBB/');
 	}
 
 	protected function bbcodes_manager()
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->db, $this->user, $this->root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->db, $this->ext_manager, $this->user, $this->root_path);
 	}
 
 	public function bbcode_data()
