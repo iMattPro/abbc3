@@ -74,7 +74,7 @@ class wizard
 				$select_options = '';
 				$bbvideo_selected = 'youtube.com';
 				$bbvideo_sites_array = $this->bbvideo_sites();
-				foreach($bbvideo_sites_array as $site => $example)
+				foreach ($bbvideo_sites_array as $site => $example)
 				{
 					$select_options .= '<option value="' . $example . '"' . (($site == $bbvideo_selected) ? ' selected="selected"' : '') . '>' . $site . '</option>';
 				}
@@ -82,7 +82,7 @@ class wizard
 				// Construct BBvideo size preset select options
 				$size_preset_options = '';
 				$bbvideo_size_presets_array = $this->bbvideo_size_presets();
-				foreach($bbvideo_size_presets_array as $preset)
+				foreach ($bbvideo_size_presets_array as $preset)
 				{
 					$size_preset_options .= '<option value="' . str_replace(' ', '', $preset) . '">' . $preset . '</option>';
 				}
