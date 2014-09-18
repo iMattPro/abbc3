@@ -51,7 +51,7 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'clipfish.de',
 			'type' : 'flash',
-			'regex': /http:\/\/www.clipfish.de\/video\/([0-9]+)([^[]*)?/i,
+			'regex': /http:\/\/www.clipfish.de\/(.*\/)?video\/([0-9]+)([^[]*)?/i,
 			'embed': ['http://www.clipfish.de/cfng/flash/clipfish_player_3.swf?as=0&amp;vid=$1']
 		}, {
 			'site' : 'clipmoon.com',
