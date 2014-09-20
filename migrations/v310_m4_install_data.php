@@ -219,7 +219,7 @@ class v310_m4_install_data extends \phpbb\db\migration\migration
 			'soundcloud' => array(
 				'bbcode_helpline'	=> 'ABBC3_SOUNDCLOUD_HELPLINE',
 				'bbcode_match'		=> '[soundcloud]{URL}[/soundcloud]',
-				'bbcode_tpl'		=> '<object height="81" width="100%"><param name="movie" value="http://player.soundcloud.com/player.swf?url={URL}&amp;g=bb"></param><param name="allowscriptaccess" value="always"></param><embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url={URL}&amp;g=bb" type="application/x-shockwave-flash" width="100%"></embed></object>',
+				'bbcode_tpl'		=> '<object height="81" width="100%"><param name="movie" value="http://player.soundcloud.com/player.swf?url={URL}&amp;g=bb"><param name="allowscriptaccess" value="always"><embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url={URL}&amp;g=bb" type="application/x-shockwave-flash" width="100%"></embed></object>',
 			),
 			'BBvideo' => array(
 				'bbcode_helpline'	=> 'ABBC3_BBVIDEO_HELPLINE',
