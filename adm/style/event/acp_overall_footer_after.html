@@ -12,11 +12,11 @@
 'use strict';
 
 $(function() {
-	var msg_timer;
-	var msg_successBox = $('<div class="successbox" style="display:none;"><img style="float:left; padding-right:8px;" src="{IMG_AJAX_IMAGE}" width="48" height="48" alt="" /><h3>{LA_INFORMATION}</h3><p>{LA_ABBC3_BBCODE_ORDERED}</p></div>').appendTo("body");
+	var msgTimer;
+	var msgSuccessBox = $('<div class="successbox" style="display:none;"><img style="float:left; padding-right:8px;" src="{IMG_AJAX_IMAGE}" width="48" height="48" alt="" /><h3>{LA_INFORMATION}</h3><p>{LA_ABBC3_BBCODE_ORDERED}</p></div>').appendTo("body");
 
 	// Re-style the sucessbox to look like a growl notification
-	msg_successBox.css({
+	msgSuccessBox.css({
 		'position': 'fixed',
 		'top': '0',
 		'right': '20px',
@@ -39,14 +39,16 @@ $(function() {
 		'z-index': '50'
 	});
 
-	// Get BBCode ids from the delete button, and create tr row IDs on the fly for use by tableDnD
-	$('#down > tbody').find('tr').each(function() {
+    var bbcodeTable = $('#down');
+
+    // Get BBCode ids from the delete button, and create tr row IDs on the fly for use by tableDnD
+    bbcodeTable.find('tbody').find('tr').each(function() {
 		var url = $(this).find('a').last().attr('href');
 		if (url) $(this).attr('id', 'bbcode_' + url.split('bbcode=')[1]);
 	});
 
 	// Enable table row drag-drop
-	$('#down').tableDnD({
+    bbcodeTable.tableDnD({
 		onDragClass: 'row3',
 		onDrop: function(table, row) {
 			$.ajax({
@@ -56,10 +58,10 @@ $(function() {
 				success: function(res) {
 					// Show the message
 					if (res.success) {
-						clearTimeout(msg_timer);
-						msg_successBox.stop(true, true).hide().fadeIn(500);
-						msg_timer = setTimeout(function() {
-							msg_successBox.fadeOut(500);
+						clearTimeout(msgTimer);
+						msgSuccessBox.stop(true, true).hide().fadeIn(500);
+						msgTimer = setTimeout(function() {
+							msgSuccessBox.fadeOut(500);
 						}, 3000);
 					}
 				}

@@ -1,31 +1,31 @@
 <script>
 
-var copy_paste = '';
+var copyPaste = '';
 var bbvideoHeight = '{LA_ABBC3_BBVIDEO_HEIGHT}';
 var bbvideoWidth = '{LA_ABBC3_BBVIDEO_WIDTH}';
 
 /**
 * Strip all BBCodes from the selected text
 */
-function bbcode_to_plain(data) {
+function bbcodeToPlain(data) {
 	if (data.indexOf('[') < 0) {
 		return data;
 	}
 
-	function bbcode_to_plain_simple_replace(str) {
-		return str.replace(basic_bbcode_match, bbcode_to_plain_pattern);
+	function bbcodeToPlainSimpleReplace(str) {
+		return str.replace(basicBBcodeMatch, bbcodeToPlainPattern);
 	}
 
-	function bbcode_to_plain_pattern(match_0, match_1, match_2, match_3) {
+	function bbcodeToPlainPattern(match_0, match_1, match_2, match_3) {
 		if (match_3 && match_3.indexOf('[') > -1) {
-			match_3 = bbcode_to_plain_simple_replace(match_3);
+			match_3 = bbcodeToPlainSimpleReplace(match_3);
 		}
 		return match_3;
 	}
 
-	var basic_bbcode_match = new RegExp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
+	var basicBBcodeMatch = new RegExp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
 
-	return bbcode_to_plain_simple_replace(data);
+	return bbcodeToPlainSimpleReplace(data);
 }
 
 /**
@@ -64,7 +64,7 @@ function bbspecial(bbcode, bbcodeId) {
 		case 'abbc3_plain':
 			if (theSelection) {
 				try {
-					var tempSelection = bbcode_to_plain(theSelection);
+					var tempSelection = bbcodeToPlain(theSelection);
 
 					if ((clientVer >= 4) && is_ie && is_win) {
 						document.selection.createRange().text = tempSelection;
@@ -82,7 +82,7 @@ function bbspecial(bbcode, bbcodeId) {
 
 		case 'abbc3_copy':
 			if (theSelection) {
-				copy_paste = theSelection;
+				copyPaste = theSelection;
 			} else {
 				alert('{LA_ERROR}{L_COLON} {LA_ABBC3_NOSELECT_ERROR}');
 				return;
@@ -90,8 +90,8 @@ function bbspecial(bbcode, bbcodeId) {
 			break;
 
 		case 'abbc3_paste':
-			if (copy_paste) {
-				bbfontstyle(copy_paste, '');
+			if (copyPaste) {
+				bbfontstyle(copyPaste, '');
 			} else {
 				alert('{LA_ERROR}{L_COLON} {LA_ABBC3_PASTE_ERROR}');
 			}
