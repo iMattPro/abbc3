@@ -26,10 +26,10 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\controller\helper */
 	protected $helper;
 
-	/** @var phpbb_template */
+	/** @var \phpbb\template\template */
 	protected $template;
 
-	/** @var phpbb_user */
+	/** @var \phpbb\user */
 	protected $user;
 
 	/** @var string */

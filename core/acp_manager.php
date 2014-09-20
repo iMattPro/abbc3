@@ -185,7 +185,7 @@ class acp_manager
 	/**
 	* Generate a select box containing user groups
 	*
-	* @param array $select_id The user groups to mark as selected
+	* @param mixed $select_id The user groups to mark as selected
 	* @return string HTML markup of user groups select box for the form
 	* @access public
 	*/
