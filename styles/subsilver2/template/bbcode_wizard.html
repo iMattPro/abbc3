@@ -4,7 +4,9 @@
 			<td class="row1"><b class="genmed">{L_ABBC3_BBVIDEO_SITES}{L_COLON}</b></td>
 			<td class="row1">
 				<select id="bbvideo_wizard_sites" name="bbvideo_wizard_sites">
-					{S_ABBC3_BBVIDEO_SITES}
+					<!-- BEGIN bbvideo_sites -->
+						<option value="{bbvideo_sites.VALUE}"<!-- IF bbvideo_sites.S_SELECTED --> selected="selected"<!-- ENDIF -->>{bbvideo_sites.LABEL}</option>
+					<!-- END bbvideo_sites -->
 				</select>
 			</td>
 		</tr>
@@ -26,7 +28,9 @@
 				<input type="number" id="bbvideo_wizard_width" name="bbvideo_wizard_width" value="{L_ABBC3_BBVIDEO_WIDTH}" class="post" min="0" max="9999" size="4" /> x <input type="number" id="bbvideo_wizard_height" name="bbvideo_wizard_height" value="{L_ABBC3_BBVIDEO_HEIGHT}" class="post" min="0" max="9999" size="4" />
 				<select id="bbvideo_wizard_size_presets" name="bbvideo_wizard_size_presets">
 					<option value="">{L_ABBC3_BBVIDEO_PRESETS}</option>
-					{S_ABBC3_BBVIDEO_SIZES}
+					<!-- BEGIN bbvideo_sizes -->
+						<option value="{bbvideo_sizes.VALUE}">{bbvideo_sizes.LABEL}</option>
+					<!-- END bbvideo_sizes -->
 				</select>
 			</td>
 		</tr>

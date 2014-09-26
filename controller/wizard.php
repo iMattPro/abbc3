@@ -71,25 +71,28 @@ class wizard
 			case 'bbvideo':
 
 				// Construct BBvideo allowed site select options
-				$select_options = '';
 				$bbvideo_selected = 'youtube.com';
 				$bbvideo_sites_array = $this->bbvideo_sites();
 				foreach ($bbvideo_sites_array as $site => $example)
 				{
-					$select_options .= '<option value="' . $example . '"' . (($site == $bbvideo_selected) ? ' selected="selected"' : '') . '>' . $site . '</option>';
+					$this->template->assign_block_vars('bbvideo_sites', array(
+						'VALUE'			=> $example,
+						'LABEL'			=> $site,
+						'S_SELECTED'	=> ($site == $bbvideo_selected) ? true : false,
+					));
 				}
 
 				// Construct BBvideo size preset select options
-				$size_preset_options = '';
 				$bbvideo_size_presets_array = $this->bbvideo_size_presets();
 				foreach ($bbvideo_size_presets_array as $preset)
 				{
-					$size_preset_options .= '<option value="' . str_replace(' ', '', $preset) . '">' . $preset . '</option>';
+					$this->template->assign_block_vars('bbvideo_sizes', array(
+						'VALUE'			=> str_replace(' ', '', $preset),
+						'LABEL'			=> $preset,
+					));
 				}
 
 				$this->template->assign_vars(array(
-					'S_ABBC3_BBVIDEO_SITES'	=> $select_options,
-					'S_ABBC3_BBVIDEO_SIZES'	=> $size_preset_options,
 					'ABBC3_BBVIDEO_LINK_EX'	=> $bbvideo_sites_array[$bbvideo_selected],
 				));
 
