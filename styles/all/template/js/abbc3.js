@@ -61,7 +61,7 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'cnbc.com',
 			'regex': /http:\/\/.*\.cnbc.com\/[^?]+\?video=(\d+)?([^[]+)?/i,
-			'embed': '<iframe src="http://player.theplatform.com/p/gZWlPC/vcps_inline?byGuid=$1&size={WIDTH}_{HEIGHT}" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" allowFullScreen="true" bgcolor="#131313"></iframe>'
+			'embed': '<iframe src="http://player.theplatform.com/p/gZWlPC/vcps_inline?byGuid=$1&size={WIDTH}_{HEIGHT}" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" allowFullScreen="true"></iframe>'
 		}, {
 			'site' : 'cnettv.cnet.com',
 			'type' : 'flash',
@@ -151,7 +151,7 @@ $.fn.bbvideo = function(options) {
 			'embed': '<iframe src="//instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe>'
 		}, {
 			'site' : 'liveleak.com',
-			'regex': /http:\/\/www.liveleak.com\/view\?i=([0-9A-Za-z-_]+)?(\&[^\/]+)?/i,
+			'regex': /http:\/\/www.liveleak.com\/view\?i=([0-9A-Za-z-_]+)?(&[^\/]+)?/i,
 			'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.liveleak.com/ll_embed?f=$1" frameborder="0" allowfullscreen></iframe>'
 		}, {
 			'site' : 'metacafe.com',
@@ -168,7 +168,7 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'msnbc.msn.com',
 			'type' : 'flash',
-			'regex': /http:\/\/www.msnbc.msn.com\/id\/(\d+)?\/vp\/(\d+)?\#(\d+)?([^[]*)?/i,
+			'regex': /http:\/\/www.msnbc.msn.com\/id\/(\d+)?\/vp\/(\d+)?#(\d+)?([^[]*)?/i,
 			'embed': ['http://www.msnbc.msn.com/id/32545640', 'launch=$3&amp;width={WIDTH}&amp;height={HEIGHT}']
 		}, {
 			'site' : 'myspace.com',
@@ -177,7 +177,7 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'myvideo.de',
 			'regex': /http:\/\/(.*?).myvideo.(.*?)\/(.*?)\/([^[]*)?/i,
-			'embed': '<iframe src="http://$1.myvideo.$2/embed/$4" style="width:{WIDTH}px;height:{HEIGHT}px;border:0px none;padding:0;margin:0;" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no"></iframe>'
+			'embed': '<iframe src="http://$1.myvideo.$2/embed/$4" style="width:{WIDTH}px;height:{HEIGHT}px;border:0 none;padding:0;margin:0;" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no"></iframe>'
 		}, {
 			'site' : 'nbcnews.com',
 			'type' : 'flash',
@@ -240,7 +240,7 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'tudou.com',
 			'regex': /http:\/\/.*?tudou.com\/programs\/view\/(.+)\//i,
-			'embed': '<iframe src="http://www.tudou.com/programs/view/html5embed.action?code=$1&resourceId=0_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:{WIDTH}px;height:{HEIGHT}px;"></iframe>'
+			'embed': '<iframe src="http://www.tudou.com/programs/view/html5embed.action?code=$1&resourceId=0_06_05_99" allowtransparency="true" scrolling="no" frameborder="0" style="width:{WIDTH}px;height:{HEIGHT}px;"></iframe>'
 		}, {
 			'site' : 'twitch.tv',
 			'type' : 'flash',
@@ -249,11 +249,11 @@ $.fn.bbvideo = function(options) {
 		}, {
 			'site' : 'twitvid.com',
 			'regex': /http:\/\/twitvid.com\/([^[]*)?/i,
-			'embed': '<iframe src="http://www.twitvid.com/embed.php?guid=$1&amp;autoplay=0" title="Twitvid video player" type="text/html" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
+			'embed': '<iframe src="http://www.twitvid.com/embed.php?guid=$1&amp;autoplay=0" title="Twitvid video player" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 		}, {
 			'site' : 'ustream.tv',
 			'regex': /http:\/\/(?:www\.)ustream\.tv\/(?:channel\/([0-9]{1,8}))/i,
-			'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>'
+			'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0 none transparent;"></iframe>'
 		}, {
 			'site' : 'vbox7.com',
 			'regex': /http:\/\/(?:.*?)vbox7.com\/play:([^[]+)?/i,
@@ -347,10 +347,10 @@ $.fn.bbvideo = function(options) {
 							meta[name] = data.query.results.meta[i].content;
 						}
 
-						if (meta['og:video'] || meta['og:video:url']) {
-
+						var videoUrl = meta['og:video'] || meta['og:video:url'];
+						if (videoUrl) {
 							embedCode = $('<embed />')
-								.attr('src', meta['og:video'] || meta['og:video:url'])
+								.attr('src', videoUrl.replace('https:', ''))
 								.attr('type', meta['og:video:type'] || 'application/x-shockwave-flash')
 								.attr('width', dimensions.width || meta['og:video:width'])
 								.attr('height', dimensions.height || meta['og:video:height'])
@@ -370,7 +370,7 @@ $.fn.bbvideo = function(options) {
 	function flashCode(url, flashVars, dimensions) {
 		return '<object width="' + dimensions.width + '" height="' + dimensions.height + '" type="application/x-shockwave-flash" data="' + url + '">' +
 			'<param name="movie" value="' + url + '" />' +
-			(flashVars !== undefined ? '<param name="flashvars" value="' + flashVars.replace(/&/g, '&amp;').replace(/{WIDTH}/g, dimensions.width).replace(/{HEIGHT}/g, dimensions.height) + '" />' : '') +
+			(flashVars !== undefined ? '<param name="flashvars" value="' + flashVars.replace(/&/g, '&amp;').replace(/\{WIDTH}/g, dimensions.width).replace(/\{HEIGHT}/g, dimensions.height) + '" />' : '') +
 			'<param name="quality" value="high" />' +
 			'<param name="allowFullScreen" value="true" />' +
 			'<param name="allowScriptAccess" value="always" />' +
@@ -420,7 +420,7 @@ $.fn.bbvideo = function(options) {
 						break;
 
 					default:
-						embedWrapper(el, url.replace(bbvideos[i].regex, bbvideos[i].embed.replace(/{WIDTH}/g, dimensions.width).replace(/{HEIGHT}/g, dimensions.height)));
+						embedWrapper(el, url.replace(bbvideos[i].regex, bbvideos[i].embed.replace(/\{WIDTH}/g, dimensions.width).replace(/\{HEIGHT}/g, dimensions.height)));
 						break;
 				}
 				break;
@@ -502,6 +502,8 @@ var bbinsert = function(bbopen, bbclose) {
 */
 $(document).ready(function() {
 
+	var body = $('body');
+
 	/**
 	* Attach bbvideo listener
 	*/
@@ -510,7 +512,7 @@ $(document).ready(function() {
 	/**
 	* Function spoiler toggle
 	*/
-	$('body').on('click', '.spoilbtn', function(event) {
+	body.on('click', '.spoilbtn', function(event) {
 		event.preventDefault();
 		var trigger = $(this),
 			spoiler = trigger.closest('div').next('.spoilcontent');
@@ -524,7 +526,7 @@ $(document).ready(function() {
 	*/
 	var wizard = $('#bbcode_wizard');
 	// Click on body to dismiss bbcode wizard
-	$('body').on('click', function() {
+	body.on('click', function() {
 		wizard.fadeOut('fast');
 	});
 	// Click on bbcode wizard submit button to apply bbcode to message
