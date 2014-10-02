@@ -27,8 +27,8 @@
 		},
 		"version-check": {
 			"host": "vsephpbb.github.io",
-			"directory": "/abbc3",
-			"filename": "version.json"
+			"directory": "/version",
+			"filename": "abbc3.json"
 		}
 	}
 }
