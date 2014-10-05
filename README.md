@@ -60,6 +60,11 @@ Note: This extension is in development. Installation is only recommended for tes
 2. Click the `Disable` link for Advanced BBCode Box.
 3. To permanently uninstall, click `Delete Data`, then delete the `abbc3` folder from `phpBB/ext/vse/`.
 
+## Customizing:
+1. Custom BBCode Icons: You can give your custom BBCodes icons by simply adding a GIF image named after your BBCode (e.g.: center.gif) to the `images/icons` directory. There are tons of extra BBCode icons included in the `contrib` directory.
+2. BBCode Toolbar: You can change the look of the BBCode toolbar using any of the extra toolbar background images located in the `contrib` directory. Just copy one of the alternative toolbar images to `styles/all/theme/images/abbc3_bg.gif` (and refresh your browser).
+3. NOTE: When making any of these customizations to ABBC3, be sure to note/backup your changes, as you may need to reproduce them after updating this extension, in case any of your added image files is overwritten or erased.
+
 * * *
 
 ## Deprecated ABBC 3.0 Information:
