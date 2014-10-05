@@ -57,14 +57,14 @@ class bbcodes_display
 	*/
 	public function display_custom_bbcodes($custom_tags, $row)
 	{
-		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
-
 		static $images = array();
 
 		if (empty($images))
 		{
 			$images = $this->get_images();
 		}
+
+		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
 
 		$custom_tags['BBCODE_IMG'] = (isset($images['ext/' . $bbcode_img])) ? 'ext/vse/' . $bbcode_img : '';
 		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = (!empty($row['bbcode_group'])) ? $this->bbcode_group_permissions($row['bbcode_group']) : true;
@@ -96,7 +96,7 @@ class bbcodes_display
 	/**
 	* Get image paths/names from ABBC3's icons folder
 	*
-	* @return Array of file data from ext/vse/abbc3/styles/all/theme/images/icons
+	* @return Array of file data from ext/vse/abbc3/images/icons
 	* @access protected
 	*/
 	protected function get_images()

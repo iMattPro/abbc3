@@ -21,7 +21,8 @@ $(function() {
 		bbcodeTable = $('#down'),
 		msgSuccessBox = $('#abbc3-successbox');
 
-    // Get BBCode ids from the delete button, and create tr row IDs on the fly for use by tableDnD
+    // Get BBCode ids from the delete button,
+    // and create tr row IDs on the fly for use by tableDnD
     bbcodeTable.find('tbody').find('tr').each(function() {
 		var url = $(this).find('a').last().attr('href');
 		if (url) $(this).attr('id', 'bbcode_' + url.split('bbcode=')[1]);
