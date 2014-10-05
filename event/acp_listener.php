@@ -111,8 +111,7 @@ class acp_listener implements EventSubscriberInterface
 
 		// Add some additional template variables
 		$template_data = $event['template_data'];
-		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['u_action'] . '&amp;action=drag_drop');
-		$template_data['IMG_AJAX_IMAGE'] = $this->root_path . 'ext/vse/abbc3/images/accepted.png';
+		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['u_action'] . '&action=drag_drop');
 		$event['template_data'] = $template_data;
 
 		// Change SQL so that it orders by bbcode_order
