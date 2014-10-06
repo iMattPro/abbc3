@@ -316,7 +316,7 @@ $.fn.bbvideo = function(options) {
 	*/
 	function oembedRequest(el, url, dimensions) {
 		$.getJSON(url + '&callback=?', function(data) {
-			embedWrapper(el, data.html.replace(/width='([0-9]{1,4})'/gi, 'width="' + dimensions.width + '"').replace(/height='([0-9]{1,4})'/gi, 'height="' + dimensions.height + '"'));
+			embedWrapper(el, data.html.replace(/width=['"]([0-9]{1,4})['"]/gi, 'width="' + dimensions.width + '"').replace(/height=['"]([0-9]{1,4})['"]/gi, 'height="' + dimensions.height + '"'));
 		});
 	}
 
@@ -398,9 +398,18 @@ $.fn.bbvideo = function(options) {
 				height: settings.height
 			};
 
+		// Set bbvideo width and height data
 		if (el.data('bbvideo') !== undefined && el.data('bbvideo').length) {
 			dimensions.width = el.data('bbvideo').split(',')[0].trim() || settings.width;
 			dimensions.height = el.data('bbvideo').split(',')[1].trim() || settings.height;
+		}
+
+		// Set width and height based on responsive layout
+		var postBody = $('.postbody').first();
+		var aspectRatio = dimensions.height / dimensions.width;
+		if (aspectRatio !== 0 && postBody.width() < dimensions.width) {
+			dimensions.width = postBody.width();
+			dimensions.height = dimensions.width * aspectRatio;
 		}
 
 		for (var i = 0, l = bbvideos.length; i < l; i++) {
