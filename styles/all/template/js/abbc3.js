@@ -309,6 +309,11 @@ var bbwizard;
 				'site': 'youtube.com',
 				'regex': /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?/i,
 				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
+			}, {
+				'site': 'tu.tv',
+				'type': 'yqlOembed',
+				'regex': /http:\/\/(.*?)tu.tv\/videos\/([^[]*)?/i,
+				'embed': 'http://tu.tv/oembed/?url=$&&format=json'
 			}
 		];
 
