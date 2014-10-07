@@ -37,7 +37,7 @@ var bbwizard;
 				'embed': '<iframe src="http://www.allocine.fr/_video/iblogvision.aspx?cmedia=$1" style="width:{WIDTH}px; height:{HEIGHT}px" frameborder="0"></iframe>'
 			}, {
 				'site': 'on.aol.com',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/on.aol.com\/video\/(?:.*)-([0-9]+)/i
 			}, {
 				'site': 'blip.tv',
@@ -77,7 +77,7 @@ var bbwizard;
 				'embed': '<iframe src="http://www.collegehumor.com/e/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>'
 			}, {
 				'site': 'comedycentral.com',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/(?:.*?)comedycentral.com\/video-clips\/([^[]*)?/i
 			}, {
 				'site': 'crackle.com',
@@ -125,7 +125,7 @@ var bbwizard;
 				'embed': '<iframe width="640" height="360" src="http://www.gamespot.com/videoembed/$1&amp;mapp=false&amp;ads=0&amp;onsite=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			}, {
 				'site': 'gametrailers.com',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/www.gametrailers.com\/(?:user\-movie|player|video|videos)\/([\w\-]+)\/([\w\-]+).*/i
 			}, {
 				'site': 'godtube.com',
@@ -159,7 +159,7 @@ var bbwizard;
 				'embed': '<iframe src="http://www.metacafe.com/embed/$1/" width="{WIDTH}" height="{HEIGHT}" allowFullScreen frameborder=0></iframe>'
 			}, {
 				'site': 'moddb.com',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/www.moddb.com\/([^[]*)?/i
 			}, {
 				'site': 'mpora.com',
@@ -190,8 +190,9 @@ var bbwizard;
 				'embed': ['http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5']
 			}, {
 				'site': 'rutube.ru',
-				'type': 'ogp',
-				'regex': /http:\/\/rutube.ru\/(.*?)\/([^[]*)?/i
+				'type': 'yqlOembed',
+				'regex': /http:\/\/rutube.ru\/(.*?)\/([^[]*)?/i,
+				'embed': 'http://rutube.ru/api/oembed/?url=$&&format=json'
 			}, {
 				'site': 'sapo.pt',
 				'regex': /http:\/\/(.*?)sapo.pt\/(.*\/)?([^[]*)?/i,
@@ -219,11 +220,11 @@ var bbwizard;
 				'embed': '<iframe src="http://www.snotr.com/embed/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			}, {
 				'site': 'spike.com',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/www.spike.com\/([^[]*)?/i
 			}, {
 				'site': 'streetfire.net',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/(.*?)streetfire.net\/video\/([^[]*)?/i
 			}, {
 				'site': 'ted.com',
@@ -231,7 +232,7 @@ var bbwizard;
 				'embed': '<iframe src="//embed.ted.com/talks/$1.html" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			}, {
 				'site': 'thedailyshow.cc.com',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/(?:.*?)thedailyshow.cc.com\/videos\/([^[]*)?/i
 			}, {
 				'site': 'theonion.com',
@@ -273,7 +274,7 @@ var bbwizard;
 				'embed': '<iframe id="viddler-$1" src="//www.viddler.com/embed/$1/?f=1&autoplay=0&player=full&loop=false&nologo=false&hd=false" width="{WIDTH}" height="{HEIGHT}" frameborder="0" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>'
 			}, {
 				'site': 'videogamer.com',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/www.videogamer.com\/([^[]*)?/i
 			}, {
 				'site': 'videu.de',
@@ -290,7 +291,7 @@ var bbwizard;
 				'embed': '<iframe class="vine-embed" src="https://vine.co/v/$1/embed/simple" width="480" height="480" frameborder="0"></iframe>'
 			}, {
 				'site': 'wat.tv',
-				'type': 'ogp',
+				'type': 'yqlOgp',
 				'regex': /http:\/\/(.*?)wat.tv\/video\/([^[]*)?/i
 			}, {
 				'site': 'screen.yahoo.com',
@@ -316,46 +317,53 @@ var bbwizard;
 		 */
 		function oembedRequest(el, url, dimensions) {
 			$.getJSON(url + '&callback=?', function(data) {
-				embedWrapper(el, data.html.replace(/width=['"]([0-9]{1,4})['"]/gi, 'width="' + dimensions.width + '"').replace(/height=['"]([0-9]{1,4})['"]/gi, 'height="' + dimensions.height + '"'));
+				embedWrapper(el, fixDimensions(data.html, dimensions));
 			});
 		}
 
 		/**
-		* Perform an OGP request for an embed code
-		*/
-		function ogpRequest(el, url, regex, dimensions) {
+		 * Perform a YQL request for an embed code via OGP or oEmbed
+		 */
+		function yqlRequest(el, url, regex, dimensions, type) {
 			if (url.match(regex)) {
+				var from = (type == 'yqlOembed') ? 'json' : 'html';
+				var path = (type == 'yqlOembed') ? 'itemPath="/"' : 'xpath="//meta" and compat="html5"';
 				$.ajax({
 					url: '//query.yahooapis.com/v1/public/yql',
 					dataType: 'jsonp',
 					data: {
-						q: 'select * from html where url="' + url + '" and xpath="//meta" and compat="html5"',
+						q: 'select * from ' + from + ' where url="' + url + '" and ' + path,
 						format: 'json',
 						env: 'store://datatables.org/alltableswithkeys',
 						callback: '?'
 					},
 					success: function(data) {
-						var embedCode = '',
-							meta = {};
-
+						var embedCode = '';
 						if (data.query.results !== null) {
-							for (var i = 0, l = data.query.results.meta.length; i < l; i++) {
-								var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
-								if (name === null) {
-									continue;
+							if (type == 'yqlOembed') {
+								// oEmbed
+								embedCode = fixDimensions(data.query.results.json.html, dimensions);
+							} else {
+								// Open Graph Protocol
+								var meta = {};
+								for (var i = 0, l = data.query.results.meta.length; i < l; i++) {
+									var name = data.query.results.meta[i].name || data.query.results.meta[i].property || null;
+									if (name === null) {
+										continue;
+									}
+									meta[name] = data.query.results.meta[i].content;
 								}
-								meta[name] = data.query.results.meta[i].content;
-							}
 
-							var videoUrl = meta['og:video'] || meta['og:video:url'];
-							if (videoUrl) {
-								embedCode = $('<embed />')
-									.attr('src', videoUrl.replace('https:', ''))
-									.attr('type', meta['og:video:type'] || 'application/x-shockwave-flash')
-									.attr('width', dimensions.width || meta['og:video:width'])
-									.attr('height', dimensions.height || meta['og:video:height'])
-									.attr('allowfullscreen', 'true')
-									.attr('autostart', 'false');
+								var videoUrl = meta['og:video'] || meta['og:video:url'];
+								if (videoUrl) {
+									embedCode = $('<embed />')
+										.attr('src', videoUrl.replace('https:', ''))
+										.attr('type', meta['og:video:type'] || 'application/x-shockwave-flash')
+										.attr('width', dimensions.width || meta['og:video:width'])
+										.attr('height', dimensions.height || meta['og:video:height'])
+										.attr('allowfullscreen', 'true')
+										.attr('autostart', 'false');
+								}
 							}
 						}
 						embedWrapper(el, embedCode);
@@ -390,6 +398,13 @@ var bbwizard;
 			}
 		}
 
+		/**
+		 * Replace height and width dimensions inside an HTML string
+		 */
+		function fixDimensions(html, dimensions) {
+			return html.replace(/width=(['"])([0-9]{1,4})\1/gi, 'width="' + dimensions.width + '"').replace(/height=(['"])([0-9]{1,4})\1/gi, 'height="' + dimensions.height + '"');
+		}
+
 		return this.each(function() {
 			var el = $(this),
 				url = el.attr('href'),
@@ -420,8 +435,12 @@ var bbwizard;
 							embedWrapper(el, url.replace(bbvideos[i].regex, flashCode(bbvideos[i].embed[0], bbvideos[i].embed[1], dimensions)));
 							break;
 
-						case 'ogp':
-							ogpRequest(el, url, bbvideos[i].regex, dimensions);
+						case 'yqlOgp':
+							yqlRequest(el, url, bbvideos[i].regex, dimensions, bbvideos[i].type);
+							break;
+
+						case 'yqlOembed':
+							yqlRequest(el, url.replace(bbvideos[i].regex, bbvideos[i].embed), bbvideos[i].regex, dimensions, bbvideos[i].type);
 							break;
 
 						case 'oembed':
