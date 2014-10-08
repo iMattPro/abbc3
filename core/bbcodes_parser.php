@@ -18,16 +18,26 @@ class bbcodes_parser
 	/** @var \phpbb\user */
 	protected $user;
 
+	/** @var string default width of bbvideo */
+	protected $bbvideo_width;
+
+	/** @var string default height of bbvideo */
+	protected $bbvideo_height;
+
 	/**
 	* Constructor
 	*
 	* @param \phpbb\user $user
+	* @param string $bbvideo_width
+	* @param string $bbvideo_height
 	* @return \vse\abbc3\core\bbcodes_parser
 	* @access public
 	*/
-	public function __construct(\phpbb\user $user)
+	public function __construct(\phpbb\user $user, $bbvideo_width, $bbvideo_height)
 	{
 		$this->user = $user;
+		$this->bbvideo_width = $bbvideo_width;
+		$this->bbvideo_height = $bbvideo_height;
 	}
 
 	/**
@@ -70,7 +80,7 @@ class bbcodes_parser
 	*/
 	protected function bbvideo_pass($matches)
 	{
-		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : '[bbvideo=' . $this->user->lang('ABBC3_BBVIDEO_WIDTH') . ',' . $this->user->lang('ABBC3_BBVIDEO_HEIGHT') . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
+		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : '[bbvideo=' . $this->bbvideo_width . ',' . $this->bbvideo_height . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
 	}
 
 	/**

@@ -1,8 +1,13 @@
+imports:
+    - { resource: parameters.yml }
+
 services:
     vse.abbc3.bbcodes_parser:
         class: vse\abbc3\core\bbcodes_parser
         arguments:
             - @user
+            - %vse.abbc3.bbvideo.default.width%
+            - %vse.abbc3.bbvideo.default.height%
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display
         arguments:
@@ -25,6 +30,8 @@ services:
             - @template
             - @user
             - %core.root_path%
+            - %vse.abbc3.bbvideo.default.width%
+            - %vse.abbc3.bbvideo.default.height%
         tags:
             - { name: event.listener }
     vse.abbc3.acp_listener:
@@ -42,3 +49,5 @@ services:
             - @template
             - @user
             - %core.root_path%
+            - %vse.abbc3.bbvideo.default.width%
+            - %vse.abbc3.bbvideo.default.height%

@@ -30,6 +30,12 @@ class wizard
 	/** @var string phpBB root path */
 	protected $root_path;
 
+	/** @var string default width of bbvideo */
+	protected $bbvideo_width;
+
+	/** @var string default height of bbvideo */
+	protected $bbvideo_height;
+
 	/**
 	* Constructor
 	*
@@ -37,17 +43,21 @@ class wizard
 	* @param \phpbb\request\request      $request     Request object
 	* @param \phpbb\template\template    $template    Template object
 	* @param \phpbb\user                 $user        User object
-	* @param $root_path
+	* @param string $root_path
+	* @param string $bbvideo_width
+	* @param string $bbvideo_height
 	* @return \vse\abbc3\controller\wizard
 	* @access public
 	*/
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $root_path)
+	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $root_path, $bbvideo_width, $bbvideo_height)
 	{
 		$this->helper = $helper;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
 		$this->root_path = $root_path;
+		$this->bbvideo_width = $bbvideo_width;
+		$this->bbvideo_height = $bbvideo_height;
 	}
 
 	/**
@@ -83,7 +93,12 @@ class wizard
 				}
 
 				// Construct BBvideo size preset select options
-				$bbvideo_size_presets_array = $this->bbvideo_size_presets();
+				$bbvideo_size_presets_array = array(
+					'560 x 315',
+					'640 x 360',
+					'853 x 480',
+					'1280 x 720',
+				);
 				foreach ($bbvideo_size_presets_array as $preset)
 				{
 					$this->template->assign_block_vars('bbvideo_sizes', array(
@@ -94,6 +109,8 @@ class wizard
 
 				$this->template->assign_vars(array(
 					'ABBC3_BBVIDEO_LINK_EX'	=> $bbvideo_sites_array[$bbvideo_selected],
+					'ABBC3_BBVIDEO_HEIGHT'	=> $this->bbvideo_height,
+					'ABBC3_BBVIDEO_WIDTH'	=> $this->bbvideo_width,
 				));
 
 				return $this->helper->render('bbcode_wizard.html');
@@ -124,21 +141,5 @@ class wizard
 		}
 
 		return json_decode(file_get_contents($bbvideo_json_file), true);
-	}
-
-	/**
-	* Return an array of commonly used size dimensions for embedded video
-	*
-	* @return array Size dimensions
-	* @access protected
-	*/
-	protected function bbvideo_size_presets()
-	{
-		return array(
-			$this->user->lang('ABBC3_BBVIDEO_PRESETS_SM'),
-			$this->user->lang('ABBC3_BBVIDEO_PRESETS_MD'),
-			$this->user->lang('ABBC3_BBVIDEO_PRESETS_LG'),
-			$this->user->lang('ABBC3_BBVIDEO_PRESETS_XL'),
-		);
 	}
 }

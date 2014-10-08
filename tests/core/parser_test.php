@@ -13,6 +13,8 @@ namespace vse\abbc3\tests\core;
 class parser_test extends \phpbb_test_case
 {
 	protected $user;
+	protected $bbvideo_width;
+	protected $bbvideo_height;
 
 	/**
 	* Get an instance of phpbb\user
@@ -33,6 +35,8 @@ class parser_test extends \phpbb_test_case
 		$this->user = new \phpbb\user('\phpbb\datetime');
 
 		$this->user->add_lang_ext('vse/abbc3', 'abbc3');
+		$this->bbvideo_width = 560;
+		$this->bbvideo_height = 315;
 	}
 
 	public function setUp()
@@ -44,7 +48,7 @@ class parser_test extends \phpbb_test_case
 
 	protected function get_parser()
 	{
-		return new \vse\abbc3\core\bbcodes_parser($this->user);
+		return new \vse\abbc3\core\bbcodes_parser($this->user, $this->bbvideo_width, $this->bbvideo_height);
 	}
 
 	public function pre_parse_data()
@@ -71,14 +75,14 @@ class parser_test extends \phpbb_test_case
 					'text' => '[BBvideo:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/BBvideo:2sy55ot3]',
 					'uid' => '2sy55ot3'
 				),
-				'[bbvideo=' . $this->user->lang('ABBC3_BBVIDEO_WIDTH') . ',' . $this->user->lang('ABBC3_BBVIDEO_HEIGHT') . ':2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3]',
+				'[bbvideo=' . $this->bbvideo_width . ',' . $this->bbvideo_height . ':2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3]',
 			),
 			array(
 				array(
 					'text' => 'Hello [b:2sy55ot3]world[/b:2sy55ot3] [bbvideo:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3] Goodbye world',
 					'uid' => '2sy55ot3'
 				),
-				'Hello [b:2sy55ot3]world[/b:2sy55ot3] [bbvideo=' . $this->user->lang('ABBC3_BBVIDEO_WIDTH') . ',' . $this->user->lang('ABBC3_BBVIDEO_HEIGHT') . ':2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3] Goodbye world',
+				'Hello [b:2sy55ot3]world[/b:2sy55ot3] [bbvideo=' . $this->bbvideo_width . ',' . $this->bbvideo_height . ':2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3] Goodbye world',
 			),
 		);
 	}

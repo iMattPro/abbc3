@@ -81,13 +81,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'فرمت های ویدیویی مجاز',
 	'ABBC3_BBVIDEO_LINK'		=> 'لینک های ویدیو',
 	'ABBC3_BBVIDEO_SIZE'		=> 'طول و عرض ویدیو',
-	'ABBC3_BBVIDEO_WIDTH'		=> '560',
-	'ABBC3_BBVIDEO_HEIGHT'		=> '315',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'اندازه',
-	'ABBC3_BBVIDEO_PRESETS_SM'	=> '560 x 315',
-	'ABBC3_BBVIDEO_PRESETS_MD'	=> '640 x 360',
-	'ABBC3_BBVIDEO_PRESETS_LG'	=> '853 x 480',
-	'ABBC3_BBVIDEO_PRESETS_XL'	=> '1280 x 720',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'بی بی کد دستور داده شده به روز رسانی شد',

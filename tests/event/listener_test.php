@@ -55,6 +55,8 @@ class listener_test extends \phpbb_test_case
 			dirname(__FILE__) . '/../../'
 		);
 		$this->root_path = $phpbb_root_path;
+		$this->bbvideo_width = 560;
+		$this->bbvideo_height = 315;
 	}
 
 	/**
@@ -70,7 +72,9 @@ class listener_test extends \phpbb_test_case
 			$this->controller_helper,
 			$this->template,
 			$this->user,
-			$this->root_path
+			$this->root_path,
+			$this->bbvideo_width,
+			$this->bbvideo_height
 		);
 	}
 
@@ -242,6 +246,8 @@ class listener_test extends \phpbb_test_case
 		$this->assertEquals(array(
 			'ABBC3_USERNAME'			=> 'admin',
 			'ABBC3_BBCODE_ICONS' 		=> 'ext/vse/abbc3/images/icons',
+			'ABBC3_BBVIDEO_HEIGHT'		=> $this->bbvideo_height,
+			'ABBC3_BBVIDEO_WIDTH'		=> $this->bbvideo_width,
 			'U_ABBC3_BBVIDEO_WIZARD'	=> 'app.php/wizard/bbcode/bbvideo',
 		), $this->template->get_template_vars());
 	}

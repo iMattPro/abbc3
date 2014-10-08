@@ -35,6 +35,12 @@ class listener implements EventSubscriberInterface
 	/** @var string */
 	protected $root_path;
 
+	/** @var string default width of bbvideo */
+	protected $bbvideo_width;
+
+	/** @var string default height of bbvideo */
+	protected $bbvideo_height;
+
 	/**
 	* Constructor
 	*
@@ -44,10 +50,12 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\template\template $template
 	* @param \phpbb\user $user
 	* @param string $root_path
+	* @param string $bbvideo_width
+	* @param string $bbvideo_height
 	* @return \vse\abbc3\event\listener
 	* @access public
 	*/
-	public function __construct(\vse\abbc3\core\bbcodes_parser $bbcodes_parser, \vse\abbc3\core\bbcodes_display $bbcodes_display, \phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, $root_path)
+	public function __construct(\vse\abbc3\core\bbcodes_parser $bbcodes_parser, \vse\abbc3\core\bbcodes_display $bbcodes_display, \phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, $root_path, $bbvideo_width, $bbvideo_height)
 	{
 		$this->bbcodes_parser = $bbcodes_parser;
 		$this->bbcodes_display = $bbcodes_display;
@@ -55,6 +63,8 @@ class listener implements EventSubscriberInterface
 		$this->template = $template;
 		$this->user = $user;
 		$this->root_path = $root_path;
+		$this->bbvideo_width = $bbvideo_width;
+		$this->bbvideo_height = $bbvideo_height;
 	}
 
 	/**
@@ -156,6 +166,9 @@ class listener implements EventSubscriberInterface
 		$this->template->assign_vars(array(
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
 			'ABBC3_BBCODE_ICONS'		=> 'ext/vse/abbc3/images/icons',
+			'ABBC3_BBVIDEO_HEIGHT'		=> $this->bbvideo_height,
+			'ABBC3_BBVIDEO_WIDTH'		=> $this->bbvideo_width,
+
 			'U_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
 		));
 	}
