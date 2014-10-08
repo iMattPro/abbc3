@@ -189,6 +189,11 @@ var bbwizard;
 				'regex': /http:\/\/[a-z](.*?).photobucket.com\/(albums\/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?/i,
 				'embed': ['http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5']
 			}, {
+				'site' : 'revision3.com',
+				'type' : 'yqlOembed',
+				'regex': /http:\/\/(.*revision3\.com\/.*)/i,
+				'embed': 'http://revision3.com/api/oembed/?url=$&&format=json'
+			}, {
 				'site': 'rutube.ru',
 				'type': 'yqlOembed',
 				'regex': /http:\/\/rutube.ru\/(.*?)\/([^[]*)?/i,
@@ -230,6 +235,11 @@ var bbwizard;
 				'site': 'ted.com',
 				'regex': /https?:\/\/.*?ted.com\/talks\/([a-zA-Z0-9-_]+).html/i,
 				'embed': '<iframe src="//embed.ted.com/talks/$1.html" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
+			}, {
+				'site' : 'testtube.com',
+				'type' : 'yqlOembed',
+				'regex': /http:\/\/(.*testtube\.com\/.*)/i,
+				'embed': 'http://testtube.com/api/oembed/?url=$&&format=json'
 			}, {
 				'site': 'thedailyshow.cc.com',
 				'type': 'yqlOgp',
@@ -407,7 +417,13 @@ var bbwizard;
 		 * Replace height and width dimensions inside an HTML string
 		 */
 		function fixDimensions(html, dimensions) {
-			return html.replace(/width=(['"])([0-9]{1,4})\1/gi, 'width="' + dimensions.width + '"').replace(/height=(['"])([0-9]{1,4})\1/gi, 'height="' + dimensions.height + '"');
+			// In rare case where no width param exists, add them
+			if (/width=["']/.test(html) === false) {
+				console.log('fuck');
+				return html.replace(/(\/?>)/, ' width="' + dimensions.width + '" height="' + dimensions.height + '"$1');
+			}
+			// More typical, replace any width and height with our dimensions
+			return html.replace(/width=(['"])[0-9]{1,4}\1/gi, 'width="' + dimensions.width + '"').replace(/height=(['"])[0-9]{1,4}\1/gi, 'height="' + dimensions.height + '"');
 		}
 
 		return this.each(function() {
