@@ -24,7 +24,7 @@ class listener_test extends \phpbb_test_case
 	{
 		parent::setUp();
 
-		global $user, $phpbb_dispatcher, $phpbb_root_path, $phpEx;
+		global $phpbb_dispatcher, $phpbb_root_path, $phpEx;
 
 		// Mock some global classes that may be called during code execution
 		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
