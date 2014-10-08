@@ -249,6 +249,11 @@ var bbwizard;
 				'regex': /http:\/\/((.*?)?)theonion.com\/([^,]+),([0-9]+)([^[]*)?/i,
 				'embed': '<iframe frameborder="no" width="{WIDTH}" height="{HEIGHT}" scrolling="no" src="http://www.theonion.com/video_embed/?id=$4"></iframe>'
 			}, {
+				'site': 'tu.tv',
+				'type': 'yqlOembed',
+				'regex': /http:\/\/(.*?)tu.tv\/videos\/([^[]*)?/i,
+				'embed': 'http://tu.tv/oembed/?url=$&&format=json'
+			}, {
 				'site': 'tudou.com',
 				'regex': /http:\/\/.*?tudou.com\/programs\/view\/(.+)\//i,
 				'embed': '<iframe src="http://www.tudou.com/programs/view/html5embed.action?code=$1&resourceId=0_06_05_99" allowtransparency="true" scrolling="no" frameborder="0" style="width:{WIDTH}px;height:{HEIGHT}px;"></iframe>'
@@ -319,11 +324,6 @@ var bbwizard;
 				'site': 'youtube.com',
 				'regex': /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?/i,
 				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
-			}, {
-				'site': 'tu.tv',
-				'type': 'yqlOembed',
-				'regex': /http:\/\/(.*?)tu.tv\/videos\/([^[]*)?/i,
-				'embed': 'http://tu.tv/oembed/?url=$&&format=json'
 			}
 		];
 
