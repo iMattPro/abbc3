@@ -341,8 +341,8 @@ var bbwizard;
 		 */
 		function yqlRequest(el, url, regex, dimensions, type) {
 			if (url.match(regex)) {
-				var from = (type == 'yqlOembed') ? 'json' : 'html';
-				var path = (type == 'yqlOembed') ? 'itemPath="/"' : 'xpath="//meta" and compat="html5"';
+				var from = (type === 'yqlOembed') ? 'json' : 'html';
+				var path = (type === 'yqlOembed') ? 'itemPath="/"' : 'xpath="//meta" and compat="html5"';
 				$.ajax({
 					url: '//query.yahooapis.com/v1/public/yql',
 					dataType: 'jsonp',
@@ -355,7 +355,7 @@ var bbwizard;
 					success: function(data) {
 						var embedCode = '';
 						if (data.query.results !== null) {
-							if (type == 'yqlOembed') {
+							if (type === 'yqlOembed') {
 								// oEmbed
 								embedCode = fixDimensions(data.query.results.json.html, dimensions);
 							} else {
@@ -419,7 +419,6 @@ var bbwizard;
 		function fixDimensions(html, dimensions) {
 			// In rare case where no width param exists, add them
 			if (/width=["']/.test(html) === false) {
-				console.log('fuck');
 				return html.replace(/(\/?>)/, ' width="' + dimensions.width + '" height="' + dimensions.height + '"$1');
 			}
 			// More typical, replace any width and height with our dimensions
