@@ -2,10 +2,10 @@
 /**
 *
 * Advanced BBCode Box 3.1 [Dutch]
-*
+* Translated by Dutch Translators (https://github.com/dutch-translators)
+* 
 * @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
-* [Dutch] translated by Dutch Translators (https://github.com/dutch-translators)
 *
 */
 
