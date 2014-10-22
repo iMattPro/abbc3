@@ -36,6 +36,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		wat.tv, youku.com, youtu.be, youtube.com
 
 ### Languages supported:
+* Dutch
 * English
 * French
 * German
