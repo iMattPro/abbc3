@@ -259,9 +259,8 @@ var bbwizard;
 				'embed': '<iframe src="http://www.tudou.com/programs/view/html5embed.action?code=$1&resourceId=0_06_05_99" allowtransparency="true" scrolling="no" frameborder="0" style="width:{WIDTH}px;height:{HEIGHT}px;"></iframe>'
 			}, {
 				'site': 'twitch.tv',
-				'type': 'flash',
 				'regex': /http:\/\/(.*?)twitch.tv\/([^[]*)?/i,
-				'embed': ['http://www.twitch.tv/widgets/live_embed_player.swf?channel=$2', 'hostname=www.twitch.tv&amp;channel=$2&amp;auto_play=false&amp;start_volume=25']
+				'embed': '<iframe src="http://www.twitch.tv/$2/embed" frameborder="0" scrolling="no" height="{HEIGHT}" width="{WIDTH}"></iframe>'
 			}, {
 				'site': 'twitvid.com',
 				'regex': /http:\/\/twitvid.com\/([^[]*)?/i,
