@@ -71,6 +71,7 @@ class wizard
 	*/
 	public function bbcode_wizard($mode)
 	{
+		// Only allow AJAX requests
 		if (!$this->request->is_ajax())
 		{
 			return $this->helper->error($this->user->lang('GENERAL_ERROR'), 200);
@@ -108,7 +109,7 @@ class wizard
 				}
 
 				$this->template->assign_vars(array(
-					'ABBC3_BBVIDEO_LINK_EX'	=> $bbvideo_sites_array[$bbvideo_selected],
+					'ABBC3_BBVIDEO_LINK_EX'	=> isset($bbvideo_sites_array[$bbvideo_selected]) ? $bbvideo_sites_array[$bbvideo_selected] : '',
 					'ABBC3_BBVIDEO_HEIGHT'	=> $this->bbvideo_height,
 					'ABBC3_BBVIDEO_WIDTH'	=> $this->bbvideo_width,
 				));
@@ -126,7 +127,7 @@ class wizard
 	}
 
 	/**
-	* Return an array of allowed BBvideo sites and example URLs (stored in bbvideo.json)
+	* Return an array of allowed BBvideo sites and example URLs (stored in assets/bbvideo.json)
 	*
 	* @return array Allowed BBvideo sites and URLs
 	* @access protected
@@ -137,9 +138,21 @@ class wizard
 
 		if (!file_exists($bbvideo_json_file))
 		{
-			throw new \phpbb\extension\exception('The required file does not exist: ' . $bbvideo_json_file);
+			throw new \phpbb\extension\exception($this->user->lang('FILE_NOT_FOUND', $bbvideo_json_file));
 		}
+		else
+		{
+			if (!($file_contents = file_get_contents($bbvideo_json_file)))
+			{
+				throw new \phpbb\extension\exception($this->user->lang('FILE_CONTENT_ERR', $bbvideo_json_file));
+			}
 
-		return json_decode(file_get_contents($bbvideo_json_file), true);
+			if (($bbvideo_data = json_decode($file_contents, true)) === null)
+			{
+				throw new \phpbb\extension\exception($this->user->lang('FILE_JSON_DECODE_ERR', $bbvideo_json_file));
+			}
+
+			return $bbvideo_data;
+		}
 	}
 }
