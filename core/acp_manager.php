@@ -11,7 +11,7 @@
 namespace vse\abbc3\core;
 
 /**
-* ABBC3 acp manager class
+* ABBC3 ACP manager class
 */
 class acp_manager
 {

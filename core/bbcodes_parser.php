@@ -80,7 +80,7 @@ class bbcodes_parser
 	*/
 	protected function bbvideo_pass($matches)
 	{
-		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : '[bbvideo=' . $this->bbvideo_width . ',' . $this->bbvideo_height . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
+		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : "[bbvideo={$this->bbvideo_width},{$this->bbvideo_height}:$matches[3]]$matches[4][/bbvideo:$matches[3]]";
 	}
 
 	/**
