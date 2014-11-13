@@ -153,7 +153,7 @@ class v310_m4_install_data extends \phpbb\db\migration\migration
 		);
 
 		global $request, $user;
-		$bbcode_manager = new \vse\abbc3\core\bbcodes_manager($this->db, $request, $user, $this->phpbb_root_path, $this->php_ext, $this->table_prefix);
-		$bbcode_manager->install_bbcodes($bbcode_data);
+		$acp_manager = new \vse\abbc3\core\acp_manager($this->db, $request, $user, $this->phpbb_root_path, $this->php_ext);
+		$acp_manager->install_bbcodes($bbcode_data);
 	}
 }
