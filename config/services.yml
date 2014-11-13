@@ -8,6 +8,7 @@ services:
             - @user
             - %vse.abbc3.bbvideo.default.width%
             - %vse.abbc3.bbvideo.default.height%
+
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display
         arguments:
@@ -15,6 +16,7 @@ services:
             - @ext.manager
             - @user
             - %core.root_path%
+
     vse.abbc3.bbcodes_manager:
         class: vse\abbc3\core\bbcodes_manager
         arguments:
@@ -22,12 +24,14 @@ services:
             - %core.root_path%
             - %core.php_ext%
             - %core.table_prefix%
+
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
         arguments:
             - @dbal.conn
             - @request
             - @user
+
     vse.abbc3.listener:
         class: vse\abbc3\event\listener
         arguments:
@@ -41,6 +45,7 @@ services:
             - %vse.abbc3.bbvideo.default.height%
         tags:
             - { name: event.listener }
+
     vse.abbc3.acp_listener:
         class: vse\abbc3\event\acp_listener
         arguments:
@@ -48,6 +53,7 @@ services:
             - %core.root_path%
         tags:
             - { name: event.listener }
+
     vse.abbc3.wizard:
         class: vse\abbc3\controller\wizard
         arguments:

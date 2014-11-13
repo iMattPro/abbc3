@@ -12,6 +12,9 @@ namespace vse\abbc3\migrations;
 
 class v310_m1_remove_data extends \phpbb\db\migration\migration
 {
+	/*
+	 * Do not run migration if ACP_ABBCODES module does not exist
+	 */
 	public function effectively_installed()
 	{
 		$sql = 'SELECT module_id
@@ -25,8 +28,10 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 		return $module_id == false;
 	}
 
-	// This dependency is needed mostly for testing, to ensure
-	// phpBB migrations are installed before ABBC3.
+	/*
+	 * This dependency is needed mostly for testing, to ensure
+	 * phpBB migrations are installed before ABBC3.
+	 */
 	static public function depends_on()
 	{
 		return array('\phpbb\db\migration\data\v310\beta4');
@@ -54,6 +59,9 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 		);
 	}
 
+	/*
+	 * Remove config data from ABBC3 MOD
+	 */
 	public function remove_abbc3_configs()
 	{
 		$abbc3_config_names = array(
@@ -94,6 +102,9 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 		$this->db->sql_query($sql);
 	}
 
+	/*
+	 * Remove BBCodes from ABBC3 MOD
+	 */
 	public function remove_abbc3_bbcodes()
 	{
 		$abbc3_bbcode_deprecated = $this->abbc3_bbcodes();
@@ -117,10 +128,13 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 		$this->db->sql_query($sql);
 	}
 
+	/*
+	 * Array of ABBC3 MOD BBCodes to remove
+	 */
 	public function abbc3_bbcodes()
 	{
 		return array(
-			// exists in core
+			// These exists in core
 			'b',
 			'code',
 			'color',
@@ -137,7 +151,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 			'url',
 			'url=',
 
-			// not really BBCodes
+			// These were not really BBCodes
 			'copy',
 			'cut',
 			'grad',
@@ -145,7 +159,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 			'plain',
 			'imgshack',
 
-			// deprecated
+			// These are deprecated
 			'click',		// click_pass
 			'ed2k',
 			'flv',			// auto_embed_video
@@ -174,7 +188,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 			'liveleak',		// auto_embed_video
 			'veoh',			// auto_embed_video
 
-			// replaced by new BBCodes
+			// These are being replaced by new BBCodes
 			'align=justify',	// replaced by align=
 			'align=left',		// replaced by align=
 			'align=right',		// replaced by align=
@@ -183,7 +197,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 			'marq=left',		// replaced by marq=
 			'marq=right',		// replaced by marq=
 
-			// updated BBCodes
+			// These will be updated in another migration
 	//		'align=center',	// replaced by align=
 	//		'blur=',		// Text_effect_pass
 	//		'dir=ltr',		// replaced by dir=

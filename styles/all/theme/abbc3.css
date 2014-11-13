@@ -45,7 +45,7 @@
 	}
 }
 
-/* hide native phpbb BBCode buttons */
+/* Hide native phpbb BBCode buttons */
 #format-buttons,
 #core-bbcode-buttons,
 #custom-bbcode-buttons { display: none }
