@@ -150,6 +150,10 @@ var bbwizard;
 				'regex': /https?:\/\/.*?instagram.com\/p\/(.*)\/([^[]*)?/i,
 				'embed': '<iframe src="//instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe>'
 			}, {
+				'site': 'kickstarter.com',
+				'regex': /https?:\/\/.*?kickstarter.com\/projects\/(.*)\/([^[]*)?/i,
+				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="https://www.kickstarter.com/projects/$1/$2/widget/video.html" frameborder="0" scrolling="no"></iframe>'
+			}, {
 				'site': 'liveleak.com',
 				'regex': /http:\/\/www.liveleak.com\/view\?i=([0-9A-Za-z-_]+)?(&[^\/]+)?/i,
 				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.liveleak.com/ll_embed?f=$1" frameborder="0" allowfullscreen></iframe>'
