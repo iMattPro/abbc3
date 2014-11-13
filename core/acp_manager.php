@@ -308,7 +308,7 @@ class acp_manager
 
 			if ($row_exists)
 			{
-				// Update exisiting BBCode
+				// Update existing BBCode
 				$bbcode_id = $row_exists['bbcode_id'];
 
 				$sql = 'UPDATE ' . BBCODES_TABLE . '
