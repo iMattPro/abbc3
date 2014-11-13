@@ -188,8 +188,6 @@ sup {
 	margin: 4px 0;
 	padding: 0;
 	min-width: 22px;
-	width: auto !important;
-	width: 22px; /* I'm here for IE6 */
 	height: 22px;
 	background-color: transparent;
 	background-position: center;
@@ -211,8 +209,6 @@ sup {
 .abbc3_buttons_row {
 	margin: 0 !important;
 	min-height: 30px;
-	height: auto !important;
-	height: 30px; /* I'm here for IE6 */
 	width: 80%;
 	padding: 0 2px;
 	border: 1px solid #b4bac0;
