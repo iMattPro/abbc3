@@ -15,6 +15,13 @@ services:
             - @ext.manager
             - @user
             - %core.root_path%
+    vse.abbc3.bbcodes_manager:
+        class: vse\abbc3\core\bbcodes_manager
+        arguments:
+            - @dbal.conn
+            - %core.root_path%
+            - %core.php_ext%
+            - %core.table_prefix%
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
         arguments:
