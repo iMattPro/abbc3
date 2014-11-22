@@ -26,6 +26,8 @@
 	color: #80001c;
 }
 
+.hidebox_visible { color: #2f4f2f }
+
 /* [spoil] spoiler BBCode */
 .spoilbtn:hover { color: #d31141 !important; }
 
