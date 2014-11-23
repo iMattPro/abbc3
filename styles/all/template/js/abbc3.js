@@ -443,10 +443,10 @@ var bbwizard;
 			}
 
 			// Set width and height based on responsive layout
-			var postBody = $('.postbody').first();
+			var container = el.closest('div');
 			var aspectRatio = dimensions.height / dimensions.width;
-			if (aspectRatio !== 0 && postBody.width() < dimensions.width) {
-				dimensions.width = postBody.width();
+			if (container.length > 0 && aspectRatio !== 0 && container.width() < dimensions.width) {
+				dimensions.width = container.width();
 				dimensions.height = dimensions.width * aspectRatio;
 			}
 
