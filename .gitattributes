@@ -7,3 +7,4 @@ package.json	export-ignore
 gulpfile.js		export-ignore
 phpunit.xml.*	export-ignore
 composer.lock	export-ignore
+README.md		export-ignore
