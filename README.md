@@ -47,11 +47,9 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 * Spanish
 
 ## Requirements
-* phpBB 3.1.0-RC2 or higher
+* phpBB 3.1.2 or higher
 * PHP 5.3.3 or higher
 * Javascript is required by this extension.
-
-Note: This extension is in development. Installation is only recommended for testing purposes and is not supported on live boards. This extension will be officially released following phpBB 3.1.0.
 
 ## Installation
 1. [Download the latest release](https://github.com/VSEphpbb/abbc3/releases) and unzip it.
@@ -66,7 +64,7 @@ Note: This extension is in development. Installation is only recommended for tes
 
 ## Customizing:
 1. Custom BBCode Icons: You can give your custom BBCodes icons by simply adding a GIF image named after your BBCode (e.g.: center.gif) to the `images/icons` directory. There are tons of extra BBCode icons included in the `contrib` directory.
-2. BBCode Toolbar: You can change the look of the BBCode toolbar using any of the extra toolbar background images located in the `contrib` directory. Just copy one of the alternative toolbar images to `styles/all/theme/images/abbc3_bg.gif` (and refresh your browser).
+2. BBCode Toolbar: You can change the look of the BBCode toolbar using any of the extra toolbar background images located in the `contrib` directory. Just copy one of the alternative toolbar images to `styles/all/theme/images/abbc3_bg.gif` (and refresh your browser). To assign custom toolbar images for each style, replace "all" with the name of your style.
 3. NOTE: When making any of these customizations to ABBC3, be sure to note/backup your changes, as you may need to reproduce them after updating this extension, in case any of your added image files is overwritten or erased.
 
 * * *
