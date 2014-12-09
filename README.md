@@ -3,6 +3,7 @@
 Replace phpBB3's BBCode buttons with icons in an attractive and customizable toolbar. This extension also adds many new and useful custom BBCodes giving users more ways to customize their posts, including BBvideo (embed videos from dozens of media sites). Custom BBCodes can be arranged and sorted in any order and assigned to specific usergroups (such as Moderators and Admins only).
 
 [![Build Status](https://travis-ci.org/VSEphpbb/abbc3.png)](https://travis-ci.org/VSEphpbb/abbc3)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=master)
 [![Dev dependencies](https://david-dm.org/VSEphpbb/abbc3.png)](https://david-dm.org/VSEphpbb/abbc3#info=devDependencies)
 
 ## Features:
