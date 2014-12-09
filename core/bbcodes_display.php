@@ -112,11 +112,11 @@ class bbcodes_display
 	/**
 	* Determine if a usergroup is allowed to use a custom BBCode
 	*
-	* @param mixed $group_ids Allowed group IDs
+	* @param string $group_ids Allowed group IDs, comma separated
 	* @return bool Return true if allowed to use BBCode
 	* @access protected
 	*/
-	protected function bbcode_group_permissions($group_ids = 0)
+	protected function bbcode_group_permissions($group_ids = '')
 	{
 		if ($group_ids)
 		{
