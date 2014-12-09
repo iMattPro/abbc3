@@ -51,95 +51,99 @@ class acp_manager
 	}
 
 	/**
-	* Update BBCode order fields in the db on move up/down or drag_drop
+	* Update BBCode order fields in the db on move up/down
 	*
-	* @param string $action The action move_up|move_down|drag_drop
+	* @param string $action The action move_up|move_down
 	* @return null
 	* @access public
 	*/
 	public function move($action)
 	{
-		if ($action == 'drag_drop')
+		$bbcode_id = $this->request->variable('id', 0);
+
+		if (!check_link_hash($this->request->variable('hash', ''), $action . $bbcode_id))
 		{
-			if (!$this->request->is_ajax())
-			{
-				return;
-			}
+			trigger_error($this->user->lang('FORM_INVALID'), E_USER_WARNING);
+		}
 
-			// Get the bbcodes html table's name
-			$tablename = $this->request->variable('tablename', '');
+		// Get current order
+		$sql = 'SELECT bbcode_order
+			FROM ' . BBCODES_TABLE . "
+			WHERE bbcode_id = $bbcode_id";
+		$result = $this->db->sql_query($sql);
+		$current_order = (int) $this->db->sql_fetchfield('bbcode_order');
+		$this->db->sql_freeresult($result);
 
-			// Fetch the posted list
-			$bbcodes_list = $this->request->variable($tablename, array(0 => ''));
+		// First one can't be moved up
+		if ($current_order <= 1 && $action == 'move_up')
+		{
+			return;
+		}
 
-			// Run through the list
-			foreach ($bbcodes_list as $order => $bbcode_id)
-			{
-				// First one is the header, skip it
-				if ($order == 0)
-				{
-					continue;
-				}
+		$order_total = $current_order * 2 + (($action == 'move_up') ? -1 : 1);
 
-				// Update the db
-				$sql = 'UPDATE ' . BBCODES_TABLE . '
-					SET bbcode_order = ' . $order . '
-					WHERE bbcode_id = ' . (int) $bbcode_id;
-				$this->db->sql_query($sql);
-			}
+		// Update the db
+		$sql = 'UPDATE ' . BBCODES_TABLE . '
+			SET bbcode_order = ' . $order_total . ' - bbcode_order
+			WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
+		$this->db->sql_query($sql);
 
-			// Resync bbcode_order
-			$this->resynchronize_bbcode_order();
+		// Resync bbcode_order
+		$this->resynchronize_bbcode_order();
 
-			// return an AJAX JSON response
+		// return a JSON response if this was an AJAX request
+		if ($this->request->is_ajax())
+		{
 			$json_response = new \phpbb\json_response;
 			$json_response->send(array(
-				'success' => true,
+				'success' => (bool) $this->db->sql_affectedrows(),
 			));
 		}
-		else
+	}
+
+	/**
+	* Update BBCode order fields in the db on drag_drop
+	*
+	* @return null
+	* @access public
+	*/
+	public function drag_drop()
+	{
+		if (!$this->request->is_ajax())
 		{
-			$bbcode_id = $this->request->variable('id', 0);
+			return;
+		}
 
-			if (!check_link_hash($this->request->variable('hash', ''), $action . $bbcode_id))
+		// Get the bbcodes html table's name
+		$tablename = $this->request->variable('tablename', '');
+
+		// Fetch the posted list
+		$bbcodes_list = $this->request->variable($tablename, array(0 => ''));
+
+		// Run through the list
+		foreach ($bbcodes_list as $order => $bbcode_id)
+		{
+			// First one is the header, skip it
+			if ($order == 0)
 			{
-				trigger_error($this->user->lang('FORM_INVALID'), E_USER_WARNING);
+				continue;
 			}
-
-			// Get current order
-			$sql = 'SELECT bbcode_order
-				FROM ' . BBCODES_TABLE . "
-				WHERE bbcode_id = $bbcode_id";
-			$result = $this->db->sql_query($sql);
-			$current_order = (int) $this->db->sql_fetchfield('bbcode_order');
-			$this->db->sql_freeresult($result);
-
-			// First one can't be moved up
-			if ($current_order <= 1 && $action == 'move_up')
-			{
-				return;
-			}
-
-			$order_total = $current_order * 2 + (($action == 'move_up') ? -1 : 1);
 
 			// Update the db
 			$sql = 'UPDATE ' . BBCODES_TABLE . '
-				SET bbcode_order = ' . $order_total . ' - bbcode_order
-				WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
+				SET bbcode_order = ' . $order . '
+				WHERE bbcode_id = ' . (int) $bbcode_id;
 			$this->db->sql_query($sql);
-
-			// Resync bbcode_order
-			$this->resynchronize_bbcode_order();
-
-			// return a JSON response if this was an AJAX request
-			if ($this->request->is_ajax())
-			{
-				$json_response = new \phpbb\json_response;
-				$json_response->send(array(
-					'success' => (bool) $this->db->sql_affectedrows(),
-				));
-			}
 		}
+
+		// Resync bbcode_order
+		$this->resynchronize_bbcode_order();
+
+		// return an AJAX JSON response
+		$json_response = new \phpbb\json_response;
+		$json_response->send(array(
+			'success' => true,
+		));
 	}
 
 	/**

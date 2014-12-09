@@ -102,10 +102,11 @@ class acp_listener implements EventSubscriberInterface
 		{
 			case 'move_up':
 			case 'move_down':
-			case 'drag_drop':
-
 				$this->acp_manager->move($event['action']);
+			break;
 
+			case 'drag_drop':
+				$this->acp_manager->drag_drop();
 			break;
 		}
 

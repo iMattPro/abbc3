@@ -60,11 +60,6 @@ class acp_bbcode_move_test extends acp_base
 				'move_down', // Non-existent bbcode, moved down, no movement
 				array(1 => 13, 2 => 14, 3 => 15, 4 => 16, 5 => 17)
 			),
-// 			array(
-// 				array(null, 17, 14, 15, 16, 13),
-// 				'drag_drop', // Array of drag-n-dropped items in new order
-// 				array(1 => 17, 2 => 14, 3 => 15, 4 => 16, 5 => 13)
-// 			),
 		);
 	}
 
@@ -75,14 +70,6 @@ class acp_bbcode_move_test extends acp_base
 	{
 		global $user;
 		$user = new \phpbb_mock_user; // mock the user to prevent hhvm errors with generate_link_hash()
-
-		if ($action == 'drag_drop')
-		{
-			$this->request->expects($this->any())
-				->method('is_ajax')
-				->will($this->returnValue(true)
-			);
-		}
 
 		$this->request->expects($this->any())
 			->method('variable')
