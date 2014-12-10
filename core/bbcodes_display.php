@@ -126,36 +126,31 @@ class bbcodes_display
 				$group_ids = explode(',', $group_ids);
 			}
 
-			// Get the user's group IDs (only run this once)
-			if (!isset($this->user->data['group_id_set']))
-			{
-				$this->user->data['group_id_set'] = array();
+			// Get the user's group memberships (only run this once)
+			static $memberships;
 
-				$sql = 'SELECT *
+			if (!isset($memberships))
+			{
+				$sql = 'SELECT group_id
 					FROM ' . USER_GROUP_TABLE . '
 					WHERE user_id = ' . (int) $this->user->data['user_id'] . '
 					AND user_pending = 0';
 				$result = $this->db->sql_query($sql);
-
-				while ($row = $this->db->sql_fetchrow($result))
-				{
-					$this->user->data['group_id_set'][] = $row['group_id'];
-				}
+				$memberships = $this->db->sql_fetchrowset($result);
 				$this->db->sql_freeresult($result);
 			}
 
-			// Is the user in a group that is allowed to use this BBCode?
-			if (!empty($group_ids) && !empty($this->user->data['group_id_set']))
+			if ($memberships)
 			{
-				foreach ($this->user->data['group_id_set'] as $group_id)
+				foreach ($memberships as $row)
 				{
-					if (in_array($group_id, $group_ids))
+					if (in_array($row['group_id'], $group_ids))
 					{
-						return true;
+						return true; // User is in the allowed group
 					}
 				}
 
-				return false;
+				return false; // User is NOT in the allowed group
 			}
 		}
 
