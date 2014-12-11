@@ -120,6 +120,8 @@ class acp_manager
 		// Fetch the posted list
 		$bbcodes_list = $this->request->variable($tablename, array(0 => ''));
 
+		$this->db->sql_transaction('begin');
+
 		// Run through the list
 		foreach ($bbcodes_list as $order => $bbcode_id)
 		{
@@ -135,6 +137,8 @@ class acp_manager
 				WHERE bbcode_id = ' . (int) $bbcode_id;
 			$this->db->sql_query($sql);
 		}
+
+		$this->db->sql_transaction('commit');
 
 		// Resync bbcode_order
 		$this->resynchronize_bbcode_order();
@@ -205,23 +209,11 @@ class acp_manager
 	*/
 	public function bbcode_group_select_options($select_id = false)
 	{
-		// Exclude bots
-		$sql = 'SELECT group_id
-			FROM ' . GROUPS_TABLE . "
-			WHERE group_name IN ('BOTS')";
-		$result = $this->db->sql_query($sql);
-
-		$exclude_ids = array();
-		while ($row = $this->db->sql_fetchrow($result))
-		{
-			$exclude_ids[] = $row['group_id'];
-		}
-		$this->db->sql_freeresult($result);
-
+		// Get all groups except bots
 		$sql = 'SELECT group_id, group_name, group_type
 			FROM ' . GROUPS_TABLE . '
-			WHERE ' . $this->db->sql_in_set('group_id', array_map('intval', $exclude_ids), true, true) . '
-			ORDER BY group_type DESC, group_name ASC';
+			WHERE ' . $this->db->sql_in_set('group_name', array('BOTS'), true, true) . '
+			ORDER BY group_name ASC';
 		$result = $this->db->sql_query($sql);
 
 		$group_options = '';
