@@ -36,7 +36,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		vevo.com, viddler.com, videogamer.com, videu.de, vimeo.com, vine.co,
 		wat.tv, youku.com, youtu.be, youtube.com
 
-### Languages supported:
+## Languages supported:
 * Arabic
 * Dutch
 * English
