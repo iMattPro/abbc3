@@ -52,6 +52,8 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 * PHP 5.3.3 or higher
 * Javascript is required by this extension.
 
+Note: This extension is in development. Installation is only recommended for testing purposes and is not supported on live boards. This extension will be officially released following phpBB 3.1.0.
+
 ## Installation
 1. [Download the latest release](https://github.com/VSEphpbb/abbc3/releases) and unzip it.
 2. Copy the entire contents from the unzipped folder to `phpBB/ext/vse/abbc3/`.
