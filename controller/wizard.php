@@ -80,7 +80,6 @@ class wizard
 		switch ($mode)
 		{
 			case 'bbvideo':
-
 				// Construct BBvideo allowed site select options
 				$bbvideo_default = 'youtube.com';
 				$bbvideo_sites_array = $this->bbvideo_sites();
@@ -115,15 +114,10 @@ class wizard
 				));
 
 				return $this->helper->render('bbcode_wizard.html');
-
-			break;
-
-			default:
-
-				return $this->helper->error($this->user->lang('GENERAL_ERROR'), 200);
-
 			break;
 		}
+
+		return $this->helper->error($this->user->lang('GENERAL_ERROR'), 200);
 	}
 
 	/**
