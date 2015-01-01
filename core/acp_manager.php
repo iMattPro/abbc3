@@ -80,12 +80,12 @@ class acp_manager
 			return;
 		}
 
-		$order_total = $current_order * 2 + (($action == 'move_up') ? -1 : 1);
+		$order_total = $current_order * 2 + $this->increment($action);
 
 		// Update the db
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
 			SET bbcode_order = ' . $order_total . ' - bbcode_order
-			WHERE bbcode_order IN (' . $current_order . ', ' . (($action == 'move_up') ? $current_order - 1 : $current_order + 1) . ')';
+			WHERE bbcode_order IN (' . $current_order . ', ' . ($current_order + $this->increment($action)) . ')';
 		$this->db->sql_query($sql);
 
 		// Resync bbcode_order
@@ -348,5 +348,17 @@ class acp_manager
 
 		// Resynchronize BBCodes
 		$this->resynchronize_bbcode_order();
+	}
+
+	/**
+	* Increment
+	*
+	* @param string $action The action move_up|move_down
+	* @return int Increment amount: Move up -1. Move down +1.
+	* @access protected
+	*/
+	protected function increment($action)
+	{
+		return ($action == 'move_up') ? -1 : 1;
 	}
 }
