@@ -346,7 +346,6 @@ class acp_manager
 			}
 		}
 
-		// Resynchronize BBCodes
 		$this->resynchronize_bbcode_order();
 	}
 
