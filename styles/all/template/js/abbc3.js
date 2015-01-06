@@ -176,8 +176,8 @@ var bbwizard;
 				'embed': ['http://www.msnbc.msn.com/id/32545640', 'launch=$3&amp;width={WIDTH}&amp;height={HEIGHT}']
 			}, {
 				'site': 'myspace.com',
-				'regex': /http(s)?:\/\/(www.)?myspace.com\/.*\/video\/(.*)\/([0-9]+)?/i,
-				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="http$1://myspace.com/play/video/$3-$4-$4" frameborder="0" allowtransparency="true" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
+				'regex': /https?:\/\/(www.)?myspace.com\/.*\/video\/(.*)\/([0-9]+)?/i,
+				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="//media.myspace.com/play/video/$2-$3-$3" frameborder="0" allowtransparency="true" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
 			}, {
 				'site': 'myvideo.de',
 				'regex': /http:\/\/(.*?).myvideo.(.*?)\/(.*?)\/([^[]*)?/i,
