@@ -34,6 +34,7 @@
 /* [fade] fade text in/out effect */
 .fadeEffect {
 	-webkit-animation: fade 2s infinite;
+	-moz-animation: fade 2s infinite;
 	animation: fade 2s infinite;
 }
 @-webkit-keyframes fade {
