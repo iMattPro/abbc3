@@ -85,7 +85,10 @@ class acp_manager
 		// Update the db
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
 			SET bbcode_order = ' . $order_total . ' - bbcode_order
-			WHERE bbcode_order IN (' . $current_order . ', ' . ($current_order + $this->increment($action)) . ')';
+			WHERE ' . $this->db->sql_in_set('bbcode_order', array(
+				$current_order,
+				$current_order + $this->increment($action),
+			));
 		$this->db->sql_query($sql);
 
 		// Resync bbcode_order
@@ -211,9 +214,9 @@ class acp_manager
 	{
 		// Get all groups except bots
 		$sql = 'SELECT group_id, group_name, group_type
-			FROM ' . GROUPS_TABLE . '
-			WHERE ' . $this->db->sql_in_set('group_name', array('BOTS'), true, true) . '
-			ORDER BY group_name ASC';
+			FROM ' . GROUPS_TABLE . "
+			WHERE group_name <> 'BOTS'
+			ORDER BY group_name ASC";
 		$result = $this->db->sql_query($sql);
 
 		$group_options = '';
