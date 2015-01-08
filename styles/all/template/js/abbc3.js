@@ -598,7 +598,7 @@ var bbwizard;
 			// Change bbvideo size presets updates bbvideo height and width
 			.on('change', '#bbvideo_wizard_size_presets', function() {
 				if ($(this).val().length !== 0) {
-					var dims = $(this).val().split('x');
+					var dims = $(this).val().split(',');
 					$('#bbvideo_wizard_width').val(dims[0]);
 					$('#bbvideo_wizard_height').val(dims[1]);
 				}

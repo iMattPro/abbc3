@@ -94,16 +94,16 @@ class wizard
 
 				// Construct BBvideo size preset select options
 				$bbvideo_size_presets_array = array(
-					'560 x 315',
-					'640 x 360',
-					'853 x 480',
-					'1280 x 720',
+					'560,315',
+					'640,360',
+					'853,480',
+					'1280,720',
 				);
 				foreach ($bbvideo_size_presets_array as $preset)
 				{
 					$this->template->assign_block_vars('bbvideo_sizes', array(
-						'VALUE'			=> str_replace(' ', '', $preset),
-						'LABEL'			=> $preset,
+						'VALUE'			=> $preset,
+						'LABEL'			=> str_replace(',', $this->user->lang('ABBC3_BBVIDEO_SEPARATOR'), $preset),
 					));
 				}
 
