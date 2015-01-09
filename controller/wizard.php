@@ -46,7 +46,6 @@ class wizard
 	* @param string $root_path
 	* @param string $bbvideo_width
 	* @param string $bbvideo_height
-	* @return \vse\abbc3\controller\wizard
 	* @access public
 	*/
 	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $root_path, $bbvideo_width, $bbvideo_height)

@@ -34,7 +34,6 @@ class bbcodes_display
 	* @param \phpbb\extension\manager $extension_manager Extension manager object
 	* @param \phpbb\user $user User object
 	* @param $root_path
-	* @return \vse\abbc3\core\bbcodes_display
 	* @access public
 	*/
 	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\extension\manager $extension_manager, \phpbb\user $user, $root_path)

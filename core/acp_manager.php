@@ -38,7 +38,6 @@ class acp_manager
 	* @param \phpbb\user $user
 	* @param string $phpbb_root_path
 	* @param string $php_ext
-	* @return \vse\abbc3\core\acp_manager
 	* @access public
 	*/
 	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, \phpbb\user $user, $phpbb_root_path, $php_ext)

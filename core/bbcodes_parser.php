@@ -30,7 +30,6 @@ class bbcodes_parser
 	* @param \phpbb\user $user
 	* @param string $bbvideo_width
 	* @param string $bbvideo_height
-	* @return \vse\abbc3\core\bbcodes_parser
 	* @access public
 	*/
 	public function __construct(\phpbb\user $user, $bbvideo_width, $bbvideo_height)

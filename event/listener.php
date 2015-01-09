@@ -52,7 +52,6 @@ class listener implements EventSubscriberInterface
 	* @param string $root_path
 	* @param string $bbvideo_width
 	* @param string $bbvideo_height
-	* @return \vse\abbc3\event\listener
 	* @access public
 	*/
 	public function __construct(\vse\abbc3\core\bbcodes_parser $bbcodes_parser, \vse\abbc3\core\bbcodes_display $bbcodes_display, \phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user, $root_path, $bbvideo_width, $bbvideo_height)
