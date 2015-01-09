@@ -23,8 +23,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	// Hidden BBCode
-	'ABBC3_HIDDEN_ON'		=> 'Скрытый текст',
-	'ABBC3_HIDDEN_OFF'		=> 'Скрытый текст',
+	'ABBC3_HIDDEN_ON'			=> 'Скрытый текст',
+	'ABBC3_HIDDEN_OFF'			=> 'Скрытый текст',
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Для просмотра скрытого текста необходимо быть авторизованным пользователем.',
 
 	// Spoiler BBCode
@@ -32,13 +32,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> '&#9660; Скрыть',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'		=> 'Не по теме',
+	'ABBC3_OFFTOPIC'			=> 'Не по теме',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'		=> 'Шрифт',
-	'ABBC3_FONT_FANCY'		=> 'Дополнительные шрифты',
-	'ABBC3_FONT_SAFE'		=> 'Стандартные шрифты',
-	'ABBC3_FONT_WIN'		=> 'Шрифты Windows',
+	'ABBC3_FONT_BBCODE'			=> 'Шрифт',
+	'ABBC3_FONT_FANCY'			=> 'Дополнительные шрифты',
+	'ABBC3_FONT_SAFE'			=> 'Стандартные шрифты',
+	'ABBC3_FONT_WIN'			=> 'Шрифты Windows',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Выравнивание: [align=center|left|right|justify]текст[/align]  Подсказка: center - по центру, left - по левому краю, right - по правому краю, justify - по ширине',
@@ -66,9 +66,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Видео с YouTube: [youtube]http://youtube_url[/youtube]',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'		=> 'Копировать выделенный текст',
+	'ABBC3_COPY_BBCODE'			=> 'Копировать выделенный текст',
 	'ABBC3_PASTE_BBCODE'		=> 'Вставить скопированный текст',
-	'ABBC3_PASTE_ERROR'		=> 'Пожалуйста, сначала скопируйте текст, а потом вставляйте',
+	'ABBC3_PASTE_ERROR'			=> 'Пожалуйста, сначала скопируйте текст, а потом вставляйте',
 	'ABBC3_PLAIN_BBCODE'		=> 'Очистить выделенный текст от BB-кода',
 	'ABBC3_NOSELECT_ERROR'		=> 'Пожалуйста, сначала выделите текст.',
 
