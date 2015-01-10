@@ -20,6 +20,7 @@ class bbcodes_test extends \phpbb_database_test_case
 	protected $db;
 	protected $user;
 	protected $root_path;
+	protected $ext_root_path;
 	protected $ext_manager;
 
 	public function getDataSet()
@@ -36,12 +37,13 @@ class bbcodes_test extends \phpbb_database_test_case
 		$this->db = $this->new_dbal();
 		$this->user = new \phpbb\user('\phpbb\datetime');
 		$this->root_path = $phpbb_root_path;
+		$this->ext_root_path = 'ext/vse/abbc3/';
 		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(dirname(__FILE__) . '/../../../../../phpBB/');
 	}
 
 	protected function bbcodes_manager()
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->db, $this->ext_manager, $this->user, $this->root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->db, $this->ext_manager, $this->user, $this->root_path, $this->ext_root_path);
 	}
 
 	public function bbcode_data()
@@ -105,6 +107,8 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	public function display_bbcodes_data()
 	{
+		$this->ext_root_path = 'ext/vse/abbc3/';
+
 		$bbcode_data = $this->bbcode_data();
 
 		return array(
@@ -112,7 +116,7 @@ class bbcodes_test extends \phpbb_database_test_case
 				2, // Allowed: user 2 is member of group 2 and 6
 				$bbcode_data[1], // All groups allowed
 				array(
-					'BBCODE_IMG' => 'ext/vse/abbc3/images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
+					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
 					'S_CUSTOM_BBCODE_ALLOWED' => true,
 				),
 			),
@@ -120,7 +124,7 @@ class bbcodes_test extends \phpbb_database_test_case
 				2, // Allowed: user 2 is member of group 2 and 6
 				$bbcode_data[2], // Group 2 allowed only
 				array(
-					'BBCODE_IMG' => 'ext/vse/abbc3/images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
+					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
 					'S_CUSTOM_BBCODE_ALLOWED' => true,
 				),
 			),
@@ -128,7 +132,7 @@ class bbcodes_test extends \phpbb_database_test_case
 				2, // Disallowd: user 2 is member of group 2 and 6
 				$bbcode_data[3], // Groups 3,4,5 allowed only
 				array(
-					'BBCODE_IMG' => 'ext/vse/abbc3/images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
+					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
 					'S_CUSTOM_BBCODE_ALLOWED' => false,
 				),
 			),

@@ -52,6 +52,7 @@ class wizard_test extends \phpbb_test_case
 			new \vse\abbc3\tests\mock\template(),
 			new \phpbb\user('\phpbb\datetime'),
 			$phpbb_root_path,
+			'ext/vse/abbc3/',
 			'',
 			''
 		);

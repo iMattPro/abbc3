@@ -31,6 +31,9 @@ class wizard
 	protected $root_path;
 
 	/** @var string */
+	protected $ext_root_path;
+
+	/** @var string */
 	protected $bbvideo_width;
 
 	/** @var string */
@@ -44,17 +47,19 @@ class wizard
 	* @param \phpbb\template\template    $template       Template object
 	* @param \phpbb\user                 $user           User object
 	* @param string                      $root_path      phpBB root path
+	* @param string                      $ext_root_path  Extension root path
 	* @param string                      $bbvideo_width  Default width of bbvideo
 	* @param string                      $bbvideo_height Default height of bbvideo
 	* @access public
 	*/
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $root_path, $bbvideo_width, $bbvideo_height)
+	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $root_path, $ext_root_path, $bbvideo_width, $bbvideo_height)
 	{
 		$this->helper = $helper;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
 		$this->root_path = $root_path;
+		$this->ext_root_path = $ext_root_path;
 		$this->bbvideo_width = $bbvideo_width;
 		$this->bbvideo_height = $bbvideo_height;
 	}
@@ -127,7 +132,7 @@ class wizard
 	*/
 	protected function bbvideo_sites()
 	{
-		$bbvideo_json_file = $this->root_path . 'ext/vse/abbc3/assets/bbvideo.json';
+		$bbvideo_json_file = $this->root_path . $this->ext_root_path . 'assets/bbvideo.json';
 
 		if (!file_exists($bbvideo_json_file))
 		{

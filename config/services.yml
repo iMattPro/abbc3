@@ -16,6 +16,7 @@ services:
             - @ext.manager
             - @user
             - %core.root_path%
+            - %vse.abbc3.ext_root_path%
 
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
@@ -35,6 +36,7 @@ services:
             - @template
             - @user
             - %core.root_path%
+            - %vse.abbc3.ext_root_path%
             - %vse.abbc3.bbvideo_default_width%
             - %vse.abbc3.bbvideo_default_height%
         tags:
@@ -56,5 +58,6 @@ services:
             - @template
             - @user
             - %core.root_path%
+            - %vse.abbc3.ext_root_path%
             - %vse.abbc3.bbvideo_default_width%
             - %vse.abbc3.bbvideo_default_height%

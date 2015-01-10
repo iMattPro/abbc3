@@ -27,6 +27,9 @@ class bbcodes_display
 	/** @var string */
 	protected $root_path;
 
+	/** @var string */
+	protected $ext_root_path;
+
 	/**
 	* Constructor
 	*
@@ -34,14 +37,16 @@ class bbcodes_display
 	* @param \phpbb\extension\manager $extension_manager Extension manager object
 	* @param \phpbb\user $user User object
 	* @param string $root_path phpBB root path
+	* @param string $ext_root_path Extension root path
 	* @access public
 	*/
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\extension\manager $extension_manager, \phpbb\user $user, $root_path)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\extension\manager $extension_manager, \phpbb\user $user, $root_path, $ext_root_path)
 	{
 		$this->db = $db;
 		$this->extension_manager = $extension_manager;
 		$this->user = $user;
 		$this->root_path = $root_path;
+		$this->ext_root_path = $ext_root_path;
 	}
 
 	/**
@@ -95,7 +100,7 @@ class bbcodes_display
 	/**
 	* Get image paths/names from ABBC3's icons folder
 	*
-	* @return Array of file data from ext/vse/abbc3/images/icons
+	* @return Array of file data from ./ext/vse/abbc3/images/icons
 	* @access protected
 	*/
 	protected function get_images()
@@ -105,7 +110,7 @@ class bbcodes_display
 		return $finder
 			->extension_suffix('.gif')
 			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $this->root_path . 'ext/vse/abbc3/');
+			->find_from_extension('abbc3', $this->root_path . $this->ext_root_path);
 	}
 
 	/**

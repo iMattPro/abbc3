@@ -12,8 +12,7 @@ namespace vse\abbc3\tests\event;
 
 class listener_test extends \phpbb_test_case
 {
-	/** @var \vse\abbc3\event\listener */
-	protected $listener;
+	protected $bbcodes, $config, $controller_helper, $listener, $parser, $template, $user, $root_path, $ext_root_path, $bbvideo_width, $bbvideo_height;
 
 	/**
 	* Setup test environment
@@ -56,6 +55,7 @@ class listener_test extends \phpbb_test_case
 			dirname(__FILE__) . '/../../'
 		);
 		$this->root_path = $phpbb_root_path;
+		$this->ext_root_path = 'ext/vse/abbc3/';
 		$this->bbvideo_width = 560;
 		$this->bbvideo_height = 315;
 	}
@@ -74,6 +74,7 @@ class listener_test extends \phpbb_test_case
 			$this->template,
 			$this->user,
 			$this->root_path,
+			$this->ext_root_path,
 			$this->bbvideo_width,
 			$this->bbvideo_height
 		);
@@ -246,7 +247,7 @@ class listener_test extends \phpbb_test_case
 
 		$this->assertEquals(array(
 			'ABBC3_USERNAME'			=> 'admin',
-			'ABBC3_BBCODE_ICONS' 		=> 'ext/vse/abbc3/images/icons',
+			'ABBC3_BBCODE_ICONS' 		=> $this->ext_root_path . 'images/icons',
 			'ABBC3_BBVIDEO_HEIGHT'		=> $this->bbvideo_height,
 			'ABBC3_BBVIDEO_WIDTH'		=> $this->bbvideo_width,
 			'U_ABBC3_BBVIDEO_WIZARD'	=> 'app.php/wizard/bbcode/bbvideo',
