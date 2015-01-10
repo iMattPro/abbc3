@@ -1,3 +1,3 @@
 parameters:
-    vse.abbc3.bbvideo.default.width: 560
-    vse.abbc3.bbvideo.default.height: 315
+    vse.abbc3.bbvideo_default_width: 560
+    vse.abbc3.bbvideo_default_height: 315

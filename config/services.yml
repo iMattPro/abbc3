@@ -6,8 +6,8 @@ services:
         class: vse\abbc3\core\bbcodes_parser
         arguments:
             - @user
-            - %vse.abbc3.bbvideo.default.width%
-            - %vse.abbc3.bbvideo.default.height%
+            - %vse.abbc3.bbvideo_default_width%
+            - %vse.abbc3.bbvideo_default_height%
 
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display
@@ -35,8 +35,8 @@ services:
             - @template
             - @user
             - %core.root_path%
-            - %vse.abbc3.bbvideo.default.width%
-            - %vse.abbc3.bbvideo.default.height%
+            - %vse.abbc3.bbvideo_default_width%
+            - %vse.abbc3.bbvideo_default_height%
         tags:
             - { name: event.listener }
 
@@ -56,5 +56,5 @@ services:
             - @template
             - @user
             - %core.root_path%
-            - %vse.abbc3.bbvideo.default.width%
-            - %vse.abbc3.bbvideo.default.height%
+            - %vse.abbc3.bbvideo_default_width%
+            - %vse.abbc3.bbvideo_default_height%

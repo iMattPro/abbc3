@@ -24,7 +24,7 @@ class bbcodes_display
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var string phpBB root path */
+	/** @var string */
 	protected $root_path;
 
 	/**
@@ -33,7 +33,7 @@ class bbcodes_display
 	* @param \phpbb\db\driver\driver_interface $db Database connection
 	* @param \phpbb\extension\manager $extension_manager Extension manager object
 	* @param \phpbb\user $user User object
-	* @param $root_path
+	* @param string $root_path phpBB root path
 	* @access public
 	*/
 	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\extension\manager $extension_manager, \phpbb\user $user, $root_path)

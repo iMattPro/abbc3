@@ -27,25 +27,25 @@ class wizard
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var string phpBB root path */
+	/** @var string */
 	protected $root_path;
 
-	/** @var string default width of bbvideo */
+	/** @var string */
 	protected $bbvideo_width;
 
-	/** @var string default height of bbvideo */
+	/** @var string */
 	protected $bbvideo_height;
 
 	/**
 	* Constructor
 	*
-	* @param \phpbb\controller\helper    $helper      Controller helper object
-	* @param \phpbb\request\request      $request     Request object
-	* @param \phpbb\template\template    $template    Template object
-	* @param \phpbb\user                 $user        User object
-	* @param string $root_path
-	* @param string $bbvideo_width
-	* @param string $bbvideo_height
+	* @param \phpbb\controller\helper    $helper         Controller helper object
+	* @param \phpbb\request\request      $request        Request object
+	* @param \phpbb\template\template    $template       Template object
+	* @param \phpbb\user                 $user           User object
+	* @param string                      $root_path      phpBB root path
+	* @param string                      $bbvideo_width  Default width of bbvideo
+	* @param string                      $bbvideo_height Default height of bbvideo
 	* @access public
 	*/
 	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $root_path, $bbvideo_width, $bbvideo_height)

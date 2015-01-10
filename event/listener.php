@@ -32,7 +32,7 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var string */
+	/** @var string phpBB root path */
 	protected $root_path;
 
 	/** @var string default width of bbvideo */

@@ -18,18 +18,18 @@ class bbcodes_parser
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var string default width of bbvideo */
+	/** @var string */
 	protected $bbvideo_width;
 
-	/** @var string default height of bbvideo */
+	/** @var string */
 	protected $bbvideo_height;
 
 	/**
 	* Constructor
 	*
-	* @param \phpbb\user $user
-	* @param string $bbvideo_width
-	* @param string $bbvideo_height
+	* @param \phpbb\user $user User object
+	* @param string $bbvideo_width Default width of bbvideo
+	* @param string $bbvideo_height Default height of bbvideo
 	* @access public
 	*/
 	public function __construct(\phpbb\user $user, $bbvideo_width, $bbvideo_height)
