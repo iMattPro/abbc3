@@ -26,9 +26,9 @@
 			"phpbb/phpbb": ">=3.1.2,<3.2.*@dev"
 		},
 		"version-check": {
-			"host": "vsephpbb.github.io",
-			"directory": "/version",
-			"filename": "abbc3.json"
+			"host": "www.phpbb.com",
+			"directory": "/customise/db/extension/advanced_bbcode_box",
+			"filename": "version_check"
 		}
 	}
 }
