@@ -71,7 +71,7 @@ class bbcodes_display
 		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
 
 		$custom_tags['BBCODE_IMG'] = (isset($images['ext/' . $bbcode_img])) ? 'ext/vse/' . $bbcode_img : '';
-		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = (!empty($row['bbcode_group'])) ? $this->bbcode_group_permissions($row['bbcode_group']) : true;
+		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = (!empty($row['bbcode_group'])) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
 
 		return $custom_tags;
 	}
@@ -88,7 +88,7 @@ class bbcodes_display
 	{
 		foreach ($rowset as $row)
 		{
-			if (!$this->bbcode_group_permissions($row['bbcode_group']))
+			if (!$this->user_in_bbcode_group($row['bbcode_group']))
 			{
 				$bbcodes[$row['bbcode_tag']]['disabled'] = true;
 			}
@@ -98,13 +98,13 @@ class bbcodes_display
 	}
 
 	/**
-	* Determine if a usergroup is allowed to use a custom BBCode
+	* Determine if a user is in a group allowed to use a custom BBCode
 	*
 	* @param string $group_ids Allowed group IDs, comma separated
 	* @return bool Return true if allowed to use BBCode
-	* @access protected
+	* @access public
 	*/
-	protected function bbcode_group_permissions($group_ids = '')
+	public function user_in_bbcode_group($group_ids = '')
 	{
 		if ($group_ids)
 		{
@@ -130,15 +130,9 @@ class bbcodes_display
 
 			if ($memberships)
 			{
-				foreach ($memberships as $row)
-				{
-					if (in_array($row['group_id'], $group_ids))
-					{
-						return true; // User is in the allowed group
-					}
-				}
-
-				return false; // User is NOT in the allowed group
+				return (bool) count(array_filter($memberships, function ($row) use ($group_ids) {
+					return in_array($row['group_id'], $group_ids);
+				}));
 			}
 		}
 

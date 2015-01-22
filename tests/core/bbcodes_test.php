@@ -152,4 +152,29 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		$this->assertEquals($expected, $bbcodes_manager->display_custom_bbcodes($custom_tags, $data));
 	}
+
+	public function bbcode_group_data()
+	{
+		return array(
+			array(2, '1,2,3', true),
+			array(2, '1', false),
+			array(2, '', true),
+			array(2, array('1', '2', '3'), true),
+			array(2, array('1'), false),
+			array(2, array(), true),
+			array(null, null, true),
+		);
+	}
+
+	/**
+	* @dataProvider bbcode_group_data
+	*/
+	public function test_user_in_bbcode_group($user_id, $group_ids, $expected)
+	{
+		$this->user->data['user_id'] = $user_id;
+
+		$bbcodes_manager = $this->bbcodes_manager();
+
+		$this->assertEquals($expected, $bbcodes_manager->user_in_bbcode_group($group_ids));
+	}
 }
