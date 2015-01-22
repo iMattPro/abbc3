@@ -98,22 +98,6 @@ class bbcodes_display
 	}
 
 	/**
-	* Get image paths/names from ABBC3's icons folder
-	*
-	* @return Array of file data from ./ext/vse/abbc3/images/icons
-	* @access protected
-	*/
-	protected function get_images()
-	{
-		$finder = $this->extension_manager->get_finder();
-
-		return $finder
-			->extension_suffix('.gif')
-			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $this->root_path . $this->ext_root_path);
-	}
-
-	/**
 	* Determine if a usergroup is allowed to use a custom BBCode
 	*
 	* @param string $group_ids Allowed group IDs, comma separated
@@ -160,5 +144,21 @@ class bbcodes_display
 
 		// If we get here, there were no group restrictions so everyone can use this BBCode
 		return true;
+	}
+
+	/**
+	* Get image paths/names from ABBC3's icons folder
+	*
+	* @return Array of file data from ./ext/vse/abbc3/images/icons
+	* @access protected
+	*/
+	protected function get_images()
+	{
+		$finder = $this->extension_manager->get_finder();
+
+		return $finder
+			->extension_suffix('.gif')
+			->extension_directory('/images/icons')
+			->find_from_extension('abbc3', $this->root_path . $this->ext_root_path);
 	}
 }
