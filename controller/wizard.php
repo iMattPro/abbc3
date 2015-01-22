@@ -76,52 +76,62 @@ class wizard
 	public function bbcode_wizard($mode)
 	{
 		// Only allow AJAX requests
-		if (!$this->request->is_ajax())
+		if ($this->request->is_ajax())
 		{
-			return $this->helper->error($this->user->lang('GENERAL_ERROR'), 200);
-		}
+			switch ($mode)
+			{
+				case 'bbvideo':
 
-		switch ($mode)
-		{
-			case 'bbvideo':
-				// Construct BBvideo allowed site select options
-				$bbvideo_default = 'youtube.com';
-				$bbvideo_sites_array = $this->bbvideo_sites();
-				foreach ($bbvideo_sites_array as $site => $example)
-				{
-					$this->template->assign_block_vars('bbvideo_sites', array(
-						'VALUE'			=> $example,
-						'LABEL'			=> $site,
-						'S_SELECTED'	=> ($site == $bbvideo_default) ? true : false,
-					));
-				}
+					$this->generate_bbvideo_wizard();
 
-				// Construct BBvideo size preset select options
-				$bbvideo_size_presets_array = array(
-					'560,315',
-					'640,360',
-					'853,480',
-					'1280,720',
-				);
-				foreach ($bbvideo_size_presets_array as $preset)
-				{
-					$this->template->assign_block_vars('bbvideo_sizes', array(
-						'VALUE'			=> $preset,
-						'LABEL'			=> str_replace(',', $this->user->lang('ABBC3_BBVIDEO_SEPARATOR'), $preset),
-					));
-				}
+					return $this->helper->render('bbvideo_wizard.html');
 
-				$this->template->assign_vars(array(
-					'ABBC3_BBVIDEO_LINK_EX'	=> (isset($bbvideo_sites_array[$bbvideo_default])) ? $bbvideo_sites_array[$bbvideo_default] : '',
-					'ABBC3_BBVIDEO_HEIGHT'	=> $this->bbvideo_height,
-					'ABBC3_BBVIDEO_WIDTH'	=> $this->bbvideo_width,
-				));
-
-				return $this->helper->render('bbcode_wizard.html');
-			break;
+				break;
+			}
 		}
 
 		return $this->helper->error($this->user->lang('GENERAL_ERROR'), 200);
+	}
+
+	/**
+	* Set template variables for the BBvideo wizard
+	*
+	* @access protected
+	*/
+	protected function generate_bbvideo_wizard()
+	{
+		// Construct BBvideo allowed site select options
+		$bbvideo_default = 'youtube.com';
+		$bbvideo_sites_array = $this->bbvideo_sites();
+		foreach ($bbvideo_sites_array as $site => $example)
+		{
+			$this->template->assign_block_vars('bbvideo_sites', array(
+				'VALUE'			=> $example,
+				'LABEL'			=> $site,
+				'S_SELECTED'	=> ($site == $bbvideo_default) ? true : false,
+			));
+		}
+
+		// Construct BBvideo size preset select options
+		$bbvideo_size_presets_array = array(
+			'560,315',
+			'640,360',
+			'853,480',
+			'1280,720',
+		);
+		foreach ($bbvideo_size_presets_array as $preset)
+		{
+			$this->template->assign_block_vars('bbvideo_sizes', array(
+				'VALUE'			=> $preset,
+				'LABEL'			=> str_replace(',', $this->user->lang('ABBC3_BBVIDEO_SEPARATOR'), $preset),
+			));
+		}
+
+		$this->template->assign_vars(array(
+			'ABBC3_BBVIDEO_LINK_EX'	=> (isset($bbvideo_sites_array[$bbvideo_default])) ? $bbvideo_sites_array[$bbvideo_default] : '',
+			'ABBC3_BBVIDEO_HEIGHT'	=> $this->bbvideo_height,
+			'ABBC3_BBVIDEO_WIDTH'	=> $this->bbvideo_width,
+		));
 	}
 
 	/**

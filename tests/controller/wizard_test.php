@@ -21,7 +21,7 @@ class wizard_test extends \phpbb_test_case
 	public function bbvideo_data()
 	{
 		return array(
-			array('bbvideo', true, 200, 'bbcode_wizard.html'),
+			array('bbvideo', true, 200, 'bbvideo_wizard.html'),
 			array('foobars', true, 200, 'GENERAL_ERROR'),
 			array('', true, 200, 'GENERAL_ERROR'),
 			array('bbvideo', false, 200, 'GENERAL_ERROR'),
