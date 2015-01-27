@@ -130,7 +130,7 @@ class bbcodes_display
 
 			if ($memberships)
 			{
-				return (bool) count(array_filter($memberships, function ($row) use ($group_ids) {
+				return (bool) sizeof(array_filter($memberships, function ($row) use ($group_ids) {
 					return in_array($row['group_id'], $group_ids);
 				}));
 			}
