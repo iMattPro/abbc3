@@ -82,7 +82,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_LINK'		=> 'لینک های ویدیو',
 	'ABBC3_BBVIDEO_SIZE'		=> 'طول و عرض ویدیو',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'اندازه',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> ' * ',
+	'ABBC3_BBVIDEO_SEPARATOR'	=> '*',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'بی بی کد دستور داده شده به روز رسانی شد',

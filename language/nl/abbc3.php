@@ -82,7 +82,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_LINK'		=> 'Video LINK',
 	'ABBC3_BBVIDEO_SIZE'		=> 'Video Breedte x Hoogte',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Afmetingen vooraf instellen',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> ' x ',
+	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'De volgorde van de BBcodes is bijgewerkt.',

@@ -123,7 +123,7 @@ class wizard
 		{
 			$this->template->assign_block_vars('bbvideo_sizes', array(
 				'VALUE'			=> $preset,
-				'LABEL'			=> str_replace(',', $this->user->lang('ABBC3_BBVIDEO_SEPARATOR'), $preset),
+				'LABEL'			=> str_replace(',', ' ' . $this->user->lang('ABBC3_BBVIDEO_SEPARATOR') . ' ', $preset),
 			));
 		}
 

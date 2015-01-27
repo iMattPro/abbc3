@@ -82,7 +82,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_LINK'		=> 'رابط الفيديو',
 	'ABBC3_BBVIDEO_SIZE'		=> 'فيديو عرض x طول',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'حجم العرض',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> ' x ',
+	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'تم تحديث BBCode المطلوب.',

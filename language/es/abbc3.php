@@ -81,7 +81,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_LINK'		=> 'URL del video',
 	'ABBC3_BBVIDEO_SIZE'		=> 'Ancho x Altura Vídeo',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Presets Tamaño',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> ' x ',
+	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'El orden de los BBCodes ha sido resincronizado.',
