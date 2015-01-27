@@ -29,8 +29,12 @@ class listener_test extends \phpbb_test_case
 		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
 
 		// Load/Mock classes required by the event listener class
-		$this->parser = new \vse\abbc3\tests\mock\bbcodes_parser();
-		$this->bbcodes = new \vse\abbc3\tests\mock\bbcodes_display();
+		$this->parser = $this->getMockBuilder('\vse\abbc3\core\bbcodes_parser')
+			->disableOriginalConstructor()
+			->getMock();
+		$this->bbcodes = $this->getMockBuilder('\vse\abbc3\core\bbcodes_display')
+			->disableOriginalConstructor()
+			->getMock();
 		$this->config = new \phpbb\config\config(array('enable_mod_rewrite' => '0'));
 		$this->template = new \vse\abbc3\tests\mock\template();
 		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
