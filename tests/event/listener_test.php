@@ -14,11 +14,6 @@ class listener_test extends \phpbb_test_case
 {
 	protected $bbcodes, $config, $controller_helper, $listener, $parser, $template, $user, $root_path, $ext_root_path, $bbvideo_width, $bbvideo_height;
 
-	/**
-	* Setup test environment
-	*
-	* @access public
-	*/
 	public function setUp()
 	{
 		parent::setUp();
@@ -64,11 +59,6 @@ class listener_test extends \phpbb_test_case
 		$this->bbvideo_height = 315;
 	}
 
-	/**
-	* Create our event listener
-	*
-	* @access protected
-	*/
 	protected function set_listener()
 	{
 		$this->listener = new \vse\abbc3\event\listener(
@@ -84,22 +74,12 @@ class listener_test extends \phpbb_test_case
 		);
 	}
 
-	/**
-	* Test the event listener is constructed correctly
-	*
-	* @access public
-	*/
 	public function test_construct()
 	{
 		$this->set_listener();
 		$this->assertInstanceOf('\Symfony\Component\EventDispatcher\EventSubscriberInterface', $this->listener);
 	}
 
-	/**
-	* Test the event listener is subscribing events
-	*
-	* @access public
-	*/
 	public function test_getSubscribedEvents()
 	{
 		$this->assertEquals(array(
@@ -114,12 +94,6 @@ class listener_test extends \phpbb_test_case
 		), array_keys(\vse\abbc3\event\listener::getSubscribedEvents()));
 	}
 
-	/**
-	* Data set for test_load_language_on_setup
-	*
-	* @return array Array of test data
-	* @access public
-	*/
 	public function load_language_on_setup_data()
 	{
 		return array(
@@ -154,10 +128,7 @@ class listener_test extends \phpbb_test_case
 	}
 
 	/**
-	* Test the load_language_on_setup event
-	*
 	* @dataProvider load_language_on_setup_data
-	* @access public
 	*/
 	public function test_load_language_on_setup($lang_set_ext, $expected_contains)
 	{
@@ -179,12 +150,6 @@ class listener_test extends \phpbb_test_case
 		}
 	}
 
-	/**
-	* Data set for test_custom_bbcode_modify_sql
-	*
-	* @return array Array of test data
-	* @access public
-	*/
 	public function custom_bbcode_modify_sql_data()
 	{
 		return array(
@@ -213,10 +178,7 @@ class listener_test extends \phpbb_test_case
 	}
 
 	/**
-	* Test the custom_bbcode_modify_sql event
-	*
 	* @dataProvider custom_bbcode_modify_sql_data
-	* @access public
 	*/
 	public function test_custom_bbcode_modify_sql($sql_ary, $expected)
 	{
@@ -236,11 +198,6 @@ class listener_test extends \phpbb_test_case
 		$this->assertEquals($expected, $sql_ary);
 	}
 
-	/**
-	* Test the setup_custom_bbcodes event
-	*
-	* @access public
-	*/
 	public function test_setup_custom_bbcodes()
 	{
 		$this->set_listener();

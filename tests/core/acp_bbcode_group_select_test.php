@@ -12,11 +12,6 @@ namespace vse\abbc3\tests\core;
 
 class acp_bbcode_group_select_test extends acp_base
 {
-	/**
-	* Get an instance of phpbb\user
-	*
-	* @access public
-	*/
 	public function get_user_instance()
 	{
 		// Must do this for testing with the user class

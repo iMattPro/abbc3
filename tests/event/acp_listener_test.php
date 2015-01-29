@@ -17,11 +17,6 @@ class acp_listener_test extends \phpbb_test_case
 	/** @var \vse\abbc3\event\listener */
 	protected $listener;
 
-	/**
-	* Create our event listener
-	*
-	* @access protected
-	*/
 	protected function set_listener()
 	{
 		global $phpbb_root_path;
@@ -33,22 +28,12 @@ class acp_listener_test extends \phpbb_test_case
 		$this->listener = new \vse\abbc3\event\acp_listener($acp_manager, $phpbb_root_path);
 	}
 
-	/**
-	* Test the event listener is constructed correctly
-	*
-	* @access public
-	*/
 	public function test_construct()
 	{
 		$this->set_listener();
 		$this->assertInstanceOf('\Symfony\Component\EventDispatcher\EventSubscriberInterface', $this->listener);
 	}
 
-	/**
-	* Test the event listener is subscribing events
-	*
-	* @access public
-	*/
 	public function test_getSubscribedEvents()
 	{
 		$this->assertEquals(array(
@@ -59,12 +44,6 @@ class acp_listener_test extends \phpbb_test_case
 		), array_keys(\vse\abbc3\event\acp_listener::getSubscribedEvents()));
 	}
 
-	/**
-	* Data set for test_acp_bbcodes_custom_sorting_buttons
-	*
-	* @return array Array of test data
-	* @access public
-	*/
 	public function acp_bbcodes_custom_sorting_buttons_data()
 	{
 		return array(
@@ -116,10 +95,7 @@ class acp_listener_test extends \phpbb_test_case
 	}
 
 	/**
-	* Test the acp_bbcodes_custom_sorting_buttons event
-	*
 	* @dataProvider acp_bbcodes_custom_sorting_buttons_data
-	* @access public
 	*/
 	public function test_acp_bbcodes_custom_sorting_buttons($row, $bbcodes_array, $expected)
 	{

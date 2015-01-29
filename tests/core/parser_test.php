@@ -16,11 +16,6 @@ class parser_test extends \phpbb_test_case
 	protected $bbvideo_width;
 	protected $bbvideo_height;
 
-	/**
-	* Get an instance of phpbb\user
-	*
-	* @access public
-	*/
 	public function get_user_instance()
 	{
 		// Must do this for testing with the user class

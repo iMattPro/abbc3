@@ -28,8 +28,6 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 
 	/**
 	* Test posting page for presence of our BBCodes template data
-	*
-	* @access public
 	*/
 	public function test_posting_page()
 	{
@@ -39,8 +37,6 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 
 	/**
 	* Test PM posting page for presence of our BBCodes template data
-	*
-	* @access public
 	*/
 	public function test_pm_posting_page()
 	{

@@ -12,12 +12,6 @@ namespace vse\abbc3\tests\controller;
 
 class wizard_test extends \phpbb_test_case
 {
-	/**
-	* Data set for test_bbvideo
-	*
-	* @return array Array of test data
-	* @access public
-	*/
 	public function bbvideo_data()
 	{
 		return array(
@@ -31,10 +25,7 @@ class wizard_test extends \phpbb_test_case
 	}
 
 	/**
-	* Test the controller with bbvideo
-	*
 	* @dataProvider bbvideo_data
-	* @access public
 	*/
 	public function test_bbvideo($mode, $ajax, $status_code, $page_content)
 	{

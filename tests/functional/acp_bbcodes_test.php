@@ -29,8 +29,6 @@ class acp_bbcodes_test extends \phpbb_functional_test_case
 
 	/**
 	* Test BBCodes page for presence of our BBCodes
-	*
-	* @access public
 	*/
 	public function test_bbcodes_page()
 	{
@@ -42,7 +40,6 @@ class acp_bbcodes_test extends \phpbb_functional_test_case
 	* Test BBCodes edit page for presence of our Group permissions option
 	*
 	* @depends test_bbcodes_page
-	* @access public
 	*/
 	public function test_edit_bbcodes_page()
 	{
