@@ -1,4 +1,4 @@
-<!-- IF .bbcodes -->
+{% if loops.bbcodes %}
 
 <!-- IF not $INCLUDED_TABLEDNDJS -->
 	<!-- INCLUDEJS @vse_abbc3/js/tablednd.min.js -->
@@ -6,8 +6,8 @@
 <!-- ENDIF -->
 
 <div style="display: none;" id="abbc3-successbox" class="successbox">
-	<h3>{L_INFORMATION}</h3>
-	<p>{L_ABBC3_BBCODE_ORDERED}</p>
+	<h3>{{ lang('INFORMATION') }}</h3>
+	<p>{{ lang('ABBC3_BBCODE_ORDERED') }}</p>
 </div>
 
 <script>
@@ -34,7 +34,7 @@ $(function() {
 		onDrop: function(table, row) {
 			$.ajax({
 				type: 'POST',
-				url: '{UA_DRAG_DROP}&tablename=' + $(table).attr('id'),
+				url: '{{ UA_DRAG_DROP }}&tablename=' + $(table).attr('id'),
 				data: $.tableDnD.serialize(),
 				success: function(res) {
 					// Show the message
@@ -55,4 +55,4 @@ $(function() {
 
 </script>
 
-<!-- ENDIF -->
+{% endif %}
