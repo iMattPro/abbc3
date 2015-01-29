@@ -211,7 +211,7 @@ class listener_test extends \phpbb_test_case
 			'ABBC3_BBCODE_ICONS' 		=> $this->ext_root_path . 'images/icons',
 			'ABBC3_BBVIDEO_HEIGHT'		=> $this->bbvideo_height,
 			'ABBC3_BBVIDEO_WIDTH'		=> $this->bbvideo_width,
-			'U_ABBC3_BBVIDEO_WIZARD'	=> 'app.php/wizard/bbcode/bbvideo',
+			'UA_ABBC3_BBVIDEO_WIZARD'	=> 'app.php/wizard/bbcode/bbvideo',
 		), $this->template->get_template_vars());
 	}
 }
