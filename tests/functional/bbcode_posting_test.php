@@ -21,7 +21,7 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 	}
 
 	/**
-	* Test createing a post with one of our BBCodes
+	* Test creating a post with one of our BBCodes
 	*
 	* @access public
 	*/
