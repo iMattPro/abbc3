@@ -38,6 +38,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 
 ## Languages supported:
 * Arabic
+* Croatian
 * Dutch
 * English
 * French
