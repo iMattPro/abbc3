@@ -12,15 +12,45 @@ namespace vse\abbc3\tests\controller;
 
 class wizard_test extends \phpbb_test_case
 {
+	protected $controller;
+	protected $request;
+
+	public function setUp()
+	{
+		parent::setUp();
+
+		global $phpbb_root_path;
+
+		$this->request = $this->getMock('\phpbb\request\request');
+
+		$controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
+			->disableOriginalConstructor()
+			->getMock();
+		$controller_helper->expects($this->any())
+			->method('render')
+			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200, $display_online_list = false) {
+				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
+			});
+
+		$template = $this->getMockBuilder('\phpbb\template\template')
+			->getMock();
+
+		$this->controller = new \vse\abbc3\controller\wizard(
+			$controller_helper,
+			$this->request,
+			$template,
+			new \phpbb\user('\phpbb\datetime'),
+			$phpbb_root_path,
+			'ext/vse/abbc3/',
+			'',
+			''
+		);
+	}
+
 	public function bbvideo_data()
 	{
 		return array(
 			array('bbvideo', true, 200, 'bbvideo_wizard.html'),
-			array('foobars', true, 200, 'GENERAL_ERROR'),
-			array('', true, 200, 'GENERAL_ERROR'),
-			array('bbvideo', false, 200, 'GENERAL_ERROR'),
-			array('foobars', false, 200, 'GENERAL_ERROR'),
-			array('', false, 200, 'GENERAL_ERROR'),
 		);
 	}
 
@@ -29,28 +59,42 @@ class wizard_test extends \phpbb_test_case
 	*/
 	public function test_bbvideo($mode, $ajax, $status_code, $page_content)
 	{
-		global $phpbb_root_path;
-
-		$request = $this->getMock('\phpbb\request\request');
-		$request->expects($this->any())
+		$this->request->expects($this->any())
 			->method('is_ajax')
 			->will($this->returnValue($ajax)
 		);
 
-		$controller = new \vse\abbc3\controller\wizard(
-			new \vse\abbc3\tests\mock\controller_helper(),
-			$request,
-			new \vse\abbc3\tests\mock\template(),
-			new \phpbb\user('\phpbb\datetime'),
-			$phpbb_root_path,
-			'ext/vse/abbc3/',
-			'',
-			''
-		);
-
-		$response = $controller->bbcode_wizard($mode);
+		$response = $this->controller->bbcode_wizard($mode);
 		$this->assertInstanceOf('\Symfony\Component\HttpFoundation\Response', $response);
 		$this->assertEquals($status_code, $response->getStatusCode());
 		$this->assertEquals($page_content, $response->getContent());
+	}
+
+	public function bbvideo_data_fails()
+	{
+		return array(
+			array('bbvideo', false),
+			array('foobars', true),
+			array('foobars', false),
+			array('', true),
+			array('', false),
+		);
+	}
+
+	/**
+	 * Test the controller throws an exception on erroneous calls
+	 *
+	 * @dataProvider bbvideo_data_fails
+	 * @expectedException \phpbb\exception\http_exception
+	 * @expectedExceptionMessage GENERAL_ERROR
+	 */
+	public function test_unique_anchor_fails($mode, $ajax)
+	{
+		$this->request->expects($this->any())
+			->method('is_ajax')
+			->will($this->returnValue($ajax)
+		);
+
+		$this->controller->bbcode_wizard($mode);
 	}
 }

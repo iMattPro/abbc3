@@ -71,6 +71,7 @@ class wizard
 	*
 	* @param string	$mode Mode taken from the URL
 	* @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
+	* @throws \phpbb\exception\http_exception An http exception
 	* @access public
 	*/
 	public function bbcode_wizard($mode)
@@ -90,7 +91,7 @@ class wizard
 			}
 		}
 
-		return $this->helper->error($this->user->lang('GENERAL_ERROR'), 200);
+		throw new \phpbb\exception\http_exception(404, 'GENERAL_ERROR');
 	}
 
 	/**
