@@ -10,7 +10,10 @@
 
 namespace vse\abbc3\migrations;
 
-class v310_m5_update_bbcodes extends \phpbb\db\migration\migration
+use phpbb\db\migration\container_aware_migration;
+use \vse\abbc3\core\acp_manager;
+
+class v310_m5_update_bbcodes extends container_aware_migration
 {
 	public function effectively_installed()
 	{
@@ -34,7 +37,19 @@ class v310_m5_update_bbcodes extends \phpbb\db\migration\migration
 
 	public function update_abbc3_bbcodes()
 	{
-		$bbcode_data = array(
+		/** @var \phpbb\request\request $request */
+		$request = $this->container->get('request');
+
+		/** @var \phpbb\user $user */
+		$user = $this->container->get('user');
+
+		$acp_manager = new acp_manager($this->db, $request, $user, $this->phpbb_root_path, $this->php_ext);
+		$acp_manager->install_bbcodes($this->bbcode_data());
+	}
+
+	protected function bbcode_data()
+	{
+		return array(
 			'pre' => array(
 				'bbcode_helpline'	=> 'ABBC3_PREFORMAT_HELPLINE',
 				'bbcode_match'		=> '[pre]{TEXT}[/pre]',
@@ -81,9 +96,5 @@ class v310_m5_update_bbcodes extends \phpbb\db\migration\migration
 				'bbcode_tpl'		=> '<pre class="nfo" style="color: #000000; font-weight: normal; line-height: normal; font-size: 10pt; font-family: Terminal, monospace; background-color: #ffffff; white-space: pre; padding: 5px;">{TEXT}</pre>',
 			),
 		);
-
-		global $request, $user;
-		$acp_manager = new \vse\abbc3\core\acp_manager($this->db, $request, $user, $this->phpbb_root_path, $this->php_ext);
-		$acp_manager->install_bbcodes($bbcode_data);
 	}
 }
