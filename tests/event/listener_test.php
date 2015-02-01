@@ -31,7 +31,9 @@ class listener_test extends \phpbb_test_case
 			->disableOriginalConstructor()
 			->getMock();
 		$this->config = new \phpbb\config\config(array('enable_mod_rewrite' => '0'));
-		$this->template = new \vse\abbc3\tests\mock\template();
+
+		$this->template = $this->getMockBuilder('\phpbb\template\template')
+			->getMock();
 		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
 		$this->user->data['username'] = 'admin';
 
@@ -202,16 +204,18 @@ class listener_test extends \phpbb_test_case
 	{
 		$this->set_listener();
 
+		$this->template->expects($this->once())
+			->method('assign_vars')
+			->with(array(
+				'ABBC3_USERNAME'			=> 'admin',
+				'ABBC3_BBCODE_ICONS' 		=> $this->ext_root_path . 'images/icons',
+				'ABBC3_BBVIDEO_HEIGHT'		=> $this->bbvideo_height,
+				'ABBC3_BBVIDEO_WIDTH'		=> $this->bbvideo_width,
+				'UA_ABBC3_BBVIDEO_WIZARD'	=> 'app.php/wizard/bbcode/bbvideo',
+			));
+
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
 		$dispatcher->addListener('core.display_custom_bbcodes', array($this->listener, 'setup_custom_bbcodes'));
 		$dispatcher->dispatch('core.display_custom_bbcodes');
-
-		$this->assertEquals(array(
-			'ABBC3_USERNAME'			=> 'admin',
-			'ABBC3_BBCODE_ICONS' 		=> $this->ext_root_path . 'images/icons',
-			'ABBC3_BBVIDEO_HEIGHT'		=> $this->bbvideo_height,
-			'ABBC3_BBVIDEO_WIDTH'		=> $this->bbvideo_width,
-			'UA_ABBC3_BBVIDEO_WIZARD'	=> 'app.php/wizard/bbcode/bbvideo',
-		), $this->template->get_template_vars());
 	}
 }
