@@ -97,7 +97,7 @@ class acp_listener implements EventSubscriberInterface
 	public function acp_bbcodes_custom_sorting($event)
 	{
 		// Move up/down action
-		switch($event['action'])
+		switch ($event['action'])
 		{
 			case 'move_up':
 			case 'move_down':
