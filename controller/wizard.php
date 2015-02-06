@@ -109,7 +109,7 @@ class wizard
 			$this->template->assign_block_vars('bbvideo_sites', array(
 				'VALUE'			=> $example,
 				'LABEL'			=> $site,
-				'S_SELECTED'	=> ($site == $bbvideo_default) ? true : false,
+				'S_SELECTED'	=> $site == $bbvideo_default,
 			));
 		}
 
