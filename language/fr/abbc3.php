@@ -50,7 +50,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_FADE_HELPLINE'		=> 'Texte fondant : [fade]text[/fade]',
 	'ABBC3_FLOAT_HELPLINE'		=> 'Texte flottant : [float=left|right]text[/float]',
 	'ABBC3_FONT_HELPLINE'		=> 'Police de caractères : [font=Comic Sans MS]text[/font]',
-	'ABBC3_GLOW_HELPLINE'		=> 'Texte à reflets : [glow=color]text[/glow]',
+	'ABBC3_GLOW_HELPLINE'		=> 'Texte lumineux : [glow=color]text[/glow]',
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Masquer aux invités : [hidden]text[/hidden]',
 	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Texte surligné : [highlight=yellow]texte[/highlight]  Astuce: vous pouvez également utiliser color=#FF0000',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Texte défilant : [marq=up|down|left|right]text[/marq]',
