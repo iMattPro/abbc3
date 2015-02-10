@@ -2,7 +2,7 @@
 /**
 *
 * Advanced BBCode Box 3.1 [French]
-* Translated by ForumsFaciles - http://www.forumsfaciles.fr
+* Translated by ForumsFaciles - http://www.forumsfaciles.fr & Galixte (http://www.galixte.com)
 *
 * @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -42,34 +42,34 @@ $lang = array_merge($lang, array(
 	'ABBC3_FONT_WIN'			=> 'Polices Windows',
 
 	// BBCode help lines
-	'ABBC3_ALIGN_HELPLINE'		=> 'Alignement du texte: [align=center|left|right|justify]texte[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Insérer un lien vers n’importe quelle vidéo internet: [BBvideo=width,height]http://video_url[/BBvideo]',
-	'ABBC3_BLUR_HELPLINE'		=> 'Texte flou: [blur=color]text[/blur]',
-	'ABBC3_DIR_HELPLINE'		=> 'Texte défilant: [dir=ltr|rtl]text[/dir]',
-	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Texte à ombrage: [dropshadow=color]text[/dropshadow]',
-	'ABBC3_FADE_HELPLINE'		=> 'Texte fondant: [fade]text[/fade]',
-	'ABBC3_FLOAT_HELPLINE'		=> 'Texte flottant: [float=left|right]text[/float]',
-	'ABBC3_FONT_HELPLINE'		=> 'Police des caractères: [font=Comic Sans MS]text[/font]',
-	'ABBC3_GLOW_HELPLINE'		=> 'Texte à reflets: [glow=color]text[/glow]',
-	'ABBC3_HIDDEN_HELPLINE'		=> 'Masquer aux invités: [hidden]text[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Texte surligné: [highlight=yellow]texte[/highlight]  Astuce: vous pouvez également utiliser color=#FF0000',
-	'ABBC3_MARQUEE_HELPLINE'	=> 'Texte défilant: [marq=up|down|left|right]text[/marq]',
-	'ABBC3_MOD_HELPLINE'		=> 'Message d’alerte: [mod=username]texte[/mod]',
-	'ABBC3_NFO_HELPLINE'		=> 'Texte [ASCII Art] NFO: [nfo]texte[/nfo]',
-	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Message hors-sujet: [offtopic]texte[/offtopic]',
-	'ABBC3_PREFORMAT_HELPLINE'	=> 'Texte préformaté: [pre]texte[/pre]',
-	'ABBC3_SHADOW_HELPLINE'		=> 'Texte à ombres: [shadow=color]text[/shadow]',
+	'ABBC3_ALIGN_HELPLINE'		=> 'Alignement du texte : [align=center|left|right|justify]texte[/align]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Insérer un lien vers n’importe quelle vidéo internet : [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BLUR_HELPLINE'		=> 'Texte flou : [blur=color]text[/blur]',
+	'ABBC3_DIR_HELPLINE'		=> 'Texte défilant : [dir=ltr|rtl]text[/dir]',
+	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Texte à ombre portée : [dropshadow=color]text[/dropshadow]',
+	'ABBC3_FADE_HELPLINE'		=> 'Texte fondant : [fade]text[/fade]',
+	'ABBC3_FLOAT_HELPLINE'		=> 'Texte flottant : [float=left|right]text[/float]',
+	'ABBC3_FONT_HELPLINE'		=> 'Police de caractères : [font=Comic Sans MS]text[/font]',
+	'ABBC3_GLOW_HELPLINE'		=> 'Texte à reflets : [glow=color]text[/glow]',
+	'ABBC3_HIDDEN_HELPLINE'		=> 'Masquer aux invités : [hidden]text[/hidden]',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Texte surligné : [highlight=yellow]texte[/highlight]  Astuce: vous pouvez également utiliser color=#FF0000',
+	'ABBC3_MARQUEE_HELPLINE'	=> 'Texte défilant : [marq=up|down|left|right]text[/marq]',
+	'ABBC3_MOD_HELPLINE'		=> 'Message d’alerte : [mod=username]texte[/mod]',
+	'ABBC3_NFO_HELPLINE'		=> 'Texte [ASCII Art] NFO : [nfo]texte[/nfo]',
+	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Message hors-sujet : [offtopic]texte[/offtopic]',
+	'ABBC3_PREFORMAT_HELPLINE'	=> 'Texte préformaté : [pre]texte[/pre]',
+	'ABBC3_SHADOW_HELPLINE'		=> 'Texte à ombres : [shadow=color]text[/shadow]',
 	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
-	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler message: [spoil]texte[/spoil]',
-	'ABBC3_STRIKE_HELPLINE'		=> 'Texte barré: [s]texte[/s]',
-	'ABBC3_SUB_HELPLINE'		=> 'Texte en indice: [sub]texte[/sub]',
-	'ABBC3_SUP_HELPLINE'		=> 'Texte en exposant: [sup]texte[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vidéo YouTube: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler le message : [spoil]texte[/spoil]',
+	'ABBC3_STRIKE_HELPLINE'		=> 'Texte barré : [s]texte[/s]',
+	'ABBC3_SUB_HELPLINE'		=> 'Texte en indice : [sub]texte[/sub]',
+	'ABBC3_SUP_HELPLINE'		=> 'Texte en exposant : [sup]texte[/sup]',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vidéo YouTube : [youtube]http://youtube_url[/youtube]',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copier le texte sélectionné',
 	'ABBC3_PASTE_BBCODE'		=> 'Coller le texte copié',
-	'ABBC3_PASTE_ERROR'			=> 'Vous devez avant tout copier une portion de texte, puis le coller',
+	'ABBC3_PASTE_ERROR'			=> 'Vous devez avant tout copier une partie du texte, puis la coller',
 	'ABBC3_PLAIN_BBCODE'		=> 'Supprimer toutes les balises BBCode du texte sélectionné',
 	'ABBC3_NOSELECT_ERROR'		=> 'Aucun texte sélectionné.',
 
@@ -87,5 +87,5 @@ $lang = array_merge($lang, array(
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'L’ordre des BBcode a été mis à jour.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestion des groupes pouvant utiliser ce BBCode',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si aucun groupe n’est sélectionné, tous les utilisateurs pourront utiliser ce BBCode. Appuyer sur CTRL+ CLICK (ou CMD+CLICK sur Mac) pour sélectionner / désélectionner plus d’un groupe.',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si aucun groupe n’est sélectionné, tous les utilisateurs pourront utiliser ce BBCode. Appuyer sur la touche <samp>CTRL</samp> (ou <samp>&#8984;CMD</samp> sur Mac) tout en cliquant pour sélectionner / désélectionner plus d’un groupe.',
 ));
