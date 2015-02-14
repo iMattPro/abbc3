@@ -341,7 +341,8 @@ class acp_manager
 				if ($bbcode_id <= BBCODE_LIMIT)
 				{
 					$bbcode_array['bbcode_id'] = (int) $bbcode_id;
-					$bbcode_array['display_on_posting'] = 1;
+					// set display_on_posting to 1 by default, so if 0 is desired, set it in our data array
+					$bbcode_array['display_on_posting'] = (int) !isset($bbcode_array['display_on_posting']);
 
 					$this->db->sql_query('INSERT INTO ' . BBCODES_TABLE . ' ' . $this->db->sql_build_array('INSERT', $bbcode_array));
 				}
