@@ -239,6 +239,8 @@ class acp_manager
 	*/
 	public function resynchronize_bbcode_order()
 	{
+		$this->db->sql_transaction('commit');
+
 		// By default, check that order is valid and fix it if necessary
 		$sql = 'SELECT bbcode_id, bbcode_order
 			FROM ' . BBCODES_TABLE . '
@@ -263,8 +265,9 @@ class acp_manager
 			}
 			while ($row = $this->db->sql_fetchrow($result));
 		}
-
 		$this->db->sql_freeresult($result);
+
+		$this->db->sql_transaction('commit');
 	}
 
 	/**
