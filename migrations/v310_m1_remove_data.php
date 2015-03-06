@@ -13,19 +13,11 @@ namespace vse\abbc3\migrations;
 class v310_m1_remove_data extends \phpbb\db\migration\migration
 {
 	/*
-	 * Do not run migration if ACP_ABBCODES module does not exist
+	 * Run migration if ABBC3_VERSION config exists
 	 */
 	public function effectively_installed()
 	{
-		$sql = 'SELECT module_id
-			FROM ' . $this->table_prefix . "modules
-			WHERE module_class = 'acp'
-				AND module_langname = 'ACP_ABBCODES'";
-		$result = $this->db->sql_query($sql);
-		$module_id = $this->db->sql_fetchfield('module_id');
-		$this->db->sql_freeresult($result);
-
-		return $module_id == false;
+		return !isset($this->config['ABBC3_VERSION']);
 	}
 
 	/*
