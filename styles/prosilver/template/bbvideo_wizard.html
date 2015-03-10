@@ -6,7 +6,7 @@
 					<dt><label for="bbvideo_wizard_sites">{{ lang('ABBC3_BBVIDEO_SITES') }}{{ lang('COLON') }}</label></dt>
 					<dd>
 						<select id="bbvideo_wizard_sites" name="bbvideo_wizard_sites">
-							{% for bbvideo_site in loops.bbvideo_sites %}
+							{% for bbvideo_site in bbvideo_sites %}
 								<option value="{{ bbvideo_site.VALUE }}"{% if bbvideo_site.S_SELECTED %} selected="selected"{% endif %}>{{ bbvideo_site.LABEL }}</option>
 							{% endfor %}
 						</select>
@@ -33,7 +33,7 @@
 						<input type="number" id="bbvideo_wizard_height" name="bbvideo_wizard_height" value="{{ ABBC3_BBVIDEO_HEIGHT }}" class="inputbox narrow" style="width:60px;" min="0" max="9999" size="4" />
 						<select id="bbvideo_wizard_size_presets" name="bbvideo_wizard_size_presets">
 							<option value="">{{ lang('ABBC3_BBVIDEO_PRESETS') }}</option>
-							{% for bbvideo_size in loops.bbvideo_sizes %}
+							{% for bbvideo_size in bbvideo_sizes %}
 								<option value="{{ bbvideo_size.VALUE }}">{{ bbvideo_size.LABEL }}</option>
 							{% endfor %}
 						</select>
