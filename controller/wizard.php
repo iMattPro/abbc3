@@ -85,7 +85,7 @@ class wizard
 
 					$this->generate_bbvideo_wizard();
 
-					return $this->helper->render('bbvideo_wizard.html');
+					return $this->helper->render('abbc3_bbvideo_wizard.html');
 
 				break;
 			}
