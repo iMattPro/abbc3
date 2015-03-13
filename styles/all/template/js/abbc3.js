@@ -580,14 +580,20 @@ var bbwizard;
 		body.on('click', function() {
 			wizard.fadeOut('fast');
 		});
-		// Click on bbcode wizard submit button to apply bbcode to message
-		wizard.on('click', '#bbvideo_wizard_submit', function(event) {
-			event.preventDefault();
-			bbinsert('[BBvideo=' + $('#bbvideo_wizard_width').val() + ',' + $('#bbvideo_wizard_height').val() + ']' + $('#bbvideo_wizard_link').val() + '', '[/BBvideo]');
-			wizard.fadeOut('fast');
-		})
+		wizard
+			// Click on bbcode wizard submit button to apply bbcode to message
+			.on('click', '#bbcode_wizard_submit', function(event) {
+				event.preventDefault();
+				var bbcode = $(this).data('bbcode');
+				switch (bbcode) {
+					case 'bbvideo':
+						bbinsert('[BBvideo=' + $('#bbvideo_wizard_width').val() + ',' + $('#bbvideo_wizard_height').val() + ']' + $('#bbvideo_wizard_link').val() + '', '[/BBvideo]');
+						break;
+				}
+				wizard.fadeOut('fast');
+			})
 			// Click on bbcode wizard cancel button to dismiss bbcode wizard
-			.on('click', '#bbvideo_wizard_cancel', function(event) {
+			.on('click', '#bbcode_wizard_cancel', function(event) {
 				event.preventDefault();
 				wizard.fadeOut('fast');
 			})
