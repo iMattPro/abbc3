@@ -50,7 +50,7 @@ class wizard_test extends \phpbb_test_case
 	public function bbvideo_data()
 	{
 		return array(
-			array('bbvideo', true, 200, 'bbvideo_wizard.html'),
+			array('bbvideo', true, 200, 'abbc3_bbvideo_wizard.html'),
 		);
 	}
 
