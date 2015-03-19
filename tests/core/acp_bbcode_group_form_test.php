@@ -30,7 +30,7 @@ class acp_bbcode_group_form_test extends acp_base
 			->method('variable')
 			->will($this->returnValue($group_data));
 
-		$acp_manager = $this->acp_manager();
+		$acp_manager = $this->get_acp_manager();
 
 		$this->assertEquals($expected, $acp_manager->get_bbcode_group_form_data());
 	}

@@ -35,7 +35,7 @@ class acp_base extends \phpbb_database_test_case
 		$this->user = new \phpbb\user('\phpbb\datetime');
 	}
 
-	protected function acp_manager()
+	protected function get_acp_manager()
 	{
 		global $phpbb_root_path, $phpEx;
 
