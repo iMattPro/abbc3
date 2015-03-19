@@ -80,7 +80,7 @@ class acp_bbcode_move_test extends acp_base
 			))
 		);
 
-		$acp_manager = $this->acp_manager();
+		$acp_manager = $this->get_acp_manager();
 
 		$acp_manager->move($action);
 
