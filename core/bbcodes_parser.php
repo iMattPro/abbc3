@@ -25,13 +25,13 @@ class bbcodes_parser
 	protected $bbvideo_height;
 
 	/**
-	* Constructor
-	*
-	* @param \phpbb\user $user User object
-	* @param string $bbvideo_width Default width of bbvideo
-	* @param string $bbvideo_height Default height of bbvideo
-	* @access public
-	*/
+	 * Constructor
+	 *
+	 * @param \phpbb\user $user           User object
+	 * @param string      $bbvideo_width  Default width of bbvideo
+	 * @param string      $bbvideo_height Default height of bbvideo
+	 * @access public
+	 */
 	public function __construct(\phpbb\user $user, $bbvideo_width, $bbvideo_height)
 	{
 		$this->user = $user;
@@ -40,13 +40,13 @@ class bbcodes_parser
 	}
 
 	/**
-	* Pre-Parser for special custom BBCodes created by ABBC3
-	*
-	* @param string $text The text to parse
-	* @param string $uid The BBCode UID
-	* @return string The parsed text
-	* @access public
-	*/
+	 * Pre-Parser for special custom BBCodes created by ABBC3
+	 *
+	 * @param string $text The text to parse
+	 * @param string $uid  The BBCode UID
+	 * @return string The parsed text
+	 * @access public
+	 */
 	public function pre_parse_bbcodes($text, $uid)
 	{
 		// bbvideo BBCodes (convert from older ABBC3 installations)
@@ -56,12 +56,12 @@ class bbcodes_parser
 	}
 
 	/**
-	* Post-Parser for special custom BBCodes created by ABBC3
-	*
-	* @param string $text The text to parse
-	* @return string The parsed text
-	* @access public
-	*/
+	 * Post-Parser for special custom BBCodes created by ABBC3
+	 *
+	 * @param string $text The text to parse
+	 * @return string The parsed text
+	 * @access public
+	 */
 	public function post_parse_bbcodes($text)
 	{
 		// hidden BBCode
@@ -71,24 +71,24 @@ class bbcodes_parser
 	}
 
 	/**
-	* Convert BBvideo from older ABBC3 posts to the new format
-	*
-	* @param array $matches 1=bbvideo, 2=width,height, 3=uid, 4=url
-	* @return string BBvideo in the correct BBCode format
-	* @access protected
-	*/
+	 * Convert BBvideo from older ABBC3 posts to the new format
+	 *
+	 * @param array $matches 1=bbvideo, 2=width,height, 3=uid, 4=url
+	 * @return string BBvideo in the correct BBCode format
+	 * @access protected
+	 */
 	protected function bbvideo_pass($matches)
 	{
 		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : "[bbvideo={$this->bbvideo_width},{$this->bbvideo_height}:$matches[3]]$matches[4][/bbvideo:$matches[3]]";
 	}
 
 	/**
-	* Convert Hidden BBCode into its final appearance
-	*
-	* @param array $matches
-	* @return string HTML render of hidden bbcode
-	* @access protected
-	*/
+	 * Convert Hidden BBCode into its final appearance
+	 *
+	 * @param array $matches
+	 * @return string HTML render of hidden bbcode
+	 * @access protected
+	 */
 	protected function hidden_pass($matches)
 	{
 		if ($this->user->data['user_id'] == ANONYMOUS || $this->user->data['is_bot'])

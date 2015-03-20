@@ -10,25 +10,36 @@
 
 namespace vse\abbc3\migrations;
 
+/**
+* This migration removes old data from 3.0
+* installations of Advanced BBCode Box 3 MOD.
+*/
 class v310_m1_remove_data extends \phpbb\db\migration\migration
 {
-	/*
+	/**
 	 * Run migration if ABBC3_VERSION config exists
+	 *
+	 * @return bool
 	 */
 	public function effectively_installed()
 	{
 		return !isset($this->config['ABBC3_VERSION']);
 	}
 
-	/*
+	/**
 	 * This dependency is needed mostly for testing, to ensure
 	 * phpBB migrations are installed before ABBC3.
+	 *
+	 * @return array An array of migration class names
 	 */
 	static public function depends_on()
 	{
 		return array('\phpbb\db\migration\data\v310\beta4');
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function update_data()
 	{
 		return array(
@@ -51,7 +62,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 		);
 	}
 
-	/*
+	/**
 	 * Remove config data from ABBC3 MOD
 	 */
 	public function remove_abbc3_configs()
@@ -94,7 +105,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 		$this->db->sql_query($sql);
 	}
 
-	/*
+	/**
 	 * Remove BBCodes from ABBC3 MOD
 	 */
 	public function remove_abbc3_bbcodes()
@@ -120,8 +131,10 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 		$this->db->sql_query($sql);
 	}
 
-	/*
+	/**
 	 * Array of ABBC3 MOD BBCodes to remove
+	 *
+	 * @return array
 	 */
 	public function abbc3_bbcodes()
 	{

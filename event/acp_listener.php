@@ -24,12 +24,12 @@ class acp_listener implements EventSubscriberInterface
 	protected $root_path;
 
 	/**
-	* Constructor
-	*
-	* @param \vse\abbc3\core\acp_manager $acp_manager
-	* @param string $root_path
-	* @access public
-	*/
+	 * Constructor
+	 *
+	 * @param \vse\abbc3\core\acp_manager $acp_manager
+	 * @param string                      $root_path
+	 * @access public
+	 */
 	public function __construct(\vse\abbc3\core\acp_manager $acp_manager, $root_path)
 	{
 		$this->acp_manager = $acp_manager;
@@ -37,12 +37,12 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Assign functions defined in this class to event listeners in the core
-	*
-	* @return array
-	* @static
-	* @access public
-	*/
+	 * Assign functions defined in this class to event listeners in the core
+	 *
+	 * @return array
+	 * @static
+	 * @access public
+	 */
 	static public function getSubscribedEvents()
 	{
 		return array(
@@ -54,12 +54,12 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Add some additional elements to the BBCodes template
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
+	 * Add some additional elements to the BBCodes template
+	 *
+	 * @param object $event The event object
+	 * @return null
+	 * @access public
+	 */
 	public function acp_bbcodes_custom_sorting_buttons($event)
 	{
 		$row = $event['row'];
@@ -72,12 +72,12 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Add the Group select form field on BBCode edit page
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
+	 * Add the Group select form field on BBCode edit page
+	 *
+	 * @param object $event The event object
+	 * @return null
+	 * @access public
+	 */
 	public function acp_bbcodes_group_select_box($event)
 	{
 		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : false;
@@ -88,12 +88,12 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Handle BBCode order changes when moving them up/down
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
+	 * Handle BBCode order changes when moving them up/down
+	 *
+	 * @param object $event The event object
+	 * @return null
+	 * @access public
+	 */
 	public function acp_bbcodes_custom_sorting($event)
 	{
 		// Move up/down action
@@ -121,12 +121,12 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Handle BBCode order and group data during modify/create routines
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
+	 * Handle BBCode order and group data during modify/create routines
+	 *
+	 * @param object $event The event object
+	 * @return null
+	 * @access public
+	 */
 	public function acp_bbcodes_modify_create($event)
 	{
 		$sql_ary = $event['sql_ary'];

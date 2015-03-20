@@ -31,15 +31,15 @@ class bbcodes_display
 	protected $ext_root_path;
 
 	/**
-	* Constructor
-	*
-	* @param \phpbb\db\driver\driver_interface $db Database connection
-	* @param \phpbb\extension\manager $extension_manager Extension manager object
-	* @param \phpbb\user $user User object
-	* @param string $root_path phpBB root path
-	* @param string $ext_root_path Extension root path
-	* @access public
-	*/
+	 * Constructor
+	 *
+	 * @param \phpbb\db\driver\driver_interface $db                Database connection
+	 * @param \phpbb\extension\manager          $extension_manager Extension manager object
+	 * @param \phpbb\user                       $user              User object
+	 * @param string                            $root_path         phpBB root path
+	 * @param string                            $ext_root_path     Extension root path
+	 * @access public
+	 */
 	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\extension\manager $extension_manager, \phpbb\user $user, $root_path, $ext_root_path)
 	{
 		$this->db = $db;
@@ -50,15 +50,15 @@ class bbcodes_display
 	}
 
 	/**
-	* Display allowed custom BBCodes with icons
-	*
-	* Uses GIF images named exactly the same as the bbcode_tag
-	*
-	* @param array $custom_tags Template data of the bbcode
-	* @param array $row The data of the bbcode
-	* @return array Update template data of the bbcode
-	* @access public
-	*/
+	 * Display allowed custom BBCodes with icons
+	 *
+	 * Uses GIF images named exactly the same as the bbcode_tag
+	 *
+	 * @param array $custom_tags Template data of the bbcode
+	 * @param array $row         The data of the bbcode
+	 * @return array Update template data of the bbcode
+	 * @access public
+	 */
 	public function display_custom_bbcodes($custom_tags, $row)
 	{
 		static $images = array();
@@ -77,13 +77,13 @@ class bbcodes_display
 	}
 
 	/**
-	* Set custom BBCodes to 'disabled' if they are not allowed to be used
-	*
-	* @param array $bbcodes Array of bbcode data for use in parsing
-	* @param array $rowset Array of bbcode data from the database
-	* @return array The bbcodes data array
-	* @access public
-	*/
+	 * Set custom BBCodes to 'disabled' if they are not allowed to be used
+	 *
+	 * @param array $bbcodes Array of bbcode data for use in parsing
+	 * @param array $rowset  Array of bbcode data from the database
+	 * @return array The bbcodes data array
+	 * @access public
+	 */
 	public function allow_custom_bbcodes($bbcodes, $rowset)
 	{
 		foreach ($rowset as $row)
@@ -98,12 +98,12 @@ class bbcodes_display
 	}
 
 	/**
-	* Determine if a user is in a group allowed to use a custom BBCode
-	*
-	* @param string $group_ids Allowed group IDs, comma separated
-	* @return bool Return true if allowed to use BBCode
-	* @access public
-	*/
+	 * Determine if a user is in a group allowed to use a custom BBCode
+	 *
+	 * @param string $group_ids Allowed group IDs, comma separated
+	 * @return bool Return true if allowed to use BBCode
+	 * @access public
+	 */
 	public function user_in_bbcode_group($group_ids = '')
 	{
 		if ($group_ids)
@@ -141,11 +141,11 @@ class bbcodes_display
 	}
 
 	/**
-	* Get image paths/names from ABBC3's icons folder
-	*
-	* @return Array of file data from ./ext/vse/abbc3/images/icons
-	* @access protected
-	*/
+	 * Get image paths/names from ABBC3's icons folder
+	 *
+	 * @return Array of file data from ./ext/vse/abbc3/images/icons
+	 * @access protected
+	 */
 	protected function get_images()
 	{
 		$finder = $this->extension_manager->get_finder();
