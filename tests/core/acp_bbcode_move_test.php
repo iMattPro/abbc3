@@ -14,7 +14,7 @@ require_once dirname(__FILE__) . '/../../../../../includes/functions.php';
 
 class acp_bbcode_move_test extends acp_base
 {
-	public static function bbcode_move_data()
+	public function bbcode_move_data()
 	{
 		// bbcode_id or array of bbcode_ids
 		// action move_up|move_down
