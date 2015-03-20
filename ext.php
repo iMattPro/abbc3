@@ -13,13 +13,13 @@ namespace vse\abbc3;
 class ext extends \phpbb\extension\base
 {
 	/** @var string Require 3.1.3 due to throwing new exceptions
-	*               and using containerAware migration files.
-	*/
+	 *              and using containerAware migration files.
+	 */
 	const PHPBB_VERSION = '3.1.3';
 
 	/**
-	* @inheritdoc
-	*/
+	 * {@inheritdoc}
+	 */
 	public function is_enableable()
 	{
 		$config = $this->container->get('config');

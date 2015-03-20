@@ -31,15 +31,15 @@ class acp_manager
 	protected $php_ext;
 
 	/**
-	* Constructor
-	*
-	* @param \phpbb\db\driver\driver_interface $db
-	* @param \phpbb\request\request $request
-	* @param \phpbb\user $user
-	* @param string $phpbb_root_path
-	* @param string $php_ext
-	* @access public
-	*/
+	 * Constructor
+	 *
+	 * @param \phpbb\db\driver\driver_interface $db
+	 * @param \phpbb\request\request            $request
+	 * @param \phpbb\user                       $user
+	 * @param string                            $phpbb_root_path
+	 * @param string                            $php_ext
+	 * @access public
+	 */
 	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, \phpbb\user $user, $phpbb_root_path, $php_ext)
 	{
 		$this->db = $db;
@@ -50,12 +50,12 @@ class acp_manager
 	}
 
 	/**
-	* Update BBCode order fields in the db on move up/down
-	*
-	* @param string $action The action move_up|move_down
-	* @return null
-	* @access public
-	*/
+	 * Update BBCode order fields in the db on move up/down
+	 *
+	 * @param string $action The action move_up|move_down
+	 * @return null
+	 * @access public
+	 */
 	public function move($action)
 	{
 		$bbcode_id = $this->request->variable('id', 0);
@@ -104,11 +104,11 @@ class acp_manager
 	}
 
 	/**
-	* Update BBCode order fields in the db on drag_drop
-	*
-	* @return null
-	* @access public
-	*/
+	 * Update BBCode order fields in the db on drag_drop
+	 *
+	 * @return null
+	 * @access public
+	 */
 	public function drag_drop()
 	{
 		if (!$this->request->is_ajax())
@@ -153,11 +153,11 @@ class acp_manager
 	}
 
 	/**
-	* Retrieve the maximum value from the bbcode_order field stored in the db
-	*
-	* @return int The maximum order
-	* @access public
-	*/
+	 * Retrieve the maximum value from the bbcode_order field stored in the db
+	 *
+	 * @return int The maximum order
+	 * @access public
+	 */
 	public function get_max_bbcode_order()
 	{
 		$sql = 'SELECT MAX(bbcode_order) AS max_bbcode_order
@@ -170,11 +170,11 @@ class acp_manager
 	}
 
 	/**
-	* Get the bbcode_group data from the posted form
-	*
-	* @return string The usergroup id numbers, comma delimited, or empty
-	* @access public
-	*/
+	 * Get the bbcode_group data from the posted form
+	 *
+	 * @return string The usergroup id numbers, comma delimited, or empty
+	 * @access public
+	 */
 	public function get_bbcode_group_form_data()
 	{
 		$bbcode_group = $this->request->variable('bbcode_group', array(0));
@@ -184,12 +184,12 @@ class acp_manager
 	}
 
 	/**
-	* Get the bbcode_group data from the database
-	*
-	* @param int $bbcode_id Custom BBCode id
-	* @return array Custom BBCode user group ids
-	* @access public
-	*/
+	 * Get the bbcode_group data from the database
+	 *
+	 * @param int $bbcode_id Custom BBCode id
+	 * @return array Custom BBCode user group ids
+	 * @access public
+	 */
 	public function get_bbcode_group_data($bbcode_id)
 	{
 		$sql = 'SELECT bbcode_group
@@ -203,12 +203,12 @@ class acp_manager
 	}
 
 	/**
-	* Generate a select box containing user groups
-	*
-	* @param mixed $select_id The user groups to mark as selected
-	* @return string HTML markup of user groups select box for the form
-	* @access public
-	*/
+	 * Generate a select box containing user groups
+	 *
+	 * @param mixed $select_id The user groups to mark as selected
+	 * @return string HTML markup of user groups select box for the form
+	 * @access public
+	 */
 	public function bbcode_group_select_options($select_id = false)
 	{
 		// Get all groups except bots
@@ -230,13 +230,12 @@ class acp_manager
 	}
 
 	/**
-	* Resynchronize the Custom BBCodes order field
-	*
-	* Based on Custom BBCode Sorting MOD by RMcGirr83
-	*
-	* @return null
-	* @access public
-	*/
+	 * Resynchronize the Custom BBCodes order field
+	 * (Based on Custom BBCode Sorting MOD by RMcGirr83)
+	 *
+	 * @return null
+	 * @access public
+	 */
 	public function resynchronize_bbcode_order()
 	{
 		$this->db->sql_transaction('commit');
@@ -271,12 +270,12 @@ class acp_manager
 	}
 
 	/**
-	* Installs BBCodes, used by migrations to perform add/updates
-	*
-	* @param array $bbcode_data Array of BBCode data to install
-	* @return null
-	* @access public
-	*/
+	 * Installs BBCodes, used by migrations to perform add/updates
+	 *
+	 * @param array $bbcode_data Array of BBCode data to install
+	 * @return null
+	 * @access public
+	 */
 	public function install_bbcodes($bbcode_data)
 	{
 		// Load the acp_bbcode class
@@ -356,12 +355,12 @@ class acp_manager
 	}
 
 	/**
-	* Increment
-	*
-	* @param string $action The action move_up|move_down
-	* @return int Increment amount: Move up -1. Move down +1.
-	* @access protected
-	*/
+	 * Increment
+	 *
+	 * @param string $action The action move_up|move_down
+	 * @return int Increment amount: Move up -1. Move down +1.
+	 * @access protected
+	 */
 	protected function increment($action)
 	{
 		return ($action == 'move_up') ? -1 : 1;

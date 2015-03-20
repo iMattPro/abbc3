@@ -10,18 +10,33 @@
 
 namespace vse\abbc3\migrations;
 
+/**
+* This migration removes old schema from 3.0
+* installations of Advanced BBCode Box 3 MOD.
+*/
 class v310_m2_remove_schema extends \phpbb\db\migration\migration
 {
+	/**
+	 * Run migration if abbcode column exists in the bbcodes table
+	 *
+	 * @return bool
+	 */
 	public function effectively_installed()
 	{
 		return !$this->db_tools->sql_column_exists($this->table_prefix . 'bbcodes', 'abbcode');
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	static public function depends_on()
 	{
 		return array('\vse\abbc3\migrations\v310_m1_remove_data');
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function update_schema()
 	{
 		return array(
