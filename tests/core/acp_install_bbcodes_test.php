@@ -45,7 +45,7 @@ class acp_install_bbcodes_test extends acp_base
 	*/
 	public function test_install_bbcodes($data)
 	{
-		$acp_manager = $this->acp_manager();
+		$acp_manager = $this->get_acp_manager();
 
 		$acp_manager->install_bbcodes($data);
 

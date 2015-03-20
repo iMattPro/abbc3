@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-class acp_listener_test extends acp_listener_base
+class event_listener_test extends event_listener_base
 {
 	/**
 	 * Test the listener constructor is instantiated
@@ -27,10 +27,14 @@ class acp_listener_test extends acp_listener_base
 	public function test_getSubscribedEvents()
 	{
 		$this->assertEquals(array(
-			'core.acp_bbcodes_display_form',
-			'core.acp_bbcodes_display_bbcodes',
-			'core.acp_bbcodes_modify_create',
-			'core.acp_bbcodes_edit_add',
-		), array_keys(\vse\abbc3\event\acp_listener::getSubscribedEvents()));
+			'core.user_setup',
+			'core.modify_text_for_display_before',
+			'core.modify_text_for_display_after',
+			'core.display_custom_bbcodes',
+			'core.display_custom_bbcodes_modify_sql',
+			'core.display_custom_bbcodes_modify_row',
+			'core.modify_format_display_text_after',
+			'core.modify_bbcode_init',
+		), array_keys(\vse\abbc3\event\listener::getSubscribedEvents()));
 	}
 }

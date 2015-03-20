@@ -40,18 +40,18 @@ class wizard
 	protected $bbvideo_height;
 
 	/**
-	* Constructor
-	*
-	* @param \phpbb\controller\helper    $helper         Controller helper object
-	* @param \phpbb\request\request      $request        Request object
-	* @param \phpbb\template\template    $template       Template object
-	* @param \phpbb\user                 $user           User object
-	* @param string                      $root_path      phpBB root path
-	* @param string                      $ext_root_path  Extension root path
-	* @param string                      $bbvideo_width  Default width of bbvideo
-	* @param string                      $bbvideo_height Default height of bbvideo
-	* @access public
-	*/
+	 * Constructor
+	 *
+	 * @param \phpbb\controller\helper $helper         Controller helper object
+	 * @param \phpbb\request\request   $request        Request object
+	 * @param \phpbb\template\template $template       Template object
+	 * @param \phpbb\user              $user           User object
+	 * @param string                   $root_path      phpBB root path
+	 * @param string                   $ext_root_path  Extension root path
+	 * @param string                   $bbvideo_width  Default width of bbvideo
+	 * @param string                   $bbvideo_height Default height of bbvideo
+	 * @access public
+	 */
 	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $root_path, $ext_root_path, $bbvideo_width, $bbvideo_height)
 	{
 		$this->helper = $helper;
@@ -65,15 +65,15 @@ class wizard
 	}
 
 	/**
-	* BBCode wizard controller accessed with the URL /wizard/bbcode/{mode}
-	* (where {mode} is a placeholder for a string of the bbcode tag name)
-	* intended to be accessed via AJAX only
-	*
-	* @param string	$mode Mode taken from the URL
-	* @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
-	* @throws \phpbb\exception\http_exception An http exception
-	* @access public
-	*/
+	 * BBCode wizard controller accessed with the URL /wizard/bbcode/{mode}
+	 * (where {mode} is a placeholder for a string of the bbcode tag name)
+	 * intended to be accessed via AJAX only
+	 *
+	 * @param string $mode Mode taken from the URL
+	 * @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
+	 * @throws \phpbb\exception\http_exception An http exception
+	 * @access public
+	 */
 	public function bbcode_wizard($mode)
 	{
 		// Only allow AJAX requests
@@ -95,10 +95,11 @@ class wizard
 	}
 
 	/**
-	* Set template variables for the BBvideo wizard
-	*
-	* @access protected
-	*/
+	 * Set template variables for the BBvideo wizard
+	 *
+	 * @return null
+	 * @access protected
+	 */
 	protected function generate_bbvideo_wizard()
 	{
 		// Construct BBvideo allowed site select options
@@ -136,12 +137,12 @@ class wizard
 	}
 
 	/**
-	* Return an array of allowed BBvideo sites and example URLs (stored in assets/bbvideo.json)
-	*
-	* @return array Allowed BBvideo sites and URLs
-	* @throws \phpbb\extension\exception
-	* @access protected
-	*/
+	 * Return an array of allowed BBvideo sites and example URLs (stored in assets/bbvideo.json)
+	 *
+	 * @return array Allowed BBvideo sites and URLs
+	 * @throws \phpbb\extension\exception
+	 * @access protected
+	 */
 	protected function bbvideo_sites()
 	{
 		$bbvideo_json_file = $this->root_path . $this->ext_root_path . 'assets/bbvideo.json';
