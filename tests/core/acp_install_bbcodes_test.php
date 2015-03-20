@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\core;
 
 class acp_install_bbcodes_test extends acp_base
 {
-	public static function install_bbcodes_data()
+	public function install_bbcodes_data()
 	{
 		return array(
 			array(array(
