@@ -75,4 +75,43 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 		$this->assertEquals($expected_template_data, $template_data);
 		$this->assertEquals($expected_sql_ary, $sql_ary);
 	}
+
+	/**
+	 * Data set for test_acp_bbcodes_custom_sorting_move
+	 *
+	 * @return array Test data
+	 */
+	public function acp_bbcodes_custom_sorting_move_data()
+	{
+		return array(
+			array('move_up', 'move', true),
+			array('move_down', 'move', true),
+			array('drag_drop', 'drag_drop', true),
+			array('foobar', 'move', false),
+			array('foobar', 'drag_drop', false),
+			array(null, 'move', false),
+			array(null, 'drag_drop', false),
+		);
+	}
+
+	/**
+	 * Test the acp_bbcodes_custom_sorting is calling the expected
+	 * move() or drag_drop() methods based on the $action event data.
+	 *
+	 * @dataProvider acp_bbcodes_custom_sorting_move_data
+	 */
+	public function test_acp_bbcodes_custom_sorting_move($action, $method, $call)
+	{
+		$this->set_listener();
+
+		$this->acp_manager->expects((($call) ? $this->once() : $this->never()))
+			->method($method);
+
+		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher->addListener('core.acp_bbcodes_display_form', array($this->listener, 'acp_bbcodes_custom_sorting'));
+
+		$event_data = array('action');
+		$event = new \phpbb\event\data(compact($event_data));
+		$dispatcher->dispatch('core.acp_bbcodes_display_form', $event);
+	}
 }
