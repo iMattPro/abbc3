@@ -15,6 +15,9 @@ namespace vse\abbc3\controller;
 */
 class wizard
 {
+	/** @var string The default BBvideo site */
+	const BBVIDEO_DEFAULT = 'youtube.com';
+
 	/** @var \phpbb\controller\helper */
 	protected $helper;
 
@@ -103,14 +106,13 @@ class wizard
 	protected function generate_bbvideo_wizard()
 	{
 		// Construct BBvideo allowed site select options
-		$bbvideo_default = 'youtube.com';
 		$bbvideo_sites_array = $this->bbvideo_sites();
 		foreach ($bbvideo_sites_array as $site => $example)
 		{
 			$this->template->assign_block_vars('bbvideo_sites', array(
 				'VALUE'			=> $example,
 				'LABEL'			=> $site,
-				'S_SELECTED'	=> $site == $bbvideo_default,
+				'S_SELECTED'	=> $site == self::BBVIDEO_DEFAULT,
 			));
 		}
 
@@ -130,7 +132,7 @@ class wizard
 		}
 
 		$this->template->assign_vars(array(
-			'ABBC3_BBVIDEO_LINK_EX'	=> (isset($bbvideo_sites_array[$bbvideo_default])) ? $bbvideo_sites_array[$bbvideo_default] : '',
+			'ABBC3_BBVIDEO_LINK_EX'	=> (isset($bbvideo_sites_array[self::BBVIDEO_DEFAULT])) ? $bbvideo_sites_array[self::BBVIDEO_DEFAULT] : '',
 			'ABBC3_BBVIDEO_HEIGHT'	=> $this->bbvideo_height,
 			'ABBC3_BBVIDEO_WIDTH'	=> $this->bbvideo_width,
 		));
