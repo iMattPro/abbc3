@@ -30,6 +30,9 @@ class bbcodes_display
 	/** @var string */
 	protected $ext_root_path;
 
+	/** @var array */
+	protected $memberships;
+
 	/**
 	 * Constructor
 	 *
@@ -114,26 +117,10 @@ class bbcodes_display
 				$group_ids = explode(',', $group_ids);
 			}
 
-			// Get the user's group memberships (only run this once)
-			static $memberships;
+			// Load the user's group memberships
+			$this->load_memberships();
 
-			if (!isset($memberships))
-			{
-				$sql = 'SELECT group_id
-					FROM ' . USER_GROUP_TABLE . '
-					WHERE user_id = ' . (int) $this->user->data['user_id'] . '
-					AND user_pending = 0';
-				$result = $this->db->sql_query($sql);
-				$memberships = $this->db->sql_fetchrowset($result);
-				$this->db->sql_freeresult($result);
-			}
-
-			if ($memberships)
-			{
-				return (bool) sizeof(array_filter($memberships, function ($row) use ($group_ids) {
-					return in_array($row['group_id'], $group_ids);
-				}));
-			}
+			return (bool) sizeof(array_intersect($this->memberships, $group_ids));
 		}
 
 		// If we get here, there were no group restrictions so everyone can use this BBCode
@@ -154,5 +141,30 @@ class bbcodes_display
 			->extension_suffix('.gif')
 			->extension_directory('/images/icons')
 			->find_from_extension('abbc3', $this->root_path . $this->ext_root_path);
+	}
+
+	/**
+	 * Load this user's group memberships if it's not cached already
+	 *
+	 * @access protected
+	 */
+	protected function load_memberships()
+	{
+		if (isset($this->memberships))
+		{
+			return;
+		}
+
+		$this->memberships = array();
+		$sql = 'SELECT group_id
+			FROM ' . USER_GROUP_TABLE . '
+			WHERE user_id = ' . (int) $this->user->data['user_id'] . '
+			AND user_pending = 0';
+		$result = $this->db->sql_query($sql);
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$this->memberships[] = $row['group_id'];
+		}
+		$this->db->sql_freeresult($result);
 	}
 }
