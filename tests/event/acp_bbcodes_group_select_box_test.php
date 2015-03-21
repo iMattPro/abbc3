@@ -21,14 +21,14 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 	{
 		return array(
 			array(
-				'add', 0, false, '$group_opts',
+				0, 'add', false, '$group_opts',
 				array(),
 				array(
 					'S_GROUP_OPTIONS'	=> '$group_opts',
 				),
 			),
 			array(
-				'add', 0, false, '$group_opts',
+				0, 'add', false, '$group_opts',
 				array(
 					'FOO'				=> 'BAR',
 				),
@@ -38,14 +38,14 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 				),
 			),
 			array(
-				'edit', 1, array(1), '$group_opts',
+				1, 'edit', array(1), '$group_opts',
 				array(),
 				array(
 					'S_GROUP_OPTIONS'	=> '$group_opts',
 				),
 			),
 			array(
-				'edit', 1, array(1), '$group_opts',
+				2, 'edit', array(2), '$group_opts',
 				array(
 					'FOO'				=> 'BAR',
 				),
@@ -63,7 +63,7 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 	 *
 	 * @dataProvider acp_bbcodes_group_select_box_data
 	 */
-	public function test_acp_bbcodes_group_select_box($action, $bbcode_id, $bbcode_group, $group_opts, $tpl_ary, $expected)
+	public function test_acp_bbcodes_group_select_box($bbcode_id, $action, $bbcode_group, $group_opts, $tpl_ary, $expected)
 	{
 		$this->set_listener();
 
