@@ -146,6 +146,7 @@ class bbcodes_display
 	/**
 	 * Load this user's group memberships if it's not cached already
 	 *
+	 * @return null
 	 * @access protected
 	 */
 	protected function load_memberships()
