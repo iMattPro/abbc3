@@ -47,6 +47,7 @@ install:
   - cd ../../phpBB3
   - travis/prepare-extension.sh $EXTNAME $PHPBB_BRANCH
   - travis/setup-phpbb.sh $DB $TRAVIS_PHP_VERSION
+  - sh -c "if [ '$COVERAGE' != '0' ]; then ../VSEphpbb/abbc3/travis/prepare-coverage.sh $DB $TRAVIS_PHP_VERSION $EXTNAME; fi"
 
 before_script:
   - travis/setup-database.sh $DB $TRAVIS_PHP_VERSION
