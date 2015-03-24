@@ -25,7 +25,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	// Hidden BBCode
 	'ABBC3_HIDDEN_ON'			=> 'Verborgen inhoud',
-	'ABBC3_HIDDEN_OFF'			=> 'Veborgen inhoud (Alleen voor leden)',
+	'ABBC3_HIDDEN_OFF'			=> 'Verborgen inhoud (Alleen voor leden)',
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Je moet geregistreerd en aangemeld zijn om de verborgen inhoud te kunnen zien.',
 
 	// Spoiler BBCode
