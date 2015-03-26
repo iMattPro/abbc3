@@ -77,12 +77,14 @@ class acp_bbcode_move_test extends acp_base
 			->will($this->returnValueMap(array(
 				array('id', 0, false, \phpbb\request\request_interface::REQUEST, $item),
 				array('hash', '', false, \phpbb\request\request_interface::REQUEST, generate_link_hash($action . $item))
-			))
-		);
+			)))
+		;
 
+		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();
 
-		$acp_manager->move($action);
+		// Call move() and assert it returns null
+		$this->assertNull($acp_manager->move($action));
 
 		// Get new order
 		$sql = 'SELECT bbcode_id, bbcode_order
@@ -97,5 +99,47 @@ class acp_bbcode_move_test extends acp_base
 		$this->db->sql_freeresult($result);
 
 		$this->assertEquals($expected, $bbcode_order);
+	}
+
+	public function bbcode_move_triggers_error_data()
+	{
+		return array(
+			// invalid hash
+			array(13, 'move_down', 'foo_bar', false, E_USER_WARNING),
+			// ajax request
+			array(13, 'move_down', 'move_down13', true, E_WARNING),
+		);
+	}
+
+	/**
+	 * @dataProvider bbcode_move_triggers_error_data
+	 */
+	public function test_bbcode_move_triggers_error($item, $action, $hash, $ajax, $errNo)
+	{
+		global $user;
+		$user = new \phpbb_mock_user; // mock the user to prevent hhvm errors with generate_link_hash()
+
+		$this->request->expects($this->any())
+			->method('is_ajax')
+			->will($this->returnValue($ajax))
+		;
+
+		$this->request->expects($this->any())
+			->method('variable')
+			->with($this->anything())
+			->will($this->returnValueMap(array(
+				array('id', 0, false, \phpbb\request\request_interface::REQUEST, $item),
+				array('hash', '', false, \phpbb\request\request_interface::REQUEST, generate_link_hash($hash))
+			)))
+		;
+
+		// Handle trigger_error() output
+		$this->setExpectedTriggerError($errNo);
+
+		// Get the acp_manager
+		$acp_manager = $this->get_acp_manager();
+
+		// Call move() and assert it returns null
+		$this->assertNull($acp_manager->move($action));
 	}
 }
