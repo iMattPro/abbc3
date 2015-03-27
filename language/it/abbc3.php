@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Italian]
+* Advanced BBCode Box [Italian]
 * Translated by Loll.
 *
 * @copyright (c) 2013 Matt Friedman

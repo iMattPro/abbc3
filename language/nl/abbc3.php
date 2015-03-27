@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Dutch]
+* Advanced BBCode Box [Dutch]
 * Translated by Dutch Translators (https://github.com/dutch-translators)
 *
 * @copyright (c) 2013 Matt Friedman

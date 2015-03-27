@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Polish]
+* Advanced BBCode Box [Polish]
 * Translated by Pico88
 *
 * @copyright (c) 2013 Matt Friedman
