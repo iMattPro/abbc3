@@ -31,6 +31,7 @@ class acp_listener_test extends acp_listener_base
 			'core.acp_bbcodes_display_bbcodes',
 			'core.acp_bbcodes_modify_create',
 			'core.acp_bbcodes_edit_add',
+			'core.text_formatter_s9e_configure_after',
 		), array_keys(\vse\abbc3\event\acp_listener::getSubscribedEvents()));
 	}
 }
