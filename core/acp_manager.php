@@ -217,7 +217,7 @@ class acp_manager
 		$groups = array();
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$groups[$row['bbcode_tag']] = explode(',', $row['bbcode_group']);
+			$groups[$row['bbcode_tag']] = $row['bbcode_group'];
 		}
 		$this->db->sql_freeresult($result);
 
