@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Arabic]
+* Advanced BBCode Box [Arabic]
 * Arabic traslation by dzyasseron tajribaty.com/phpbb for phpbbarabia.com
 *
 * @copyright (c) 2013 Matt Friedman

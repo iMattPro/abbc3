@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [English]
+* Advanced BBCode Box [English]
 *
 * @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)

@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Croatian]
+* Advanced BBCode Box [Croatian]
 * Croatian translation by Ančica Sečan (http://ancica.sunceko.net)
 *
 * @copyright (c) 2013 Matt Friedman

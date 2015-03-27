@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [German]
+* Advanced BBCode Box [German]
 * Translated by wintstar - http://www.wintstar.de
 *
 * @copyright (c) 2013 Matt Friedman
