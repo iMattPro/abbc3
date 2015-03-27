@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Persian]
+* Advanced BBCode Box [Persian]
 * Translated by Meisam Noubari from IRAN in php-bb.ir
 *
 * @copyright (c) 2013 Matt Friedman

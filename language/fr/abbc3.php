@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [French]
+* Advanced BBCode Box [French]
 * Translated by ForumsFaciles - http://www.forumsfaciles.fr & Galixte (http://www.galixte.com)
 *
 * @copyright (c) 2013 Matt Friedman
