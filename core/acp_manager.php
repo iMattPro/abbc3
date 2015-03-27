@@ -203,6 +203,28 @@ class acp_manager
 	}
 
 	/**
+	 * Get the bbcode_group data from the database, for every BBCode that has groups assigned
+	 *
+	 * @return array Custom BBCode user group ids for each BBCode, by name
+	 * @access public
+	 */
+	public function get_bbcode_groups_data()
+	{
+		$sql = 'SELECT bbcode_tag, bbcode_group
+			FROM ' . BBCODES_TABLE . "
+			WHERE bbcode_group > ''";
+		$result = $this->db->sql_query($sql);
+		$groups = array();
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$groups[$row['bbcode_tag']] = $row['bbcode_group'];
+		}
+		$this->db->sql_freeresult($result);
+
+		return $groups;
+	}
+
+	/**
 	 * Generate a select box containing user groups
 	 *
 	 * @param mixed $select_id The user groups to mark as selected
