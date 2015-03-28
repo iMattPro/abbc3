@@ -50,7 +50,7 @@ class bbcodes_parser
 	public function pre_parse_bbcodes($text, $uid = '')
 	{
 		// bbvideo BBCodes (convert from older ABBC3 installations)
-		$text = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?(:' . $uid . ')?\]([^[]+)\[\/\1\3?\]#is', array($this, 'bbvideo_pass'), $text);
+		$text = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?(:' . $uid . ')?\]([^[]+)\[\/\1(?(3)\3)\]#is', array($this, 'bbvideo_pass'), $text);
 
 		return $text;
 	}
