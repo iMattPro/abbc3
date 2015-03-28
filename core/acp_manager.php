@@ -203,7 +203,8 @@ class acp_manager
 	}
 
 	/**
-	 * Get the bbcode_group data from the database, for every BBCode that has groups assigned
+	 * Get the bbcode_group data from the database,
+	 * for every BBCode that has groups assigned
 	 *
 	 * @return array Custom BBCode user group ids for each BBCode, by name
 	 * @access public

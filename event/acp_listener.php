@@ -164,7 +164,7 @@ class acp_listener implements EventSubscriberInterface
 		$bbcode_groups = $this->acp_manager->get_bbcode_groups_data();
 
 		// Save BBCode groups in a registered variable in the configurator. That variable will be
-		// copied in the parser's configuration and be available during parser setup
+		// copied in the parser's configuration and be available during parser setup.
 		$configurator->registeredVars['abbc3.bbcode_groups'] = $bbcode_groups;
 	}
 }

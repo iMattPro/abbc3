@@ -94,7 +94,7 @@ class listener implements EventSubscriberInterface
 
 			// message_parser events
 			'core.modify_format_display_text_after'		=> 'parse_bbcodes_after',
-			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes',
+			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes', // Deprecated 3.2.x. Provides bc for 3.1.x.
 
 			// text_formatter events
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
@@ -197,6 +197,8 @@ class listener implements EventSubscriberInterface
 	 * @param object $event The event object
 	 * @return null
 	 * @access public
+	 *
+	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
 	public function allow_custom_bbcodes($event)
 	{
@@ -212,7 +214,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public function s9e_allow_custom_bbcodes($event)
 	{
-		// Get the s9e\TextFormatter\Parser object from the text_formatter.parser service
+		/** @var $service \phpbb\textformatter\s9e\parser object from the text_formatter.parser service */
 		$service = $event['parser'];
 		$parser = $service->get_parser();
 		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
