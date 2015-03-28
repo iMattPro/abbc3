@@ -98,6 +98,7 @@ class listener implements EventSubscriberInterface
 
 			// text_formatter events
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
+			'core.text_formatter_s9e_parse_before'		=> 'parse_bbcodes_before',
 		);
 	}
 

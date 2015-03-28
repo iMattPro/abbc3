@@ -47,10 +47,10 @@ class bbcodes_parser
 	 * @return string The parsed text
 	 * @access public
 	 */
-	public function pre_parse_bbcodes($text, $uid)
+	public function pre_parse_bbcodes($text, $uid = '')
 	{
 		// bbvideo BBCodes (convert from older ABBC3 installations)
-		$text = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?:(' . $uid . ')\]([^[]+)\[/\1:\3\]#is', array($this, 'bbvideo_pass'), $text);
+		$text = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?(:' . $uid . ')?\]([^[]+)\[\/\1(?(3)\3)\]#is', array($this, 'bbvideo_pass'), $text);
 
 		return $text;
 	}
@@ -79,7 +79,7 @@ class bbcodes_parser
 	 */
 	protected function bbvideo_pass($matches)
 	{
-		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : "[bbvideo={$this->bbvideo_width},{$this->bbvideo_height}:$matches[3]]$matches[4][/bbvideo:$matches[3]]";
+		return (!empty($matches[2])) ? "[bbvideo=$matches[2]$matches[3]]$matches[4][/bbvideo$matches[3]]" : "[bbvideo={$this->bbvideo_width},{$this->bbvideo_height}$matches[3]]$matches[4][/bbvideo$matches[3]]";
 	}
 
 	/**
