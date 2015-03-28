@@ -84,7 +84,7 @@ class listener implements EventSubscriberInterface
 			'core.user_setup'							=> 'load_language_on_setup',
 
 			// functions_content events
-			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before', // Deprecated 3.2.x. Provides bc for 3.1.x.
+			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before',
 			'core.modify_text_for_display_after'		=> 'parse_bbcodes_after',
 
 			// functions_display events
@@ -98,7 +98,7 @@ class listener implements EventSubscriberInterface
 
 			// text_formatter events
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
-			'core.text_formatter_s9e_parse_before'		=> 's9e_parse_bbcodes_before',
+			'core.text_formatter_s9e_parse_before'		=> 'parse_bbcodes_before',
 		);
 	}
 
@@ -127,8 +127,6 @@ class listener implements EventSubscriberInterface
 	 * @param object $event The event object
 	 * @return null
 	 * @access public
-	 *
-	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
 	public function parse_bbcodes_before($event)
 	{
@@ -228,19 +226,5 @@ class listener implements EventSubscriberInterface
 				$service->disable_bbcode($bbcode_name);
 			}
 		}
-	}
-
-	/**
-	 * Alter BBCodes before they are processed by s9e\TextFormatter
-	 *
-	 * This is used to change old/malformed ABBC3 BBCodes to a newer structure
-	 *
-	 * @param object $event The event object
-	 * @return null
-	 * @access public
-	 */
-	public function s9e_parse_bbcodes_before($event)
-	{
-		$event['text'] = $this->bbcodes_parser->s9e_pre_parse_bbcodes($event['text']);
 	}
 }

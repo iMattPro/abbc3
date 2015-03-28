@@ -46,28 +46,11 @@ class bbcodes_parser
 	 * @param string $uid  The BBCode UID
 	 * @return string The parsed text
 	 * @access public
-	 *
-	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
-	public function pre_parse_bbcodes($text, $uid)
+	public function pre_parse_bbcodes($text, $uid = '')
 	{
 		// bbvideo BBCodes (convert from older ABBC3 installations)
-		$text = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?(:' . $uid . ')\]([^[]+)\[/\1\3\]#is', array($this, 'bbvideo_pass'), $text);
-
-		return $text;
-	}
-
-	/**
-	 * Pre-Parser for special custom BBCodes created by ABBC3
-	 *
-	 * @param string $text The text to parse
-	 * @return string The parsed text
-	 * @access public
-	 */
-	public function s9e_pre_parse_bbcodes($text)
-	{
-		// bbvideo BBCodes (convert from older ABBC3 installations)
-		$text = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?(:[^\]]+)?\]([^[]+)\[\/\1(:[^\]]+)?\]#is', array($this, 'bbvideo_pass'), $text);
+		$text = preg_replace_callback('#\[(bbvideo)[\s]?([0-9,]+)?(:' . $uid . ')?\]([^[]+)\[\/\1\3?\]#is', array($this, 'bbvideo_pass'), $text);
 
 		return $text;
 	}
