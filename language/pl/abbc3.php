@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'To forum wymaga zarejestrowania i zalogowania się, aby zobaczyć ukrytą zawartość.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Pokaż Spoiler',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Ukryj Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> '► Pokaż Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Ukryj Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',

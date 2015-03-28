@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Vous devez être inscrit et connecté sur ce forum pour voir le contenu caché.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Afficher le texte',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Masquer le texte',
+	'ABBC3_SPOILER_SHOW'		=> '► Afficher le texte',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Masquer le texte',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Hors-sujet',

@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> '你必須登入/註冊才可觀看隱藏內容',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; 顯示劇情透露',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; 隱藏劇情透露',
+	'ABBC3_SPOILER_SHOW'		=> '► 顯示劇情透露',
+	'ABBC3_SPOILER_HIDE'		=> '▼ 隱藏劇情透露',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> '離題',

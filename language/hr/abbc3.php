@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Za pregledavanje skrivenog sadržaja na forumu, trebaš se prijaviti.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Prikaži “Spoiler”',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Sakrij “Spoiler”',
+	'ABBC3_SPOILER_SHOW'		=> '► Prikaži “Spoiler”',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Sakrij “Spoiler”',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> '“Off Topic”',
