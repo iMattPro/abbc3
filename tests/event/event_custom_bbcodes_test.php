@@ -80,4 +80,57 @@ class event_custom_bbcodes_test extends event_listener_base
 
 		$this->assertEquals($bbcodes, $result['bbcodes']);
 	}
+
+	/**
+	 * Data set for test_s9e_allow_custom_bbcodes
+	 *
+	 * @return array
+	 */
+	public function s9e_allow_custom_bbcodes_data()
+	{
+		return array(
+			array('FOO', '4,5', true), // data for a disabled bbcode
+			array('BAR', '', false), // data for an allowed bbcode
+		);
+	}
+
+	/**
+	 * Test the s9e_allow_custom_bbcodes event is calling disable_bbcode()
+	 * on registered bbcodes for users not in a group allowed to use it.
+	 *
+	 * @dataProvider s9e_allow_custom_bbcodes_data
+	 */
+	public function test_s9e_allow_custom_bbcodes($bbcode, $groups, $disable)
+	{
+		$this->set_listener();
+
+		// Mock the text_formatter.parser service
+		$parser = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
+			->disableOriginalConstructor()
+			->getMock();
+		$parser->expects($this->once())
+			->method('get_parser')
+			->will($this->returnSelf());
+		$parser->registeredVars['abbc3.bbcode_groups'] = array(
+			$bbcode => $groups,
+		);
+
+		// Mock whether the user is allowed or not to use a bbcode
+		$this->bbcodes->expects($this->once())
+			->method('user_in_bbcode_group')
+			->with($groups)
+			->will($this->returnValue(!$disable));
+
+		// Test if disable_bbcode is called as expected
+		$parser->expects(($disable) ? $this->once() : $this->never())
+			->method('disable_bbcode')
+			->with($bbcode);
+
+		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', array($this->listener, 's9e_allow_custom_bbcodes'));
+
+		$event_data = array('parser');
+		$event = new \phpbb\event\data(compact($event_data));
+		$dispatcher->dispatch('core.text_formatter_s9e_parser_setup', $event);
+	}
 }
