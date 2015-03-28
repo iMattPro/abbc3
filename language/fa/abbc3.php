@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'برای مشاهده متن باید در انجمن عضو باشید',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> 'نمایش متن &#9658;',
-	'ABBC3_SPOILER_HIDE'		=> 'مخفی کردن متن &#9660;',
+	'ABBC3_SPOILER_SHOW'		=> 'نمایش متن ►',
+	'ABBC3_SPOILER_HIDE'		=> 'مخفی کردن متن ▼',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'پیام بسته شدن موضوع',

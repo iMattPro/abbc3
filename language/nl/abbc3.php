@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Je moet geregistreerd en aangemeld zijn om de verborgen inhoud te kunnen zien.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Laat Spoiler zien',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Verberg Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> '► Laat Spoiler zien',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Verberg Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
