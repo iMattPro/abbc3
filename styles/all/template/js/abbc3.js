@@ -568,7 +568,7 @@ var bbwizard;
 			var trigger = $(this),
 				spoiler = trigger.closest('div').next('.spoilcontent');
 			spoiler.slideToggle('fast', function() {
-				trigger.html(spoiler.is(':visible') ? trigger.data('hide') : trigger.data('show'));
+				trigger.text(spoiler.is(':visible') ? trigger.data('hide') : trigger.data('show'));
 			});
 		});
 
