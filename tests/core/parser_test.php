@@ -51,33 +51,54 @@ class parser_test extends \phpbb_test_case
 		$this->get_user_instance();
 
 		return array(
-			array(
+			array( // not bbvideo, pass through
 				array(
 					'text' => 'Hello world',
 					'uid' => '2sy55ot3'
 				),
 				'Hello world',
 			),
-			array(
+			array( // convert
 				array(
 					'text' => '[BBvideo 560,340:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/BBvideo:2sy55ot3]',
 					'uid' => '2sy55ot3'
 				),
 				'[bbvideo=560,340:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3]',
 			),
-			array(
+			array( // convert (no size)
 				array(
 					'text' => '[BBvideo:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/BBvideo:2sy55ot3]',
 					'uid' => '2sy55ot3'
 				),
 				'[bbvideo=' . $this->bbvideo_width . ',' . $this->bbvideo_height . ':2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3]',
 			),
-			array(
+			array( // convert bbvideo among other bbcodes
 				array(
 					'text' => 'Hello [b:2sy55ot3]world[/b:2sy55ot3] [bbvideo:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3] Goodbye world',
 					'uid' => '2sy55ot3'
 				),
 				'Hello [b:2sy55ot3]world[/b:2sy55ot3] [bbvideo=' . $this->bbvideo_width . ',' . $this->bbvideo_height . ':2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3] Goodbye world',
+			),
+			array( // convert multiple bbvideos
+				array(
+					'text' => 'Hello [BBvideo:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/BBvideo:2sy55ot3] [bbvideo:2sy55ot3]http://youtu.be/ZZZZZZZZZZ[/bbvideo:2sy55ot3] Goodbye world',
+					'uid' => '2sy55ot3'
+				),
+				'Hello [bbvideo=' . $this->bbvideo_width . ',' . $this->bbvideo_height . ':2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3] [bbvideo=' . $this->bbvideo_width . ',' . $this->bbvideo_height . ':2sy55ot3]http://youtu.be/ZZZZZZZZZZ[/bbvideo:2sy55ot3] Goodbye world',
+			),
+			array( // pass through (already correct)
+				array(
+					'text' => '[bbvideo=560,340:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3]',
+					'uid' => '2sy55ot3'
+				),
+				'[bbvideo=560,340:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo:2sy55ot3]',
+			),
+			array( // pass through (malformed and unexpected)
+				array(
+					'text' => '[bbvideo=560,340:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo]',
+					'uid' => '2sy55ot3'
+				),
+				'[bbvideo=560,340:2sy55ot3]http://youtu.be/XXXXXXXXXXX[/bbvideo]',
 			),
 		);
 	}
