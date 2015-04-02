@@ -10,6 +10,8 @@
 
 namespace vse\abbc3\tests\core;
 
+require_once dirname(__FILE__) . '/../../../../../includes/functions.php';
+
 class acp_install_bbcodes_test extends acp_base
 {
 	public function install_bbcodes_data()
@@ -58,5 +60,16 @@ class acp_install_bbcodes_test extends acp_base
 
 			$this->assertEquals($bbcode_data, $this->db->sql_fetchrow($result));
 		}
+	}
+
+	/**
+	 * @dataProvider install_bbcodes_data
+	 */
+	public function test_clean_install_bbcodes($data)
+	{
+		// Remove any existing bbcodes from database
+		$this->db->sql_query('DELETE FROM phpbb_bbcodes');
+
+		$this->test_install_bbcodes($data);
 	}
 }
