@@ -113,27 +113,25 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		return array(
 			array(
-				2, // Allowed: user 2 is member of group 2 and 6
-				$bbcode_data[1], // All groups allowed
+				2, // User 2 is member of group 2 and 6
 				array(
-					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
-					'S_CUSTOM_BBCODE_ALLOWED' => true,
+					$bbcode_data[1], // All groups allowed
+					$bbcode_data[2], // Group 2 allowed only
+					$bbcode_data[3], // Groups 3,4,5 allowed only
 				),
-			),
-			array(
-				2, // Allowed: user 2 is member of group 2 and 6
-				$bbcode_data[2], // Group 2 allowed only
 				array(
-					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
-					'S_CUSTOM_BBCODE_ALLOWED' => true,
-				),
-			),
-			array(
-				2, // Disallowd: user 2 is member of group 2 and 6
-				$bbcode_data[3], // Groups 3,4,5 allowed only
-				array(
-					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
-					'S_CUSTOM_BBCODE_ALLOWED' => false,
+					array(
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
+						'S_CUSTOM_BBCODE_ALLOWED' => true,
+					),
+					array(
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
+						'S_CUSTOM_BBCODE_ALLOWED' => true,
+					),
+					array(
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
+						'S_CUSTOM_BBCODE_ALLOWED' => false,
+					),
 				),
 			),
 		);
@@ -150,7 +148,12 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		$custom_tags = array();
 
-		$this->assertEquals($expected, $bbcodes_manager->display_custom_bbcodes($custom_tags, $data));
+		// Test all bbcodes at once instead of one at a time
+		// for full coverage of load_memberships()
+		foreach ($data as $key => $bbcode_data)
+		{
+			$this->assertEquals($expected[$key], $bbcodes_manager->display_custom_bbcodes($custom_tags, $bbcode_data));
+		}
 	}
 
 	public function bbcode_group_data()
