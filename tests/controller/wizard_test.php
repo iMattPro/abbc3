@@ -12,8 +12,24 @@ namespace vse\abbc3\tests\controller;
 
 class wizard_test extends \phpbb_test_case
 {
+	/** @var \ReflectionClass */
+	protected static $reflection_method_load_json_data;
+
+	/** @var \vse\abbc3\controller\wizard */
 	protected $controller;
+
+	/** @var \PHPUnit_Framework_MockObject_MockObject */
 	protected $request;
+
+	public static function setUpBeforeClass()
+	{
+		parent::setUpBeforeClass();
+
+		// ReflectClass on wizard to be able to test protected load_json_data()
+		$reflection_class = new \ReflectionClass('\vse\abbc3\controller\wizard');
+		self::$reflection_method_load_json_data = $reflection_class->getMethod('load_json_data');
+		self::$reflection_method_load_json_data->setAccessible(true);
+	}
 
 	public function setUp()
 	{
@@ -47,7 +63,7 @@ class wizard_test extends \phpbb_test_case
 		);
 	}
 
-	public function bbvideo_data()
+	public function bbcode_wizard_data()
 	{
 		return array(
 			array('bbvideo', true, 200, 'abbc3_bbvideo_wizard.html'),
@@ -55,9 +71,9 @@ class wizard_test extends \phpbb_test_case
 	}
 
 	/**
-	* @dataProvider bbvideo_data
+	* @dataProvider bbcode_wizard_data
 	*/
-	public function test_bbvideo($mode, $ajax, $status_code, $page_content)
+	public function test_bbcode_wizard($mode, $ajax, $status_code, $page_content)
 	{
 		$this->request->expects($this->any())
 			->method('is_ajax')
@@ -70,7 +86,7 @@ class wizard_test extends \phpbb_test_case
 		$this->assertEquals($page_content, $response->getContent());
 	}
 
-	public function bbvideo_data_fails()
+	public function bbcode_wizard_fails_data()
 	{
 		return array(
 			array('bbvideo', false),
@@ -84,11 +100,11 @@ class wizard_test extends \phpbb_test_case
 	/**
 	 * Test the controller throws an exception on erroneous calls
 	 *
-	 * @dataProvider bbvideo_data_fails
+	 * @dataProvider bbcode_wizard_fails_data
 	 * @expectedException \phpbb\exception\http_exception
 	 * @expectedExceptionMessage GENERAL_ERROR
 	 */
-	public function test_unique_anchor_fails($mode, $ajax)
+	public function test_bbcode_wizard_fails($mode, $ajax)
 	{
 		$this->request->expects($this->any())
 			->method('is_ajax')
@@ -96,5 +112,37 @@ class wizard_test extends \phpbb_test_case
 		);
 
 		$this->controller->bbcode_wizard($mode);
+	}
+
+	public function load_json_data_fails_data()
+	{
+		return array(
+			array('../tests/controller/assets/foo.json', 'FILE_CONTENT_ERR'),
+			array('../tests/controller/assets/bar.json', 'FILE_JSON_DECODE_ERR'),
+			array('../tests/controller/assets/non.json', 'FILE_NOT_FOUND'),
+		);
+	}
+
+	/**
+	 * Test exceptions are thrown by load_json_data() when
+	 * receiving bad JSON file data.
+	 *
+	 * @dataProvider load_json_data_fails_data
+	 */
+	public function test_load_json_data_fails($file, $message)
+	{
+		try
+		{
+			self::$reflection_method_load_json_data->invokeArgs($this->controller, array($file));
+			$this->fail('Expected \\phpbb\\exception\\runtime_exception to be thrown but no exception thrown');
+		}
+		catch (\phpbb\exception\runtime_exception $exception)
+		{
+			$this->assertEquals($message, $exception->getMessage());
+		}
+		catch (\Exception $exception)
+		{
+			$this->fail('Expected \\phpbb\\exception\\runtime_exception to be thrown but "' . get_class($exception) . '" thrown');
+		}
 	}
 }

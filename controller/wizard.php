@@ -106,7 +106,7 @@ class wizard
 	protected function generate_bbvideo_wizard()
 	{
 		// Construct BBvideo allowed site select options
-		$bbvideo_sites_array = $this->bbvideo_sites();
+		$bbvideo_sites_array = $this->load_json_data('bbvideo.json');
 		foreach ($bbvideo_sites_array as $site => $example)
 		{
 			$this->template->assign_block_vars('bbvideo_sites', array(
@@ -139,33 +139,34 @@ class wizard
 	}
 
 	/**
-	 * Return an array of allowed BBvideo sites and example URLs (stored in assets/bbvideo.json)
+	 * Return decoded JSON data from a JSON file (stored in assets/)
 	 *
-	 * @return array Allowed BBvideo sites and URLs
-	 * @throws \phpbb\extension\exception
+	 * @param string $json_file The name of the JSON file to get
+	 * @return array JSON data
+	 * @throws \phpbb\exception\runtime_exception
 	 * @access protected
 	 */
-	protected function bbvideo_sites()
+	protected function load_json_data($json_file)
 	{
-		$bbvideo_json_file = $this->root_path . $this->ext_root_path . 'assets/bbvideo.json';
+		$json_file = $this->root_path . $this->ext_root_path . 'assets/' . $json_file;
 
-		if (!file_exists($bbvideo_json_file))
+		if (!file_exists($json_file))
 		{
-			throw new \phpbb\extension\exception($this->user->lang('FILE_NOT_FOUND', $bbvideo_json_file));
+			throw new \phpbb\exception\runtime_exception('FILE_NOT_FOUND', array($json_file));
 		}
 		else
 		{
-			if (!($file_contents = file_get_contents($bbvideo_json_file)))
+			if (!($file_contents = file_get_contents($json_file)))
 			{
-				throw new \phpbb\extension\exception($this->user->lang('FILE_CONTENT_ERR', $bbvideo_json_file));
+				throw new \phpbb\exception\runtime_exception('FILE_CONTENT_ERR', array($json_file));
 			}
 
-			if (($bbvideo_data = json_decode($file_contents, true)) === null)
+			if (($json_data = json_decode($file_contents, true)) === null)
 			{
-				throw new \phpbb\extension\exception($this->user->lang('FILE_JSON_DECODE_ERR', $bbvideo_json_file));
+				throw new \phpbb\exception\runtime_exception('FILE_JSON_DECODE_ERR', array($json_file));
 			}
 
-			return $bbvideo_data;
+			return $json_data;
 		}
 	}
 }
