@@ -21,16 +21,6 @@ class wizard_test extends \phpbb_test_case
 	/** @var \PHPUnit_Framework_MockObject_MockObject */
 	protected $request;
 
-	public static function setUpBeforeClass()
-	{
-		parent::setUpBeforeClass();
-
-		// ReflectClass on wizard to be able to test protected load_json_data()
-		$reflection_class = new \ReflectionClass('\vse\abbc3\controller\wizard');
-		self::$reflection_method_load_json_data = $reflection_class->getMethod('load_json_data');
-		self::$reflection_method_load_json_data->setAccessible(true);
-	}
-
 	public function setUp()
 	{
 		parent::setUp();
@@ -133,7 +123,7 @@ class wizard_test extends \phpbb_test_case
 	{
 		try
 		{
-			self::$reflection_method_load_json_data->invokeArgs($this->controller, array($file));
+			$this->invokeMethod($this->controller, 'load_json_data', array($file));
 			$this->fail('Expected \\phpbb\\exception\\runtime_exception to be thrown but no exception thrown');
 		}
 		catch (\phpbb\exception\runtime_exception $exception)
@@ -144,5 +134,23 @@ class wizard_test extends \phpbb_test_case
 		{
 			$this->fail('Expected \\phpbb\\exception\\runtime_exception to be thrown but "' . get_class($exception) . '" thrown');
 		}
+	}
+
+	/**
+	 * Call protected/private method of a class.
+	 *
+	 * @param object &$object    Instantiated object that we will run method on.
+	 * @param string $methodName Method name to call
+	 * @param array  $parameters Array of parameters to pass into method.
+	 *
+	 * @return mixed Method return.
+	 */
+	public function invokeMethod(&$object, $methodName, array $parameters = array())
+	{
+		$reflection = new \ReflectionClass(get_class($object));
+		$method = $reflection->getMethod($methodName);
+		$method->setAccessible(true);
+
+		return $method->invokeArgs($object, $parameters);
 	}
 }
