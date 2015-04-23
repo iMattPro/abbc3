@@ -295,11 +295,6 @@ var bbwizard;
 				'type': 'yqlOgp',
 				'regex': /http:\/\/www.videogamer.com\/([^[]*)?/i
 			}, {
-				'site': 'videu.de',
-				'type': 'flash',
-				'regex': /http:\/\/www.videu.de\/video\/([^[]*)?/i,
-				'embed': ['http://www.videu.de/flv/player2.swf?iid=$1']
-			}, {
 				'site': 'vimeo.com',
 				'regex': /https?:\/\/(?:.*?)vimeo.com(?:\/groups\/(?:.*)\/videos\/|\/)([^[]*)?/i,
 				'embed': '<iframe src="//player.vimeo.com/video/$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
