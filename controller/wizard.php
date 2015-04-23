@@ -82,12 +82,22 @@ class wizard
 		// Only allow AJAX requests
 		if ($this->request->is_ajax())
 		{
-			if ($mode == 'bbvideo')
+			switch ($mode)
 			{
-				$this->generate_bbvideo_wizard();
-			}
+				case 'bbvideo':
 
-			return $this->helper->render('abbc3_' . $mode . '_wizard.html');
+					$this->generate_bbvideo_wizard();
+
+					return $this->helper->render('abbc3_bbvideo_wizard.html');
+
+				break;
+
+				case 'url':
+
+					return $this->helper->render('abbc3_url_wizard.html');
+
+				break;
+			}
 		}
 
 		throw new \phpbb\exception\http_exception(404, 'GENERAL_ERROR');
