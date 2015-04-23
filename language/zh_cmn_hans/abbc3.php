@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_PRESETS'		=> '预设大小',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> '添加URL',
+	'ABBC3_URL_DESCRIPTION'		=> '可选说明',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode顺序已变更',
 	'ABBC3_BBCODE_GROUP'		=> '变更可使用此BBCode的使用者群组',

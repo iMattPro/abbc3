@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_PRESETS'		=> 'גודל Presets',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'X',
 
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'הזן כתובת אתר',
+	'ABBC3_URL_DESCRIPTION'		=> 'תיאור אופציונאלי',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'סדר ה BBCodes עודכן.',
 	'ABBC3_BBCODE_GROUP'		=> 'נהל קבוצות שיכולות להתשמש ב BBCode זה',

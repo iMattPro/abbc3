@@ -84,6 +84,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Podešavanje veličine videa',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Unesite URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Izborni opis',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBKod poredak je ažuriran.',
 	'ABBC3_BBCODE_GROUP'		=> 'Upravljanje grupama koje mogu koristiti ovaj BBKod',

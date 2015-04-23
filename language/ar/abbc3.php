@@ -84,6 +84,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_PRESETS'		=> 'حجم العرض',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'إضافة URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'وصف اختياري',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'تم تحديث BBCode المطلوب.',
 	'ABBC3_BBCODE_GROUP'		=> 'إدارة المجموعات التي يمكنها استعمال هذا الـ BBCode',

@@ -84,6 +84,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_PRESETS'		=> 'اندازه',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> '*',
 
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'اضافه کردن URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'توضیحات اختیاری',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'بی بی کد دستور داده شده به روز رسانی شد',
 	'ABBC3_BBCODE_GROUP'		=> 'مدیریت گروه های مجاز برای دسترسی به بی بی کدها',

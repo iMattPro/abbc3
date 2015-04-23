@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Выбрать размер',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Добавить URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Дополнительное описание',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BB-кодов изменён.',
 	'ABBC3_BBCODE_GROUP'		=> 'Группы, которые могут использовать BB-код',

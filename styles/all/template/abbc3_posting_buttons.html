@@ -145,6 +145,14 @@ function bbspecial(bbcode, bbcodeId) {
 			}
 			break;
 
+		case 'url':
+			if (theSelection || phpbb.isTouch) {
+				bbstyle(16);
+			} else {
+				bbwizard('{UA_ABBC3_URL_WIZARD}', 'url');
+			}
+			break;
+
 		default:
 			bbstyle(bbcodeId);
 			break;
@@ -171,7 +179,7 @@ function bbspecial(bbcode, bbcodeId) {
 			<input type="button" class="abbc3_button" accesskey="p" name="addbbcode14" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/img.gif');" onclick="bbstyle(14)" title="{L_BBCODE_P_HELP}" />
 		<!-- ENDIF -->
 		<!-- IF S_LINKS_ALLOWED -->
-			<input type="button" class="abbc3_button" accesskey="w" name="addbbcode16" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/url.gif');" onclick="bbstyle(16)" title="{L_BBCODE_W_HELP}" />
+			<input type="button" class="abbc3_button" accesskey="w" name="addbbcode16" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/url.gif');" onclick="bbspecial('url')" title="{L_BBCODE_W_HELP}" />
 		<!-- ENDIF -->
 		<!-- IF S_BBCODE_FLASH -->
 			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/flash.gif');" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />

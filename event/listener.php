@@ -173,6 +173,7 @@ class listener implements EventSubscriberInterface
 			'ABBC3_BBVIDEO_WIDTH'		=> $this->bbvideo_width,
 
 			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
+			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'url')),
 		));
 	}
 

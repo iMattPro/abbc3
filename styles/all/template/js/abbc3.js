@@ -586,6 +586,11 @@ var bbwizard;
 				event.preventDefault();
 				var bbcode = $(this).data('bbcode');
 				switch (bbcode) {
+					case 'url':
+						var link = $('#bbcode_wizard_link').val(),
+							description = $('#bbcode_wizard_description').val();
+						bbinsert('[' + bbcode + ((description.length) ? '=' + link : '') + ']' + ((description.length) ? description : link) + '', '[/' + bbcode + ']');
+						break;
 					case 'bbvideo':
 						bbinsert('[BBvideo=' + $('#bbvideo_wizard_width').val() + ',' + $('#bbvideo_wizard_height').val() + ']' + $('#bbvideo_wizard_link').val() + '', '[/BBvideo]');
 						break;

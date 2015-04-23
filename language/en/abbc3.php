@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Size Presets',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Enter a site URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Optional description',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'The BBCode order has been updated.',
 	'ABBC3_BBCODE_GROUP'		=> 'Manage groups that can use this BBCode',
