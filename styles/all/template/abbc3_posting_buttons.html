@@ -138,7 +138,7 @@ function bbspecial(bbcode, bbcodeId) {
 			break;
 
 		case 'BBvideo=':
-			if (theSelection) {
+			if (theSelection || phpbb.isTouch) {
 				bbfontstyle('[BBvideo=' + bbvideoWidth + ',' + bbvideoHeight + ']', '[/BBvideo]');
 			} else {
 				bbwizard('{UA_ABBC3_BBVIDEO_WIZARD}', 'bbvideo');
