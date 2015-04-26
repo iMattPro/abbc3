@@ -1,7 +1,8 @@
 # Changelog
 
-## 3.1.1 - 2015-04-23
+## 3.1.1 - 2015-04-26
 
+- Fixed a bug where usernames with quotations would break BBCode buttons
 - Added a BBCode wizard for the URL BBCode button
 - Disable BBCode wizards for touch devices
 - Updated myspace.com BBvideo
