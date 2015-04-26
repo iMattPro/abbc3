@@ -114,7 +114,7 @@ function bbspecial(bbcode, bbcodeId) {
 			break;
 
 		case 'mod=':
-			bbfontstyle('[mod={ABBC3_USERNAME}]', '[/mod]');
+			bbfontstyle('[mod={{ ABBC3_USERNAME|e("js") }}]', '[/mod]');
 			break;
 
 		case 'highlight=':
