@@ -35,8 +35,8 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		slideshare.net, snotr.com, soundcloud.com, spike.com, streetfire.net,
 		ted.com, testtube.com, thedailyshow.cc.com, theonion.com, tudou.com,
 		tu.tv, twitch.tv, twitvid.com, ustream.tv, vbox7.com, veoh.com,
-		vevo.com, viddler.com, videogamer.com, videu.de, vimeo.com, vine.co,
-		wat.tv, youku.com, youtu.be, youtube.com
+		vevo.com, viddler.com, videogamer.com, vimeo.com, vine.co, wat.tv,
+		youku.com, youtu.be, youtube.com
 
 ## Languages supported:
 * Arabic
