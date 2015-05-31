@@ -127,7 +127,8 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 
 		// Delete all the unwanted BBCodes
 		$sql = 'DELETE FROM ' . $this->table_prefix . 'bbcodes
-			WHERE ' . $this->db->sql_in_set('bbcode_tag', $abbc3_bbcode_deprecated);
+			WHERE ' . $this->db->sql_in_set('bbcode_tag', $abbc3_bbcode_deprecated) . '
+			OR bbcode_id < 0';
 		$this->db->sql_query($sql);
 	}
 
