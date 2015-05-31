@@ -1,7 +1,7 @@
-<!-- IF .custom_tags -->
-	<!-- INCLUDECSS @vse_abbc3/abbc3.min.css -->
-<!-- ENDIF -->
+{% if loops.custom_tags %}
+	{% INCLUDECSS '@vse_abbc3/abbc3.min.css' %}
+{% endif %}
 
-<!-- IF .bbcodes -->
-	<!-- INCLUDECSS @vse_abbc3/acp_abbc3.css -->
-<!-- ENDIF -->
+{% if loops.bbcodes %}
+	{% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
+{% endif %}
