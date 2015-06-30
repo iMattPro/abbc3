@@ -1,0 +1,28 @@
+<form>
+	<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<td class="row1"><b class="genmed">{{ lang('ABBC3_BBCODE_WIZ_EXAMPLE') }}{{ lang('COLON') }}</b></td>
+			<td class="row1">
+				<input type="text" id="bbcode_wizard_example" name="bbcode_wizard_example" readonly="readonly" value="{{ lang('ABBC3_URL_EXAMPLE') }}" size="60" class="post disabled" />
+			</td>
+		</tr>
+		<tr>
+			<td class="row2"><b class="genmed">{{ lang('ABBC3_URL_LINK') }}{{ lang('COLON') }}</b></td>
+			<td class="row2">
+				<input type="text" id="bbcode_wizard_link" name="bbcode_wizard_link" value="" class="post" size="60" />
+			</td>
+		</tr>
+		<tr>
+			<td class="row2"><b class="genmed">{{ lang('ABBC3_URL_DESCRIPTION') }}{{ lang('COLON') }}</b></td>
+			<td class="row2">
+				<input type="text" id="bbcode_wizard_description" name="bbcode_wizard_description" value="" class="post" size="60" />
+			</td>
+		</tr>
+		<tr>
+			<td class="cat" colspan="2" align="center">
+				<input type="button" name="bbcode_wizard_submit" id="bbcode_wizard_submit" value="{{ lang('ABBC3_BBCODE_WIZ_SUBMIT') }}" class="btnmain" data-bbcode="url" /> &nbsp;
+				<input type="button" name="bbcode_wizard_cancel" id="bbcode_wizard_cancel" value="{{ lang('CANCEL') }}" class="btnlite" />
+			</td>
+		</tr>
+	</table>
+</form>
