@@ -54,6 +54,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 * Polish
 * Russian
 * Spanish
+* Ukranian
 
 ## Requirements
 * phpBB 3.1.3 or higher
