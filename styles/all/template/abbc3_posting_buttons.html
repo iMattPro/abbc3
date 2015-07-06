@@ -199,9 +199,11 @@ function bbspecial(bbcode, bbcodeId) {
 		<input type="button" class="abbc3_button" name="copybbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/copy.gif');" onclick="bbspecial('abbc3_copy')" title="{L_ABBC3_COPY_BBCODE}">
 		<input type="button" class="abbc3_button" name="pastebbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/paste.gif');" onclick="bbspecial('abbc3_paste')" title="{L_ABBC3_PASTE_BBCODE}">
 		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/plain.gif');" onclick="bbspecial('abbc3_plain')" title="{L_ABBC3_PLAIN_BBCODE}">
+		<!-- EVENT vse_abbc3_posting_editor_buttons_custom_tags_before -->
 	</div>
 	<!-- IF .custom_tags -->
 		<div class="abbc3_buttons_row" style="border-top:0;">
+			<!-- EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend -->
 			<!-- BEGIN custom_tags -->
 				<!-- IF custom_tags.S_CUSTOM_BBCODE_ALLOWED -->
 					<!-- IF custom_tags.BBCODE_TAG eq 'font=' -->
@@ -248,6 +250,7 @@ function bbspecial(bbcode, bbcodeId) {
 					<!-- ENDIF -->
 				<!-- ENDIF -->
 			<!-- END custom_tags -->
+			<!-- EVENT vse_abbc3_posting_editor_buttons_custom_tags_append -->
 		</div>
 	<!-- ENDIF -->
 </div>
