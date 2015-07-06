@@ -55,8 +55,15 @@
 
 /* ABBC3 BBCode buttons */
 #abbc3_buttons { margin: 15px 0 2px 0 }
-#abbc3_buttons input,
-#abbc3_buttons select { vertical-align: middle }
+#abbc3_buttons input { vertical-align: middle }
+#abbc3_buttons select {
+	vertical-align: middle;
+	margin: 4px;
+	height: 22px;
+	background-color: #fff !important;
+	border: 1px solid #b4bac0;
+	color: #000 !important;
+}
 .abbc3_button {
 	margin: 4px 0;
 	padding: 0;
@@ -72,12 +79,6 @@
 	background-color: #ffffdf;
 	border: 1px solid #bc2a4d;
 	cursor: pointer;
-}
-.abbc3_select {
-	margin: 4px;
-	height: 22px;
-	background-color: #fff;
-	border: 1px solid #b4bac0;
 }
 .abbc3_buttons_row {
 	margin: 0 !important;
