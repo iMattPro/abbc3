@@ -25,8 +25,7 @@ var bbwizard;
 			height: 315
 		}, options);
 
-		var bbvideos = [
-			{
+		var bbvideos = [{
 				'site': '5min.com',
 				'type': 'flash',
 				'regex': /http:\/\/(?:.*)?5min.com\/Video\/(?:.*)-([0-9]+)/i,
@@ -193,8 +192,8 @@ var bbwizard;
 				'regex': /http:\/\/[a-z](.*?).photobucket.com\/(albums\/[^[]*\/([0-9A-Za-z-_ ]*)?)?([^[]*=)+?([^[]*)?/i,
 				'embed': ['http://static.photobucket.com/player.swf?file=http://vid$1.photobucket.com/$2$5']
 			}, {
-				'site' : 'revision3.com',
-				'type' : 'yqlOembed',
+				'site': 'revision3.com',
+				'type': 'yqlOembed',
 				'regex': /http:\/\/(.*revision3\.com\/.*)/i,
 				'embed': 'http://revision3.com/api/oembed/?url=$&&format=json'
 			}, {
@@ -240,8 +239,8 @@ var bbwizard;
 				'regex': /https?:\/\/.*?ted.com\/talks\/([a-zA-Z0-9-_]+).html/i,
 				'embed': '<iframe src="//embed.ted.com/talks/$1.html" width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			}, {
-				'site' : 'testtube.com',
-				'type' : 'yqlOembed',
+				'site': 'testtube.com',
+				'type': 'yqlOembed',
 				'regex': /http:\/\/(.*testtube\.com\/.*)/i,
 				'embed': 'http://testtube.com/api/oembed/?url=$&&format=json'
 			}, {
@@ -322,8 +321,7 @@ var bbwizard;
 				'site': 'youtube.com',
 				'regex': /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube\.com\S*[^\w\-\s])([\w\-]{11})(?=[^\w\-]|$)([^[]*)?/i,
 				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
-			}
-		];
+			}];
 
 		/**
 		 * Perform an oEmbed request for an embed code
