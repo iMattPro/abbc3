@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Messaggio Off Topic: [offtopic]testo[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Testo preformattato: [pre]testo[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Shadow text: [shadow=color]testo[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/titolo-canzone[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/titolo-canzone[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler: [spoil]testo[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Testo barrato: [s]testo[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Pedice: [sub]testo[/sub]',

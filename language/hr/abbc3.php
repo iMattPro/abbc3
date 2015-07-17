@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> '“Off Topic” poruka: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Formatiranje teksta: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Sjenčanje teksta: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> '“Spoiler” poruka: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Precrtanje teksta: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Indeksiranje teksta: [sub]text[/sub]',

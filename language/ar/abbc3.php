@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic message: [offtopic]نص[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'محازاة الى اليمين: [pre]نص[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'نص مظلل: [shadow=color]نص[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler message: [spoil]نص[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'نص يتوسطه خط: [s]نص[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'نص منخفض: [sub]نص[/sub]',
