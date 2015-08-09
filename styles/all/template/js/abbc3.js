@@ -97,8 +97,8 @@ var bbwizard;
 				'embed': '<iframe src="http://www.ebaumsworld.com/media/embed/$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			}, {
 				'site': 'facebook.com',
-				'regex': /https?:\/\/www.facebook.com\/(?:.*)(video|photo).php\?v=([0-9A-Za-z-_]+)?(?:[^[]*)?/i,
-				'embed': '<iframe src="https://www.facebook.com/video/embed?video_id=$2" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
+				'regex': /https?:\/\/www.facebook.com\/(?:.*)(?:(?:video|photo).php\?v=|(?:videos|photos)\/)([0-9A-Za-z-_]+)(?:[^[]*)?/i,
+				'embed': '<iframe src="https://www.facebook.com/video/embed?video_id=$1" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			}, {
 				'site': 'flickr.com',
 				'type': 'oembed',
