@@ -1,8 +1,8 @@
 <script>
 
 var copyPaste = '';
-var bbvideoHeight = '{ABBC3_BBVIDEO_HEIGHT}';
-var bbvideoWidth = '{ABBC3_BBVIDEO_WIDTH}';
+var bbvideoHeight = '{{ ABBC3_BBVIDEO_HEIGHT }}';
+var bbvideoWidth = '{{ ABBC3_BBVIDEO_WIDTH }}';
 
 /**
 * Strip all BBCodes from the selected text
@@ -75,7 +75,7 @@ function bbspecial(bbcode, bbcodeId) {
 					}
 				} catch (e) {}
 			} else {
-				alert('{LA_ERROR}{LA_COLON} {LA_ABBC3_NOSELECT_ERROR}');
+				alert('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
 				return;
 			}
 			break;
@@ -84,7 +84,7 @@ function bbspecial(bbcode, bbcodeId) {
 			if (theSelection) {
 				copyPaste = theSelection;
 			} else {
-				alert('{LA_ERROR}{LA_COLON} {LA_ABBC3_NOSELECT_ERROR}');
+				alert('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
 				return;
 			}
 			break;
@@ -93,7 +93,7 @@ function bbspecial(bbcode, bbcodeId) {
 			if (copyPaste) {
 				bbfontstyle(copyPaste, '');
 			} else {
-				alert('{LA_ERROR}{LA_COLON} {LA_ABBC3_PASTE_ERROR}');
+				alert('{{ lang('ABBC3_PASTE_ERROR')|e("js") }}');
 			}
 			break;
 
@@ -141,7 +141,7 @@ function bbspecial(bbcode, bbcodeId) {
 			if (theSelection || phpbb.isTouch) {
 				bbfontstyle('[BBvideo=' + bbvideoWidth + ',' + bbvideoHeight + ']', '[/BBvideo]');
 			} else {
-				bbwizard('{UA_ABBC3_BBVIDEO_WIZARD}', 'bbvideo');
+				bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', 'bbvideo');
 			}
 			break;
 
@@ -149,7 +149,7 @@ function bbspecial(bbcode, bbcodeId) {
 			if (theSelection || phpbb.isTouch) {
 				bbstyle(16);
 			} else {
-				bbwizard('{UA_ABBC3_URL_WIZARD}', 'url');
+				bbwizard('{{ UA_ABBC3_URL_WIZARD }}', 'url');
 			}
 			break;
 
@@ -163,95 +163,97 @@ function bbspecial(bbcode, bbcodeId) {
 
 </script>
 
+{% set ABBC3_ICONS = ROOT_PATH ~ ABBC3_BBCODE_ICONS %}
+
 <div id="abbc3_buttons">
 	<div class="abbc3_buttons_row">
-		<input type="button" class="abbc3_button" accesskey="b" name="addbbcode0" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/bold.gif');" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="i" name="addbbcode2" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/italic.gif');" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="u" name="addbbcode4" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/underline.gif');" onclick="bbstyle(4)" title="{L_BBCODE_U_HELP}" />
-		<!-- IF S_BBCODE_QUOTE -->
-			<input type="button" class="abbc3_button" accesskey="q" name="addbbcode6" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/quote.gif');" onclick="bbstyle(6)" title="{L_BBCODE_Q_HELP}" />
-		<!-- ENDIF -->
-		<input type="button" class="abbc3_button" accesskey="c" name="addbbcode8" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/code.gif');" onclick="bbstyle(8)" title="{L_BBCODE_C_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="l" name="addbbcode10" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/listb.gif');" onclick="bbstyle(10)" title="{L_BBCODE_L_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="o" name="addbbcode12" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/listo.gif');" onclick="bbstyle(12)" title="{L_BBCODE_O_HELP}" />
-		<input type="button" class="abbc3_button" accesskey="y" name="addlistitem" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/listitem.gif');" onclick="bbstyle(-1)" title="{L_BBCODE_LISTITEM_HELP}" />
-		<!-- IF S_BBCODE_IMG -->
-			<input type="button" class="abbc3_button" accesskey="p" name="addbbcode14" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/img.gif');" onclick="bbstyle(14)" title="{L_BBCODE_P_HELP}" />
-		<!-- ENDIF -->
-		<!-- IF S_LINKS_ALLOWED -->
-			<input type="button" class="abbc3_button" accesskey="w" name="addbbcode16" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/url.gif');" onclick="bbspecial('url')" title="{L_BBCODE_W_HELP}" />
-		<!-- ENDIF -->
-		<!-- IF S_BBCODE_FLASH -->
-			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/flash.gif');" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />
-		<!-- ENDIF -->
-		<input type="button" class="abbc3_button" name="abbc3_bbpalette" id="abbc3_bbpalette" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/fontcolor.gif');" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
-		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
-			<option value="50">{L_FONT_TINY}</option>
-			<option value="85">{L_FONT_SMALL}</option>
-			<option value="100" selected="selected">{L_FONT_NORMAL}</option>
-			<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 -->
-				<option value="150">{L_FONT_LARGE}</option>
-				<!-- IF not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 -->
-					<option value="200">{L_FONT_HUGE}</option>
-				<!-- ENDIF -->
-			<!-- ENDIF -->
+		<input type="button" class="abbc3_button" accesskey="b" name="addbbcode0" value=" " style="background-image:url('{{ ABBC3_ICONS }}/bold.gif');" onclick="bbstyle(0)" title="{{ lang('BBCODE_B_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="i" name="addbbcode2" value=" " style="background-image:url('{{ ABBC3_ICONS }}/italic.gif');" onclick="bbstyle(2)" title="{{ lang('BBCODE_I_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="u" name="addbbcode4" value=" " style="background-image:url('{{ ABBC3_ICONS }}/underline.gif');" onclick="bbstyle(4)" title="{{ lang('BBCODE_U_HELP') }}" />
+		{% if S_BBCODE_QUOTE %}
+			<input type="button" class="abbc3_button" accesskey="q" name="addbbcode6" value=" " style="background-image:url('{{ ABBC3_ICONS }}/quote.gif');" onclick="bbstyle(6)" title="{{ lang('BBCODE_Q_HELP') }}" />
+		{% endif %}
+		<input type="button" class="abbc3_button" accesskey="c" name="addbbcode8" value=" " style="background-image:url('{{ ABBC3_ICONS }}/code.gif');" onclick="bbstyle(8)" title="{{ lang('BBCODE_C_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="l" name="addbbcode10" value=" " style="background-image:url('{{ ABBC3_ICONS }}/listb.gif');" onclick="bbstyle(10)" title="{{ lang('BBCODE_L_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="o" name="addbbcode12" value=" " style="background-image:url('{{ ABBC3_ICONS }}/listo.gif');" onclick="bbstyle(12)" title="{{ lang('BBCODE_O_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="y" name="addlistitem" value=" " style="background-image:url('{{ ABBC3_ICONS }}/listitem.gif');" onclick="bbstyle(-1)" title="{{ lang('BBCODE_LISTITEM_HELP') }}" />
+		{% if S_BBCODE_IMG %}
+			<input type="button" class="abbc3_button" accesskey="p" name="addbbcode14" value=" " style="background-image:url('{{ ABBC3_ICONS }}/img.gif');" onclick="bbstyle(14)" title="{{ lang('BBCODE_P_HELP') }}" />
+		{% endif %}
+		{% if S_LINKS_ALLOWED %}
+			<input type="button" class="abbc3_button" accesskey="w" name="addbbcode16" value=" " style="background-image:url('{{ ABBC3_ICONS }}/url.gif');" onclick="bbspecial('url')" title="{{ lang('BBCODE_W_HELP') }}" />
+		{% endif %}
+		{% if S_BBCODE_FLASH %}
+			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value=" " style="background-image:url('{{ ABBC3_ICONS }}/flash.gif');" onclick="bbstyle(18)" title="{{ lang('BBCODE_D_HELP') }}" />
+		{% endif %}
+		<input type="button" class="abbc3_button" name="abbc3_bbpalette" id="abbc3_bbpalette" value=" " style="background-image:url('{{ ABBC3_ICONS }}/fontcolor.gif');" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}" />
+		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
+			<option value="50">{{ lang('FONT_TINY') }}</option>
+			<option value="85">{{ lang('FONT_SMALL') }}</option>
+			<option value="100" selected="selected">{{ lang('FONT_NORMAL') }}</option>
+			{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 %}
+				<option value="150">{{ lang('FONT_LARGE') }}</option>
+				{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 %}
+					<option value="200">{{ lang('FONT_HUGE') }}</option>
+				{% endif %}
+			{% endif %}
 		</select>
-		<input type="button" class="abbc3_button" name="copybbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/copy.gif');" onclick="bbspecial('abbc3_copy')" title="{L_ABBC3_COPY_BBCODE}">
-		<input type="button" class="abbc3_button" name="pastebbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/paste.gif');" onclick="bbspecial('abbc3_paste')" title="{L_ABBC3_PASTE_BBCODE}">
-		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{ROOT_PATH}{ABBC3_BBCODE_ICONS}/plain.gif');" onclick="bbspecial('abbc3_plain')" title="{L_ABBC3_PLAIN_BBCODE}">
-		<!-- EVENT vse_abbc3_posting_editor_buttons_custom_tags_before -->
+		<input type="button" class="abbc3_button" name="copybbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/copy.gif');" onclick="bbspecial('abbc3_copy')" title="{{ lang('ABBC3_COPY_BBCODE') }}">
+		<input type="button" class="abbc3_button" name="pastebbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/paste.gif');" onclick="bbspecial('abbc3_paste')" title="{{ lang('ABBC3_PASTE_BBCODE') }}">
+		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/plain.gif');" onclick="bbspecial('abbc3_plain')" title="{{ lang('ABBC3_PLAIN_BBCODE') }}">
+		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 	</div>
-	<!-- IF .custom_tags -->
+	{% if loops.custom_tags %}
 		<div class="abbc3_buttons_row" style="border-top:0;">
-			<!-- EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend -->
-			<!-- BEGIN custom_tags -->
-				<!-- IF custom_tags.S_CUSTOM_BBCODE_ALLOWED -->
-					<!-- IF custom_tags.BBCODE_TAG eq 'font=' -->
-						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{custom_tags.BBCODE_HELPLINE}">
-							<option selected="selected" >{L_ABBC3_FONT_BBCODE}</option>
-							<optgroup label="{L_ABBC3_FONT_SAFE}">
-								<option style="font-family: Arial;" value="Arial">Arial</option>
-								<option style="font-family: Arial Black;" value="Arial Black">Arial Black</option>
-								<option style="font-family: Comic Sans MS;" value="Comic Sans MS">Comic Sans MS</option>
-								<option style="font-family: Courier New;" value="Courier New">Courier New</option>
-								<option style="font-family: Georgia;" value="Georgia">Georgia</option>
-								<option style="font-family: Impact;" value="Impact">Impact</option>
-								<option style="font-family: Times New Roman;" value="Times New Roman">Times New Roman</option>
-								<option style="font-family: Trebuchet MS;" value="Trebuchet MS">Trebuchet MS</option>
-								<option style="font-family: Verdana;" value="Verdana">Verdana</option>
+			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
+			{% for custom_tag in loops.custom_tags %}
+				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
+					{% if custom_tag.BBCODE_TAG == 'font=' %}
+						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
+							<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
+							<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">
+								<option style="font-family: Arial, sans-serif;" value="Arial">Arial</option>
+								<option style="font-family: Arial Black, sans-serif;" value="Arial Black">Arial Black</option>
+								<option style="font-family: Comic Sans MS, sans-serif;" value="Comic Sans MS">Comic Sans MS</option>
+								<option style="font-family: Courier New, sans-serif;" value="Courier New">Courier New</option>
+								<option style="font-family: Georgia, sans-serif;" value="Georgia">Georgia</option>
+								<option style="font-family: Impact, sans-serif;" value="Impact">Impact</option>
+								<option style="font-family: Times New Roman, sans-serif;" value="Times New Roman">Times New Roman</option>
+								<option style="font-family: Trebuchet MS, sans-serif;" value="Trebuchet MS">Trebuchet MS</option>
+								<option style="font-family: Verdana, sans-serif;" value="Verdana">Verdana</option>
 							</optgroup>
-							<optgroup label="{L_ABBC3_FONT_FANCY}">
-								<option style="font-family: Bradley Hand ITC;" value="Bradley Hand ITC" >Bradley Hand ITC</option>
-								<option style="font-family: Century Gothic;" value="Century Gothic" >Century Gothic</option>
-								<option style="font-family: Curlz MT;" value="Curlz MT">Curlz MT</option>
-								<option style="font-family: cursive;" value="cursive">Cursive</option>
-								<option style="font-family: fantasy;" value="fantasy">Fantasy</option>
-								<option style="font-family: French Script MT;" value="French Script MT">French Script MT</option>
-								<option style="font-family: Garamond;" value="Garamond">Garamond</option>
-								<option style="font-family: Garamond Bold;" value="Garamond Bold">Garamond Bold</option>
-								<option style="font-family: Goudy Stout;" value="Goudy Stout">Goudy Stout</option>
-								<option style="font-family: Helvetica;" value="Helvetica">Helvetica</option>
-								<option style="font-family: monospace;" value="monospace">Monospace</option>
-								<option style="font-family: OCR A Extended;" value="OCR A Extended">OCR A Extended</option>
-								<option style="font-family: Script MT Bold;" value="Script MT Bold">Script MT Bold</option>
+							<optgroup label="{{ lang('ABBC3_FONT_FANCY') }}">
+								<option style="font-family: Bradley Hand ITC, sans-serif;" value="Bradley Hand ITC" >Bradley Hand ITC</option>
+								<option style="font-family: Century Gothic, sans-serif;" value="Century Gothic" >Century Gothic</option>
+								<option style="font-family: Curlz MT, sans-serif;" value="Curlz MT">Curlz MT</option>
+								<option style="font-family: cursive, sans-serif;" value="cursive">Cursive</option>
+								<option style="font-family: fantasy, sans-serif;" value="fantasy">Fantasy</option>
+								<option style="font-family: French Script MT, sans-serif;" value="French Script MT">French Script MT</option>
+								<option style="font-family: Garamond, sans-serif;" value="Garamond">Garamond</option>
+								<option style="font-family: Garamond Bold, sans-serif;" value="Garamond Bold">Garamond Bold</option>
+								<option style="font-family: Goudy Stout, sans-serif;" value="Goudy Stout">Goudy Stout</option>
+								<option style="font-family: Helvetica, sans-serif;" value="Helvetica">Helvetica</option>
+								<option style="font-family: monospace, sans-serif;" value="monospace">Monospace</option>
+								<option style="font-family: OCR A Extended, sans-serif;" value="OCR A Extended">OCR A Extended</option>
+								<option style="font-family: Script MT Bold, sans-serif;" value="Script MT Bold">Script MT Bold</option>
 							</optgroup>
-							<optgroup label="{L_ABBC3_FONT_WIN}">
-								<option style="font-family: Lucida Console;" value="Lucida Console">Lucida Console</option>
-								<option style="font-family: Lucida Sans Unicode;" value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-								<option style="font-family: Microsoft Sans Serif;" value="Microsoft Sans Serif">Microsoft Sans Serif</option>
-								<option style="font-family: MS Mincho;" value="MS Mincho">MS Mincho</option>
-								<option style="font-family: Palatino Linotype;" value="Palatino Linotype">Palatino Linotype</option>
-								<option style="font-family: Symbol;" value="Symbol">Symbol</option>
-								<option style="font-family: Tahoma;" value="Tahoma">Tahoma</option>
+							<optgroup label="{{ lang('ABBC3_FONT_WIN') }}">
+								<option style="font-family: Lucida Console, sans-serif;" value="Lucida Console">Lucida Console</option>
+								<option style="font-family: Lucida Sans Unicode, sans-serif;" value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+								<option style="font-family: Microsoft Sans Serif, sans-serif;" value="Microsoft Sans Serif">Microsoft Sans Serif</option>
+								<option style="font-family: MS Mincho, sans-serif;" value="MS Mincho">MS Mincho</option>
+								<option style="font-family: Palatino Linotype, sans-serif;" value="Palatino Linotype">Palatino Linotype</option>
+								<option style="font-family: Symbol, sans-serif;" value="Symbol">Symbol</option>
+								<option style="font-family: Tahoma, sans-serif;" value="Tahoma">Tahoma</option>
 							</optgroup>
 						</select>
-					<!-- ELSE -->
-						<input type="button" class="abbc3_button" name="addbbcode{custom_tags.BBCODE_ID}" value=" <!-- IF not custom_tags.BBCODE_IMG -->{custom_tags.BBCODE_TAG}<!-- ENDIF --> "<!-- IF custom_tags.BBCODE_IMG --> style="background-image:url('{ROOT_PATH}{custom_tags.BBCODE_IMG}');"<!-- ENDIF --> onclick="bbspecial('{custom_tags.BBCODE_TAG}', {custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
-					<!-- ENDIF -->
-				<!-- ENDIF -->
-			<!-- END custom_tags -->
-			<!-- EVENT vse_abbc3_posting_editor_buttons_custom_tags_append -->
+					{% else %}
+						<input type="button" class="abbc3_button" name="addbbcode{{ custom_tag.BBCODE_ID }}" value=" {% if not custom_tag.BBCODE_IMG %}{{ custom_tag.BBCODE_TAG }}{% endif %} "{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH }}{{ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}" />
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_append %}
 		</div>
-	<!-- ENDIF -->
+	{% endif %}
 </div>
 <div id="bbcode_wizard"></div>
