@@ -18,7 +18,7 @@ class wizard_test extends \phpbb_test_case
 	/** @var \vse\abbc3\controller\wizard */
 	protected $controller;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\request\request|\PHPUnit_Framework_MockObject_MockObject */
 	protected $request;
 
 	public function setUp()
@@ -29,6 +29,7 @@ class wizard_test extends \phpbb_test_case
 
 		$this->request = $this->getMock('\phpbb\request\request');
 
+		/** @var $controller_helper \phpbb\controller\helper|\PHPUnit_Framework_MockObject_MockObject */
 		$controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
 			->disableOriginalConstructor()
 			->getMock();
@@ -38,6 +39,7 @@ class wizard_test extends \phpbb_test_case
 				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
 			});
 
+		/** @var $template \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
 		$template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
 

@@ -12,22 +12,22 @@ namespace vse\abbc3\tests\event;
 
 class event_listener_base extends \phpbb_test_case
 {
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var \vse\abbc3\core\bbcodes_display|\PHPUnit_Framework_MockObject_MockObject */
 	protected $bbcodes;
 
 	/** @var \phpbb\config\config */
 	protected $config;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\controller\helper|\PHPUnit_Framework_MockObject_MockObject */
 	protected $controller_helper;
 
 	/** @var \vse\abbc3\event\listener */
 	protected $listener;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var \vse\abbc3\core\bbcodes_parser|\PHPUnit_Framework_MockObject_MockObject */
 	protected $parser;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
 	protected $template;
 
 	/** @var \phpbb\user */

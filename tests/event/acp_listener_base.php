@@ -15,7 +15,7 @@ class acp_listener_base extends \phpbb_test_case
 	/** @var \vse\abbc3\event\listener */
 	protected $listener;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var \vse\abbc3\core\acp_manager|\PHPUnit_Framework_MockObject_MockObject */
 	protected $acp_manager;
 
 	/**

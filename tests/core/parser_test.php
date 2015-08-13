@@ -12,8 +12,13 @@ namespace vse\abbc3\tests\core;
 
 class parser_test extends \phpbb_test_case
 {
+	/** @var \phpbb\user */
 	protected $user;
+
+	/** @var string */
 	protected $bbvideo_width;
+
+	/** @var string */
 	protected $bbvideo_height;
 
 	public function get_user_instance()

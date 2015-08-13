@@ -17,8 +17,13 @@ class acp_base extends \phpbb_database_test_case
 		return array('vse/abbc3');
 	}
 
+	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
+
+	/** @var \phpbb\request\request|\PHPUnit_Framework_MockObject_MockObject */
 	protected $request;
+
+	/** @var \phpbb\user */
 	protected $user;
 
 	public function getDataSet()
