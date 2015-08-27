@@ -3,8 +3,6 @@ travis/			export-ignore
 .travis.yml		export-ignore
 .gitignore		export-ignore
 .gitattributes	export-ignore
-package.json	export-ignore
-gulpfile.js		export-ignore
 phpunit.xml.*	export-ignore
 composer.lock	export-ignore
 README.md		export-ignore
