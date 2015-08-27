@@ -279,7 +279,7 @@ var bbwizard;
 			}, {
 				'site': 'veoh.com',
 				'type': 'flash',
-				'regex': /http:\/\/(.*?).veoh.com\/([0-9A-Za-z-_\-\/]+)?\/([0-9A-Za-z-_]+)/i,
+				'regex': /http:\/\/(.*?).veoh.com\/([0-9A-Za-z-_\/]+)?\/([0-9A-Za-z-_]+)/i,
 				'embed': ['http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1361&amp;permalinkId=$3&amp;player=videodetailsembedded&amp;videoAutoPlay=0&amp;id=anonymous']
 			}, {
 				'site': 'vevo.com',
