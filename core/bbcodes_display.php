@@ -73,7 +73,7 @@ class bbcodes_display
 
 		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
 
-		if(!isset($custom_tags['BBCODE_IMG']))
+		if (!isset($custom_tags['BBCODE_IMG']))
 		{
 			$custom_tags['BBCODE_IMG'] = (isset($images['ext/' . $bbcode_img])) ? 'ext/vse/' . $bbcode_img : '';
 		}
