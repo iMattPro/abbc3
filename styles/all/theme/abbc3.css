@@ -70,9 +70,7 @@
 	padding: 0;
 	min-width: 22px;
 	height: 22px;
-	background-color: transparent;
-	background-position: center;
-	background-repeat: no-repeat;
+	background: transparent no-repeat center;
 	border: 1px solid transparent;
 	font-size: 11px;
 }
