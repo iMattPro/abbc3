@@ -13,7 +13,18 @@ var gulp = require('gulp'),
 // Lint JS
 gulp.task('jshint', function() {
 	return gulp.src(paths.js)
-		.pipe(jshint())
+		.pipe(jshint({
+			'globals': {
+				'$': true,
+				'is_ie': true,
+				'form_name': true,
+				'text_name': true,
+				'baseHeight': true,
+				'storeCaret': true,
+				'bbfontstyle': true,
+				'insert_text': true,
+			}
+		}))
 		.pipe(jshint.reporter(stylish));
 });
 
@@ -32,6 +43,7 @@ gulp.task('csslint', function() {
 			'ids': false,
 			'important': false,
 			'box-model': false,
+			'box-sizing': false
 		}))
 		.pipe(csslint.reporter());
 });
