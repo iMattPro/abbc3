@@ -1,42 +1,35 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2013 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2013 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\core;
 
+use phpbb\user;
+use vse\abbc3\ext;
+
 /**
-* ABBC3 core BBCodes parser class
-*/
+ * ABBC3 core BBCodes parser class
+ */
 class bbcodes_parser
 {
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
-
-	/** @var string */
-	protected $bbvideo_width;
-
-	/** @var string */
-	protected $bbvideo_height;
 
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\user $user           User object
-	 * @param string      $bbvideo_width  Default width of bbvideo
-	 * @param string      $bbvideo_height Default height of bbvideo
+	 * @param user $user User object
 	 * @access public
 	 */
-	public function __construct(\phpbb\user $user, $bbvideo_width, $bbvideo_height)
+	public function __construct(user $user)
 	{
 		$this->user = $user;
-		$this->bbvideo_width = $bbvideo_width;
-		$this->bbvideo_height = $bbvideo_height;
 	}
 
 	/**
@@ -79,7 +72,9 @@ class bbcodes_parser
 	 */
 	protected function bbvideo_pass($matches)
 	{
-		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : "[bbvideo={$this->bbvideo_width},{$this->bbvideo_height}:$matches[3]]$matches[4][/bbvideo:$matches[3]]";
+		return (!empty($matches[2])) ?
+			"[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" :
+			'[bbvideo=' . ext::BBVIDEO_WIDTH . ',' . ext::BBVIDEO_HEIGHT . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
 	}
 
 	/**

@@ -1,34 +1,36 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2013 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2013 Matt Friedman
+ * @license       GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\core;
 
+use phpbb\db\driver\driver_interface;
+use phpbb\extension\manager;
+use phpbb\user;
+use vse\abbc3\ext;
+
 /**
-* ABBC3 core BBCodes display class
-*/
+ * ABBC3 core BBCodes display class
+ */
 class bbcodes_display
 {
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var driver_interface */
 	protected $db;
 
-	/** @var \phpbb\extension\manager */
+	/** @var manager */
 	protected $extension_manager;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
 	/** @var string */
 	protected $root_path;
-
-	/** @var string */
-	protected $ext_root_path;
 
 	/** @var array */
 	protected $memberships;
@@ -36,20 +38,18 @@ class bbcodes_display
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\db\driver\driver_interface $db                Database connection
-	 * @param \phpbb\extension\manager          $extension_manager Extension manager object
-	 * @param \phpbb\user                       $user              User object
-	 * @param string                            $root_path         phpBB root path
-	 * @param string                            $ext_root_path     Extension root path
+	 * @param driver_interface $db                Database connection
+	 * @param manager          $extension_manager Extension manager object
+	 * @param user             $user              User object
+	 * @param string           $root_path         phpBB root path
 	 * @access public
 	 */
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\extension\manager $extension_manager, \phpbb\user $user, $root_path, $ext_root_path)
+	public function __construct(driver_interface $db, manager $extension_manager, user $user, $root_path)
 	{
 		$this->db = $db;
 		$this->extension_manager = $extension_manager;
 		$this->user = $user;
 		$this->root_path = $root_path;
-		$this->ext_root_path = $ext_root_path;
 	}
 
 	/**
@@ -140,7 +140,7 @@ class bbcodes_display
 		return $finder
 			->extension_suffix('.gif')
 			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $this->root_path . $this->ext_root_path);
+			->find_from_extension('abbc3', $this->root_path . ext::ABBC3_ROOT_PATH);
 	}
 
 	/**

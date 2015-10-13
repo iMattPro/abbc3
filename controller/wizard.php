@@ -1,70 +1,61 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2013 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2013 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\controller;
 
+use phpbb\controller\helper;
+use phpbb\request\request;
+use phpbb\template\template;
+use phpbb\user;
+use vse\abbc3\ext;
+
 /**
-* ABBC3 BBCode Wizard class
-*/
+ * ABBC3 BBCode Wizard class
+ */
 class wizard
 {
 	/** @var string The default BBvideo site */
 	const BBVIDEO_DEFAULT = 'youtube.com';
 
-	/** @var \phpbb\controller\helper */
+	/** @var helper */
 	protected $helper;
 
-	/** @var \phpbb\request\request */
+	/** @var request */
 	protected $request;
 
-	/** @var \phpbb\template\template */
+	/** @var template */
 	protected $template;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
 	/** @var string */
 	protected $root_path;
 
-	/** @var string */
-	protected $ext_root_path;
-
-	/** @var string */
-	protected $bbvideo_width;
-
-	/** @var string */
-	protected $bbvideo_height;
-
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\controller\helper $helper         Controller helper object
-	 * @param \phpbb\request\request   $request        Request object
-	 * @param \phpbb\template\template $template       Template object
-	 * @param \phpbb\user              $user           User object
-	 * @param string                   $root_path      phpBB root path
-	 * @param string                   $ext_root_path  Extension root path
-	 * @param string                   $bbvideo_width  Default width of bbvideo
-	 * @param string                   $bbvideo_height Default height of bbvideo
+	 * @param helper   $helper    Controller helper object
+	 * @param request  $request   Request object
+	 * @param template $template  Template object
+	 * @param user     $user      User object
+	 * @param string   $root_path phpBB root path
 	 * @access public
 	 */
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, $root_path, $ext_root_path, $bbvideo_width, $bbvideo_height)
+	public function __construct(helper $helper, request $request, template $template, user $user, $root_path)
 	{
 		$this->helper = $helper;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
 		$this->root_path = $root_path;
-		$this->ext_root_path = $ext_root_path;
-		$this->bbvideo_width = $bbvideo_width;
-		$this->bbvideo_height = $bbvideo_height;
 	}
 
 	/**
@@ -132,15 +123,15 @@ class wizard
 		foreach ($bbvideo_size_presets_array as $preset)
 		{
 			$this->template->assign_block_vars('bbvideo_sizes', array(
-				'VALUE'			=> $preset,
-				'LABEL'			=> str_replace(',', ' ' . $this->user->lang('ABBC3_BBVIDEO_SEPARATOR') . ' ', $preset),
+				'VALUE' => $preset,
+				'LABEL' => str_replace(',', ' ' . $this->user->lang('ABBC3_BBVIDEO_SEPARATOR') . ' ', $preset),
 			));
 		}
 
 		$this->template->assign_vars(array(
 			'ABBC3_BBVIDEO_LINK_EX'	=> (isset($bbvideo_sites_array[self::BBVIDEO_DEFAULT])) ? $bbvideo_sites_array[self::BBVIDEO_DEFAULT] : '',
-			'ABBC3_BBVIDEO_HEIGHT'	=> $this->bbvideo_height,
-			'ABBC3_BBVIDEO_WIDTH'	=> $this->bbvideo_width,
+			'ABBC3_BBVIDEO_HEIGHT'	=> ext::BBVIDEO_HEIGHT,
+			'ABBC3_BBVIDEO_WIDTH'	=> ext::BBVIDEO_WIDTH,
 		));
 	}
 
@@ -154,7 +145,7 @@ class wizard
 	 */
 	protected function load_json_data($json_file)
 	{
-		$json_file = $this->root_path . $this->ext_root_path . 'assets/' . $json_file;
+		$json_file = $this->root_path . ext::ABBC3_ROOT_PATH . 'assets/' . $json_file;
 
 		if (!file_exists($json_file))
 		{

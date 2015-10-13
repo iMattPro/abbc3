@@ -1,27 +1,31 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2013 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2013 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\core;
 
+use phpbb\db\driver\driver_interface;
+use phpbb\request\request;
+use phpbb\user;
+
 /**
-* ABBC3 ACP manager class
-*/
+ * ABBC3 ACP manager class
+ */
 class acp_manager
 {
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var driver_interface */
 	protected $db;
 
-	/** @var \phpbb\request\request */
+	/** @var request */
 	protected $request;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
 	/** @var string */
@@ -33,14 +37,14 @@ class acp_manager
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\db\driver\driver_interface $db
-	 * @param \phpbb\request\request            $request
-	 * @param \phpbb\user                       $user
-	 * @param string                            $phpbb_root_path
-	 * @param string                            $php_ext
+	 * @param driver_interface $db
+	 * @param request          $request
+	 * @param user             $user
+	 * @param string           $phpbb_root_path
+	 * @param string           $php_ext
 	 * @access public
 	 */
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, \phpbb\user $user, $phpbb_root_path, $php_ext)
+	public function __construct(driver_interface $db, request $request, user $user, $phpbb_root_path, $php_ext)
 	{
 		$this->db = $db;
 		$this->request = $request;

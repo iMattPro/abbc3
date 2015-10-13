@@ -1,23 +1,24 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2013 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2013 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use vse\abbc3\core\acp_manager;
 
 /**
-* Event listener
-*/
+ * Event listener
+ */
 class acp_listener implements EventSubscriberInterface
 {
-	/** @var \vse\abbc3\core\acp_manager */
+	/** @var acp_manager */
 	protected $acp_manager;
 
 	/** @var string */
@@ -26,11 +27,11 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Constructor
 	 *
-	 * @param \vse\abbc3\core\acp_manager $acp_manager
-	 * @param string                      $root_path
+	 * @param acp_manager $acp_manager
+	 * @param string      $root_path
 	 * @access public
 	 */
-	public function __construct(\vse\abbc3\core\acp_manager $acp_manager, $root_path)
+	public function __construct(acp_manager $acp_manager, $root_path)
 	{
 		$this->acp_manager = $acp_manager;
 		$this->root_path = $root_path;
