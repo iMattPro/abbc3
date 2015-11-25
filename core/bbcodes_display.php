@@ -130,7 +130,7 @@ class bbcodes_display
 	/**
 	 * Get image paths/names from ABBC3's icons folder
 	 *
-	 * @return Array of file data from ./ext/vse/abbc3/images/icons
+	 * @return array File data from ./ext/vse/abbc3/images/icons
 	 * @access protected
 	 */
 	protected function get_images()
