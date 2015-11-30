@@ -120,12 +120,12 @@ var bbwizard;
 				'embed': ['http://www.gameprotv.com/player-viral.swf', 'file=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.flv&amp;linktarget=_self&amp;image=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.jpg&amp;plugins=adtonomy,viral-1']
 			}, {
 				'site': 'gamespot.com',
-				'regex': /http:\/\/www.gamespot.com.*?(\d{7}?)([^[]*)?/i,
-				'embed': '<iframe width="640" height="360" src="http://www.gamespot.com/videoembed/$1&amp;mapp=false&amp;ads=0&amp;onsite=0" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			}, {
 				'site': 'gametrailers.com',
 				'type': 'yqlOgp',
 				'regex': /http:\/\/www.gametrailers.com\/(?:user\-movie|player|video|videos)\/([\w\-]+)\/([\w\-]+).*/i
+				'regex': /http:\/\/www.gamespot.com\/videos\/.*\/\d+\-(\d+)\/([^[]*)?/i,
+				'embed': '<iframe src="http://www.gamespot.com/videos/embed/$1/" width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			}, {
 				'site': 'godtube.com',
 				'regex': /http:\/\/www.godtube.com\/watch\/\?v=([^[]*)?/i,
