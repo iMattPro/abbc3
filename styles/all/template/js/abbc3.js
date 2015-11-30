@@ -120,10 +120,6 @@ var bbwizard;
 				'embed': ['http://www.gameprotv.com/player-viral.swf', 'file=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.flv&amp;linktarget=_self&amp;image=http%3A%2F%2Fvideos.gameprotv.com%2Fvideos%2F$2.jpg&amp;plugins=adtonomy,viral-1']
 			}, {
 				'site': 'gamespot.com',
-			}, {
-				'site': 'gametrailers.com',
-				'type': 'yqlOgp',
-				'regex': /http:\/\/www.gametrailers.com\/(?:user\-movie|player|video|videos)\/([\w\-]+)\/([\w\-]+).*/i
 				'regex': /http:\/\/www.gamespot.com\/videos\/.*\/\d+\-(\d+)\/([^[]*)?/i,
 				'embed': '<iframe src="http://www.gamespot.com/videos/embed/$1/" width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			}, {
