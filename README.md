@@ -25,7 +25,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		clipmoon.com, cnbc.com, cnettv.cnet.com, colbertnation.com,
 		collegehumor.com, comedycentral.com, crackle.com, dailymotion.com,
 		dotsub.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com,
-		g4tv.com, gameprotv.com, gamespot.com, gametrailers.com, godtube.com,
+		g4tv.com, gameprotv.com, gamespot.com, godtube.com,
 		howcast.com, hulu.com, ign.com, instagram.com, kickstarter.com,
 		liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com,
 		myspace.com, myvideo.de, photobucket.com, revision3.com, rutube.ru,
@@ -52,6 +52,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 * Polish
 * Russian
 * Spanish
+* Swedish
 * Turkish
 * Ukranian
 
