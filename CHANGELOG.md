@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.1.2 - 2015-12-01
+
+- Includes compatibility with phpBB 3.2.0-a1
+- Updated soundcloud.com BBcode
+- Updated facebook.com BBvideo
+- Updated gamespot.com BBvideo
+- Updated veoh.com BBvideo
+- Removed gametrailers.com BBvideo
+- Added the URL BBcode wizard to subsilver2
+- Complete conversion to TWIG syntax
+- Template events added to the ABBC3's bbcode button bars
+- Improve CSS for drop downs (Font Name and Font Size select menus)
+- Installer removes BBcodes with negative IDs from the database (leftover from ABBC3.0)
+- Added Estonian language
+- Added Swedish language
+- Added Turkish language
+- Added Ukrainian language
+
 ## 3.1.1 - 2015-04-26
 
 - Fixed a bug where usernames with quotations would break BBCode buttons
