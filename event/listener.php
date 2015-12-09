@@ -39,7 +39,7 @@ class listener implements EventSubscriberInterface
 	protected $user;
 
 	/** @var string phpBB root path */
-	protected $root_path;
+	protected $ext_root_path;
 
 	/**
 	 * Constructor
@@ -49,17 +49,17 @@ class listener implements EventSubscriberInterface
 	 * @param helper          $helper
 	 * @param template        $template
 	 * @param user            $user
-	 * @param string          $root_path
+	 * @param string          $ext_root_path
 	 * @access public
 	 */
-	public function __construct(bbcodes_parser $bbcodes_parser, bbcodes_display $bbcodes_display, helper $helper, template $template, user $user, $root_path)
+	public function __construct(bbcodes_parser $bbcodes_parser, bbcodes_display $bbcodes_display, helper $helper, template $template, user $user, $ext_root_path)
 	{
 		$this->bbcodes_parser = $bbcodes_parser;
 		$this->bbcodes_display = $bbcodes_display;
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
-		$this->root_path = $root_path;
+		$this->ext_root_path = $ext_root_path;
 	}
 
 	/**
@@ -162,7 +162,7 @@ class listener implements EventSubscriberInterface
 	{
 		$this->template->assign_vars(array(
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
-			'ABBC3_BBCODE_ICONS'		=> ext::ABBC3_ROOT_PATH . 'images/icons',
+			'ABBC3_BBCODE_ICONS'		=> $this->ext_root_path . 'images/icons',
 			'ABBC3_BBVIDEO_HEIGHT'		=> ext::BBVIDEO_HEIGHT,
 			'ABBC3_BBVIDEO_WIDTH'		=> ext::BBVIDEO_WIDTH,
 

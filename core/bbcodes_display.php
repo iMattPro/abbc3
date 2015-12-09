@@ -13,7 +13,6 @@ namespace vse\abbc3\core;
 use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
 use phpbb\user;
-use vse\abbc3\ext;
 
 /**
  * ABBC3 core BBCodes display class
@@ -30,7 +29,7 @@ class bbcodes_display
 	protected $user;
 
 	/** @var string */
-	protected $root_path;
+	protected $ext_root_path;
 
 	/** @var array */
 	protected $memberships;
@@ -41,15 +40,15 @@ class bbcodes_display
 	 * @param driver_interface $db                Database connection
 	 * @param manager          $extension_manager Extension manager object
 	 * @param user             $user              User object
-	 * @param string           $root_path         phpBB root path
+	 * @param string           $ext_root_path     Path to abbc3 extension root
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, manager $extension_manager, user $user, $root_path)
+	public function __construct(driver_interface $db, manager $extension_manager, user $user, $ext_root_path)
 	{
 		$this->db = $db;
 		$this->extension_manager = $extension_manager;
 		$this->user = $user;
-		$this->root_path = $root_path;
+		$this->ext_root_path = $ext_root_path;
 	}
 
 	/**
@@ -140,7 +139,7 @@ class bbcodes_display
 		return $finder
 			->extension_suffix('.gif')
 			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $this->root_path . ext::ABBC3_ROOT_PATH);
+			->find_from_extension('abbc3', $this->ext_root_path);
 	}
 
 	/**

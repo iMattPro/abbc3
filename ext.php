@@ -12,7 +12,6 @@ namespace vse\abbc3;
 
 class ext extends \phpbb\extension\base
 {
-	const ABBC3_ROOT_PATH = 'ext/vse/abbc3/';
 	const BBVIDEO_WIDTH = 560;
 	const BBVIDEO_HEIGHT = 315;
 

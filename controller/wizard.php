@@ -37,25 +37,25 @@ class wizard
 	protected $user;
 
 	/** @var string */
-	protected $root_path;
+	protected $ext_root_path;
 
 	/**
 	 * Constructor
 	 *
-	 * @param helper   $helper    Controller helper object
-	 * @param request  $request   Request object
-	 * @param template $template  Template object
-	 * @param user     $user      User object
-	 * @param string   $root_path phpBB root path
+	 * @param helper   $helper        Controller helper object
+	 * @param request  $request       Request object
+	 * @param template $template      Template object
+	 * @param user     $user          User object
+	 * @param string   $ext_root_path Path to abbc3 extension root
 	 * @access public
 	 */
-	public function __construct(helper $helper, request $request, template $template, user $user, $root_path)
+	public function __construct(helper $helper, request $request, template $template, user $user, $ext_root_path)
 	{
 		$this->helper = $helper;
 		$this->request = $request;
 		$this->template = $template;
 		$this->user = $user;
-		$this->root_path = $root_path;
+		$this->ext_root_path = $ext_root_path;
 	}
 
 	/**
@@ -145,7 +145,7 @@ class wizard
 	 */
 	protected function load_json_data($json_file)
 	{
-		$json_file = $this->root_path . ext::ABBC3_ROOT_PATH . 'assets/' . $json_file;
+		$json_file = $this->ext_root_path . 'assets/' . $json_file;
 
 		if (!file_exists($json_file))
 		{

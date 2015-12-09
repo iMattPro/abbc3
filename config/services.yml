@@ -10,7 +10,7 @@ services:
             - @dbal.conn
             - @ext.manager
             - @user
-            - %core.root_path%
+            - %core.root_path%ext/vse/abbc3/
 
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
@@ -29,7 +29,7 @@ services:
             - @controller.helper
             - @template
             - @user
-            - %core.root_path%
+            - ext/vse/abbc3/
         tags:
             - { name: event.listener }
 
@@ -48,4 +48,4 @@ services:
             - @request
             - @template
             - @user
-            - %core.root_path%
+            - %core.root_path%ext/vse/abbc3/
