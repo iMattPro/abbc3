@@ -34,9 +34,6 @@ class event_listener_base extends \phpbb_test_case
 	protected $user;
 
 	/** @var string */
-	protected $root_path;
-
-	/** @var string */
 	protected $ext_root_path;
 
 	/** @var string */
@@ -48,8 +45,6 @@ class event_listener_base extends \phpbb_test_case
 	public function setUp()
 	{
 		parent::setUp();
-
-		global $phpbb_root_path;
 
 		$this->parser = $this->getMockBuilder('\vse\abbc3\core\bbcodes_parser')
 			->disableOriginalConstructor()
@@ -73,7 +68,6 @@ class event_listener_base extends \phpbb_test_case
 				return $route . '#' . serialize($params);
 			});
 
-		$this->root_path = $phpbb_root_path;
 		$this->ext_root_path = 'ext/vse/abbc3/';
 		$this->bbvideo_width = 560;
 		$this->bbvideo_height = 315;
@@ -90,10 +84,7 @@ class event_listener_base extends \phpbb_test_case
 			$this->controller_helper,
 			$this->template,
 			$this->user,
-			$this->root_path,
-			$this->ext_root_path,
-			$this->bbvideo_width,
-			$this->bbvideo_height
+			$this->ext_root_path
 		);
 	}
 }

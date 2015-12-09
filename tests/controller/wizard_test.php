@@ -48,10 +48,7 @@ class wizard_test extends \phpbb_test_case
 			$this->request,
 			$template,
 			new \phpbb\user('\phpbb\datetime'),
-			$phpbb_root_path,
-			'ext/vse/abbc3/',
-			'',
-			''
+			$phpbb_root_path . 'ext/vse/abbc3/'
 		);
 	}
 
