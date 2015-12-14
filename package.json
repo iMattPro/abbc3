@@ -1,6 +1,6 @@
 {
   "name": "abbc3",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "author": "Matt Friedman",
   "license": "GPL-2.0",
   "main": "gulpfile.js",
