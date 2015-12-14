@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Greek]
+* Advanced BBCode Box [Greek]
 *
 * Greek translation by the_observer April 2015(gnikits@gmail.com)
 *
