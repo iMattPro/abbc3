@@ -3,7 +3,7 @@
 		<div class="inner">
 			<fieldset>
 				<dl>
-					<dt><label for="bbvideo_wizard_sites">{{ lang('ABBC3_BBVIDEO_SITES') }}{{ lang('COLON') }}</label></dt>
+					<dt><label for="bbvideo_wizard_sites">{{ lang('ABBC3_BBVIDEO_SITES') ~ lang('COLON') }}</label></dt>
 					<dd>
 						<select id="bbvideo_wizard_sites" name="bbvideo_wizard_sites">
 							{% for bbvideo_site in loops.bbvideo_sites %}
@@ -13,20 +13,20 @@
 					</dd>
 				</dl>
 				<dl>
-					<dt><label for="bbvideo_wizard_example">{{ lang('ABBC3_BBCODE_WIZ_EXAMPLE') }}{{ lang('COLON') }}</label></dt>
+					<dt><label for="bbvideo_wizard_example">{{ lang('ABBC3_BBCODE_WIZ_EXAMPLE') ~ lang('COLON') }}</label></dt>
 					<dd>
 						<input type="text" id="bbvideo_wizard_example" name="bbvideo_wizard_example" readonly="readonly" value="{{ ABBC3_BBVIDEO_LINK_EX }}" size="45" class="inputbox disabled" />
 					</dd>
 				</dl>
 				<hr />
 				<dl>
-					<dt><label for="bbvideo_wizard_link">{{ lang('ABBC3_BBVIDEO_LINK') }}{{ lang('COLON') }}</label></dt>
+					<dt><label for="bbvideo_wizard_link">{{ lang('ABBC3_BBVIDEO_LINK') ~ lang('COLON') }}</label></dt>
 					<dd>
 						<input type="text" id="bbvideo_wizard_link" name="bbvideo_wizard_link" value="" class="inputbox" size="45" />
 					</dd>
 				</dl>
 				<dl>
-					<dt><label for="bbvideo_wizard_width">{{ lang('ABBC3_BBVIDEO_SIZE') }}{{ lang('COLON') }}</label></dt>
+					<dt><label for="bbvideo_wizard_width">{{ lang('ABBC3_BBVIDEO_SIZE') ~ lang('COLON') }}</label></dt>
 					<dd>
 						<input type="number" id="bbvideo_wizard_width" name="bbvideo_wizard_width" value="{{ ABBC3_BBVIDEO_WIDTH }}" class="inputbox narrow" style="width:60px;" min="0" max="9999" size="4" />
 						<span style="margin-right:3px;">{{ lang('ABBC3_BBVIDEO_SEPARATOR') }}</span>

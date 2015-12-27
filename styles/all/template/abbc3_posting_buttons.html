@@ -248,7 +248,7 @@ function bbspecial(bbcode, bbcodeId) {
 							</optgroup>
 						</select>
 					{% else %}
-						<input type="button" class="abbc3_button" name="addbbcode{{ custom_tag.BBCODE_ID }}" value=" {% if not custom_tag.BBCODE_IMG %}{{ custom_tag.BBCODE_TAG }}{% endif %} "{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH }}{{ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}" />
+						<input type="button" class="abbc3_button" name="addbbcode{{ custom_tag.BBCODE_ID }}" value=" {{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }} "{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}" />
 					{% endif %}
 				{% endif %}
 			{% endfor %}
