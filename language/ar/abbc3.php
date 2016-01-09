@@ -82,7 +82,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_LINK'		=> 'رابط الفيديو ',
 	'ABBC3_BBVIDEO_SIZE'		=> 'عرض × إرتفاع الفيديو ',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'أحجام قياسية',
-
+	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'إدخال رابط الموقع ',
+	'ABBC3_URL_DESCRIPTION'		=> 'وصف إختياري',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.alhitary.net',
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'تم تحديث ترتيب الـBBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'إدارة المجموعات التي تستطيع استخدام هذا الـ BBCode',
