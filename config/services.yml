@@ -2,33 +2,33 @@ services:
     vse.abbc3.bbcodes_parser:
         class: vse\abbc3\core\bbcodes_parser
         arguments:
-            - @user
+            - '@user'
 
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display
         arguments:
-            - @dbal.conn
-            - @ext.manager
-            - @user
-            - %core.root_path%ext/vse/abbc3/
+            - '@dbal.conn'
+            - '@ext.manager'
+            - '@user'
+            - '%core.root_path%ext/vse/abbc3/'
 
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
         arguments:
-            - @dbal.conn
-            - @request
-            - @user
-            - %core.root_path%
-            - %core.php_ext%
+            - '@dbal.conn'
+            - '@request'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
 
     vse.abbc3.listener:
         class: vse\abbc3\event\listener
         arguments:
-            - @vse.abbc3.bbcodes_parser
-            - @vse.abbc3.bbcodes_display
-            - @controller.helper
-            - @template
-            - @user
+            - '@vse.abbc3.bbcodes_parser'
+            - '@vse.abbc3.bbcodes_display'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
             - ext/vse/abbc3/
         tags:
             - { name: event.listener }
@@ -36,16 +36,16 @@ services:
     vse.abbc3.acp_listener:
         class: vse\abbc3\event\acp_listener
         arguments:
-            - @vse.abbc3.acp_manager
-            - %core.root_path%
+            - '@vse.abbc3.acp_manager'
+            - '%core.root_path%'
         tags:
             - { name: event.listener }
 
     vse.abbc3.wizard:
         class: vse\abbc3\controller\wizard
         arguments:
-            - @controller.helper
-            - @request
-            - @template
-            - @user
-            - %core.root_path%ext/vse/abbc3/
+            - '@controller.helper'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%ext/vse/abbc3/'
