@@ -56,6 +56,7 @@ class wizard_test extends \phpbb_test_case
 	{
 		return array(
 			array('bbvideo', true, 200, 'abbc3_bbvideo_wizard.html'),
+			array('url', true, 200, 'abbc3_url_wizard.html'),
 		);
 	}
 
@@ -79,6 +80,7 @@ class wizard_test extends \phpbb_test_case
 	{
 		return array(
 			array('bbvideo', false),
+			array('url', false),
 			array('foobars', true),
 			array('foobars', false),
 			array('', true),
