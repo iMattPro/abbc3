@@ -13,7 +13,8 @@ set -x
 
 EXTNAME=$1
 BRANCH=$2
-EXTPATH_TEMP=$3
+EPV=$3
+TRAVIS_PHP_VERSION=$4
 
 # Copy extension to a temp folder
 mkdir ../../tmp
@@ -22,3 +23,9 @@ cd ../../
 
 # Clone phpBB
 git clone --depth=1 "git://github.com/phpbb/phpbb.git" "phpBB3" --branch=$BRANCH
+
+# Clone EPV tool
+if [ "$TRAVIS_PHP_VERSION" == "5.3.3" -a "$EPV" == "1" ]
+then
+	git clone --depth=1 "git://github.com/phpbb/epv.git" "phpBB3/phpBB/ext/phpbb/epv"
+fi
