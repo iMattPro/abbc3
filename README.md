@@ -37,25 +37,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		vevo.com, viddler.com, videogamer.com, vimeo.com, vine.co, wat.tv,
 		youku.com, youtu.be, youtube.com
 
-## Languages supported:
-* Arabic
-* Croatian
-* Dutch
-* English
-* Estonian
-* French
-* German
-* Greek
-* Hebrew
-* Italian
-* Mandarin Chinese (Simplified and Traditional)
-* Persian
-* Polish
-* Russian
-* Spanish
-* Swedish
-* Turkish
-* Ukranian
+* Multiple languages are supported. View the pre-installed [localizations](https://github.com/VSEphpbb/abbc3/tree/master/language).
 
 ## Requirements
 * phpBB 3.1.3 or higher
@@ -67,7 +49,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 1. [Download the latest validated release](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/).
 2. Unzip the downloaded release and copy it to the `ext` directory of your phpBB board.
 3. Navigate in the ACP to `Customise -> Manage extensions`.
-4. Look for `Advanced BBCode Box` under the Disabled Extensions list, and click its `Enable` link.
+4. Look for `Advanced BBCode Box` under the Disabled Extensions list and click its `Enable` link.
 
 ## Uninstallation
 1. Navigate in the ACP to `Customise -> Manage extensions`.
