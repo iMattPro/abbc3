@@ -154,13 +154,7 @@ class acp_manager
 	 */
 	public function get_max_bbcode_order()
 	{
-		$sql = 'SELECT MAX(bbcode_order) AS max_bbcode_order
-			FROM ' . BBCODES_TABLE;
-		$result = $this->db->sql_query($sql);
-		$max_order = (int) $this->db->sql_fetchfield('max_bbcode_order');
-		$this->db->sql_freeresult($result);
-
-		return $max_order;
+		return $this->get_max_column_value('bbcode_order');
 	}
 
 	/**
@@ -296,5 +290,23 @@ class acp_manager
 	protected function increment($action)
 	{
 		return ($action == 'move_up') ? -1 : 1;
+	}
+
+	/**
+	 * Retrieve the maximum value in a column from the bbcodes table
+	 *
+	 * @param string $column Name of the column (bbcode_id|bbcode_order)
+	 * @return int The maximum value in the column
+	 * @access protected
+	 */
+	protected function get_max_column_value($column)
+	{
+		$sql = 'SELECT MAX(' . $this->db->sql_escape($column) . ') AS maximum
+			FROM ' . BBCODES_TABLE;
+		$result = $this->db->sql_query($sql);
+		$maximum = $this->db->sql_fetchfield('maximum');
+		$this->db->sql_freeresult($result);
+
+		return (int) $maximum;
 	}
 }

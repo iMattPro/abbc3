@@ -122,13 +122,7 @@ class bbcodes_installer extends acp_manager
 	 */
 	protected function get_max_bbcode_id()
 	{
-		$sql = 'SELECT MAX(bbcode_id) AS max_bbcode_id
-			FROM ' . BBCODES_TABLE;
-		$result = $this->db->sql_query($sql);
-		$max_bbcode_id = $this->db->sql_fetchfield('max_bbcode_id');
-		$this->db->sql_freeresult($result);
-
-		return (int) $max_bbcode_id;
+		return $this->get_max_column_value('bbcode_id');
 	}
 
 	/**
