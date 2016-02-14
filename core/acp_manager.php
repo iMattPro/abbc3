@@ -87,14 +87,8 @@ class acp_manager
 		// Resync bbcode_order
 		$this->resynchronize_bbcode_order();
 
-		// return a JSON response if this was an AJAX request
-		if ($this->request->is_ajax())
-		{
-			$json_response = new \phpbb\json_response;
-			$json_response->send(array(
-				'success' => (bool) $this->db->sql_affectedrows(),
-			));
-		}
+		// Send a JSON response if this was an AJAX request
+		$this->send_json_response((bool) $this->db->sql_affectedrows());
 	}
 
 	/**
@@ -127,11 +121,7 @@ class acp_manager
 				continue;
 			}
 
-			// Update the db
-			$sql = 'UPDATE ' . BBCODES_TABLE . '
-				SET bbcode_order = ' . $order . '
-				WHERE bbcode_id = ' . (int) $bbcode_id;
-			$this->db->sql_query($sql);
+			$this->db->sql_query($this->update_bbcode_order($bbcode_id, $order));
 		}
 
 		$this->db->sql_transaction('commit');
@@ -139,11 +129,8 @@ class acp_manager
 		// Resync bbcode_order
 		$this->resynchronize_bbcode_order();
 
-		// return an AJAX JSON response
-		$json_response = new \phpbb\json_response;
-		$json_response->send(array(
-			'success' => true,
-		));
+		// Send an AJAX JSON response
+		$this->send_json_response(true);
 	}
 
 	/**
@@ -267,10 +254,7 @@ class acp_manager
 
 				if ($row['bbcode_order'] != $order)
 				{
-					$sql = 'UPDATE ' . BBCODES_TABLE . "
-						SET bbcode_order = $order
-						WHERE bbcode_id = {$row['bbcode_id']}";
-					$this->db->sql_query($sql);
+					$this->db->sql_query($this->update_bbcode_order($row['bbcode_id'], $order));
 				}
 			}
 			while ($row = $this->db->sql_fetchrow($result));
@@ -278,6 +262,21 @@ class acp_manager
 		$this->db->sql_freeresult($result);
 
 		$this->db->sql_transaction('commit');
+	}
+
+	/**
+	 * Build SQL query to update a bbcode order value
+	 *
+	 * @param int $bbcode_id    ID of the bbcode
+	 * @param int $bbcode_order Value of the bbcode order
+	 * @return string The SQl query to run
+	 * @access protected
+	 */
+	protected function update_bbcode_order($bbcode_id, $bbcode_order)
+	{
+		return 'UPDATE ' . BBCODES_TABLE . '
+			SET bbcode_order = ' . (int) $bbcode_order . '
+			WHERE bbcode_id = ' . (int) $bbcode_id;
 	}
 
 	/**
@@ -308,5 +307,22 @@ class acp_manager
 		$this->db->sql_freeresult($result);
 
 		return (int) $maximum;
+	}
+
+	/**
+	 * Send a JSON response
+	 *
+	 * @param bool $content The content of the JSON response (true|false)
+	 * @access protected
+	 */
+	protected function send_json_response($content)
+	{
+		if ($this->request->is_ajax())
+		{
+			$json_response = new \phpbb\json_response;
+			$json_response->send(array(
+				'success' => $content,
+			));
+		}
 	}
 }
