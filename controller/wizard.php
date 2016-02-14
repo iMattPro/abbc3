@@ -76,18 +76,13 @@ class wizard
 			switch ($mode)
 			{
 				case 'bbvideo':
-
 					$this->generate_bbvideo_wizard();
-
 					return $this->helper->render('abbc3_bbvideo_wizard.html');
-
-				break;
+				// no break here
 
 				case 'url':
-
 					return $this->helper->render('abbc3_url_wizard.html');
-
-				break;
+				// no break here
 			}
 		}
 
@@ -104,34 +99,22 @@ class wizard
 	{
 		// Construct BBvideo allowed site select options
 		$bbvideo_sites_array = $this->load_json_data('bbvideo.json');
-		foreach ($bbvideo_sites_array as $site => $example)
-		{
-			$this->template->assign_block_vars('bbvideo_sites', array(
-				'VALUE'			=> $example,
-				'LABEL'			=> $site,
-				'S_SELECTED'	=> $site == self::BBVIDEO_DEFAULT,
-			));
-		}
 
 		// Construct BBvideo size preset select options
 		$bbvideo_size_presets_array = array(
-			'560,315',
-			'640,360',
-			'853,480',
-			'1280,720',
+			array('w' => '560', 'h' => '315'),
+			array('w' => '640', 'h' => '360'),
+			array('w' => '853', 'h' => '480'),
+			array('w' => '1280', 'h' => '720'),
 		);
-		foreach ($bbvideo_size_presets_array as $preset)
-		{
-			$this->template->assign_block_vars('bbvideo_sizes', array(
-				'VALUE' => $preset,
-				'LABEL' => str_replace(',', ' ' . $this->user->lang('ABBC3_BBVIDEO_SEPARATOR') . ' ', $preset),
-			));
-		}
 
 		$this->template->assign_vars(array(
+			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites_array,
 			'ABBC3_BBVIDEO_LINK_EX'	=> (isset($bbvideo_sites_array[self::BBVIDEO_DEFAULT])) ? $bbvideo_sites_array[self::BBVIDEO_DEFAULT] : '',
+			'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
 			'ABBC3_BBVIDEO_HEIGHT'	=> ext::BBVIDEO_HEIGHT,
 			'ABBC3_BBVIDEO_WIDTH'	=> ext::BBVIDEO_WIDTH,
+			'ABBC3_BBVIDEO_PRESETS'	=> $bbvideo_size_presets_array,
 		));
 	}
 
