@@ -42,8 +42,6 @@ class acp_base extends \phpbb_database_test_case
 
 	protected function get_acp_manager()
 	{
-		global $phpbb_root_path, $phpEx;
-
-		return new \vse\abbc3\core\acp_manager($this->db, $this->request, $this->user, $phpbb_root_path, $phpEx);
+		return new \vse\abbc3\core\acp_manager($this->db, $this->request, $this->user);
 	}
 }
