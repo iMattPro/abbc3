@@ -83,12 +83,13 @@ class acp_manager
 				$current_order + $this->increment($action),
 			));
 		$this->db->sql_query($sql);
+		$updated = $this->db->sql_affectedrows();
 
 		// Resync bbcode_order
 		$this->resynchronize_bbcode_order();
 
 		// Send a JSON response if this was an AJAX request
-		$this->send_json_response((bool) $this->db->sql_affectedrows());
+		$this->send_json_response($updated);
 	}
 
 	/**
@@ -322,7 +323,7 @@ class acp_manager
 		{
 			$json_response = new \phpbb\json_response;
 			$json_response->send(array(
-				'success' => $content,
+				'success' => (bool) $content,
 			));
 		}
 	}
