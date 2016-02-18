@@ -105,7 +105,7 @@ class wizard
 			array('w' => '560', 'h' => '315'),
 			array('w' => '640', 'h' => '360'),
 			array('w' => '853', 'h' => '480'),
-			array('w' => '1280','h' => '720'),
+			array('w' => '1280', 'h' => '720'),
 		);
 
 		$this->template->assign_vars(array(
