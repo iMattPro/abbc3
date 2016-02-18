@@ -46,13 +46,13 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 
 **Note: Only official release versions validated by the phpBB Extensions Team should be installed on a live forum. Pre-release (beta, dev) versions downloaded from this repository are only to be used for testing on offline/development forums and are not officially supported.**
 
-## Installation
+## Install
 1. [Download the latest validated release](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/).
 2. Unzip the downloaded release and copy it to the `ext` directory of your phpBB board.
 3. Navigate in the ACP to `Customise -> Manage extensions`.
 4. Look for `Advanced BBCode Box` under the Disabled Extensions list and click its `Enable` link.
 
-## Uninstallation
+## Uninstall
 1. Navigate in the ACP to `Customise -> Manage extensions`.
 2. Click the `Disable` link for Advanced BBCode Box.
 3. To permanently uninstall, click `Delete Data`, then delete the `abbc3` folder from `phpBB/ext/vse/`.
