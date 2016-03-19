@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.3 - 2016-03-19
+
+- Fix an issue where BBCodes could break after updating phpBB 3.1.x to 3.2.x
+- Fix move up/down buttons for arranging BBCodes (AJAX wasn't working)
+- Lots of code improvements under the hood
+
 ## 3.1.2 - 2015-12-01
 
 - Includes compatibility with phpBB 3.2.0-a1
