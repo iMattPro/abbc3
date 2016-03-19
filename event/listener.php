@@ -204,6 +204,11 @@ class listener implements EventSubscriberInterface
 	 */
 	public function s9e_allow_custom_bbcodes($event)
 	{
+		if (defined('IN_CRON'))
+		{
+			return; // do no apply bbcode permissions if in a cron job (for 3.1 to 3.2 update reparsing)
+		}
+
 		/** @var $service \phpbb\textformatter\s9e\parser object from the text_formatter.parser service */
 		$service = $event['parser'];
 		$parser = $service->get_parser();
