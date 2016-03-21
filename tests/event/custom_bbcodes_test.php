@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-class event_custom_bbcodes_test extends event_listener_base
+class custom_bbcodes_test extends listener_base
 {
 	/**
 	 * Data set for test_display_custom_bbcodes and test_allow_custom_bbcodes

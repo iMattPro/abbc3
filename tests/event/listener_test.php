@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-class event_listener_test extends event_listener_base
+class listener_test extends listener_base
 {
 	/**
 	 * Test the listener constructor is instantiated

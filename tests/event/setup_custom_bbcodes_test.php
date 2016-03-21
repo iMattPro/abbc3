@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-class event_setup_custom_bbcodes_test extends event_listener_base
+class setup_custom_bbcodes_test extends listener_base
 {
 	/**
 	 * Test the setup_custom_bbcodes event is assigning

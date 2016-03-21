@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-class event_listener_base extends \phpbb_test_case
+class listener_base extends \phpbb_test_case
 {
 	/** @var \vse\abbc3\core\bbcodes_display|\PHPUnit_Framework_MockObject_MockObject */
 	protected $bbcodes;

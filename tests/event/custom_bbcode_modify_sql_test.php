@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-class event_custom_bbcode_modify_sql_test extends event_listener_base
+class custom_bbcode_modify_sql_test extends listener_base
 {
 	/**
 	 * Data set for test_custom_bbcode_modify_sql

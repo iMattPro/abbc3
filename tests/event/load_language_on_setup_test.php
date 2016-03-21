@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-class event_load_language_on_setup_test extends event_listener_base
+class load_language_on_setup_test extends listener_base
 {
 	/**
 	 * Data set for test_load_language_on_setup

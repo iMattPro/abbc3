@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-class event_parse_bbcodes_after_test extends event_listener_base
+class parse_bbcodes_after_test extends listener_base
 {
 	/**
 	 * Data set for test_parse_bbcodes_after
