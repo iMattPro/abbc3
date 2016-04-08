@@ -39,14 +39,9 @@ var bbwizard;
 				'type': 'yqlOgp',
 				'regex': /http:\/\/on.aol.com\/video\/(?:.*)-([0-9]+)/i
 			}, {
-				'site': 'blip.tv',
-				'type': 'oembed',
-				'regex': /https?:\/\/(.*?)blip.tv\/([^[]*)?/i,
-				'embed': '//blip.tv/oembed/?url=$&&format=json'
-			}, {
 				'site': 'break.com',
 				'regex': /http:\/\/(.*?)break.com\/([^[]*)?-([0-9]+)?([^[]*)?/i,
-				'embed': '<iframe scrolling="no" marginheight="0" marginwidth="0" width="{WIDTH}" height="{HEIGHT}" frameborder="0" src="http://www.break.com/embed/$3" allowfullscreen ></iframe>'
+				'embed': '<iframe src="http://www.break.com/embed/$3?embed=1" width="{WIDTH}" height="{HEIGHT}" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0"></iframe>'
 			}, {
 				'site': 'clipfish.de',
 				'type': 'flash',
@@ -62,10 +57,9 @@ var bbwizard;
 				'regex': /http:\/\/.*\.cnbc.com\/[^?]+\?video=(\d+)?([^[]+)?/i,
 				'embed': '<iframe src="http://player.theplatform.com/p/gZWlPC/vcps_inline?byGuid=$1&size={WIDTH}_{HEIGHT}" width="{WIDTH}" height="{HEIGHT}" type="application/x-shockwave-flash" allowFullScreen="true"></iframe>'
 			}, {
-				'site': 'cnettv.cnet.com',
-				'type': 'flash',
-				'regex': /http:\/\/cnettv\.cnet\.com\/[a-z0-9\-]*\/[0-9]{4}-[0-9]_[0-9]{2}-([0-9]{5,9})\.html/i,
-				'embed': ['http://www.cnet.com/av/video/embed/player.swf', 'playerType=embedded&amp;type=id&amp;value=$1']
+				'site': 'cnet.com',
+				'regex': /http:\/\/([\w]+\.)?cnet\.com\/(videos\/)?([^(\.|\/)]*)([^[]*)?/i,
+				'embed': '<iframe src="http://www.cnet.com/videos/share/$3/" width="{WIDTH}" height="{HEIGHT}" frameborder="0" seamless="seamless" allowfullscreen></iframe>'
 			}, {
 				'site': 'colbertnation.com',
 				'regex': /http:\/\/(?:.*?)colbertnation.com\/the-colbert-report-videos\/([0-9]+)\/([^[]*)?/i,
@@ -123,10 +117,6 @@ var bbwizard;
 				'regex': /http:\/\/www.gamespot.com\/videos\/.*\/\d+\-(\d+)\/([^[]*)?/i,
 				'embed': '<iframe src="http://www.gamespot.com/videos/embed/$1/" width="{WIDTH}" height="{HEIGHT}" scrolling="no" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
 			}, {
-				'site': 'godtube.com',
-				'regex': /http:\/\/www.godtube.com\/watch\/\?v=([^[]*)?/i,
-				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" frameborder="0" scrolling="no" src="http://www.godtube.com/embed/watch/$1/?w={WIDTH}&h={HEIGHT}&ap=false&sl=true&title=true&dp=true"></iframe>'
-			}, {
 				'site': 'howcast.com',
 				'type': 'flash',
 				'regex': /http:\/\/(.*?)howcast.com\/videos\/([0-9]+)?-([^[]*)?/i,
@@ -152,6 +142,10 @@ var bbwizard;
 				'site': 'liveleak.com',
 				'regex': /http:\/\/www.liveleak.com\/view\?i=([0-9A-Za-z-_]+)?(&[^\/]+)?/i,
 				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.liveleak.com/ll_embed?f=$1" frameborder="0" allowfullscreen></iframe>'
+			}, {
+				'site': 'maker.tv',
+				'regex': /http:\/\/(.*?)maker.tv\/([^[]*)?video\/([^\/]+)?\/([^[]*)?/i,
+				'embed': '<iframe src="http://makerplayer.com/embed/maker/$3" width="{WIDTH}" height="{HEIGHT}" frameborder="0" allowfullscreen seamless scrolling="no"></iframe>'
 			}, {
 				'site': 'metacafe.com',
 				'regex': /http:\/\/www.metacafe.com\/watch\/([0-9]+)?((\/[^\/]+)\/?)?/i,
@@ -210,10 +204,6 @@ var bbwizard;
 				'regex': /https?:\/\/(?:www\.)?scribd\.com\/(mobile\/documents|doc)\/(.*?)\/([^[]*)?/i,
 				'embed': '<iframe class="scribd_iframe_embed" src="//www.scribd.com/embeds/$2/content?start_page=1&view_mode=scroll" data-auto-height="false" data-aspect-ratio="undefined" scrolling="no" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
 			}, {
-				'site': 'sevenload.com',
-				'regex': /http:\/\/(?:.*?)\.sevenload.com\/(?:.*?)(?:episodes|videos)\/(?:.*)-([^[]*)?/i,
-				'embed': '<iframe src="http://embed.sevenload.com/widgets/singlePlayer/$1/?autoplay=false&env=slcom-ext" style="width:{WIDTH}px;height:{HEIGHT}px;overflow:hidden;border:0 solid #000;" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>'
-			}, {
 				'site': 'slideshare.net',
 				'type': 'oembed',
 				'regex': /https?:\/\/www.slideshare.net\/(.*?)\/([^[]*)?/i,
@@ -261,10 +251,6 @@ var bbwizard;
 				'regex': /http:\/\/(.*?)twitch.tv\/([^[]*)?/i,
 				'embed': '<iframe src="http://www.twitch.tv/$2/embed" frameborder="0" scrolling="no" height="{HEIGHT}" width="{WIDTH}"></iframe>'
 			}, {
-				'site': 'twitvid.com',
-				'regex': /http:\/\/twitvid.com\/([^[]*)?/i,
-				'embed': '<iframe src="http://www.twitvid.com/embed.php?guid=$1&amp;autoplay=0" title="Twitvid video player" width="{WIDTH}" height="{HEIGHT}" frameborder="0"></iframe>'
-			}, {
 				'site': 'ustream.tv',
 				'regex': /http:\/\/(?:www\.)ustream\.tv\/(?:channel\/([0-9]{1,8}))/i,
 				'embed': '<iframe width="{WIDTH}" height="{HEIGHT}" src="http://www.ustream.tv/embed/$1" scrolling="no" frameborder="0" style="border: 0 none transparent;"></iframe>'
@@ -297,10 +283,6 @@ var bbwizard;
 				'site': 'vine.co',
 				'regex': /https:\/\/vine\.co\/v\/([a-zA-Z0-9]{1,13})/i,
 				'embed': '<iframe class="vine-embed" src="https://vine.co/v/$1/embed/simple" width="480" height="480" frameborder="0"></iframe>'
-			}, {
-				'site': 'wat.tv',
-				'type': 'yqlOgp',
-				'regex': /http:\/\/(.*?)wat.tv\/video\/([^[]*)?/i
 			}, {
 				'site': 'screen.yahoo.com',
 				'regex': /http:\/\/screen.yahoo.com\/((([^-]+)?-)*)([0-9]+).html/i,

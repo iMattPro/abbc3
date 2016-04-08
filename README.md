@@ -23,19 +23,18 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 
 * Embed video in your posts with BBvideo, supported video sharing sites:
 
-		5min.com, allocine.fr, on.aol.com, blip.tv, break.com, clipfish.de,
+		5min.com, allocine.fr, on.aol.com, break.com, clipfish.de,
 		clipmoon.com, cnbc.com, cnettv.cnet.com, colbertnation.com,
 		collegehumor.com, comedycentral.com, crackle.com, dailymotion.com,
 		dotsub.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com,
-		g4tv.com, gameprotv.com, gamespot.com, godtube.com,
-		howcast.com, hulu.com, ign.com, instagram.com, kickstarter.com,
-		liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com,
-		myspace.com, myvideo.de, photobucket.com, revision3.com, rutube.ru,
-		sapo.pt, screen.yahoo.com, screenr.com, scribd.com, sevenload.com,
-		slideshare.net, snotr.com, soundcloud.com, spike.com, streetfire.net,
-		ted.com, testtube.com, thedailyshow.cc.com, theonion.com, tudou.com,
-		tu.tv, twitch.tv, twitvid.com, ustream.tv, vbox7.com, veoh.com,
-		vevo.com, viddler.com, videogamer.com, vimeo.com, vine.co, wat.tv,
+		g4tv.com, gameprotv.com, gamespot.com, howcast.com, hulu.com, ign.com,
+		instagram.com, kickstarter.com, liveleak.com, maker.tv, metacafe.com,
+		moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo.de,
+		photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com,
+		screenr.com, scribd.com, slideshare.net, snotr.com, soundcloud.com,
+		spike.com, streetfire.net, ted.com, testtube.com, thedailyshow.cc.com,
+		theonion.com, tudou.com, tu.tv, twitch.tv, ustream.tv, vbox7.com,
+		veoh.com, vevo.com, viddler.com, videogamer.com, vimeo.com, vine.co,
 		youku.com, youtu.be, youtube.com
 
 * Multiple languages are supported. View the pre-installed [localizations](https://github.com/VSEphpbb/abbc3/tree/master/language).
