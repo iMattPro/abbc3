@@ -14,6 +14,6 @@ TRAVIS_PHP_VERSION=$2
 if [ "$DB" == "mysqli" -a "$TRAVIS_PHP_VERSION" == "5.3.3" ]
 then
 	cd phpBB
-	composer require phpbb/epv:dev-master --dev --no-interaction --prefer-source
+	composer require phpbb/epv:dev-master --dev --no-interaction
 	cd ../
 fi
