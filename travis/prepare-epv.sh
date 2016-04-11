@@ -11,7 +11,7 @@ set -x
 DB=$1
 TRAVIS_PHP_VERSION=$2
 
-if [ "$DB" == "mysqli" -a "$TRAVIS_PHP_VERSION" == "5.3.3" ]
+if [ "$DB" == "mysqli" -a "$TRAVIS_PHP_VERSION" == "5.5" ]
 then
 	cd phpBB
 	composer require phpbb/epv:dev-master --dev --no-interaction
