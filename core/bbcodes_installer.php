@@ -137,8 +137,8 @@ class bbcodes_installer extends acp_manager
 	{
 		$sql = 'SELECT bbcode_id
 			FROM ' . BBCODES_TABLE . "
-			WHERE LOWER(bbcode_tag) = '" . strtolower($bbcode_name) . "'
-			OR LOWER(bbcode_tag) = '" . strtolower($bbcode_tag) . "'";
+			WHERE LOWER(bbcode_tag) = '" . $this->db->sql_escape(strtolower($bbcode_name)) . "'
+			OR LOWER(bbcode_tag) = '" . $this->db->sql_escape(strtolower($bbcode_tag)) . "'";
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
