@@ -76,25 +76,17 @@
 
 #abbc3 #abbc3-panel-clipboard
 {
-	max-width: 80px;
-}
-
-#abbc3 #abbc3-panel-history
-{
-	max-width: 68px;
-	margin: 0;
-	padding: 0;
-	border: 0;
+	max-width: 36px;
 }
 
 #abbc3 #abbc3-panel-fonts
 {
-	max-width: 327px;
+	max-width: 263px;
 }
 
 #abbc3 #abbc3-panel-tables
 {
-	max-width: 100px;
+	max-width: 68px;
 }
 
 #abbc3 #abbc3-panel-objects
@@ -325,14 +317,10 @@
 
 #abbc3 #abbc3-paste
 {
-	min-width: 40px;
-	min-height: 68px;
-	line-height: 68px;
-	margin-right: 4px;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
-#abbc3 #abbc3-cut,
+
 #abbc3 #abbc3-copy
 {
 	border-top-left-radius: 0;
@@ -346,7 +334,7 @@
 
 #abbc3 #abbc3-font-size
 {
-	width: 95px;
+	width: 100px;
 }
 
 #message-box
@@ -409,27 +397,6 @@
 	.hidden-md-down {
 		display: none !important;
 	}
-	#abbc3 {
-		width: 100%;
-	}
-	#abbc3 #abbc3-panel-fonts {
-		width: 263px;
-	}
-	#abbc3 #abbc3-font-family {
-		width: 128px;
-	}
-	#abbc3 #abbc3-font-size {
-		width: 90px;
-	}
-	#abbc3 #abbc3-panel-paragraph-types {
-		width: 68px;
-	}
-}
-
-@media (max-width: 878px) {
-	#abbc3 #abbc3-history {
-		display: none !important;
-	}
 }
 
 @media (min-width: 768px) {
@@ -443,14 +410,14 @@
 		display: none !important;
 	}
 	#abbc3 #abbc3-panel-fonts {
-		width: 135px;
+		width: 264px;
+	}
+	#abbc3 #abbc3-panel-paragraph-types {
+		width: 68px;
 	}
 }
 
 @media (max-width: 670px) {
-	#abbc3 #abbc3-history {
-		display: none !important;
-	}
 	#abbc3 #abbc3-custom-tags {
 		display: none !important;
 	}
@@ -467,27 +434,15 @@
 		display: none !important;
 	}
 	#abbc3 #abbc3-panel-fonts {
-		width: 100px;
+		width: 132px;
 	}
-}
-
-@media (max-width: 514px) {
-	#abbc3 #abbc3-panel-history {
-		display: none !important;
+	#abbc3 #abbc3-font-size {
+	    width: 90px;
 	}
 }
 
 @media (max-width: 480px) {
 	#abbc3 #abbc3-panel-paragraph-types {
-		display: none !important;
-	}
-}
-
-@media (max-width: 406px) {
-	#abbc3 #abbc3-panel-tables {
-		width: 68px;
-	}
-	#abbc3 #abbc3-table {
 		display: none !important;
 	}
 }
