@@ -15,6 +15,9 @@ function bbspecial(bbcode, bbcode_id) {
 
 	switch (bbcode) {
 
+		case 'align=':
+			bbfontstyle('[align=center]', '[/align]');
+			break;
 		case 'float=':
 			bbfontstyle('[float=left]', '[/float]');
 			break;
@@ -79,189 +82,6 @@ function bbspecial(bbcode, bbcode_id) {
  */
 document.addEventListener( "DOMContentLoaded", function(){
 
-	/**
-	* SimpleUndo (c) Matthias Jouan 2014
-	* http://mattjmattj.github.io/simple-undo/
-	*
-	* SimpleUndo is a very basic javascript undo/redo stack for managing histories of basically anything.
-	* 
-	* options are: {
-	* 	* `provider` : required. a function to call on `save`, which should provide the current state of the historized object through the given "done" callback
-	* 	* `maxLength` : the maximum number of items in history
-	* 	* `opUpdate` : a function to call to notify of changes in history. Will be called on `save`, `undo`, `redo` and `clear`
-	* }
-	* 
-	*/
-	(function() {
-
-		'use strict';
-
-		var SimpleUndo = function(options) {
-			
-			var settings = options ? options : {};
-			var defaultOptions = {
-				provider: function() {
-					throw new Error("No provider!");
-				},
-				maxLength: 30,
-				onUpdate: function() {}
-			};
-			
-			this.provider = (typeof settings.provider != 'undefined') ? settings.provider : defaultOptions.provider;
-			this.maxLength = (typeof settings.maxLength != 'undefined') ? settings.maxLength : defaultOptions.maxLength;
-			this.onUpdate = (typeof settings.onUpdate != 'undefined') ? settings.onUpdate : defaultOptions.onUpdate;
-			
-			this.initialItem = null;
-			this.clear();
-		};
-
-		function truncate (stack, limit) {
-			while (stack.length > limit) {
-				stack.shift();
-			}
-		}
-
-		SimpleUndo.prototype.initialize = function(initialItem) {
-			this.stack[0] = initialItem;
-			this.initialItem = initialItem;
-		};
-
-
-		SimpleUndo.prototype.clear = function() {
-			this.stack = [this.initialItem];
-			this.position = 0;
-			this.onUpdate();
-		};
-
-		SimpleUndo.prototype.save = function() {
-			this.provider(function(current) {
-				truncate(this.stack, this.maxLength);
-				this.position = Math.min(this.position,this.stack.length - 1);
-				
-				this.stack = this.stack.slice(0, this.position + 1);
-				this.stack.push(current);
-				this.position++;
-				this.onUpdate();
-			}.bind(this));
-		};
-
-		SimpleUndo.prototype.undo = function(callback) {
-			if (this.canUndo()) {
-				var item =  this.stack[--this.position];
-				this.onUpdate();
-				
-				if (callback) {
-					callback(item);
-				}
-			}
-		};
-
-		SimpleUndo.prototype.redo = function(callback) {
-			if (this.canRedo()) {
-				var item = this.stack[++this.position];
-				this.onUpdate();
-				
-				if (callback) {
-					callback(item);
-				}
-			}
-		};
-
-		SimpleUndo.prototype.canUndo = function() {
-			return this.position > 0;
-		};
-
-		SimpleUndo.prototype.canRedo = function() {
-			return this.position < this.count();
-		};
-
-		SimpleUndo.prototype.count = function() {
-			return this.stack.length - 1; // -1 because of initial item
-		};
-
-
-		//exports
-		// node module
-		if (typeof module != 'undefined') {
-			module.exports = SimpleUndo;
-		}
-
-		// browser global
-		if (typeof window != 'undefined') {
-			window.SimpleUndo = SimpleUndo;
-		}
-
-	})();
-	
-	
-	/**
-	* History Edition Feature (SimpleUndo)
-	*
-	**************************************************/
-
-	// Update the states of history buttons
-	function updateHistoryButtons( history )
-	{
-		$( '#abbc3-undo i' ).css( 'opacity', ( history.canUndo() ? '1' : '0.5' ) );
-		$( '#abbc3-redo i' ).css( 'opacity', ( history.canRedo() ? '1' : '0.5' ) );
-	}
-
-	// Update the history contents
-	function updateHistoryContents( contents )
-	{
-		$( '#message' ).val( contents );
-	}
-
-	var history = new SimpleUndo({
-		maxLength: 200,
-		provider: function( done ) {
-			done( $( '#message' ).val() );
-		},
-		onUpdate: function() {
-			//onUpdate is called in constructor, making history undefined
-			if ( !history ) return; 
-			
-			updateHistoryButtons( history );
-		}
-	});
-	
-	// History Events
-	// -----------------
-	
-	// On Click Undo Button
-	$( '#abbc3-undo' ).click(function()
-	{
-		history.undo( updateHistoryContents );
-	});
-	
-	// On Click Redo Button
-	$( '#abbc3-redo' ).click(function()
-	{
-		history.redo( updateHistoryContents );
-	});
-	
-	// We update the history when press any bbcode button 
-	$( '#abbc3 .btn[name]' ).click(function()
-	{
-		// We wait a little time before saving changes to ensure that the message content is the corresponding.
-		setTimeout( function(){ history.save(); }, 500 );
-	});
-	
-	// We update the history when changes are made to the message by typing
-	$( '#message' ).keydown(function( event )
-	{
-		// Only save the changes when the following keys are pressed ( SPACE, ENTER, DEL and BACKSPACE )
-		if ( event.which == 8 || event.which == 13 || event.which == 32 || event.which == 46 )
-		{
-			history.save();
-		}
-	});
-	
-	updateHistoryButtons( history );
-	
-	history.save();
-
-	
 	/**
 	* Clipboard Feature
 	*
@@ -340,37 +160,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 	
 	var clipboard = false;
 	
-	// Cut Button
-	$( '#abbc3-cut' ).click(function()
-	{
-		var my_selection = getSelection();
-
-		if ( my_selection )
-		{
-			clipboard = my_selection.text_selected;
-			
-			var textarea = document.forms[form_name].elements[text_name];
-				
-			textarea.focus();
-			
-			if ( (clientVer >= 4) && is_ie && is_win )
-			{
-				document.selection.createRange().text = '';
-			}
-			else if ( textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0) )
-			{
-				textarea.value = my_selection.text_left +  my_selection.text_right;
-				textarea.selectionEnd = textarea.selectionStart;
-			}
-			
-			// We update history to be taken into consideration the changes
-			history.save();
-		}
-		else {
-			console.log('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
-		}
-	});
-	
 	// Copy Button
 	$( '#abbc3-copy' ).click(function()
 	{
@@ -414,9 +203,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 			{
 				bbfontstyle(clipboard, '');
 			}
-			
-			// We update history to be taken into consideration the changes
-			history.save();
 		}
 		else {
 			console.log('{{ lang('ABBC3_PASTE_ERROR')|e("js") }}');
@@ -446,9 +232,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 					textarea.value = my_selection.text_left + plain_text + my_selection.text_right;
 					textarea.selectionEnd = my_selection.text_left.length + plain_text.length;
 				}
-				
-				// We update history to be taken into consideration the changes
-				history.save();
 			}
 			catch (e) {}
 		}
@@ -489,65 +272,53 @@ document.addEventListener( "DOMContentLoaded", function(){
 </script>
 
 {% set ABBC3_ICONS = ROOT_PATH ~ ABBC3_BBCODE_ICONS %}
+{% set ABBC3_TAG_ALIGN_ID		= 0	%}
 {% set ABBC3_TAG_BBVIDEO_ID		= 0	%}
 {% set ABBC3_TAG_BLUR_ID		= 0	%}
-{% set ABBC3_TAG_CENTER_ID		= 0	%}
 {% set ABBC3_TAG_DIR_ID			= 0	%}
 {% set ABBC3_TAG_DROPSHADOW_ID	= 0	%}
 {% set ABBC3_TAG_FADE_ID		= 0	%}
 {% set ABBC3_TAG_FONT_ID		= 0	%}
 {% set ABBC3_TAG_GLOW_ID		= 0	%}
 {% set ABBC3_TAG_HIGHLIGHT_ID	= 0	%}
-{% set ABBC3_TAG_JUSTIFY_ID		= 0	%}
-{% set ABBC3_TAG_LEFT_ID		= 0	%}
 {% set ABBC3_TAG_MARQ_ID		= 0	%}
 {% set ABBC3_TAG_MOD_ID			= 0	%}
 {% set ABBC3_TAG_NFO_ID			= 0	%}
 {% set ABBC3_TAG_OFFTOPIC_ID	= 0	%}
 {% set ABBC3_TAG_PRE_ID			= 0	%}
-{% set ABBC3_TAG_RIGHT_ID		= 0	%}
 {% set ABBC3_TAG_S_ID			= 0	%}
 {% set ABBC3_TAG_SHADOW_ID		= 0	%}
 {% set ABBC3_TAG_SOUNDCLOUD_ID	= 0	%}
 {% set ABBC3_TAG_SPOIL_ID		= 0	%}
 {% set ABBC3_TAG_SUB_ID			= 0	%}
 {% set ABBC3_TAG_SUP_ID			= 0	%}
-{% set ABBC3_TAG_TABLE_ID		= 0	%}
-{% set ABBC3_TAG_TR_ID			= 0	%}
-{% set ABBC3_TAG_TD_ID			= 0	%}
-{% set ABBC3_TAG_USERS_ID		= 0	%}
+{% set ABBC3_TAG_HIDDEN_ID		= 0	%}
 {% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 {% if loops.custom_tags %}
 	{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
 	{% for custom_tag in loops.custom_tags %}
 		{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
+			{% if custom_tag.BBCODE_TAG == 'align='		%}{% set ABBC3_TAG_ALIGN_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'BBvideo='	%}{% set ABBC3_TAG_BBVIDEO_ID		= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'blur='		%}{% set ABBC3_TAG_BLUR_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'center'		%}{% set ABBC3_TAG_CENTER_ID		= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'dir='		%}{% set ABBC3_TAG_DIR_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'dropshadow=' %}{% set ABBC3_TAG_DROPSHADOW_ID	= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'fade'		%}{% set ABBC3_TAG_FADE_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'font='		%}{% set ABBC3_TAG_FONT_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'glow='		%}{% set ABBC3_TAG_GLOW_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'highlight='	%}{% set ABBC3_TAG_HIGHLIGHT_ID		= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'justify'	%}{% set ABBC3_TAG_JUSTIFY_ID		= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'left'		%}{% set ABBC3_TAG_LEFT_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'marq='		%}{% set ABBC3_TAG_MARQ_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'mod='		%}{% set ABBC3_TAG_MOD_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'nfo'		%}{% set ABBC3_TAG_NFO_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'offtopic'	%}{% set ABBC3_TAG_OFFTOPIC_ID		= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'pre'		%}{% set ABBC3_TAG_PRE_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'right'		%}{% set ABBC3_TAG_RIGHT_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 's'			%}{% set ABBC3_TAG_S_ID				= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'shadow='	%}{% set ABBC3_TAG_SHADOW_ID		= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'soundcloud'	%}{% set ABBC3_TAG_SOUNDCLOUD_ID	= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'spoil'		%}{% set ABBC3_TAG_SPOIL_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'sub'		%}{% set ABBC3_TAG_SUB_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 			{% if custom_tag.BBCODE_TAG == 'sup'		%}{% set ABBC3_TAG_SUP_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'table'		%}{% set ABBC3_TAG_TABLE_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'tr'			%}{% set ABBC3_TAG_TR_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'td'			%}{% set ABBC3_TAG_TD_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'users'		%}{% set ABBC3_TAG_USERS_ID			= custom_tag.BBCODE_ID	%}{% endif %}
+			{% if custom_tag.BBCODE_TAG == 'hidden'		%}{% set ABBC3_TAG_HIDDEN_ID			= custom_tag.BBCODE_ID	%}{% endif %}
 		{% endif %}
 	{% endfor %}
 {% endif %}
@@ -555,7 +326,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 	<!-- Clipboard Panel -->
 	<div id="abbc3-panel-clipboard" class="toolbar-panel hidden-lg-down">
 		<span class="btn btn-default" id="abbc3-paste" accesskey="v" title="{{ lang('ABBC3_PASTE_BBCODE') }}"><i class="fa fa-clipboard"></i></span>
-		<span class="btn btn-default" id="abbc3-cut" accesskey="x" title="{{ lang('ABBC3_CUT_BBCODE') }}"><i class="fa fa-scissors"></i></span>
 		<span class="btn btn-default" id="abbc3-copy" accesskey="c" title="{{ lang('ABBC3_COPY_BBCODE') }}"><i class="fa fa-clone"></i></span>
 	</div>
 	<!-- Fonts Panel -->
@@ -635,36 +405,8 @@ document.addEventListener( "DOMContentLoaded", function(){
 			{% endif %}
 		</div>
 		<div id="abbc3-text-align" class="btn-group">
-			{% if ABBC3_TAG_LEFT_ID %}
-				<span class="btn btn-default" accesskey="e" name="addbbcode{{ ABBC3_TAG_LEFT_ID }}" onclick="bbstyle({{ ABBC3_TAG_LEFT_ID }})" title="{{ lang('ABBC3_LEFT_HELPLINE') }}"><i class="fa fa-align-left"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_CENTER_ID %}
-				<span class="btn btn-default" accesskey="t" name="addbbcode{{ ABBC3_TAG_CENTER_ID }}" onclick="bbstyle({{ ABBC3_TAG_CENTER_ID }})" title="{{ lang('ABBC3_CENTER_HELPLINE') }}"><i class="fa fa-align-center"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_RIGHT_ID %}
-				<span class="btn btn-default" accesskey="r" name="addbbcode{{ ABBC3_TAG_RIGHT_ID }}" onclick="bbstyle({{ ABBC3_TAG_RIGHT_ID }})" title="{{ lang('ABBC3_RIGHT_HELPLINE') }}"><i class="fa fa-align-right"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_JUSTIFY_ID %}
-				<span class="btn btn-default hidden-xs-down" accesskey="j" name="addbbcode{{ ABBC3_TAG_JUSTIFY_ID }}" onclick="bbstyle({{ ABBC3_TAG_JUSTIFY_ID }})" title="{{ lang('ABBC3_JUSTIFY_HELPLINE') }}"><i class="fa fa-align-justify"></i></span>
-			{% endif %}
-		</div>
-	</div>
-	<!-- Table Panel -->
-	<div id="abbc3-panel-tables" class="toolbar-panel">
-		<div id="abbc3-text-list" class="btn-group">
-			<span class="btn btn-default" accesskey="l" name="addbbcode10" onclick="bbstyle(10)" title="{{ lang('BBCODE_L_HELP') }}"><i class="fa fa-list"></i></span>
-			<span class="btn btn-default" accesskey="o" name="addbbcode12" onclick="bbstyle(12)" title="{{ lang('BBCODE_O_HELP') }}"><i class="fa fa-list-ol"></i></span>
-			<span class="btn btn-default" accesskey="y" name="addlistitem" onclick="bbstyle(-1)" title="{{ lang('BBCODE_LISTITEM_HELP') }}"><i class="fa fa-asterisk"></i></span>
-		</div>
-		<div id="abbc3-table" class="btn-group">
-			{% if ABBC3_TAG_TABLE_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_TABLE_ID }}" onclick="bbstyle({{ ABBC3_TAG_TABLE_ID }})" title="{{ lang('ABBC3_TABLE_HELPLINE') }}"><i class="fa fa-table"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_TR_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_TR_ID }}" onclick="bbstyle({{ ABBC3_TAG_TR_ID }})" title="{{ lang('ABBC3_TR_HELPLINE') }}"><i class="fa fa-th-list"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_TD_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_TD_ID }}" onclick="bbstyle({{ ABBC3_TAG_TD_ID }})" title="{{ lang('ABBC3_TD_HELPLINE') }}"><i class="fa fa-th"></i></span>
+			{% if ABBC3_TAG_ALIGN_ID %}
+				<span class="btn btn-default" accesskey="a" name="addbbcode{{ ABBC3_TAG_ALIGN_ID }}" onclick="bbspecial('align=')" title="{{ lang('ABBC3_ALIGN_HELPLINE') }}"><i class="fa fa-align-center"></i></span>
 			{% endif %}
 		</div>
 	</div>
@@ -694,8 +436,8 @@ document.addEventListener( "DOMContentLoaded", function(){
 	<!-- Paragraph Types Panel -->
 	<div id="abbc3-panel-paragraph-types" class="toolbar-panel">
 		<div class="btn-group">
-			{% if ABBC3_TAG_USERS_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_USERS_ID }}" onclick="bbstyle({{ ABBC3_TAG_USERS_ID }})" title="{{ lang('ABBC3_USERS_HELPLINE') }}"><i class="fa fa-users"></i></span>
+			{% if ABBC3_TAG_HIDDEN_ID %}
+				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_HIDDEN_ID }}" onclick="bbstyle({{ ABBC3_TAG_HIDDEN_ID }})" title="{{ lang('ABBC3_HIDDEN_HELPLINE') }}"><i class="fa fa-users"></i></span>
 			{% endif %}
 			{% if ABBC3_TAG_SPOIL_ID %}
 				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_SPOIL_ID }}" onclick="bbstyle({{ ABBC3_TAG_SPOIL_ID }})" title="{{ lang('ABBC3_SPOILER_HELPLINE') }}"><i class="material-icons">visibility_off</i></span>
@@ -777,14 +519,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 		{% endif %}
 			</div>
 		</div>
-	</div>
-	<!-- History Panel -->
-	<div id="abbc3-panel-history" class="toolbar-panel">
-		<div id="abbc3-history" class="btn-group">
-			<span class="btn btn-default hidden-xs-down" id="abbc3-undo" accesskey="z" title="{{ lang('ABBC3_UNDO_BBCODE') }}"><i class="material-icons">undo</i></span>
-			<span class="btn btn-default hidden-xs-down" id="abbc3-redo" accesskey="d" title="{{ lang('ABBC3_REDO_BBCODE') }}"><i class="material-icons">redo</i></span>
-		</div>
-		<span class="btn btn-default" id="abbc3-plain" title="{{ lang('ABBC3_PLAIN_BBCODE') }}"><i class="material-icons">delete_sweep</i></span>
 	</div>
 </div>
 <div id="bbcode_wizard"></div>
