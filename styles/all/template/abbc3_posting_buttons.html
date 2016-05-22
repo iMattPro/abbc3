@@ -324,7 +324,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 {% endif %}
 <div id="abbc3" class="btn-toolbar" role="toolbar">
 	<!-- Clipboard Panel -->
-	<div id="abbc3-panel-clipboard" class="toolbar-panel hidden-lg-down">
+	<div id="abbc3-panel-clipboard" class="toolbar-panel hidden-md-down">
 		<span class="btn btn-default" id="abbc3-paste" accesskey="v" title="{{ lang('ABBC3_PASTE_BBCODE') }}"><i class="fa fa-clipboard"></i></span>
 		<span class="btn btn-default" id="abbc3-copy" accesskey="c" title="{{ lang('ABBC3_COPY_BBCODE') }}"><i class="fa fa-clone"></i></span>
 	</div>
@@ -332,7 +332,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 	<div id="abbc3-panel-fonts" class="toolbar-panel">
 		<div id="abbc3-font-format" class="btn-group">
 			{% if ABBC3_TAG_FONT_ID %}
-			<select id="abbc3-font-family" class="abbc3_select hidden-sm-down" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
+			<select id="abbc3-font-family" class="abbc3_select hidden-xs-down" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
 				<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
 				<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">
 					<option style="font-family: Arial, sans-serif;" value="Arial">Arial</option>
@@ -371,7 +371,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 				</optgroup>
 			</select>
 			{% endif %}
-			<select id="abbc3-font-size" class="abbc3_select hidden-sm-down" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
+			<select id="abbc3-font-size" class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
 				<option style="font-size: 80%;" value="50">{{ lang('FONT_TINY') }}</option>
 				<option style="font-size: 100%;" value="85">{{ lang('FONT_SMALL') }}</option>
 				<option style="font-size: 120%;" value="100" selected="selected">{{ lang('FONT_NORMAL') }}</option>
@@ -385,9 +385,9 @@ document.addEventListener( "DOMContentLoaded", function(){
 		</div>
 
 		<div id="abbc3-font-color" class="btn-group">
-			<span id="abbc3_bbpalette" class="btn btn-default hidden-xs-down" name="abbc3_bbpalette" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}"><i class="material-icons">format_color_text</i></span>
+			<span id="abbc3_bbpalette" class="btn btn-default" name="abbc3_bbpalette" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}"><i class="material-icons">format_color_text</i></span>
 			{% if ABBC3_TAG_HIGHLIGHT_ID %}
-				<span class="btn btn-default hidden-md-down" name="addbbcode{{ ABBC3_TAG_HIGHLIGHT_ID }}" onclick="bbspecial('highlight=')" title="{{ lang('ABBC3_HIGHLIGHT_HELPLINE') }}"><i class="material-icons">format_paint</i></span>
+				<span class="btn btn-default hidden-xs-down" name="addbbcode{{ ABBC3_TAG_HIGHLIGHT_ID }}" onclick="bbspecial('highlight=')" title="{{ lang('ABBC3_HIGHLIGHT_HELPLINE') }}"><i class="material-icons">format_paint</i></span>
 			{% endif %}
 		</div>
 		<div id="abbc3-font-style" class="btn-group">
@@ -395,16 +395,22 @@ document.addEventListener( "DOMContentLoaded", function(){
 			<span class="btn btn-default" accesskey="i" name="addbbcode2" onclick="bbstyle(2)" title="{{ lang('BBCODE_I_HELP') }}"><i class="fa fa-italic"></i></span>
 			<span class="btn btn-default" accesskey="u" name="addbbcode4" onclick="bbstyle(4)" title="{{ lang('BBCODE_U_HELP') }}"><i class="fa fa-underline"></i></span>
 			{% if ABBC3_TAG_S_ID %}
-				<span class="btn btn-default hidden-sm-down" accesskey="s" name="addbbcode{{ ABBC3_TAG_S_ID }}" onclick="bbstyle({{ ABBC3_TAG_S_ID }})" title="{{ lang('ABBC3_STRIKE_HELPLINE') }}"><i class="fa fa-strikethrough"></i></span>
+				<span class="btn btn-default" accesskey="s" name="addbbcode{{ ABBC3_TAG_S_ID }}" onclick="bbstyle({{ ABBC3_TAG_S_ID }})" title="{{ lang('ABBC3_STRIKE_HELPLINE') }}"><i class="fa fa-strikethrough"></i></span>
 			{% endif %}
 			{% if ABBC3_TAG_SUB_ID %}
-				<span class="btn btn-default hidden-md-down" name="addbbcode{{ ABBC3_TAG_SUB_ID }}" onclick="bbstyle({{ ABBC3_TAG_SUB_ID }})" title="{{ lang('ABBC3_SUB_HELPLINE') }}"><i class="fa fa-subscript"></i></span>
+				<span class="btn btn-default hidden-xs-down" name="addbbcode{{ ABBC3_TAG_SUB_ID }}" onclick="bbstyle({{ ABBC3_TAG_SUB_ID }})" title="{{ lang('ABBC3_SUB_HELPLINE') }}"><i class="fa fa-subscript"></i></span>
 			{% endif %}
 			{% if ABBC3_TAG_SUP_ID %}
-				<span class="btn btn-default hidden-md-down" name="addbbcode{{ ABBC3_TAG_SUP_ID }}" onclick="bbstyle({{ ABBC3_TAG_SUP_ID }})" title="{{ lang('ABBC3_SUP_HELPLINE') }}"><i class="fa fa-superscript"></i></span>
+				<span class="btn btn-default hidden-xs-down" name="addbbcode{{ ABBC3_TAG_SUP_ID }}" onclick="bbstyle({{ ABBC3_TAG_SUP_ID }})" title="{{ lang('ABBC3_SUP_HELPLINE') }}"><i class="fa fa-superscript"></i></span>
 			{% endif %}
 		</div>
-		<div id="abbc3-text-align" class="btn-group">
+	</div>
+	<!-- Table Panel -->
+	<div id="abbc3-panel-tables" class="toolbar-panel">
+		<div id="abbc3-text-list" class="btn-group">
+			<span class="btn btn-default" accesskey="l" name="addbbcode10" onclick="bbstyle(10)" title="{{ lang('BBCODE_L_HELP') }}"><i class="fa fa-list"></i></span>
+			<span class="btn btn-default" accesskey="o" name="addbbcode12" onclick="bbstyle(12)" title="{{ lang('BBCODE_O_HELP') }}"><i class="fa fa-list-ol"></i></span>
+			<span class="btn btn-default" accesskey="y" name="addlistitem" onclick="bbstyle(-1)" title="{{ lang('BBCODE_LISTITEM_HELP') }}"><i class="fa fa-asterisk"></i></span>
 			{% if ABBC3_TAG_ALIGN_ID %}
 				<span class="btn btn-default" accesskey="a" name="addbbcode{{ ABBC3_TAG_ALIGN_ID }}" onclick="bbspecial('align=')" title="{{ lang('ABBC3_ALIGN_HELPLINE') }}"><i class="fa fa-align-center"></i></span>
 			{% endif %}
@@ -449,15 +455,15 @@ document.addEventListener( "DOMContentLoaded", function(){
 				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_OFFTOPIC_ID }}" onclick="bbstyle({{ ABBC3_TAG_OFFTOPIC_ID }})" title="{{ lang('ABBC3_OFFTOPIC_HELPLINE') }}"><i class="material-icons">directions</i></span>
 			{% endif %}
 			{% if ABBC3_TAG_NFO_ID %}
-				<span class="btn btn-default hidden-md-down" name="addbbcode{{ ABBC3_TAG_NFO_ID }}" onclick="bbstyle({{ ABBC3_TAG_NFO_ID }})" title="{{ lang('ABBC3_NFO_HELPLINE') }}"><i class="fa fa-info"></i></span>
+				<span class="btn btn-default hidden-sm-down" name="addbbcode{{ ABBC3_TAG_NFO_ID }}" onclick="bbstyle({{ ABBC3_TAG_NFO_ID }})" title="{{ lang('ABBC3_NFO_HELPLINE') }}"><i class="fa fa-info"></i></span>
 			{% endif %}
 			{% if ABBC3_TAG_MARQ_ID %}
-				<span class="btn btn-default hidden-md-down" name="addbbcode{{ ABBC3_TAG_MARQ_ID }}" onclick="bbstyle({{ ABBC3_TAG_MARQ_ID }})" title="{{ lang('ABBC3_MARQUEE_HELPLINE') }}"><i class="material-icons">clear_all</i></span>
+				<span class="btn btn-default hidden-sm-down" name="addbbcode{{ ABBC3_TAG_MARQ_ID }}" onclick="bbstyle({{ ABBC3_TAG_MARQ_ID }})" title="{{ lang('ABBC3_MARQUEE_HELPLINE') }}"><i class="material-icons">clear_all</i></span>
 			{% endif %}
 		</div>
 	</div>
 	<!-- Font Fx Panel -->
-	<div id="abbc3-panel-fonts-fx" class="toolbar-panel hidden-md-down">
+	<div id="abbc3-panel-fonts-fx" class="toolbar-panel hidden-sm-down">
 		<div class="btn-group">
 			{% if ABBC3_TAG_SHADOW_ID %}
 				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_SHADOW_ID }}" onclick="bbspecial('shadow=')" title="{{ lang('ABBC3_SHADOW_HELPLINE') }}"><i class="abbc3-icon abbc3-shadow">A</i></span>
@@ -507,7 +513,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 					{% if custom_tag.BBCODE_TAG == 'spotify'	%}{% set ABBC3_FA_ICON			= 'spotify'						%}{% endif %}
 					{% if custom_tag.BBCODE_TAG == 'wiki'		%}{% set ABBC3_FA_ICON			= 'wikipedia-w'					%}{% endif %}
 					
-					{% if custom_tag.BBCODE_TAG != 'BBvideo=' and custom_tag.BBCODE_TAG != 'blur=' and custom_tag.BBCODE_TAG != 'center' and custom_tag.BBCODE_TAG != 'dir=' and custom_tag.BBCODE_TAG != 'dropshadow=' and custom_tag.BBCODE_TAG != 'fade' and custom_tag.BBCODE_TAG != 'font=' and custom_tag.BBCODE_TAG != 'glow' and custom_tag.BBCODE_TAG != 'glow=' and custom_tag.BBCODE_TAG != 'justify' and custom_tag.BBCODE_TAG != 'highlight' and custom_tag.BBCODE_TAG != 'highlight=' and custom_tag.BBCODE_TAG != 'hidden' and custom_tag.BBCODE_TAG != 'left' and custom_tag.BBCODE_TAG != 'marq='  and custom_tag.BBCODE_TAG != 'mod=' and custom_tag.BBCODE_TAG != 'nfo' and custom_tag.BBCODE_TAG != 'offtopic' and custom_tag.BBCODE_TAG != 'pre' and custom_tag.BBCODE_TAG != 'right' and custom_tag.BBCODE_TAG != 's' and custom_tag.BBCODE_TAG != 'shadow=' and custom_tag.BBCODE_TAG != 'soundcloud' and custom_tag.BBCODE_TAG != 'spoil' and custom_tag.BBCODE_TAG != 'sub'  and custom_tag.BBCODE_TAG != 'sup' and custom_tag.BBCODE_TAG != 'table' and custom_tag.BBCODE_TAG != 'tr' and custom_tag.BBCODE_TAG != 'td' and custom_tag.BBCODE_TAG != 'tt' and custom_tag.BBCODE_TAG != 'users' and custom_tag.BBCODE_TAG != 'youtube' %}
+					{% if custom_tag.BBCODE_TAG != 'align=' and custom_tag.BBCODE_TAG != 'BBvideo=' and custom_tag.BBCODE_TAG != 'blur=' and custom_tag.BBCODE_TAG != 'center' and custom_tag.BBCODE_TAG != 'dir=' and custom_tag.BBCODE_TAG != 'dropshadow=' and custom_tag.BBCODE_TAG != 'fade' and custom_tag.BBCODE_TAG != 'font=' and custom_tag.BBCODE_TAG != 'glow' and custom_tag.BBCODE_TAG != 'glow=' and custom_tag.BBCODE_TAG != 'justify' and custom_tag.BBCODE_TAG != 'highlight' and custom_tag.BBCODE_TAG != 'highlight=' and custom_tag.BBCODE_TAG != 'hidden' and custom_tag.BBCODE_TAG != 'left' and custom_tag.BBCODE_TAG != 'marq='  and custom_tag.BBCODE_TAG != 'mod=' and custom_tag.BBCODE_TAG != 'nfo' and custom_tag.BBCODE_TAG != 'offtopic' and custom_tag.BBCODE_TAG != 'pre' and custom_tag.BBCODE_TAG != 'right' and custom_tag.BBCODE_TAG != 's' and custom_tag.BBCODE_TAG != 'shadow=' and custom_tag.BBCODE_TAG != 'soundcloud' and custom_tag.BBCODE_TAG != 'spoil' and custom_tag.BBCODE_TAG != 'sub'  and custom_tag.BBCODE_TAG != 'sup' and custom_tag.BBCODE_TAG != 'table' and custom_tag.BBCODE_TAG != 'tr' and custom_tag.BBCODE_TAG != 'td' and custom_tag.BBCODE_TAG != 'tt' and custom_tag.BBCODE_TAG != 'users' and custom_tag.BBCODE_TAG != 'youtube' %}
 						<span class="btn btn-default" name="addbbcode{{ custom_tag.BBCODE_ID }}" onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}">
 						{% if ABBC3_MATERIAL_ICON %}<i class="material-icons">{{ ABBC3_MATERIAL_ICON }}</i>{% endif %}
 						{% if ABBC3_FA_ICON %}<i class="fa fa-{{ ABBC3_FA_ICON }}"></i></i>{% endif %}
