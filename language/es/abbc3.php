@@ -35,7 +35,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Fuentes',
+	'ABBC3_FONT_BBCODE'			=> 'Menú de fuentes',
 	'ABBC3_FONT_FANCY'			=> 'Fuentes Fantasía',
 	'ABBC3_FONT_SAFE'			=> 'Fuentes Seguras',
 	'ABBC3_FONT_WIN'			=> 'Fuentes Windows',
@@ -64,6 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Texto subíndice: [sub]texto[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texto superíndice: [sup]texto[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vídeo de YouTube: [youtube]http://youtube_url[/youtube]',
+
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copiar el texto seleccionado',
 	'ABBC3_PASTE_BBCODE'		=> 'Pegar el texto seleccionado',
