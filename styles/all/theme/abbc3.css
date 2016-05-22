@@ -35,6 +35,7 @@
 .spoilbtn:hover { color: #d31141 !important; }
 
 /* [fade] fade text in/out effect */
+.fadeEffect,
 .abbc3_fade {
 	-webkit-animation: fade 2s infinite;
 	-moz-animation: fade 2s infinite;
