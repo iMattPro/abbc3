@@ -98,10 +98,10 @@ class wizard
 	protected function generate_bbvideo_wizard()
 	{
 		// Construct BBvideo allowed site select options
-		$bbvideo_sites_array = $this->load_json_data('bbvideo.json');
+		$bbvideo_sites = $this->load_json_data('bbvideo.json');
 
 		// Construct BBvideo size preset select options
-		$bbvideo_size_presets_array = array(
+		$bbvideo_size_presets = array(
 			array('w' => '560', 'h' => '315'),
 			array('w' => '640', 'h' => '360'),
 			array('w' => '853', 'h' => '480'),
@@ -109,12 +109,12 @@ class wizard
 		);
 
 		$this->template->assign_vars(array(
-			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites_array,
-			'ABBC3_BBVIDEO_LINK_EX'	=> (isset($bbvideo_sites_array[self::BBVIDEO_DEFAULT])) ? $bbvideo_sites_array[self::BBVIDEO_DEFAULT] : '',
+			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites,
+			'ABBC3_BBVIDEO_LINK_EX'	=> (isset($bbvideo_sites[self::BBVIDEO_DEFAULT])) ? $bbvideo_sites[self::BBVIDEO_DEFAULT] : '',
 			'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
 			'ABBC3_BBVIDEO_HEIGHT'	=> ext::BBVIDEO_HEIGHT,
 			'ABBC3_BBVIDEO_WIDTH'	=> ext::BBVIDEO_WIDTH,
-			'ABBC3_BBVIDEO_PRESETS'	=> $bbvideo_size_presets_array,
+			'ABBC3_BBVIDEO_PRESETS'	=> $bbvideo_size_presets,
 		));
 	}
 
