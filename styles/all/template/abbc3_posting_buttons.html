@@ -1,89 +1,162 @@
 <script>
 
-var userAgent = window.navigator.userAgent.toLowerCase();
-var is_mac = /(mac)/.test( userAgent );
-var is_linux = /(linux)/.test( userAgent );
-var is_firefox = /(firefox)/.test( userAgent );
-
-var bbvideoHeight = '{{ ABBC3_BBVIDEO_HEIGHT }}';
-var bbvideoWidth = '{{ ABBC3_BBVIDEO_WIDTH }}';
-
-/**
-* Apply special BBCodes
-*/
-function bbspecial(bbcode, bbcode_id) {
-
-	switch (bbcode) {
-
-		case 'align=':
-			bbfontstyle('[align=center]', '[/align]');
-			break;
-		case 'float=':
-			bbfontstyle('[float=left]', '[/float]');
-			break;
-
-		case 'dir=':
-			bbfontstyle('[dir=rtl]', '[/dir]');
-			break;
-
-		case 'marq=':
-			bbfontstyle('[marq=left]', '[/marq]');
-			break;
-
-		case 'mod=':
-			bbfontstyle('[mod={{ ABBC3_USERNAME|e("js") }}]', '[/mod]');
-			break;
-
-		case 'highlight=':
-			bbfontstyle('[highlight=yellow]', '[/highlight]');
-			break;
-
-		case 'glow=':
-			bbfontstyle('[glow=red]', '[/glow]');
-			break;
-
-		case 'shadow=':
-			bbfontstyle('[shadow=darkblue]', '[/shadow]');
-			break;
-
-		case 'dropshadow=':
-			bbfontstyle('[dropshadow=darkblue]', '[/dropshadow]');
-			break;
-
-		case 'blur=':
-			bbfontstyle('[blur=darkblue]', '[/blur]');
-			break;
-
-		case 'BBvideo=':
-			if (theSelection || phpbb.isTouch) {
-				bbfontstyle('[BBvideo=' + bbvideoWidth + ',' + bbvideoHeight + ']', '[/BBvideo]');
-			} else {
-				bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', 'bbvideo');
-			}
-			break;
-
-		case 'url':
-			if (theSelection || phpbb.isTouch) {
-				bbstyle(16);
-			} else {
-				bbwizard('{{ UA_ABBC3_URL_WIZARD }}', 'url');
-			}
-			break;
-
-		default:
-			bbstyle( bbcode_id );
-			break;
-	}
-}
-
-
 /**
  * DOM READY
  */
 document.addEventListener( "DOMContentLoaded", function(){
 
+
 	/**
-	* Clipboard Feature
+	* SimpleUndo (c) Matthias Jouan 2014
+	* http://mattjmattj.github.io/simple-undo/
+	*
+	* SimpleUndo is a very basic javascript undo/redo stack for managing histories of basically anything.
+	* 
+	* options are: {
+	* 	* `provider` : required. a function to call on `save`, which should provide the current state of the historized object through the given "done" callback
+	* 	* `maxLength` : the maximum number of items in history
+	* 	* `opUpdate` : a function to call to notify of changes in history. Will be called on `save`, `undo`, `redo` and `clear`
+	* }
+	* 
+	*/
+	(function() {
+
+		'use strict';
+
+		var SimpleUndo = function(options) {
+			
+			var settings = options ? options : {};
+			var defaultOptions = {
+				provider: function() {
+					throw new Error("No provider!");
+				},
+				maxLength: 30,
+				onUpdate: function() {}
+			};
+			
+			this.provider = (typeof settings.provider != 'undefined') ? settings.provider : defaultOptions.provider;
+			this.maxLength = (typeof settings.maxLength != 'undefined') ? settings.maxLength : defaultOptions.maxLength;
+			this.onUpdate = (typeof settings.onUpdate != 'undefined') ? settings.onUpdate : defaultOptions.onUpdate;
+			
+			this.initialItem = null;
+			this.clear();
+		};
+
+		function truncate (stack, limit) {
+			while (stack.length > limit) {
+				stack.shift();
+			}
+		}
+
+		SimpleUndo.prototype.initialize = function(initialItem) {
+			this.stack[0] = initialItem;
+			this.initialItem = initialItem;
+		};
+
+
+		SimpleUndo.prototype.clear = function() {
+			this.stack = [this.initialItem];
+			this.position = 0;
+			this.onUpdate();
+		};
+
+		SimpleUndo.prototype.save = function() {
+			this.provider(function(current) {
+				truncate(this.stack, this.maxLength);
+				this.position = Math.min(this.position,this.stack.length - 1);
+				
+				this.stack = this.stack.slice(0, this.position + 1);
+				this.stack.push(current);
+				this.position++;
+				this.onUpdate();
+			}.bind(this));
+		};
+
+		SimpleUndo.prototype.undo = function(callback) {
+			if (this.canUndo()) {
+				var item =  this.stack[--this.position];
+				this.onUpdate();
+				
+				if (callback) {
+					callback(item);
+				}
+			}
+		};
+
+		SimpleUndo.prototype.redo = function(callback) {
+			if (this.canRedo()) {
+				var item = this.stack[++this.position];
+				this.onUpdate();
+				
+				if (callback) {
+					callback(item);
+				}
+			}
+		};
+
+		SimpleUndo.prototype.canUndo = function() {
+			return this.position > 0;
+		};
+
+		SimpleUndo.prototype.canRedo = function() {
+			return this.position < this.count();
+		};
+
+		SimpleUndo.prototype.count = function() {
+			return this.stack.length - 1; // -1 because of initial item
+		};
+
+
+		//exports
+		// node module
+		if (typeof module != 'undefined') {
+			module.exports = SimpleUndo;
+		}
+
+		// browser global
+		if (typeof window != 'undefined') {
+			window.SimpleUndo = SimpleUndo;
+		}
+
+	})();
+	
+	/**
+	* Init History Feature (SimpleUndo)
+	*
+	**************************************************/
+
+	// Update the states of history buttons
+	function updateHistoryButtons( history )
+	{
+		$( '#abbc3-undo i' ).css( 'opacity', ( history.canUndo() ? '1' : '0.5' ) );
+		$( '#abbc3-redo i' ).css( 'opacity', ( history.canRedo() ? '1' : '0.5' ) );
+	}
+
+	// Update the history contents
+	function updateHistoryContents( contents )
+	{
+		$( '#message' ).val( contents );
+	}
+	var history = new SimpleUndo({
+		maxLength: 200,
+		provider: function( done ) {
+			done( $( '#message' ).val() );
+		},
+		onUpdate: function() {
+			//onUpdate is called in constructor, making history undefined
+			if ( !history ) return; 
+			
+			updateHistoryButtons( history );
+		}
+	});
+	
+	updateHistoryButtons( history );
+	
+	history.save();
+	
+	
+	/**
+	* ACCB3 Functions
 	*
 	**************************************************/
 	
@@ -155,19 +228,229 @@ document.addEventListener( "DOMContentLoaded", function(){
 	}
 	
 	/**
-	* Clipboard Events
+	* Apply BBCodes
 	*/
+	function abbc3_bbstyle( bbcode ) {
+	
+		var $selection = getSelection();
+
+		var textarea = document.forms[form_name].elements[text_name];
+			
+		textarea.focus();
+		
+		// Fix incomplete selection
+		if ( $selection && /(\[|\])/.test($selection.text_selected) )
+		{
+			// Fix incomplete left selection
+			if ( ! /^[^\]]*\[[^\]]+\]/.test($selection.text_selected) )
+			{
+				offset_fix = $selection.text_left.length - $selection.text_left.lastIndexOf('[');
+				textarea.selectionStart = textarea.selectionStart - offset_fix;
+				$selection = getSelection();
+			}
+			// Fix incomplete right selection
+			if ( ! /\[[^\]]+\][^\[]*$/.test($selection.text_selected) )
+			{
+				offset_fix = $selection.text_right.indexOf(']');
+				textarea.selectionEnd = textarea.selectionEnd + offset_fix + 1;
+				$selection = getSelection();
+			}
+		}
+		
+		var bbcode_tag = bbcode.replace('=','');
+		var is_outside;
+		
+		if( $selection && ( (is_outside=($selection.text_right.substr( 2, bbcode_tag.length ) == bbcode_tag)) || $selection.text_selected.substr( 1, bbcode_tag.length ) == bbcode_tag ) )
+		{
+			var selection_start = textarea.selectionStart;
+			var selection_end   = textarea.selectionEnd;
+
+			if ( is_outside ) {
+				textarea.selectionStart = textarea.selectionStart - bbcode.length - 3;
+				textarea.selectionEnd = textarea.selectionEnd + bbcode.length + 3;
+			}
+			
+			$selection = getSelection();
+			
+			var plain_text = bbcodeToPlain( $selection.text_selected );
+
+			if ( (clientVer >= 4) && is_ie && is_win )
+			{
+				document.selection.createRange().text = plain_text;
+			}
+			else if ( textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0) )
+			{
+				textarea.value = $selection.text_left + plain_text + $selection.text_right;
+				if ( is_outside ) {
+					textarea.selectionEnd = selection_end - bbcode.length - 2;
+					textarea.selectionStart = textarea.selectionEnd - plain_text.length + 1;
+				} else {
+				}
+			}
+		}
+		else{
+		
+			switch (bbcode) {
+
+				case 'float=':
+					bbfontstyle('[float=left]', '[/float]');
+					break;
+
+				case 'dir=':
+					bbfontstyle('[dir=rtl]', '[/dir]');
+					break;
+
+				case 'marq=':
+					bbfontstyle('[marq=left]', '[/marq]');
+					break;
+
+				case 'mod=':
+					bbfontstyle('[mod={{ ABBC3_USERNAME|e("js") }}]', '[/mod]');
+					break;
+
+				case 'highlight=':
+					bbfontstyle('[highlight=yellow]', '[/highlight]');
+					break;
+
+				case 'glow=':
+					bbfontstyle('[glow=red]', '[/glow]');
+					break;
+
+				case 'shadow=':
+					bbfontstyle('[shadow=darkblue]', '[/shadow]');
+					break;
+
+				case 'dropshadow=':
+					bbfontstyle('[dropshadow=darkblue]', '[/dropshadow]');
+					break;
+
+				case 'blur=':
+					bbfontstyle('[blur=darkblue]', '[/blur]');
+					break;
+
+				case 'BBvideo=':
+					if ($selection || phpbb.isTouch) {
+						bbfontstyle('[BBvideo={{ ABBC3_BBVIDEO_WIDTH }},{{ ABBC3_BBVIDEO_HEIGHT }}]', '[/BBvideo]');
+					} else {
+						bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', 'bbvideo');
+					}
+					break;
+
+				case 'url':
+					if ($selection || phpbb.isTouch) {
+						bbfontstyle( '[url]', '[/url]' );
+					} else {
+						bbwizard('{{ UA_ABBC3_URL_WIZARD }}', 'url');
+					}
+					break;
+				
+				default:
+					if ( /=/.test( bbcode ) ) {
+						bbfontstyle( '[' + bbcode + ']', '[/' + bbcode.replace('=','') + ']' );
+					} else {
+						bbfontstyle( '[' + bbcode + ']', '[/' + bbcode + ']' );
+					}
+					break;
+			}
+		}
+		
+		// We update history 
+		history.save();
+		
+	}
+	
+	/**
+	* Set Event Buttons
+	*
+	**************************************************/
+	$( '#abbc3 .btn[data-bbcode]' ).click(function(){
+		abbc3_bbstyle( $(this).attr( 'data-bbcode' ) );
+	});
+	
+	
+	/**
+	* History Feature - Event Buttons
+	*
+	**************************************************/
+	
+	// On Click Undo Button
+	$( '#abbc3-undo' ).click(function()
+	{
+		history.undo( updateHistoryContents );
+	});
+	
+	// On Click Redo Button
+	$( '#abbc3-redo' ).click(function()
+	{
+		history.redo( updateHistoryContents );
+	});
+	
+	// We update the history when press any bbcode button 
+	$( '#abbc3 .btn[data-bbcode]' ).click(function()
+	{
+		// We wait a little time before saving changes to ensure that the message content is the corresponding.
+		setTimeout( function(){ history.save(); }, 500 );
+	});
+	
+	// We update the history when changes are made to the message by typing
+	$( '#message' ).keydown(function( event )
+	{
+		// Only save the changes when the following keys are pressed ( SPACE, ENTER, DEL and BACKSPACE )
+		if ( event.which == 8 || event.which == 13 || event.which == 32 || event.which == 46 )
+		{
+			history.save();
+		}
+	});
+	
+
+
+	
+	/**
+	* Clipboard Feature - Event Buttons
+	*
+	**************************************************/
 	
 	var clipboard = false;
+	
+	// Cut Button
+	$( '#abbc3-cut' ).click(function()
+	{
+		var $selection = getSelection();
+
+		if ( $selection )
+		{
+			clipboard = $selection.text_selected;
+			
+			var textarea = document.forms[form_name].elements[text_name];
+				
+			textarea.focus();
+			
+			if ( (clientVer >= 4) && is_ie && is_win )
+			{
+				document.selection.createRange().text = '';
+			}
+			else if ( textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0) )
+			{
+				textarea.value = $selection.text_left +  $selection.text_right;
+				textarea.selectionEnd = textarea.selectionStart;
+			}
+			
+			// We update history 
+			history.save();
+		}
+		else {
+			console.log('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
+		}
+	});
 	
 	// Copy Button
 	$( '#abbc3-copy' ).click(function()
 	{
-		var my_selection = getSelection();
+		var $selection = getSelection();
 
-		if ( my_selection )
+		if ( $selection )
 		{
-			clipboard = my_selection.text_selected;
+			clipboard = $selection.text_selected;
 		}
 		else {
 			console.log('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
@@ -180,9 +463,9 @@ document.addEventListener( "DOMContentLoaded", function(){
 		if ( clipboard )
 		{
 			// We will consider the possibility of a selection which will be replaced by the contents of the clipboard
-			var my_selection = getSelection();
+			var $selection = getSelection();
 
-			if ( my_selection )
+			if ( $selection )
 			{
 				var textarea = document.forms[form_name].elements[text_name];
 					
@@ -194,8 +477,8 @@ document.addEventListener( "DOMContentLoaded", function(){
 				}
 				else if ( textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0) )
 				{
-					textarea.value = my_selection.text_left + clipboard + my_selection.text_right;
-					textarea.selectionEnd = my_selection.text_left.length + clipboard.length;
+					textarea.value = $selection.text_left + clipboard + $selection.text_right;
+					textarea.selectionEnd = $selection.text_left.length + clipboard.length;
 				}
 			}
 			// if there is no text selection made, we paste the contents in the current position of the cursor
@@ -203,6 +486,9 @@ document.addEventListener( "DOMContentLoaded", function(){
 			{
 				bbfontstyle(clipboard, '');
 			}
+			
+			// We update history 
+			history.save();
 		}
 		else {
 			console.log('{{ lang('ABBC3_PASTE_ERROR')|e("js") }}');
@@ -212,12 +498,12 @@ document.addEventListener( "DOMContentLoaded", function(){
 	// Plain Button
 	$( '#abbc3-plain' ).click(function()
 	{
-		var my_selection = getSelection();
-		if ( my_selection )
+		var $selection = getSelection();
+		if ( $selection )
 		{
 			try
 			{
-				var plain_text = bbcodeToPlain( my_selection.text_selected );
+				var plain_text = bbcodeToPlain( $selection.text_selected );
 				
 				var textarea = document.forms[form_name].elements[text_name];
 				
@@ -229,9 +515,12 @@ document.addEventListener( "DOMContentLoaded", function(){
 				}
 				else if ( textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0) )
 				{
-					textarea.value = my_selection.text_left + plain_text + my_selection.text_right;
-					textarea.selectionEnd = my_selection.text_left.length + plain_text.length;
+					textarea.value = $selection.text_left + plain_text + $selection.text_right;
+					textarea.selectionEnd = $selection.text_left.length + plain_text.length;
 				}
+				
+				// We update history 
+				history.save();
 			}
 			catch (e) {}
 		}
@@ -242,11 +531,15 @@ document.addEventListener( "DOMContentLoaded", function(){
 
 	
 	/**
-	* Add the legend of the hotkey to the title attribute,
-	* before the colon symbol of the current title content
-	* or at the beginning if not found the colon
-	*/
-	var hotkey = ( is_firefox ) ? 'Shift+Alt+' : 'Alt+';
+	* AccessKey Legends on Title
+	*
+	**************************************************/
+	
+	// Add the legend of the hotkey to the title attribute,
+	// before the colon symbol of the current title content
+	// or at the beginning if not found the colon
+	
+	var hotkey = ( /(firefox)/.test( window.navigator.userAgent.toLowerCase() ) ) ? 'Shift+Alt+' : 'Alt+';
 
 	$('#abbc3 .btn[accesskey]').each(function()
 	{
@@ -256,275 +549,201 @@ document.addEventListener( "DOMContentLoaded", function(){
 	
 	
 	/**
-	* Adjust the size of Uncategorized Panel based on the amount of elements
-	*/
-	function change_uncategorized_size(){
-		var uncat_panel_size = $( '#abbc3-panel-uncategorized .btn:visible' ).size();
-		$( '#abbc3-panel-uncategorized' ).css({
-			'width'	: ( Math.ceil( uncat_panel_size / 2 ) * 34 + 1) +  'px'
+	* Adjust Panels Size
+	*
+	**************************************************/
+	
+	// Adjust the size of Panels based on the amount of elements
+
+	function set_panels_size()
+	{
+		$( '#abbc3 .toolbar-panel[id=abbc3-panel-fonts]' ).each(function(){
+			var $this = $(this);
+			
+			var buttons = $this.find('.btn:visible' );
+			
+			var is_odd = buttons.size() % 2;
+
+			var buttons_width = buttons.size() * buttons.first().outerWidth(true);
+			
+			var font_family = $this.find('#abbc3-font-family:visible');
+
+			var selects_width = font_family.outerWidth(true) + $this.find('#abbc3-font-size:visible').outerWidth(true);
+
+			var width = Math.ceil( ( buttons_width + selects_width ) / 2 ) + ( is_odd ? 0: Math.ceil( buttons.outerWidth() / 2 ) );
+			
+	
+			if ( font_family.length )
+			{
+				font_family.width( (buttons.width() - 2) * ( is_odd ? 4 : 5 ) );
+			}
+			
+			$this.css({
+				'width'	: ( width + 2 ) +  'px'
+			});
+		});
+
+		$( '#abbc3 .toolbar-panel' ).not('[id=abbc3-panel-clipboard], [id=abbc3-panel-history], [id=abbc3-panel-fonts]').each(function(){
+			var $this = $(this);
+			
+			var buttons = $this.find('.btn:visible' );
+			
+			var is_odd = buttons.size() % 2;
+			
+			var width = Math.ceil( buttons.size() * buttons.first().outerWidth(true) / 2 ) + ( is_odd ? Math.ceil( buttons.outerWidth() / 2 ) : 0 );
+			
+			$this.css({
+				'width'	: ( width + 2 )  +  'px'
+			});
 		});
 	}
-	change_uncategorized_size();
-	$( window ).resize( change_uncategorized_size );
+	set_panels_size();
+	setTimeout( set_panels_size, 1000 );
+	$( window ).resize( set_panels_size );
 
 }, false );
 
 </script>
-
+<div id="abbc3_buttons"></div>
+{% spaceless %}
 {% set ABBC3_ICONS = ROOT_PATH ~ ABBC3_BBCODE_ICONS %}
-{% set ABBC3_TAG_ALIGN_ID		= 0	%}
-{% set ABBC3_TAG_BBVIDEO_ID		= 0	%}
-{% set ABBC3_TAG_BLUR_ID		= 0	%}
-{% set ABBC3_TAG_DIR_ID			= 0	%}
-{% set ABBC3_TAG_DROPSHADOW_ID	= 0	%}
-{% set ABBC3_TAG_FADE_ID		= 0	%}
-{% set ABBC3_TAG_FONT_ID		= 0	%}
-{% set ABBC3_TAG_GLOW_ID		= 0	%}
-{% set ABBC3_TAG_HIGHLIGHT_ID	= 0	%}
-{% set ABBC3_TAG_MARQ_ID		= 0	%}
-{% set ABBC3_TAG_MOD_ID			= 0	%}
-{% set ABBC3_TAG_NFO_ID			= 0	%}
-{% set ABBC3_TAG_OFFTOPIC_ID	= 0	%}
-{% set ABBC3_TAG_PRE_ID			= 0	%}
-{% set ABBC3_TAG_S_ID			= 0	%}
-{% set ABBC3_TAG_SHADOW_ID		= 0	%}
-{% set ABBC3_TAG_SOUNDCLOUD_ID	= 0	%}
-{% set ABBC3_TAG_SPOIL_ID		= 0	%}
-{% set ABBC3_TAG_SUB_ID			= 0	%}
-{% set ABBC3_TAG_SUP_ID			= 0	%}
-{% set ABBC3_TAG_HIDDEN_ID		= 0	%}
+{% set ABBC3_PANEL = 1 %}
+{% set ABBC3_GROUP = 1 %}
+
+{% set ABBC3_SET_STYLES = 1 %}
+{% set ABBC3_SET_LISTS = 1 %}
+{% set ABBC3_SET_OBJECTS = 1 %}
+
+<div id="abbc3" class="btn-toolbar" role="toolbar">
+	<!-- Clipboard Panel -->
+	<div id="abbc3-panel-clipboard" class="toolbar-panel">
+		<span class="btn btn-default" id="abbc3-paste" accesskey="v" title="{{ lang('ABBC3_PASTE_BBCODE') }}"><i class="abbc3-icon paste" style="background-image:url('{{ ABBC3_ICONS }}/paste.png');"></i></span>
+		<span class="btn btn-default" id="abbc3-cut" accesskey="x" title="{{ lang('ABBC3_CUT_BBCODE') }}"><i class="abbc3-icon cut" style="background-image:url('{{ ABBC3_ICONS }}/cut.png');"></i></span>
+		<span class="btn btn-default" id="abbc3-copy" accesskey="c" title="{{ lang('ABBC3_COPY_BBCODE') }}"><i class="abbc3-icon copy" style="background-image:url('{{ ABBC3_ICONS }}/copy.png');"></i></span>
+	</div>
+	<!-- Panels -->
+	<div id="abbc3-panel-fonts" class="toolbar-panel">
+		<select id="abbc3-font-family" class="abbc3_select hidden-sm-down" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
+			<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
+			<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">
+				<option style="font-family: Arial, sans-serif;" value="Arial">Arial</option>
+				<option style="font-family: Arial Black, sans-serif;" value="Arial Black">Arial Black</option>
+				<option style="font-family: Comic Sans MS, sans-serif;" value="Comic Sans MS">Comic Sans MS</option>
+				<option style="font-family: Courier New, sans-serif;" value="Courier New">Courier New</option>
+				<option style="font-family: Georgia, sans-serif;" value="Georgia">Georgia</option>
+				<option style="font-family: Impact, sans-serif;" value="Impact">Impact</option>
+				<option style="font-family: Times New Roman, sans-serif;" value="Times New Roman">Times New Roman</option>
+				<option style="font-family: Trebuchet MS, sans-serif;" value="Trebuchet MS">Trebuchet MS</option>
+				<option style="font-family: Verdana, sans-serif;" value="Verdana">Verdana</option>
+			</optgroup>
+			<optgroup label="{{ lang('ABBC3_FONT_FANCY') }}">
+				<option style="font-family: Bradley Hand ITC, sans-serif;" value="Bradley Hand ITC" >Bradley Hand ITC</option>
+				<option style="font-family: Century Gothic, sans-serif;" value="Century Gothic" >Century Gothic</option>
+				<option style="font-family: Curlz MT, sans-serif;" value="Curlz MT">Curlz MT</option>
+				<option style="font-family: cursive, sans-serif;" value="cursive">Cursive</option>
+				<option style="font-family: fantasy, sans-serif;" value="fantasy">Fantasy</option>
+				<option style="font-family: French Script MT, sans-serif;" value="French Script MT">French Script MT</option>
+				<option style="font-family: Garamond, sans-serif;" value="Garamond">Garamond</option>
+				<option style="font-family: Garamond Bold, sans-serif;" value="Garamond Bold">Garamond Bold</option>
+				<option style="font-family: Goudy Stout, sans-serif;" value="Goudy Stout">Goudy Stout</option>
+				<option style="font-family: Helvetica, sans-serif;" value="Helvetica">Helvetica</option>
+				<option style="font-family: monospace, sans-serif;" value="monospace">Monospace</option>
+				<option style="font-family: OCR A Extended, sans-serif;" value="OCR A Extended">OCR A Extended</option>
+				<option style="font-family: Script MT Bold, sans-serif;" value="Script MT Bold">Script MT Bold</option>
+			</optgroup>
+			<optgroup label="{{ lang('ABBC3_FONT_WIN') }}">
+				<option style="font-family: Lucida Console, sans-serif;" value="Lucida Console">Lucida Console</option>
+				<option style="font-family: Lucida Sans Unicode, sans-serif;" value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+				<option style="font-family: Microsoft Sans Serif, sans-serif;" value="Microsoft Sans Serif">Microsoft Sans Serif</option>
+				<option style="font-family: MS Mincho, sans-serif;" value="MS Mincho">MS Mincho</option>
+				<option style="font-family: Palatino Linotype, sans-serif;" value="Palatino Linotype">Palatino Linotype</option>
+				<option style="font-family: Symbol, sans-serif;" value="Symbol">Symbol</option>
+				<option style="font-family: Tahoma, sans-serif;" value="Tahoma">Tahoma</option>
+			</optgroup>
+		</select>
+		<select id="abbc3-font-size" class="abbc3_select hidden-sm-down" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
+			<option style="font-size: 80%;" value="50">{{ lang('FONT_TINY') }}</option>
+			<option style="font-size: 100%;" value="85">{{ lang('FONT_SMALL') }}</option>
+			<option style="font-size: 120%;" value="100" selected="selected">{{ lang('FONT_NORMAL') }}</option>
+			{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 %}
+				<option style="font-size: 170%;" value="150">{{ lang('FONT_LARGE') }}</option>
+				{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 %}
+					<option style="font-size: 220%;" value="200">{{ lang('FONT_HUGE') }}</option>
+				{% endif %}
+			{% endif %}
+		</select>
+		<div class="btn-group">
+			<span id="abbc3_bbpalette" class="btn btn-default" name="abbc3_bbpalette" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}"><i class="abbc3-icon abbc3-fontcolor" style="background-image:url('{{ ABBC3_ICONS }}/fontcolor.png');"></i></span>
 {% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 {% if loops.custom_tags %}
 	{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
 	{% for custom_tag in loops.custom_tags %}
-		{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
-			{% if custom_tag.BBCODE_TAG == 'align='		%}{% set ABBC3_TAG_ALIGN_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'BBvideo='	%}{% set ABBC3_TAG_BBVIDEO_ID		= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'blur='		%}{% set ABBC3_TAG_BLUR_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'dir='		%}{% set ABBC3_TAG_DIR_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'dropshadow=' %}{% set ABBC3_TAG_DROPSHADOW_ID	= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'fade'		%}{% set ABBC3_TAG_FADE_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'font='		%}{% set ABBC3_TAG_FONT_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'glow='		%}{% set ABBC3_TAG_GLOW_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'highlight='	%}{% set ABBC3_TAG_HIGHLIGHT_ID		= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'marq='		%}{% set ABBC3_TAG_MARQ_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'mod='		%}{% set ABBC3_TAG_MOD_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'nfo'		%}{% set ABBC3_TAG_NFO_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'offtopic'	%}{% set ABBC3_TAG_OFFTOPIC_ID		= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'pre'		%}{% set ABBC3_TAG_PRE_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 's'			%}{% set ABBC3_TAG_S_ID				= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'shadow='	%}{% set ABBC3_TAG_SHADOW_ID		= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'soundcloud'	%}{% set ABBC3_TAG_SOUNDCLOUD_ID	= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'spoil'		%}{% set ABBC3_TAG_SPOIL_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'sub'		%}{% set ABBC3_TAG_SUB_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'sup'		%}{% set ABBC3_TAG_SUP_ID			= custom_tag.BBCODE_ID	%}{% endif %}
-			{% if custom_tag.BBCODE_TAG == 'hidden'		%}{% set ABBC3_TAG_HIDDEN_ID			= custom_tag.BBCODE_ID	%}{% endif %}
+		{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED and custom_tag.BBCODE_TAG != 'font=' and 'end' not in custom_tag.BBCODE_TAG|split('-') %}
+		
+			{% set ABBC3_TAG = custom_tag.BBCODE_TAG|lower|replace({'=': ''}) %}
+
+			<span class="btn btn-default" data-bbcode="{{ custom_tag.BBCODE_TAG }}" title="{{ custom_tag.BBCODE_HELPLINE }}"><i class="abbc3-icon abbc3-{{ ABBC3_TAG }}" style="background-image:url('{{ ABBC3_ICONS }}/{{ ABBC3_TAG }}.png');"></i></span>
+
+		{% else %}
+		
+			{% if custom_tag.BBCODE_TAG matches '/panel(_|-)/i' %}
+				{% set ABBC3_PANEL = ABBC3_PANEL + 1 %}
+				{% set ABBC3_GROUP = 1 %}
+					</div>
+				</div>
+				<div id="abbc3-panel-{{ ABBC3_PANEL }}" class="toolbar-panel">
+					<div class="btn-group">
+			{% elseif custom_tag.BBCODE_TAG matches '/group(_|-)/i' %}
+				{% set ABBC3_GROUP = ABBC3_GROUP + 1 %}
+				</div>
+				<div class="btn-group">
+			{% endif %}
+			
+			{% if ABBC3_PANEL == 1 %}
+				{% if ABBC3_GROUP == 2 and ABBC3_SET_STYLES == 1 %}
+					{% set ABBC3_SET_STYLES = 0 %}
+						<span class="btn btn-default" accesskey="b" data-bbcode="b" title="{{ lang('BBCODE_B_HELP') }}"><i class="abbc3-icon abbc3-bold" style="background-image:url('{{ ABBC3_ICONS }}/bold.png');"></i></span>
+						<span class="btn btn-default" accesskey="i" data-bbcode="i" title="{{ lang('BBCODE_I_HELP') }}"><i class="abbc3-icon abbc3-italic" style="background-image:url('{{ ABBC3_ICONS }}/italic.png');"></i></span>
+						<span class="btn btn-default" accesskey="u" data-bbcode="u" title="{{ lang('BBCODE_U_HELP') }}"><i class="abbc3-icon abbc3-underline" style="background-image:url('{{ ABBC3_ICONS }}/underline.png');"></i></span>
+				{% endif %}
+
+			{% elseif ABBC3_PANEL == 2 %}
+				{% if ABBC3_SET_LISTS == 1 %}
+					{% set ABBC3_SET_LISTS = 0 %}
+						<span class="btn btn-default" accesskey="l" data-bbcode="list" title="{{ lang('BBCODE_L_HELP') }}"><i class="abbc3-icon abbc3-listb" style="background-image:url('{{ ABBC3_ICONS }}/listb.png');"></i></span>
+						<span class="btn btn-default" accesskey="o" data-bbcode="list=" title="{{ lang('BBCODE_O_HELP') }}"><i class="abbc3-icon abbc3-listo" style="background-image:url('{{ ABBC3_ICONS }}/listo.png');"></i></span>
+						<span class="btn btn-default" accesskey="y" data-bbcode="*" title="{{ lang('BBCODE_LISTITEM_HELP') }}"><i class="abbc3-icon abbc3-listitem" style="background-image:url('{{ ABBC3_ICONS }}/listi.png');"></i></span>
+				{% endif %}
+				
+			{% elseif ABBC3_PANEL == 3 %}
+				{% if ABBC3_SET_OBJECTS == 1 %}
+					{% set ABBC3_SET_OBJECTS = 0 %}
+						{% if S_LINKS_ALLOWED %}
+							<span class="btn btn-default" accesskey="w" data-bbcode="url" title="{{ lang('BBCODE_W_HELP') }}"><i class="abbc3-icon abbc3-link" style="background-image:url('{{ ABBC3_ICONS }}/url.png');"></i></span>
+						{% endif %}
+						{% if S_BBCODE_IMG %}
+							<span class="btn btn-default" accesskey="p" data-bbcode="img" title="{{ lang('BBCODE_P_HELP') }}"><i class="abbc3-icon abbc3-image" style="background-image:url('{{ ABBC3_ICONS }}/img.png');"></i></span>
+						{% endif %}
+						{% if S_BBCODE_FLASH %}
+							<span class="btn btn-default" accesskey="f" data-bbcode="flash=" title="{{ lang('BBCODE_D_HELP') }}"><i class="abbc3-icon abbc3-flash" style="background-image:url('{{ ABBC3_ICONS }}/flash.png');"></i></span>
+						{% endif %}
+				{% endif %}
+			{% endif %}
+			
 		{% endif %}
+		
 	{% endfor %}
 {% endif %}
-<div id="abbc3" class="btn-toolbar" role="toolbar">
-	<!-- Clipboard Panel -->
-	<div id="abbc3-panel-clipboard" class="toolbar-panel hidden-md-down">
-		<span class="btn btn-default" id="abbc3-paste" accesskey="v" title="{{ lang('ABBC3_PASTE_BBCODE') }}"><i class="fa fa-clipboard"></i></span>
-		<span class="btn btn-default" id="abbc3-copy" accesskey="c" title="{{ lang('ABBC3_COPY_BBCODE') }}"><i class="fa fa-clone"></i></span>
-	</div>
-	<!-- Fonts Panel -->
-	<div id="abbc3-panel-fonts" class="toolbar-panel">
-		<div id="abbc3-font-format" class="btn-group">
-			{% if ABBC3_TAG_FONT_ID %}
-			<select id="abbc3-font-family" class="abbc3_select hidden-xs-down" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
-				<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
-				<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">
-					<option style="font-family: Arial, sans-serif;" value="Arial">Arial</option>
-					<option style="font-family: Arial Black, sans-serif;" value="Arial Black">Arial Black</option>
-					<option style="font-family: Comic Sans MS, sans-serif;" value="Comic Sans MS">Comic Sans MS</option>
-					<option style="font-family: Courier New, sans-serif;" value="Courier New">Courier New</option>
-					<option style="font-family: Georgia, sans-serif;" value="Georgia">Georgia</option>
-					<option style="font-family: Impact, sans-serif;" value="Impact">Impact</option>
-					<option style="font-family: Times New Roman, sans-serif;" value="Times New Roman">Times New Roman</option>
-					<option style="font-family: Trebuchet MS, sans-serif;" value="Trebuchet MS">Trebuchet MS</option>
-					<option style="font-family: Verdana, sans-serif;" value="Verdana">Verdana</option>
-				</optgroup>
-				<optgroup label="{{ lang('ABBC3_FONT_FANCY') }}">
-					<option style="font-family: Bradley Hand ITC, sans-serif;" value="Bradley Hand ITC" >Bradley Hand ITC</option>
-					<option style="font-family: Century Gothic, sans-serif;" value="Century Gothic" >Century Gothic</option>
-					<option style="font-family: Curlz MT, sans-serif;" value="Curlz MT">Curlz MT</option>
-					<option style="font-family: cursive, sans-serif;" value="cursive">Cursive</option>
-					<option style="font-family: fantasy, sans-serif;" value="fantasy">Fantasy</option>
-					<option style="font-family: French Script MT, sans-serif;" value="French Script MT">French Script MT</option>
-					<option style="font-family: Garamond, sans-serif;" value="Garamond">Garamond</option>
-					<option style="font-family: Garamond Bold, sans-serif;" value="Garamond Bold">Garamond Bold</option>
-					<option style="font-family: Goudy Stout, sans-serif;" value="Goudy Stout">Goudy Stout</option>
-					<option style="font-family: Helvetica, sans-serif;" value="Helvetica">Helvetica</option>
-					<option style="font-family: monospace, sans-serif;" value="monospace">Monospace</option>
-					<option style="font-family: OCR A Extended, sans-serif;" value="OCR A Extended">OCR A Extended</option>
-					<option style="font-family: Script MT Bold, sans-serif;" value="Script MT Bold">Script MT Bold</option>
-				</optgroup>
-				<optgroup label="{{ lang('ABBC3_FONT_WIN') }}">
-					<option style="font-family: Lucida Console, sans-serif;" value="Lucida Console">Lucida Console</option>
-					<option style="font-family: Lucida Sans Unicode, sans-serif;" value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-					<option style="font-family: Microsoft Sans Serif, sans-serif;" value="Microsoft Sans Serif">Microsoft Sans Serif</option>
-					<option style="font-family: MS Mincho, sans-serif;" value="MS Mincho">MS Mincho</option>
-					<option style="font-family: Palatino Linotype, sans-serif;" value="Palatino Linotype">Palatino Linotype</option>
-					<option style="font-family: Symbol, sans-serif;" value="Symbol">Symbol</option>
-					<option style="font-family: Tahoma, sans-serif;" value="Tahoma">Tahoma</option>
-				</optgroup>
-			</select>
-			{% endif %}
-			<select id="abbc3-font-size" class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
-				<option style="font-size: 80%;" value="50">{{ lang('FONT_TINY') }}</option>
-				<option style="font-size: 100%;" value="85">{{ lang('FONT_SMALL') }}</option>
-				<option style="font-size: 120%;" value="100" selected="selected">{{ lang('FONT_NORMAL') }}</option>
-				{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 %}
-					<option style="font-size: 170%;" value="150">{{ lang('FONT_LARGE') }}</option>
-					{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 %}
-						<option style="font-size: 220%;" value="200">{{ lang('FONT_HUGE') }}</option>
-					{% endif %}
-				{% endif %}
-			</select>
-		</div>
-
-		<div id="abbc3-font-color" class="btn-group">
-			<span id="abbc3_bbpalette" class="btn btn-default" name="abbc3_bbpalette" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}"><i class="material-icons">format_color_text</i></span>
-			{% if ABBC3_TAG_HIGHLIGHT_ID %}
-				<span class="btn btn-default hidden-xs-down" name="addbbcode{{ ABBC3_TAG_HIGHLIGHT_ID }}" onclick="bbspecial('highlight=')" title="{{ lang('ABBC3_HIGHLIGHT_HELPLINE') }}"><i class="material-icons">format_paint</i></span>
-			{% endif %}
-		</div>
-		<div id="abbc3-font-style" class="btn-group">
-			<span class="btn btn-default" accesskey="b" name="addbbcode0" onclick="bbstyle(0)" title="{{ lang('BBCODE_B_HELP') }}"><i class="fa fa-bold"></i></span>
-			<span class="btn btn-default" accesskey="i" name="addbbcode2" onclick="bbstyle(2)" title="{{ lang('BBCODE_I_HELP') }}"><i class="fa fa-italic"></i></span>
-			<span class="btn btn-default" accesskey="u" name="addbbcode4" onclick="bbstyle(4)" title="{{ lang('BBCODE_U_HELP') }}"><i class="fa fa-underline"></i></span>
-			{% if ABBC3_TAG_S_ID %}
-				<span class="btn btn-default" accesskey="s" name="addbbcode{{ ABBC3_TAG_S_ID }}" onclick="bbstyle({{ ABBC3_TAG_S_ID }})" title="{{ lang('ABBC3_STRIKE_HELPLINE') }}"><i class="fa fa-strikethrough"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_SUB_ID %}
-				<span class="btn btn-default hidden-xs-down" name="addbbcode{{ ABBC3_TAG_SUB_ID }}" onclick="bbstyle({{ ABBC3_TAG_SUB_ID }})" title="{{ lang('ABBC3_SUB_HELPLINE') }}"><i class="fa fa-subscript"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_SUP_ID %}
-				<span class="btn btn-default hidden-xs-down" name="addbbcode{{ ABBC3_TAG_SUP_ID }}" onclick="bbstyle({{ ABBC3_TAG_SUP_ID }})" title="{{ lang('ABBC3_SUP_HELPLINE') }}"><i class="fa fa-superscript"></i></span>
-			{% endif %}
+{% endspaceless %}
 		</div>
 	</div>
-	<!-- Table Panel -->
-	<div id="abbc3-panel-tables" class="toolbar-panel">
-		<div id="abbc3-text-list" class="btn-group">
-			<span class="btn btn-default" accesskey="l" name="addbbcode10" onclick="bbstyle(10)" title="{{ lang('BBCODE_L_HELP') }}"><i class="fa fa-list"></i></span>
-			<span class="btn btn-default" accesskey="o" name="addbbcode12" onclick="bbstyle(12)" title="{{ lang('BBCODE_O_HELP') }}"><i class="fa fa-list-ol"></i></span>
-			<span class="btn btn-default" accesskey="y" name="addlistitem" onclick="bbstyle(-1)" title="{{ lang('BBCODE_LISTITEM_HELP') }}"><i class="fa fa-asterisk"></i></span>
-			{% if ABBC3_TAG_ALIGN_ID %}
-				<span class="btn btn-default" accesskey="a" name="addbbcode{{ ABBC3_TAG_ALIGN_ID }}" onclick="bbspecial('align=')" title="{{ lang('ABBC3_ALIGN_HELPLINE') }}"><i class="fa fa-align-center"></i></span>
-			{% endif %}
+	<!-- History Panel -->
+	<div id="abbc3-panel-history" class="toolbar-panel">
+		<div id="abbc3-history" class="btn-group">
+			<span class="btn btn-default" id="abbc3-undo" accesskey="z" title="{{ lang('ABBC3_UNDO_BBCODE') }}"><i class="abbc3-icon abbc3-undo" style="background-image:url('{{ ABBC3_ICONS }}/undo.png');"></i></span>
+			<span class="btn btn-default" id="abbc3-redo" accesskey="d" title="{{ lang('ABBC3_REDO_BBCODE') }}"><i class="abbc3-icon abbc3-redo" style="background-image:url('{{ ABBC3_ICONS }}/redo.png');"></i></span>
 		</div>
-	</div>
-	<!-- Objects Panel -->
-	<div id="abbc3-panel-objects" class="toolbar-panel">
-		<div id="abbc3-object"  class="btn-group">
-			{% if S_LINKS_ALLOWED %}
-				<span class="btn btn-default" accesskey="w" name="addbbcode16" onclick="bbspecial('url')" title="{{ lang('BBCODE_W_HELP') }}"><i class="fa fa-link"></i></span>
-			{% endif %}
-			{% if S_BBCODE_IMG %}
-				<span class="btn btn-default" accesskey="p" name="addbbcode14" onclick="bbstyle(14)" title="{{ lang('BBCODE_P_HELP') }}"><i class="fa fa-image"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_BBVIDEO_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_BBVIDEO_ID }}" onclick="bbspecial('BBvideo=')" title="{{ lang('ABBC3_BBVIDEO_HELPLINE') }}"><i class="fa fa-youtube-play"></i></span>
-			{% endif %}
-		</div>
-		<div id="abbc3-paragraph" class="btn-group">
-			{% if S_BBCODE_QUOTE %}
-				<span class="btn btn-default" accesskey="q" name="addbbcode6" onclick="bbstyle(6)" title="{{ lang('BBCODE_Q_HELP') }}"><i class="fa fa-quote-left"></i></span>
-			{% endif %}
-			<span class="btn btn-default" name="addbbcode8" onclick="bbstyle(8)" title="{{ lang('BBCODE_C_HELP') }}"><i class="fa fa-code"></i></span>
-			{% if ABBC3_TAG_PRE_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_PRE_ID }}" onclick="bbstyle({{ ABBC3_TAG_PRE_ID }})" title="{{ lang('ABBC3_PREFORMAT_HELPLINE') }}"><i class="fa fa-hashtag"></i></span>
-			{% endif %}
-		</div>
-	</div>
-	<!-- Paragraph Types Panel -->
-	<div id="abbc3-panel-paragraph-types" class="toolbar-panel">
-		<div class="btn-group">
-			{% if ABBC3_TAG_HIDDEN_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_HIDDEN_ID }}" onclick="bbstyle({{ ABBC3_TAG_HIDDEN_ID }})" title="{{ lang('ABBC3_HIDDEN_HELPLINE') }}"><i class="fa fa-users"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_SPOIL_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_SPOIL_ID }}" onclick="bbstyle({{ ABBC3_TAG_SPOIL_ID }})" title="{{ lang('ABBC3_SPOILER_HELPLINE') }}"><i class="material-icons">visibility_off</i></span>
-			{% endif %}
-			{% if ABBC3_TAG_MOD_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_MOD_ID }}" onclick="bbspecial('mod=')" title="{{ lang('ABBC3_MOD_HELPLINE') }}"><i class="fa fa-warning"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_OFFTOPIC_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_OFFTOPIC_ID }}" onclick="bbstyle({{ ABBC3_TAG_OFFTOPIC_ID }})" title="{{ lang('ABBC3_OFFTOPIC_HELPLINE') }}"><i class="material-icons">directions</i></span>
-			{% endif %}
-			{% if ABBC3_TAG_NFO_ID %}
-				<span class="btn btn-default hidden-sm-down" name="addbbcode{{ ABBC3_TAG_NFO_ID }}" onclick="bbstyle({{ ABBC3_TAG_NFO_ID }})" title="{{ lang('ABBC3_NFO_HELPLINE') }}"><i class="fa fa-info"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_MARQ_ID %}
-				<span class="btn btn-default hidden-sm-down" name="addbbcode{{ ABBC3_TAG_MARQ_ID }}" onclick="bbstyle({{ ABBC3_TAG_MARQ_ID }})" title="{{ lang('ABBC3_MARQUEE_HELPLINE') }}"><i class="material-icons">clear_all</i></span>
-			{% endif %}
-		</div>
-	</div>
-	<!-- Font Fx Panel -->
-	<div id="abbc3-panel-fonts-fx" class="toolbar-panel hidden-sm-down">
-		<div class="btn-group">
-			{% if ABBC3_TAG_SHADOW_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_SHADOW_ID }}" onclick="bbspecial('shadow=')" title="{{ lang('ABBC3_SHADOW_HELPLINE') }}"><i class="abbc3-icon abbc3-shadow">A</i></span>
-			{% endif %}
-			{% if ABBC3_TAG_DROPSHADOW_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_DROPSHADOW_ID }}" onclick="bbspecial('dropshadow=')" title="{{ lang('ABBC3_DROPSHADOW_HELPLINE') }}"><i class="abbc3-icon abbc3-dropshadow">A</i></span>
-			{% endif %}
-			{% if ABBC3_TAG_GLOW_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_GLOW_ID }}" onclick="bbspecial('glow=')" title="{{ lang('ABBC3_GLOW_HELPLINE') }}"><i class="abbc3-icon abbc3-glow">A</i></span>
-			{% endif %}
-			{% if ABBC3_TAG_BLUR_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_BLUR_ID }}" onclick="bbspecial('blur=')" title="{{ lang('ABBC3_BLUR_HELPLINE') }}"><i class="abbc3-icon abbc3-blur">A</i></span>
-			{% endif %}
-			{% if ABBC3_TAG_FADE_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_FADE_ID }}" onclick="bbstyle({{ ABBC3_TAG_FADE_ID }})" title="{{ lang('ABBC3_FADE_HELPLINE') }}"><i class="abbc3-icon abbc3-fade">A</i></span>
-			{% endif %}
-			{% if ABBC3_TAG_DIR_ID %}
-				<span class="btn btn-default" name="addbbcode{{ ABBC3_TAG_DIR_ID }}" onclick="bbspecial('dir=')" title="{{ lang('ABBC3_DIR_HELPLINE') }}"><i class="material-icons">format_textdirection_r_to_l</i></span>
-			{% endif %}
-		</div>
-	</div>
-	<!-- Custom Tags Panel -->
-	<div id="abbc3-panel-uncategorized" class="toolbar-panel hidden-xs-down">
-		<div id="abbc3-uncategorized" class="btn-group">
-			{% if S_BBCODE_FLASH %}
-				<span class="btn btn-default" accesskey="f" name="addbbcode18" onclick="bbstyle(18)" title="{{ lang('BBCODE_D_HELP') }}"><i class="fa fa-flash"></i></span>
-			{% endif %}
-			{% if ABBC3_TAG_SOUNDCLOUD_ID %}
-				<span class="btn btn-default" accesskey="f" name="addbbcode{{ ABBC3_TAG_SOUNDCLOUD_ID }}" onclick="bbstyle({{ ABBC3_TAG_SOUNDCLOUD_ID }})" title="{{ lang('ABBC3_SOUNDCLOUD_HELPLINE') }}"><i class="fa fa-soundcloud"></i></span>
-			{% endif %}
-			<div id="abbc3-custom-tags">
-		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
-		{% if loops.custom_tags %}
-			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
-			{% for custom_tag in loops.custom_tags %}
-				{% set ABBC3_MATERIAL_ICON = null %}
-				{% set ABBC3_FA_ICON = null %}
-				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
-					{% if custom_tag.BBCODE_TAG == 'audio'		%}{% set ABBC3_FA_ICON			= 'music'						%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'download'	%}{% set ABBC3_FA_ICON			= 'download'					%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'email'		%}{% set ABBC3_FA_ICON			= 'at'							%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'float='		%}{% set ABBC3_MATERIAL_ICON	= 'layers'						%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'indent'		%}{% set ABBC3_FA_ICON			= 'indent'						%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'lock'		%}{% set ABBC3_FA_ICON			= 'lock'						%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'map'		%}{% set ABBC3_FA_ICON			= 'map-marker'					%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'outdent'	%}{% set ABBC3_FA_ICON			= 'outdent'						%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'spotify'	%}{% set ABBC3_FA_ICON			= 'spotify'						%}{% endif %}
-					{% if custom_tag.BBCODE_TAG == 'wiki'		%}{% set ABBC3_FA_ICON			= 'wikipedia-w'					%}{% endif %}
-					
-					{% if custom_tag.BBCODE_TAG != 'align=' and custom_tag.BBCODE_TAG != 'BBvideo=' and custom_tag.BBCODE_TAG != 'blur=' and custom_tag.BBCODE_TAG != 'center' and custom_tag.BBCODE_TAG != 'dir=' and custom_tag.BBCODE_TAG != 'dropshadow=' and custom_tag.BBCODE_TAG != 'fade' and custom_tag.BBCODE_TAG != 'font=' and custom_tag.BBCODE_TAG != 'glow' and custom_tag.BBCODE_TAG != 'glow=' and custom_tag.BBCODE_TAG != 'justify' and custom_tag.BBCODE_TAG != 'highlight' and custom_tag.BBCODE_TAG != 'highlight=' and custom_tag.BBCODE_TAG != 'hidden' and custom_tag.BBCODE_TAG != 'left' and custom_tag.BBCODE_TAG != 'marq='  and custom_tag.BBCODE_TAG != 'mod=' and custom_tag.BBCODE_TAG != 'nfo' and custom_tag.BBCODE_TAG != 'offtopic' and custom_tag.BBCODE_TAG != 'pre' and custom_tag.BBCODE_TAG != 'right' and custom_tag.BBCODE_TAG != 's' and custom_tag.BBCODE_TAG != 'shadow=' and custom_tag.BBCODE_TAG != 'soundcloud' and custom_tag.BBCODE_TAG != 'spoil' and custom_tag.BBCODE_TAG != 'sub'  and custom_tag.BBCODE_TAG != 'sup' and custom_tag.BBCODE_TAG != 'table' and custom_tag.BBCODE_TAG != 'tr' and custom_tag.BBCODE_TAG != 'td' and custom_tag.BBCODE_TAG != 'tt' and custom_tag.BBCODE_TAG != 'users' and custom_tag.BBCODE_TAG != 'youtube' %}
-						<span class="btn btn-default" name="addbbcode{{ custom_tag.BBCODE_ID }}" onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}">
-						{% if ABBC3_MATERIAL_ICON %}<i class="material-icons">{{ ABBC3_MATERIAL_ICON }}</i>{% endif %}
-						{% if ABBC3_FA_ICON %}<i class="fa fa-{{ ABBC3_FA_ICON }}"></i></i>{% endif %}
-						{% if not ABBC3_MATERIAL_ICON and not ABBC3_FA_ICON %}<span class="abbc3_label">{{ custom_tag.BBCODE_TAG }}</span>{% endif %}</span>
-					{% endif %}
-				{% endif %}
-			{% endfor %}
-			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_append %}
-		{% endif %}
-			</div>
-		</div>
+		<span class="btn btn-default" id="abbc3-plain" title="{{ lang('ABBC3_PLAIN_BBCODE') }}"><i class="abbc3-icon abbc3-plain" style="background-image:url('{{ ABBC3_ICONS }}/plain.png');"></i></span>
 	</div>
 </div>
 <div id="bbcode_wizard"></div>
