@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 	stylish = require('jshint-stylish'),
 	paths = {
 		css: ['styles/all/theme/*.css', '!styles/all/theme/*.min.css'],
-		js: ['styles/all/template/js/*.js', '!styles/all/template/js/*.min.js'],
+		js: ['styles/all/template/js/*.js', '!styles/all/template/js/*.min.js']
 	};
 
 // Lint JS
@@ -22,7 +22,7 @@ gulp.task('jshint', function() {
 				'baseHeight': true,
 				'storeCaret': true,
 				'bbfontstyle': true,
-				'insert_text': true,
+				'insert_text': true
 			}
 		}))
 		.pipe(jshint.reporter(stylish));
