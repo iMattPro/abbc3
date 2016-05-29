@@ -1,6 +1,3 @@
-@import '//fonts.googleapis.com/icon?family=Material+Icons';
-@import '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css';
-
 /* [hidden] hide BBCode */
 .hidebox {
 	position: relative;
@@ -73,41 +70,22 @@
 	margin-right: 5px;
 	-webkit-box-shadow: 2px 0px 2px -3px #000;
 	box-shadow: 2px 0px 2px -3px #000;
+	min-height: 68px;
 }
 
 #abbc3 #abbc3-panel-clipboard
 {
-	max-width: 36px;
+	width: 68px;
+	min-width: 68px;
 }
 
-#abbc3 #abbc3-panel-fonts
+#abbc3 #abbc3-panel-history
 {
-	max-width: 263px;
-}
-
-#abbc3 #abbc3-panel-tables
-{
-	max-width: 68px;
-}
-
-#abbc3 #abbc3-panel-objects
-{
-	max-width: 100px;
-}
-
-#abbc3 #abbc3-panel-paragraph-types
-{
-	max-width: 100px;
-}
-
-#abbc3 #abbc3-panel-fonts-fx
-{
-	max-width: 100px;
-}
-
-#abbc3 #abbc3-panel-uncategorized
-{
-	min-height: auto;
+	width: 62px;
+	min-width: 62px;
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 
 #abbc3 .btn-toolbar .btn-group,
@@ -126,11 +104,10 @@
 #abbc3 .btn-group-vertical
 {
 	position: relative;
-	display: inline-block;
+	display: inline;
 	vertical-align: middle;
 	margin: 0;
-	margin-right: 3px;
-	float: left;
+	float: none;
 }
 
 #abbc3 .btn,
@@ -140,10 +117,10 @@
 	padding: 0;
 	margin: 0;
 	margin-bottom: 4px;
-	min-width: 32px;
-	min-height: 32px;
-	line-height: 30px;
-	font-size: 14px;
+	min-width: 28px;
+	min-height: 29px;
+	line-height: 26px;
+	font-size: 13px;
 	font-weight: 500;
 	text-align: center;
 	white-space: nowrap;
@@ -163,9 +140,9 @@
 
 #abbc3 .abbc3_select
 {
-	padding: 6px 0px 6px 3px;
+	padding: 5px 0px 5px 3px;
 	margin-right: 3px;
-	min-height: 32px;
+	min-height: 29px;
 }
 
 #abbc3 .btn-default,
@@ -195,7 +172,7 @@
 #abbc3 .btn-toolbar .btn-group,
 #abbc3 .btn-toolbar .input-group
 {
-	float: left;
+	float: none;
 }
 
 #abbc3 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
@@ -216,23 +193,28 @@
 	border-bottom-left-radius: 0;
 }
 
-#abbc3 .abbc3_label
+
+#abbc3 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
 {
-	padding: 0 5px;
-	font-size: 10px;
-	font-weight: 600;
-	text-transform: uppercase;
+	margin-left: 1px;
 }
 
+#abbc3 .btn-group > .btn:last-child:not(:first-child)
+{
+	margin-right: 1px;
+}
 
-#abbc3 .abbc3-icon,
-#abbc3 .material-icons
+#abbc3 .abbc3_select + .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
+{
+	margin-left: 0;
+}
+
+#abbc3 .abbc3-icon
 {
 	font-family: 'Trebuchet MS','Arial','Helvetica',sans-serif;
-	font-weight: normal;
 	font-style: normal;
 	letter-spacing: normal;
-	text-transform: none;
+	text-transform: uppercase;
 	display: inline-block;
 	white-space: nowrap;
 	word-wrap: normal;
@@ -240,63 +222,20 @@
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
 
-	font-size: 20px;
+	font-size: 10px;
+	font-weight: 600;
 	color: #555;
 	text-align: center;
 	vertical-align: middle;
-	min-width: 32px;
-	min-height: 32px;
-	line-height: 32px;
+	min-width: 28px;
+	min-height: 28px;
+	line-height: 28px;
+	
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
-#abbc3 .material-icons
-{
-	font-family: 'Material Icons';
-	font-size: 20px;
-}
 
-#abbc3 .fa
-{
-	color: #555;
-	text-align: center;
-	vertical-align: middle;
-}
-
-#abbc3 .abbc3-icon
-{
-	font-weight: 600;	
-}
-
-#abbc3 .abbc3-blur
-{
-	color: rgba(0, 0, 0, 0.15);
-	text-shadow: 0 0 0.2em #333;
-}
-
-#abbc3 .abbc3-fade
-{
-	color: rgba(238, 238, 238, 0.5);
-	text-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5), 0 0 0.2em rgba(255, 255, 255, 0.6), 0 0 0.5em rgba(0, 0, 0, 0.5), 0 0 0.8em rgba(0, 0, 0, 0.5), 0 0 1.2em rgba(0, 0, 0, 0.7);
-}
-
-#abbc3 .abbc3-glow
-{
-	text-shadow: 0 0 2px rgba(0, 0, 0, 0.7), 0 0 0.2em #FFF, 0 0 0.3em #FFF, 0 0 0.4em #FFF, 0 0 0.5em #FFF, 0 0 0.6em #FFF, 0 0 0.6em #FFF, 0 0 0.6em #FFF, 0 0 0.6em #FFF;
-	color: #FFF;
-}
-
-#abbc3 .abbc3-shadow
-{
-	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-}
-
-#abbc3 .abbc3-dropshadow
-{
-	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
-}
-
-#abbc3 .btn:hover .fa,
-#abbc3 .btn:hover .material-icons,
 #abbc3 .btn:hover .abbc3-icon
 {
 	color: #FFF !important;
@@ -318,10 +257,14 @@
 
 #abbc3 #abbc3-paste
 {
+	min-width: 32px;
+	min-height: 62px;
+	line-height: 62px;
+	margin-right: 4px;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
-
+#abbc3 #abbc3-cut,
 #abbc3 #abbc3-copy
 {
 	border-top-left-radius: 0;
@@ -330,12 +273,12 @@
 
 #abbc3 #abbc3-font-family
 {
-	width: 154px;
+	width: 120px;
 }
 
 #abbc3 #abbc3-font-size
 {
-	width: 100px;
+	width: 77px;
 }
 
 #message-box
@@ -388,6 +331,15 @@
 	}
 }
 
+@media (max-width: 1020px) {
+	#abbc3 #abbc3-panel-clipboard,
+	.btn[data-bbcode="sub"],
+	.btn[data-bbcode="sup"]
+	{
+		display: none !important;
+	}
+}
+
 @media (min-width: 992px) {
 	.hidden-lg-up {
 		display: none !important;
@@ -396,6 +348,31 @@
 
 @media (max-width: 991px) {
 	.hidden-md-down {
+		display: none !important;
+	}
+}
+
+@media (max-width: 920px) {
+	.btn[data-bbcode="s"],
+	.btn[data-bbcode="highlight="]
+	{
+		display: none !important;
+	}
+}
+
+@media (max-width: 878px) {
+	#abbc3 #abbc3-redo {
+		display: none !important;
+	}
+	#abbc3 #abbc3-panel-history {
+	    width: 32px;
+		min-width: 32px;
+	}
+}
+
+@media (max-width: 835px) {
+	#abbc3 #abbc3-font-family
+	{
 		display: none !important;
 	}
 }
@@ -410,16 +387,38 @@
 	.hidden-sm-down {
 		display: none !important;
 	}
-	#abbc3 #abbc3-panel-fonts {
-		width: 264px;
-	}
-	#abbc3 #abbc3-panel-paragraph-types {
-		width: 68px;
+}
+
+@media (max-width: 740px) {
+	.btn[data-bbcode="dir="],
+	.btn[data-bbcode="float="]
+	{
+		display: none !important;
 	}
 }
 
-@media (max-width: 670px) {
-	#abbc3 #abbc3-custom-tags {
+@media (max-width: 700px) {
+	.btn[data-bbcode="glow="],
+	.btn[data-bbcode="shadow="],
+	.btn[data-bbcode="dropshadow="],
+	.btn[data-bbcode="blur="],
+	.btn[data-bbcode="fade"]
+	{
+		display: none !important;
+	}
+}
+
+@media (max-width: 610px) {
+	.btn[data-bbcode="marq="],
+	.btn[data-bbcode="offtopic"]
+	{
+		display: none !important;
+	}
+}
+
+@media (max-width: 580px) {
+	#abbc3 #abbc3_bbpalette
+	{
 		display: none !important;
 	}
 }
@@ -434,22 +433,24 @@
 	.hidden-xs-down {
 		display: none !important;
 	}
-	#abbc3 #abbc3-panel-fonts {
-		width: 132px;
-	}
-	#abbc3 #abbc3-font-size {
-	    width: 90px;
-	}
-}
-
-@media (max-width: 480px) {
-	#abbc3 #abbc3-panel-paragraph-types {
+	.btn[data-bbcode="flash="],
+	.btn[data-bbcode="nfo"],
+	.btn[data-bbcode="mod="]
+	{
 		display: none !important;
 	}
 }
 
-@media (max-width: 375px) {
-	#abbc3 #abbc3-panel-tables {
+@media (max-width: 514px) {
+	#abbc3 #abbc3-panel-history {
+		display: none !important;
+	}
+}
+
+@media (max-width: 500px) {
+	.btn[data-bbcode="soundcloud"],
+	.btn[data-bbcode="justify"]
+	{
 		display: none !important;
 	}
 }
