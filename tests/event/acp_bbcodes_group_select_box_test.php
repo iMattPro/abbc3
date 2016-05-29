@@ -21,14 +21,14 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 	{
 		return array(
 			array(
-				0, 'add', false, '$group_opts',
+				0, 'add', array(), '$group_opts',
 				array(),
 				array(
 					'S_GROUP_OPTIONS'	=> '$group_opts',
 				),
 			),
 			array(
-				0, 'add', false, '$group_opts',
+				0, 'add', array(), '$group_opts',
 				array(
 					'FOO'				=> 'BAR',
 				),
