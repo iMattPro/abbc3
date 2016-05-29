@@ -204,11 +204,11 @@ class acp_manager
 	/**
 	 * Generate a select box containing user groups
 	 *
-	 * @param mixed $select_id The user groups to mark as selected
+	 * @param array $select_id The user groups to mark as selected
 	 * @return string HTML markup of user groups select box for the form
 	 * @access public
 	 */
-	public function bbcode_group_select_options($select_id = false)
+	public function bbcode_group_select_options($select_id = array())
 	{
 		// Get all groups except bots
 		$sql = 'SELECT group_id, group_name, group_type
@@ -220,7 +220,7 @@ class acp_manager
 		$group_options = '';
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$selected = (is_array($select_id)) ? ((in_array($row['group_id'], $select_id)) ? ' selected="selected"' : '') : (($row['group_id'] == $select_id) ? ' selected="selected"' : '');
+			$selected = (in_array($row['group_id'], $select_id)) ? ' selected="selected"' : '';
 			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . (($row['group_type'] == GROUP_SPECIAL) ? $this->user->lang('G_' . $row['group_name']) : $row['group_name']) . '</option>';
 		}
 		$this->db->sql_freeresult($result);

@@ -84,7 +84,7 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function acp_bbcodes_group_select_box($event)
 	{
-		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : false;
+		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : array();
 
 		$tpl_ary = $event['tpl_ary'];
 		$tpl_ary['S_GROUP_OPTIONS'] = $this->acp_manager->bbcode_group_select_options($bbcode_group);

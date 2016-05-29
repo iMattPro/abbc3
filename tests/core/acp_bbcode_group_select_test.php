@@ -37,6 +37,15 @@ class acp_bbcode_group_select_test extends acp_base
 
 		return array(
 			array(
+				array(),
+				'<option value="5">' . $this->user->lang('G_ADMINISTRATORS') .
+				'</option><option value="4">' . $this->user->lang('G_GLOBAL_MODERATORS') .
+				'</option><option value="1">' . $this->user->lang('G_GUESTS') .
+				'</option><option value="2">' . $this->user->lang('G_REGISTERED') .
+				'</option><option value="3">' . $this->user->lang('G_REGISTERED_COPPA') .
+				'</option>'
+			),
+			array(
 				array(''),
 				'<option value="5">' . $this->user->lang('G_ADMINISTRATORS') .
 				'</option><option value="4">' . $this->user->lang('G_GLOBAL_MODERATORS') .
