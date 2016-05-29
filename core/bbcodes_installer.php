@@ -66,11 +66,10 @@ class bbcodes_installer extends acp_manager
 			if ($bbcode = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag']))
 			{
 				$this->update_bbcode($bbcode, $bbcode_data);
+				continue;
 			}
-			else
-			{
-				$this->add_bbcode($bbcode_data);
-			}
+
+			$this->add_bbcode($bbcode_data);
 		}
 
 		$this->resynchronize_bbcode_order();

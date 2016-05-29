@@ -134,19 +134,17 @@ class wizard
 		{
 			throw new \phpbb\exception\runtime_exception('FILE_NOT_FOUND', array($json_file));
 		}
-		else
+
+		if (!($file_contents = file_get_contents($json_file)))
 		{
-			if (!($file_contents = file_get_contents($json_file)))
-			{
-				throw new \phpbb\exception\runtime_exception('FILE_CONTENT_ERR', array($json_file));
-			}
-
-			if (($json_data = json_decode($file_contents, true)) === null)
-			{
-				throw new \phpbb\exception\runtime_exception('FILE_JSON_DECODE_ERR', array($json_file));
-			}
-
-			return $json_data;
+			throw new \phpbb\exception\runtime_exception('FILE_CONTENT_ERR', array($json_file));
 		}
+
+		if (($json_data = json_decode($file_contents, true)) === null)
+		{
+			throw new \phpbb\exception\runtime_exception('FILE_JSON_DECODE_ERR', array($json_file));
+		}
+
+		return $json_data;
 	}
 }
