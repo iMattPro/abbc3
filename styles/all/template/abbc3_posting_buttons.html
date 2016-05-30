@@ -601,7 +601,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 {% set ABBC3_SET_STYLES = 1 %}
 {% set ABBC3_SET_LISTS = 1 %}
 {% set ABBC3_SET_OBJECTS = 1 %}
-{% set ABBC3_SET_QUOTE = 1 %}
+{% set ABBC3_SET_FORMATS = 1 %}
 
 <div id="abbc3" class="btn-toolbar" role="toolbar">
 	<!-- Clipboard Panel -->
@@ -717,11 +717,12 @@ document.addEventListener( "DOMContentLoaded", function(){
 							<span class="btn btn-default" accesskey="f" data-bbcode="flash=" title="{{ lang('BBCODE_D_HELP') }}"><i class="abbc3-icon abbc3-flash" style="background-image:url('{{ ABBC3_ICONS }}/flash.png');"></i></span>
 						{% endif %}
 				{% endif %}
-				{% if ABBC3_GROUP == 2 and ABBC3_SET_QUOTE == 1 %}
-					{% set ABBC3_SET_QUOTE = 0 %}
+				{% if ABBC3_GROUP == 2 and ABBC3_SET_FORMATS == 1 %}
+					{% set ABBC3_SET_FORMATS = 0 %}
 						{% if S_BBCODE_QUOTE %}
 							<span class="btn btn-default" accesskey="q" data-bbcode="quote" title="{{ lang('BBCODE_Q_HELP') }}"><i class="abbc3-icon abbc3-quote" style="background-image:url('{{ ABBC3_ICONS }}/quote.png');"></i></span>
 						{% endif %}
+						<span class="btn btn-default" accesskey="c" data-bbcode="code" title="{{ lang('BBCODE_C_HELP') }}"><i class="abbc3-icon abbc3-code" style="background-image:url('{{ ABBC3_ICONS }}/code.png');"></i></span>
 				{% endif %}
 			{% endif %}
 			
