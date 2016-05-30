@@ -438,9 +438,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 			// We update history 
 			history.save();
 		}
-		else {
-			console.log('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
-		}
 	});
 	
 	// Copy Button
@@ -451,9 +448,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 		if ( $selection )
 		{
 			clipboard = $selection.text_selected;
-		}
-		else {
-			console.log('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
 		}
 	});
 	
@@ -490,9 +484,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 			// We update history 
 			history.save();
 		}
-		else {
-			console.log('{{ lang('ABBC3_PASTE_ERROR')|e("js") }}');
-		}
 	});
 	
 	// Plain Button
@@ -523,9 +514,6 @@ document.addEventListener( "DOMContentLoaded", function(){
 				history.save();
 			}
 			catch (e) {}
-		}
-		else {
-			console.log('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
 		}
 	});
 
@@ -562,24 +550,24 @@ document.addEventListener( "DOMContentLoaded", function(){
 			
 			var buttons = $this.find('.btn:visible' );
 			
-			var is_odd = buttons.size() % 2;
-
 			var buttons_width = buttons.size() * buttons.first().outerWidth(true);
 			
 			var font_family = $this.find('#abbc3-font-family:visible');
-
-			var selects_width = font_family.outerWidth(true) + $this.find('#abbc3-font-size:visible').outerWidth(true);
-
-			var width = Math.ceil( ( buttons_width + selects_width ) / 2 ) + ( is_odd ? 0: Math.ceil( buttons.outerWidth() / 2 ) );
+			var font_size = $this.find('#abbc3-font-size:visible');
 			
-	
+			var is_odd = ( buttons.size() + (font_family.length ? 4 : 0) + (font_size.length ? 3 : 0) ) % 2;
+
+			var selects_width = (font_family.length ? buttons.outerWidth() * 4 : 0) + (font_size.length ? buttons.outerWidth() * 3 : 0);
+			
+			var width = Math.ceil( ( buttons_width + selects_width + ( is_odd ? buttons.outerWidth() : 0 ) ) / 2 );
+			
 			if ( font_family.length )
 			{
-				font_family.width( (buttons.width() - 2) * ( is_odd ? 4 : 5 ) );
+				font_family.width( (buttons.outerWidth() - 1) * ( is_odd ? 5 : 4 ) );
 			}
 			
 			$this.css({
-				'width'	: ( width + 2 ) +  'px'
+				'width'	: ( width + 5 ) +  'px'
 			});
 		});
 
@@ -590,7 +578,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 			
 			var is_odd = buttons.size() % 2;
 			
-			var width = Math.ceil( buttons.size() * buttons.first().outerWidth(true) / 2 ) + ( is_odd ? Math.ceil( buttons.outerWidth() / 2 ) : 0 );
+			var width = Math.ceil( (( buttons.size() * buttons.first().outerWidth(true) ) + ( is_odd ? buttons.outerWidth() : 0 )) / 2 );
 			
 			$this.css({
 				'width'	: ( width + 2 )  +  'px'
@@ -613,6 +601,7 @@ document.addEventListener( "DOMContentLoaded", function(){
 {% set ABBC3_SET_STYLES = 1 %}
 {% set ABBC3_SET_LISTS = 1 %}
 {% set ABBC3_SET_OBJECTS = 1 %}
+{% set ABBC3_SET_QUOTE = 1 %}
 
 <div id="abbc3" class="btn-toolbar" role="toolbar">
 	<!-- Clipboard Panel -->
@@ -726,6 +715,12 @@ document.addEventListener( "DOMContentLoaded", function(){
 						{% endif %}
 						{% if S_BBCODE_FLASH %}
 							<span class="btn btn-default" accesskey="f" data-bbcode="flash=" title="{{ lang('BBCODE_D_HELP') }}"><i class="abbc3-icon abbc3-flash" style="background-image:url('{{ ABBC3_ICONS }}/flash.png');"></i></span>
+						{% endif %}
+				{% endif %}
+				{% if ABBC3_GROUP == 2 and ABBC3_SET_QUOTE == 1 %}
+					{% set ABBC3_SET_QUOTE = 0 %}
+						{% if S_BBCODE_QUOTE %}
+							<span class="btn btn-default" accesskey="q" data-bbcode="quote" title="{{ lang('BBCODE_Q_HELP') }}"><i class="abbc3-icon abbc3-quote" style="background-image:url('{{ ABBC3_ICONS }}/quote.png');"></i></span>
 						{% endif %}
 				{% endif %}
 			{% endif %}
