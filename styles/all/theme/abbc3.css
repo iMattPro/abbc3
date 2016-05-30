@@ -278,7 +278,7 @@
 
 #abbc3 #abbc3-font-size
 {
-	width: 77px;
+	width: 82px;
 }
 
 #message-box
@@ -353,8 +353,8 @@
 }
 
 @media (max-width: 920px) {
-	.btn[data-bbcode="s"],
-	.btn[data-bbcode="highlight="]
+	.btn[data-bbcode="highlight="],
+	.btn[data-bbcode="s"]
 	{
 		display: none !important;
 	}
@@ -398,11 +398,11 @@
 }
 
 @media (max-width: 700px) {
-	.btn[data-bbcode="glow="],
-	.btn[data-bbcode="shadow="],
-	.btn[data-bbcode="dropshadow="],
 	.btn[data-bbcode="blur="],
-	.btn[data-bbcode="fade"]
+	.btn[data-bbcode="dropshadow="],
+	.btn[data-bbcode="fade"],
+	.btn[data-bbcode="glow="],
+	.btn[data-bbcode="shadow="]
 	{
 		display: none !important;
 	}
@@ -417,6 +417,7 @@
 }
 
 @media (max-width: 580px) {
+	.btn[data-bbcode="justify"],
 	#abbc3 #abbc3_bbpalette
 	{
 		display: none !important;
@@ -434,22 +435,18 @@
 		display: none !important;
 	}
 	.btn[data-bbcode="flash="],
-	.btn[data-bbcode="nfo"],
-	.btn[data-bbcode="mod="]
+	.btn[data-bbcode="mod="],
+	.btn[data-bbcode="nfo"]
 	{
 		display: none !important;
 	}
 }
 
-@media (max-width: 514px) {
-	#abbc3 #abbc3-panel-history {
-		display: none !important;
-	}
-}
-
 @media (max-width: 500px) {
+	.btn[data-bbcode="pre"],
 	.btn[data-bbcode="soundcloud"],
-	.btn[data-bbcode="justify"]
+	.btn[data-bbcode="spoil"],
+	.btn[data-bbcode="users"]
 	{
 		display: none !important;
 	}
