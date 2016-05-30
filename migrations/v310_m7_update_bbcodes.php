@@ -172,18 +172,11 @@ class v310_m7_update_bbcodes extends \vse\abbc3\migrations_bbcode_base
 			'bbcode_order'		=> '311',
 		),
 		/* Update order */
-		'dir=ltr' => array(
-			'bbcode_helpline'	=> 'ABBC3_DIR_HELPLINE',
-			'bbcode_match'		=> '[dir={IDENTIFIER}]{TEXT}[/dir]',
-			'bbcode_tpl'		=> '<bdo dir="{IDENTIFIER}">{TEXT}</bdo>',
-			'bbcode_order'		=> '312',
-		),
-		/* Update order */
 		'float=' => array(
 			'bbcode_helpline'	=> 'ABBC3_FLOAT_HELPLINE',
 			'bbcode_match'		=> '[float={IDENTIFIER}]{TEXT}[/float]',
 			'bbcode_tpl'		=> '<div style="float:{IDENTIFIER}; padding:0 10px;">{TEXT}</div>',
-			'bbcode_order'		=> '313',
+			'bbcode_order'		=> '312',
 		),
 		/* PANEL separator */
 		'--end-panel-3--' => array(
@@ -267,10 +260,12 @@ class v310_m7_update_bbcodes extends \vse\abbc3\migrations_bbcode_base
 			'bbcode_tpl'		=> '<span class="abbc3_fade">{TEXT}</span>',
 			'bbcode_order'		=> '411',
 		),
-		/* PANEL Separator */
-		'--end-panel-4--' => array(
-			'bbcode_match'		=> '[--end-panel-4--][/--end-panel-4--]',
-			'bbcode_order'		=> '500',
+		/* Update order */
+		'dir=ltr' => array(
+			'bbcode_helpline'	=> 'ABBC3_DIR_HELPLINE',
+			'bbcode_match'		=> '[dir={IDENTIFIER}]{TEXT}[/dir]',
+			'bbcode_tpl'		=> '<bdo dir="{IDENTIFIER}">{TEXT}</bdo>',
+			'bbcode_order'		=> '412',
 		),
 		/* Update order (BBcode deprecated. Replaced by BBvideo) */
 		'youtube' => array(
