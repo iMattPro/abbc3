@@ -230,7 +230,7 @@ class acp_manager
 
 	/**
 	 * Resynchronize the Custom BBCodes order field
-	 * (Based on Custom BBCode Sorting MOD by RMcGirr83)
+	 * (Originally based on Custom BBCode Sorting MOD by RMcGirr83)
 	 *
 	 * @return null
 	 * @access public
@@ -239,26 +239,18 @@ class acp_manager
 	{
 		$this->db->sql_transaction('begin');
 
-		// By default, check that order is valid and fix it if necessary
 		$sql = 'SELECT bbcode_id, bbcode_order
 			FROM ' . BBCODES_TABLE . '
 			ORDER BY bbcode_order, bbcode_id';
 		$result = $this->db->sql_query($sql);
 
-		if ($row = $this->db->sql_fetchrow($result))
+		$order = 0;
+		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$order = 0;
-			do
+			if (++$order != $row['bbcode_order'])
 			{
-				// pre-increment $order
-				++$order;
-
-				if ($row['bbcode_order'] != $order)
-				{
-					$this->db->sql_query($this->update_bbcode_order($row['bbcode_id'], $order));
-				}
+				$this->db->sql_query($this->update_bbcode_order($row['bbcode_id'], $order));
 			}
-			while ($row = $this->db->sql_fetchrow($result));
 		}
 		$this->db->sql_freeresult($result);
 
