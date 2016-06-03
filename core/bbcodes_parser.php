@@ -103,10 +103,6 @@ class bbcodes_parser
 			);
 		}
 
-		return str_replace(
-			array('{HIDDEN_TITLE}', '{HIDDEN_CONTENT}', '{HIDDEN_CLASS}'),
-			$replacements,
-			'<div class="hidebox {HIDDEN_CLASS}"><div class="hidebox_title {HIDDEN_CLASS}">{HIDDEN_TITLE}</div><div class="{HIDDEN_CLASS}">{HIDDEN_CONTENT}</div></div>'
-		);
+		return vsprintf('<div class="hidebox %3$s"><div class="hidebox_title %3$s">%1$s</div><div class="%3$s">%2$s</div></div>', $replacements);
 	}
 }
