@@ -220,8 +220,8 @@ class acp_manager
 		$group_options = '';
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$selected = (in_array($row['group_id'], $select_id)) ? ' selected="selected"' : '';
-			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . (($row['group_type'] == GROUP_SPECIAL) ? $this->user->lang('G_' . $row['group_name']) : $row['group_name']) . '</option>';
+			$selected = in_array($row['group_id'], $select_id) ? ' selected="selected"' : '';
+			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . ($row['group_type'] == GROUP_SPECIAL ? $this->user->lang('G_' . $row['group_name']) : $row['group_name']) . '</option>';
 		}
 		$this->db->sql_freeresult($result);
 
