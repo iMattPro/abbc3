@@ -208,7 +208,7 @@ class acp_manager
 	 * @return string HTML markup of user groups select box for the form
 	 * @access public
 	 */
-	public function bbcode_group_select_options($select_id = array())
+	public function bbcode_group_select_options(array $select_id = array())
 	{
 		// Get all groups except bots
 		$sql = 'SELECT group_id, group_name, group_type
