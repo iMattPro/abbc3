@@ -95,7 +95,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Load common files during user setup
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -114,7 +114,7 @@ class listener implements EventSubscriberInterface
 	 *
 	 * This is used to change old/malformed ABBC3 BBCodes to a newer structure
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -128,7 +128,7 @@ class listener implements EventSubscriberInterface
 	 *
 	 * This is used on ABBC3 BBCodes that require additional post-processing
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -140,7 +140,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Modify the SQL array to gather custom BBCode data
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -174,7 +174,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Alter custom BBCodes display
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -186,7 +186,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Set custom BBCodes permissions
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
@@ -198,7 +198,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Toggle custom BBCodes in the s9e\TextFormatter parser based on user's group memberships
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @return null
 	 * @access public
 	 */
