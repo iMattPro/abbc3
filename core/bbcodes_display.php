@@ -103,7 +103,7 @@ class bbcodes_display
 	/**
 	 * Determine if a user is in a group allowed to use a custom BBCode
 	 *
-	 * @param string $group_ids Allowed group IDs, comma separated
+	 * @param string|array $group_ids Allowed group IDs, comma separated string or array
 	 * @return bool Return true if allowed to use BBCode
 	 * @access public
 	 */
