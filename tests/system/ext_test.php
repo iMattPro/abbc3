@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\system;
 
 use vse\abbc3\ext;
 
-require_once dirname(__FILE__) . '/../../../../../includes/functions.php';
+require_once __DIR__ . '/../../../../../includes/functions.php';
 
 class ext_test extends \phpbb_test_case
 {

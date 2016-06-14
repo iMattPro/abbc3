@@ -124,7 +124,7 @@ class custom_bbcodes_test extends listener_base
 			->will($this->returnValue(!$disable));
 
 		// Test if disable_bbcode is called as expected
-		$parser->expects(($disable) ? $this->once() : $this->never())
+		$parser->expects($disable ? $this->once() : $this->never())
 			->method('disable_bbcode')
 			->with($bbcode);
 

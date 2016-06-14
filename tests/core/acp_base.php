@@ -28,7 +28,7 @@ class acp_base extends \phpbb_database_test_case
 
 	public function getDataSet()
 	{
-		return $this->createXMLDataSet(dirname(__FILE__) . '/fixtures/bbcodes.xml');
+		return $this->createXMLDataSet(__DIR__ . '/fixtures/bbcodes.xml');
 	}
 
 	public function setUp()

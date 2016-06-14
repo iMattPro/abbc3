@@ -24,7 +24,7 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	public function getDataSet()
 	{
-		return $this->createXMLDataSet(dirname(__FILE__) . '/fixtures/user_group.xml');
+		return $this->createXMLDataSet(__DIR__ . '/fixtures/user_group.xml');
 	}
 
 	public function setUp()
@@ -36,7 +36,7 @@ class bbcodes_test extends \phpbb_database_test_case
 		$this->db = $this->new_dbal();
 		$this->user = new \phpbb\user('\phpbb\datetime');
 		$this->ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
-		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(dirname(__FILE__) . '/../../../../../phpBB/');
+		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
 	}
 
 	protected function bbcodes_manager()

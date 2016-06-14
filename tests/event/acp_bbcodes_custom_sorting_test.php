@@ -104,7 +104,7 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 	{
 		$this->set_listener();
 
-		$this->acp_manager->expects((($call) ? $this->once() : $this->never()))
+		$this->acp_manager->expects(($call ? $this->once() : $this->never()))
 			->method($method);
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
