@@ -20,8 +20,10 @@ use \phpbb\db\migration\container_aware_migration;
  */
 abstract class bbcodes_migration_base extends container_aware_migration
 {
-	/** @var array An array of bbcodes data to install */
-	protected $bbcode_data;
+	/**
+	 * @return array An array of bbcodes data to install
+	 */
+	abstract protected function bbcode_data();
 
 	/**
 	 * Wrapper for installing bbcodes in migrations
@@ -35,6 +37,6 @@ abstract class bbcodes_migration_base extends container_aware_migration
 		$user = $this->container->get('user');
 
 		$bbcodes_installer = new \vse\abbc3\core\bbcodes_installer($this->db, $request, $user, $this->phpbb_root_path, $this->php_ext);
-		$bbcodes_installer->install_bbcodes($this->bbcode_data);
+		$bbcodes_installer->install_bbcodes($this->bbcode_data());
 	}
 }
