@@ -181,7 +181,7 @@ class bbcodes_installer extends acp_manager
 		{
 			$bbcode_data['bbcode_id'] = (int) $bbcode_id;
 			// set display_on_posting to 1 by default, so if 0 is desired, set it in our data array
-			$bbcode_data['display_on_posting'] = (int) !isset($bbcode_data['display_on_posting']);
+			$bbcode_data['display_on_posting'] = (int) !array_key_exists('display_on_posting', $bbcode_data);
 
 			$this->db->sql_query('INSERT INTO ' . BBCODES_TABLE . ' ' . $this->db->sql_build_array('INSERT', $bbcode_data));
 		}
