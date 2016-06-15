@@ -120,7 +120,7 @@ class bbcodes_display
 			// Load the user's group memberships
 			$this->load_memberships();
 
-			return (bool) count(array_intersect($this->memberships, $group_ids));
+			return (bool) sizeof(array_intersect($this->memberships, $group_ids));
 		}
 
 		// If we get here, there were no group restrictions so everyone can use this BBCode
