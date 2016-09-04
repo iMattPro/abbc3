@@ -92,7 +92,6 @@ class wizard
 	/**
 	 * Set template variables for the BBvideo wizard
 	 *
-	 * @return null
 	 * @access protected
 	 */
 	protected function generate_bbvideo_wizard()

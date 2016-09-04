@@ -47,7 +47,6 @@ class acp_manager
 	 * Update BBCode order fields in the db on move up/down
 	 *
 	 * @param string $action The action move_up|move_down
-	 * @return null
 	 * @access public
 	 */
 	public function move($action)
@@ -95,7 +94,6 @@ class acp_manager
 	/**
 	 * Update BBCode order fields in the db on drag_drop
 	 *
-	 * @return null
 	 * @access public
 	 */
 	public function drag_drop()
@@ -232,7 +230,6 @@ class acp_manager
 	 * Resynchronize the Custom BBCodes order field
 	 * (Originally based on Custom BBCode Sorting MOD by RMcGirr83)
 	 *
-	 * @return null
 	 * @access public
 	 */
 	public function resynchronize_bbcode_order()
@@ -306,7 +303,6 @@ class acp_manager
 	 * Send a JSON response
 	 *
 	 * @param bool $content The content of the JSON response (true|false)
-	 * @return null
 	 * @access protected
 	 */
 	protected function send_json_response($content)

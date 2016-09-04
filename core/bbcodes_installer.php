@@ -54,7 +54,6 @@ class bbcodes_installer extends acp_manager
 	 * Installs bbcodes, used by migrations to perform add/updates
 	 *
 	 * @param array $bbcodes Array of bbcodes to install
-	 * @return null
 	 * @access public
 	 */
 	public function install_bbcodes(array $bbcodes)
@@ -85,7 +84,7 @@ class bbcodes_installer extends acp_manager
 	{
 		if (!class_exists('acp_bbcodes'))
 		{
-			include($this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
+			include $this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext;
 		}
 
 		return new \acp_bbcodes();
@@ -150,7 +149,6 @@ class bbcodes_installer extends acp_manager
 	 *
 	 * @param array $old_bbcode Existing bbcode data
 	 * @param array $new_bbcode New bbcode data
-	 * @return null
 	 * @access protected
 	 */
 	protected function update_bbcode(array $old_bbcode, array $new_bbcode)
@@ -165,7 +163,6 @@ class bbcodes_installer extends acp_manager
 	 * Add new bbcode
 	 *
 	 * @param array $bbcode_data New bbcode data
-	 * @return null
 	 * @access protected
 	 */
 	protected function add_bbcode(array $bbcode_data)
