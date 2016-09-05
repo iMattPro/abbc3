@@ -67,41 +67,8 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 	 */
 	public function remove_abbc3_configs()
 	{
-		$abbc3_config_names = array(
-			'ABBC3_VERSION',
-			'ABBC3_MOD',
-			'ABBC3_BG',
-			'ABBC3_TAB',
-			'ABBC3_BOXRESIZE',
-			'ABBC3_RESIZE',
-			'ABBC3_RESIZE_METHOD',
-			'ABBC3_RESIZE_BAR',
-			'ABBC3_MAX_IMG_WIDTH',
-			'ABBC3_MAX_IMG_HEIGHT',
-			'ABBC3_RESIZE_SIGNATURE',
-			'ABBC3_MAX_SIG_WIDTH',
-			'ABBC3_MAX_SIG_HEIGHT',
-			'ABBC3_MAX_THUM_WIDTH',
-			'ABBC3_COLOR_MODE',
-			'ABBC3_HIGHLIGHT_MODE',
-			'ABBC3_WIZARD_MODE',
-			'ABBC3_WIZARD_width',
-			'ABBC3_WIZARD_height',
-			'ABBC3_VIDEO_width',
-			'ABBC3_VIDEO_height',
-			'ABBC3_VIDEO_OPTIONS',
-			'ABBC3_VIDEO_WMODE',
-			'ABBC3_UCP_MODE',
-			'ABBC3_PATH',
-			'ABBC3_GREYBOX',
-			'ABBC3_JAVASCRIPT',
-			'ABBC3_UPLOAD_MAX_SIZE',
-			'ABBC3_UPLOAD_EXTENSION',
-		);
-
-		// Delete all the unwanted ABBC3 configs
 		$sql = 'DELETE FROM ' . $this->table_prefix . 'config
-			WHERE ' . $this->db->sql_in_set('config_name', $abbc3_config_names);
+			WHERE ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char());
 		$this->db->sql_query($sql);
 	}
 
@@ -166,33 +133,33 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 			'imgshack',
 
 			// These are deprecated
-			'click',		// click_pass
+			'click',
 			'ed2k',
-			'flv',			// auto_embed_video
+			'flv',
 			'quicktime',
 			'ram',
-			'rapidshare',	// rapidshare_pass
+			'rapidshare',
 			'stream',
-			'testlink',		// testlink_pass
+			'testlink',
 			'video',
-			'wave=',		// Text_effect_pass
+			'wave=',
 			'web',
-			'scrippet',		// scrippets_pass
-			'search',		// search_pass
-			'thumbnail',	// thumb_pass
+			'scrippet',
+			'search',
+			'thumbnail',
 			'hr',			// no closing
 			'tab=',			// no closing
-			'tabs',			// simpleTabs_pass
-			'table=',		// table_pass
-			'anchor=',		// anchor_pass
+			'tabs',
+			'table=',
+			'anchor=',
 			'upload',
 			'html',
-			'collegehumor',	// auto_embed_video
-			'dm',			// auto_embed_video
-			'gamespot',		// auto_embed_video
-			'ignvideo',		// auto_embed_video
-			'liveleak',		// auto_embed_video
-			'veoh',			// auto_embed_video
+			'collegehumor',
+			'dm',
+			'gamespot',
+			'ignvideo',
+			'liveleak',
+			'veoh',
 
 			// These are being replaced by new BBCodes
 			'align=justify',	// replaced by align=
@@ -202,29 +169,6 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 			'marq=down',		// replaced by marq=
 			'marq=left',		// replaced by marq=
 			'marq=right',		// replaced by marq=
-
-			// These will be updated in another migration
-	//		'align=center',	// replaced by align=
-	//		'blur=',		// Text_effect_pass
-	//		'dir=ltr',		// replaced by dir=
-	//		'dropshadow=',	// Text_effect_pass
-	//		'fade',
-	//		'font=',
-	//		'glow=',		// Text_effect_pass
-	//		'highlight=',
-	//		'marq=up',		// replaced by marq=
-	//		'mod=',			// mod_pass
-	//		'nfo',			// nfo_pass
-	//		'offtopic',		// offtopic_pass
-	//		'pre',
-	//		's',
-	//		'shadow=',		// Text_effect_pass
-	//		'spoil',		// spoil_pass
-	//		'sub',
-	//		'sup',
-	//		'youtube',		// BBvideo_pass
-	//		'BBvideo',		// BBvideo_pass
-	//		'hidden',		// hidden_pass
 		);
 	}
 }
