@@ -47,7 +47,6 @@ class acp_manager
 	 * Update BBCode order fields in the db on move up/down
 	 *
 	 * @param string $action The action move_up|move_down
-	 * @return null
 	 * @access public
 	 */
 	public function move($action)
@@ -59,13 +58,7 @@ class acp_manager
 			trigger_error($this->user->lang('FORM_INVALID'), E_USER_WARNING);
 		}
 
-		// Get current order
-		$sql = 'SELECT bbcode_order
-			FROM ' . BBCODES_TABLE . "
-			WHERE bbcode_id = $bbcode_id";
-		$result = $this->db->sql_query($sql);
-		$current_order = (int) $this->db->sql_fetchfield('bbcode_order');
-		$this->db->sql_freeresult($result);
+		$current_order = $this->get_bbcode_order($bbcode_id);
 
 		// First one can't be moved up
 		if ($current_order <= 1 && $action === 'move_up')
@@ -73,29 +66,16 @@ class acp_manager
 			return;
 		}
 
-		$order_total = $current_order * 2 + $this->increment($action);
+		$updated = $this->update_bbcode_orders($current_order, $action);
 
-		// Update the db
-		$sql = 'UPDATE ' . BBCODES_TABLE . '
-			SET bbcode_order = ' . $order_total . ' - bbcode_order
-			WHERE ' . $this->db->sql_in_set('bbcode_order', array(
-				$current_order,
-				$current_order + $this->increment($action),
-			));
-		$this->db->sql_query($sql);
-		$updated = $this->db->sql_affectedrows();
-
-		// Resync bbcode_order
 		$this->resynchronize_bbcode_order();
 
-		// Send a JSON response if this was an AJAX request
 		$this->send_json_response($updated);
 	}
 
 	/**
 	 * Update BBCode order fields in the db on drag_drop
 	 *
-	 * @return null
 	 * @access public
 	 */
 	public function drag_drop()
@@ -109,28 +89,20 @@ class acp_manager
 		$tablename = $this->request->variable('tablename', '');
 
 		// Fetch the posted list
-		$bbcodes_list = $this->request->variable($tablename, array(0 => ''));
+		$bbcodes_list = (array) $this->request->variable($tablename, array(0 => ''));
+
+		// First one is the header, skip it
+		unset($bbcodes_list[0]);
 
 		$this->db->sql_transaction('begin');
-
-		// Run through the list
 		foreach ($bbcodes_list as $order => $bbcode_id)
 		{
-			// First one is the header, skip it
-			if ($order == 0)
-			{
-				continue;
-			}
-
 			$this->db->sql_query($this->update_bbcode_order($bbcode_id, $order));
 		}
-
 		$this->db->sql_transaction('commit');
 
-		// Resync bbcode_order
 		$this->resynchronize_bbcode_order();
 
-		// Send an AJAX JSON response
 		$this->send_json_response(true);
 	}
 
@@ -232,7 +204,6 @@ class acp_manager
 	 * Resynchronize the Custom BBCodes order field
 	 * (Originally based on Custom BBCode Sorting MOD by RMcGirr83)
 	 *
-	 * @return null
 	 * @access public
 	 */
 	public function resynchronize_bbcode_order()
@@ -258,6 +229,51 @@ class acp_manager
 	}
 
 	/**
+	 * Get the bbcode_order value for a bbcode
+	 *
+	 * @param int $bbcode_id ID of the bbcode
+	 * @return int The bbcode's order
+	 * @access protected
+	 */
+	protected function get_bbcode_order($bbcode_id)
+	{
+		$sql = 'SELECT bbcode_order
+			FROM ' . BBCODES_TABLE . "
+			WHERE bbcode_id = $bbcode_id";
+		$result = $this->db->sql_query($sql);
+		$bbcode_order = $this->db->sql_fetchfield('bbcode_order');
+		$this->db->sql_freeresult($result);
+
+		return (int) $bbcode_order;
+	}
+
+	/**
+	 * Update the bbcode orders for bbcodes moved up/down
+	 *
+	 * @param int    $bbcode_order Value of the bbcode order
+	 * @param string $action       The action move_up|move_down
+	 * @return mixed Number of the affected rows by the last query
+	 *                             false if no query has been run before
+	 * @access protected
+	 */
+	protected function update_bbcode_orders($bbcode_order, $action)
+	{
+		$amount = ($action === 'move_up') ? -1 : 1;
+
+		$order_total = $bbcode_order * 2 + $amount;
+
+		$sql = 'UPDATE ' . BBCODES_TABLE . '
+			SET bbcode_order = ' . $order_total . ' - bbcode_order
+			WHERE ' . $this->db->sql_in_set('bbcode_order', array(
+				$bbcode_order,
+				$bbcode_order + $amount,
+			));
+		$this->db->sql_query($sql);
+
+		return $this->db->sql_affectedrows();
+	}
+
+	/**
 	 * Build SQL query to update a bbcode order value
 	 *
 	 * @param int $bbcode_id    ID of the bbcode
@@ -270,18 +286,6 @@ class acp_manager
 		return 'UPDATE ' . BBCODES_TABLE . '
 			SET bbcode_order = ' . (int) $bbcode_order . '
 			WHERE bbcode_id = ' . (int) $bbcode_id;
-	}
-
-	/**
-	 * Increment
-	 *
-	 * @param string $action The action move_up|move_down
-	 * @return int Increment amount: Move up -1. Move down +1.
-	 * @access protected
-	 */
-	protected function increment($action)
-	{
-		return ($action === 'move_up') ? -1 : 1;
 	}
 
 	/**
@@ -306,7 +310,6 @@ class acp_manager
 	 * Send a JSON response
 	 *
 	 * @param bool $content The content of the JSON response (true|false)
-	 * @return null
 	 * @access protected
 	 */
 	protected function send_json_response($content)

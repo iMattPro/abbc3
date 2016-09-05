@@ -61,7 +61,6 @@ class acp_listener implements EventSubscriberInterface
 	 * Add some additional elements to the BBCodes template
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function acp_bbcodes_custom_sorting_buttons($event)
@@ -79,7 +78,6 @@ class acp_listener implements EventSubscriberInterface
 	 * Add the Group select form field on BBCode edit page
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function acp_bbcodes_group_select_box($event)
@@ -95,7 +93,6 @@ class acp_listener implements EventSubscriberInterface
 	 * Handle BBCode order changes when moving them up/down
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function acp_bbcodes_custom_sorting($event)
@@ -128,7 +125,6 @@ class acp_listener implements EventSubscriberInterface
 	 * Handle BBCode order and group data during modify/create routines
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function acp_bbcodes_modify_create($event)
@@ -158,7 +154,6 @@ class acp_listener implements EventSubscriberInterface
 	 * Store BBCode groups in a s9e\TextFormatter variable
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function s9e_store_bbcode_groups($event)

@@ -96,7 +96,6 @@ class listener implements EventSubscriberInterface
 	 * Load common files during user setup
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function load_language_on_setup($event)
@@ -115,7 +114,6 @@ class listener implements EventSubscriberInterface
 	 * This is used to change old/malformed ABBC3 BBCodes to a newer structure
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function parse_bbcodes_before($event)
@@ -129,7 +127,6 @@ class listener implements EventSubscriberInterface
 	 * This is used on ABBC3 BBCodes that require additional post-processing
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function parse_bbcodes_after($event)
@@ -141,7 +138,6 @@ class listener implements EventSubscriberInterface
 	 * Modify the SQL array to gather custom BBCode data
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function custom_bbcode_modify_sql($event)
@@ -155,7 +151,6 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Setup custom BBCode variables
 	 *
-	 * @return null
 	 * @access public
 	 */
 	public function setup_custom_bbcodes()
@@ -175,7 +170,6 @@ class listener implements EventSubscriberInterface
 	 * Alter custom BBCodes display
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function display_custom_bbcodes($event)
@@ -187,7 +181,6 @@ class listener implements EventSubscriberInterface
 	 * Set custom BBCodes permissions
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function allow_custom_bbcodes($event)
@@ -199,7 +192,6 @@ class listener implements EventSubscriberInterface
 	 * Toggle custom BBCodes in the s9e\TextFormatter parser based on user's group memberships
 	 *
 	 * @param \phpbb\event\data $event The event object
-	 * @return null
 	 * @access public
 	 */
 	public function s9e_allow_custom_bbcodes($event)
