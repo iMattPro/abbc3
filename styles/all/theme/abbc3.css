@@ -32,7 +32,8 @@
 .spoilbtn:hover { color: #d31141 !important; }
 
 /* [fade] fade text in/out effect */
-.fadeEffect {
+.fadeEffect,
+.abbc3_fade {
 	-webkit-animation: fade 2s infinite;
 	-moz-animation: fade 2s infinite;
 	animation: fade 2s infinite;
@@ -54,45 +55,241 @@
 #custom-bbcode-buttons { display: none }
 
 /* ABBC3 BBCode buttons */
-#abbc3_buttons { margin: 15px 0 2px 0 }
-#abbc3_buttons input { vertical-align: middle }
-#abbc3_buttons select {
+#abbc3
+{
+	margin: 5px 0 2px 0;
+	width: 100%;
+	height: 70px;
+}
+
+#abbc3 .toolbar-panel
+{
+	display: inline-block;
+	float: left;
+	margin: 0;
+	margin-right: 5px;
+	-webkit-box-shadow: 2px 0px 2px -3px #000;
+	box-shadow: 2px 0px 2px -3px #000;
+	min-height: 68px;
+}
+
+#abbc3 #abbc3-panel-clipboard
+{
+	width: 68px;
+	min-width: 68px;
+}
+
+#abbc3 #abbc3-panel-history
+{
+	width: 62px;
+	min-width: 62px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+#abbc3 .btn-toolbar .btn-group,
+#abbc3 .btn-toolbar .input-group
+{
+	margin-left: 0;
+	float: left;
+}
+
+#abbc3.btn-toolbar .btn
+{
+	float: left;
+}
+
+#abbc3 .btn-group,
+#abbc3 .btn-group-vertical
+{
+	position: relative;
+	display: inline;
 	vertical-align: middle;
-	margin: 4px;
-	padding: 0;
-	height: 22px;
-	background-color: #fff !important;
-	border: 1px solid #b4bac0;
-	color: #000 !important;
+	margin: 0;
+	float: none;
 }
-.abbc3_button {
-	margin: 4px 0;
+
+#abbc3 .btn,
+#abbc3 .abbc3_select
+{
+	display: inline-block;
 	padding: 0;
-	min-width: 22px;
-	height: 22px;
-	background: transparent no-repeat center;
-	border: 1px solid transparent;
-	font-size: 11px;
-}
-.abbc3_button:hover {
-	background-color: #ffffdf;
-	border: 1px solid #bc2a4d;
+	margin: 0;
+	margin-bottom: 4px;
+	min-width: 28px;
+	min-height: 29px;
+	line-height: 26px;
+	font-size: 13px;
+	font-weight: 500;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
 	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 0;
+	border-radius: 4px;
+	transition: background .2s;
 }
-.abbc3_buttons_row {
-	margin: 0 !important;
-	min-height: 30px;
-	width: 80%;
-	padding: 0 2px;
-	border: 1px solid #b4bac0;
-	display: block;
-	background: transparent url('./images/abbc3_bg.gif');
+
+#abbc3 .abbc3_select
+{
+	padding: 5px 0px 5px 3px;
+	margin-right: 3px;
+	min-height: 29px;
 }
-/* tweaks for subsilver styles */
-form td .abbc3_buttons_row { width: 98% }
+
+#abbc3 .btn-default,
+#abbc3 .abbc3_select
+{
+	border: 0;
+	color: #555;
+	background-color: rgba(178, 192, 202, 0.5);
+}
+
+#abbc3 .btn:hover,
+#abbc3 .abbc3_select:hover
+{
+	color: #FFF;
+	background-color: rgba(58, 144, 206, 0.5);
+}
+
+#abbc3 .btn-group-vertical > .btn,
+#abbc3 .btn-group > .btn,
+#abbc3 .abbc3_select
+{
+	position: relative;
+	float: left;
+}
+
+#abbc3 .btn-toolbar .btn,
+#abbc3 .btn-toolbar .btn-group,
+#abbc3 .btn-toolbar .input-group
+{
+	float: none;
+}
+
+#abbc3 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
+{
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+#abbc3 .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle)
+{
+	border-radius: 0;
+}
+
+#abbc3 .btn-group > .btn:last-child:not(:first-child),
+#abbc3 .btn-group > .dropdown-toggle:not(:first-child)
+{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+
+#abbc3 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
+{
+	margin-left: 1px;
+}
+
+#abbc3 .btn-group > .btn:last-child:not(:first-child)
+{
+	margin-right: 1px;
+}
+
+#abbc3 .abbc3_select + .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
+{
+	margin-left: 0;
+}
+
+#abbc3 .abbc3-icon
+{
+	font-family: 'Trebuchet MS','Arial','Helvetica',sans-serif;
+	font-style: normal;
+	letter-spacing: normal;
+	text-transform: uppercase;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+
+	font-size: 10px;
+	font-weight: 600;
+	color: #555;
+	text-align: center;
+	vertical-align: middle;
+	min-width: 28px;
+	min-height: 28px;
+	line-height: 28px;
+	
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+#abbc3 .btn:hover .abbc3-icon
+{
+	color: #FFF !important;
+}
+
+#abbc3 optgroup
+{
+	color: #F5F7FA;
+	background-color: rgb(103, 148, 179) !important;
+}
+
+#abbc3 option
+{
+	color: #555;
+	background-color: rgba(222, 222, 222, 0.8) !important;
+	text-align: left;
+	white-space: nowrap;
+}
+
+#abbc3 #abbc3-paste
+{
+	min-width: 32px;
+	min-height: 62px;
+	line-height: 62px;
+	margin-right: 4px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+#abbc3 #abbc3-cut,
+#abbc3 #abbc3-copy
+{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+#abbc3 #abbc3-font-family
+{
+	width: 120px;
+}
+
+#abbc3 #abbc3-font-size
+{
+	width: 82px;
+}
+
+#message-box
+{
+	float: left;
+}
+
+
 /* tweaks for ACP bbcode editor */
-#main #abbc3_buttons { margin-left: 96px }
-#main #abbc3_buttons .abbc3_buttons_row { width: 95% }
+#main #abbc3 { margin-left: 96px }
+#main #abbc3 { width: 95% }
 
 /* BBCode wizard */
 #bbcode_wizard {
@@ -116,4 +313,145 @@ form td .abbc3_buttons_row { width: 98% }
 	#bbcode_wizard {
 		width: 300px !important;
 	}
+}
+
+.hidden-xl-down {
+	display: none !important;
+}
+
+@media (min-width: 1200px) {
+	.hidden-xl-up {
+		display: none !important;
+	}
+}
+
+@media (max-width: 1199px) {
+	.hidden-lg-down {
+		display: none !important;
+	}
+}
+
+@media (max-width: 1020px) {
+	#abbc3 #abbc3-panel-clipboard,
+	.btn[data-bbcode="sub"],
+	.btn[data-bbcode="sup"]
+	{
+		display: none !important;
+	}
+}
+
+@media (min-width: 992px) {
+	.hidden-lg-up {
+		display: none !important;
+	}
+}
+
+@media (max-width: 991px) {
+	.hidden-md-down {
+		display: none !important;
+	}
+}
+
+@media (max-width: 920px) {
+	.btn[data-bbcode="highlight="],
+	.btn[data-bbcode="s"]
+	{
+		display: none !important;
+	}
+}
+
+@media (max-width: 878px) {
+	#abbc3 #abbc3-redo {
+		display: none !important;
+	}
+	#abbc3 #abbc3-panel-history {
+	    width: 32px;
+		min-width: 32px;
+	}
+}
+
+@media (max-width: 835px) {
+	#abbc3 #abbc3-font-family
+	{
+		display: none !important;
+	}
+}
+
+@media (min-width: 768px) {
+	.hidden-md-up {
+		display: none !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.hidden-sm-down {
+		display: none !important;
+	}
+}
+
+@media (max-width: 740px) {
+	.btn[data-bbcode="dir="],
+	.btn[data-bbcode="float="]
+	{
+		display: none !important;
+	}
+}
+
+@media (max-width: 700px) {
+	.btn[data-bbcode="blur="],
+	.btn[data-bbcode="dropshadow="],
+	.btn[data-bbcode="fade"],
+	.btn[data-bbcode="glow="],
+	.btn[data-bbcode="shadow="]
+	{
+		display: none !important;
+	}
+}
+
+@media (max-width: 610px) {
+	.btn[data-bbcode="marq="],
+	.btn[data-bbcode="offtopic"]
+	{
+		display: none !important;
+	}
+}
+
+@media (max-width: 580px) {
+	.btn[data-bbcode="justify"],
+	#abbc3 #abbc3_bbpalette
+	{
+		display: none !important;
+	}
+}
+
+@media (min-width: 544px) {
+	.hidden-sm-up {
+		display: none !important;
+	}
+}
+
+@media (max-width: 543px) {
+	.hidden-xs-down {
+		display: none !important;
+	}
+	.btn[data-bbcode="flash="],
+	.btn[data-bbcode="mod="],
+	.btn[data-bbcode="nfo"]
+	{
+		display: none !important;
+	}
+}
+
+@media (max-width: 500px) {
+	.btn[data-bbcode="pre"],
+	.btn[data-bbcode="soundcloud"],
+	.btn[data-bbcode="spoil"],
+	.btn[data-bbcode="users"]
+	{
+		display: none !important;
+	}
+}
+
+.hidden-xs-up {
+	display: none !important;
 }
