@@ -44,7 +44,7 @@ class acp_listener implements EventSubscriberInterface
 	 * @static
 	 * @access public
 	 */
-	static public function getSubscribedEvents()
+	public static function getSubscribedEvents()
 	{
 		return array(
 			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_custom_sorting',
