@@ -68,7 +68,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 	public function remove_abbc3_configs()
 	{
 		$sql = 'DELETE FROM ' . $this->table_prefix . 'config
-			WHERE ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char());
+			WHERE config_name ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char());
 		$this->db->sql_query($sql);
 	}
 
