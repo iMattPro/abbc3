@@ -107,7 +107,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 	public function abbc3_bbcodes()
 	{
 		return array(
-			// These exists in core
+			// These exist in core
 			'b',
 			'code',
 			'color',
@@ -147,8 +147,8 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 			'scrippet',
 			'search',
 			'thumbnail',
-			'hr',			// no closing
-			'tab=',			// no closing
+			'hr',
+			'tab=',
 			'tabs',
 			'table=',
 			'anchor=',
