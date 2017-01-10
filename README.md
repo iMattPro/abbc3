@@ -40,8 +40,8 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 * Multiple languages are supported. View the pre-installed [localizations](https://github.com/VSEphpbb/abbc3/tree/master/language).
 
 ## Requirements
-* phpBB 3.1.3 or higher
-* PHP 5.3.3 or higher
+* phpBB 3.2.0 or higher
+* PHP 5.4 or higher
 
 **Note: Only official release versions validated by the phpBB Extensions Team should be installed on a live forum. Pre-release (beta, dev) versions downloaded from this repository are only to be used for testing on offline/development forums and are not officially supported.**
 
