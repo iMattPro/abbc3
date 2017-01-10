@@ -49,6 +49,7 @@ class acp_install_bbcodes_test extends acp_base
 
 		$bbcodes_installer = new \vse\abbc3\core\bbcodes_installer(
 			$this->db,
+			$this->group_helper,
 			$this->request,
 			$this->user,
 			$phpbb_root_path,

@@ -16,6 +16,7 @@ services:
         class: vse\abbc3\core\acp_manager
         arguments:
             - '@dbal.conn'
+            - '@group_helper'
             - '@request'
             - '@user'
 

@@ -30,13 +30,16 @@ abstract class bbcodes_migration_base extends container_aware_migration
 	 */
 	public function install_abbc3_bbcodes()
 	{
+		/** @var \phpbb\group\helper $group_helper */
+		$group_helper = $this->container->get('group_helper');
+
 		/** @var \phpbb\request\request $request */
 		$request = $this->container->get('request');
 
 		/** @var \phpbb\user $user */
 		$user = $this->container->get('user');
 
-		$bbcodes_installer = new \vse\abbc3\core\bbcodes_installer($this->db, $request, $user, $this->phpbb_root_path, $this->php_ext);
+		$bbcodes_installer = new \vse\abbc3\core\bbcodes_installer($this->db, $group_helper, $request, $user, $this->phpbb_root_path, $this->php_ext);
 		$bbcodes_installer->install_bbcodes(static::$bbcode_data);
 	}
 }
