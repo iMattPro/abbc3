@@ -86,6 +86,8 @@ class bbcodes_display
 	 * @param array $rowset  Array of bbcode data from the database
 	 * @return array The bbcodes data array
 	 * @access public
+	 *
+	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
 	public function allow_custom_bbcodes($bbcodes, $rowset)
 	{

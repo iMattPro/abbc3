@@ -182,6 +182,8 @@ class listener implements EventSubscriberInterface
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
+	 *
+	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
 	public function allow_custom_bbcodes($event)
 	{
