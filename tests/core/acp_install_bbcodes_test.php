@@ -10,8 +10,6 @@
 
 namespace vse\abbc3\tests\core;
 
-require_once __DIR__ . '/../../../../../includes/functions.php';
-
 class acp_install_bbcodes_test extends acp_base
 {
 	public function install_bbcodes_data()

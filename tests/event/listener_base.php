@@ -46,6 +46,8 @@ class listener_base extends \phpbb_test_case
 	{
 		parent::setUp();
 
+		global $phpbb_root_path, $phpEx;
+
 		$this->parser = $this->getMockBuilder('\vse\abbc3\core\bbcodes_parser')
 			->disableOriginalConstructor()
 			->getMock();
@@ -56,7 +58,10 @@ class listener_base extends \phpbb_test_case
 
 		$this->template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
-		$this->user = $this->getMock('\phpbb\user', array(), array('\phpbb\datetime'));
+		$this->user = $this->getMock('\phpbb\user', array(), array(
+			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
+			'\phpbb\datetime'
+		));
 		$this->user->data['username'] = 'admin';
 
 		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')

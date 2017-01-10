@@ -14,13 +14,12 @@ class acp_bbcode_group_select_test extends acp_base
 {
 	public function get_user_instance()
 	{
-		// Must do this for testing with the user class
-		global $config;
-		$config['default_lang'] = 'en';
+		global $phpbb_root_path, $phpEx;
 
 		// Get instance of phpbb\user (dataProvider is called before setUp(), so this must be done here)
-		$this->user = new \phpbb\user('\phpbb\datetime');
-
+		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
+		$lang = new \phpbb\language\language($lang_loader);
+		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
 		$this->user->add_lang('common');
 	}
 

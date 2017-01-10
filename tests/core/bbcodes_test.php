@@ -29,12 +29,14 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	public function setUp()
 	{
-		global $phpbb_extension_manager, $phpbb_root_path;
+		global $phpbb_extension_manager, $phpbb_root_path, $phpEx;
 
 		parent::setUp();
 
 		$this->db = $this->new_dbal();
-		$this->user = new \phpbb\user('\phpbb\datetime');
+		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
+		$lang = new \phpbb\language\language($lang_loader);
+		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
 		$this->ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
 		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
 	}

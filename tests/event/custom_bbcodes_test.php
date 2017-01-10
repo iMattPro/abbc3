@@ -102,8 +102,6 @@ class custom_bbcodes_test extends listener_base
 	 */
 	public function test_s9e_allow_custom_bbcodes($bbcode, $groups, $disable)
 	{
-		$this->markTestSkipped('This test must be run in phpBB >= 3.2.x');
-
 		$this->set_listener();
 
 		// Mock the text_formatter.parser service
