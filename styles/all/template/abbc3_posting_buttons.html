@@ -203,10 +203,10 @@ function bbspecial(bbcode, bbcodeId) {
 		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/plain.gif');" onclick="bbspecial('abbc3_plain')" title="{{ lang('ABBC3_PLAIN_BBCODE') }}">
 		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 	</div>
-	{% if loops.custom_tags %}
+	{% if custom_tags %}
 		<div class="abbc3_buttons_row" style="border-top:0;">
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
-			{% for custom_tag in loops.custom_tags %}
+			{% for custom_tag in custom_tags %}
 				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
 					{% if custom_tag.BBCODE_TAG == 'font=' %}
 						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
