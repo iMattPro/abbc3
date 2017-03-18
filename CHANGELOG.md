@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.1.4 - 2017-01-10
+
+- Update styling for spoil, mod, offtopic, nfo BBCodes
+- Added maker.tv BBvideo
+- Updated break.com BBvideo
+- Updated cnet.com BBvideo
+- Removed blip.tv BBvideo
+- Removed godtube.com BBvideo
+- Removed sevenload.com BBvideo
+- Removed twitvid.com BBvideo
+- Removed wat.tv BBvideo
+- Added Finnish translation
+- Added Brazilian-Portuguese translation
+- Various code fixes and improvements
+
 ## 3.1.3 - 2016-03-19
 
 - Fix an issue where BBCodes could break after updating phpBB 3.1.x to 3.2.x
