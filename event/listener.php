@@ -89,6 +89,7 @@ class listener implements EventSubscriberInterface
 
 			// text_formatter events (for phpBB 3.2.x)
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
+			'core.text_formatter_s9e_configure_after'	=> 's9e_configure_tables',
 		);
 	}
 
@@ -162,6 +163,7 @@ class listener implements EventSubscriberInterface
 			'ABBC3_BBVIDEO_WIDTH'		=> ext::BBVIDEO_WIDTH,
 
 			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
+			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'pipes')),
 			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'url')),
 		));
 	}
@@ -214,5 +216,16 @@ class listener implements EventSubscriberInterface
 				$service->disable_bbcode($bbcode_name);
 			}
 		}
+	}
+
+	/**
+	 * Configure s9e Pipe Tables
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 */
+	public function s9e_configure_tables($event)
+	{
+		$configurator = $event['configurator'];
+		$configurator->plugins->load('PipeTables');
 	}
 }

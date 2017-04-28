@@ -81,7 +81,8 @@ class wizard
 				// no break here
 
 				case 'url':
-					return $this->helper->render('abbc3_url_wizard.html');
+				case 'pipes':
+					return $this->helper->render("abbc3_{$mode}_wizard.html");
 				// no break here
 			}
 		}
