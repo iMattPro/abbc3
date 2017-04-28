@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.2.0-dev - XXXX-XX-XX
+
+- Added Tables support in posts (using s9e/TextFormatter's Pipe Tables plugin)
+- Internal improvements for phpBB 3.2.x, ending compatibility with phpBB 3.1.x.
+
 ## 3.1.4 - 2017-01-10
 
 - Update styling for spoil, mod, offtopic, nfo BBCodes
