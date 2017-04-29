@@ -2,6 +2,7 @@ services:
     vse.abbc3.bbcodes_parser:
         class: vse\abbc3\core\bbcodes_parser
         arguments:
+            - '@language'
             - '@user'
 
     vse.abbc3.bbcodes_display:
@@ -17,8 +18,8 @@ services:
         arguments:
             - '@dbal.conn'
             - '@group_helper'
+            - '@language'
             - '@request'
-            - '@user'
 
     vse.abbc3.listener:
         class: vse\abbc3\event\listener
@@ -46,5 +47,4 @@ services:
             - '@controller.helper'
             - '@request'
             - '@template'
-            - '@user'
             - '%core.root_path%ext/vse/abbc3/'

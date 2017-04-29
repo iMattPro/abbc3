@@ -12,8 +12,8 @@ namespace vse\abbc3\core;
 
 use phpbb\db\driver\driver_interface;
 use phpbb\group\helper;
+use phpbb\language\language;
 use phpbb\request\request;
-use phpbb\user;
 
 /**
  * Class bbcodes_installer
@@ -36,15 +36,15 @@ class bbcodes_installer extends acp_manager
 	 *
 	 * @param driver_interface $db
 	 * @param helper           $group_helper
+	 * @param language         $language
 	 * @param request          $request
-	 * @param user             $user
 	 * @param string           $phpbb_root_path
 	 * @param string           $php_ext
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, helper $group_helper, request $request, user $user, $phpbb_root_path, $php_ext)
+	public function __construct(driver_interface $db, helper $group_helper, language $language, request $request, $phpbb_root_path, $php_ext)
 	{
-		parent::__construct($db, $group_helper, $request, $user);
+		parent::__construct($db, $group_helper, $language, $request);
 
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext         = $php_ext;

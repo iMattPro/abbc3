@@ -10,6 +10,7 @@
 
 namespace vse\abbc3\core;
 
+use phpbb\language\language;
 use phpbb\user;
 use vse\abbc3\ext;
 
@@ -18,17 +19,22 @@ use vse\abbc3\ext;
  */
 class bbcodes_parser
 {
+	/** @var language */
+	protected $language;
+
 	/** @var user */
 	protected $user;
 
 	/**
 	 * Constructor
 	 *
-	 * @param user $user User object
+	 * @param language $language Language object
+	 * @param user     $user     User object
 	 * @access public
 	 */
-	public function __construct(user $user)
+	public function __construct(language $language, user $user)
 	{
+		$this->language = $language;
 		$this->user = $user;
 	}
 
@@ -89,15 +95,15 @@ class bbcodes_parser
 		if ($this->user->data['user_id'] == ANONYMOUS || $this->user->data['is_bot'])
 		{
 			$replacements = array(
-				$this->user->lang('ABBC3_HIDDEN_ON'),
-				$this->user->lang('ABBC3_HIDDEN_EXPLAIN'),
+				$this->language->lang('ABBC3_HIDDEN_ON'),
+				$this->language->lang('ABBC3_HIDDEN_EXPLAIN'),
 				'hidebox_hidden',
 			);
 		}
 		else
 		{
 			$replacements = array(
-				$this->user->lang('ABBC3_HIDDEN_OFF'),
+				$this->language->lang('ABBC3_HIDDEN_OFF'),
 				$matches[1],
 				'hidebox_visible',
 			);

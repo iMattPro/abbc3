@@ -12,8 +12,8 @@ namespace vse\abbc3\core;
 
 use phpbb\db\driver\driver_interface;
 use phpbb\group\helper;
+use phpbb\language\language;
 use phpbb\request\request;
-use phpbb\user;
 
 /**
  * ABBC3 ACP manager class
@@ -26,27 +26,27 @@ class acp_manager
 	/** @var helper */
 	protected $group_helper;
 
+	/** @var language */
+	protected $language;
+
 	/** @var request */
 	protected $request;
-
-	/** @var user */
-	protected $user;
 
 	/**
 	 * Constructor
 	 *
 	 * @param driver_interface $db
 	 * @param helper           $group_helper
+	 * @param language         $language
 	 * @param request          $request
-	 * @param user             $user
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, helper $group_helper, request $request, user $user)
+	public function __construct(driver_interface $db, helper $group_helper, language $language, request $request)
 	{
 		$this->db = $db;
 		$this->group_helper = $group_helper;
+		$this->language = $language;
 		$this->request = $request;
-		$this->user = $user;
 	}
 
 	/**
@@ -61,7 +61,7 @@ class acp_manager
 
 		if (!check_link_hash($this->request->variable('hash', ''), $action . $bbcode_id))
 		{
-			trigger_error($this->user->lang('FORM_INVALID'), E_USER_WARNING);
+			trigger_error($this->language->lang('FORM_INVALID'), E_USER_WARNING);
 		}
 
 		$current_order = $this->get_bbcode_order($bbcode_id);

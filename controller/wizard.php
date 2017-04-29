@@ -13,7 +13,6 @@ namespace vse\abbc3\controller;
 use phpbb\controller\helper;
 use phpbb\request\request;
 use phpbb\template\template;
-use phpbb\user;
 use vse\abbc3\ext;
 
 /**
@@ -33,9 +32,6 @@ class wizard
 	/** @var template */
 	protected $template;
 
-	/** @var user */
-	protected $user;
-
 	/** @var string */
 	protected $ext_root_path;
 
@@ -45,16 +41,14 @@ class wizard
 	 * @param helper   $helper        Controller helper object
 	 * @param request  $request       Request object
 	 * @param template $template      Template object
-	 * @param user     $user          User object
 	 * @param string   $ext_root_path Path to abbc3 extension root
 	 * @access public
 	 */
-	public function __construct(helper $helper, request $request, template $template, user $user, $ext_root_path)
+	public function __construct(helper $helper, request $request, template $template, $ext_root_path)
 	{
 		$this->helper = $helper;
 		$this->request = $request;
 		$this->template = $template;
-		$this->user = $user;
 		$this->ext_root_path = $ext_root_path;
 	}
 
@@ -66,6 +60,7 @@ class wizard
 	 * @param string $mode Mode taken from the URL
 	 * @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
 	 * @throws \phpbb\exception\http_exception An http exception
+	 * @throws \phpbb\exception\runtime_exception Runtime exception if JSON fails
 	 * @access public
 	 */
 	public function bbcode_wizard($mode)
@@ -93,6 +88,7 @@ class wizard
 	/**
 	 * Set template variables for the BBvideo wizard
 	 *
+	 * @throws \phpbb\exception\runtime_exception
 	 * @access protected
 	 */
 	protected function generate_bbvideo_wizard()

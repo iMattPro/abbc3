@@ -25,7 +25,7 @@ class wizard_test extends \phpbb_test_case
 	{
 		parent::setUp();
 
-		global $phpbb_root_path, $phpEx;
+		global $phpbb_root_path;
 
 		$this->request = $this->getMock('\phpbb\request\request');
 
@@ -47,7 +47,6 @@ class wizard_test extends \phpbb_test_case
 			$controller_helper,
 			$this->request,
 			$template,
-			new \phpbb\user(new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)), '\phpbb\datetime'),
 			$phpbb_root_path . 'ext/vse/abbc3/'
 		);
 	}

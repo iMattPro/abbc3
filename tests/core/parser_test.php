@@ -12,6 +12,9 @@ namespace vse\abbc3\tests\core;
 
 class parser_test extends \phpbb_test_case
 {
+	/** @var \phpbb\language\language */
+	protected $lang;
+
 	/** @var \phpbb\user */
 	protected $user;
 
@@ -28,9 +31,9 @@ class parser_test extends \phpbb_test_case
 		// Get instance of phpbb\user (dataProvider is called before setUp(), so this must be done here)
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$lang_loader->set_extension_manager(new \phpbb_mock_extension_manager($phpbb_root_path));
-		$lang = new \phpbb\language\language($lang_loader);
-		$lang->add_lang('abbc3', 'vse/abbc3');
-		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
+		$this->lang = new \phpbb\language\language($lang_loader);
+		$this->lang->add_lang('abbc3', 'vse/abbc3');
+		$this->user = new \phpbb\user($this->lang, '\phpbb\datetime');
 
 		$this->bbvideo_width = 560;
 		$this->bbvideo_height = 315;
@@ -45,7 +48,7 @@ class parser_test extends \phpbb_test_case
 
 	protected function get_parser()
 	{
-		return new \vse\abbc3\core\bbcodes_parser($this->user, $this->bbvideo_width, $this->bbvideo_height);
+		return new \vse\abbc3\core\bbcodes_parser($this->lang, $this->user);
 	}
 
 	public function pre_parse_data()
@@ -131,17 +134,17 @@ class parser_test extends \phpbb_test_case
 			array(
 				1,	// anonymous
 				'<!-- ABBC3_BBCODE_HIDDEN -->Hello world<!-- ABBC3_BBCODE_HIDDEN -->',
-				'<div class="hidebox hidebox_hidden"><div class="hidebox_title hidebox_hidden">' . $this->user->lang('ABBC3_HIDDEN_ON') . '</div><div class="hidebox_hidden">' . $this->user->lang('ABBC3_HIDDEN_EXPLAIN') . '</div></div>',
+				'<div class="hidebox hidebox_hidden"><div class="hidebox_title hidebox_hidden">' . $this->lang->lang('ABBC3_HIDDEN_ON') . '</div><div class="hidebox_hidden">' . $this->lang->lang('ABBC3_HIDDEN_EXPLAIN') . '</div></div>',
 			),
 			array(
 				2,	// registered user
 				'<!-- ABBC3_BBCODE_HIDDEN -->Hello world<!-- ABBC3_BBCODE_HIDDEN -->',
-				'<div class="hidebox hidebox_visible"><div class="hidebox_title hidebox_visible">' . $this->user->lang('ABBC3_HIDDEN_OFF') . '</div><div class="hidebox_visible">Hello world</div></div>',
+				'<div class="hidebox hidebox_visible"><div class="hidebox_title hidebox_visible">' . $this->lang->lang('ABBC3_HIDDEN_OFF') . '</div><div class="hidebox_visible">Hello world</div></div>',
 			),
 			array(
 				2,	// registered user
 				'This is a test <!-- ABBC3_BBCODE_HIDDEN -->Hello world<!-- ABBC3_BBCODE_HIDDEN --> message',
-				'This is a test <div class="hidebox hidebox_visible"><div class="hidebox_title hidebox_visible">' . $this->user->lang('ABBC3_HIDDEN_OFF') . '</div><div class="hidebox_visible">Hello world</div></div> message',
+				'This is a test <div class="hidebox hidebox_visible"><div class="hidebox_title hidebox_visible">' . $this->lang->lang('ABBC3_HIDDEN_OFF') . '</div><div class="hidebox_visible">Hello world</div></div> message',
 			),
 		);
 	}
