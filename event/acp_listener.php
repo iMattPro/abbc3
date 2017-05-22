@@ -84,9 +84,7 @@ class acp_listener implements EventSubscriberInterface
 	{
 		$bbcode_group = ($event['action'] === 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : array();
 
-		$tpl_ary = $event['tpl_ary'];
-		$tpl_ary['S_GROUP_OPTIONS'] = $this->acp_manager->bbcode_group_select_options($bbcode_group);
-		$event['tpl_ary'] = $tpl_ary;
+		$event->update_subarray('tpl_ary', 'S_GROUP_OPTIONS', $this->acp_manager->bbcode_group_select_options($bbcode_group));
 	}
 
 	/**
@@ -97,7 +95,7 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function acp_bbcodes_custom_sorting($event)
 	{
-		// Move up/down action
+		// Move up/down actions
 		switch ($event['action'])
 		{
 			case 'move_up':
@@ -111,14 +109,10 @@ class acp_listener implements EventSubscriberInterface
 		}
 
 		// Add some additional template variables
-		$template_data = $event['template_data'];
-		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['u_action'] . '&action=drag_drop');
-		$event['template_data'] = $template_data;
+		$event->update_subarray('template_data', 'UA_DRAG_DROP', str_replace('&amp;', '&', $event['u_action'] . '&action=drag_drop'));
 
 		// Change SQL so that it orders by bbcode_order
-		$sql_ary = $event['sql_ary'];
-		$sql_ary['ORDER_BY'] = 'b.bbcode_order, b.bbcode_id';
-		$event['sql_ary'] = $sql_ary;
+		$event->update_subarray('sql_ary', 'ORDER_BY', 'b.bbcode_order, b.bbcode_id');
 	}
 
 	/**
@@ -129,25 +123,18 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function acp_bbcodes_modify_create($event)
 	{
-		$sql_ary = $event['sql_ary'];
-
 		// Set a new BBCode order value on create
 		if ($event['action'] === 'create')
 		{
-			$sql_ary['bbcode_order'] = $this->acp_manager->get_max_bbcode_order() + 1;
+			$event->update_subarray('sql_ary', 'bbcode_order', $this->acp_manager->get_max_bbcode_order() + 1);
 		}
 
 		// Get the BBCode groups from the form
 		$bbcode_group = $this->acp_manager->get_bbcode_group_form_data();
-		$sql_ary['bbcode_group'] = $bbcode_group;
-
-		// Return sql_ary array
-		$event['sql_ary'] = $sql_ary;
+		$event->update_subarray('sql_ary', 'bbcode_group', $bbcode_group);
 
 		// Supply BBCode groups to hidden form fields
-		$hidden_fields = $event['hidden_fields'];
-		$hidden_fields['bbcode_group'] = $bbcode_group;
-		$event['hidden_fields'] = $hidden_fields;
+		$event->update_subarray('hidden_fields', 'bbcode_group', $bbcode_group);
 	}
 
 	/**

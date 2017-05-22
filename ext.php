@@ -16,7 +16,7 @@ class ext extends \phpbb\extension\base
 	const BBVIDEO_HEIGHT = 315;
 
 	/** string Require 3.2.0 due to INCLUDECSS, migration helper updates and Pipe Tables. */
-	const PHPBB_MIN_VERSION = '3.2.0';
+	const PHPBB_MIN_VERSION = '3.2.1-dev';
 
 	/**
 	 * {@inheritdoc}
