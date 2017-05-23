@@ -88,7 +88,7 @@ class listener implements EventSubscriberInterface
 
 			// text_formatter events (for phpBB 3.2.x)
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
-			'core.text_formatter_s9e_configure_after'	=> 's9e_configure_tables',
+			'core.text_formatter_s9e_configure_after'	=> 's9e_configure_plugins',
 		);
 	}
 
@@ -195,11 +195,11 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Configure s9e Pipe Tables
+	 * Configure s9e Plug Ins
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 */
-	public function s9e_configure_tables($event)
+	public function s9e_configure_plugins($event)
 	{
 		$configurator = $event['configurator'];
 		$configurator->plugins->load('PipeTables');
