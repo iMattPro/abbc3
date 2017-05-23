@@ -8,7 +8,7 @@
  *
  */
 
-namespace vse\abbc3\core;
+namespace vse\abbc3\migrations;
 
 use \phpbb\db\migration\container_aware_migration;
 
