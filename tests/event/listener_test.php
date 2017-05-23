@@ -34,7 +34,6 @@ class listener_test extends listener_base
 			'core.display_custom_bbcodes_modify_sql',
 			'core.display_custom_bbcodes_modify_row',
 			'core.modify_format_display_text_after',
-			'core.modify_bbcode_init',
 			'core.text_formatter_s9e_parser_setup',
 			'core.text_formatter_s9e_configure_after',
 		), array_keys(\vse\abbc3\event\listener::getSubscribedEvents()));

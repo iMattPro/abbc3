@@ -85,7 +85,6 @@ class listener implements EventSubscriberInterface
 
 			// message_parser events
 			'core.modify_format_display_text_after'		=> 'parse_bbcodes_after',
-			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes',
 
 			// text_formatter events (for phpBB 3.2.x)
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
@@ -180,20 +179,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Set custom BBCodes permissions
-	 *
-	 * @param \phpbb\event\data $event The event object
-	 * @access public
-	 *
-	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
-	 */
-	public function allow_custom_bbcodes($event)
-	{
-		$event['bbcodes'] = $this->bbcodes_display->allow_custom_bbcodes($event['bbcodes'], $event['rowset']);
-	}
-
-	/**
-	 * Toggle custom BBCodes in the s9e\TextFormatter parser based on user's group memberships
+	 * Allow custom BBCodes based on user's group memberships
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
@@ -205,17 +191,7 @@ class listener implements EventSubscriberInterface
 			return; // do no apply bbcode permissions if in a cron job (for 3.1 to 3.2 update reparsing)
 		}
 
-		/** @var $service \phpbb\textformatter\s9e\parser object from the text_formatter.parser service */
-		$service = $event['parser'];
-		$parser = $service->get_parser();
-		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
-		{
-			if (!$this->bbcodes_display->user_in_bbcode_group($groups))
-			{
-				$bbcode_name = rtrim($bbcode_name, '=');
-				$service->disable_bbcode($bbcode_name);
-			}
-		}
+		$this->bbcodes_display->allow_custom_bbcodes($event['parser']);
 	}
 
 	/**
