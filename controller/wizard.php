@@ -65,21 +65,15 @@ class wizard
 	 */
 	public function bbcode_wizard($mode)
 	{
-		// Only allow AJAX requests
-		if ($this->request->is_ajax())
+		// Only allow valid AJAX requests
+		if ($this->request->is_ajax() && in_array($mode, array('bbvideo', 'pipes', 'url')))
 		{
-			switch ($mode)
+			if ($mode === 'bbvideo')
 			{
-				case 'bbvideo':
-					$this->generate_bbvideo_wizard();
-					return $this->helper->render('abbc3_bbvideo_wizard.html');
-				// no break here
-
-				case 'url':
-				case 'pipes':
-					return $this->helper->render("abbc3_{$mode}_wizard.html");
-				// no break here
+				$this->generate_bbvideo_wizard();
 			}
+
+			return $this->helper->render("abbc3_{$mode}_wizard.html");
 		}
 
 		throw new \phpbb\exception\http_exception(404, 'GENERAL_ERROR');
