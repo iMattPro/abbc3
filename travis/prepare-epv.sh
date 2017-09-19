@@ -14,6 +14,7 @@ if [ "$NOTESTS" == "1" ]
 then
 	cd phpBB
 	composer remove sami/sami --dev --no-interaction
+	composer update composer/composer
 	composer require phpbb/epv:dev-master --dev --no-interaction --ignore-platform-reqs
 	cd ../
 fi
