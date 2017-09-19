@@ -32,7 +32,7 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 	 *
 	 * @return array An array of migration class names
 	 */
-	static public function depends_on()
+	public static function depends_on()
 	{
 		return array('\phpbb\db\migration\data\v310\beta4');
 	}
