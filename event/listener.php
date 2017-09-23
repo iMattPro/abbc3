@@ -15,6 +15,7 @@ use phpbb\template\template;
 use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\bbcodes_display;
+use vse\abbc3\core\bbcodes_help;
 use vse\abbc3\core\bbcodes_parser;
 use vse\abbc3\ext;
 
@@ -28,6 +29,9 @@ class listener implements EventSubscriberInterface
 
 	/** @var bbcodes_display */
 	protected $bbcodes_display;
+
+	/** @var bbcodes_help */
+	protected $bbcodes_help;
 
 	/** @var helper */
 	protected $helper;
@@ -44,18 +48,20 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Constructor
 	 *
-	 * @param bbcodes_parser  $bbcodes_parser
-	 * @param bbcodes_display $bbcodes_display
-	 * @param helper          $helper
-	 * @param template        $template
-	 * @param user            $user
-	 * @param string          $ext_root_path
+	 * @param bbcodes_parser               $bbcodes_parser
+	 * @param bbcodes_display              $bbcodes_display
+	 * @param \vse\abbc3\core\bbcodes_help $bbcodes_help
+	 * @param helper                       $helper
+	 * @param template                     $template
+	 * @param user                         $user
+	 * @param string                       $ext_root_path
 	 * @access public
 	 */
-	public function __construct(bbcodes_parser $bbcodes_parser, bbcodes_display $bbcodes_display, helper $helper, template $template, user $user, $ext_root_path)
+	public function __construct(bbcodes_parser $bbcodes_parser, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, helper $helper, template $template, user $user, $ext_root_path)
 	{
 		$this->bbcodes_parser = $bbcodes_parser;
 		$this->bbcodes_display = $bbcodes_display;
+		$this->bbcodes_help = $bbcodes_help;
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
@@ -89,6 +95,9 @@ class listener implements EventSubscriberInterface
 			// text_formatter events (for phpBB 3.2.x)
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
 			'core.text_formatter_s9e_configure_after'	=> 's9e_configure_plugins',
+
+			// BBCode FAQ
+			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 		);
 	}
 
@@ -203,5 +212,20 @@ class listener implements EventSubscriberInterface
 	{
 		$configurator = $event['configurator'];
 		$configurator->plugins->load('PipeTables');
+	}
+
+	/**
+	 * Add ABBC3 BBCodes to the BBCode FAQ
+	 *
+	 * @param object $event The event object
+	 * @access public
+	 */
+	public function add_bbcode_faq($event)
+	{
+		// Add after the HELP_BBCODE_BLOCK_OTHERS block
+		if ($event['block_name'] === 'HELP_BBCODE_BLOCK_OTHERS')
+		{
+			$this->bbcodes_help->faq();
+		}
 	}
 }
