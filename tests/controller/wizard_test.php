@@ -27,12 +27,10 @@ class wizard_test extends \phpbb_test_case
 
 		global $phpbb_root_path;
 
-		$this->request = $this->getMock('\phpbb\request\request');
+		$this->request = $this->createMock('\phpbb\request\request');
 
 		/** @var $controller_helper \phpbb\controller\helper|\PHPUnit_Framework_MockObject_MockObject */
-		$controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
-			->disableOriginalConstructor()
-			->getMock();
+		$controller_helper = $this->createMock('\phpbb\controller\helper');
 		$controller_helper->expects($this->any())
 			->method('render')
 			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200, $display_online_list = false) {
@@ -40,8 +38,7 @@ class wizard_test extends \phpbb_test_case
 			});
 
 		/** @var $template \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
-		$template = $this->getMockBuilder('\phpbb\template\template')
-			->getMock();
+		$template = $this->createMock('\phpbb\template\template');
 
 		$this->controller = new \vse\abbc3\controller\wizard(
 			$controller_helper,

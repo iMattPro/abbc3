@@ -149,7 +149,7 @@ class bbcodes_display
 	 */
 	protected function load_memberships()
 	{
-		if (isset($this->memberships))
+		if ($this->memberships !== null)
 		{
 			return;
 		}

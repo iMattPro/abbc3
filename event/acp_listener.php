@@ -65,13 +65,9 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function acp_bbcodes_custom_sorting_buttons($event)
 	{
-		$row = $event['row'];
-		$bbcodes_array = $event['bbcodes_array'];
-
-		$bbcodes_array['U_MOVE_UP'] = $event['u_action'] . '&amp;action=move_up&amp;id=' . $row['bbcode_id'] . '&amp;hash=' . generate_link_hash('move_up' . $row['bbcode_id']);
-		$bbcodes_array['U_MOVE_DOWN'] = $event['u_action'] . '&amp;action=move_down&amp;id=' . $row['bbcode_id'] . '&amp;hash=' . generate_link_hash('move_down' . $row['bbcode_id']);
-
-		$event['bbcodes_array'] = $bbcodes_array;
+		$bbcode_id = $event['row']['bbcode_id'];
+		$event->update_subarray('bbcodes_array', 'U_MOVE_UP', $event['u_action'] . '&amp;action=move_up&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash('move_up' . $bbcode_id));
+		$event->update_subarray('bbcodes_array', 'U_MOVE_DOWN', $event['u_action'] . '&amp;action=move_down&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash('move_down' . $bbcode_id));
 	}
 
 	/**

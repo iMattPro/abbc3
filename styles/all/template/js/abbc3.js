@@ -7,6 +7,8 @@
  *
  */
 
+/*global bbfontstyle, is_ie, form_name, text_name, baseHeight, insert_text, storeCaret */
+
 // global scope vars
 var requestRunning = false;
 var bbwizard;

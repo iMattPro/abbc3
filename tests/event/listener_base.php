@@ -48,25 +48,18 @@ class listener_base extends \phpbb_test_case
 
 		global $phpbb_root_path, $phpEx;
 
-		$this->parser = $this->getMockBuilder('\vse\abbc3\core\bbcodes_parser')
-			->disableOriginalConstructor()
-			->getMock();
-		$this->bbcodes = $this->getMockBuilder('\vse\abbc3\core\bbcodes_display')
-			->disableOriginalConstructor()
-			->getMock();
+		$this->parser = $this->createMock('\vse\abbc3\core\bbcodes_parser');
+		$this->bbcodes = $this->createMock('\vse\abbc3\core\bbcodes_display');
 		$this->config = new \phpbb\config\config(array('enable_mod_rewrite' => '0'));
 
-		$this->template = $this->getMockBuilder('\phpbb\template\template')
-			->getMock();
-		$this->user = $this->getMock('\phpbb\user', array(), array(
+		$this->template = $this->createMock('\phpbb\template\template');
+		$this->user = $this->createMock('\phpbb\user', array(), array(
 			new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
 			'\phpbb\datetime'
 		));
 		$this->user->data['username'] = 'admin';
 
-		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
-			->disableOriginalConstructor()
-			->getMock();
+		$this->controller_helper = $this->createMock('\phpbb\controller\helper');
 		$this->controller_helper->expects($this->any())
 			->method('route')
 			->willReturnCallback(function ($route, array $params = array()) {
