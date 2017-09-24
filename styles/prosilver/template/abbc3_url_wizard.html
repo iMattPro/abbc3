@@ -1,0 +1,35 @@
+<form>
+	<div class="panel">
+		<div class="inner">
+			<fieldset>
+				<dl>
+					<dt><label for="bbcode_wizard_example">{{ lang('ABBC3_BBCODE_WIZ_EXAMPLE') ~ lang('COLON') }}</label></dt>
+					<dd>
+						<input type="text" id="bbcode_wizard_example" name="bbcode_wizard_example" readonly="readonly" value="{{ lang('ABBC3_URL_EXAMPLE') }}" size="45" class="inputbox disabled" />
+					</dd>
+				</dl>
+				<hr />
+				<dl>
+					<dt><label for="bbcode_wizard_link">{{ lang('ABBC3_URL_LINK') ~ lang('COLON') }}</label></dt>
+					<dd>
+						<input type="text" id="bbcode_wizard_link" name="bbcode_wizard_link" value="" class="inputbox" size="45" />
+					</dd>
+				</dl>
+				<dl>
+					<dt><label for="bbcode_wizard_description">{{ lang('ABBC3_URL_DESCRIPTION') ~ lang('COLON') }}</label></dt>
+					<dd>
+						<input type="text" id="bbcode_wizard_description" name="bbcode_wizard_description" value="" class="inputbox" size="45" />
+					</dd>
+				</dl>
+			</fieldset>
+		</div>
+	</div>
+	<div class="panel" style="margin-bottom: 0;">
+		<div class="inner">
+			<fieldset class="submit-buttons">
+				<input type="button" name="bbcode_wizard_submit" id="bbcode_wizard_submit" value="{{ lang('ABBC3_BBCODE_WIZ_SUBMIT') }}" class="button1" data-bbcode="url" />&nbsp;
+				<input type="button" name="bbcode_wizard_cancel" id="bbcode_wizard_cancel" value="{{ lang('CANCEL') }}" class="button2" />
+			</fieldset>
+		</div>
+	</div>
+</form>

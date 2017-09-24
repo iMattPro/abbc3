@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1
+* Advanced BBCode Box
 *
 * @copyright (c) 2014 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -14,13 +14,12 @@ class acp_bbcode_group_select_test extends acp_base
 {
 	public function get_user_instance()
 	{
-		// Must do this for testing with the user class
-		global $config;
-		$config['default_lang'] = 'en';
+		global $phpbb_root_path, $phpEx;
 
 		// Get instance of phpbb\user (dataProvider is called before setUp(), so this must be done here)
-		$this->user = new \phpbb\user('\phpbb\datetime');
-
+		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
+		$lang = new \phpbb\language\language($lang_loader);
+		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
 		$this->user->add_lang('common');
 	}
 
@@ -36,6 +35,15 @@ class acp_bbcode_group_select_test extends acp_base
 		$this->get_user_instance();
 
 		return array(
+			array(
+				array(),
+				'<option value="5">' . $this->user->lang('G_ADMINISTRATORS') .
+				'</option><option value="4">' . $this->user->lang('G_GLOBAL_MODERATORS') .
+				'</option><option value="1">' . $this->user->lang('G_GUESTS') .
+				'</option><option value="2">' . $this->user->lang('G_REGISTERED') .
+				'</option><option value="3">' . $this->user->lang('G_REGISTERED_COPPA') .
+				'</option>'
+			),
 			array(
 				array(''),
 				'<option value="5">' . $this->user->lang('G_ADMINISTRATORS') .
@@ -80,7 +88,7 @@ class acp_bbcode_group_select_test extends acp_base
 	*/
 	public function test_bbcode_group_select_options($data, $expected)
 	{
-		$acp_manager = $this->acp_manager();
+		$acp_manager = $this->get_acp_manager();
 
 		$this->assertEquals($expected, $acp_manager->bbcode_group_select_options($data));
 	}

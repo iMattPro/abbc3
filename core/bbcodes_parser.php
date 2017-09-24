@@ -1,52 +1,45 @@
 <?php
 /**
-*
-* Advanced BBCode Box 3.1
-*
-* @copyright (c) 2013 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2013 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\core;
 
+use phpbb\user;
+use vse\abbc3\ext;
+
 /**
-* ABBC3 core BBCodes parser class
-*/
+ * ABBC3 core BBCodes parser class
+ */
 class bbcodes_parser
 {
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
-	/** @var string */
-	protected $bbvideo_width;
-
-	/** @var string */
-	protected $bbvideo_height;
-
 	/**
-	* Constructor
-	*
-	* @param \phpbb\user $user User object
-	* @param string $bbvideo_width Default width of bbvideo
-	* @param string $bbvideo_height Default height of bbvideo
-	* @access public
-	*/
-	public function __construct(\phpbb\user $user, $bbvideo_width, $bbvideo_height)
+	 * Constructor
+	 *
+	 * @param user $user User object
+	 * @access public
+	 */
+	public function __construct(user $user)
 	{
 		$this->user = $user;
-		$this->bbvideo_width = $bbvideo_width;
-		$this->bbvideo_height = $bbvideo_height;
 	}
 
 	/**
-	* Pre-Parser for special custom BBCodes created by ABBC3
-	*
-	* @param string $text The text to parse
-	* @param string $uid The BBCode UID
-	* @return string The parsed text
-	* @access public
-	*/
+	 * Pre-Parser for special custom BBCodes created by ABBC3
+	 *
+	 * @param string $text The text to parse
+	 * @param string $uid  The BBCode UID
+	 * @return string The parsed text
+	 * @access public
+	 */
 	public function pre_parse_bbcodes($text, $uid)
 	{
 		// bbvideo BBCodes (convert from older ABBC3 installations)
@@ -56,12 +49,12 @@ class bbcodes_parser
 	}
 
 	/**
-	* Post-Parser for special custom BBCodes created by ABBC3
-	*
-	* @param string $text The text to parse
-	* @return string The parsed text
-	* @access public
-	*/
+	 * Post-Parser for special custom BBCodes created by ABBC3
+	 *
+	 * @param string $text The text to parse
+	 * @return string The parsed text
+	 * @access public
+	 */
 	public function post_parse_bbcodes($text)
 	{
 		// hidden BBCode
@@ -71,24 +64,26 @@ class bbcodes_parser
 	}
 
 	/**
-	* Convert BBvideo from older ABBC3 posts to the new format
-	*
-	* @param array $matches 1=bbvideo, 2=width,height, 3=uid, 4=url
-	* @return string BBvideo in the correct BBCode format
-	* @access protected
-	*/
+	 * Convert BBvideo from older ABBC3 posts to the new format
+	 *
+	 * @param array $matches 1=bbvideo, 2=width,height, 3=uid, 4=url
+	 * @return string BBvideo in the correct BBCode format
+	 * @access protected
+	 */
 	protected function bbvideo_pass($matches)
 	{
-		return (!empty($matches[2])) ? "[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" : "[bbvideo={$this->bbvideo_width},{$this->bbvideo_height}:$matches[3]]$matches[4][/bbvideo:$matches[3]]";
+		return (!empty($matches[2])) ?
+			"[bbvideo=$matches[2]:$matches[3]]$matches[4][/bbvideo:$matches[3]]" :
+			'[bbvideo=' . ext::BBVIDEO_WIDTH . ',' . ext::BBVIDEO_HEIGHT . ":$matches[3]]$matches[4][/bbvideo:$matches[3]]";
 	}
 
 	/**
-	* Convert Hidden BBCode into its final appearance
-	*
-	* @param array $matches
-	* @return string HTML render of hidden bbcode
-	* @access protected
-	*/
+	 * Convert Hidden BBCode into its final appearance
+	 *
+	 * @param array $matches
+	 * @return string HTML render of hidden bbcode
+	 * @access protected
+	 */
 	protected function hidden_pass($matches)
 	{
 		if ($this->user->data['user_id'] == ANONYMOUS || $this->user->data['is_bot'])
@@ -108,10 +103,6 @@ class bbcodes_parser
 			);
 		}
 
-		return str_replace(
-			array('{HIDDEN_TITLE}', '{HIDDEN_CONTENT}', '{HIDDEN_CLASS}'),
-			$replacements,
-			'<div class="hidebox {HIDDEN_CLASS}"><div class="hidebox_title {HIDDEN_CLASS}">{HIDDEN_TITLE}</div><div class="{HIDDEN_CLASS}">{HIDDEN_CONTENT}</div></div>'
-		);
+		return vsprintf('<div class="hidebox %3$s"><div class="hidebox_title %3$s">%1$s</div><div class="%3$s">%2$s</div></div>', $replacements);
 	}
 }

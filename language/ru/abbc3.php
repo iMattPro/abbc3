@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Russian]
+* Advanced BBCode Box [Russian]
 *
 * @copyright (c) 2015 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Для просмотра скрытого текста необходимо быть авторизованным пользователем.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Показать',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Скрыть',
+	'ABBC3_SPOILER_SHOW'		=> '► Показать',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Скрыть',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Не по теме',
@@ -82,6 +82,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'Ширина и высота видео',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Выбрать размер',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Добавить URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Дополнительное описание',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BB-кодов изменён.',

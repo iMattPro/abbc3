@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Dutch]
+* Advanced BBCode Box [Dutch]
 * Translated by Dutch Translators (https://github.com/dutch-translators)
 *
 * @copyright (c) 2013 Matt Friedman
@@ -25,12 +25,12 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	// Hidden BBCode
 	'ABBC3_HIDDEN_ON'			=> 'Verborgen inhoud',
-	'ABBC3_HIDDEN_OFF'			=> 'Veborgen inhoud (Alleen voor leden)',
+	'ABBC3_HIDDEN_OFF'			=> 'Verborgen inhoud (Alleen voor leden)',
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Je moet geregistreerd en aangemeld zijn om de verborgen inhoud te kunnen zien.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Laat Spoiler zien',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Verberg Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> '► Laat Spoiler zien',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Verberg Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic bericht: [offtopic]tekst[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Vooraf opgemaakte tekst: [pre]tekst[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Schaduw tekst: [shadow=color]tekst[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler (in- en uitklapbaar gedeelte): [spoil]tekst[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Doorstreepte tekst: [s]tekst[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript (kleine letters maken boven de basis regel van de tekst): [sub]tekst[/sub]',
@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'Video Breedte x Hoogte',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Afmetingen vooraf instellen',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Voeg een URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Optionele beschrijving',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'De volgorde van de BBcodes is bijgewerkt.',

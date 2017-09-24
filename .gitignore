@@ -2,6 +2,7 @@ Tags/
 Branches/
 Diffs/
 Backup/
-.DS_Store
 
 /node_modules/
+/build/
+/vendor/

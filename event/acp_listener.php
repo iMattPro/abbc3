@@ -1,65 +1,68 @@
 <?php
 /**
-*
-* Advanced BBCode Box 3.1
-*
-* @copyright (c) 2013 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2013 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use vse\abbc3\core\acp_manager;
 
 /**
-* Event listener
-*/
+ * Event listener
+ */
 class acp_listener implements EventSubscriberInterface
 {
-	/** @var \vse\abbc3\core\acp_manager */
+	/** @var acp_manager */
 	protected $acp_manager;
 
 	/** @var string */
 	protected $root_path;
 
 	/**
-	* Constructor
-	*
-	* @param \vse\abbc3\core\acp_manager $acp_manager
-	* @param string $root_path
-	* @access public
-	*/
-	public function __construct(\vse\abbc3\core\acp_manager $acp_manager, $root_path)
+	 * Constructor
+	 *
+	 * @param acp_manager $acp_manager
+	 * @param string      $root_path
+	 * @access public
+	 */
+	public function __construct(acp_manager $acp_manager, $root_path)
 	{
 		$this->acp_manager = $acp_manager;
 		$this->root_path = $root_path;
 	}
 
 	/**
-	* Assign functions defined in this class to event listeners in the core
-	*
-	* @return array
-	* @static
-	* @access public
-	*/
-	static public function getSubscribedEvents()
+	 * Assign functions defined in this class to event listeners in the core
+	 *
+	 * @return array
+	 * @static
+	 * @access public
+	 */
+	public static function getSubscribedEvents()
 	{
 		return array(
 			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_custom_sorting',
 			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_custom_sorting_buttons',
 			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create',
 			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_group_select_box',
+
+			// text_formatter events (for phpBB 3.2.x)
+			'core.text_formatter_s9e_configure_after'	=> 's9e_store_bbcode_groups',
 		);
 	}
 
 	/**
-	* Add some additional elements to the BBCodes template
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
+	 * Add some additional elements to the BBCodes template
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
 	public function acp_bbcodes_custom_sorting_buttons($event)
 	{
 		$row = $event['row'];
@@ -72,15 +75,14 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Add the Group select form field on BBCode edit page
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
+	 * Add the Group select form field on BBCode edit page
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
 	public function acp_bbcodes_group_select_box($event)
 	{
-		$bbcode_group = ($event['action'] == 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : false;
+		$bbcode_group = ($event['action'] === 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : array();
 
 		$tpl_ary = $event['tpl_ary'];
 		$tpl_ary['S_GROUP_OPTIONS'] = $this->acp_manager->bbcode_group_select_options($bbcode_group);
@@ -88,12 +90,11 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Handle BBCode order changes when moving them up/down
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
+	 * Handle BBCode order changes when moving them up/down
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
 	public function acp_bbcodes_custom_sorting($event)
 	{
 		// Move up/down action
@@ -121,18 +122,17 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Handle BBCode order and group data during modify/create routines
-	*
-	* @param object $event The event object
-	* @return null
-	* @access public
-	*/
+	 * Handle BBCode order and group data during modify/create routines
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
 	public function acp_bbcodes_modify_create($event)
 	{
 		$sql_ary = $event['sql_ary'];
 
 		// Set a new BBCode order value on create
-		if ($event['action'] == 'create')
+		if ($event['action'] === 'create')
 		{
 			$sql_ary['bbcode_order'] = $this->acp_manager->get_max_bbcode_order() + 1;
 		}
@@ -148,5 +148,21 @@ class acp_listener implements EventSubscriberInterface
 		$hidden_fields = $event['hidden_fields'];
 		$hidden_fields['bbcode_group'] = $bbcode_group;
 		$event['hidden_fields'] = $hidden_fields;
+	}
+
+	/**
+	 * Store BBCode groups in a s9e\TextFormatter variable
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function s9e_store_bbcode_groups($event)
+	{
+		$configurator = $event['configurator'];
+		$bbcode_groups = $this->acp_manager->get_bbcode_groups_data();
+
+		// Save BBCode groups in a registered variable in the configurator. That variable will be
+		// copied in the parser's configuration and be available during parser setup.
+		$configurator->registeredVars['abbc3.bbcode_groups'] = $bbcode_groups;
 	}
 }

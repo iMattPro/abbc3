@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1
+* Advanced BBCode Box
 *
 * @copyright (c) 2014 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -19,31 +19,31 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	protected $db;
 	protected $user;
-	protected $root_path;
 	protected $ext_root_path;
 	protected $ext_manager;
 
 	public function getDataSet()
 	{
-		return $this->createXMLDataSet(dirname(__FILE__) . '/fixtures/user_group.xml');
+		return $this->createXMLDataSet(__DIR__ . '/fixtures/user_group.xml');
 	}
 
 	public function setUp()
 	{
-		global $phpbb_extension_manager, $phpbb_root_path;
+		global $phpbb_extension_manager, $phpbb_root_path, $phpEx;
 
 		parent::setUp();
 
 		$this->db = $this->new_dbal();
-		$this->user = new \phpbb\user('\phpbb\datetime');
-		$this->root_path = $phpbb_root_path;
-		$this->ext_root_path = 'ext/vse/abbc3/';
-		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(dirname(__FILE__) . '/../../../../../phpBB/');
+		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
+		$lang = new \phpbb\language\language($lang_loader);
+		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
+		$this->ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
+		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
 	}
 
 	protected function bbcodes_manager()
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->db, $this->ext_manager, $this->user, $this->root_path, $this->ext_root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->db, $this->ext_manager, $this->user, $this->ext_root_path);
 	}
 
 	public function bbcode_data()
@@ -113,27 +113,25 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		return array(
 			array(
-				2, // Allowed: user 2 is member of group 2 and 6
-				$bbcode_data[1], // All groups allowed
+				2, // User 2 is member of group 2 and 6
 				array(
-					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
-					'S_CUSTOM_BBCODE_ALLOWED' => true,
+					$bbcode_data[1], // All groups allowed
+					$bbcode_data[2], // Group 2 allowed only
+					$bbcode_data[3], // Groups 3,4,5 allowed only
 				),
-			),
-			array(
-				2, // Allowed: user 2 is member of group 2 and 6
-				$bbcode_data[2], // Group 2 allowed only
 				array(
-					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
-					'S_CUSTOM_BBCODE_ALLOWED' => true,
-				),
-			),
-			array(
-				2, // Disallowd: user 2 is member of group 2 and 6
-				$bbcode_data[3], // Groups 3,4,5 allowed only
-				array(
-					'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
-					'S_CUSTOM_BBCODE_ALLOWED' => false,
+					array(
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
+						'S_CUSTOM_BBCODE_ALLOWED' => true,
+					),
+					array(
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
+						'S_CUSTOM_BBCODE_ALLOWED' => true,
+					),
+					array(
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
+						'S_CUSTOM_BBCODE_ALLOWED' => false,
+					),
 				),
 			),
 		);
@@ -150,7 +148,12 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		$custom_tags = array();
 
-		$this->assertEquals($expected, $bbcodes_manager->display_custom_bbcodes($custom_tags, $data));
+		// Test all bbcodes at once instead of one at a time
+		// for full coverage of load_memberships()
+		foreach ($data as $key => $bbcode_data)
+		{
+			$this->assertEquals($expected[$key], $bbcodes_manager->display_custom_bbcodes($custom_tags, $bbcode_data));
+		}
 	}
 
 	public function bbcode_group_data()

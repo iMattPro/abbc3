@@ -1,47 +1,55 @@
 /* [hidden] hide BBCode */
 .hidebox {
+	font-weight: normal;
+	background-color: #c5e3bf;
+	border: 1px solid #72b173;
+	border-radius: 4px;
 	position: relative;
 	margin: 5px 0;
-	font-weight: normal;
 	padding: 39px 19px 14px;
-	background-color: #c5e3bf;
-	border: 1px solid #72B173;
-	border-radius: 4px;
 }
+
 .hidebox_title {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	border: 1px solid #72b173;
+	border-radius: 4px 0;
+	color: #2f4f2f;
 	position: absolute;
 	top: -1px;
 	left: -1px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: bold;
-	font-size: 12px;
-	color: #2f4f2f;
 	padding: 5px 12px;
-	border: 1px solid #72B173;
-	border-radius: 4px 0 4px 0;
 }
+
 .hidebox_hidden {
 	background-color: #f2dede;
 	border-color: #ebccd1;
 	color: #80001c;
 }
 
-.hidebox_visible { color: #2f4f2f }
+.hidebox_visible {
+	color: #2f4f2f;
+}
 
 /* [spoil] spoiler BBCode */
-.spoilbtn:hover { color: #d31141 !important; }
+.spoilbtn:hover {
+	color: #d31141 !important;
+}
 
 /* [fade] fade text in/out effect */
 .fadeEffect {
-	-webkit-animation: fade 2s infinite;
 	-moz-animation: fade 2s infinite;
+	-webkit-animation: fade 2s infinite;
 	animation: fade 2s infinite;
 }
+
 @-webkit-keyframes fade {
 	50% {
 		opacity: 0;
 	}
 }
+
 @keyframes fade {
 	50% {
 		opacity: 0;
@@ -49,66 +57,87 @@
 }
 
 /* Hide native phpbb BBCode buttons */
+#imgurAnchor, /* flat boots */
 #format-buttons,
 #core-bbcode-buttons,
-#custom-bbcode-buttons { display: none }
+#custom-bbcode-buttons {
+	display: none;
+}
 
 /* ABBC3 BBCode buttons */
-#abbc3_buttons { margin: 15px 0 2px 0 }
-#abbc3_buttons input,
-#abbc3_buttons select { vertical-align: middle }
-.abbc3_button {
-	margin: 4px 0;
+#abbc3_buttons {
+	margin: 15px 0 2px;
+}
+
+#abbc3_buttons input {
+	vertical-align: middle;
+}
+
+#abbc3_buttons select {
+	vertical-align: middle;
+	background-color: #ffffff !important;
+	border: 1px solid #b4bac0;
+	color: #000000 !important;
+	height: 22px;
+	margin: 4px;
 	padding: 0;
+}
+
+.abbc3_button {
+	font-size: 11px;
+	background: transparent no-repeat center;
+	border: 1px solid transparent;
 	min-width: 22px;
 	height: 22px;
-	background-color: transparent;
-	background-position: center;
-	background-repeat: no-repeat;
-	border: 1px solid transparent;
-	font-size: 11px;
+	margin: 4px 0;
+	padding: 0;
 }
+
 .abbc3_button:hover {
 	background-color: #ffffdf;
 	border: 1px solid #bc2a4d;
 	cursor: pointer;
 }
-.abbc3_select {
-	margin: 4px;
-	height: 22px;
-	background-color: #fff;
-	border: 1px solid #b4bac0;
-}
+
 .abbc3_buttons_row {
-	margin: 0 !important;
-	min-height: 30px;
-	width: 80%;
-	padding: 0 2px;
+	background: transparent url('./images/abbc3_bg.gif');
 	border: 1px solid #b4bac0;
 	display: block;
-	background: transparent url('./images/abbc3_bg.gif');
+	width: 80%;
+	min-height: 30px;
+	margin: 0 !important;
+	padding: 0 2px;
 }
+
 /* tweaks for subsilver styles */
-form td .abbc3_buttons_row { width: 98% }
+form td .abbc3_buttons_row {
+	width: 98%;
+}
+
 /* tweaks for ACP bbcode editor */
-#main #abbc3_buttons { margin-left: 96px }
-#main #abbc3_buttons .abbc3_buttons_row { width: 95% }
+#main #abbc3_buttons {
+	margin-left: 96px;
+}
+
+#main #abbc3_buttons .abbc3_buttons_row {
+	width: 95%;
+}
 
 /* BBCode wizard */
 #bbcode_wizard {
 	font-size: 0.9em;
-	display: none;
-	background: white;
-	box-shadow: 2px 2px 4px #555555;
+	background: #ffffff;
+	border: 5px solid #12a3eb;
 	border-radius: 11px;
-	border: 5px solid #12A3EB;
-	padding: 5px;
+	box-shadow: 2px 2px 4px #555555;
 	position: absolute;
+	right: 0;
+	left: 0;
+	z-index: 500;
+	display: none;
 	width: 500px;
 	margin: 0 auto;
-	left: 0;
-	right: 0;
-	z-index: 500;
+	padding: 5px;
 }
 
 /* responsive design */

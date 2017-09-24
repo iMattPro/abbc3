@@ -1,58 +1,49 @@
+{# Display only on Posting->BBCodes page #}
 {% if loops.bbcodes %}
 
-<!-- IF not $INCLUDED_TABLEDNDJS -->
-	<!-- INCLUDEJS @vse_abbc3/js/tablednd.min.js -->
-	<!-- DEFINE $INCLUDED_TABLEDNDJS = true -->
-<!-- ENDIF -->
+	{% INCLUDEJS '@vse_abbc3/js/tablednd.min.js' %}
 
-<div style="display: none;" id="abbc3-successbox" class="successbox">
-	<h3>{{ lang('INFORMATION') }}</h3>
-	<p>{{ lang('ABBC3_BBCODE_ORDERED') }}</p>
-</div>
+	<div style="display: none;" id="abbc3-successbox" class="successbox">
+		<h3>{{ lang('INFORMATION') }}</h3>
+		<p>{{ lang('ABBC3_BBCODE_ORDERED') }}</p>
+	</div>
 
-<script>
-
-(function($) {  // Avoid conflicts with other libraries
-
-'use strict';
-
-$(function() {
-	var msgTimer,
-		bbcodeTable = $('#down'),
-		msgSuccessBox = $('#abbc3-successbox');
-
-    // Get BBCode ids from the delete button,
-    // and create tr row IDs on the fly for use by tableDnD
-    bbcodeTable.find('tbody').find('tr').each(function() {
-		var url = $(this).find('a').last().attr('href');
-		if (url) $(this).attr('id', 'bbcode_' + url.split('bbcode=')[1]);
-	});
-
-	// Enable table row drag-drop
-    bbcodeTable.tableDnD({
-		onDragClass: 'row3',
-		onDrop: function(table, row) {
-			$.ajax({
-				type: 'POST',
-				url: '{{ UA_DRAG_DROP }}&tablename=' + $(table).attr('id'),
-				data: $.tableDnD.serialize(),
-				success: function(res) {
-					// Show the message
-					if (res.success) {
-						clearTimeout(msgTimer);
-						msgSuccessBox.stop(true, true).hide().fadeIn(500);
-						msgTimer = setTimeout(function() {
-							msgSuccessBox.fadeOut(500);
-						}, 3000);
+	<script>
+		(function($) {  // Avoid conflicts with other libraries
+			'use strict';
+			$(function() {
+				var msgTimer,
+					bbcodeTable = $('#down'),
+					msgSuccessBox = $('#abbc3-successbox');
+				// Get BBCode ids from the delete button,
+				// and create tr row IDs on the fly for use by tableDnD
+				bbcodeTable.find('tbody').find('tr').each(function() {
+					var url = $(this).find('a').last().attr('href');
+					if (url) $(this).attr('id', 'bbcode_' + url.split('bbcode=')[1]);
+				});
+				// Enable table row drag-drop
+				bbcodeTable.tableDnD({
+					onDragClass: 'row3',
+					onDrop: function(table, row) {
+						$.ajax({
+							type: 'POST',
+							url: '{{ UA_DRAG_DROP }}&tablename=' + $(table).attr('id'),
+							data: $.tableDnD.serialize(),
+							success: function(res) {
+								// Show the message
+								if (res.success) {
+									clearTimeout(msgTimer);
+									msgSuccessBox.stop(true, true).hide().fadeIn(500);
+									msgTimer = setTimeout(function() {
+										msgSuccessBox.fadeOut(500);
+									}, 3000);
+								}
+							}
+						});
 					}
-				}
+				});
 			});
-		}
-	});
-});
-
-})(jQuery);
-
-</script>
+		})(jQuery);
+	</script>
 
 {% endif %}

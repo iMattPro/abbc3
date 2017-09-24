@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Persian]
+* Advanced BBCode Box [Persian]
 * Translated by Meisam Noubari from IRAN in php-bb.ir
 *
 * @copyright (c) 2013 Matt Friedman
@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'برای مشاهده متن باید در انجمن عضو باشید',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> 'نمایش متن &#9658;',
-	'ABBC3_SPOILER_HIDE'		=> 'مخفی کردن متن &#9660;',
+	'ABBC3_SPOILER_SHOW'		=> 'نمایش متن ►',
+	'ABBC3_SPOILER_HIDE'		=> 'مخفی کردن متن ▼',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'پیام بسته شدن موضوع',
@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'طول و عرض ویدیو',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'اندازه',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> '*',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'اضافه کردن URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'توضیحات اختیاری',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'بی بی کد دستور داده شده به روز رسانی شد',

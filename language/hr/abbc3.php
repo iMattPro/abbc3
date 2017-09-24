@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Croatian]
+* Advanced BBCode Box [Croatian]
 * Croatian translation by Ančica Sečan (http://ancica.sunceko.net)
 *
 * @copyright (c) 2013 Matt Friedman
@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Za pregledavanje skrivenog sadržaja na forumu, trebaš se prijaviti.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Prikaži “Spoiler”',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Sakrij “Spoiler”',
+	'ABBC3_SPOILER_SHOW'		=> '► Prikaži “Spoiler”',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Sakrij “Spoiler”',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> '“Off Topic”',
@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> '“Off Topic” poruka: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Formatiranje teksta: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Sjenčanje teksta: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> '“Spoiler” poruka: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Precrtanje teksta: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Indeksiranje teksta: [sub]text[/sub]',
@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'Širina x visina videa',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Podešavanje veličine videa',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Unesite URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Izborni opis',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBKod poredak je ažuriran.',

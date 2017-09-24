@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [English]
+* Advanced BBCode Box [English]
 *
 * @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'This board requires you to be registered and logged-in to view hidden content.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Show Spoiler',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Hide Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> '► Show Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Hide Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
@@ -58,7 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic message: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Preformatted text: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Shadow text: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler message: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Strike-through text: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript text: [sub]text[/sub]',
@@ -82,6 +82,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'Video Width x Height',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Size Presets',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Enter a site URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Optional description',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'The BBCode order has been updated.',

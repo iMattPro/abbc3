@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Italian]
+* Advanced BBCode Box [Italian]
 * Translated by Loll.
 *
 * @copyright (c) 2013 Matt Friedman
@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Registrati ed effettua l\'accesso per visualizzare questo contenuto.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Mostra testo',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Nascondi testo',
+	'ABBC3_SPOILER_SHOW'		=> '► Mostra testo',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Nascondi testo',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Messaggio Off Topic: [offtopic]testo[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Testo preformattato: [pre]testo[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Shadow text: [shadow=color]testo[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/titolo-canzone[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/titolo-canzone[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler: [spoil]testo[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Testo barrato: [s]testo[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Pedice: [sub]testo[/sub]',
@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'Larghezza e Altezza video',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Dimensioni preselezionate',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Aggiungi un URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Descrizione opzionale',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Ordine dei BBCode aggiornato.',

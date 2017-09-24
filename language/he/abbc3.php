@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [Hebrew]
+* Advanced BBCode Box [Hebrew]
 *
 * @copyright (c) 2014 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'אתר זה מחייב להיות להיות מחובר על מנת לצפות בתוכן חבוי.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; הצג ספוילר',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; הסתר ספוילר',
+	'ABBC3_SPOILER_SHOW'		=> '► הצג ספוילר',
+	'ABBC3_SPOILER_HIDE'		=> '▼ הסתר ספוילר',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'מחוץ לנושא',
@@ -58,7 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'הודעה מחוץ לנושא: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Preformatted text: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'צל לטקסט: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'הודעת ספוילר: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'טקסט קו-דרכו: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript text: [sub]text[/sub]',
@@ -82,6 +82,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'גובה X רוחב של סרטון',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'גודל Presets',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'X',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'הזן כתובת אתר',
+	'ABBC3_URL_DESCRIPTION'		=> 'תיאור אופציונאלי',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'סדר ה BBCodes עודכן.',

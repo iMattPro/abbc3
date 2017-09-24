@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-	minifycss = require('gulp-minify-css'),
+	cleancss = require('gulp-clean-css'),
 	rename = require('gulp-rename'),
 	uglify = require('gulp-uglify'),
 	jshint = require('gulp-jshint'),
@@ -7,13 +7,24 @@ var gulp = require('gulp'),
 	stylish = require('jshint-stylish'),
 	paths = {
 		css: ['styles/all/theme/*.css', '!styles/all/theme/*.min.css'],
-		js: ['styles/all/template/js/*.js', '!styles/all/template/js/*.min.js'],
+		js: ['styles/all/template/js/*.js', '!styles/all/template/js/*.min.js']
 	};
 
 // Lint JS
 gulp.task('jshint', function() {
 	return gulp.src(paths.js)
-		.pipe(jshint())
+		.pipe(jshint({
+			'globals': {
+				'$': true,
+				'is_ie': true,
+				'form_name': true,
+				'text_name': true,
+				'baseHeight': true,
+				'storeCaret': true,
+				'bbfontstyle': true,
+				'insert_text': true
+			}
+		}))
 		.pipe(jshint.reporter(stylish));
 });
 
@@ -32,6 +43,7 @@ gulp.task('csslint', function() {
 			'ids': false,
 			'important': false,
 			'box-model': false,
+			'box-sizing': false
 		}))
 		.pipe(csslint.reporter());
 });
@@ -40,7 +52,7 @@ gulp.task('csslint', function() {
 gulp.task('css', function() {
 	return gulp.src(paths.css)
 		.pipe(rename({suffix: '.min'} ))
-		.pipe(minifycss())
+		.pipe(cleancss())
 		.pipe(gulp.dest('styles/all/theme/'));
 });
 

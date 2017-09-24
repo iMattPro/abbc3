@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1
+* Advanced BBCode Box
 *
 * @copyright (c) 2014 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\core;
 
 class acp_install_bbcodes_test extends acp_base
 {
-	public static function install_bbcodes_data()
+	public function install_bbcodes_data()
 	{
 		return array(
 			array(array(
@@ -45,9 +45,17 @@ class acp_install_bbcodes_test extends acp_base
 	*/
 	public function test_install_bbcodes($data)
 	{
-		$acp_manager = $this->acp_manager();
+		global $phpbb_root_path, $phpEx;
 
-		$acp_manager->install_bbcodes($data);
+		$bbcodes_installer = new \vse\abbc3\core\bbcodes_installer(
+			$this->db,
+			$this->request,
+			$this->user,
+			$phpbb_root_path,
+			$phpEx
+		);
+
+		$bbcodes_installer->install_bbcodes($data);
 
 		foreach ($data as $bbcode_tag => $bbcode_data)
 		{
@@ -58,5 +66,16 @@ class acp_install_bbcodes_test extends acp_base
 
 			$this->assertEquals($bbcode_data, $this->db->sql_fetchrow($result));
 		}
+	}
+
+	/**
+	 * @dataProvider install_bbcodes_data
+	 */
+	public function test_clean_install_bbcodes($data)
+	{
+		// Remove any existing bbcodes from database
+		$this->db->sql_query('DELETE FROM phpbb_bbcodes');
+
+		$this->test_install_bbcodes($data);
 	}
 }

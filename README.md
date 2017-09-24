@@ -1,10 +1,12 @@
-# Advanced BBCode Box 3.1
+# Advanced BBCode Box
 
 Replace phpBB3's BBCode buttons with icons in an attractive and customizable toolbar. This extension also adds many new and useful custom BBCodes giving users more ways to customize their posts, including BBvideo (embed videos from dozens of media sites). Custom BBCodes can be arranged and sorted in any order and assigned to specific usergroups (such as Moderators and Admins only).
 
 [![Build Status](https://img.shields.io/travis/VSEphpbb/abbc3/master.svg?style=flat)](https://travis-ci.org/VSEphpbb/abbc3)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/VSEphpbb/abbc3/master.svg?style=flat)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=master)
 [![Dev dependencies](https://img.shields.io/david/VSEphpbb/abbc3.svg?style=flat)](https://david-dm.org/VSEphpbb/abbc3#info=devDependencies)
+[![Latest Stable Version](https://poser.pugx.org/vse/abbc3/v/stable)](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/)
 
 ## Features:
 * Customizable icon-based BBCode toolbar
@@ -21,48 +23,35 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 
 * Embed video in your posts with BBvideo, supported video sharing sites:
 
-		5min.com, allocine.fr, on.aol.com, blip.tv, break.com, clipfish.de,
+		5min.com, allocine.fr, on.aol.com, break.com, clipfish.de,
 		clipmoon.com, cnbc.com, cnettv.cnet.com, colbertnation.com,
 		collegehumor.com, comedycentral.com, crackle.com, dailymotion.com,
 		dotsub.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com,
-		g4tv.com, gameprotv.com, gamespot.com, gametrailers.com, godtube.com,
-		howcast.com, hulu.com, ign.com, instagram.com, kickstarter.com,
-		liveleak.com, metacafe.com, moddb.com, mpora.com, msnbc.msn.com,
-		myspace.com, myvideo.de, photobucket.com, revision3.com, rutube.ru,
-		sapo.pt, screen.yahoo.com, screenr.com, scribd.com, sevenload.com,
-		slideshare.net, snotr.com, soundcloud.com, spike.com, streetfire.net,
-		ted.com, testtube.com, thedailyshow.cc.com, theonion.com, tudou.com,
-		tu.tv, twitch.tv, twitvid.com, ustream.tv, vbox7.com, veoh.com,
-		vevo.com, viddler.com, videogamer.com, videu.de, vimeo.com, vine.co,
-		wat.tv, youku.com, youtu.be, youtube.com
+		g4tv.com, gameprotv.com, gamespot.com, howcast.com, hulu.com, ign.com,
+		instagram.com, kickstarter.com, liveleak.com, maker.tv, metacafe.com,
+		moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo.de,
+		photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com,
+		screenr.com, scribd.com, slideshare.net, snotr.com, soundcloud.com,
+		spike.com, streetfire.net, ted.com, testtube.com, thedailyshow.cc.com,
+		theonion.com, tudou.com, tu.tv, twitch.tv, ustream.tv, vbox7.com,
+		veoh.com, vevo.com, viddler.com, videogamer.com, vimeo.com, vine.co,
+		youku.com, youtu.be, youtube.com
 
-## Languages supported:
-* Arabic
-* Croatian
-* Dutch
-* English
-* French
-* German
-* Hebrew
-* Italian
-* Persian
-* Polish
-* Russian
-* Spanish
+* Multiple languages are supported. View the pre-installed [localizations](https://github.com/VSEphpbb/abbc3/tree/master/language).
 
-## Requirements
-* phpBB 3.1.3 or higher
-* PHP 5.3.3 or higher
+## Minimum Requirements
+* phpBB 3.1.3 or phpBB 3.2.0
+* PHP 5.3.3
 
 **Note: Only official release versions validated by the phpBB Extensions Team should be installed on a live forum. Pre-release (beta, dev) versions downloaded from this repository are only to be used for testing on offline/development forums and are not officially supported.**
 
-## Installation
-1. [Download the latest release](https://github.com/VSEphpbb/abbc3/releases) and unzip it.
-2. Copy the entire contents from the unzipped folder to `phpBB/ext/vse/abbc3/`.
+## Install
+1. [Download the latest validated release](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/).
+2. Unzip the downloaded release and copy it to the `ext` directory of your phpBB board.
 3. Navigate in the ACP to `Customise -> Manage extensions`.
-4. Find Advanced BBCode Box under "Disabled Extensions" and click `Enable`.
+4. Look for `Advanced BBCode Box` under the Disabled Extensions list and click its `Enable` link.
 
-## Uninstallation
+## Uninstall
 1. Navigate in the ACP to `Customise -> Manage extensions`.
 2. Click the `Disable` link for Advanced BBCode Box.
 3. To permanently uninstall, click `Delete Data`, then delete the `abbc3` folder from `phpBB/ext/vse/`.

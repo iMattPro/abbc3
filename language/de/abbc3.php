@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1 [German]
+* Advanced BBCode Box [German]
 * Translated by wintstar - http://www.wintstar.de
 *
 * @copyright (c) 2013 Matt Friedman
@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Um diesen versteckten Text lesen zu können, mußt du registriert und angemeldet sein.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '&#9658; Text zeigen',
-	'ABBC3_SPOILER_HIDE'		=> '&#9660; Text verstecken',
+	'ABBC3_SPOILER_SHOW'		=> '► Text zeigen',
+	'ABBC3_SPOILER_HIDE'		=> '▼ Text verstecken',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
@@ -83,6 +83,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SIZE'		=> 'Video Breite x Höhe',
 	'ABBC3_BBVIDEO_PRESETS'		=> 'Größe Vorgaben',
 	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+
+	// URL Wizard
+	'ABBC3_URL_LINK'			=> 'Fügen Sie eine URL',
+	'ABBC3_URL_DESCRIPTION'		=> 'Optionale Beschreibung',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Der BBCode Auftrag wurde neu synchronisiert.',

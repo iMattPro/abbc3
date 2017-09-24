@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box 3.1
+* Advanced BBCode Box
 *
 * @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -10,18 +10,27 @@
 
 namespace vse\abbc3\migrations;
 
-class v310_m4_install_data extends \vse\abbc3\migrations_bbcode_base
+class v310_m4_install_data extends \vse\abbc3\core\bbcodes_migration_base
 {
+	/**
+	 * {@inheritdoc}
+	 */
 	public function effectively_installed()
 	{
 		return isset($this->config['abbc3_version']) && version_compare($this->config['abbc3_version'], '3.1.0', '>=');
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	static public function depends_on()
 	{
 		return array('\vse\abbc3\migrations\v310_m3_install_schema');
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function update_data()
 	{
 		return array(
@@ -30,7 +39,10 @@ class v310_m4_install_data extends \vse\abbc3\migrations_bbcode_base
 		);
 	}
 
-	protected $bbcode_data = array(
+	/**
+	 * {@inheritdoc}
+	 */
+	protected static $bbcode_data = array(
 		'font=' => array(
 			'bbcode_helpline'	=> 'ABBC3_FONT_HELPLINE',
 			'bbcode_match'		=> '[font={INTTEXT}]{TEXT}[/font]',
