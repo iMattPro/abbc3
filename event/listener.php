@@ -210,6 +210,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public function s9e_configure_plugins($event)
 	{
+		/** @var \s9e\TextFormatter\Configurator $configurator */
 		$configurator = $event['configurator'];
 		$configurator->plugins->load('PipeTables');
 	}
@@ -217,7 +218,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Add ABBC3 BBCodes to the BBCode FAQ
 	 *
-	 * @param object $event The event object
+	 * @param \phpbb\event\data $event The event object
 	 * @access public
 	 */
 	public function add_bbcode_faq($event)
