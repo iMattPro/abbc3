@@ -12,6 +12,7 @@ namespace vse\abbc3\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\acp_manager;
+use vse\abbc3\ext;
 
 /**
  * Event listener
@@ -66,8 +67,8 @@ class acp_listener implements EventSubscriberInterface
 	public function acp_bbcodes_custom_sorting_buttons($event)
 	{
 		$bbcode_id = $event['row']['bbcode_id'];
-		$event->update_subarray('bbcodes_array', 'U_MOVE_UP', $event['u_action'] . '&amp;action=move_up&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash('move_up' . $bbcode_id));
-		$event->update_subarray('bbcodes_array', 'U_MOVE_DOWN', $event['u_action'] . '&amp;action=move_down&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash('move_down' . $bbcode_id));
+		$event->update_subarray('bbcodes_array', 'U_MOVE_UP', $event['u_action'] . '&amp;action=' . ext::MOVE_UP . '&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash(ext::MOVE_UP . $bbcode_id));
+		$event->update_subarray('bbcodes_array', 'U_MOVE_DOWN', $event['u_action'] . '&amp;action=' . ext::MOVE_DOWN . '&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash(ext::MOVE_DOWN . $bbcode_id));
 	}
 
 	/**
@@ -94,18 +95,18 @@ class acp_listener implements EventSubscriberInterface
 		// Move up/down actions
 		switch ($event['action'])
 		{
-			case 'move_up':
-			case 'move_down':
+			case ext::MOVE_UP:
+			case ext::MOVE_DOWN:
 				$this->acp_manager->move($event['action']);
 			break;
 
-			case 'drag_drop':
-				$this->acp_manager->drag_drop();
+			case ext::MOVE_DRAG:
+				$this->acp_manager->move_drag();
 			break;
 		}
 
 		// Add some additional template variables
-		$event->update_subarray('template_data', 'UA_DRAG_DROP', str_replace('&amp;', '&', $event['u_action'] . '&action=drag_drop'));
+		$event->update_subarray('template_data', 'UA_DRAG_DROP', str_replace('&amp;', '&', $event['u_action'] . '&action=' . ext::MOVE_DRAG));
 
 		// Change SQL so that it orders by bbcode_order
 		$event->update_subarray('sql_ary', 'ORDER_BY', 'b.bbcode_order, b.bbcode_id');

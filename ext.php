@@ -14,6 +14,9 @@ class ext extends \phpbb\extension\base
 {
 	const BBVIDEO_WIDTH = 560;
 	const BBVIDEO_HEIGHT = 315;
+	const MOVE_UP = 'move_up';
+	const MOVE_DOWN = 'move_down';
+	const MOVE_DRAG = 'move_drag';
 
 	/** string Require 3.2.0 due to INCLUDECSS, migration helper updates and Pipe Tables. */
 	const PHPBB_MIN_VERSION = '3.2.1-dev';

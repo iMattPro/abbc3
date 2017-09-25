@@ -47,8 +47,8 @@ class acp_bbcode_drag_drop_test extends acp_base
 		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();
 
-		// Call drag_drop() and assert it returns null
-		$this->assertNull($acp_manager->drag_drop());
+		// Call move_drag() and assert it returns null
+		$this->assertNull($acp_manager->move_drag());
 	}
 
 	public function test_bbcode_drag_drop_fails()
@@ -65,7 +65,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();
 
-		// Call drag_drop() and assert it returns null
-		$this->assertNull($acp_manager->drag_drop());
+		// Call move_drag() and assert it returns null
+		$this->assertNull($acp_manager->move_drag());
 	}
 }
