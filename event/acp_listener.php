@@ -141,6 +141,7 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function s9e_store_bbcode_groups($event)
 	{
+		/** @var \s9e\TextFormatter\Configurator $configurator */
 		$configurator = $event['configurator'];
 		$bbcode_groups = $this->acp_manager->get_bbcode_groups_data();
 

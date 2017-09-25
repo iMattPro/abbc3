@@ -13,6 +13,15 @@ services:
             - '@user'
             - '%core.root_path%ext/vse/abbc3/'
 
+    vse.abbc3.bbcodes_help:
+        class: vse\abbc3\core\bbcodes_help
+        arguments:
+            - '@vse.abbc3.bbcodes_display'
+            - '@dbal.conn'
+            - '@language'
+            - '@template'
+            - '@user'
+
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
         arguments:
@@ -26,6 +35,7 @@ services:
         arguments:
             - '@vse.abbc3.bbcodes_parser'
             - '@vse.abbc3.bbcodes_display'
+            - '@vse.abbc3.bbcodes_help'
             - '@controller.helper'
             - '@template'
             - '@user'

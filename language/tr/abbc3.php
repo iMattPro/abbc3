@@ -92,4 +92,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode sıralaması güncellendi.',
 	'ABBC3_BBCODE_GROUP'		=> 'BBCode\'ları kullanabilecek grupları yönetin',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Eğer bir grup seçilmemişse, bütün gruplar BBCode\'ları kullanabilir. Birden fazla grup seçmek/seçmemek için CTRL+KLİK (veya Mac\'te CMD+KLİK) kullanınız.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
 ));

@@ -92,4 +92,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode顺序已变更',
 	'ABBC3_BBCODE_GROUP'		=> '变更可使用此BBCode的使用者群组',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未选择任何群组，则所有人皆可使用此BBCode。若要选择多个群组，请按下CTRL键。苹果电脑请用CMD键',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
 ));
