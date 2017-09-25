@@ -10,10 +10,7 @@
 
 namespace vse\abbc3\tests\event;
 
-require_once __DIR__ . '/../../../../../includes/functions.php';
-require_once __DIR__ . '/../../../../../includes/functions_content.php';
-
-class event_bbcode_faq_test extends listener_base
+class bbcode_faq_test extends listener_base
 {
 	public function setUp()
 	{
@@ -40,8 +37,8 @@ class event_bbcode_faq_test extends listener_base
 	{
 		return array(
 			array('HELP_BBCODE_BLOCK_OTHERS', true),
-			array('', false),
 			array('HELP_BBCODE_BLOCK_INTRO', false),
+			array('', false),
 		);
 	}
 
@@ -55,29 +52,8 @@ class event_bbcode_faq_test extends listener_base
 	{
 		$this->set_listener();
 
-		if ($expected)
-		{
-			$this->template->expects($this->at(0))
-				->method('assign_block_vars')
-				->with('faq_block', array(
-					'BLOCK_TITLE'	=> 'ABBC3_FAQ_TITLE',
-					'SWITCH_COLUMN'	=> false,
-				))
-			;
-
-			$this->template->expects($this->at(1))
-				->method('assign_block_vars')
-				->with('faq_block.faq_row', array(
-					'FAQ_QUESTION'	=> 'ABBC3_FONT_HELPLINE',
-					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
-				))
-			;
-		}
-		else
-		{
-			$this->template->expects($this->never())
-				->method('assign_block_vars');
-		}
+		$this->bbcodes_help->expects(($expected ? $this->once() : $this->never()))
+			->method('faq');
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
 		$dispatcher->addListener('core.help_manager_add_block_after', array($this->listener, 'add_bbcode_faq'));
