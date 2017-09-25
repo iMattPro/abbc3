@@ -14,6 +14,7 @@ use phpbb\db\driver\driver_interface;
 use phpbb\group\helper;
 use phpbb\language\language;
 use phpbb\request\request;
+use vse\abbc3\ext;
 
 /**
  * ABBC3 ACP manager class
@@ -67,7 +68,7 @@ class acp_manager
 		$current_order = $this->get_bbcode_order($bbcode_id);
 
 		// First one can't be moved up
-		if ($current_order <= 1 && $action === 'move_up')
+		if ($current_order <= 1 && $action === ext::MOVE_UP)
 		{
 			return;
 		}
@@ -80,11 +81,11 @@ class acp_manager
 	}
 
 	/**
-	 * Update BBCode order fields in the db on drag_drop
+	 * Update BBCode order fields in the db on drag-n-drop
 	 *
 	 * @access public
 	 */
-	public function drag_drop()
+	public function move_drag()
 	{
 		if (!$this->request->is_ajax())
 		{
@@ -264,7 +265,7 @@ class acp_manager
 	 */
 	protected function update_bbcode_orders($bbcode_order, $action)
 	{
-		$amount = ($action === 'move_up') ? -1 : 1;
+		$amount = ($action === ext::MOVE_UP) ? -1 : 1;
 
 		$order_total = $bbcode_order * 2 + $amount;
 

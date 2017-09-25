@@ -79,24 +79,19 @@ class listener implements EventSubscriberInterface
 	{
 		return array(
 			'core.user_setup'							=> 'load_language_on_setup',
-
-			// functions_content events
+				// functions_content events
 			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before',
 			'core.modify_text_for_display_after'		=> 'parse_bbcodes_after',
-
-			// functions_display events
+				// functions_display events
 			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
 			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql',
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
-
-			// message_parser events
+				// message_parser events
 			'core.modify_format_display_text_after'		=> 'parse_bbcodes_after',
-
-			// text_formatter events (for phpBB 3.2.x)
+				// text_formatter events
 			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
 			'core.text_formatter_s9e_configure_after'	=> 's9e_configure_plugins',
-
-			// BBCode FAQ
+				// BBCode FAQ
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 		);
 	}
@@ -210,20 +205,18 @@ class listener implements EventSubscriberInterface
 	 */
 	public function s9e_configure_plugins($event)
 	{
-		/** @var \s9e\TextFormatter\Configurator $configurator */
 		$configurator = $event['configurator'];
 		$configurator->plugins->load('PipeTables');
 	}
 
 	/**
-	 * Add ABBC3 BBCodes to the BBCode FAQ
+	 * Add ABBC3 BBCodes to the BBCode FAQ after the HELP_BBCODE_BLOCK_OTHERS block
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
 	 */
 	public function add_bbcode_faq($event)
 	{
-		// Add after the HELP_BBCODE_BLOCK_OTHERS block
 		if ($event['block_name'] === 'HELP_BBCODE_BLOCK_OTHERS')
 		{
 			$this->bbcodes_help->faq();
