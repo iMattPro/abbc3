@@ -16,6 +16,7 @@ services:
     vse.abbc3.bbcodes_help:
         class: vse\abbc3\core\bbcodes_help
         arguments:
+            - '@vse.abbc3.bbcodes_display'
             - '@dbal.conn'
             - '@language'
             - '@template'

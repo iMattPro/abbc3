@@ -14,6 +14,7 @@ use phpbb\db\driver\driver_interface;
 use phpbb\language\language;
 use phpbb\template\template;
 use phpbb\user;
+use vse\abbc3\core\bbcodes_display;
 use vse\abbc3\ext;
 
 /**
@@ -32,17 +33,23 @@ class bbcodes_help
 
 	/** @var user */
 	protected $user;
+	/**
+	 * @var \vse\abbc3\core\bbcodes_display
+	 */
+	private $bbcodes_display;
 
 	/**
 	 * Constructor
 	 *
+	 * @param \vse\abbc3\core\bbcodes_display   $bbcodes_display
 	 * @param \phpbb\db\driver\driver_interface $db
 	 * @param language                          $language
 	 * @param \phpbb\template\template          $template
 	 * @param \phpbb\user                       $user
 	 */
-	public function __construct(driver_interface $db, language $language, template $template, user $user)
+	public function __construct(bbcodes_display $bbcodes_display, driver_interface $db, language $language, template $template, user $user)
 	{
+		$this->bbcodes_display = $bbcodes_display;
 		$this->db = $db;
 		$this->language = $language;
 		$this->template = $template;
@@ -109,23 +116,17 @@ class bbcodes_help
 	protected function allowed_bbcodes()
 	{
 		$allowed = [];
-
-		$sql = 'SELECT bbcode_helpline
+		$sql = 'SELECT bbcode_helpline, bbcode_group
 			FROM ' . BBCODES_TABLE . '
-			WHERE bbcode_helpline ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char()) . " 
-				AND (bbcode_group = '' 
-				OR bbcode_group IN (
-				SELECT group_id
-        			FROM " . USER_GROUP_TABLE . '
-        			WHERE user_id = ' . (int) $this->user->data['user_id'] . '))';
-
+			WHERE bbcode_helpline ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char());
 		$result = $this->db->sql_query($sql);
-
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$allowed[$row['bbcode_helpline']] = true;
+			if ($this->bbcodes_display->user_in_bbcode_group($row['bbcode_group']))
+			{
+				$allowed[$row['bbcode_helpline']] = true;
+			}
 		}
-
 		$this->db->sql_freeresult($result);
 
 		return $allowed;
