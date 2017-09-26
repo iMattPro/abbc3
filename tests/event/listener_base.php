@@ -15,6 +15,9 @@ class listener_base extends \phpbb_test_case
 	/** @var \vse\abbc3\core\bbcodes_display|\PHPUnit_Framework_MockObject_MockObject */
 	protected $bbcodes;
 
+	/** @var \vse\abbc3\core\bbcodes_help|\PHPUnit_Framework_MockObject_MockObject */
+	protected $bbcodes_help;
+
 	/** @var \phpbb\config\config */
 	protected $config;
 
@@ -50,6 +53,7 @@ class listener_base extends \phpbb_test_case
 
 		$this->parser = $this->createMock('\vse\abbc3\core\bbcodes_parser');
 		$this->bbcodes = $this->createMock('\vse\abbc3\core\bbcodes_display');
+		$this->bbcodes_help = $this->createMock('\vse\abbc3\core\bbcodes_help');
 		$this->config = new \phpbb\config\config(array('enable_mod_rewrite' => '0'));
 
 		$this->template = $this->createMock('\phpbb\template\template');
@@ -79,6 +83,7 @@ class listener_base extends \phpbb_test_case
 		$this->listener = new \vse\abbc3\event\listener(
 			$this->parser,
 			$this->bbcodes,
+			$this->bbcodes_help,
 			$this->controller_helper,
 			$this->template,
 			$this->user,

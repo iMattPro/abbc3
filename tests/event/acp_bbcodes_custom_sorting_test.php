@@ -25,7 +25,7 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 				array(),
 				'',
 				array(
-					'UA_DRAG_DROP'	=> '&action=drag_drop',
+					'UA_DRAG_DROP'	=> '&action=move_drag',
 				),
 				array(
 					'ORDER_BY'	=> 'b.bbcode_order, b.bbcode_id',
@@ -41,7 +41,7 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 				'&amp;u_action',
 				array(
 					'FOO'			=> 'BAR',
-					'UA_DRAG_DROP'	=> '&u_action&action=drag_drop',
+					'UA_DRAG_DROP'	=> '&u_action&action=move_drag',
 				),
 				array(
 					'SELECT'	=> 'FOO',
@@ -86,11 +86,11 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 		return array(
 			array('move_up', 'move', true),
 			array('move_down', 'move', true),
-			array('drag_drop', 'drag_drop', true),
+			array('move_drag', 'move_drag', true),
 			array('foobar', 'move', false),
-			array('foobar', 'drag_drop', false),
+			array('foobar', 'move_drag', false),
 			array(null, 'move', false),
-			array(null, 'drag_drop', false),
+			array(null, 'move_drag', false),
 		);
 	}
 

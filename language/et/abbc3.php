@@ -93,4 +93,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'BBkoodi järjestus on uuendatud.',
 	'ABBC3_BBCODE_GROUP'		=> 'Halda gruppe, kes saavad kasutada seda BBkoodi',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Kui ühtegi gruppi ei ole valitud, siis kõik kasutajad saavad kasutada seda BBkoodi. Kasuta CTRL+CLICK (või CMD+CLICK Mac\'is), et valida / või valikud eemaldada rohkem kui ühelt grupilt.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBkoodi',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Kiire pruun rebane hüppab üle laisk koer',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Näide:</strong><br />%2$s<br /><br /><strong>Tulemus:</strong><br />%3$s<hr />',
 ));
