@@ -3,7 +3,12 @@
 ## 3.2.0-dev - XXXX-XX-XX
 
 - Added Tables support in posts (using s9e/TextFormatter's Pipe Tables plugin)
-- Internal improvements for phpBB 3.2.x, ending compatibility with phpBB 3.1.x.
+- Documentation for Advanced BBCodes added to the BBCode FAQ page
+- Compatible with phpBB Media Embed plugin, added a BBCode button for [media] tag
+- Try to improve align BBCode when used on non-text like images, videos, etc.
+- Internal improvements for phpBB 3.2
+- End of compatibility for phpBB 3.1
+- Added Vietnamese translation
 
 ## 3.1.4 - 2017-01-10
 
