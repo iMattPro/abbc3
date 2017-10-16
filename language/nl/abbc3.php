@@ -89,6 +89,18 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_DESCRIPTION'		=> 'Optionele beschrijving',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Create tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
+	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// DO NOT TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'De volgorde van de BBcodes is bijgewerkt.',
 	'ABBC3_BBCODE_GROUP'		=> 'Beheer groepen die deze BBcode kunnen gebruiken',
