@@ -92,6 +92,7 @@ $lang = array_merge($lang, array(
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Create tables',
 	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
 	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
 	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
 	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
