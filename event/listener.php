@@ -207,6 +207,14 @@ class listener implements EventSubscriberInterface
 	{
 		$configurator = $event['configurator'];
 		$configurator->plugins->load('PipeTables');
+
+		// Add class "pipe-table" to allow us to style the table with CSS
+		$dom = $configurator->tags['TABLE']->template->asDOM();
+		foreach ($dom->getElementsByTagName('table') as $table)
+		{
+			$table->setAttribute('class', 'pipe-table');
+		}
+		$dom->saveChanges();
 	}
 
 	/**
