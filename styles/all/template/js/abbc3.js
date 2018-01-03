@@ -461,6 +461,7 @@ var bbwizard;
 			var wizard = $('#bbcode_wizard');
 			if (!wizard.is(':visible')) {
 				requestRunning = true;
+				var $loadingIndicator = phpbb.loadingIndicator();
 				$.ajax({
 					url: href,
 					dataType: 'html',
@@ -485,6 +486,9 @@ var bbwizard;
 					},
 					complete: function() {
 						requestRunning = false;
+						if ($loadingIndicator && $loadingIndicator.is(':visible')) {
+							$loadingIndicator.fadeOut(phpbb.alertTime);
+						}
 					}
 				});
 			}
