@@ -26,7 +26,7 @@ class acp_install_bbcodes_test extends acp_base
 					'bbcode_match'		=> '[bar]{TEXT}[/bar]',
 					'bbcode_tpl'		=> '<span class="bar">{TEXT}</span>',
 				),
-				'align=' => array( // update
+				'align' => array( // update
 					'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
 					'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
 					'bbcode_tpl'		=> '<span class="align-{IDENTIFIER}">{TEXT}</span>',

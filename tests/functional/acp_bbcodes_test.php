@@ -33,7 +33,7 @@ class acp_bbcodes_test extends \phpbb_functional_test_case
 	public function test_bbcodes_page()
 	{
 		$crawler = self::request('GET', 'adm/index.php?i=acp_bbcodes&mode=bbcodes&sid=' . $this->sid);
-		$this->assertContains('BBvideo=', $crawler->filter('#acp_bbcodes')->text());
+		$this->assertContains('BBvideo', $crawler->filter('#acp_bbcodes')->text());
 	}
 
 	/**

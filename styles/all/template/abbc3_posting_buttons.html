@@ -99,46 +99,57 @@ function bbspecial(bbcode, bbcodeId) {
 			}
 			break;
 
+		case 'align':
 		case 'align=':
 			bbfontstyle('[align=center]', '[/align]');
 			break;
 
+		case 'float':
 		case 'float=':
 			bbfontstyle('[float=left]', '[/float]');
 			break;
 
+		case 'dir':
 		case 'dir=':
 			bbfontstyle('[dir=rtl]', '[/dir]');
 			break;
 
+		case 'marq':
 		case 'marq=':
 			bbfontstyle('[marq=left]', '[/marq]');
 			break;
 
+		case 'mod':
 		case 'mod=':
 			bbfontstyle('[mod={{ ABBC3_USERNAME|e("js") }}]', '[/mod]');
 			break;
 
+		case 'highlight':
 		case 'highlight=':
 			bbfontstyle('[highlight=yellow]', '[/highlight]');
 			break;
 
+		case 'glow':
 		case 'glow=':
 			bbfontstyle('[glow=red]', '[/glow]');
 			break;
 
+		case 'shadow':
 		case 'shadow=':
 			bbfontstyle('[shadow=blue]', '[/shadow]');
 			break;
 
+		case 'dropshadow':
 		case 'dropshadow=':
 			bbfontstyle('[dropshadow=blue]', '[/dropshadow]');
 			break;
 
+		case 'blur':
 		case 'blur=':
 			bbfontstyle('[blur=blue]', '[/blur]');
 			break;
 
+		case 'BBvideo':
 		case 'BBvideo=':
 			if (theSelection || phpbb.isTouch) {
 				bbfontstyle('[BBvideo=' + bbvideoWidth + ',' + bbvideoHeight + ']', '[/BBvideo]');
@@ -218,7 +229,7 @@ function bbspecial(bbcode, bbcodeId) {
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
 			{% for custom_tag in custom_tags %}
 				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
-					{% if custom_tag.BBCODE_TAG == 'font=' %}
+					{% if custom_tag.BBCODE_TAG == 'font=' or custom_tag.BBCODE_TAG == 'font' %}
 						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
 							<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
 							<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">
