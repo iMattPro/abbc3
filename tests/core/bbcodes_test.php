@@ -98,7 +98,9 @@ class bbcodes_test extends \phpbb_database_test_case
 	 */
 	public function test_allow_custom_bbcodes($user_id, $data, $disable)
 	{
-		$parser = $this->createMock('\phpbb\textformatter\s9e\parser');
+		$parser = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
+			->disableOriginalConstructor()
+			->getMock();
 		$parser->expects($this->once())
 			->method('get_parser')
 			->will($this->returnSelf());
