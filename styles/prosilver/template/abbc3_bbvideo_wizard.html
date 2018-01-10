@@ -12,12 +12,14 @@
 						</select>
 					</dd>
 				</dl>
+				{% if ABBC3_BBVIDEO_LINK_EX %}
 				<dl>
 					<dt><label for="bbvideo_wizard_example">{{ lang('ABBC3_BBCODE_WIZ_EXAMPLE') ~ lang('COLON') }}</label></dt>
 					<dd>
 						<input type="text" id="bbvideo_wizard_example" name="bbvideo_wizard_example" readonly="readonly" value="{{ ABBC3_BBVIDEO_LINK_EX }}" size="45" class="inputbox disabled" />
 					</dd>
 				</dl>
+				{% endif %}
 				<hr />
 				<dl>
 					<dt><label for="bbvideo_wizard_link">{{ lang('ABBC3_BBVIDEO_LINK') ~ lang('COLON') }}</label></dt>
@@ -25,24 +27,10 @@
 						<input type="text" id="bbvideo_wizard_link" name="bbvideo_wizard_link" value="" class="inputbox" size="45" />
 					</dd>
 				</dl>
-				<dl>
-					<dt><label for="bbvideo_wizard_width">{{ lang('ABBC3_BBVIDEO_SIZE') ~ lang('COLON') }}</label></dt>
-					<dd>
-						<input type="number" id="bbvideo_wizard_width" name="bbvideo_wizard_width" value="{{ ABBC3_BBVIDEO_WIDTH }}" class="inputbox narrow" style="width:60px;" min="0" max="9999" size="4" />
-						<span style="margin-right:3px;">{{ lang('ABBC3_BBVIDEO_SEPARATOR') }}</span>
-						<input type="number" id="bbvideo_wizard_height" name="bbvideo_wizard_height" value="{{ ABBC3_BBVIDEO_HEIGHT }}" class="inputbox narrow" style="width:60px;" min="0" max="9999" size="4" />
-						<select id="bbvideo_wizard_size_presets" name="bbvideo_wizard_size_presets">
-							<option value="">{{ lang('ABBC3_BBVIDEO_PRESETS') }}</option>
-							{% for preset in ABBC3_BBVIDEO_PRESETS %}
-								<option value="{{ preset.w }},{{ preset.h }}">{{ preset.w }} {{ lang('ABBC3_BBVIDEO_SEPARATOR') }} {{ preset.h }}</option>
-							{% endfor %}
-						</select>
-					</dd>
-				</dl>
 			</fieldset>
 		</div>
 	</div>
-	<div class="panel" style="margin-bottom: 0;">
+	<div class="panel" style="margin-bottom:0">
 		<div class="inner">
 			<fieldset class="submit-buttons">
 				<input type="button" name="bbcode_wizard_submit" id="bbcode_wizard_submit" value="{{ lang('ABBC3_BBCODE_WIZ_SUBMIT') }}" class="button1 button button-form" data-bbcode="bbvideo" />&nbsp;

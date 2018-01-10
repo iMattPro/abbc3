@@ -37,7 +37,7 @@ class custom_bbcodes_test extends listener_base
 	{
 		$this->set_listener();
 
-		$this->bbcodes->expects($this->once())
+		$this->bbcodes_display->expects($this->once())
 			->method('display_custom_bbcodes')
 			->with($this->equalTo($custom_tags), $this->equalTo($row))
 			->will($this->returnValue($custom_tags));
@@ -87,12 +87,12 @@ class custom_bbcodes_test extends listener_base
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->bbcodes->expects($in_cron ? $this->never() : $this->once())
+		$this->bbcodes_display->expects($in_cron ? $this->never() : $this->once())
 			->method('allow_custom_bbcodes')
 			->with($parser);
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', array($this->listener, 's9e_allow_custom_bbcodes'));
+		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', array($this->listener, 'allow_custom_bbcodes'));
 
 		$event_data = array('parser');
 		$event = new \phpbb\event\data(compact($event_data));

@@ -25,8 +25,6 @@ class setup_custom_bbcodes_test extends listener_base
 			->with(array(
 				'ABBC3_USERNAME'			=> 'admin',
 				'ABBC3_BBCODE_ICONS' 		=> $this->ext_root_path . 'images/icons',
-				'ABBC3_BBVIDEO_HEIGHT'		=> $this->bbvideo_height,
-				'ABBC3_BBVIDEO_WIDTH'		=> $this->bbvideo_width,
 				'UA_ABBC3_BBVIDEO_WIZARD'	=> 'vse_abbc3_bbcode_wizard#a:1:{s:4:"mode";s:7:"bbvideo";}',
 				'UA_ABBC3_PIPES_WIZARD'		=> 'vse_abbc3_bbcode_wizard#a:1:{s:4:"mode";s:5:"pipes";}',
 				'UA_ABBC3_URL_WIZARD'		=> 'vse_abbc3_bbcode_wizard#a:1:{s:4:"mode";s:3:"url";}',

@@ -23,10 +23,12 @@ class plugins_test extends listener_base
 		$this->set_listener();
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-		$dispatcher->addListener('core.text_formatter_s9e_configure_after', array($this->listener, 's9e_configure_plugins'));
+		$dispatcher->addListener('core.text_formatter_s9e_configure_after', array($this->listener, 'configure_bbcodes'));
 
 		// Assert plugins are NOT loaded before the event is dispatched
 		$this->assertFalse(isset($configurator->plugins['PipeTables']));
+		$this->assertFalse(isset($configurator->BBCodes['hidden']));
+		$this->assertFalse(isset($configurator->BBCodes['bbvideo']));
 
 		$event_data = array('configurator');
 		$event = new \phpbb\event\data(compact($event_data));
@@ -34,5 +36,7 @@ class plugins_test extends listener_base
 
 		// Assert plugins ARE loaded after the event is dispatched
 		$this->assertTrue(isset($configurator->plugins['PipeTables']));
+		$this->assertTrue(isset($configurator->BBCodes['hidden']));
+		$this->assertTrue(isset($configurator->BBCodes['bbvideo']));
 	}
 }

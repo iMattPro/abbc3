@@ -10,10 +10,11 @@
 
 namespace vse\abbc3\controller;
 
+use phpbb\cache\driver\driver_interface as cache_driver;
 use phpbb\controller\helper;
 use phpbb\request\request;
 use phpbb\template\template;
-use vse\abbc3\ext;
+use phpbb\textformatter\s9e\factory as textformatter;
 
 /**
  * ABBC3 BBCode Wizard class
@@ -21,7 +22,10 @@ use vse\abbc3\ext;
 class wizard
 {
 	/** @var string The default BBvideo site */
-	const BBVIDEO_DEFAULT = 'youtube.com';
+	const BBVIDEO_DEFAULT = 'youtube';
+
+	/** @var cache_driver */
+	protected $cache;
 
 	/** @var helper */
 	protected $helper;
@@ -32,23 +36,30 @@ class wizard
 	/** @var template */
 	protected $template;
 
+	/** @var textformatter */
+	protected $textformatter;
+
 	/** @var string */
 	protected $ext_root_path;
 
 	/**
 	 * Constructor
 	 *
-	 * @param helper   $helper        Controller helper object
-	 * @param request  $request       Request object
-	 * @param template $template      Template object
-	 * @param string   $ext_root_path Path to abbc3 extension root
+	 * @param cache_driver  $cache         Cache driver
+	 * @param helper        $helper        Controller helper object
+	 * @param request       $request       Request object
+	 * @param template      $template      Template object
+	 * @param textformatter $textformatter TextFormatter Factory
+	 * @param string        $ext_root_path Path to abbc3 extension root
 	 * @access public
 	 */
-	public function __construct(helper $helper, request $request, template $template, $ext_root_path)
+	public function __construct(cache_driver $cache, helper $helper, request $request, template $template, textformatter $textformatter, $ext_root_path)
 	{
+		$this->cache = $cache;
 		$this->helper = $helper;
 		$this->request = $request;
 		$this->template = $template;
+		$this->textformatter = $textformatter;
 		$this->ext_root_path = $ext_root_path;
 	}
 
@@ -82,59 +93,28 @@ class wizard
 	/**
 	 * Set template variables for the BBvideo wizard
 	 *
-	 * @throws \phpbb\exception\runtime_exception
 	 * @access protected
 	 */
 	protected function generate_bbvideo_wizard()
 	{
-		// Construct BBvideo allowed site select options
-		$bbvideo_sites = $this->load_json_data('bbvideo.json');
+		if (($bbvideo_sites = $this->cache->get('bbvideo_sites')) === false)
+		{
+			$configurator = $this->textformatter->get_configurator();
+			foreach ($configurator->MediaEmbed->defaultSites as $siteId => $siteConfig)
+			{
+				if (!isset($configurator->BBCodes[$siteId]))
+				{
+					$bbvideo_sites[$siteId] = isset($siteConfig['example']) ? current((array) $siteConfig['example']) : '';
+				}
+			}
 
-		// Construct BBvideo size preset select options
-		$bbvideo_size_presets = array(
-			array('w' => '560', 'h' => '315'),
-			array('w' => '640', 'h' => '360'),
-			array('w' => '853', 'h' => '480'),
-			array('w' => '1280', 'h' => '720'),
-		);
+			$this->cache->put('bbvideo_sites', $bbvideo_sites);
+		}
 
 		$this->template->assign_vars(array(
 			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites,
 			'ABBC3_BBVIDEO_LINK_EX'	=> isset($bbvideo_sites[self::BBVIDEO_DEFAULT]) ? $bbvideo_sites[self::BBVIDEO_DEFAULT] : '',
 			'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
-			'ABBC3_BBVIDEO_HEIGHT'	=> ext::BBVIDEO_HEIGHT,
-			'ABBC3_BBVIDEO_WIDTH'	=> ext::BBVIDEO_WIDTH,
-			'ABBC3_BBVIDEO_PRESETS'	=> $bbvideo_size_presets,
 		));
-	}
-
-	/**
-	 * Return decoded JSON data from a JSON file (stored in assets/)
-	 *
-	 * @param string $json_file The name of the JSON file to get
-	 * @return array JSON data
-	 * @throws \phpbb\exception\runtime_exception
-	 * @access protected
-	 */
-	protected function load_json_data($json_file)
-	{
-		$json_file = $this->ext_root_path . 'assets/' . $json_file;
-
-		if (!file_exists($json_file))
-		{
-			throw new \phpbb\exception\runtime_exception('FILE_NOT_FOUND', array($json_file));
-		}
-
-		if (!($file_contents = file_get_contents($json_file)))
-		{
-			throw new \phpbb\exception\runtime_exception('FILE_CONTENT_ERR', array($json_file));
-		}
-
-		if (($json_data = json_decode($file_contents, true)) === null)
-		{
-			throw new \phpbb\exception\runtime_exception('FILE_JSON_DECODE_ERR', array($json_file));
-		}
-
-		return $json_data;
 	}
 }

@@ -1,12 +1,12 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2014 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\controller;
 
@@ -21,6 +21,15 @@ class wizard_test extends \phpbb_test_case
 	/** @var \phpbb\request\request|\PHPUnit_Framework_MockObject_MockObject */
 	protected $request;
 
+	/** @var \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
+	protected $template;
+
+	/** @var \phpbb\textformatter\s9e\factory $factory */
+	protected $textformatter;
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public function setUp()
 	{
 		parent::setUp();
@@ -39,14 +48,18 @@ class wizard_test extends \phpbb_test_case
 				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
 			});
 
-		/** @var $template \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
-		$template = $this->getMockBuilder('\phpbb\template\template')
+		$this->template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
 
+		$container = $this->get_test_case_helpers()->set_s9e_services();
+		$this->textformatter = $container->get('text_formatter.s9e.factory');
+
 		$this->controller = new \vse\abbc3\controller\wizard(
+			new \phpbb_mock_cache,
 			$controller_helper,
 			$this->request,
-			$template,
+			$this->template,
+			$this->textformatter,
 			$phpbb_root_path . 'ext/vse/abbc3/'
 		);
 	}
@@ -61,14 +74,19 @@ class wizard_test extends \phpbb_test_case
 	}
 
 	/**
-	* @dataProvider bbcode_wizard_data
-	*/
+	 * @dataProvider bbcode_wizard_data
+	 * @param $mode
+	 * @param $ajax
+	 * @param $status_code
+	 * @param $page_content
+	 */
 	public function test_bbcode_wizard($mode, $ajax, $status_code, $page_content)
 	{
 		$this->request->expects($this->any())
 			->method('is_ajax')
 			->will($this->returnValue($ajax)
-		);
+			)
+		;
 
 		$response = $this->controller->bbcode_wizard($mode);
 		$this->assertInstanceOf('\Symfony\Component\HttpFoundation\Response', $response);
@@ -92,50 +110,44 @@ class wizard_test extends \phpbb_test_case
 	/**
 	 * Test the controller throws an exception on erroneous calls
 	 *
-	 * @dataProvider bbcode_wizard_fails_data
+	 * @dataProvider             bbcode_wizard_fails_data
 	 * @expectedException \phpbb\exception\http_exception
 	 * @expectedExceptionMessage GENERAL_ERROR
+	 * @param $mode
+	 * @param $ajax
 	 */
 	public function test_bbcode_wizard_fails($mode, $ajax)
 	{
 		$this->request->expects($this->any())
 			->method('is_ajax')
-			->will($this->returnValue($ajax)
-		);
+			->will($this->returnValue($ajax));
 
 		$this->controller->bbcode_wizard($mode);
 	}
 
-	public function load_json_data_fails_data()
-	{
-		return array(
-			array('../tests/controller/assets/foo.json', 'FILE_CONTENT_ERR'),
-			array('../tests/controller/assets/bar.json', 'FILE_JSON_DECODE_ERR'),
-			array('../tests/controller/assets/non.json', 'FILE_NOT_FOUND'),
-		);
-	}
-
 	/**
-	 * Test exceptions are thrown by load_json_data() when
-	 * receiving bad JSON file data.
-	 *
-	 * @dataProvider load_json_data_fails_data
+	 * Test generate_bbvideo_wizard works
 	 */
-	public function test_load_json_data_fails($file, $message)
+	public function test_generate_bbvideo_wizard()
 	{
-		try
+		$bbvideo_sites = [];
+		$configurator = $this->textformatter->get_configurator();
+		foreach ($configurator->MediaEmbed->defaultSites as $siteId => $siteConfig)
 		{
-			$this->invokeMethod($this->controller, 'load_json_data', array($file));
-			$this->fail('Expected \\phpbb\\exception\\runtime_exception to be thrown but no exception thrown');
+			$bbvideo_sites[$siteId] = current((array) $siteConfig['example']);
 		}
-		catch (\phpbb\exception\runtime_exception $exception)
-		{
-			$this->assertEquals($message, $exception->getMessage());
-		}
-		catch (\Exception $exception)
-		{
-			$this->fail('Expected \\phpbb\\exception\\runtime_exception to be thrown but "' . get_class($exception) . '" thrown');
-		}
+
+		$bbvideo_default = \vse\abbc3\controller\wizard::BBVIDEO_DEFAULT;
+
+		$this->template->expects($this->once())
+			->method('assign_vars')
+			->will($this->returnValue(array(
+				'ABBC3_BBVIDEO_SITES'   => $bbvideo_sites,
+				'ABBC3_BBVIDEO_LINK_EX' => isset($bbvideo_sites[$bbvideo_default]) ? $bbvideo_sites[$bbvideo_default] : '',
+				'ABBC3_BBVIDEO_DEFAULT' => $bbvideo_default,
+			)));
+
+		$this->invokeMethod($this->controller, 'generate_bbvideo_wizard');
 	}
 
 	/**

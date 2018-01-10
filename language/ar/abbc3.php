@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'محاذاة النص : [align=center|left|right|justify]النص[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'إضافة رابط فيديو Embed any video site url: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'إضافة رابط فيديو Embed any video site url: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'نص غير واضح : [blur=color]النص[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'اتجاة النص : [dir=ltr|rtl]النص[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'نص مع ظل خفيف : [dropshadow=color]النص[/dropshadow]',
@@ -80,9 +80,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'مواقع الفيديوهات المُتاحة ',
 	'ABBC3_BBVIDEO_LINK'		=> 'رابط الفيديو ',
-	'ABBC3_BBVIDEO_SIZE'		=> 'عرض × إرتفاع الفيديو ',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'أحجام قياسية',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'إدخال رابط الموقع ',

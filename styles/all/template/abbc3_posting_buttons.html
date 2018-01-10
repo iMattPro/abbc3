@@ -3,8 +3,6 @@
 /*global theSelection */
 
 var copyPaste = '';
-var bbvideoHeight = '{{ ABBC3_BBVIDEO_HEIGHT }}';
-var bbvideoWidth = '{{ ABBC3_BBVIDEO_WIDTH }}';
 
 /**
 * Strip all BBCodes from the selected text
@@ -149,10 +147,11 @@ function bbspecial(bbcode, bbcodeId) {
 			bbfontstyle('[blur=blue]', '[/blur]');
 			break;
 
+		case 'bbvideo':
 		case 'BBvideo':
 		case 'BBvideo=':
 			if (theSelection || phpbb.isTouch) {
-				bbfontstyle('[BBvideo=' + bbvideoWidth + ',' + bbvideoHeight + ']', '[/BBvideo]');
+				bbfontstyle('[bbvideo]', '[/bbvideo]');
 			} else {
 				bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', 'bbvideo');
 			}

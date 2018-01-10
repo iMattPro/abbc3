@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> '文字对齐: [align=center|left|right|justify]文字[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> '插入视频: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> '插入视频: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> '文字模糊: [blur=color]文字[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> '文字方向: [dir=ltr|rtl]文字[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> '3D 阴影: [dropshadow=color]文字[/dropshadow]',
@@ -80,9 +80,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo 允许的网站',
 	'ABBC3_BBVIDEO_LINK'		=> '视频网址',
-	'ABBC3_BBVIDEO_SIZE'		=> '视频宽度 x 高度',
-	'ABBC3_BBVIDEO_PRESETS'		=> '预设大小',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> '添加 URL',

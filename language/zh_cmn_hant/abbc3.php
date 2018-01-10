@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> '對齊: [align=center|left|right|justify]文字[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> '插入影片: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> '插入影片: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> '模糊: [blur=color]文字[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> '文字方向: [dir=ltr|rtl]文字[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> '立體影子: [dropshadow=color]文字[/dropshadow]',
@@ -79,9 +79,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo可連結之網站',
 	'ABBC3_BBVIDEO_LINK'		=> '影片網址',
-	'ABBC3_BBVIDEO_SIZE'		=> '影片寬度 x 高度',
-	'ABBC3_BBVIDEO_PRESETS'		=> '預設大小',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> '添加URL',

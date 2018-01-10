@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Căn lề đoạn văn: [align=center|left|right|justify]đoạn văn[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Chèn bất cứ liên kết video nào vào bài viết: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Chèn bất cứ liên kết video nào vào bài viết: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Văn bản nhấp nháy: [blur=color]đoạn văn[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Căn hướng đoạn văn: [dir=ltr|rtl]đoạn văn[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Tạo hiệu ứng bóng đổ cho đoạn văn: [dropshadow=color]đoạn văn[/dropshadow]',
@@ -81,9 +81,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Những trang video cho phép trong BBvideo',
 	'ABBC3_BBVIDEO_LINK'		=> 'Đường dẫn',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Kích cỡ (dài x cao)',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Size Presets',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Nhập liên kết',

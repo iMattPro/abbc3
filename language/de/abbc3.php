@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Ausrichten von Text: [align=Zentrierter|Linksbündiger|Rechtsbündiger|Block]Text[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Füge ein Web Video hinzu: [BBvideo Breite,Höhe]http://Video URL[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Füge ein Web Video hinzu: [bbvideo]http://Video URL[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Unscharfer Text: [blur=color]Text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Text Richtung (links nach rechts/rechts nach links): [dir=ltr|rtl]Text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Text mit Schattenfall: [dropshadow=color]Text[/dropshadow]',
@@ -80,9 +80,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo Zugelassene Sites',
 	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Video Breite x Höhe',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Größe Vorgaben',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Fügen Sie eine URL',

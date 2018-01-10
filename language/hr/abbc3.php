@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Poravnanje teksta: [align=center|left|right|justify]text[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Umetanje URL-a stranice videa: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Umetanje URL-a stranice videa: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Bluranje teksta: [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Smjer teksta: [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Sjenčanje teksta: [dropshadow=color]text[/dropshadow]',
@@ -80,9 +80,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo dopuštene stranice',
 	'ABBC3_BBVIDEO_LINK'		=> 'URL videa',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Širina x visina videa',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Podešavanje veličine videa',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Unesite URL',

@@ -28,12 +28,9 @@ class listener_test extends listener_base
 	{
 		$this->assertEquals(array(
 			'core.user_setup',
-			'core.modify_text_for_display_before',
-			'core.modify_text_for_display_after',
 			'core.display_custom_bbcodes',
 			'core.display_custom_bbcodes_modify_sql',
 			'core.display_custom_bbcodes_modify_row',
-			'core.modify_format_display_text_after',
 			'core.text_formatter_s9e_parser_setup',
 			'core.text_formatter_s9e_configure_after',
 			'core.help_manager_add_block_after',

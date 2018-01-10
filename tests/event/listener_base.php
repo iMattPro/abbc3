@@ -12,8 +12,11 @@ namespace vse\abbc3\tests\event;
 
 class listener_base extends \phpbb_test_case
 {
+	/** @var \vse\abbc3\core\bbcodes_config */
+	protected $bbcodes_config;
+
 	/** @var \vse\abbc3\core\bbcodes_display|\PHPUnit_Framework_MockObject_MockObject */
-	protected $bbcodes;
+	protected $bbcodes_display;
 
 	/** @var \vse\abbc3\core\bbcodes_help|\PHPUnit_Framework_MockObject_MockObject */
 	protected $bbcodes_help;
@@ -26,9 +29,6 @@ class listener_base extends \phpbb_test_case
 
 	/** @var \vse\abbc3\event\listener */
 	protected $listener;
-
-	/** @var \vse\abbc3\core\bbcodes_parser|\PHPUnit_Framework_MockObject_MockObject */
-	protected $parser;
 
 	/** @var \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
 	protected $template;
@@ -51,10 +51,8 @@ class listener_base extends \phpbb_test_case
 
 		global $phpbb_root_path, $phpEx;
 
-		$this->parser = $this->getMockBuilder('\vse\abbc3\core\bbcodes_parser')
-			->disableOriginalConstructor()
-			->getMock();
-		$this->bbcodes = $this->getMockBuilder('\vse\abbc3\core\bbcodes_display')
+		$this->bbcodes_config = new \vse\abbc3\core\bbcodes_config();
+		$this->bbcodes_display = $this->getMockBuilder('\vse\abbc3\core\bbcodes_display')
 			->disableOriginalConstructor()
 			->getMock();
 		$this->bbcodes_help = $this->getMockBuilder('\vse\abbc3\core\bbcodes_help')
@@ -90,8 +88,8 @@ class listener_base extends \phpbb_test_case
 	protected function set_listener()
 	{
 		$this->listener = new \vse\abbc3\event\listener(
-			$this->parser,
-			$this->bbcodes,
+			$this->bbcodes_config,
+			$this->bbcodes_display,
 			$this->bbcodes_help,
 			$this->controller_helper,
 			$this->template,

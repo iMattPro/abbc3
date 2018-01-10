@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Ευθυγραμμισμένο κείμενο: [align=center|left|right|justify]text[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Ενσωμάτωσε video url από οποιοδήποτε video site: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Ενσωμάτωσε video url από οποιοδήποτε video site: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Θολωμένο κείμενο: [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Φορά κειμένου: [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Σκιώδες κείμενο: [dropshadow=color]text[/dropshadow]',
@@ -81,9 +81,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo επιτρεπόμενα sites',
 	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Video Πλάτος x Ύψος',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Προεπιλογές Μεγέθους',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'URL ιστοσελίδας',

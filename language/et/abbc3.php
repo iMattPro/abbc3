@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Joondatud tekst: [align=center|left|right|justify]tekst[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Sisesta ükskõik millise video saidi URL: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Sisesta ükskõik millise video saidi URL: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Hägusta tekst: [blur=color]tekst[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Teksti suund: [dir=ltr|rtl]tekst[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Varjesta tekst: [dropshadow=color]tekst[/dropshadow]',
@@ -80,9 +80,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo lubatud veebilehed',
 	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Video laius x kõrgus',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Suuruse eelseaded',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Sisesta veebilehe URL',

@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Tasaa teksti: [align=center|left|right|justify]teksti[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Upotetun videon URL: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Upotetun videon URL: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Sumenna teksti: [blur=color]teksti[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Tekstin suunta: [dir=ltr|rtl]teksti[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Varjotettu teksti: [dropshadow=color]teksti[/dropshadow]',
@@ -79,9 +79,6 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideon sallitut sivut',
 	'ABBC3_BBVIDEO_LINK'		=> 'Videon URL',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Videon Leveys x Korkeus',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Valmiskoot',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Syötä sivun URL',

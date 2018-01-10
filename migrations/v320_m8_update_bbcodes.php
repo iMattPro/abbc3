@@ -3,7 +3,7 @@
 *
 * Advanced BBCode Box
 *
-* @copyright (c) 2015 Matt Friedman
+* @copyright (c) 2018 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -34,10 +34,10 @@ class v320_m8_update_bbcodes extends bbcodes_migration_base
 	 * {@inheritdoc}
 	 */
 	protected static $bbcode_data = array(
-		'align=center' => array(
+		'align=' => array(
 			'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
 			'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
-			'bbcode_tpl'		=> '<div style="text-align:{IDENTIFIER};">{TEXT}</div>',
+			'bbcode_tpl'		=> '<div style="text-align:{IDENTIFIER}">{TEXT}</div>',
 		),
 	);
 }
