@@ -26,9 +26,11 @@ abstract class bbcodes_migration_base extends container_aware_migration
 	protected static $bbcode_data;
 
 	/**
-	 * Wrapper for installing bbcodes in migrations
+	 * Get the bbcodes installer object
+	 *
+	 * @return \vse\abbc3\core\bbcodes_installer
 	 */
-	public function install_abbc3_bbcodes()
+	public function get_bbcodes_installer()
 	{
 		/** @var \phpbb\group\helper $group_helper */
 		$group_helper = $this->container->get('group_helper');
@@ -39,7 +41,22 @@ abstract class bbcodes_migration_base extends container_aware_migration
 		/** @var \phpbb\request\request $request */
 		$request = $this->container->get('request');
 
-		$bbcodes_installer = new \vse\abbc3\core\bbcodes_installer($this->db, $group_helper, $language, $request, $this->phpbb_root_path, $this->php_ext);
-		$bbcodes_installer->install_bbcodes(static::$bbcode_data);
+		return new \vse\abbc3\core\bbcodes_installer($this->db, $group_helper, $language, $request, $this->phpbb_root_path, $this->php_ext);
+	}
+
+	/**
+	 * Wrapper for installing bbcodes in migrations
+	 */
+	public function install_abbc3_bbcodes()
+	{
+		$this->get_bbcodes_installer()->install_bbcodes(static::$bbcode_data);
+	}
+
+	/**
+	 * Wrapper for deleting bbcodes in migrations
+	 */
+	public function delete_abbc3_bbcodes()
+	{
+		$this->get_bbcodes_installer()->delete_bbcodes(static::$bbcode_data);
 	}
 }

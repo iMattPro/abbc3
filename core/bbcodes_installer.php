@@ -77,6 +77,31 @@ class bbcodes_installer extends acp_manager
 	}
 
 	/**
+	 * Deletes bbcodes, used by migrations to perform add/updates
+	 *
+	 * @param array $bbcodes Array of bbcodes to delete
+	 * @access public
+	 */
+	public function delete_bbcodes(array $bbcodes)
+	{
+		foreach ($bbcodes as $bbcode_name => $bbcode_data)
+		{
+			$bbcode_data = $this->build_bbcode($bbcode_data);
+
+			if ($bbcode = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag']))
+			{
+				$sql = 'DELETE FROM ' . BBCODES_TABLE . " 
+					WHERE first_pass_match = '" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
+						AND first_pass_replace = '" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
+						AND bbcode_id = " . (int) $bbcode['bbcode_id'];
+				$this->db->sql_query($sql);
+			}
+		}
+
+		$this->resynchronize_bbcode_order();
+	}
+
+	/**
 	 * Get the acp_bbcodes class
 	 *
 	 * @return \acp_bbcodes
