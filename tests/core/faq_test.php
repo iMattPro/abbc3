@@ -53,7 +53,7 @@ class faq_test extends \phpbb_database_test_case
 		$db = $this->new_dbal();
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$this->language = new \phpbb\language\language($lang_loader);
-		$this->template = $this->createMock('\phpbb\template\template');
+		$this->template = $this->getMock('\phpbb\template\template');
 		$this->user = new \phpbb\user($this->language , '\phpbb\datetime');
 		$ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
 		$phpbb_extension_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
