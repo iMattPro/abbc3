@@ -74,7 +74,7 @@ class bbcodes_display
 		$images_key = 'ext/' . $bbcode_img;
 
 		$custom_tags['BBCODE_IMG'] = isset($images[$images_key]) ? 'ext/vse/' . $bbcode_img : '';
-		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = (!empty($row['bbcode_group'])) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
+		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = !empty($row['bbcode_group']) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
 
 		return $custom_tags;
 	}

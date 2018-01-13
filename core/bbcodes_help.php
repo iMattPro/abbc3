@@ -14,8 +14,6 @@ use phpbb\db\driver\driver_interface;
 use phpbb\language\language;
 use phpbb\template\template;
 use phpbb\user;
-use vse\abbc3\core\bbcodes_display;
-use vse\abbc3\ext;
 
 /**
  * ABBC3 core BBCodes parser class
