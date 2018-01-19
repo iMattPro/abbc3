@@ -21,28 +21,14 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		Superscript, Subscript, Glow text, Shadow text, Dropshadow text, Blur
 		text, Fade In/Out, Align (Left, Right Center, Justify), Float (Left,
 		Right), LTR/RTL Direction, Preformatted text, Marquee scroll, Spoiler,
-		Hidden, Moderator Message, Off Topic, NFO/ascii text, YouTube, BBvideo
+		Hidden, Moderator Message, Off Topic, NFO/ascii text, SoundCloud, BBvideo
 
-* Embed video in your posts with BBvideo, supported video sharing sites:
-
-		5min.com, allocine.fr, on.aol.com, break.com, clipfish.de,
-		clipmoon.com, cnbc.com, cnettv.cnet.com, colbertnation.com,
-		collegehumor.com, comedycentral.com, crackle.com, dailymotion.com,
-		dotsub.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com,
-		g4tv.com, gameprotv.com, gamespot.com, howcast.com, hulu.com, ign.com,
-		instagram.com, kickstarter.com, liveleak.com, maker.tv, metacafe.com,
-		moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo.de,
-		photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com,
-		screenr.com, scribd.com, slideshare.net, snotr.com, soundcloud.com,
-		spike.com, streetfire.net, ted.com, testtube.com, thedailyshow.cc.com,
-		theonion.com, tudou.com, tu.tv, twitch.tv, ustream.tv, vbox7.com,
-		veoh.com, vevo.com, viddler.com, videogamer.com, vimeo.com, vine.co,
-		youku.com, youtu.be, youtube.com
+* Embed video from dozens of popular media content sites with BBvideo. Also raw URLs will automatically be converted to embedded content.
 
 * Multiple languages are supported. View the pre-installed [localizations](https://github.com/VSEphpbb/abbc3/tree/master/language).
 
 ## Minimum Requirements
-* phpBB 3.2.0 or higher
+* phpBB 3.2.2 or higher
 * PHP 5.4 or higher
 
 **Note: Only official release versions validated by the phpBB Extensions Team should be installed on a live forum. Pre-release (beta, dev) versions downloaded from this repository are only to be used for testing on offline/development forums and are not officially supported.**
