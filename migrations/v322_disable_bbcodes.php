@@ -1,18 +1,18 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2018 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2018 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\migrations;
 
 use phpbb\db\migration\container_aware_migration;
 
-class v320_disable_bbcodes extends container_aware_migration
+class v322_disable_bbcodes extends container_aware_migration
 {
 	/**
 	 * {@inheritdoc}
@@ -24,7 +24,7 @@ class v320_disable_bbcodes extends container_aware_migration
 			'\vse\abbc3\migrations\v310_m5_update_bbcodes',
 			'\vse\abbc3\migrations\v310_m6_update_bbcodes',
 			'\vse\abbc3\migrations\v310_m7_update_bbcodes',
-			'\vse\abbc3\migrations\v320_m8_update_bbcodes',
+			'\vse\abbc3\migrations\v322_m8_update_bbcodes',
 		);
 	}
 

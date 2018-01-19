@@ -10,14 +10,14 @@
 
 namespace vse\abbc3\migrations;
 
-class v320_m8_update_bbcodes extends bbcodes_migration_base
+class v322_m8_update_bbcodes extends bbcodes_migration_base
 {
 	/**
 	 * {@inheritdoc}
 	 */
 	public static function depends_on()
 	{
-		return array('\vse\abbc3\migrations\v310_m7_update_bbcodes');
+		return array('\vse\abbc3\migrations\v310_m4_install_data');
 	}
 
 	/**

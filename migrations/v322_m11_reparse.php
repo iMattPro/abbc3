@@ -12,7 +12,7 @@ namespace vse\abbc3\migrations;
 
 use phpbb\db\migration\container_aware_migration;
 
-class v320_m10_reparse extends container_aware_migration
+class v322_m11_reparse extends container_aware_migration
 {
 	/**
 	 * {@inheritdoc}
@@ -20,8 +20,14 @@ class v320_m10_reparse extends container_aware_migration
 	public static function depends_on()
 	{
 		return array(
-			'\vse\abbc3\migrations\v320_m9_delete_bbcodes',
 			'\phpbb\db\migration\data\v320\text_reparser',
+			'\vse\abbc3\migrations\v310_m4_install_data',
+			'\vse\abbc3\migrations\v310_m5_update_bbcodes',
+			'\vse\abbc3\migrations\v310_m6_update_bbcodes',
+			'\vse\abbc3\migrations\v310_m7_update_bbcodes',
+			'\vse\abbc3\migrations\v322_m8_update_bbcodes',
+			'\vse\abbc3\migrations\v322_m9_delete_bbcodes',
+			'\vse\abbc3\migrations\v322_m10_merge_duplicate_bbcodes',
 		);
 	}
 

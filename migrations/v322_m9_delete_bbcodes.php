@@ -1,23 +1,23 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2018 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2018 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\migrations;
 
-class v320_m9_delete_bbcodes extends bbcodes_migration_base
+class v322_m9_delete_bbcodes extends bbcodes_migration_base
 {
 	/**
 	 * {@inheritdoc}
 	 */
 	public static function depends_on()
 	{
-		return array('\vse\abbc3\migrations\v320_m8_update_bbcodes');
+		return array('\vse\abbc3\migrations\v310_m4_install_data');
 	}
 
 	/**
