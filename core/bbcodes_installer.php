@@ -158,7 +158,7 @@ class bbcodes_installer extends acp_manager
 	 * @return mixed Existing bbcode data array or false if not found
 	 * @access protected
 	 */
-	protected function bbcode_exists($bbcode_name, $bbcode_tag)
+	public function bbcode_exists($bbcode_name, $bbcode_tag)
 	{
 		$sql = 'SELECT bbcode_id
 			FROM ' . BBCODES_TABLE . "
@@ -168,7 +168,7 @@ class bbcodes_installer extends acp_manager
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
 
-		return $row;
+		return $row ? (array) $row : false;
 	}
 
 	/**
