@@ -38,13 +38,14 @@ env:
     - IMAGE_ICC="1"    # Should we run icc profile sniffer on your images?
     - EPV="1"          # Should we run EPV (Extension Pre Validator) on your code?
     - COVERAGE="1"     # Should we send code coverage?
-    - PHPBB_BRANCH="master"
+    - PHPBB_BRANCH="3.2.x"
 
 branches:
   only:
     - master
     - develop
     - /^develop-.*$/
+    - /^\d+(\.\d+)?\.x$/
 
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
