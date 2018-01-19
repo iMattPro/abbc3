@@ -16,8 +16,8 @@ class ext extends \phpbb\extension\base
 	const MOVE_DOWN = 'move_down';
 	const MOVE_DRAG = 'move_drag';
 
-	/** string Require 3.2.2 due to INCLUDECSS, migration helper updates, TextFormatter. */
-	const PHPBB_MIN_VERSION = '3.2.1';
+	/** string Require 3.2.2 due to TextFormatter and BBCode changes. */
+	const PHPBB_MIN_VERSION = '3.2.2';
 
 	/**
 	 * {@inheritdoc}
