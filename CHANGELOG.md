@@ -1,12 +1,22 @@
 # Changelog
 
-## 3.2.0-dev - XXXX-XX-XX
+## 3.2.0 - XXXX-XX-XX
 
-- Added Tables support in posts (using s9e/TextFormatter's Pipe Tables plugin)
 - Documentation for Advanced BBCodes added to the BBCode FAQ page
-- Compatible with phpBB Media Embed plugin, added a BBCode button for [media] tag
-- Try to improve align BBCode when used on non-text like images, videos, etc.
-- Internal improvements for phpBB 3.2
+- Added Tables support in posts (using s9e/TextFormatter's Pipe Tables plugin)
+- Compatible with phpBB Media Embed extension, added a BBCode button for [MEDIA] tag.
+- [BBvideo] deprecated:
+    - BBvideo is now an alias for the [MEDIA] tag, part of the Media Embed feature bundled with phpBB (you do NOT need to install phpBB Media Embed extension to work).
+    - Many more sites and media services are supported through the Media Embed feature bundled with phpBB.
+    - Many old BBVideo exclusive sites are no longer supported (most of which are dead and gone anyways). `5min.com, allocine.fr, clipfish.de, clipmoon.com, cnet.com, colbertnation.com, crackle.com, dotsub.com, ebaumsworld.com, g4tv.com, gameprotv.com, howcast.com, maker.tv, moddb.com, mpora.com, myspace.com, myvideo.de, on.aol.com, photobucket.com, sapo.pt, screenr.com, snotr.com, spike.com, streetfire.net, thedailyshow.cc.com, tu.tv, tudou.com, viddler.com, videogamer.com, `
+    - Custom video sizing is no longer available. phpBB's bundled Media embedding has predetermined hard-coded video sizes.
+    - Raw URLs for compatible media sites will automatically be converted into content even without being wrapped in the BBvideo tag.
+    - The original URLs will no longer be displayed if they can be converted to embedded content.
+    - All Posts and PM's will be re-parsed after updating, over time using CRON jobs to fix broken posts with BBvideos.
+    - Incompatible BBvideos will remain broken (sorry 'bout that, but moving on usually means leaving old stuff behind).
+- Improved align BBCode when used on non-text like images, videos, etc.
+- Show AJAX loading indicators while loading BBCode wizards
+- Internal improvements for phpBB 3.2 and 3.3
 - End of compatibility for phpBB 3.1
 - Added Vietnamese translation
 
