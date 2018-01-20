@@ -10,6 +10,8 @@
 
 namespace vse\abbc3\core;
 
+use s9e\TextFormatter\Configurator;
+
 /**
  * ABBC3 custom BBCodes configurator
  */
@@ -18,10 +20,10 @@ class bbcodes_config
 	/**
 	 * Configure s9e Pipes table plugin
 	 *
-	 * @param \s9e\TextFormatter\Configurator $configurator
+	 * @param Configurator $configurator
 	 * @access public
 	 */
-	public function pipes($configurator)
+	public function pipes(Configurator $configurator)
 	{
 		$configurator->plugins->load('PipeTables');
 
@@ -37,10 +39,10 @@ class bbcodes_config
 	/**
 	 * Configure BBVideo to use the MEDIA tag with the Media Embed plugin
 	 *
-	 * @param \s9e\TextFormatter\Configurator $configurator
+	 * @param Configurator $configurator
 	 * @access public
 	 */
-	public function bbvideo($configurator)
+	public function bbvideo(Configurator $configurator)
 	{
 		foreach ($configurator->MediaEmbed->defaultSites as $tagName => $tag)
 		{
@@ -63,10 +65,10 @@ class bbcodes_config
 	/**
 	 * Configure Hidden BBCode
 	 *
-	 * @param \s9e\TextFormatter\Configurator $configurator
+	 * @param Configurator $configurator
 	 * @access public
 	 */
-	public function hidden($configurator)
+	public function hidden(Configurator $configurator)
 	{
 		unset($configurator->BBCodes['hidden'], $configurator->tags['hidden']);
 		$configurator->BBCodes->addCustom(

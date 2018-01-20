@@ -86,7 +86,7 @@ class bbcodes_display
 	 * @return void
 	 * @access public
 	 */
-	public function allow_custom_bbcodes($service)
+	public function allow_custom_bbcodes(\phpbb\textformatter\s9e\parser $service)
 	{
 		$parser = $service->get_parser();
 		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
