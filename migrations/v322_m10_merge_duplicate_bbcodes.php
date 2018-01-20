@@ -19,14 +19,14 @@ class v322_m10_merge_duplicate_bbcodes extends container_aware_migration
 	 */
 	public static function depends_on()
 	{
-		return array(
+		return [
 			'\vse\abbc3\migrations\v310_m4_install_data',
 			'\vse\abbc3\migrations\v310_m5_update_bbcodes',
 			'\vse\abbc3\migrations\v310_m6_update_bbcodes',
 			'\vse\abbc3\migrations\v310_m7_update_bbcodes',
 			'\vse\abbc3\migrations\v322_m8_update_bbcodes',
 			'\vse\abbc3\migrations\v322_m9_delete_bbcodes',
-		);
+		];
 	}
 
 	/**
@@ -49,8 +49,8 @@ class v322_m10_merge_duplicate_bbcodes extends container_aware_migration
 		$bbcodes = [];
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$variant = (substr($row['bbcode_tag'], -1) === '=') ? 'with': 'without';
-			$bbcode_name = rtrim($row['bbcode_tag'], '=');
+			$variant = (substr($row['bbcode_tag'], -1) === '=') ? 'with' : 'without';
+			$bbcode_name = strtolower(rtrim($row['bbcode_tag'], '='));
 			$bbcodes[$bbcode_name][$variant] = $row;
 		}
 		$this->db->sql_freeresult($result);
