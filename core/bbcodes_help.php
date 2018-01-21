@@ -116,7 +116,8 @@ class bbcodes_help
 		$allowed = [];
 		$sql = 'SELECT bbcode_helpline, bbcode_group
 			FROM ' . BBCODES_TABLE . '
-			WHERE bbcode_helpline ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char());
+			WHERE bbcode_helpline ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char()) . '
+				AND display_on_posting = 1';
 		$result = $this->db->sql_query($sql);
 		while ($row = $this->db->sql_fetchrow($result))
 		{
