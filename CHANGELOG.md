@@ -16,6 +16,7 @@
     - Incompatible BBvideos will remain broken (sorry 'bout that, but moving on usually means leaving old stuff behind).
 - Improved align BBCode when used on non-text like images, videos, etc.
 - Show AJAX loading indicators while loading BBCode wizards
+- Improved ABBC3 deletion. Now if you delete ABBC3, all the BBCodes it installed will no longer be displayed on the posting pages, returning the BBCodes toolbar to the default appearance. You may then choose to manually display or delete each of the BBCodes in the ACP Posting page.
 - Internal improvements for phpBB 3.2 and 3.3
 - End of compatibility for phpBB 3.1
 - Added Vietnamese translation
