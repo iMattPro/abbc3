@@ -12,6 +12,7 @@
 		<column>second_pass_match</column>
 		<column>second_pass_replace</column>
 		<column>bbcode_helpline</column>
+		<column>display_on_posting</column>
 		<row>
 			<value>13</value>
 			<value>font=</value>
@@ -24,6 +25,7 @@
 			<value></value>
 			<value></value>
 			<value>ABBC3_FONT_HELPLINE</value>
+			<value>1</value>
 		</row>
 		<row>
 			<value>14</value>
@@ -37,6 +39,7 @@
 			<value></value>
 			<value></value>
 			<value>ABBC3_HIGHLIGHT_HELPLINE</value>
+			<value>1</value>
 		</row>
 		<row>
 			<value>15</value>
@@ -50,6 +53,7 @@
 			<value></value>
 			<value></value>
 			<value>ABBC3_ALIGN_HELPLINE</value>
+			<value>1</value>
 		</row>
 		<row>
 			<value>16</value>
@@ -63,6 +67,7 @@
 			<value></value>
 			<value></value>
 			<value>ABBC3_FLOAT_HELPLINE</value>
+			<value>1</value>
 		</row>
 		<row>
 			<value>17</value>
@@ -76,6 +81,7 @@
 			<value></value>
 			<value></value>
 			<value>ABBC3_SUP_HELPLINE</value>
+			<value>1</value>
 		</row>
 	</table>
 	<table name="phpbb_groups">
