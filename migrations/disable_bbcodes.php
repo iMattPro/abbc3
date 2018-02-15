@@ -50,11 +50,16 @@ class disable_bbcodes extends container_aware_migration
 
 	/**
 	 * {@inheritdoc}
+	 *
+	 * This will leave behind an entry in the config_text table storing the
+	 * IDs of the BBCodes that were hidden after uninstalling this extension.
+	 * This data is used so if this extension is re-installed at a later time,
+	 * it can re-display on posting page only the BBCodes it has hidden.
 	 */
 	public function revert_data()
 	{
 		return [
-			['custom', [[$this, 'display_bbcodes_off']]], // use custom func because config_text.add was being called twice
+			['custom', [[$this, 'display_bbcodes_off']]], // using a custom func because config_text.add was being called twice
 		];
 	}
 
