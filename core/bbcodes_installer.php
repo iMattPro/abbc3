@@ -111,7 +111,7 @@ class bbcodes_installer extends acp_manager
 	{
 		if (!class_exists('acp_bbcodes'))
 		{
-			include $this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext;
+			include ($this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
 		}
 
 		return new \acp_bbcodes();
