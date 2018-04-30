@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.2.0 - 2017-01-20
+## 3.2.0 - 2018-01-20
 
 - Documentation for Advanced BBCodes added to the BBCode FAQ page
 - Added Tables support in posts (using s9e/TextFormatter's Pipe Tables plugin)
