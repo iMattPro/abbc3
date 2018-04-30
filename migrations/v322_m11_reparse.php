@@ -47,10 +47,6 @@ class v322_m11_reparse extends container_aware_migration
 		return array(
 			array('config.add', array('abbc3_reparse', time())),
 			array('if', array(
-				$this->config->offsetExists('reparse_lock'),
-				array('config.remove', array('reparse_lock', 0)),
-			)),
-			array('if', array(
 				!$this->config->offsetExists('text_reparser.pm_text_last_cron'),
 				array('config.add', array('text_reparser.pm_text_last_cron', 0)),
 			)),

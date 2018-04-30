@@ -94,6 +94,10 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_COMPACT'		=> 'Table compacte',
 	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Les barres verticales extérieures et les espaces autour de celles-ci sont optionnels.',
 	'ABBC3_PIPE_ALIGNMENT'		=> 'Alignement du texte',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'L’ordre des BBcode a été mis à jour.',

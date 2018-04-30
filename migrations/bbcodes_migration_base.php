@@ -13,10 +13,7 @@ namespace vse\abbc3\migrations;
 use \phpbb\db\migration\container_aware_migration;
 
 /**
- * Class wrapper for installing/updating bbcodes in migrations.
- * This class must be kept outside of the migrations directory
- * since this is not a migration file. It's just a wrapper that
- * can be extended by multiple migration files.
+ * Helper for installing/updating bbcodes in migrations.
  */
 abstract class bbcodes_migration_base extends container_aware_migration
 {

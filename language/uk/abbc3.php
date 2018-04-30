@@ -93,6 +93,10 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
 	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
 	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BB-кодів змінено.',
