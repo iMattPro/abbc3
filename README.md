@@ -52,4 +52,4 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
-© 2013 - Matt Friedman (VSE)
+© 2013 - Matt Friedman
