@@ -15,7 +15,7 @@ class acp_bbcode_group_form_test extends acp_base
 	public function bbcode_group_data()
 	{
 		return array(
-			array(null, ''), // empty
+			array(array(''), ''), // empty
 			array(array(1), '1'), // 1 selection
 			array(array(1, 2, 3), '1,2,3'), // multiple selections
 		);

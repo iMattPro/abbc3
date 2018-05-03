@@ -26,7 +26,7 @@ class acp_install_bbcodes_test extends acp_base
 					'bbcode_match'		=> '[bar]{TEXT}[/bar]',
 					'bbcode_tpl'		=> '<span class="bar">{TEXT}</span>',
 				),
-				'align=' => array( // update
+				'align' => array( // update
 					'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
 					'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
 					'bbcode_tpl'		=> '<span class="align-{IDENTIFIER}">{TEXT}</span>',
@@ -49,14 +49,14 @@ class acp_install_bbcodes_test extends acp_base
 
 		$bbcodes_installer = new \vse\abbc3\core\bbcodes_installer(
 			$this->db,
+			$this->group_helper,
+			$this->lang,
 			$this->request,
-			$this->user,
 			$phpbb_root_path,
 			$phpEx
 		);
 
 		$bbcodes_installer->install_bbcodes($data);
-
 		foreach ($data as $bbcode_tag => $bbcode_data)
 		{
 			$sql = "SELECT bbcode_helpline, bbcode_match, bbcode_tpl
@@ -65,6 +65,12 @@ class acp_install_bbcodes_test extends acp_base
 			$result = $this->db->sql_query($sql);
 
 			$this->assertEquals($bbcode_data, $this->db->sql_fetchrow($result));
+		}
+
+		$bbcodes_installer->delete_bbcodes($data);
+		foreach ($data as $bbcode_tag => $bbcode_data)
+		{
+			$this->assertFalse($this->invokeMethod($bbcodes_installer, 'bbcode_exists', [$bbcode_tag, $bbcode_data['bbcode_tag']]));
 		}
 	}
 
@@ -77,5 +83,23 @@ class acp_install_bbcodes_test extends acp_base
 		$this->db->sql_query('DELETE FROM phpbb_bbcodes');
 
 		$this->test_install_bbcodes($data);
+	}
+
+	/**
+	 * Call protected/private method of a class.
+	 *
+	 * @param \vse\abbc3\core\bbcodes_installer &$object    Instantiated object that we will run method on.
+	 * @param string                       $methodName Method name to call
+	 * @param array                        $parameters Array of parameters to pass into method.
+	 *
+	 * @return mixed Method return.
+	 */
+	public function invokeMethod(&$object, $methodName, array $parameters = array())
+	{
+		$reflection = new \ReflectionClass(get_class($object));
+		$method = $reflection->getMethod($methodName);
+		$method->setAccessible(true);
+
+		return $method->invokeArgs($object, $parameters);
 	}
 }

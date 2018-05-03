@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Yazıyı Hizala: [align=center|left|right|justify]yazı[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Herhangi bir siteden video ekler: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Herhangi bir siteden video ekler: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Yazıyı flulaştır: [blur=color]yazı[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Yazı yönü: [dir=ltr|rtl]yazı[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Yazıya gölge ver: [dropshadow=color]yazı[/dropshadow]',
@@ -79,17 +79,32 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'İzin verilen BBvideo siteleri',
 	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Video Genişlik x Yükseklik',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Boyut Ayarları',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Bir site URL\'si girin',
 	'ABBC3_URL_DESCRIPTION'		=> 'İsteğe bağlı açıklama',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Create tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
+	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
+	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode sıralaması güncellendi.',
 	'ABBC3_BBCODE_GROUP'		=> 'BBCode\'ları kullanabilecek grupları yönetin',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Eğer bir grup seçilmemişse, bütün gruplar BBCode\'ları kullanabilir. Birden fazla grup seçmek/seçmemek için CTRL+KLİK (veya Mac\'te CMD+KLİK) kullanınız.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
 ));

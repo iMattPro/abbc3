@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> '對齊: [align=center|left|right|justify]文字[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> '插入影片: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> '插入影片: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> '模糊: [blur=color]文字[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> '文字方向: [dir=ltr|rtl]文字[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> '立體影子: [dropshadow=color]文字[/dropshadow]',
@@ -79,17 +79,32 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo可連結之網站',
 	'ABBC3_BBVIDEO_LINK'		=> '影片網址',
-	'ABBC3_BBVIDEO_SIZE'		=> '影片寬度 x 高度',
-	'ABBC3_BBVIDEO_PRESETS'		=> '預設大小',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> '添加URL',
 	'ABBC3_URL_DESCRIPTION'		=> '可選說明',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Create tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
+	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
+	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode順序已變更',
 	'ABBC3_BBCODE_GROUP'		=> '變更可使用此BBCode的使用者群組',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未選擇任何群組，則所有人皆可使用此BBCode。若要選擇多個群組，請按下CTRL鍵。蘋果電腦請用CMD鍵',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
 ));

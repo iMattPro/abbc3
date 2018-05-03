@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Вирівнювання: [align=center|left|right|justify]текст[/align]  Підказка: center - по центру, left - по лівому краю, right - по правому краю, justify - по ширині',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Відео з сайта: [BBvideo=width,height]http://video_url[/BBvideo]  Підказка: width - ширина, height - висота',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Відео з сайта: [bbvideo]http://video_url[/bbvideo]  Підказка: width - ширина, height - висота',
 	'ABBC3_BLUR_HELPLINE'		=> 'Розмитий текст: [blur=колір]текст[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Напрямок тексту: [dir=ltr|rtl]текст[/dir]  Підказка: ltr - зліва направо, rtl - справа наліво',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Чітка тінь: [dropshadow=колір]текст[/dropshadow]',
@@ -79,17 +79,32 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Дозволені сайти',
 	'ABBC3_BBVIDEO_LINK'		=> 'Посилання на відео',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Ширина та висота відео',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Розміри відео',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Додати URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Додатковий опис',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Create tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
+	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
+	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BB-кодів змінено.',
 	'ABBC3_BBCODE_GROUP'		=> 'Групи, котрі можуть використовувати BB-код',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Якщо група вибрана, то всі її користувачі можуть використовувати BB-код. Використовуйте CTRL+CLICK (або CMD+CLICK на Mac) для того, щоб вибрати кілька груп.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
 ));

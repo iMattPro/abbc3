@@ -12,6 +12,7 @@ namespace vse\abbc3\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\acp_manager;
+use vse\abbc3\ext;
 
 /**
  * Event listener
@@ -65,13 +66,9 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function acp_bbcodes_custom_sorting_buttons($event)
 	{
-		$row = $event['row'];
-		$bbcodes_array = $event['bbcodes_array'];
-
-		$bbcodes_array['U_MOVE_UP'] = $event['u_action'] . '&amp;action=move_up&amp;id=' . $row['bbcode_id'] . '&amp;hash=' . generate_link_hash('move_up' . $row['bbcode_id']);
-		$bbcodes_array['U_MOVE_DOWN'] = $event['u_action'] . '&amp;action=move_down&amp;id=' . $row['bbcode_id'] . '&amp;hash=' . generate_link_hash('move_down' . $row['bbcode_id']);
-
-		$event['bbcodes_array'] = $bbcodes_array;
+		$bbcode_id = $event['row']['bbcode_id'];
+		$event->update_subarray('bbcodes_array', 'U_MOVE_UP', $event['u_action'] . '&amp;action=' . ext::MOVE_UP . '&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash(ext::MOVE_UP . $bbcode_id));
+		$event->update_subarray('bbcodes_array', 'U_MOVE_DOWN', $event['u_action'] . '&amp;action=' . ext::MOVE_DOWN . '&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash(ext::MOVE_DOWN . $bbcode_id));
 	}
 
 	/**
@@ -84,9 +81,7 @@ class acp_listener implements EventSubscriberInterface
 	{
 		$bbcode_group = ($event['action'] === 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : array();
 
-		$tpl_ary = $event['tpl_ary'];
-		$tpl_ary['S_GROUP_OPTIONS'] = $this->acp_manager->bbcode_group_select_options($bbcode_group);
-		$event['tpl_ary'] = $tpl_ary;
+		$event->update_subarray('tpl_ary', 'S_GROUP_OPTIONS', $this->acp_manager->bbcode_group_select_options($bbcode_group));
 	}
 
 	/**
@@ -97,28 +92,24 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function acp_bbcodes_custom_sorting($event)
 	{
-		// Move up/down action
+		// Move up/down actions
 		switch ($event['action'])
 		{
-			case 'move_up':
-			case 'move_down':
+			case ext::MOVE_UP:
+			case ext::MOVE_DOWN:
 				$this->acp_manager->move($event['action']);
 			break;
 
-			case 'drag_drop':
-				$this->acp_manager->drag_drop();
+			case ext::MOVE_DRAG:
+				$this->acp_manager->move_drag();
 			break;
 		}
 
 		// Add some additional template variables
-		$template_data = $event['template_data'];
-		$template_data['UA_DRAG_DROP'] = str_replace('&amp;', '&', $event['u_action'] . '&action=drag_drop');
-		$event['template_data'] = $template_data;
+		$event->update_subarray('template_data', 'UA_DRAG_DROP', str_replace('&amp;', '&', $event['u_action'] . '&action=' . ext::MOVE_DRAG));
 
 		// Change SQL so that it orders by bbcode_order
-		$sql_ary = $event['sql_ary'];
-		$sql_ary['ORDER_BY'] = 'b.bbcode_order, b.bbcode_id';
-		$event['sql_ary'] = $sql_ary;
+		$event->update_subarray('sql_ary', 'ORDER_BY', 'b.bbcode_order, b.bbcode_id');
 	}
 
 	/**
@@ -129,25 +120,18 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function acp_bbcodes_modify_create($event)
 	{
-		$sql_ary = $event['sql_ary'];
-
 		// Set a new BBCode order value on create
 		if ($event['action'] === 'create')
 		{
-			$sql_ary['bbcode_order'] = $this->acp_manager->get_max_bbcode_order() + 1;
+			$event->update_subarray('sql_ary', 'bbcode_order', $this->acp_manager->get_max_bbcode_order() + 1);
 		}
 
 		// Get the BBCode groups from the form
 		$bbcode_group = $this->acp_manager->get_bbcode_group_form_data();
-		$sql_ary['bbcode_group'] = $bbcode_group;
-
-		// Return sql_ary array
-		$event['sql_ary'] = $sql_ary;
+		$event->update_subarray('sql_ary', 'bbcode_group', $bbcode_group);
 
 		// Supply BBCode groups to hidden form fields
-		$hidden_fields = $event['hidden_fields'];
-		$hidden_fields['bbcode_group'] = $bbcode_group;
-		$event['hidden_fields'] = $hidden_fields;
+		$event->update_subarray('hidden_fields', 'bbcode_group', $bbcode_group);
 	}
 
 	/**
@@ -158,6 +142,7 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function s9e_store_bbcode_groups($event)
 	{
+		/** @var \s9e\TextFormatter\Configurator $configurator */
 		$configurator = $event['configurator'];
 		$bbcode_groups = $this->acp_manager->get_bbcode_groups_data();
 

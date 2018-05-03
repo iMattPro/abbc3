@@ -1,6 +1,7 @@
 {# Display only on Posting->BBCodes page #}
-{% if loops.bbcodes %}
+{% if bbcodes %}
 
+	{% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
 	{% INCLUDEJS '@vse_abbc3/js/tablednd.min.js' %}
 
 	<div style="display: none;" id="abbc3-successbox" class="successbox">

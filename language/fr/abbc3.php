@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Alignement du texte : [align=center|left|right|justify]texte[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Insérer un lien vers n’importe quelle vidéo internet : [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Insérer un lien vers n’importe quelle vidéo internet : [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Texte flou : [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Sens d’écriture : [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Texte à courte ombre portée : [dropshadow=color]text[/dropshadow]',
@@ -80,17 +80,32 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Sites autorisés pour BBvideo',
 	'ABBC3_BBVIDEO_LINK'		=> 'Lien vers la vidéo',
-	'ABBC3_BBVIDEO_SIZE'		=> 'Largeur de la vidéo x Hauteur de la vidéo',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'Tailles prédéfinies',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Ajouter une adresse URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Description facultative',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Créer des tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Permet de créer des tables au format ASCII.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
+	'ABBC3_PIPE_SIMPLE'			=> 'Table simple',
+	'ABBC3_PIPE_COMPACT'		=> 'Table compacte',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Les barres verticales extérieures et les espaces autour de celles-ci sont optionnels.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Alignement du texte',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'L’ordre des BBcode a été mis à jour.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestion des groupes pouvant utiliser ce BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si aucun groupe n’est sélectionné, tous les utilisateurs pourront utiliser ce BBCode. Appuyer sur la touche <samp>CTRL</samp> (ou <samp>&#8984;CMD</samp> sur Mac) tout en cliquant pour sélectionner / désélectionner plus d’un groupe.',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Boite des BBCodes avancés',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Le renard brun et rapide saute sur le chien paresseux.',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Exemple :</strong><br />%2$s<br /><br /><strong>Résultat :</strong><br />%3$s<hr />',
 ));

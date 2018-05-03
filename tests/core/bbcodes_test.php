@@ -75,34 +75,48 @@ class bbcodes_test extends \phpbb_database_test_case
 			array(
 				2, // Allowed: user 2 is member of group 2 and 6
 				$bbcode_data[1], // All groups allowed
-				array($bbcode_data[1]['bbcode_tag'] => array('bbcode_id' => $bbcode_data[1]['bbcode_id'])),
+				false,
 			),
 			array(
 				2, // Allowed: user 2 is member of group 2 and 6
 				$bbcode_data[2], // Group 2 allowed only
-				array($bbcode_data[2]['bbcode_tag'] => array('bbcode_id' => $bbcode_data[2]['bbcode_id'])),
+				false,
 			),
 			array(
 				2, // Disallowd: user 2 is member of group 2 and 6
 				$bbcode_data[3], // Groups 3,4,5 allowed only
-				array($bbcode_data[3]['bbcode_tag'] => array('bbcode_id' => $bbcode_data[3]['bbcode_id'], 'disabled' => true)),
+				true,
 			),
 		);
 	}
 
 	/**
-	* @dataProvider allowed_bbcodes_data
-	*/
-	public function test_allow_custom_bbcodes($user_id, $data, $expected)
+	 * Test the allow_custom_bbcodes method is calling disable_bbcode()
+	 * on registered bbcodes for users not in a group allowed to use it.
+	 *
+	 * @dataProvider allowed_bbcodes_data
+	 */
+	public function test_allow_custom_bbcodes($user_id, $data, $disable)
 	{
+		$parser = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
+			->disableOriginalConstructor()
+			->getMock();
+		$parser->expects($this->once())
+			->method('get_parser')
+			->will($this->returnSelf());
+		$parser->registeredVars['abbc3.bbcode_groups'] = array(
+			$data['bbcode_tag'] => $data['bbcode_group'],
+		);
+
+		$parser->expects($disable ? $this->once() : $this->never())
+			->method('disable_bbcode')
+			->with($data['bbcode_tag']);
+
 		$this->user->data['user_id'] = $user_id;
 
 		$bbcodes_manager = $this->bbcodes_manager();
 
-		$bbcodes = array($data['bbcode_tag'] => array('bbcode_id' => $data['bbcode_id']));
-		$rowset = array($data);
-
-		$this->assertEquals($expected, $bbcodes_manager->allow_custom_bbcodes($bbcodes, $rowset));
+		$bbcodes_manager->allow_custom_bbcodes($parser);
 	}
 
 	public function display_bbcodes_data()

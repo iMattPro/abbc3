@@ -2,6 +2,8 @@
 
 Replace phpBB3's BBCode buttons with icons in an attractive and customizable toolbar. This extension also adds many new and useful custom BBCodes giving users more ways to customize their posts, including BBvideo (embed videos from dozens of media sites). Custom BBCodes can be arranged and sorted in any order and assigned to specific usergroups (such as Moderators and Admins only).
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ebc35321-c3fb-4a25-8db1-89ee64bcf58b/big.png)](https://insight.sensiolabs.com/projects/ebc35321-c3fb-4a25-8db1-89ee64bcf58b)
+
 [![Build Status](https://img.shields.io/travis/VSEphpbb/abbc3/master.svg?style=flat)](https://travis-ci.org/VSEphpbb/abbc3)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/VSEphpbb/abbc3/master.svg?style=flat)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=master)
@@ -19,29 +21,15 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 		Superscript, Subscript, Glow text, Shadow text, Dropshadow text, Blur
 		text, Fade In/Out, Align (Left, Right Center, Justify), Float (Left,
 		Right), LTR/RTL Direction, Preformatted text, Marquee scroll, Spoiler,
-		Hidden, Moderator Message, Off Topic, NFO/ascii text, YouTube, BBvideo
+		Hidden, Moderator Message, Off Topic, NFO/ascii text, SoundCloud, BBvideo
 
-* Embed video in your posts with BBvideo, supported video sharing sites:
-
-		5min.com, allocine.fr, on.aol.com, break.com, clipfish.de,
-		clipmoon.com, cnbc.com, cnettv.cnet.com, colbertnation.com,
-		collegehumor.com, comedycentral.com, crackle.com, dailymotion.com,
-		dotsub.com, ebaumsworld.com, facebook.com, flickr.com, funnyordie.com,
-		g4tv.com, gameprotv.com, gamespot.com, howcast.com, hulu.com, ign.com,
-		instagram.com, kickstarter.com, liveleak.com, maker.tv, metacafe.com,
-		moddb.com, mpora.com, msnbc.msn.com, myspace.com, myvideo.de,
-		photobucket.com, revision3.com, rutube.ru, sapo.pt, screen.yahoo.com,
-		screenr.com, scribd.com, slideshare.net, snotr.com, soundcloud.com,
-		spike.com, streetfire.net, ted.com, testtube.com, thedailyshow.cc.com,
-		theonion.com, tudou.com, tu.tv, twitch.tv, ustream.tv, vbox7.com,
-		veoh.com, vevo.com, viddler.com, videogamer.com, vimeo.com, vine.co,
-		youku.com, youtu.be, youtube.com
+* Embed video from dozens of popular media content sites with BBvideo. Also raw URLs will automatically be converted to embedded content.
 
 * Multiple languages are supported. View the pre-installed [localizations](https://github.com/VSEphpbb/abbc3/tree/master/language).
 
 ## Minimum Requirements
-* phpBB 3.1.3 or phpBB 3.2.0
-* PHP 5.3.3
+* phpBB 3.2.2 or higher
+* PHP 5.4 or higher
 
 **Note: Only official release versions validated by the phpBB Extensions Team should be installed on a live forum. Pre-release (beta, dev) versions downloaded from this repository are only to be used for testing on offline/development forums and are not officially supported.**
 
@@ -61,31 +49,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 2. BBCode Toolbar: You can change the look of the BBCode toolbar using any of the extra toolbar background images located in the `contrib` directory. Just copy one of the alternative toolbar images to `styles/all/theme/images/abbc3_bg.gif` (and refresh your browser). To assign custom toolbar images for each style, replace "all" with the name of your style.
 3. NOTE: When making any of these customizations to ABBC3, be sure to note/backup your changes, as you may need to reproduce them after updating this extension, in case any of your added image files is overwritten or erased.
 
-* * *
-
-## Deprecated ABBC 3.0 Information:
-[ABBC 3.0](https://github.com/VSEphpbb/Advanced-BBCode-Box-3) is a popular MOD for phpBB 3.0. Due to the changes in the new Extensions system for phpBB 3.1, ABBC 3.1 has been re-built from scratch. It can not simply be ported over from 3.0 to 3.1. The following is a list of what has been removed:
-
-* BBCode posting page assignments are no longer available (display on posting, on signature, on private message)
-* BBCode toolbar user options (no more "compact mode" or "disabled mode")
-* Image Resizers
-* Removed BBCodes:
-	- Unable to convert or maintain backwards compatability:
-
-			Anchor, Horizontal line, Rainbow text, Indent, Click counter, Search text,
-			Tables, Tabs, Thumbnail images
-
-	- Deprecated:
-
-			Ed2k, Imgshack, Rapidshare, Testlink, FLV, Quicktime mov, Real Player ram,
-			Scrippet, Stream, Video, Web, Wave
-
-* Removed BBvideos:
-	- direct file types: `mp4, m4v, mov, dv, qt, mpg, mpeg, avi, wmv, flv, swf, mp3, mid, midi, ram`
-
-* * *
-
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
-© 2013 - Matt Friedman (VSE)
+© 2013 - Matt Friedman

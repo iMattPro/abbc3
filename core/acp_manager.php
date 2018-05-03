@@ -11,8 +11,10 @@
 namespace vse\abbc3\core;
 
 use phpbb\db\driver\driver_interface;
+use phpbb\group\helper;
+use phpbb\language\language;
 use phpbb\request\request;
-use phpbb\user;
+use vse\abbc3\ext;
 
 /**
  * ABBC3 ACP manager class
@@ -22,25 +24,30 @@ class acp_manager
 	/** @var driver_interface */
 	protected $db;
 
+	/** @var helper */
+	protected $group_helper;
+
+	/** @var language */
+	protected $language;
+
 	/** @var request */
 	protected $request;
-
-	/** @var user */
-	protected $user;
 
 	/**
 	 * Constructor
 	 *
 	 * @param driver_interface $db
+	 * @param helper           $group_helper
+	 * @param language         $language
 	 * @param request          $request
-	 * @param user             $user
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, request $request, user $user)
+	public function __construct(driver_interface $db, helper $group_helper, language $language, request $request)
 	{
 		$this->db = $db;
+		$this->group_helper = $group_helper;
+		$this->language = $language;
 		$this->request = $request;
-		$this->user = $user;
 	}
 
 	/**
@@ -55,13 +62,13 @@ class acp_manager
 
 		if (!check_link_hash($this->request->variable('hash', ''), $action . $bbcode_id))
 		{
-			trigger_error($this->user->lang('FORM_INVALID'), E_USER_WARNING);
+			trigger_error($this->language->lang('FORM_INVALID'), E_USER_WARNING);
 		}
 
 		$current_order = $this->get_bbcode_order($bbcode_id);
 
 		// First one can't be moved up
-		if ($current_order <= 1 && $action === 'move_up')
+		if ($current_order <= 1 && $action === ext::MOVE_UP)
 		{
 			return;
 		}
@@ -74,11 +81,11 @@ class acp_manager
 	}
 
 	/**
-	 * Update BBCode order fields in the db on drag_drop
+	 * Update BBCode order fields in the db on drag-n-drop
 	 *
 	 * @access public
 	 */
-	public function drag_drop()
+	public function move_drag()
 	{
 		if (!$this->request->is_ajax())
 		{
@@ -193,7 +200,7 @@ class acp_manager
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$selected = in_array($row['group_id'], $select_id) ? ' selected="selected"' : '';
-			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . ($row['group_type'] == GROUP_SPECIAL ? $this->user->lang('G_' . $row['group_name']) : $row['group_name']) . '</option>';
+			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . $this->group_helper->get_name($row['group_name']) . '</option>';
 		}
 		$this->db->sql_freeresult($result);
 
@@ -258,7 +265,7 @@ class acp_manager
 	 */
 	protected function update_bbcode_orders($bbcode_order, $action)
 	{
-		$amount = ($action === 'move_up') ? -1 : 1;
+		$amount = ($action === ext::MOVE_UP) ? -1 : 1;
 
 		$order_total = $bbcode_order * 2 + $amount;
 

@@ -23,7 +23,7 @@ class v310_m3_install_schema extends \phpbb\db\migration\migration
 	/**
 	 * {@inheritdoc}
 	 */
-	static public function depends_on()
+	public static function depends_on()
 	{
 		return array('\vse\abbc3\migrations\v310_m2_remove_schema');
 	}

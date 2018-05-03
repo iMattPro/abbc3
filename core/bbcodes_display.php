@@ -74,32 +74,29 @@ class bbcodes_display
 		$images_key = 'ext/' . $bbcode_img;
 
 		$custom_tags['BBCODE_IMG'] = isset($images[$images_key]) ? 'ext/vse/' . $bbcode_img : '';
-		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = (!empty($row['bbcode_group'])) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
+		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = !empty($row['bbcode_group']) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
 
 		return $custom_tags;
 	}
 
 	/**
-	 * Set custom BBCodes to 'disabled' if they are not allowed to be used
+	 * Disable BBCodes not allowed by a user's group(s).
 	 *
-	 * @param array $bbcodes Array of bbcode data for use in parsing
-	 * @param array $rowset  Array of bbcode data from the database
-	 * @return array The bbcodes data array
+	 * @param \phpbb\textformatter\s9e\parser $service Object from the text_formatter.parser service
+	 * @return void
 	 * @access public
-	 *
-	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
-	public function allow_custom_bbcodes($bbcodes, $rowset)
+	public function allow_custom_bbcodes(\phpbb\textformatter\s9e\parser $service)
 	{
-		foreach ($rowset as $row)
+		$parser = $service->get_parser();
+		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
 		{
-			if (!$this->user_in_bbcode_group($row['bbcode_group']))
+			if (!$this->user_in_bbcode_group($groups))
 			{
-				$bbcodes[$row['bbcode_tag']]['disabled'] = true;
+				$bbcode_name = rtrim($bbcode_name, '=');
+				$service->disable_bbcode($bbcode_name);
 			}
 		}
-
-		return $bbcodes;
 	}
 
 	/**
@@ -152,7 +149,7 @@ class bbcodes_display
 	 */
 	protected function load_memberships()
 	{
-		if (isset($this->memberships))
+		if ($this->memberships !== null)
 		{
 			return;
 		}

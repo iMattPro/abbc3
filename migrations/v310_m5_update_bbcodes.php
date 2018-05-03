@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\migrations;
 
-class v310_m5_update_bbcodes extends \vse\abbc3\core\bbcodes_migration_base
+class v310_m5_update_bbcodes extends bbcodes_migration_base
 {
 	/**
 	 * {@inheritdoc}
@@ -23,7 +23,7 @@ class v310_m5_update_bbcodes extends \vse\abbc3\core\bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	static public function depends_on()
+	public static function depends_on()
 	{
 		return array('\vse\abbc3\migrations\v310_m4_install_data');
 	}

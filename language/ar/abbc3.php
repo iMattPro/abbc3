@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'محاذاة النص : [align=center|left|right|justify]النص[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'إضافة رابط فيديو Embed any video site url: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'إضافة رابط فيديو Embed any video site url: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'نص غير واضح : [blur=color]النص[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'اتجاة النص : [dir=ltr|rtl]النص[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'نص مع ظل خفيف : [dropshadow=color]النص[/dropshadow]',
@@ -80,15 +80,32 @@ $lang = array_merge($lang, array(
 	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'مواقع الفيديوهات المُتاحة ',
 	'ABBC3_BBVIDEO_LINK'		=> 'رابط الفيديو ',
-	'ABBC3_BBVIDEO_SIZE'		=> 'عرض × إرتفاع الفيديو ',
-	'ABBC3_BBVIDEO_PRESETS'		=> 'أحجام قياسية',
-	'ABBC3_BBVIDEO_SEPARATOR'	=> 'x',
+
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'إدخال رابط الموقع ',
 	'ABBC3_URL_DESCRIPTION'		=> 'وصف إختياري',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.alhitary.net',
+
+	// Pipe tables
+	'ABBC3_PIPE_TABLES'			=> 'Create tables',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
+	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
+	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
+
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'تم تحديث ترتيب الـBBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'إدارة المجموعات التي تستطيع استخدام هذا الـ BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'يستطيع جميع الأعضاء استخدام هذا الـBBCode إذا لم يتم تحديد أي مجموعة. تستطيع تحديد أكثر من مجموعة أو إزالة التحديد بالنقر مطولاً على زر الكنترول والنقر بالماوس على إسم المجموعة CTRL+CLICK ( أو CMD+CLICK في نظام الماك ).',
+
+	// BBCode FAQ
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
 ));

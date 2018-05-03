@@ -1,8 +1,6 @@
 services:
-    vse.abbc3.bbcodes_parser:
-        class: vse\abbc3\core\bbcodes_parser
-        arguments:
-            - '@user'
+    vse.abbc3.bbcodes_config:
+        class: vse\abbc3\core\bbcodes_config
 
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display
@@ -12,18 +10,29 @@ services:
             - '@user'
             - '%core.root_path%ext/vse/abbc3/'
 
+    vse.abbc3.bbcodes_help:
+        class: vse\abbc3\core\bbcodes_help
+        arguments:
+            - '@vse.abbc3.bbcodes_display'
+            - '@dbal.conn'
+            - '@language'
+            - '@template'
+            - '@user'
+
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
         arguments:
             - '@dbal.conn'
+            - '@group_helper'
+            - '@language'
             - '@request'
-            - '@user'
 
     vse.abbc3.listener:
         class: vse\abbc3\event\listener
         arguments:
-            - '@vse.abbc3.bbcodes_parser'
+            - '@vse.abbc3.bbcodes_config'
             - '@vse.abbc3.bbcodes_display'
+            - '@vse.abbc3.bbcodes_help'
             - '@controller.helper'
             - '@template'
             - '@user'
@@ -42,8 +51,9 @@ services:
     vse.abbc3.wizard:
         class: vse\abbc3\controller\wizard
         arguments:
+            - '@cache.driver'
             - '@controller.helper'
             - '@request'
             - '@template'
-            - '@user'
+            - '@text_formatter.s9e.factory'
             - '%core.root_path%ext/vse/abbc3/'

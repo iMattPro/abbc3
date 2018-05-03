@@ -1,8 +1,8 @@
 <script>
 
+/*global theSelection */
+
 var copyPaste = '';
-var bbvideoHeight = '{{ ABBC3_BBVIDEO_HEIGHT }}';
-var bbvideoWidth = '{{ ABBC3_BBVIDEO_WIDTH }}';
 
 /**
 * Strip all BBCodes from the selected text
@@ -97,49 +97,61 @@ function bbspecial(bbcode, bbcodeId) {
 			}
 			break;
 
+		case 'align':
 		case 'align=':
 			bbfontstyle('[align=center]', '[/align]');
 			break;
 
+		case 'float':
 		case 'float=':
 			bbfontstyle('[float=left]', '[/float]');
 			break;
 
+		case 'dir':
 		case 'dir=':
 			bbfontstyle('[dir=rtl]', '[/dir]');
 			break;
 
+		case 'marq':
 		case 'marq=':
 			bbfontstyle('[marq=left]', '[/marq]');
 			break;
 
+		case 'mod':
 		case 'mod=':
 			bbfontstyle('[mod={{ ABBC3_USERNAME|e("js") }}]', '[/mod]');
 			break;
 
+		case 'highlight':
 		case 'highlight=':
 			bbfontstyle('[highlight=yellow]', '[/highlight]');
 			break;
 
+		case 'glow':
 		case 'glow=':
 			bbfontstyle('[glow=red]', '[/glow]');
 			break;
 
+		case 'shadow':
 		case 'shadow=':
 			bbfontstyle('[shadow=blue]', '[/shadow]');
 			break;
 
+		case 'dropshadow':
 		case 'dropshadow=':
 			bbfontstyle('[dropshadow=blue]', '[/dropshadow]');
 			break;
 
+		case 'blur':
 		case 'blur=':
 			bbfontstyle('[blur=blue]', '[/blur]');
 			break;
 
+		case 'bbvideo':
+		case 'BBvideo':
 		case 'BBvideo=':
 			if (theSelection || phpbb.isTouch) {
-				bbfontstyle('[BBvideo=' + bbvideoWidth + ',' + bbvideoHeight + ']', '[/BBvideo]');
+				bbfontstyle('[bbvideo]', '[/bbvideo]');
 			} else {
 				bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', 'bbvideo');
 			}
@@ -151,6 +163,10 @@ function bbspecial(bbcode, bbcodeId) {
 			} else {
 				bbwizard('{{ UA_ABBC3_URL_WIZARD }}', 'url');
 			}
+			break;
+
+		case 'pipes':
+			bbwizard('{{ UA_ABBC3_PIPES_WIZARD }}');
 			break;
 
 		default:
@@ -186,6 +202,9 @@ function bbspecial(bbcode, bbcodeId) {
 		{% if S_BBCODE_FLASH %}
 			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value=" " style="background-image:url('{{ ABBC3_ICONS }}/flash.gif');" onclick="bbstyle(18)" title="{{ lang('BBCODE_D_HELP') }}" />
 		{% endif %}
+		{% if S_BBCODE_MEDIA %}
+			<input type="button" class="abbc3_button" accesskey="m" name="addmedia" value=" " style="background-image:url('{{ ABBC3_ICONS }}/media.gif');" onclick="bbfontstyle('[media]', '[/media]');" title="{{ lang('BBCODE_MEDIA_HELP') }}" />
+		{% endif %}
 		<input type="button" class="abbc3_button" name="abbc3_bbpalette" id="abbc3_bbpalette" value=" " style="background-image:url('{{ ABBC3_ICONS }}/fontcolor.gif');" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}" />
 		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
 			<option value="50">{{ lang('FONT_TINY') }}</option>
@@ -198,17 +217,18 @@ function bbspecial(bbcode, bbcodeId) {
 				{% endif %}
 			{% endif %}
 		</select>
+		<input type="button" class="abbc3_button" name="pipetables" value=" " style="background-image:url('{{ ABBC3_ICONS }}/table.gif');" onclick="bbspecial('pipes')" title="{{ lang('ABBC3_PIPE_TABLES') }}">
 		<input type="button" class="abbc3_button" name="copybbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/copy.gif');" onclick="bbspecial('abbc3_copy')" title="{{ lang('ABBC3_COPY_BBCODE') }}">
 		<input type="button" class="abbc3_button" name="pastebbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/paste.gif');" onclick="bbspecial('abbc3_paste')" title="{{ lang('ABBC3_PASTE_BBCODE') }}">
 		<input type="button" class="abbc3_button" name="plainbbcode" value=" " style="background-image:url('{{ ABBC3_ICONS }}/plain.gif');" onclick="bbspecial('abbc3_plain')" title="{{ lang('ABBC3_PLAIN_BBCODE') }}">
 		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 	</div>
-	{% if loops.custom_tags %}
+	{% if custom_tags %}
 		<div class="abbc3_buttons_row" style="border-top:0;">
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
-			{% for custom_tag in loops.custom_tags %}
+			{% for custom_tag in custom_tags %}
 				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
-					{% if custom_tag.BBCODE_TAG == 'font=' %}
+					{% if custom_tag.BBCODE_TAG == 'font=' or custom_tag.BBCODE_TAG == 'font' %}
 						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
 							<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
 							<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">

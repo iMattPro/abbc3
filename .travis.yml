@@ -1,6 +1,6 @@
-dist: precise
-
 language: php
+sudo: required
+dist: precise
 
 matrix:
   include:
@@ -24,10 +24,12 @@ matrix:
       env: DB=mysqli
     - php: 7.1
       env: DB=mysqli
-    - php: hhvm
+    - php: 7.2
+      env: DB=mysqli
+    - php: nightly
       env: DB=mysqli
   allow_failures:
-    - php: hhvm
+    - php: nightly
   fast_finish: true
 
 env:
@@ -45,6 +47,7 @@ branches:
     - master
     - develop
     - /^develop-.*$/
+    - /^\d+(\.\d+)?\.x$/
 
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH

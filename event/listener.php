@@ -15,19 +15,22 @@ use phpbb\template\template;
 use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\bbcodes_display;
-use vse\abbc3\core\bbcodes_parser;
-use vse\abbc3\ext;
+use vse\abbc3\core\bbcodes_help;
+use vse\abbc3\core\bbcodes_config;
 
 /**
  * Event listener
  */
 class listener implements EventSubscriberInterface
 {
-	/** @var bbcodes_parser */
-	protected $bbcodes_parser;
+	/** @var bbcodes_config */
+	protected $bbcodes_config;
 
 	/** @var bbcodes_display */
 	protected $bbcodes_display;
+
+	/** @var bbcodes_help */
+	protected $bbcodes_help;
 
 	/** @var helper */
 	protected $helper;
@@ -44,18 +47,20 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Constructor
 	 *
-	 * @param bbcodes_parser  $bbcodes_parser
+	 * @param bbcodes_config  $bbcodes_config
 	 * @param bbcodes_display $bbcodes_display
+	 * @param bbcodes_help    $bbcodes_help
 	 * @param helper          $helper
 	 * @param template        $template
 	 * @param user            $user
 	 * @param string          $ext_root_path
 	 * @access public
 	 */
-	public function __construct(bbcodes_parser $bbcodes_parser, bbcodes_display $bbcodes_display, helper $helper, template $template, user $user, $ext_root_path)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, helper $helper, template $template, user $user, $ext_root_path)
 	{
-		$this->bbcodes_parser = $bbcodes_parser;
+		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
+		$this->bbcodes_help = $bbcodes_help;
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
@@ -74,21 +79,14 @@ class listener implements EventSubscriberInterface
 		return array(
 			'core.user_setup'							=> 'load_language_on_setup',
 
-			// functions_content events
-			'core.modify_text_for_display_before'		=> 'parse_bbcodes_before',
-			'core.modify_text_for_display_after'		=> 'parse_bbcodes_after',
-
-			// functions_display events
 			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
 			'core.display_custom_bbcodes_modify_sql'	=> 'custom_bbcode_modify_sql',
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
 
-			// message_parser events
-			'core.modify_format_display_text_after'		=> 'parse_bbcodes_after',
-			'core.modify_bbcode_init'					=> 'allow_custom_bbcodes',
+			'core.text_formatter_s9e_parser_setup'		=> 'allow_custom_bbcodes',
+			'core.text_formatter_s9e_configure_after'	=> 'configure_bbcodes',
 
-			// text_formatter events (for phpBB 3.2.x)
-			'core.text_formatter_s9e_parser_setup'		=> 's9e_allow_custom_bbcodes',
+			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 		);
 	}
 
@@ -106,32 +104,6 @@ class listener implements EventSubscriberInterface
 			'lang_set' => 'abbc3',
 		);
 		$event['lang_set_ext'] = $lang_set_ext;
-	}
-
-	/**
-	 * Alter BBCodes before they are processed by phpBB
-	 *
-	 * This is used to change old/malformed ABBC3 BBCodes to a newer structure
-	 *
-	 * @param \phpbb\event\data $event The event object
-	 * @access public
-	 */
-	public function parse_bbcodes_before($event)
-	{
-		$event['text'] = $this->bbcodes_parser->pre_parse_bbcodes($event['text'], $event['uid']);
-	}
-
-	/**
-	 * Alter BBCodes after they are processed by phpBB
-	 *
-	 * This is used on ABBC3 BBCodes that require additional post-processing
-	 *
-	 * @param \phpbb\event\data $event The event object
-	 * @access public
-	 */
-	public function parse_bbcodes_after($event)
-	{
-		$event['text'] = $this->bbcodes_parser->post_parse_bbcodes($event['text']);
 	}
 
 	/**
@@ -158,10 +130,9 @@ class listener implements EventSubscriberInterface
 		$this->template->assign_vars(array(
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
 			'ABBC3_BBCODE_ICONS'		=> $this->ext_root_path . 'images/icons',
-			'ABBC3_BBVIDEO_HEIGHT'		=> ext::BBVIDEO_HEIGHT,
-			'ABBC3_BBVIDEO_WIDTH'		=> ext::BBVIDEO_WIDTH,
 
 			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
+			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'pipes')),
 			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'url')),
 		));
 	}
@@ -178,41 +149,44 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Set custom BBCodes permissions
+	 * Allow custom BBCodes based on user's group memberships
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
-	 *
-	 * @deprecated 3.2.0. Provides bc for phpBB 3.1.x.
 	 */
 	public function allow_custom_bbcodes($event)
-	{
-		$event['bbcodes'] = $this->bbcodes_display->allow_custom_bbcodes($event['bbcodes'], $event['rowset']);
-	}
-
-	/**
-	 * Toggle custom BBCodes in the s9e\TextFormatter parser based on user's group memberships
-	 *
-	 * @param \phpbb\event\data $event The event object
-	 * @access public
-	 */
-	public function s9e_allow_custom_bbcodes($event)
 	{
 		if (defined('IN_CRON'))
 		{
 			return; // do no apply bbcode permissions if in a cron job (for 3.1 to 3.2 update reparsing)
 		}
 
-		/** @var $service \phpbb\textformatter\s9e\parser object from the text_formatter.parser service */
-		$service = $event['parser'];
-		$parser = $service->get_parser();
-		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
+		$this->bbcodes_display->allow_custom_bbcodes($event['parser']);
+	}
+
+	/**
+	 * Configure TextFormatter powered PlugIns and BBCodes
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 */
+	public function configure_bbcodes($event)
+	{
+		$this->bbcodes_config->pipes($event['configurator']);
+		$this->bbcodes_config->bbvideo($event['configurator']);
+		$this->bbcodes_config->hidden($event['configurator']);
+	}
+
+	/**
+	 * Add ABBC3 BBCodes to the BBCode FAQ after the HELP_BBCODE_BLOCK_OTHERS block
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function add_bbcode_faq($event)
+	{
+		if ($event['block_name'] === 'HELP_BBCODE_BLOCK_OTHERS')
 		{
-			if (!$this->bbcodes_display->user_in_bbcode_group($groups))
-			{
-				$bbcode_name = rtrim($bbcode_name, '=');
-				$service->disable_bbcode($bbcode_name);
-			}
+			$this->bbcodes_help->faq();
 		}
 	}
 }
