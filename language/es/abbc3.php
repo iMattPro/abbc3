@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Spanish]
+* Advanced BBCode Box [Spanish - Formal Honorifics]
 *
 * @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -86,13 +86,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Crear tablas',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Cree tablas usando cualquiera de estos formatos de estilo ASCII.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Guía de Usuario',
+	'ABBC3_PIPE_SIMPLE'			=> 'Tabla simple',
+	'ABBC3_PIPE_COMPACT'		=> 'Tabla compacta',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Las tuberías exteriores y los espacios alrededor de las tuberías son opcionales.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Alineación del texto',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -105,6 +105,6 @@ $lang = array_merge($lang, array(
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'El zorro marrón rápido salta sobre el perro perezoso',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Ejemplo:</strong><br />%2$s<br /><br /><strong>Resultado:</strong><br />%3$s<hr />',
 ));
