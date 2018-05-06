@@ -14,7 +14,7 @@ namespace vse\abbc3\migrations;
 * This migration removes old data from 3.0
 * installations of Advanced BBCode Box 3 MOD.
 */
-class v310_m1_remove_data extends \phpbb\db\migration\migration
+class v310_m1_remove_data extends \phpbb\db\migration\container_aware_migration
 {
 	/**
 	 * Run migration if ABBC3_VERSION config exists
@@ -42,17 +42,20 @@ class v310_m1_remove_data extends \phpbb\db\migration\migration
 	 */
 	public function update_data()
 	{
+		// use module tool explicitly since module.exists does not work in 'if'
+		$module_tool = $this->container->get('migrator.tool.module');
+
 		return array(
 			array('if', array(
-				array('module.exists', array('acp', false, 'ACP_ABBC3_BBCODES')),
+				$module_tool->exists('acp', false, 'ACP_ABBC3_BBCODES', true),
 				array('module.remove', array('acp', false, 'ACP_ABBC3_BBCODES')),
 			)),
 			array('if', array(
-				array('module.exists', array('acp', false, 'ACP_ABBC3_SETTINGS')),
+				$module_tool->exists('acp', false, 'ACP_ABBC3_SETTINGS', true),
 				array('module.remove', array('acp', false, 'ACP_ABBC3_SETTINGS')),
 			)),
 			array('if', array(
-				array('module.exists', array('acp', false, 'ACP_ABBCODES')),
+				$module_tool->exists('acp', false, 'ACP_ABBCODES', true),
 				array('module.remove', array('acp', false, 'ACP_ABBCODES')),
 			)),
 
