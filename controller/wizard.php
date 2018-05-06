@@ -102,7 +102,8 @@ class wizard
 			$configurator = $this->textformatter->get_configurator();
 			foreach ($configurator->MediaEmbed->defaultSites as $siteId => $siteConfig)
 			{
-				if (!isset($configurator->BBCodes[$siteId]))
+				// check that siteID is not already a custom bbcode and that it exists in MediaEmbed
+				if (!isset($configurator->BBCodes[$siteId]) && $configurator->tags->exists($siteId))
 				{
 					$bbvideo_sites[$siteId] = isset($siteConfig['example']) ? current((array) $siteConfig['example']) : '';
 				}

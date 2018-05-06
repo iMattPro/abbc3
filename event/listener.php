@@ -84,7 +84,7 @@ class listener implements EventSubscriberInterface
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
 
 			'core.text_formatter_s9e_parser_setup'		=> 'allow_custom_bbcodes',
-			'core.text_formatter_s9e_configure_after'	=> 'configure_bbcodes',
+			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force lowest priority
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 		);

@@ -44,11 +44,15 @@ class bbcodes_config
 	 */
 	public function bbvideo(Configurator $configurator)
 	{
-		foreach ($configurator->MediaEmbed->defaultSites as $tagName => $tag)
+		// If MediaEmbed is not already active (for example due to another ext) lets enable it
+		if (!isset($configurator->MediaEmbed) && !isset($configurator->BBCodes['MEDIA']))
 		{
-			if (!isset($configurator->BBCodes[$tagName]))
+			foreach ($configurator->MediaEmbed->defaultSites as $tagName => $tag)
 			{
-				$configurator->MediaEmbed->add($tagName);
+				if (!isset($configurator->BBCodes[$tagName]))
+				{
+					$configurator->MediaEmbed->add($tagName);
+				}
 			}
 		}
 
