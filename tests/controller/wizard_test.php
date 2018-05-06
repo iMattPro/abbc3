@@ -34,8 +34,6 @@ class wizard_test extends \phpbb_test_case
 	{
 		parent::setUp();
 
-		global $phpbb_root_path;
-
 		$this->request = $this->getMock('\phpbb\request\request');
 
 		/** @var $controller_helper \phpbb\controller\helper|\PHPUnit_Framework_MockObject_MockObject */
@@ -59,8 +57,7 @@ class wizard_test extends \phpbb_test_case
 			$controller_helper,
 			$this->request,
 			$this->template,
-			$this->textformatter,
-			$phpbb_root_path . 'ext/vse/abbc3/'
+			$this->textformatter
 		);
 	}
 

@@ -56,4 +56,3 @@ services:
             - '@request'
             - '@template'
             - '@text_formatter.s9e.factory'
-            - '%core.root_path%ext/vse/abbc3/'
