@@ -87,16 +87,16 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> '添加表格',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> '使用任意 ASCII 样式的格式添加表格。',
+	'ABBC3_PIPE_DOCUMENTATION'	=> '用户指南',
+	'ABBC3_PIPE_SIMPLE'			=> '简单表格',
+	'ABBC3_PIPE_COMPACT'		=> '紧凑表格',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> '外部的制表符和制表符两侧的空格是可选的。',
+	'ABBC3_PIPE_ALIGNMENT'		=> '文字对齐',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
-	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
-	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| 表头 1 | 表头 2 |\n|----------|----------|\n| 单元 1   | 单元 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "表头 1|表头 2\n-|-\n单元 1|单元 2",
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
