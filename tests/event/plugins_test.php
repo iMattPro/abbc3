@@ -30,6 +30,9 @@ class plugins_test extends listener_base
 		$this->assertFalse(isset($configurator->BBCodes['hidden']));
 		$this->assertFalse(isset($configurator->BBCodes['bbvideo']));
 
+		// Add a pipes bbcode which must exist to load PipeTables plugin
+		$configurator->BBCodes->add('pipes');
+
 		$event_data = array('configurator');
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
@@ -38,5 +41,13 @@ class plugins_test extends listener_base
 		$this->assertTrue(isset($configurator->plugins['PipeTables']));
 		$this->assertTrue(isset($configurator->BBCodes['hidden']));
 		$this->assertTrue(isset($configurator->BBCodes['bbvideo']));
+
+		// Check that unsetting the pipes bbcode disables PipeTables plugin
+		unset($configurator->BBCodes['pipes']);
+		unset($configurator->plugins['PipeTables']);
+		$event_data = array('configurator');
+		$event = new \phpbb\event\data(compact($event_data));
+		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
+		$this->assertFalse(isset($configurator->plugins['PipeTables']));
 	}
 }
