@@ -25,6 +25,11 @@ class bbcodes_config
 	 */
 	public function pipes(Configurator $configurator)
 	{
+		if (!isset($configurator->BBCodes['pipes']))
+		{
+			return;
+		}
+
 		$configurator->plugins->load('PipeTables');
 
 		// Add class "pipe-table" to allow us to style the table with our CSS
