@@ -50,6 +50,8 @@ class bbcodes_installer extends acp_manager
 		$this->php_ext         = $php_ext;
 
 		$this->acp_bbcodes     = $this->get_acp_bbcodes();
+
+		$this->language->add_lang('acp/posting');
 	}
 
 	/**
