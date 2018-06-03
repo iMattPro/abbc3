@@ -27,27 +27,37 @@ class plugins_test extends listener_base
 
 		// Assert plugins are NOT loaded before the event is dispatched
 		$this->assertFalse(isset($configurator->plugins['PipeTables']));
+		$this->assertFalse(isset($configurator->plugins['MediaEmbed']));
 		$this->assertFalse(isset($configurator->BBCodes['hidden']));
-		$this->assertFalse(isset($configurator->BBCodes['bbvideo']));
 
-		// Add a pipes bbcode which must exist to load PipeTables plugin
+		// Add bbcodes here to simulate existing BBCodes
 		$configurator->BBCodes->add('pipes');
+		$configurator->BBCodes->add('hidden');
+		$configurator->BBCodes->add('bbvideo');
 
+		// Dispatch event
 		$event_data = array('configurator');
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
 
 		// Assert plugins ARE loaded after the event is dispatched
 		$this->assertTrue(isset($configurator->plugins['PipeTables']));
+		$this->assertTrue(isset($configurator->plugins['MediaEmbed']));
 		$this->assertTrue(isset($configurator->BBCodes['hidden']));
-		$this->assertTrue(isset($configurator->BBCodes['bbvideo']));
 
-		// Check that unsetting the pipes bbcode disables PipeTables plugin
-		unset($configurator->BBCodes['pipes']);
-		unset($configurator->plugins['PipeTables']);
+		// Un-set bbcodes and plugins and check everything remains unset
+		unset($configurator->BBCodes['pipes'], $configurator->plugins['PipeTables']);
+		unset($configurator->BBCodes['bbvideo'], $configurator->plugins['MediaEmbed']);
+		unset($configurator->BBCodes['hidden']);
+
+		// Dispatch event again
 		$event_data = array('configurator');
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
+
+		// Assert plugins are NOT loaded when their bbcodes do not exist
 		$this->assertFalse(isset($configurator->plugins['PipeTables']));
+		$this->assertFalse(isset($configurator->plugins['MediaEmbed']));
+		$this->assertFalse(isset($configurator->BBCodes['hidden']));
 	}
 }

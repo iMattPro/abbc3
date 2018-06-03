@@ -49,6 +49,11 @@ class bbcodes_config
 	 */
 	public function bbvideo(Configurator $configurator)
 	{
+		if (!isset($configurator->BBCodes['bbvideo']))
+		{
+			return;
+		}
+
 		// If MediaEmbed is not already active (for example due to another ext) lets enable it
 		if (!isset($configurator->MediaEmbed) && !isset($configurator->BBCodes['MEDIA']))
 		{
@@ -79,6 +84,11 @@ class bbcodes_config
 	 */
 	public function hidden(Configurator $configurator)
 	{
+		if (!isset($configurator->BBCodes['hidden']))
+		{
+			return;
+		}
+
 		unset($configurator->BBCodes['hidden'], $configurator->tags['hidden']);
 		$configurator->BBCodes->addCustom(
 			'[hidden]{TEXT}[/hidden]',
