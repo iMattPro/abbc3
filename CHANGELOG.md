@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.1 - 2018-06-07
+
+- Improved BBvideo's compatibility with phpBB Media Embed PlugIn extension. For best results, install phpBB Media Embed Plugin extension to have the ability to manage which sites area allowed and to control parsing plain URLs.
+- ABBC3 now has a BBCode entry in the ACP for the Pipe Tables plugin. This way you can arrange where you want the Pipe Tables BBCode to appear in the BBCode bar. You may also choose to not display the Pipe Table BBCode on the posting page, or you can delete the BBCode to remove the Pipe Tables functionality.
+- Fixed an issue since 3.2.0 where deleting the `[BBvideo]` and `[hidden]` BBCodes did not stop them from still being *secretly* available to continue being used. Now, if they get deleted, they are functionally gone (unless you completely reinstall ABBC3).
+
 ## 3.2.0 - 2018-01-20
 
 - Documentation for Advanced BBCodes added to the BBCode FAQ page
