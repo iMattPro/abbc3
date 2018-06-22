@@ -64,3 +64,27 @@ form td .abbc3_buttons_row {
 #main #abbc3_buttons .abbc3_buttons_row {
 	width: 95%;
 }
+
+/* BBCode wizard */
+#bbcode_wizard {
+	font-size: 0.9em;
+	background: #ffffff;
+	border: 5px solid #12a3eb;
+	border-radius: 11px;
+	box-shadow: 2px 2px 4px #555555;
+	position: absolute;
+	z-index: 500;
+	right: 0;
+	left: 0;
+	display: none;
+	width: 500px;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+/* responsive design */
+@media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
+	#bbcode_wizard {
+		width: 300px !important;
+	}
+}
