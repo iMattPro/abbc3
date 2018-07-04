@@ -93,6 +93,10 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_COMPACT'		=> 'Компактная таблица',
 	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Внешние границы и отсутпы являются необязательными.',
 	'ABBC3_PIPE_ALIGNMENT'		=> 'Выравнивание текта',
+	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
+	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
+	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
+	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BBCode изменён.',
