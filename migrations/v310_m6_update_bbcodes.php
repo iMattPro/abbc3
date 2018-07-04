@@ -17,7 +17,7 @@ class v310_m6_update_bbcodes extends bbcodes_migration_base
 	 */
 	public static function depends_on()
 	{
-		return array('\vse\abbc3\migrations\v310_m4_install_data');
+		return array('\vse\abbc3\migrations\v310_m5_update_bbcodes');
 	}
 
 	/**
