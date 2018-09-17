@@ -34,7 +34,9 @@ class wizard_test extends \phpbb_test_case
 	{
 		parent::setUp();
 
-		$this->request = $this->getMock('\phpbb\request\request');
+		$this->request = $this->getMockBuilder('\phpbb\request\request')
+			->disableOriginalConstructor()
+			->getMock();
 
 		/** @var $controller_helper \phpbb\controller\helper|\PHPUnit_Framework_MockObject_MockObject */
 		$controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
