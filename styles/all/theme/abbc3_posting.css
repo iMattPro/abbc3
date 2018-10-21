@@ -42,6 +42,7 @@
 }
 
 .abbc3_buttons_row {
+	text-align: left;
 	background: transparent url("./images/abbc3_bg.gif");
 	border: 1px solid #b4bac0;
 	display: block;
@@ -49,6 +50,10 @@
 	min-height: 30px;
 	margin: 0 !important;
 	padding: 0 2px;
+}
+
+.rtl .abbc3_buttons_row {
+	text-align: right;
 }
 
 /* tweaks for subsilver styles */
@@ -72,13 +77,14 @@ form td .abbc3_buttons_row {
 	border: 5px solid #12a3eb;
 	border-radius: 11px;
 	box-shadow: 2px 2px 4px #555555;
-	position: absolute;
+	position: fixed;
 	z-index: 500;
-	right: 0;
-	left: 0;
+	top: 50%;
+	left: 50%;
 	display: none;
 	width: 500px;
-	margin: 0 auto;
+	margin-top: -100px;
+	margin-left: -250px;
 	padding: 5px;
 }
 
