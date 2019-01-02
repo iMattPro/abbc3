@@ -66,9 +66,6 @@ class acp_bbcode_move_test extends acp_base
 	*/
 	public function test_bbcode_move($item, $action, $expected)
 	{
-		global $user;
-		$user = new \phpbb_mock_user; // mock the user to prevent hhvm errors with generate_link_hash()
-
 		$this->request->expects($this->any())
 			->method('variable')
 			->with($this->anything())
@@ -114,9 +111,6 @@ class acp_bbcode_move_test extends acp_base
 	 */
 	public function test_bbcode_move_triggers_error($item, $action, $hash, $ajax, $errNo)
 	{
-		global $user;
-		$user = new \phpbb_mock_user; // mock the user to prevent hhvm errors with generate_link_hash()
-
 		$this->request->expects($this->any())
 			->method('is_ajax')
 			->will($this->returnValue($ajax))
