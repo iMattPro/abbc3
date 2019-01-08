@@ -12,7 +12,7 @@ DB=$1
 TRAVIS_PHP_VERSION=$2
 EXTNAME=$3
 
-if [ "$TRAVIS_PHP_VERSION" == "5.6" -a "$DB" == "mysqli" ]
+if [ "$TRAVIS_PHP_VERSION" == "7.2" -a "$DB" == "mysqli" ]
 then
 	phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php --coverage-clover build/logs/clover.xml
 else

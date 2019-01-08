@@ -12,7 +12,7 @@ DB=$1
 TRAVIS_PHP_VERSION=$2
 GITREPO=$3
 
-if [ "$TRAVIS_PHP_VERSION" == "5.6" -a "$DB" == "mysqli" ]
+if [ "$TRAVIS_PHP_VERSION" == "7.2" -a "$DB" == "mysqli" ]
 then
     cd ../$GITREPO
     wget https://scrutinizer-ci.com/ocular.phar
