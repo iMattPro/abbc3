@@ -35,14 +35,14 @@ class faq_test extends \phpbb_database_test_case
 		$ds1 = $this->createXMLDataSet(__DIR__ . '/fixtures/bbcodes.xml');
 		$ds2 = $this->createXMLDataSet(__DIR__ . '/fixtures/user_group.xml');
 
-		$compositeDs = new \PHPUnit_Extensions_Database_DataSet_CompositeDataSet();
+		$compositeDs = new \PHPUnit\DbUnit\DataSet\CompositeDataSet();
 		$compositeDs->addDataSet($ds1);
 		$compositeDs->addDataSet($ds2);
 
 		return $compositeDs;
 	}
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 

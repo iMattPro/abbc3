@@ -37,7 +37,7 @@ class acp_base extends \phpbb_database_test_case
 		return $this->createXMLDataSet(__DIR__ . '/fixtures/bbcodes.xml');
 	}
 
-	public function setUp()
+	public function setUp(): void
 	{
 		global $phpbb_root_path, $phpEx;
 
