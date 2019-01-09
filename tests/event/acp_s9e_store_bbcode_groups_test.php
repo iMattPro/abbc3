@@ -23,7 +23,7 @@ class acp_s9e_store_bbcode_groups_test extends acp_listener_base
 
 		$this->acp_manager->expects($this->once())
 			->method('get_bbcode_groups_data')
-			->will($this->returnValue($test_data));
+			->willReturn($test_data);
 
 		$configurator = new \s9e\TextFormatter\Configurator();
 

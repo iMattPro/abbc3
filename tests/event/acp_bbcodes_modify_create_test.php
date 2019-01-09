@@ -78,10 +78,10 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 	{
 		$this->set_listener();
 
-		$this->acp_manager->expects($this->any())
+		$this->acp_manager->expects($action === 'create' ? $this->once() : $this->never())
 			->method('get_max_bbcode_order')
 			->willReturn($max_order);
-		$this->acp_manager->expects($this->any())
+		$this->acp_manager->expects($this->once())
 			->method('get_bbcode_group_form_data')
 			->willReturn($bbcode_group);
 

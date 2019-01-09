@@ -83,8 +83,8 @@ class acp_bbcode_group_select_test extends acp_base
 	}
 
 	/**
-	* @dataProvider bbcode_group_select_data
-	*/
+	 * @dataProvider bbcode_group_select_data
+	 */
 	public function test_bbcode_group_select_options($data, $expected)
 	{
 		$acp_manager = $this->get_acp_manager();

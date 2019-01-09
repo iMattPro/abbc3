@@ -67,11 +67,11 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 	{
 		$this->set_listener();
 
-		$this->acp_manager->expects($this->any())
+		$this->acp_manager->expects($action === 'edit' ? $this->once() : $this->never())
 			->method('get_bbcode_group_data')
 			->with($bbcode_id)
 			->willReturn($bbcode_group);
-		$this->acp_manager->expects($this->any())
+		$this->acp_manager->expects($this->once())
 			->method('bbcode_group_select_options')
 			->with($bbcode_group)
 			->willReturn($group_opts);

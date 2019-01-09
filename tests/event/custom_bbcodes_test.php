@@ -40,7 +40,7 @@ class custom_bbcodes_test extends listener_base
 		$this->bbcodes_display->expects($this->once())
 			->method('display_custom_bbcodes')
 			->with($this->equalTo($custom_tags), $this->equalTo($row))
-			->will($this->returnValue($custom_tags));
+			->willReturn($custom_tags);
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
 		$dispatcher->addListener('core.display_custom_bbcodes_modify_row', array($this->listener, 'display_custom_bbcodes'));

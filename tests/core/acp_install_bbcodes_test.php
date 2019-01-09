@@ -41,8 +41,8 @@ class acp_install_bbcodes_test extends acp_base
 	}
 
 	/**
-	* @dataProvider install_bbcodes_data
-	*/
+	 * @dataProvider install_bbcodes_data
+	 */
 	public function test_install_bbcodes($data)
 	{
 		global $phpbb_root_path, $phpEx;
@@ -88,11 +88,12 @@ class acp_install_bbcodes_test extends acp_base
 	/**
 	 * Call protected/private method of a class.
 	 *
-	 * @param \vse\abbc3\core\bbcodes_installer &$object    Instantiated object that we will run method on.
-	 * @param string                       $methodName Method name to call
-	 * @param array                        $parameters Array of parameters to pass into method.
+	 * @param \vse\abbc3\core\bbcodes_installer &$object     Instantiated object that we will run method on.
+	 * @param string                             $methodName Method name to call
+	 * @param array                              $parameters Array of parameters to pass into method.
 	 *
 	 * @return mixed Method return.
+	 * @throws \ReflectionException
 	 */
 	public function invokeMethod(&$object, $methodName, array $parameters = array())
 	{
