@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\core;
 
 class bbcodes_test extends \phpbb_database_test_case
 {
-	static protected function setup_extensions()
+	protected static function setup_extensions()
 	{
 		return array('vse/abbc3');
 	}
@@ -98,6 +98,7 @@ class bbcodes_test extends \phpbb_database_test_case
 	 */
 	public function test_allow_custom_bbcodes($user_id, $data, $disable)
 	{
+		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit_Framework_MockObject_MockObject $parser */
 		$parser = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
 			->disableOriginalConstructor()
 			->getMock();

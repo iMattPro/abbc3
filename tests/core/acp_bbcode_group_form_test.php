@@ -22,13 +22,13 @@ class acp_bbcode_group_form_test extends acp_base
 	}
 
 	/**
-	* @dataProvider bbcode_group_data
-	*/
+	 * @dataProvider bbcode_group_data
+	 */
 	public function test_bbcode_group_form($group_data, $expected)
 	{
-		$this->request->expects($this->any())
+		$this->request->expects($this->atMost(2))
 			->method('variable')
-			->will($this->returnValue($group_data));
+			->willReturn($group_data);
 
 		$acp_manager = $this->get_acp_manager();
 

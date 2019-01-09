@@ -15,7 +15,7 @@ namespace vse\abbc3\tests\functional;
 */
 class bbcode_editor_test extends \phpbb_functional_test_case
 {
-	static protected function setup_extensions()
+	protected static function setup_extensions()
 	{
 		return array('vse/abbc3');
 	}

@@ -75,10 +75,10 @@ class ext_test extends \phpbb_test_case
 
 		// Mocked container should return the config object
 		// when encountering $this->container->get('config')
-		$this->container->expects($this->any())
+		$this->container->expects($this->once())
 			->method('get')
 			->with('config')
-			->will($this->returnValue($config));
+			->willReturn($config);
 
 		/** @var \vse\abbc3\ext */
 		$ext = new \vse\abbc3\ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');

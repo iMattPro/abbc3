@@ -42,9 +42,9 @@ class wizard_test extends \phpbb_test_case
 		$controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
 			->disableOriginalConstructor()
 			->getMock();
-		$controller_helper->expects($this->any())
+		$controller_helper->expects($this->atMost(1))
 			->method('render')
-			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200, $display_online_list = false) {
+			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200) {
 				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
 			});
 
@@ -81,10 +81,9 @@ class wizard_test extends \phpbb_test_case
 	 */
 	public function test_bbcode_wizard($mode, $ajax, $status_code, $page_content)
 	{
-		$this->request->expects($this->any())
+		$this->request->expects($this->once())
 			->method('is_ajax')
-			->will($this->returnValue($ajax)
-			)
+			->willReturn($ajax)
 		;
 
 		$response = $this->controller->bbcode_wizard($mode);
@@ -117,9 +116,9 @@ class wizard_test extends \phpbb_test_case
 	 */
 	public function test_bbcode_wizard_fails($mode, $ajax)
 	{
-		$this->request->expects($this->any())
+		$this->request->expects($this->once())
 			->method('is_ajax')
-			->will($this->returnValue($ajax));
+			->willReturn($ajax);
 
 		$this->controller->bbcode_wizard($mode);
 	}
@@ -145,11 +144,12 @@ class wizard_test extends \phpbb_test_case
 	/**
 	 * Call protected/private method of a class.
 	 *
-	 * @param \vse\abbc3\controller\wizard &$object    Instantiated object that we will run method on.
-	 * @param string                       $methodName Method name to call
-	 * @param array                        $parameters Array of parameters to pass into method.
+	 * @param \vse\abbc3\controller\wizard &$object     Instantiated object that we will run method on.
+	 * @param string                        $methodName Method name to call
+	 * @param array                         $parameters Array of parameters to pass into method.
 	 *
 	 * @return mixed Method return.
+	 * @throws \ReflectionException
 	 */
 	public function invokeMethod(&$object, $methodName, array $parameters = array())
 	{

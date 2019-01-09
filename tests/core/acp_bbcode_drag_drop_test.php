@@ -21,18 +21,18 @@ class acp_bbcode_drag_drop_test extends acp_base
 	}
 
 	/**
-	* @dataProvider bbcode_drag_drop_data
-	*/
+	 * @dataProvider bbcode_drag_drop_data
+	 */
 	public function test_bbcode_drag_drop($bbcodes)
 	{
 		// Return true for request->is_ajax()
-		$this->request->expects($this->any())
+		$this->request->expects($this->atMost(2))
 			->method('is_ajax')
-			->will($this->returnValue(true))
+			->willReturn(true)
 		;
 
 		// Set data for request->variable()
-		$this->request->expects($this->any())
+		$this->request->expects($this->exactly(2))
 			->method('variable')
 			->with($this->anything())
 			->will($this->returnValueMap(array(
@@ -54,9 +54,9 @@ class acp_bbcode_drag_drop_test extends acp_base
 	public function test_bbcode_drag_drop_fails()
 	{
 		// Return true for request->is_ajax()
-		$this->request->expects($this->any())
+		$this->request->expects($this->once())
 			->method('is_ajax')
-			->will($this->returnValue(false));
+			->willReturn(false);
 
 		// Check request->variable is not called
 		$this->request->expects($this->never())

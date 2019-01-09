@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\core;
 
 class faq_test extends \phpbb_database_test_case
 {
-	static protected function setup_extensions()
+	protected static function setup_extensions()
 	{
 		return array('vse/abbc3');
 	}
