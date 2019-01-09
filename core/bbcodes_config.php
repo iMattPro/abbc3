@@ -32,7 +32,7 @@ class bbcodes_config
 
 		$configurator->plugins->load('PipeTables');
 
-		// Add class "pipe-table" to allow us to style the table with our CSS
+		/** @var \s9e\TextFormatter\Configurator\Items\TemplateDocument $dom Add class "pipe-table" to allow us to style the table with our CSS */
 		$dom = $configurator->tags['TABLE']->template->asDOM();
 		foreach ($dom->getElementsByTagName('table') as $table)
 		{
@@ -71,7 +71,7 @@ class bbcodes_config
 			'bbvideo',
 			[
 				'contentAttributes' => ['url'],
-				'tagName'           => 'MEDIA'
+				'tagName'           => 'MEDIA',
 			]
 		);
 	}
