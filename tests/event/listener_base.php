@@ -45,7 +45,7 @@ class listener_base extends \phpbb_test_case
 	/** @var string */
 	protected $bbvideo_height;
 
-	public function setUp(): void
+	public function setUp()
 	{
 		parent::setUp();
 

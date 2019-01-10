@@ -30,7 +30,7 @@ class wizard_test extends \phpbb_test_case
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setUp(): void
+	public function setUp()
 	{
 		parent::setUp();
 
