@@ -138,7 +138,14 @@ class wizard_test extends \phpbb_test_case
 				'ABBC3_BBVIDEO_DEFAULT' => \vse\abbc3\controller\wizard::BBVIDEO_DEFAULT,
 			));
 
-		$this->invokeMethod($this->controller, 'generate_bbvideo_wizard');
+		try
+		{
+			$this->invokeMethod($this->controller, 'generate_bbvideo_wizard');
+		}
+		catch (\ReflectionException $e)
+		{
+			$this->fail($e->getMessage());
+		}
 	}
 
 	/**
