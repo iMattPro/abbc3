@@ -92,7 +92,7 @@ class bbcodes_installer extends acp_manager
 
 			if ($bbcode = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag']))
 			{
-				$sql = 'DELETE FROM ' . BBCODES_TABLE . " 
+				$sql = 'DELETE FROM ' . BBCODES_TABLE . "
 					WHERE first_pass_match = '" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
 						AND first_pass_replace = '" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
 						AND bbcode_id = " . (int) $bbcode['bbcode_id'];
