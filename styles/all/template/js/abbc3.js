@@ -7,7 +7,7 @@
  *
  */
 
-/*global bbfontstyle, is_ie, form_name, text_name, baseHeight, insert_text, storeCaret */
+/*global bbfontstyle, is_ie, form_name, text_name, insert_text, storeCaret, baseHeight:true */
 
 // global scope vars
 var requestRunning = false;
