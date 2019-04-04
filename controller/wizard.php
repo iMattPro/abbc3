@@ -107,6 +107,8 @@ class wizard
 			$this->cache->put('_bbvideo_sites', $bbvideo_sites);
 		}
 
+		ksort($bbvideo_sites);
+
 		$this->template->assign_vars(array(
 			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites,
 			'ABBC3_BBVIDEO_LINK_EX'	=> isset($bbvideo_sites[self::BBVIDEO_DEFAULT]) ? $bbvideo_sites[self::BBVIDEO_DEFAULT] : '',
