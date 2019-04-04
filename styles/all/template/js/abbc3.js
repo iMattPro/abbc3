@@ -22,7 +22,8 @@ var bbwizard;
 	 */
 	bbwizard = function(href, bbcode) {
 		if (!requestRunning) {
-			var wizard = $('#bbcode_wizard');
+			var wizard = $('#bbcode_wizard'),
+				modal = $('#darkenwrapper');
 			if (!wizard.is(':visible')) {
 				requestRunning = true;
 				var $loadingIndicator = phpbb.loadingIndicator();
@@ -35,6 +36,7 @@ var bbwizard;
 					},
 					success: function(data) {
 						// Append the new html to the bbwizard div and show it
+						modal.fadeIn('fast');
 						wizard.append(data).fadeIn('fast');
 					},
 					error: function() {
@@ -104,10 +106,12 @@ var bbwizard;
 		/**
 		 * BBCode Wizard listener events
 		 */
-		var wizard = $('#bbcode_wizard');
+		var wizard = $('#bbcode_wizard'),
+			modal = $('#darkenwrapper');
 		// Click on body to dismiss bbcode wizard
 		body.on('click', function() {
 			wizard.fadeOut('fast');
+			modal.fadeOut('fast');
 		});
 		wizard
 			// Click on bbcode wizard submit button to apply bbcode to message
@@ -125,11 +129,13 @@ var bbwizard;
 						break;
 				}
 				wizard.fadeOut('fast');
+				modal.fadeOut('fast');
 			})
 			// Click on bbcode wizard cancel button to dismiss bbcode wizard
 			.on('click', '#bbcode_wizard_cancel', function(event) {
 				event.preventDefault();
 				wizard.fadeOut('fast');
+				modal.fadeOut('fast');
 			})
 			// Change bbvideo allowed sites option updates bbvideo example
 			.on('change', '#bbvideo_wizard_sites', function() {
