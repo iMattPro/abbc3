@@ -94,6 +94,7 @@ class wizard
 	{
 		if (($bbvideo_sites = $this->cache->get('_bbvideo_sites')) === false)
 		{
+			$bbvideo_sites = [];
 			$configurator = $this->textformatter->get_configurator();
 			foreach ($configurator->MediaEmbed->defaultSites as $siteId => $siteConfig)
 			{
