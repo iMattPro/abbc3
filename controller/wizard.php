@@ -92,7 +92,7 @@ class wizard
 	 */
 	protected function generate_bbvideo_wizard()
 	{
-		if (($bbvideo_sites = $this->cache->get('bbvideo_sites')) === false)
+		if (($bbvideo_sites = $this->cache->get('_bbvideo_sites')) === false)
 		{
 			$configurator = $this->textformatter->get_configurator();
 			foreach ($configurator->MediaEmbed->defaultSites as $siteId => $siteConfig)
@@ -104,7 +104,7 @@ class wizard
 				}
 			}
 
-			$this->cache->put('bbvideo_sites', $bbvideo_sites);
+			$this->cache->put('_bbvideo_sites', $bbvideo_sites);
 		}
 
 		$this->template->assign_vars(array(
