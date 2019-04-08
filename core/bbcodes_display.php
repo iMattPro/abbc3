@@ -12,6 +12,7 @@ namespace vse\abbc3\core;
 
 use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
+use phpbb\textformatter\s9e\parser;
 use phpbb\user;
 
 /**
@@ -82,11 +83,11 @@ class bbcodes_display
 	/**
 	 * Disable BBCodes not allowed by a user's group(s).
 	 *
-	 * @param \phpbb\textformatter\s9e\parser $service Object from the text_formatter.parser service
+	 * @param parser $service Object from the text_formatter.parser service
 	 * @return void
 	 * @access public
 	 */
-	public function allow_custom_bbcodes(\phpbb\textformatter\s9e\parser $service)
+	public function allow_custom_bbcodes(parser $service)
 	{
 		$parser = $service->get_parser();
 		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)

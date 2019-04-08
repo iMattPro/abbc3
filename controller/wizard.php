@@ -12,6 +12,7 @@ namespace vse\abbc3\controller;
 
 use phpbb\cache\driver\driver_interface as cache_driver;
 use phpbb\controller\helper;
+use phpbb\exception\http_exception;
 use phpbb\request\request;
 use phpbb\template\template;
 use phpbb\textformatter\s9e\factory as textformatter;
@@ -82,7 +83,7 @@ class wizard
 			return $this->helper->render("abbc3_{$mode}_wizard.html");
 		}
 
-		throw new \phpbb\exception\http_exception(404, 'GENERAL_ERROR');
+		throw new http_exception(404, 'GENERAL_ERROR');
 	}
 
 	/**
