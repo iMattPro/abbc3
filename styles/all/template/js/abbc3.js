@@ -108,10 +108,18 @@ var bbwizard;
 		 */
 		var wizard = $('#bbcode_wizard'),
 			modal = $('#darkenwrapper');
-		// Click on body to dismiss bbcode wizard
-		body.on('click', function() {
-			wizard.fadeOut('fast');
-			modal.fadeOut('fast');
+		var closeWizard = function() {
+			if (wizard.is(':visible')) {
+				wizard.fadeOut('fast');
+				modal.fadeOut('fast');
+			}
+		};
+		// Click on body or ESC to dismiss bbcode wizard
+		body.on('click', closeWizard).on('keyup', function(event) {
+			if (event.keyCode === 27) {
+				event.preventDefault();
+				closeWizard();
+			}
 		});
 		wizard
 			// Click on bbcode wizard submit button to apply bbcode to message
@@ -128,14 +136,12 @@ var bbwizard;
 						bbinsert('[bbvideo]' + $('#bbvideo_wizard_link').val() + '', '[/bbvideo]');
 						break;
 				}
-				wizard.fadeOut('fast');
-				modal.fadeOut('fast');
+				closeWizard();
 			})
 			// Click on bbcode wizard cancel button to dismiss bbcode wizard
 			.on('click', '#bbcode_wizard_cancel', function(event) {
 				event.preventDefault();
-				wizard.fadeOut('fast');
-				modal.fadeOut('fast');
+				closeWizard();
 			})
 			// Change bbvideo allowed sites option updates bbvideo example
 			.on('change', '#bbvideo_wizard_sites', function() {
@@ -145,7 +151,8 @@ var bbwizard;
 			// to the body and prematurely dismissing itself
 			.click(function(event) {
 				event.stopPropagation();
-			});
+			})
+		;
 
 	});
 
