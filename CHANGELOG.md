@@ -14,7 +14,7 @@
 - [BBvideo] deprecated:
     - BBvideo is now an alias for the [MEDIA] tag, part of the Media Embed feature bundled with phpBB (you do NOT need to install phpBB Media Embed extension to work).
     - Many more sites and media services are supported through the Media Embed feature bundled with phpBB.
-    - Many old BBVideo exclusive sites are no longer supported (most of which are dead and gone anyways). `5min.com, allocine.fr, clipfish.de, clipmoon.com, cnet.com, colbertnation.com, crackle.com, dotsub.com, ebaumsworld.com, g4tv.com, gameprotv.com, howcast.com, maker.tv, moddb.com, mpora.com, myspace.com, myvideo.de, on.aol.com, photobucket.com, sapo.pt, screenr.com, snotr.com, spike.com, streetfire.net, thedailyshow.cc.com, tu.tv, tudou.com, viddler.com, videogamer.com, `
+    - Many old BBVideo exclusive sites are no longer supported (most of which are dead and gone anyways). `5min.com, allocine.fr, clipfish.de, clipmoon.com, cnet.com, colbertnation.com, crackle.com, dotsub.com, ebaumsworld.com, g4tv.com, gameprotv.com, howcast.com, maker.tv, moddb.com, mpora.com, myspace.com, myvideo.de, on.aol.com, photobucket.com, sapo.pt, screenr.com, snotr.com, spike.com, streetfire.net, thedailyshow.cc.com, tu.tv, tudou.com, viddler.com, videogamer.com`
     - Custom video sizing is no longer available. phpBB's bundled Media embedding has predetermined hard-coded video sizes.
     - Raw URLs for compatible media sites will automatically be converted into content even without being wrapped in the BBvideo tag.
     - The original URLs will no longer be displayed if they can be converted to embedded content.
