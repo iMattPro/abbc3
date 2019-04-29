@@ -88,14 +88,6 @@ form td .abbc3_buttons_row {
 	padding: 5px;
 }
 
-/* 1-click auto select contents of BBCode wizard example field */
-#bbvideo_wizard_example {
-	-webkit-user-select: all;
-	-moz-user-select: all;
-	-ms-user-select: all;
-	user-select: all;
-}
-
 /* responsive design */
 @media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
 	#bbcode_wizard {
