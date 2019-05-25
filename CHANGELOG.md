@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.2.2 - 04-29-2019
+
+- BBCode URL/BBVideo Wizard is now a modal/overlay, to solve some issues where it might have been obscured from view.
+- Ensure BBVideos are sorted alphabetically in the BBCode Wizard's examples drop down menu.
+- Added Slovak translation.
+- Additional minor code improvements.
+
 ## 3.2.1 - 2018-06-07
 
 - Improved BBvideo's compatibility with phpBB Media Embed PlugIn extension. For best results, install phpBB Media Embed Plugin extension to have the ability to manage which sites area allowed and to control parsing plain URLs.
