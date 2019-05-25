@@ -12,6 +12,7 @@ namespace vse\abbc3\controller;
 
 use phpbb\cache\driver\driver_interface as cache_driver;
 use phpbb\controller\helper;
+use phpbb\exception\http_exception;
 use phpbb\request\request;
 use phpbb\template\template;
 use phpbb\textformatter\s9e\factory as textformatter;
@@ -82,7 +83,7 @@ class wizard
 			return $this->helper->render("abbc3_{$mode}_wizard.html");
 		}
 
-		throw new \phpbb\exception\http_exception(404, 'GENERAL_ERROR');
+		throw new http_exception(404, 'GENERAL_ERROR');
 	}
 
 	/**
@@ -92,8 +93,9 @@ class wizard
 	 */
 	protected function generate_bbvideo_wizard()
 	{
-		if (($bbvideo_sites = $this->cache->get('bbvideo_sites')) === false)
+		if (($bbvideo_sites = $this->cache->get('_bbvideo_sites')) === false)
 		{
+			$bbvideo_sites = [];
 			$configurator = $this->textformatter->get_configurator();
 			foreach ($configurator->MediaEmbed->defaultSites as $siteId => $siteConfig)
 			{
@@ -104,8 +106,10 @@ class wizard
 				}
 			}
 
-			$this->cache->put('bbvideo_sites', $bbvideo_sites);
+			$this->cache->put('_bbvideo_sites', $bbvideo_sites);
 		}
+
+		ksort($bbvideo_sites);
 
 		$this->template->assign_vars(array(
 			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites,

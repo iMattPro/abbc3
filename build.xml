@@ -27,6 +27,7 @@
 		<delete file="${dir}/phpunit.xml.dist" />
 		<delete file="${dir}/README.md" />
 		<delete file="${dir}/package.json" />
+		<delete file="${dir}/package-lock.json" />
 		<delete file="${dir}/gulpfile.js" />
 	</target>
 

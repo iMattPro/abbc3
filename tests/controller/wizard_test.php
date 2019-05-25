@@ -133,7 +133,7 @@ class wizard_test extends \phpbb_test_case
 		$this->template->expects($this->once())
 			->method('assign_vars')
 			->with(array(
-				'ABBC3_BBVIDEO_SITES'   => false,
+				'ABBC3_BBVIDEO_SITES'   => [],
 				'ABBC3_BBVIDEO_LINK_EX' => '',
 				'ABBC3_BBVIDEO_DEFAULT' => \vse\abbc3\controller\wizard::BBVIDEO_DEFAULT,
 			));

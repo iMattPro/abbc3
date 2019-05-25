@@ -72,7 +72,7 @@ form td .abbc3_buttons_row {
 
 /* BBCode wizard */
 #bbcode_wizard {
-	font-size: 0.9em;
+	font-size: 0.625rem;
 	background: #ffffff;
 	border: 5px solid #12a3eb;
 	border-radius: 11px;

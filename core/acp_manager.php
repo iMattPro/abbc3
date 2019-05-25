@@ -12,6 +12,7 @@ namespace vse\abbc3\core;
 
 use phpbb\db\driver\driver_interface;
 use phpbb\group\helper;
+use phpbb\json_response;
 use phpbb\language\language;
 use phpbb\request\request;
 use vse\abbc3\ext;
@@ -323,7 +324,7 @@ class acp_manager
 	{
 		if ($this->request->is_ajax())
 		{
-			$json_response = new \phpbb\json_response;
+			$json_response = new json_response;
 			$json_response->send(array(
 				'success' => (bool) $content,
 			));

@@ -5,9 +5,14 @@ var gulp = require('gulp'),
 	jshint = require('gulp-jshint'),
 	csslint = require('gulp-csslint'),
 	stylish = require('jshint-stylish'),
+	watch = require('gulp-watch'),
 	paths = {
 		css: ['styles/all/theme/*.css', '!styles/all/theme/*.min.css'],
 		js: ['styles/all/template/js/*.js', '!styles/all/template/js/*.min.js']
+	},
+	build = {
+		css: 'styles/all/theme/',
+		js: 'styles/all/template/js/'
 	};
 
 // Lint JS
@@ -33,7 +38,7 @@ gulp.task('js', function() {
 	return gulp.src(paths.js)
 		.pipe(rename({suffix: '.min'} ))
 		.pipe(uglify())
-		.pipe(gulp.dest('styles/all/template/js/'));
+		.pipe(gulp.dest(build.js));
 });
 
 // Lint CSS
@@ -43,27 +48,33 @@ gulp.task('csslint', function() {
 			'ids': false,
 			'important': false,
 			'box-model': false,
-			'box-sizing': false
+			'box-sizing': false,
+			'order-alphabetical': false
 		}))
-		.pipe(csslint.reporter());
+		.pipe(csslint.formatter());
 });
 
 // Minify CSS
 gulp.task('css', function() {
 	return gulp.src(paths.css)
-		.pipe(rename({suffix: '.min'} ))
+		.pipe(rename({suffix: '.min'}))
 		.pipe(cleancss())
-		.pipe(gulp.dest('styles/all/theme/'));
+		.pipe(gulp.dest(build.css));
 });
 
 // Watch CSS and JS files with $ gulp watch
-gulp.task('watch', function() {
-	gulp.watch(paths.js, ['js']);
-	gulp.watch(paths.css, ['css']);
+gulp.task('watchJS', function() {
+	return watch(paths.js, 'js');
+});
+gulp.task('watchCSS', function() {
+	return watch(paths.css, 'css');
+});
+gulp.task('watch', gulp.parallel('watchJS', 'watchCSS'), function(done) {
+	done();
 });
 
 // Run linting tasks with $ gulp lint
-gulp.task('lint', ['jshint', 'csslint']);
+gulp.task('lint', gulp.series('jshint', 'csslint'));
 
 // Run default tasks with $ gulp
-gulp.task('default', ['js', 'css']);
+gulp.task('default', gulp.series('js', 'css'));

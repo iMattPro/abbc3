@@ -7,7 +7,7 @@
  *
  */
 
-/*global bbfontstyle, is_ie, form_name, text_name, baseHeight, insert_text, storeCaret */
+/*global bbfontstyle, is_ie, form_name, text_name, insert_text, storeCaret, baseHeight:true */
 
 // global scope vars
 var requestRunning = false;
@@ -22,7 +22,8 @@ var bbwizard;
 	 */
 	bbwizard = function(href, bbcode) {
 		if (!requestRunning) {
-			var wizard = $('#bbcode_wizard');
+			var wizard = $('#bbcode_wizard'),
+				modal = $('#darkenwrapper');
 			if (!wizard.is(':visible')) {
 				requestRunning = true;
 				var $loadingIndicator = phpbb.loadingIndicator();
@@ -35,6 +36,7 @@ var bbwizard;
 					},
 					success: function(data) {
 						// Append the new html to the bbwizard div and show it
+						modal.fadeIn('fast');
 						wizard.append(data).fadeIn('fast');
 					},
 					error: function() {
@@ -104,10 +106,20 @@ var bbwizard;
 		/**
 		 * BBCode Wizard listener events
 		 */
-		var wizard = $('#bbcode_wizard');
-		// Click on body to dismiss bbcode wizard
-		body.on('click', function() {
-			wizard.fadeOut('fast');
+		var wizard = $('#bbcode_wizard'),
+			modal = $('#darkenwrapper');
+		var closeWizard = function() {
+			if (wizard.is(':visible')) {
+				wizard.fadeOut('fast');
+				modal.fadeOut('fast');
+			}
+		};
+		// Click on body or ESC to dismiss bbcode wizard
+		body.on('click', closeWizard).on('keyup', function(event) {
+			if (event.keyCode === 27) {
+				event.preventDefault();
+				closeWizard();
+			}
 		});
 		wizard
 			// Click on bbcode wizard submit button to apply bbcode to message
@@ -124,12 +136,12 @@ var bbwizard;
 						bbinsert('[bbvideo]' + $('#bbvideo_wizard_link').val() + '', '[/bbvideo]');
 						break;
 				}
-				wizard.fadeOut('fast');
+				closeWizard();
 			})
 			// Click on bbcode wizard cancel button to dismiss bbcode wizard
 			.on('click', '#bbcode_wizard_cancel', function(event) {
 				event.preventDefault();
-				wizard.fadeOut('fast');
+				closeWizard();
 			})
 			// Change bbvideo allowed sites option updates bbvideo example
 			.on('change', '#bbvideo_wizard_sites', function() {
@@ -139,7 +151,8 @@ var bbwizard;
 			// to the body and prematurely dismissing itself
 			.click(function(event) {
 				event.stopPropagation();
-			});
+			})
+		;
 
 	});
 
