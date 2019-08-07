@@ -10,6 +10,18 @@
 
 namespace vse\abbc3\tests\core;
 
+use phpbb\config\config;
+use phpbb\filesystem\filesystem;
+use phpbb\group\helper;
+use phpbb\language\language;
+use phpbb\language\language_file_loader;
+use phpbb\path_helper;
+use phpbb\symfony_request;
+use phpbb\user;
+use phpbb_mock_event_dispatcher;
+use phpbb_mock_request;
+use vse\abbc3\core\acp_manager;
+
 class acp_base extends \phpbb_database_test_case
 {
 	protected static function setup_extensions()
@@ -47,14 +59,30 @@ class acp_base extends \phpbb_database_test_case
 		$this->request = $this->getMockBuilder('\phpbb\request\request')
 			->disableOriginalConstructor()
 			->getMock();
-		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
-		$this->lang = new \phpbb\language\language($lang_loader);
-		$this->user = new \phpbb\user($this->lang, '\phpbb\datetime');
-		$this->group_helper = new \phpbb\group\helper($this->lang);
+		$lang_loader = new language_file_loader($phpbb_root_path, $phpEx);
+		$this->lang = new language($lang_loader);
+		$this->user = new user($this->lang, '\phpbb\datetime');
+		$this->group_helper = new helper(
+			$this->getMockBuilder('\phpbb\auth\auth')->disableOriginalConstructor()->getMock(),
+			$this->getMockBuilder('\phpbb\cache\service')->disableOriginalConstructor()->getMock(),
+			new config([]),
+			$this->lang,
+			new phpbb_mock_event_dispatcher(),
+			new path_helper(
+				new symfony_request(
+					new phpbb_mock_request()
+				),
+				new filesystem(),
+				$this->request,
+				$phpbb_root_path,
+				$phpEx
+			),
+			$this->user
+		);
 	}
 
 	protected function get_acp_manager()
 	{
-		return new \vse\abbc3\core\acp_manager($this->db, $this->group_helper, $this->lang, $this->request);
+		return new acp_manager($this->db, $this->group_helper, $this->lang, $this->request);
 	}
 }
