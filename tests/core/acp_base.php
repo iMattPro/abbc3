@@ -50,7 +50,23 @@ class acp_base extends \phpbb_database_test_case
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$this->lang = new \phpbb\language\language($lang_loader);
 		$this->user = new \phpbb\user($this->lang, '\phpbb\datetime');
-		$this->group_helper = new \phpbb\group\helper($this->lang);
+		$this->group_helper = new \phpbb\group\helper(
+			$this->getMockBuilder('\phpbb\auth\auth')->getMock(),
+			$this->getMockBuilder('\phpbb\cache\service')->disableOriginalConstructor()->getMock(),
+			new \phpbb\config\config([]),
+			$this->lang,
+			new \phpbb_mock_event_dispatcher(),
+			new \phpbb\path_helper(
+				new \phpbb\symfony_request(
+					new \phpbb_mock_request()
+				),
+				new \phpbb\filesystem\filesystem(),
+				$this->request,
+				$phpbb_root_path,
+				$phpEx
+			),
+			$this->user
+		);
 	}
 
 	protected function get_acp_manager()
