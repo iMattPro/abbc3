@@ -17,9 +17,16 @@ use Facebook\WebDriver\WebDriverBy;
  */
 class ui_test extends \phpbb_ui_test_case
 {
-	protected static function setup_extensions()
+	/**
+	 * {@inheritdoc}
+	 */
+	public static function setUpBeforeClass()
 	{
-		return array('vse/abbc3');
+		// Set these properties to true so we can use the same board created for functional tests
+		// instead of having to create and set up a whole new board.
+		self::$already_installed = true;
+		self::$install_success = true;
+		parent::setUpBeforeClass();
 	}
 
 	/**
