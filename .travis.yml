@@ -1,5 +1,5 @@
 language: php
-dist: trusty
+dist: xenial
 
 matrix:
   include:
@@ -41,6 +41,10 @@ branches:
     - develop
     - /^develop-.*$/
     - /^\d+(\.\d+)?\.x$/
+
+services:
+  - postgresql
+  - mysql
 
 install:
   - travis/prepare-phpbb.sh $PHPBB_BRANCH
