@@ -87,7 +87,7 @@ var bbwizard;
 	/**
 	 * DOM READY
 	 */
-	$(document).ready(function() {
+	$(function() {
 
 		var body = $('body');
 
@@ -116,7 +116,7 @@ var bbwizard;
 		};
 		// Click on body or ESC to dismiss bbcode wizard
 		body.on('click', closeWizard).on('keyup', function(event) {
-			if (event.keyCode === 27) {
+			if (event.key === 'Escape' || event.keyCode === 27) {
 				event.preventDefault();
 				closeWizard();
 			}
@@ -149,7 +149,7 @@ var bbwizard;
 			})
 			// Prevent clicks on bbcode wizard from bubbling up
 			// to the body and prematurely dismissing itself
-			.click(function(event) {
+			.on('click', function(event) {
 				event.stopPropagation();
 			})
 		;
