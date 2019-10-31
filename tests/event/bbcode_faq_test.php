@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\event;
 
 class bbcode_faq_test extends listener_base
 {
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 

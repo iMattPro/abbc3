@@ -23,7 +23,7 @@ class ext_test extends \phpbb_test_case
 	/** @var \PHPUnit_Framework_MockObject_MockObject|\phpbb\db\migrator */
 	protected $migrator;
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 
@@ -53,7 +53,7 @@ class ext_test extends \phpbb_test_case
 		return array(
 			array(ext::PHPBB_MIN_VERSION, true), // current setting is enableable
 			array('3.3.0', true), // future phpbb is enableable
-			array('3.1.0', false), // old phpbb is not enableable
+			array('3.1.0', [ext::ABBC3_CANNOT_BE_INSTALLED]), // old phpbb is not enableable
 		);
 	}
 

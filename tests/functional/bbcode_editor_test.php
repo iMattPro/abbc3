@@ -20,7 +20,7 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 		return array('vse/abbc3');
 	}
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 		$this->login();

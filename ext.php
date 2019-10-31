@@ -19,13 +19,24 @@ class ext extends \phpbb\extension\base
 	/** string Require 3.2.2 due to TextFormatter and BBCode changes. */
 	const PHPBB_MIN_VERSION = '3.2.2';
 
+	/** string Hardcoded language used here because extension can not been installed */
+	const ABBC3_CANNOT_BE_INSTALLED = 'phpBB 3.2.2 or newer is required to install this version of Advanced BBCode Box.';
+
 	/**
 	 * {@inheritdoc}
 	 */
 	public function is_enableable()
 	{
 		$config = $this->container->get('config');
-		return phpbb_version_compare($config['version'], self::PHPBB_MIN_VERSION, '>=') &&
+
+		$enableable = phpbb_version_compare($config['version'], self::PHPBB_MIN_VERSION, '>=') &&
 			phpbb_version_compare(PHPBB_VERSION, self::PHPBB_MIN_VERSION, '>=');
+
+		if (!$enableable && phpbb_version_compare(PHPBB_VERSION, '3.3.0-dev', '>='))
+		{
+			return [self::ABBC3_CANNOT_BE_INSTALLED];
+		}
+
+		return $enableable;
 	}
 }
