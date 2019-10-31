@@ -99,9 +99,6 @@ class acp_manager
 		// Fetch the posted list
 		$bbcodes_list = (array) $this->request->variable($tablename, array(0 => ''));
 
-		// First one is the header, skip it
-		unset($bbcodes_list[0]);
-
 		$this->db->sql_transaction('begin');
 		foreach ($bbcodes_list as $order => $bbcode_id)
 		{

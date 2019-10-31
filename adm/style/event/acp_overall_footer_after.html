@@ -2,7 +2,7 @@
 {% if bbcodes %}
 
 	{% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
-	{% INCLUDEJS '@vse_abbc3/js/tablednd.min.js' %}
+	{% INCLUDEJS '@vse_abbc3/js/jquery.tablednd.min.js' %}
 
 	<div style="display: none;" id="abbc3-successbox" class="successbox">
 		<h3>{{ lang('INFORMATION') }}</h3>
@@ -20,14 +20,13 @@
 				// and create tr row IDs on the fly for use by tableDnD
 				bbcodeTable.find('tbody').find('tr').each(function() {
 					var url = $(this).find('a').last().attr('href');
-					if (url) $(this).attr('id', 'bbcode_' + url.split('bbcode=')[1]);
+					if (url) $(this).attr('id', 'bbcode-' + url.split('bbcode=')[1]);
 				});
 				// Enable table row drag-drop
 				bbcodeTable.tableDnD({
 					onDragClass: 'row3',
 					onDrop: function(table, row) {
 						$.ajax({
-							type: 'POST',
 							url: '{{ UA_DRAG_DROP }}&tablename=' + $(table).attr('id'),
 							data: $.tableDnD.serialize(),
 							success: function(res) {
