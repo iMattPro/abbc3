@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 	watch = require('gulp-watch'),
 	paths = {
 		css: ['styles/all/theme/*.css', '!styles/all/theme/*.min.css'],
-		js: ['styles/all/template/js/*.js', '!styles/all/template/js/*.min.js']
+		js: ['styles/all/template/js/*.js', '!styles/all/template/js/*.min.js', '!styles/all/template/js/jquery.tablednd.js']
 	},
 	build = {
 		css: 'styles/all/theme/',
@@ -62,6 +62,12 @@ gulp.task('css', function() {
 		.pipe(gulp.dest(build.css));
 });
 
+// Copy TableDnD
+gulp.task('tablednd', function() {
+	return gulp.src(['node_modules/tablednd/dist/jquery.tablednd.js', 'node_modules/tablednd/dist/jquery.tablednd.min.js'])
+		.pipe(gulp.dest(build.js));
+});
+
 // Watch CSS and JS files with $ gulp watch
 gulp.task('watchJS', function() {
 	return watch(paths.js, 'js');
@@ -75,6 +81,9 @@ gulp.task('watch', gulp.parallel('watchJS', 'watchCSS'), function(done) {
 
 // Run linting tasks with $ gulp lint
 gulp.task('lint', gulp.series('jshint', 'csslint'));
+
+// Run tablednd tasks with $ gulp build
+gulp.task('build', gulp.series('lint', 'js', 'css', 'tablednd'));
 
 // Run default tasks with $ gulp
 gulp.task('default', gulp.series('js', 'css'));

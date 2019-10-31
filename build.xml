@@ -128,7 +128,7 @@
 	Run gulp task
 	-->
 	<target name="gulp-task" depends="npm-install">
-		<exec command="gulp" dir="${package-directory}" passthru="true" checkreturn="true" />
+		<exec command="gulp build" dir="${package-directory}" passthru="true" checkreturn="true" />
 	</target>
 
 </project>
