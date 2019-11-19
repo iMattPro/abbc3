@@ -128,8 +128,6 @@ class wizard_test extends \phpbb_test_case
 	 */
 	public function test_generate_bbvideo_wizard()
 	{
-		$this->markTestIncomplete('Media Embed site tags are not showing up in the test for some reason.');
-
 		$this->template->expects($this->once())
 			->method('assign_vars')
 			->with(array(
