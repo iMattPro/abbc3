@@ -20,7 +20,7 @@
 		<testsuite name="Extension Functional Tests">
 			<directory suffix="_test.php">./tests/functional/</directory>
 		</testsuite>
-		<testsuite name="phpBB UI Tests">
+		<testsuite name="Extension UI Tests">
 			<directory suffix="_test.php">./tests/ui</directory>
 		</testsuite>
 	</testsuites>
