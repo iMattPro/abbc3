@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.2.3 - 03-13-2020
+
+- Minor fixes that might cause unexpected JavaScript behaviors in phpBB 3.3.x using jQuery 3.
+
 ## 3.2.2 - 04-29-2019
 
 - BBCode URL/BBVideo Wizard is now a modal/overlay, to solve some issues where it might have been obscured from view.
