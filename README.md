@@ -2,11 +2,11 @@
 
 Replace phpBB3's BBCode buttons with icons in an attractive and customizable toolbar. This extension also adds many new and useful custom BBCodes giving users more ways to customize their posts, including BBvideo (embed videos from dozens of media sites). Custom BBCodes can be arranged and sorted in any order and assigned to specific usergroups (such as Moderators and Admins only).
 
-[![Build Status](https://img.shields.io/travis/VSEphpbb/abbc3/master.svg?style=flat)](https://travis-ci.org/VSEphpbb/abbc3)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/VSEphpbb/abbc3/master.svg?style=flat)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/VSEphpbb/abbc3/?branch=master)
+[![Build Status](https://img.shields.io/travis/iMattPro/abbc3/master.svg?style=flat)](https://travis-ci.org/iMattPro/abbc3)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/iMattPro/abbc3/master.svg?style=flat)](https://scrutinizer-ci.com/g/iMattPro/abbc3/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/iMattPro/abbc3/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/iMattPro/abbc3/?branch=master)
 [![SymfonyInsight Stars](https://img.shields.io/symfony/i/stars/ebc35321-c3fb-4a25-8db1-89ee64bcf58b.svg?label=SymfonyInsight)](https://insight.symfony.com/projects/ebc35321-c3fb-4a25-8db1-89ee64bcf58b)
-[![Dev dependencies](https://img.shields.io/david/dev/VSEphpbb/abbc3.svg)](https://david-dm.org/VSEphpbb/abbc3?type=dev)
+[![Dev dependencies](https://img.shields.io/david/dev/iMattPro/abbc3.svg)](https://david-dm.org/iMattPro/abbc3?type=dev)
 [![Latest Stable Version](https://poser.pugx.org/vse/abbc3/v/stable)](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/)
 
 ## Features:
@@ -24,7 +24,7 @@ Replace phpBB3's BBCode buttons with icons in an attractive and customizable too
 
 * Embed video from dozens of popular media content sites with BBvideo. Also raw URLs will automatically be converted to embedded content.
 
-* Multiple languages are supported. View the pre-installed [localizations](https://github.com/VSEphpbb/abbc3/tree/master/language).
+* Multiple languages are supported. View the pre-installed [localizations](https://github.com/iMattPro/abbc3/tree/master/language).
 
 ## Minimum Requirements
 * phpBB 3.2.2 or higher
