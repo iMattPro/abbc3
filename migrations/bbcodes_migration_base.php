@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\migrations;
 
-use \phpbb\db\migration\container_aware_migration;
+use phpbb\db\migration\container_aware_migration;
 
 /**
  * Helper for installing/updating bbcodes in migrations.

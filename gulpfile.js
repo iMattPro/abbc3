@@ -45,6 +45,7 @@ gulp.task('js', function() {
 gulp.task('csslint', function() {
 	return gulp.src(paths.css)
 		.pipe(csslint({
+			'lookup': false,
 			'ids': false,
 			'important': false,
 			'box-model': false,
