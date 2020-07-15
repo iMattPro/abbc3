@@ -27,5 +27,8 @@
 			"directory": "/customise/db/extension/advanced_bbcode_box",
 			"filename": "version_check"
 		}
+	},
+	"require-dev": {
+		"phing/phing": "^2.16"
 	}
 }
