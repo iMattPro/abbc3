@@ -16,7 +16,7 @@
     "gulp-stylelint": "^10.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1",
-    "jshint": "^2.11.1",
+    "jshint": "^2.12.0",
     "jshint-stylish": "^2.0.1",
     "stylelint": "^12.0.1"
   }
