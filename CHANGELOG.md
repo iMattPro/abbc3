@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.2.4 - 08-10-2020
+
+- Fixed an issue causing circular dependency errors when co-installed with mChat in phpBB 3.3.1.
+
 ## 3.2.3 - 03-13-2020
 
 - Minor fixes that might cause unexpected JavaScript behaviors in phpBB 3.3.x using jQuery 3.
