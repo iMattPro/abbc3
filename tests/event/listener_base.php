@@ -24,8 +24,8 @@ class listener_base extends \phpbb_test_case
 	/** @var \phpbb\config\config */
 	protected $config;
 
-	/** @var \phpbb\controller\helper|\PHPUnit_Framework_MockObject_MockObject */
-	protected $controller_helper;
+	/** @var \phpbb\routing\helper|\PHPUnit_Framework_MockObject_MockObject */
+	protected $helper;
 
 	/** @var \vse\abbc3\event\listener */
 	protected $listener;
@@ -70,10 +70,10 @@ class listener_base extends \phpbb_test_case
 			->getMock();
 		$this->user->data['username'] = 'admin';
 
-		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
+		$this->helper = $this->getMockBuilder('\phpbb\routing\helper')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->controller_helper->expects($this->atMost(3))
+		$this->helper->expects($this->atMost(3))
 			->method('route')
 			->willReturnCallback(function ($route, array $params = array()) {
 				return $route . '#' . serialize($params);
@@ -93,7 +93,7 @@ class listener_base extends \phpbb_test_case
 			$this->bbcodes_config,
 			$this->bbcodes_display,
 			$this->bbcodes_help,
-			$this->controller_helper,
+			$this->helper,
 			$this->template,
 			$this->user,
 			$this->ext_root_path

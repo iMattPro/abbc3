@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\event;
 
-use phpbb\controller\helper;
+use phpbb\routing\helper;
 use phpbb\template\template;
 use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
