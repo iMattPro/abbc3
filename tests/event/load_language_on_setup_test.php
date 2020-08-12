@@ -72,7 +72,7 @@ class load_language_on_setup_test extends listener_base
 
 		foreach ($expected_contains as $expected)
 		{
-			$this->assertContains($expected, $lang_set_ext);
+			self::assertContains($expected, $lang_set_ext);
 		}
 	}
 }

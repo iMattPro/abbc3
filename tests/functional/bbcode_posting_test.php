@@ -31,7 +31,7 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		$post = $this->create_topic(2, 'Test Topic 1', '[highlight=yellow]This is a test topic posted by the testing framework.[/highlight]');
 
 		$crawler = self::request('GET', "viewtopic.php?t={$post['topic_id']}&sid={$this->sid}");
-		$this->assertContains('background-color:yellow', $crawler->filter('div.content > span')->attr('style'));
-		$this->assertContains('This is a test topic posted by the testing framework.', $crawler->filter('html')->text());
+		self::assertStringContainsString('background-color:yellow', $crawler->filter('div.content > span')->attr('style'));
+		self::assertStringContainsString('This is a test topic posted by the testing framework.', $crawler->filter('html')->text());
 	}
 }

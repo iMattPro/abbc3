@@ -33,7 +33,7 @@ services:
             - '@vse.abbc3.bbcodes_config'
             - '@vse.abbc3.bbcodes_display'
             - '@vse.abbc3.bbcodes_help'
-            - '@controller.helper'
+            - '@routing.helper'
             - '@template'
             - '@user'
             - ext/vse/abbc3/
