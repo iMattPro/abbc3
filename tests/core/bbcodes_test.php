@@ -136,15 +136,15 @@ class bbcodes_test extends \phpbb_database_test_case
 				),
 				array(
 					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					),
 					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					),
 					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => false,
 					),
 				),
