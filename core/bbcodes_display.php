@@ -14,6 +14,7 @@ use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
 use phpbb\textformatter\s9e\parser;
 use phpbb\user;
+use vse\abbc3\ext;
 
 /**
  * ABBC3 core BBCodes display class
@@ -71,7 +72,7 @@ class bbcodes_display
 			$images = $this->get_images();
 		}
 
-		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.svg';
+		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . ext::ICON_TYPE;
 		$images_key = 'ext/' . $bbcode_img;
 
 		$custom_tags['BBCODE_IMG'] = isset($images[$images_key]) ? 'ext/vse/' . $bbcode_img : '';
@@ -138,7 +139,7 @@ class bbcodes_display
 		$finder = $this->extension_manager->get_finder();
 
 		return $finder
-			->extension_suffix('.svg')
+			->extension_suffix(ext::ICON_TYPE)
 			->extension_directory('/images/icons')
 			->find_from_extension('abbc3', $this->ext_root_path);
 	}
