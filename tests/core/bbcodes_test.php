@@ -10,6 +10,8 @@
 
 namespace vse\abbc3\tests\core;
 
+use vse\abbc3\ext;
+
 class bbcodes_test extends \phpbb_database_test_case
 {
 	protected static function setup_extensions()
@@ -136,15 +138,15 @@ class bbcodes_test extends \phpbb_database_test_case
 				),
 				array(
 					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] . ext::ICON_TYPE,
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					),
 					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] . ext::ICON_TYPE,
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					),
 					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
+						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] . ext::ICON_TYPE,
 						'S_CUSTOM_BBCODE_ALLOWED' => false,
 					),
 				),
