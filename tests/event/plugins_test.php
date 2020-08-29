@@ -18,7 +18,7 @@ class plugins_test extends listener_base
 	public function test_display_custom_bbcodes()
 	{
 		$configurator = new \s9e\TextFormatter\Configurator();
-		$this->assertInstanceOf('s9e\\TextFormatter\\Configurator', $configurator);
+		self::assertInstanceOf('s9e\\TextFormatter\\Configurator', $configurator);
 
 		$this->set_listener();
 
@@ -26,9 +26,9 @@ class plugins_test extends listener_base
 		$dispatcher->addListener('core.text_formatter_s9e_configure_after', array($this->listener, 'configure_bbcodes'));
 
 		// Assert plugins are NOT loaded before the event is dispatched
-		$this->assertFalse(isset($configurator->plugins['PipeTables']));
-		$this->assertFalse(isset($configurator->plugins['MediaEmbed']));
-		$this->assertFalse(isset($configurator->BBCodes['hidden']));
+		self::assertFalse(isset($configurator->plugins['PipeTables']));
+		self::assertFalse(isset($configurator->plugins['MediaEmbed']));
+		self::assertFalse(isset($configurator->BBCodes['hidden']));
 
 		// Add bbcodes here to simulate existing BBCodes
 		$configurator->BBCodes->add('pipes');
@@ -41,9 +41,9 @@ class plugins_test extends listener_base
 		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
 
 		// Assert plugins ARE loaded after the event is dispatched
-		$this->assertTrue(isset($configurator->plugins['PipeTables']));
-		$this->assertTrue(isset($configurator->plugins['MediaEmbed']));
-		$this->assertTrue(isset($configurator->BBCodes['hidden']));
+		self::assertTrue(isset($configurator->plugins['PipeTables']));
+		self::assertTrue(isset($configurator->plugins['MediaEmbed']));
+		self::assertTrue(isset($configurator->BBCodes['hidden']));
 
 		// Un-set bbcodes and plugins and check everything remains unset
 		unset($configurator->BBCodes['pipes'], $configurator->plugins['PipeTables']);
@@ -56,8 +56,20 @@ class plugins_test extends listener_base
 		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
 
 		// Assert plugins are NOT loaded when their bbcodes do not exist
-		$this->assertFalse(isset($configurator->plugins['PipeTables']));
-		$this->assertFalse(isset($configurator->plugins['MediaEmbed']));
-		$this->assertFalse(isset($configurator->BBCodes['hidden']));
+		self::assertFalse(isset($configurator->plugins['PipeTables']));
+		self::assertFalse(isset($configurator->plugins['MediaEmbed']));
+		self::assertFalse(isset($configurator->BBCodes['hidden']));
+
+		// Retry Pipes with the config setting disabled
+		$configurator->BBCodes->add('pipes');
+		$this->config['abbc3_pipes'] = 0;
+
+		// Dispatch event again
+		$event_data = array('configurator');
+		$event = new \phpbb\event\data(compact($event_data));
+		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
+
+		// Assert plugins are NOT loaded when their bbcodes do not exist
+		self::assertFalse(isset($configurator->plugins['PipeTables']));
 	}
 }

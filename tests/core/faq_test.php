@@ -46,7 +46,7 @@ class faq_test extends \phpbb_database_test_case
 	{
 		parent::setUp();
 
-		global $phpbb_dispatcher, $phpbb_container, $phpbb_root_path, $phpEx;
+		global $config, $phpbb_dispatcher, $phpbb_container, $phpbb_root_path, $phpEx;
 		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
 		$this->get_test_case_helpers()->set_s9e_services($phpbb_container);
 
@@ -59,7 +59,7 @@ class faq_test extends \phpbb_database_test_case
 		$this->user = new \phpbb\user($this->language , '\phpbb\datetime');
 		$ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
 		$phpbb_extension_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
-		$bbcodes_display = new \vse\abbc3\core\bbcodes_display($db, $phpbb_extension_manager, $this->user, $ext_root_path);
+		$bbcodes_display = new \vse\abbc3\core\bbcodes_display($config, $db, $phpbb_extension_manager, $this->user, $ext_root_path);
 		$this->bbcodes_help = new \vse\abbc3\core\bbcodes_help($bbcodes_display, $db, $this->language, $this->template, $this->user);
 	}
 

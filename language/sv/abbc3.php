@@ -102,6 +102,15 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode ordningen har uppdaterats.',
 	'ABBC3_BBCODE_GROUP'		=> 'Hantera grupper som kan använda denna BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Om inga grupper är valda, kan alla användare använda denna BBCode. Använd CTRL+CLICK (eller CMD+CLICK på Mac) för att makera eller avmakera mer än en grupp..',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box 3.',
+	'ABBC3_PIPES'				=> 'Enable the Pipe Table PlugIn',
+	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipes Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',
+	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
+	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons. Icons are stored in the <samp>ext/vse/abbc3/images/icons</samp> directory.',
+	'PNG' => 'PNG',
+	'SVG' => 'SVG',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',

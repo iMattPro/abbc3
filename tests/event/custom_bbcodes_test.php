@@ -20,10 +20,11 @@ class custom_bbcodes_test extends listener_base
 	public function custom_bbcodes_data()
 	{
 		return array(
-			array('', ''),
-			array('FOO', 'BAR'),
-			array(array(), array()),
-			array(array('FOO1', 'FOO2'), array('BAR1', 'BAR2')),
+			array('', '', true),
+			array('FOO', 'BAR', true),
+			array(array(), array(), true),
+			array(array('FOO1', 'FOO2'), array('BAR1', 'BAR2'), true),
+			array('', '', false),
 		);
 	}
 
@@ -33,13 +34,15 @@ class custom_bbcodes_test extends listener_base
 	 *
 	 * @dataProvider custom_bbcodes_data
 	 */
-	public function test_display_custom_bbcodes($custom_tags, $row)
+	public function test_display_custom_bbcodes($custom_tags, $row, $enabled)
 	{
+		$this->config['abbc3_bbcode_bar'] = $enabled;
+
 		$this->set_listener();
 
-		$this->bbcodes_display->expects($this->once())
+		$this->bbcodes_display->expects($enabled ? self::once() : self::never())
 			->method('display_custom_bbcodes')
-			->with($this->equalTo($custom_tags), $this->equalTo($row))
+			->with(self::equalTo($custom_tags), self::equalTo($row))
 			->willReturn($custom_tags);
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
@@ -51,7 +54,7 @@ class custom_bbcodes_test extends listener_base
 
 		$result = $event->get_data_filtered($event_data);
 
-		$this->assertEquals($custom_tags, $result['custom_tags']);
+		self::assertEquals($custom_tags, $result['custom_tags']);
 	}
 
 	/**
@@ -87,7 +90,7 @@ class custom_bbcodes_test extends listener_base
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->bbcodes_display->expects($in_cron ? $this->never() : $this->once())
+		$this->bbcodes_display->expects($in_cron ? self::never() : self::once())
 			->method('allow_custom_bbcodes')
 			->with($parser);
 

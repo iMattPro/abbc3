@@ -1,2 +1,4 @@
-{% INCLUDECSS '@vse_abbc3/abbc3_posting.min.css' %}
-{% include '@vse_abbc3/abbc3_posting_buttons.html' %}
+{% if S_ABBC3_BBCODES_BAR %}
+	{% INCLUDECSS '@vse_abbc3/abbc3_posting.min.css' %}
+	{% include '@vse_abbc3/abbc3_posting_buttons.html' %}
+{% endif %}

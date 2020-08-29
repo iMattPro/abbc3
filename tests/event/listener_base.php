@@ -58,7 +58,12 @@ class listener_base extends \phpbb_test_case
 		$this->bbcodes_help = $this->getMockBuilder('\vse\abbc3\core\bbcodes_help')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->config = new \phpbb\config\config(array('enable_mod_rewrite' => '0'));
+		$this->config = new \phpbb\config\config([
+			'enable_mod_rewrite' => '0',
+			'abbc3_icons_type' => 'svg',
+			'abbc3_bbcode_bar' => 1,
+			'abbc3_pipes' => 1,
+		]);
 
 		$this->template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
@@ -73,7 +78,7 @@ class listener_base extends \phpbb_test_case
 		$this->helper = $this->getMockBuilder('\phpbb\routing\helper')
 			->disableOriginalConstructor()
 			->getMock();
-		$this->helper->expects($this->atMost(3))
+		$this->helper->expects(self::atMost(3))
 			->method('route')
 			->willReturnCallback(function ($route, array $params = array()) {
 				return $route . '#' . serialize($params);
@@ -93,6 +98,7 @@ class listener_base extends \phpbb_test_case
 			$this->bbcodes_config,
 			$this->bbcodes_display,
 			$this->bbcodes_help,
+			$this->config,
 			$this->helper,
 			$this->template,
 			$this->user,

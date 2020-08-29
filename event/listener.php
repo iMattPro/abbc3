@@ -10,6 +10,7 @@
 
 namespace vse\abbc3\event;
 
+use phpbb\config\config;
 use phpbb\routing\helper;
 use phpbb\template\template;
 use phpbb\user;
@@ -32,6 +33,9 @@ class listener implements EventSubscriberInterface
 	/** @var bbcodes_help */
 	protected $bbcodes_help;
 
+	/** @var config */
+	protected $config;
+
 	/** @var helper */
 	protected $helper;
 
@@ -50,17 +54,19 @@ class listener implements EventSubscriberInterface
 	 * @param bbcodes_config  $bbcodes_config
 	 * @param bbcodes_display $bbcodes_display
 	 * @param bbcodes_help    $bbcodes_help
+	 * @param config          $config
 	 * @param helper          $helper
 	 * @param template        $template
 	 * @param user            $user
 	 * @param string          $ext_root_path
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, helper $helper, template $template, user $user, $ext_root_path)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, helper $helper, template $template, user $user, $ext_root_path)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
 		$this->bbcodes_help = $bbcodes_help;
+		$this->config = $config;
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
@@ -130,6 +136,9 @@ class listener implements EventSubscriberInterface
 		$this->template->assign_vars(array(
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
 			'ABBC3_BBCODE_ICONS'		=> $this->ext_root_path . 'images/icons',
+			'ABBC3_BBCODE_ICON_EXT'		=> $this->config['abbc3_icons_type'],
+
+			'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
 
 			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
 			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'pipes')),
@@ -145,6 +154,11 @@ class listener implements EventSubscriberInterface
 	 */
 	public function display_custom_bbcodes($event)
 	{
+		if (!$this->config['abbc3_bbcode_bar'])
+		{
+			return;
+		}
+
 		$event['custom_tags'] = $this->bbcodes_display->display_custom_bbcodes($event['custom_tags'], $event['row']);
 	}
 
@@ -171,9 +185,12 @@ class listener implements EventSubscriberInterface
 	 */
 	public function configure_bbcodes($event)
 	{
-		$this->bbcodes_config->pipes($event['configurator']);
-		$this->bbcodes_config->bbvideo($event['configurator']);
-		$this->bbcodes_config->hidden($event['configurator']);
+		$configurator = $event['configurator'];
+		$configurator->registeredVars['abbc3.pipes_enabled'] = $this->config['abbc3_pipes'];
+
+		$this->bbcodes_config->pipes($configurator);
+		$this->bbcodes_config->bbvideo($configurator);
+		$this->bbcodes_config->hidden($configurator);
 	}
 
 	/**

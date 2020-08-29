@@ -5,6 +5,7 @@ services:
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display
         arguments:
+            - '@config'
             - '@dbal.conn'
             - '@ext.manager'
             - '@user'
@@ -33,6 +34,7 @@ services:
             - '@vse.abbc3.bbcodes_config'
             - '@vse.abbc3.bbcodes_display'
             - '@vse.abbc3.bbcodes_help'
+            - '@config'
             - '@routing.helper'
             - '@template'
             - '@user'

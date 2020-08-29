@@ -15,7 +15,6 @@ class ext extends \phpbb\extension\base
 	const MOVE_UP = 'move_up';
 	const MOVE_DOWN = 'move_down';
 	const MOVE_DRAG = 'move_drag';
-	const ICON_TYPE = '.svg';
 	const PHPBB_MIN_VERSION = '3.2.2'; // Require 3.2.2 due to TextFormatter and BBCode changes
 
 	/**

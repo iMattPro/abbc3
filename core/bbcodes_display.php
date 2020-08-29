@@ -10,6 +10,7 @@
 
 namespace vse\abbc3\core;
 
+use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
 use phpbb\textformatter\s9e\parser;
@@ -21,6 +22,9 @@ use vse\abbc3\ext;
  */
 class bbcodes_display
 {
+	/** @var config */
+	protected $config;
+
 	/** @var driver_interface */
 	protected $db;
 
@@ -39,14 +43,16 @@ class bbcodes_display
 	/**
 	 * Constructor
 	 *
+	 * @param config           $config            Config object
 	 * @param driver_interface $db                Database connection
 	 * @param manager          $extension_manager Extension manager object
 	 * @param user             $user              User object
 	 * @param string           $ext_root_path     Path to abbc3 extension root
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, manager $extension_manager, user $user, $ext_root_path)
+	public function __construct(config $config, driver_interface $db, manager $extension_manager, user $user, $ext_root_path)
 	{
+		$this->config = $config;
 		$this->db = $db;
 		$this->extension_manager = $extension_manager;
 		$this->user = $user;
@@ -72,7 +78,7 @@ class bbcodes_display
 			$images = $this->get_images();
 		}
 
-		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . ext::ICON_TYPE;
+		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . ".{$this->config['abbc3_icons_type']}";
 		$images_key = 'ext/' . $bbcode_img;
 
 		$custom_tags['BBCODE_IMG'] = isset($images[$images_key]) ? 'ext/vse/' . $bbcode_img : '';
@@ -139,7 +145,7 @@ class bbcodes_display
 		$finder = $this->extension_manager->get_finder();
 
 		return $finder
-			->extension_suffix(ext::ICON_TYPE)
+			->extension_suffix(".{$this->config['abbc3_icons_type']}")
 			->extension_directory('/images/icons')
 			->find_from_extension('abbc3', $this->ext_root_path);
 	}
