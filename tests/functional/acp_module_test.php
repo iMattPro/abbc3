@@ -39,11 +39,11 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertEquals('svg', $crawler->filter('option[selected]')->attr('value'));
 
 		// Submit form
-		$form_data = array(
+		$form_data = [
 			'abbc3_bbcode_bar'	=> 0,
 			'abbc3_icons_type'	=> 'png',
 			'abbc3_pipes'		=> 0,
-		);
+		];
 		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
 		$crawler = self::submit($form, $form_data);
 		$this->assertContainsLang('CONFIG_UPDATED', $crawler->filter('.successbox')->text());

@@ -14,13 +14,13 @@ class acp_bbcode_groups_data_test extends acp_base
 {
 	public function bbcode_groups_data()
 	{
-		return array(
-			array(array(
+		return [
+			[[
 				'align=' 		=> '1',
 				'float=' 		=> '2,3',
 				'sup' 			=> '4,5,6',
-			)),
-		);
+			 ]],
+		];
 	}
 
 	/**
@@ -30,6 +30,6 @@ class acp_bbcode_groups_data_test extends acp_base
 	{
 		$acp_manager = $this->get_acp_manager();
 
-		$this->assertEquals($expected, $acp_manager->get_bbcode_groups_data());
+		self::assertEquals($expected, $acp_manager->get_bbcode_groups_data());
 	}
 }

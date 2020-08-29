@@ -14,7 +14,7 @@ class faq_test extends \phpbb_database_test_case
 {
 	protected static function setup_extensions()
 	{
-		return array('vse/abbc3');
+		return ['vse/abbc3'];
 	}
 
 	/** @var \phpbb\user */
@@ -65,10 +65,10 @@ class faq_test extends \phpbb_database_test_case
 
 	public function faq_test_data()
 	{
-		return array(
-			array(1, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_ALIGN_HELPLINE']),
-			array(2, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_FLOAT_HELPLINE', 'ABBC3_SUP_HELPLINE']),
-		);
+		return [
+			[1, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_ALIGN_HELPLINE']],
+			[2, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_FLOAT_HELPLINE', 'ABBC3_SUP_HELPLINE']],
+		];
 	}
 
 	/**
@@ -78,7 +78,7 @@ class faq_test extends \phpbb_database_test_case
 	{
 		$this->user->data['user_id'] = $user_id;
 
-		$this->template->expects($this->exactly(count($expected) + 1))
+		$this->template->expects(self::exactly(count($expected) + 1))
 			->method('assign_block_vars')
 			->withConsecutive(
 				['faq_block', [

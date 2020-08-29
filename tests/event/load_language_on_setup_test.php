@@ -19,35 +19,35 @@ class load_language_on_setup_test extends listener_base
 	 */
 	public function load_language_on_setup_data()
 	{
-		return array(
-			array(
-				array(),
-				array(
-					array(
+		return [
+			[
+				[],
+				[
+					[
 						'ext_name' => 'vse/abbc3',
 						'lang_set' => 'abbc3',
-					),
-				),
-			),
-			array(
-				array(
-					array(
+					],
+				],
+			],
+			[
+				[
+					[
 						'ext_name' => 'foo/bar',
 						'lang_set' => 'foobar',
-					),
-				),
-				array(
-					array(
+					],
+				],
+				[
+					[
 						'ext_name' => 'foo/bar',
 						'lang_set' => 'foobar',
-					),
-					array(
+					],
+					[
 						'ext_name' => 'vse/abbc3',
 						'lang_set' => 'abbc3',
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**
@@ -61,9 +61,9 @@ class load_language_on_setup_test extends listener_base
 		$this->set_listener();
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-		$dispatcher->addListener('core.user_setup', array($this->listener, 'load_language_on_setup'));
+		$dispatcher->addListener('core.user_setup', [$this->listener, 'load_language_on_setup']);
 
-		$event_data = array('lang_set_ext');
+		$event_data = ['lang_set_ext'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.user_setup', $event);
 

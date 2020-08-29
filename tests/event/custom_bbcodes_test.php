@@ -19,13 +19,13 @@ class custom_bbcodes_test extends listener_base
 	 */
 	public function custom_bbcodes_data()
 	{
-		return array(
-			array('', '', true),
-			array('FOO', 'BAR', true),
-			array(array(), array(), true),
-			array(array('FOO1', 'FOO2'), array('BAR1', 'BAR2'), true),
-			array('', '', false),
-		);
+		return [
+			['', '', true],
+			['FOO', 'BAR', true],
+			[[], [], true],
+			[['FOO1', 'FOO2'], ['BAR1', 'BAR2'], true],
+			['', '', false],
+		];
 	}
 
 	/**
@@ -46,9 +46,9 @@ class custom_bbcodes_test extends listener_base
 			->willReturn($custom_tags);
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-		$dispatcher->addListener('core.display_custom_bbcodes_modify_row', array($this->listener, 'display_custom_bbcodes'));
+		$dispatcher->addListener('core.display_custom_bbcodes_modify_row', [$this->listener, 'display_custom_bbcodes']);
 
-		$event_data = array('custom_tags', 'row');
+		$event_data = ['custom_tags', 'row'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.display_custom_bbcodes_modify_row', $event);
 
@@ -64,10 +64,10 @@ class custom_bbcodes_test extends listener_base
 	 */
 	public function s9e_allow_custom_bbcodes_data()
 	{
-		return array(
-			array(false),
-			array(true), //must use true last as the constant will persist through the tests.
-		);
+		return [
+			[false],
+			[true], //must use true last as the constant will persist through the tests.
+		];
 	}
 
 	/**
@@ -95,9 +95,9 @@ class custom_bbcodes_test extends listener_base
 			->with($parser);
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', array($this->listener, 'allow_custom_bbcodes'));
+		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', [$this->listener, 'allow_custom_bbcodes']);
 
-		$event_data = array('parser');
+		$event_data = ['parser'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.text_formatter_s9e_parser_setup', $event);
 	}

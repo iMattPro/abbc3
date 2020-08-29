@@ -23,7 +23,7 @@ class plugins_test extends listener_base
 		$this->set_listener();
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-		$dispatcher->addListener('core.text_formatter_s9e_configure_after', array($this->listener, 'configure_bbcodes'));
+		$dispatcher->addListener('core.text_formatter_s9e_configure_after', [$this->listener, 'configure_bbcodes']);
 
 		// Assert plugins are NOT loaded before the event is dispatched
 		self::assertFalse(isset($configurator->plugins['PipeTables']));
@@ -36,7 +36,7 @@ class plugins_test extends listener_base
 		$configurator->BBCodes->add('bbvideo');
 
 		// Dispatch event
-		$event_data = array('configurator');
+		$event_data = ['configurator'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
 
@@ -51,7 +51,7 @@ class plugins_test extends listener_base
 		unset($configurator->BBCodes['hidden']);
 
 		// Dispatch event again
-		$event_data = array('configurator');
+		$event_data = ['configurator'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
 
@@ -65,7 +65,7 @@ class plugins_test extends listener_base
 		$this->config['abbc3_pipes'] = 0;
 
 		// Dispatch event again
-		$event_data = array('configurator');
+		$event_data = ['configurator'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
 

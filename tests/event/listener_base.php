@@ -68,10 +68,10 @@ class listener_base extends \phpbb_test_case
 		$this->template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
 		$this->user = $this->getMockBuilder('\phpbb\user')
-			->setConstructorArgs(array(
+			->setConstructorArgs([
 				new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
 				'\phpbb\datetime'
-			))
+			])
 			->getMock();
 		$this->user->data['username'] = 'admin';
 
@@ -80,7 +80,7 @@ class listener_base extends \phpbb_test_case
 			->getMock();
 		$this->helper->expects(self::atMost(3))
 			->method('route')
-			->willReturnCallback(function ($route, array $params = array()) {
+			->willReturnCallback(function ($route, array $params = []) {
 				return $route . '#' . serialize($params);
 			});
 

@@ -16,6 +16,6 @@ class acp_max_bbcode_order_test extends acp_base
 	{
 		$acp_manager = $this->get_acp_manager();
 
-		$this->assertEquals(5, $acp_manager->get_max_bbcode_order());
+		self::assertEquals(5, $acp_manager->get_max_bbcode_order());
 	}
 }
