@@ -97,7 +97,7 @@ class acp_manager
 		$tablename = $this->request->variable('tablename', '');
 
 		// Fetch the posted list
-		$bbcodes_list = (array) $this->request->variable($tablename, array(0 => ''));
+		$bbcodes_list = (array) $this->request->variable($tablename, [0 => '']);
 
 		$this->db->sql_transaction('begin');
 		foreach ($bbcodes_list as $order => $bbcode_id)
@@ -130,7 +130,7 @@ class acp_manager
 	 */
 	public function get_bbcode_group_form_data()
 	{
-		$bbcode_group = $this->request->variable('bbcode_group', array(0));
+		$bbcode_group = $this->request->variable('bbcode_group', [0]);
 		$bbcode_group = (!count($bbcode_group)) ? $this->request->variable('bbcode_group', '') : implode(',', $bbcode_group);
 
 		return $bbcode_group;
@@ -168,7 +168,7 @@ class acp_manager
 			FROM ' . BBCODES_TABLE . "
 			WHERE bbcode_group > ''";
 		$result = $this->db->sql_query($sql);
-		$groups = array();
+		$groups = [];
 		while ($row = $this->db->sql_fetchrow($result))
 		{
 			$groups[$row['bbcode_tag']] = $row['bbcode_group'];
@@ -185,7 +185,7 @@ class acp_manager
 	 * @return string HTML markup of user groups select box for the form
 	 * @access public
 	 */
-	public function bbcode_group_select_options(array $select_id = array())
+	public function bbcode_group_select_options(array $select_id = [])
 	{
 		// Get all groups except bots
 		$sql = 'SELECT group_id, group_name, group_type
@@ -269,10 +269,10 @@ class acp_manager
 
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
 			SET bbcode_order = ' . $order_total . ' - bbcode_order
-			WHERE ' . $this->db->sql_in_set('bbcode_order', array(
+			WHERE ' . $this->db->sql_in_set('bbcode_order', [
 				$bbcode_order,
 				$bbcode_order + $amount,
-			));
+			]);
 		$this->db->sql_query($sql);
 
 		return $this->db->sql_affectedrows();
@@ -322,9 +322,9 @@ class acp_manager
 		if ($this->request->is_ajax())
 		{
 			$json_response = new json_response;
-			$json_response->send(array(
+			$json_response->send([
 				'success' => (bool) $content,
-			));
+			]);
 		}
 	}
 }

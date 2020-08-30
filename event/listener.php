@@ -82,7 +82,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public static function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.user_setup'							=> 'load_language_on_setup',
 
 			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
@@ -93,7 +93,7 @@ class listener implements EventSubscriberInterface
 			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force lowest priority
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
-		);
+		];
 	}
 
 	/**
@@ -105,10 +105,10 @@ class listener implements EventSubscriberInterface
 	public function load_language_on_setup($event)
 	{
 		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
+		$lang_set_ext[] = [
 			'ext_name' => 'vse/abbc3',
 			'lang_set' => 'abbc3',
-		);
+		];
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
@@ -133,17 +133,17 @@ class listener implements EventSubscriberInterface
 	 */
 	public function setup_custom_bbcodes()
 	{
-		$this->template->assign_vars(array(
+		$this->template->assign_vars([
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
 			'ABBC3_BBCODE_ICONS'		=> $this->ext_root_path . 'images/icons',
 			'ABBC3_BBCODE_ICON_EXT'		=> $this->config['abbc3_icons_type'],
 
 			'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
 
-			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
-			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'pipes')),
-			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'url')),
-		));
+			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'bbvideo']),
+			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'pipes']),
+			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'url']),
+		]);
 	}
 
 	/**

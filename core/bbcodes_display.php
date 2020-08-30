@@ -70,7 +70,7 @@ class bbcodes_display
 	 */
 	public function display_custom_bbcodes($custom_tags, $row)
 	{
-		static $images = array();
+		static $images = [];
 
 		if (empty($images))
 		{
@@ -161,7 +161,7 @@ class bbcodes_display
 			return;
 		}
 
-		$this->memberships = array();
+		$this->memberships = [];
 		$sql = 'SELECT group_id
 			FROM ' . USER_GROUP_TABLE . '
 			WHERE user_id = ' . (int) $this->user->data['user_id'] . '

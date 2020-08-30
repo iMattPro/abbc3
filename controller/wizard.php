@@ -73,7 +73,7 @@ class wizard
 	public function bbcode_wizard($mode)
 	{
 		// Only allow valid AJAX requests
-		if ($this->request->is_ajax() && in_array($mode, array('bbvideo', 'pipes', 'url')))
+		if ($this->request->is_ajax() && in_array($mode, ['bbvideo', 'pipes', 'url']))
 		{
 			if ($mode === 'bbvideo')
 			{
@@ -111,10 +111,10 @@ class wizard
 
 		ksort($bbvideo_sites);
 
-		$this->template->assign_vars(array(
+		$this->template->assign_vars([
 			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites,
 			'ABBC3_BBVIDEO_LINK_EX'	=> isset($bbvideo_sites[self::BBVIDEO_DEFAULT]) ? $bbvideo_sites[self::BBVIDEO_DEFAULT] : '',
 			'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
-		));
+		]);
 	}
 }
