@@ -15,7 +15,6 @@ use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
 use phpbb\textformatter\s9e\parser;
 use phpbb\user;
-use vse\abbc3\ext;
 
 /**
  * ABBC3 core BBCodes display class
