@@ -17,7 +17,7 @@ class bbcode_wizard_test extends \phpbb_functional_test_case
 {
 	protected static function setup_extensions()
 	{
-		return array('vse/abbc3');
+		return ['vse/abbc3'];
 	}
 
 	/**
@@ -25,7 +25,7 @@ class bbcode_wizard_test extends \phpbb_functional_test_case
 	*/
 	public function test_wizard_fails()
 	{
-		$crawler = self::request('GET', 'app.php/wizard/bbcode/bbvideo', array(), false);
+		$crawler = self::request('GET', 'app.php/wizard/bbcode/bbvideo', [], false);
 		self::assert_response_status_code(404);
 		self::assertStringContainsString($this->lang('GENERAL_ERROR'), $crawler->text());
 	}

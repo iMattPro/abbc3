@@ -50,11 +50,11 @@ class ext_test extends \phpbb_test_case
 	 */
 	public function ext_test_data()
 	{
-		return array(
-			array(ext::PHPBB_MIN_VERSION, true), // current setting is enableable
-			array('3.3.0', true), // future phpbb is enableable
-			array('3.1.0', false), // old phpbb is not enableable
-		);
+		return [
+			[ext::PHPBB_MIN_VERSION, true], // current setting is enableable
+			['3.3.0', true], // future phpbb is enableable
+			['3.1.0', false], // old phpbb is not enableable
+		];
 	}
 
 	/**
@@ -69,13 +69,13 @@ class ext_test extends \phpbb_test_case
 	public function test_ext($version, $expected)
 	{
 		// Instantiate config object and set config version
-		$config = new \phpbb\config\config(array(
+		$config = new \phpbb\config\config([
 			'version' => $version,
-		));
+		]);
 
 		// Mocked container should return the config object
 		// when encountering $this->container->get('config')
-		$this->container->expects($this->once())
+		$this->container->expects(self::once())
 			->method('get')
 			->with('config')
 			->willReturn($config);
@@ -83,6 +83,6 @@ class ext_test extends \phpbb_test_case
 		/** @var \vse\abbc3\ext */
 		$ext = new \vse\abbc3\ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
 
-		$this->assertSame($expected, $ext->is_enableable());
+		self::assertSame($expected, $ext->is_enableable());
 	}
 }

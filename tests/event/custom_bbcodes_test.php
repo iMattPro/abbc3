@@ -19,12 +19,13 @@ class custom_bbcodes_test extends listener_base
 	 */
 	public function custom_bbcodes_data()
 	{
-		return array(
-			array('', ''),
-			array('FOO', 'BAR'),
-			array(array(), array()),
-			array(array('FOO1', 'FOO2'), array('BAR1', 'BAR2')),
-		);
+		return [
+			['', '', true],
+			['FOO', 'BAR', true],
+			[[], [], true],
+			[['FOO1', 'FOO2'], ['BAR1', 'BAR2'], true],
+			['', '', false],
+		];
 	}
 
 	/**
@@ -33,25 +34,27 @@ class custom_bbcodes_test extends listener_base
 	 *
 	 * @dataProvider custom_bbcodes_data
 	 */
-	public function test_display_custom_bbcodes($custom_tags, $row)
+	public function test_display_custom_bbcodes($custom_tags, $row, $enabled)
 	{
+		$this->config['abbc3_bbcode_bar'] = $enabled;
+
 		$this->set_listener();
 
-		$this->bbcodes_display->expects($this->once())
+		$this->bbcodes_display->expects($enabled ? self::once() : self::never())
 			->method('display_custom_bbcodes')
-			->with($this->equalTo($custom_tags), $this->equalTo($row))
+			->with(self::equalTo($custom_tags), self::equalTo($row))
 			->willReturn($custom_tags);
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-		$dispatcher->addListener('core.display_custom_bbcodes_modify_row', array($this->listener, 'display_custom_bbcodes'));
+		$dispatcher->addListener('core.display_custom_bbcodes_modify_row', [$this->listener, 'display_custom_bbcodes']);
 
-		$event_data = array('custom_tags', 'row');
+		$event_data = ['custom_tags', 'row'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.display_custom_bbcodes_modify_row', $event);
 
 		$result = $event->get_data_filtered($event_data);
 
-		$this->assertEquals($custom_tags, $result['custom_tags']);
+		self::assertEquals($custom_tags, $result['custom_tags']);
 	}
 
 	/**
@@ -61,10 +64,10 @@ class custom_bbcodes_test extends listener_base
 	 */
 	public function s9e_allow_custom_bbcodes_data()
 	{
-		return array(
-			array(false),
-			array(true), //must use true last as the constant will persist through the tests.
-		);
+		return [
+			[false],
+			[true], //must use true last as the constant will persist through the tests.
+		];
 	}
 
 	/**
@@ -87,14 +90,14 @@ class custom_bbcodes_test extends listener_base
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->bbcodes_display->expects($in_cron ? $this->never() : $this->once())
+		$this->bbcodes_display->expects($in_cron ? self::never() : self::once())
 			->method('allow_custom_bbcodes')
 			->with($parser);
 
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
-		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', array($this->listener, 'allow_custom_bbcodes'));
+		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', [$this->listener, 'allow_custom_bbcodes']);
 
-		$event_data = array('parser');
+		$event_data = ['parser'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.text_formatter_s9e_parser_setup', $event);
 	}

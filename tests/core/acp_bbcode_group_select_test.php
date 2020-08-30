@@ -33,53 +33,53 @@ class acp_bbcode_group_select_test extends acp_base
 	{
 		$this->get_lang_instance();
 
-		return array(
-			array(
-				array(),
+		return [
+			[
+				[],
 				'<option value="5">' . $this->lang->lang('G_ADMINISTRATORS') .
 				'</option><option value="4">' . $this->lang->lang('G_GLOBAL_MODERATORS') .
 				'</option><option value="1">' . $this->lang->lang('G_GUESTS') .
 				'</option><option value="2">' . $this->lang->lang('G_REGISTERED') .
 				'</option><option value="3">' . $this->lang->lang('G_REGISTERED_COPPA') .
 				'</option>'
-			),
-			array(
-				array(''),
+			],
+			[
+				[''],
 				'<option value="5">' . $this->lang->lang('G_ADMINISTRATORS') .
 				'</option><option value="4">' . $this->lang->lang('G_GLOBAL_MODERATORS') .
 				'</option><option value="1">' . $this->lang->lang('G_GUESTS') .
 				'</option><option value="2">' . $this->lang->lang('G_REGISTERED') .
 				'</option><option value="3">' . $this->lang->lang('G_REGISTERED_COPPA') .
 				'</option>'
-			),
-			array(
-				array(1),
+			],
+			[
+				[1],
 				'<option value="5">' . $this->lang->lang('G_ADMINISTRATORS') .
 				'</option><option value="4">' . $this->lang->lang('G_GLOBAL_MODERATORS') .
 				'</option><option value="1" selected="selected">' . $this->lang->lang('G_GUESTS') .
 				'</option><option value="2">' . $this->lang->lang('G_REGISTERED') .
 				'</option><option value="3">' . $this->lang->lang('G_REGISTERED_COPPA') .
 				'</option>'
-			),
-			array(
-				array(2,3),
+			],
+			[
+				[2, 3],
 				'<option value="5">' . $this->lang->lang('G_ADMINISTRATORS') .
 				'</option><option value="4">' . $this->lang->lang('G_GLOBAL_MODERATORS') .
 				'</option><option value="1">' . $this->lang->lang('G_GUESTS') .
 				'</option><option value="2" selected="selected">' . $this->lang->lang('G_REGISTERED') .
 				'</option><option value="3" selected="selected">' . $this->lang->lang('G_REGISTERED_COPPA') .
 				'</option>'
-			),
-			array(
-				array(4,5,6),
+			],
+			[
+				[4, 5, 6],
 				'<option value="5" selected="selected">' . $this->lang->lang('G_ADMINISTRATORS') .
 				'</option><option value="4" selected="selected">' . $this->lang->lang('G_GLOBAL_MODERATORS') .
 				'</option><option value="1">' . $this->lang->lang('G_GUESTS') .
 				'</option><option value="2">' . $this->lang->lang('G_REGISTERED') .
 				'</option><option value="3">' . $this->lang->lang('G_REGISTERED_COPPA') .
 				'</option>'
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -89,6 +89,6 @@ class acp_bbcode_group_select_test extends acp_base
 	{
 		$acp_manager = $this->get_acp_manager();
 
-		$this->assertEquals($expected, $acp_manager->bbcode_group_select_options($data));
+		self::assertEquals($expected, $acp_manager->bbcode_group_select_options($data));
 	}
 }

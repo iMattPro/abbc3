@@ -14,14 +14,14 @@ class acp_bbcode_group_data_test extends acp_base
 {
 	public function bbcode_group_data()
 	{
-		return array(
-			array(0, array('')),
-			array(13, array('')),
-			array(14, array('')),
-			array(15, array(1)),
-			array(16, array(2, 3)),
-			array(17, array(4, 5, 6)),
-		);
+		return [
+			[0, ['']],
+			[13, ['']],
+			[14, ['']],
+			[15, [1]],
+			[16, [2, 3]],
+			[17, [4, 5, 6]],
+		];
 	}
 
 	/**
@@ -31,6 +31,6 @@ class acp_bbcode_group_data_test extends acp_base
 	{
 		$acp_manager = $this->get_acp_manager();
 
-		$this->assertEquals($expected, $acp_manager->get_bbcode_group_data($data));
+		self::assertEquals($expected, $acp_manager->get_bbcode_group_data($data));
 	}
 }
