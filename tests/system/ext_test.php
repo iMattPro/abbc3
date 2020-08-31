@@ -85,4 +85,41 @@ class ext_test extends \phpbb_test_case
 
 		self::assertSame($expected, $ext->is_enableable());
 	}
+
+	public function enable_test_data()
+	{
+		return [
+			[true, false, false, 'abbc3-step'],
+			[false, true, false, 'abbc3-step'],
+		];
+	}
+
+	/**
+	 * @dataProvider enable_test_data
+	 */
+	public function test_enable($exists, $mirrored, $old_state, $expected)
+	{
+		$filesystem = $this->getMockBuilder('\phpbb\filesystem\filesystem')
+			->disableOriginalConstructor()
+			->setMethods(['mirror', 'exists'])
+			->getMock();
+
+		$filesystem->expects($exists ? self::never() : self::once())
+			->method('mirror')
+			->willReturn($mirrored);
+
+		$filesystem->expects($old_state ? self::never() : self::once())
+			->method('exists')
+			->willReturn($exists);
+
+		$this->container->expects(self::once())
+			->method('get')
+			->with('filesystem')
+			->willReturn($filesystem);
+
+		/** @var \vse\abbc3\ext */
+		$ext = new \vse\abbc3\ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
+
+		self::assertEquals($expected, $ext->enable_step($old_state));
+	}
 }

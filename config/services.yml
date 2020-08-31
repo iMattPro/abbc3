@@ -9,7 +9,7 @@ services:
             - '@dbal.conn'
             - '@ext.manager'
             - '@user'
-            - '%core.root_path%ext/vse/abbc3/'
+            - '%core.root_path%'
 
     vse.abbc3.bbcodes_help:
         class: vse\abbc3\core\bbcodes_help
@@ -38,7 +38,6 @@ services:
             - '@routing.helper'
             - '@template'
             - '@user'
-            - ext/vse/abbc3/
         tags:
             - { name: event.listener }
 

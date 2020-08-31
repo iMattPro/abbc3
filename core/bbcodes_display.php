@@ -34,10 +34,13 @@ class bbcodes_display
 	protected $user;
 
 	/** @var string */
-	protected $ext_root_path;
+	protected $root_path;
 
 	/** @var array */
 	protected $memberships;
+
+	/** @var string */
+	protected $icon_path;
 
 	/**
 	 * Constructor
@@ -46,16 +49,16 @@ class bbcodes_display
 	 * @param driver_interface $db                Database connection
 	 * @param manager          $extension_manager Extension manager object
 	 * @param user             $user              User object
-	 * @param string           $ext_root_path     Path to abbc3 extension root
+	 * @param string           $root_path         Path to phpBB root
 	 * @access public
 	 */
-	public function __construct(config $config, driver_interface $db, manager $extension_manager, user $user, $ext_root_path)
+	public function __construct(config $config, driver_interface $db, manager $extension_manager, user $user, $root_path)
 	{
 		$this->config = $config;
 		$this->db = $db;
 		$this->extension_manager = $extension_manager;
 		$this->user = $user;
-		$this->ext_root_path = $ext_root_path;
+		$this->root_path = $root_path;
 	}
 
 	/**
@@ -77,10 +80,9 @@ class bbcodes_display
 			$images = $this->get_images();
 		}
 
-		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . ".{$this->config['abbc3_icons_type']}";
-		$images_key = 'ext/' . $bbcode_img;
+		$img_key = strtolower(rtrim($row['bbcode_tag'], '=')) . ".{$this->config['abbc3_icons_type']}";
 
-		$custom_tags['BBCODE_IMG'] = isset($images[$images_key]) ? 'ext/vse/' . $bbcode_img : '';
+		$custom_tags['BBCODE_IMG'] = isset($images[$img_key]) ? $images[$img_key] : '';
 		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = !empty($row['bbcode_group']) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
 
 		return $custom_tags;
@@ -134,19 +136,63 @@ class bbcodes_display
 	}
 
 	/**
-	 * Get image paths/names from ABBC3's icons folder
+	 * Get image paths/names to ABBC3's BBCode icons
 	 *
-	 * @return array File data from ./ext/vse/abbc3/images/icons
+	 * @return array Array of icon paths: ['img.svg' => 'images/abbc3/icons/img.svg']
 	 * @access protected
 	 */
 	protected function get_images()
 	{
-		$finder = $this->extension_manager->get_finder();
+		// First try to load icons from phpBB image folder
+		$images = $this->find_core_icons();
 
+		// If nothing found try ABBC3 extension's image folder
+		if (empty($images))
+		{
+			$images = $this->find_abbc3_icons();
+		}
+
+		// Rewrite the image array with img names as keys and paths as values
+		foreach ($images as $path => $ext)
+		{
+			$images[basename($path)] = $path;
+			unset($images[$path]);
+		}
+
+		return $images;
+	}
+
+	/**
+	 * Find ABBC3 icons in the core images folder
+	 *
+	 * @return array An array of paths to found items
+	 * @access protected
+	 */
+	protected function find_core_icons()
+	{
+		$this->set_icon_path('images/abbc3/icons');
+		$finder = $this->extension_manager->get_finder();
+		return $finder
+			->set_extensions([])
+			->suffix(".{$this->config['abbc3_icons_type']}")
+			->core_path('images/abbc3/icons/')
+			->find();
+	}
+
+	/**
+	 * Find ABBC3 icons in the ABBC3 extension's images folder
+	 *
+	 * @return array An array of paths to found items
+	 * @access protected
+	 */
+	protected function find_abbc3_icons()
+	{
+		$this->set_icon_path('ext/vse/abbc3/images/icons');
+		$finder = $this->extension_manager->get_finder();
 		return $finder
 			->extension_suffix(".{$this->config['abbc3_icons_type']}")
 			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $this->ext_root_path);
+			->find_from_extension('vse/abbc3', "{$this->root_path}ext/vse/abbc3/");
 	}
 
 	/**
@@ -172,5 +218,27 @@ class bbcodes_display
 			$this->memberships[] = $row['group_id'];
 		}
 		$this->db->sql_freeresult($result);
+	}
+
+	/**
+	 * Set the $icon_path property
+	 *
+	 * @param string $path A path to ABBC3 icons
+	 * @access public
+	 */
+	public function set_icon_path($path)
+	{
+		$this->icon_path = $this->root_path . $path;
+	}
+
+	/**
+	 * Get the $icon_path property
+	 *
+	 * @return string A full relative path to ABBC3 icons
+	 * @access public
+	 */
+	public function get_icon_path()
+	{
+		return $this->icon_path ?: "{$this->root_path}ext/vse/abbc3/images/icons";
 	}
 }

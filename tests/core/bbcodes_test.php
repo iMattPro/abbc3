@@ -20,7 +20,7 @@ class bbcodes_test extends \phpbb_database_test_case
 	protected $config;
 	protected $db;
 	protected $user;
-	protected $ext_root_path;
+	protected $root_path;
 	protected $ext_manager;
 
 	public function getDataSet()
@@ -39,13 +39,13 @@ class bbcodes_test extends \phpbb_database_test_case
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$lang = new \phpbb\language\language($lang_loader);
 		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
-		$this->ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
+		$this->root_path = $phpbb_root_path;
 		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
 	}
 
 	protected function bbcodes_manager()
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->config, $this->db, $this->ext_manager, $this->user, $this->ext_root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->config, $this->db, $this->ext_manager, $this->user, $this->root_path);
 	}
 
 	public function bbcode_data()
@@ -124,7 +124,7 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	public function display_bbcodes_data()
 	{
-		$this->ext_root_path = 'ext/vse/abbc3/';
+		$this->root_path = 'ext/vse/abbc3/';
 
 		$bbcode_data = $this->bbcode_data();
 
@@ -138,15 +138,15 @@ class bbcodes_test extends \phpbb_database_test_case
 				],
 				[
 					[
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $this->root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] . '.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					],
 					[
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $this->root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] . '.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					],
 					[
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $this->root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] . '.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => false,
 					],
 				],

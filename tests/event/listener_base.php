@@ -37,9 +37,6 @@ class listener_base extends \phpbb_test_case
 	protected $user;
 
 	/** @var string */
-	protected $ext_root_path;
-
-	/** @var string */
 	protected $bbvideo_width;
 
 	/** @var string */
@@ -84,7 +81,6 @@ class listener_base extends \phpbb_test_case
 				return $route . '#' . serialize($params);
 			});
 
-		$this->ext_root_path = 'ext/vse/abbc3/';
 		$this->bbvideo_width = 560;
 		$this->bbvideo_height = 315;
 	}
@@ -101,8 +97,7 @@ class listener_base extends \phpbb_test_case
 			$this->config,
 			$this->helper,
 			$this->template,
-			$this->user,
-			$this->ext_root_path
+			$this->user
 		);
 	}
 }

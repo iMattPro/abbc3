@@ -109,7 +109,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
 	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
 	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons. Icons are stored in the <samp>ext/vse/abbc3/images/icons</samp> directory.',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons. Icons are stored in the <samp>phpBB/images/abbc3/icons</samp> directory.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 

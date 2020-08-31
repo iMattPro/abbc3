@@ -20,11 +20,15 @@ class setup_custom_bbcodes_test extends listener_base
 	{
 		$this->set_listener();
 
+		$this->bbcodes_display
+			->method('get_icon_path')
+			->willReturn('ext/vse/abbc3/images/icons');
+
 		$this->template->expects(self::once())
 			->method('assign_vars')
 			->with([
 				'ABBC3_USERNAME'			=> 'admin',
-				'ABBC3_BBCODE_ICONS' 		=> $this->ext_root_path . 'images/icons',
+				'ABBC3_BBCODE_ICONS' 		=> 'ext/vse/abbc3/images/icons',
 				'ABBC3_BBCODE_ICON_EXT'		=> $this->config['abbc3_icons_type'],
 				'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
 				'UA_ABBC3_BBVIDEO_WIZARD'	=> 'vse_abbc3_bbcode_wizard#a:1:{s:4:"mode";s:7:"bbvideo";}',

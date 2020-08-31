@@ -27,4 +27,26 @@ class ext extends \phpbb\extension\base
 		return phpbb_version_compare($config['version'], self::PHPBB_MIN_VERSION, '>=') &&
 			phpbb_version_compare(PHPBB_VERSION, self::PHPBB_MIN_VERSION, '>=');
 	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function enable_step($old_state)
+	{
+		if ($old_state === false)
+		{
+			$filesystem = $this->container->get('filesystem');
+			$root_path = $this->container->getParameter('core.root_path');
+
+			// Mirror copy ABBC3's icon dir into phpBB's images dir
+			if (!$filesystem->exists($root_path . 'images/abbc3/icons'))
+			{
+				$filesystem->mirror($root_path . 'ext/vse/abbc3/images/icons', $root_path . 'images/abbc3/icons');
+			}
+
+			return 'abbc3-step';
+		}
+
+		return parent::enable_step($old_state);
+	}
 }

@@ -45,9 +45,6 @@ class listener implements EventSubscriberInterface
 	/** @var user */
 	protected $user;
 
-	/** @var string phpBB root path */
-	protected $ext_root_path;
-
 	/**
 	 * Constructor
 	 *
@@ -58,10 +55,9 @@ class listener implements EventSubscriberInterface
 	 * @param helper          $helper
 	 * @param template        $template
 	 * @param user            $user
-	 * @param string          $ext_root_path
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, helper $helper, template $template, user $user, $ext_root_path)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, helper $helper, template $template, user $user)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
@@ -70,7 +66,6 @@ class listener implements EventSubscriberInterface
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
-		$this->ext_root_path = $ext_root_path;
 	}
 
 	/**
@@ -135,7 +130,7 @@ class listener implements EventSubscriberInterface
 	{
 		$this->template->assign_vars([
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
-			'ABBC3_BBCODE_ICONS'		=> $this->ext_root_path . 'images/icons',
+			'ABBC3_BBCODE_ICONS'		=> $this->bbcodes_display->get_icon_path(),
 			'ABBC3_BBCODE_ICON_EXT'		=> $this->config['abbc3_icons_type'],
 
 			'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
