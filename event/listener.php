@@ -130,8 +130,7 @@ class listener implements EventSubscriberInterface
 	{
 		$this->template->assign_vars([
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
-			'ABBC3_BBCODE_ICONS'		=> $this->bbcodes_display->get_icon_path(),
-			'ABBC3_BBCODE_ICON_EXT'		=> $this->config['abbc3_icons_type'],
+			'ABBC3_BBCODE_ICONS'		=> $this->bbcodes_display->get_icons(),
 
 			'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
 

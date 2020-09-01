@@ -57,9 +57,8 @@ class faq_test extends \phpbb_database_test_case
 			->disableOriginalConstructor()
 			->getMock();
 		$this->user = new \phpbb\user($this->language , '\phpbb\datetime');
-		$ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
-		$phpbb_extension_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
-		$bbcodes_display = new \vse\abbc3\core\bbcodes_display($config, $db, $phpbb_extension_manager, $this->user, $ext_root_path);
+		$phpbb_extension_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
+		$bbcodes_display = new \vse\abbc3\core\bbcodes_display($config, $db, $phpbb_extension_manager, $this->user, $phpbb_root_path);
 		$this->bbcodes_help = new \vse\abbc3\core\bbcodes_help($bbcodes_display, $db, $this->language, $this->template, $this->user);
 	}
 

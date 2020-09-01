@@ -89,24 +89,23 @@ class ext_test extends \phpbb_test_case
 	public function enable_test_data()
 	{
 		return [
-			[true, false, false, 'abbc3-step'],
-			[false, true, false, 'abbc3-step'],
+			[true, false, 'abbc3-step'],
+			[false, false, 'abbc3-step'],
 		];
 	}
 
 	/**
 	 * @dataProvider enable_test_data
 	 */
-	public function test_enable($exists, $mirrored, $old_state, $expected)
+	public function test_enable($exists, $old_state, $expected)
 	{
 		$filesystem = $this->getMockBuilder('\phpbb\filesystem\filesystem')
 			->disableOriginalConstructor()
-			->setMethods(['mirror', 'exists'])
+			->setMethods(['mkdir', 'exists'])
 			->getMock();
 
 		$filesystem->expects($exists ? self::never() : self::once())
-			->method('mirror')
-			->willReturn($mirrored);
+			->method('mkdir');
 
 		$filesystem->expects($old_state ? self::never() : self::once())
 			->method('exists')

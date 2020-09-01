@@ -40,7 +40,14 @@ class bbcodes_test extends \phpbb_database_test_case
 		$lang = new \phpbb\language\language($lang_loader);
 		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
 		$this->root_path = $phpbb_root_path;
-		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
+		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path,
+			[
+				'vse/abbc3' => [
+					'ext_name' => 'vse/abbc3',
+					'ext_active' => '1',
+					'ext_path' => 'ext/vse/abbc3/',
+				],
+			]);
 	}
 
 	protected function bbcodes_manager()
