@@ -62,11 +62,8 @@ class abbc3_module
 
 	/**
 	 * Main ACP module
-	 *
-	 * @param int    $id   The module ID (not used)
-	 * @param string $mode The module mode (manage|settings)
 	 */
-	public function main($id = 0, $mode = '')
+	public function main()
 	{
 		$this->tpl_name   = 'acp_abbc3_settings';
 		$this->page_title = $this->language->lang('ACP_ABBC3_SETTINGS');
