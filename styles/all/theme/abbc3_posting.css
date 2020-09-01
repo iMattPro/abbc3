@@ -66,11 +66,11 @@ form td .abbc3_buttons_row {
 }
 
 /* tweaks for ACP bbcode editor */
-#main #abbc3_buttons {
+#abbc3_buttons {
 	margin-left: 96px;
 }
 
-#main #abbc3_buttons .abbc3_buttons_row {
+#abbc3_buttons .abbc3_buttons_row {
 	width: 95%;
 }
 
