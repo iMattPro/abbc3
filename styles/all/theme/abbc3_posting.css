@@ -37,17 +37,17 @@
 }
 
 .abbc3_button:hover {
-	background-color: #ffffdf;
-	border: 1px solid #bc2a4d;
+	background-color: #ffffff;
+	border: 1px solid #b4bac0;
 	cursor: pointer;
 }
 
 .abbc3_buttons_row {
 	text-align: left;
 	background: #f9fbfd;
-	background: -moz-linear-gradient(top, #f9fbfd 0%, #f3f5f9 24%, #eceff2 38%, #e2e5ea 69%, #dfe2e7 72%, #d8dce2 93%, #d9dde2 100%);
-	background: -webkit-linear-gradient(top, #f9fbfd 0%, #f3f5f9 24%, #eceff2 38%, #e2e5ea 69%, #dfe2e7 72%, #d8dce2 93%, #d9dde2 100%);
-	background: linear-gradient(to bottom, #f9fbfd 0%, #f3f5f9 24%, #eceff2 38%, #e2e5ea 69%, #dfe2e7 72%, #d8dce2 93%, #d9dde2 100%);
+	background: -moz-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
+	background: -webkit-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
+	background: linear-gradient(to bottom, #f9fbfd 0%, #d9dde2 100%);
 	border: 1px solid #b4bac0;
 	display: block;
 	width: 80%;
