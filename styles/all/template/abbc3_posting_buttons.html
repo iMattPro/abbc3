@@ -181,29 +181,29 @@ function bbspecial(bbcode, bbcodeId) {
 
 <div id="abbc3_buttons">
 	<div class="abbc3_buttons_row">
-		<input type="button" class="abbc3_button" accesskey="b" name="addbbcode0" value="{{ not ABBC3_BBCODE_ICONS.bold ? ' B ' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.bold }}');" onclick="bbstyle(0)" title="{{ lang('BBCODE_B_HELP') }}" />
-		<input type="button" class="abbc3_button" accesskey="i" name="addbbcode2" value="{{ not ABBC3_BBCODE_ICONS.italic ? ' i ' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.italic }}');" onclick="bbstyle(2)" title="{{ lang('BBCODE_I_HELP') }}" />
-		<input type="button" class="abbc3_button" accesskey="u" name="addbbcode4" value="{{ not ABBC3_BBCODE_ICONS.underline ? ' u ' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.underline }}');" onclick="bbstyle(4)" title="{{ lang('BBCODE_U_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="b" name="addbbcode0" value="{{ not ABBC3_BBCODE_ICONS.bold ? ' B ' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.bold }}');" onclick="bbstyle(0)" title="{{ lang('BBCODE_B_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="i" name="addbbcode2" value="{{ not ABBC3_BBCODE_ICONS.italic ? ' i ' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.italic }}');" onclick="bbstyle(2)" title="{{ lang('BBCODE_I_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="u" name="addbbcode4" value="{{ not ABBC3_BBCODE_ICONS.underline ? ' u ' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.underline }}');" onclick="bbstyle(4)" title="{{ lang('BBCODE_U_HELP') }}" />
 		{% if S_BBCODE_QUOTE %}
-			<input type="button" class="abbc3_button" accesskey="q" name="addbbcode6" value="{{ not ABBC3_BBCODE_ICONS.quote ? 'Quote' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.quote }}');" onclick="bbstyle(6)" title="{{ lang('BBCODE_Q_HELP') }}" />
+			<input type="button" class="abbc3_button" accesskey="q" name="addbbcode6" value="{{ not ABBC3_BBCODE_ICONS.quote ? 'Quote' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.quote }}');" onclick="bbstyle(6)" title="{{ lang('BBCODE_Q_HELP') }}" />
 		{% endif %}
-		<input type="button" class="abbc3_button" accesskey="c" name="addbbcode8" value="{{ not ABBC3_BBCODE_ICONS.code ? 'Code' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.code }}');" onclick="bbstyle(8)" title="{{ lang('BBCODE_C_HELP') }}" />
-		<input type="button" class="abbc3_button" accesskey="l" name="addbbcode10" value="{{ not ABBC3_BBCODE_ICONS.listb ? 'List' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.listb }}');" onclick="bbstyle(10)" title="{{ lang('BBCODE_L_HELP') }}" />
-		<input type="button" class="abbc3_button" accesskey="o" name="addbbcode12" value="{{ not ABBC3_BBCODE_ICONS.listo ? 'List=' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.listo }}');" onclick="bbstyle(12)" title="{{ lang('BBCODE_O_HELP') }}" />
-		<input type="button" class="abbc3_button" accesskey="y" name="addlistitem" value="{{ not ABBC3_BBCODE_ICONS.listitem ? '[*]' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.listitem }}');" onclick="bbstyle(-1)" title="{{ lang('BBCODE_LISTITEM_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="c" name="addbbcode8" value="{{ not ABBC3_BBCODE_ICONS.code ? 'Code' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.code }}');" onclick="bbstyle(8)" title="{{ lang('BBCODE_C_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="l" name="addbbcode10" value="{{ not ABBC3_BBCODE_ICONS.listb ? 'List' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.listb }}');" onclick="bbstyle(10)" title="{{ lang('BBCODE_L_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="o" name="addbbcode12" value="{{ not ABBC3_BBCODE_ICONS.listo ? 'List=' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.listo }}');" onclick="bbstyle(12)" title="{{ lang('BBCODE_O_HELP') }}" />
+		<input type="button" class="abbc3_button" accesskey="y" name="addlistitem" value="{{ not ABBC3_BBCODE_ICONS.listitem ? '[*]' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.listitem }}');" onclick="bbstyle(-1)" title="{{ lang('BBCODE_LISTITEM_HELP') }}" />
 		{% if S_BBCODE_IMG %}
-			<input type="button" class="abbc3_button" accesskey="p" name="addbbcode14" value="{{ not ABBC3_BBCODE_ICONS.img ? 'Img' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.img }}');" onclick="bbstyle(14)" title="{{ lang('BBCODE_P_HELP') }}" />
+			<input type="button" class="abbc3_button" accesskey="p" name="addbbcode14" value="{{ not ABBC3_BBCODE_ICONS.img ? 'Img' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.img }}');" onclick="bbstyle(14)" title="{{ lang('BBCODE_P_HELP') }}" />
 		{% endif %}
 		{% if S_LINKS_ALLOWED %}
-			<input type="button" class="abbc3_button" accesskey="w" name="addbbcode16" value="{{ not ABBC3_BBCODE_ICONS.url ? 'URL' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.url }}');" onclick="bbspecial('url')" title="{{ lang('BBCODE_W_HELP') }}" />
+			<input type="button" class="abbc3_button" accesskey="w" name="addbbcode16" value="{{ not ABBC3_BBCODE_ICONS.url ? 'URL' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.url }}');" onclick="bbspecial('url')" title="{{ lang('BBCODE_W_HELP') }}" />
 		{% endif %}
 		{% if S_BBCODE_FLASH %}
-			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value="{{ not ABBC3_BBCODE_ICONS.flash ? 'Flash' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.flash }}');" onclick="bbstyle(18)" title="{{ lang('BBCODE_D_HELP') }}" />
+			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value="{{ not ABBC3_BBCODE_ICONS.flash ? 'Flash' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.flash }}');" onclick="bbstyle(18)" title="{{ lang('BBCODE_D_HELP') }}" />
 		{% endif %}
 		{% if S_BBCODE_MEDIA %}
-			<input type="button" class="abbc3_button" accesskey="m" name="addmedia" value="{{ not ABBC3_BBCODE_ICONS.media ? 'Media' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.media }}');" onclick="bbfontstyle('[media]', '[/media]');" title="{{ lang('BBCODE_MEDIA_HELP') }}" />
+			<input type="button" class="abbc3_button" accesskey="m" name="addmedia" value="{{ not ABBC3_BBCODE_ICONS.media ? 'Media' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.media }}');" onclick="bbfontstyle('[media]', '[/media]');" title="{{ lang('BBCODE_MEDIA_HELP') }}" />
 		{% endif %}
-		<input type="button" class="abbc3_button" name="abbc3_bbpalette" id="abbc3_bbpalette" value="{{ not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR') }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.fontcolor }}');" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}" />
+		<input type="button" class="abbc3_button" name="abbc3_bbpalette" id="abbc3_bbpalette" value="{{ not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR') }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.fontcolor }}');" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}" />
 		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
 			<option value="50">{{ lang('FONT_TINY') }}</option>
 			<option value="85">{{ lang('FONT_SMALL') }}</option>
@@ -215,9 +215,9 @@ function bbspecial(bbcode, bbcodeId) {
 				{% endif %}
 			{% endif %}
 		</select>
-		<input type="button" class="abbc3_button" name="copybbcode" value="{{ not ABBC3_BBCODE_ICONS.copy ? 'copy' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.copy }}');" onclick="bbspecial('abbc3_copy')" title="{{ lang('ABBC3_COPY_BBCODE') }}">
-		<input type="button" class="abbc3_button" name="pastebbcode" value="{{ not ABBC3_BBCODE_ICONS.paste ? 'paste' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.paste }}');" onclick="bbspecial('abbc3_paste')" title="{{ lang('ABBC3_PASTE_BBCODE') }}">
-		<input type="button" class="abbc3_button" name="plainbbcode" value="{{ not ABBC3_BBCODE_ICONS.plain ? 'clear' }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.plain }}');" onclick="bbspecial('abbc3_plain')" title="{{ lang('ABBC3_PLAIN_BBCODE') }}">
+		<input type="button" class="abbc3_button" name="copybbcode" value="{{ not ABBC3_BBCODE_ICONS.copy ? 'copy' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.copy }}');" onclick="bbspecial('abbc3_copy')" title="{{ lang('ABBC3_COPY_BBCODE') }}">
+		<input type="button" class="abbc3_button" name="pastebbcode" value="{{ not ABBC3_BBCODE_ICONS.paste ? 'paste' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.paste }}');" onclick="bbspecial('abbc3_paste')" title="{{ lang('ABBC3_PASTE_BBCODE') }}">
+		<input type="button" class="abbc3_button" name="plainbbcode" value="{{ not ABBC3_BBCODE_ICONS.plain ? 'clear' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.plain }}');" onclick="bbspecial('abbc3_plain')" title="{{ lang('ABBC3_PLAIN_BBCODE') }}">
 		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 	</div>
 	{% if custom_tags %}
@@ -265,7 +265,7 @@ function bbspecial(bbcode, bbcodeId) {
 							</optgroup>
 						</select>
 					{% else %}
-						<input type="button" class="abbc3_button" name="addbbcode{{ custom_tag.BBCODE_ID }}" value=" {{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }} "{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}" />
+						<input type="button" class="abbc3_button" name="addbbcode{{ custom_tag.BBCODE_ID }}" value=" {{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }} "{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}" />
 					{% endif %}
 				{% endif %}
 			{% endfor %}
