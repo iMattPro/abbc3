@@ -150,10 +150,12 @@ function bbspecial(bbcode, bbcodeId) {
 		case 'bbvideo':
 		case 'BBvideo':
 		case 'BBvideo=':
+		case 'media':
+			var tag = (bbcode === 'media') ? bbcode : 'bbvideo';
 			if (theSelection || phpbb.isTouch) {
-				bbfontstyle('[bbvideo]', '[/bbvideo]');
+				bbfontstyle('[' + tag + ']', '[/' + tag + ']');
 			} else {
-				bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', 'bbvideo');
+				bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', tag);
 			}
 			break;
 
@@ -161,7 +163,7 @@ function bbspecial(bbcode, bbcodeId) {
 			if (theSelection || phpbb.isTouch) {
 				bbstyle(16);
 			} else {
-				bbwizard('{{ UA_ABBC3_URL_WIZARD }}', 'url');
+				bbwizard('{{ UA_ABBC3_URL_WIZARD }}', bbcode);
 			}
 			break;
 
@@ -201,7 +203,7 @@ function bbspecial(bbcode, bbcodeId) {
 			<input type="button" class="abbc3_button" accesskey="d" name="addbbcode18" value="{{ not ABBC3_BBCODE_ICONS.flash ? 'Flash' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.flash }}');" onclick="bbstyle(18)" title="{{ lang('BBCODE_D_HELP') }}" />
 		{% endif %}
 		{% if S_BBCODE_MEDIA %}
-			<input type="button" class="abbc3_button" accesskey="m" name="addmedia" value="{{ not ABBC3_BBCODE_ICONS.media ? 'Media' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.media }}');" onclick="bbfontstyle('[media]', '[/media]');" title="{{ lang('BBCODE_MEDIA_HELP') }}" />
+			<input type="button" class="abbc3_button" accesskey="m" name="addmedia" value="{{ not ABBC3_BBCODE_ICONS.media ? 'Media' }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.media }}');" onclick="bbspecial('media');" title="{{ lang('BBCODE_MEDIA_HELP') }}" />
 		{% endif %}
 		<input type="button" class="abbc3_button" name="abbc3_bbpalette" id="abbc3_bbpalette" value="{{ not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR') }}" style="background-image:url('{{ ABBC3_BBCODE_ICONS.fontcolor }}');" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}" />
 		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">

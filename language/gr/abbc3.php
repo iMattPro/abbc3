@@ -79,7 +79,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Παράδειγμα',
 
 	// BBvideo Wizard
-	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo επιτρεπόμενα sites',
+	'ABBC3_BBVIDEO_SITES'		=> 'επιτρεπόμενα sites',
 	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
 
 	// URL Wizard

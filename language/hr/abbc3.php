@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Primjer',
 
 	// BBvideo Wizard
-	'ABBC3_BBVIDEO_SITES'		=> 'BBvideo dopuštene stranice',
+	'ABBC3_BBVIDEO_SITES'		=> 'Dopuštene stranice',
 	'ABBC3_BBVIDEO_LINK'		=> 'URL videa',
 
 	// URL Wizard
