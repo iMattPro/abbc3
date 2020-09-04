@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.3.0-dev - xx-xx-xxxx
+
+- Replaced the antiquated, pixelated GIF BBCode icons with two new SVG and PNG icon sets.
+- Added an all new ACP settings section to the Extensions tab of the ACP:
+  - Toggle between SVG or PNG icon sets for the ABBC3 Icon bar.
+  - Enable or disable the ABBC3 Icon bar.
+  - Enable or disable the Pipe Tables plugin.
+- Created an ABBC3 folder in phpBB's images folder. Now you can add your BBCode icons to this folder which won't be deleted when updating ABBC3.
+- BBVideo deprecation continues: If you have the phpBB Media Embed PlugIn installed, its `[media]` BBCode button now behaves just like the `[bbvideo]` button and opens the BBVideo wizard. You may now hide the `[bbvideo]` BBCode if you prefer to use the `[media]` BBCode (or vice versa) by turning off its display on posting page setting.
+
 ## 3.2.4 - 08-10-2020
 
 - Fixed an issue causing circular dependency errors when co-installed with mChat in phpBB 3.3.1.
