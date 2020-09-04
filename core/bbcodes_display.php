@@ -4,7 +4,7 @@
  * Advanced BBCode Box
  *
  * @copyright (c) 2013 Matt Friedman
- * @license       GNU General Public License, version 2 (GPL-2.0)
+ * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
 
@@ -134,7 +134,7 @@ class bbcodes_display
 	 * Get paths/names to ABBC3's BBCode icons.
 	 * Search in ABBC3's icons dir and also the core's images dir.
 	 *
-	 * @return array Array of icon paths: ['img.svg' => 'ext/vse/abbc3/images/icons/img.svg']
+	 * @return array Array of icon paths: ['img.svg' => './ext/vse/abbc3/images/icons/img.svg']
 	 * @access public
 	 */
 	public function get_icons()
