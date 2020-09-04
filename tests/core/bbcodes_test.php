@@ -131,7 +131,7 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	public function display_bbcodes_data()
 	{
-		$this->root_path = 'ext/vse/abbc3/';
+		global $phpbb_root_path;
 
 		$bbcode_data = $this->bbcode_data();
 
@@ -145,15 +145,15 @@ class bbcodes_test extends \phpbb_database_test_case
 				],
 				[
 					[
-						'BBCODE_IMG' => $this->root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[1]['bbcode_tag'] . '.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					],
 					[
-						'BBCODE_IMG' => $this->root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[2]['bbcode_tag'] . '.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					],
 					[
-						'BBCODE_IMG' => $this->root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[3]['bbcode_tag'] . '.svg',
 						'S_CUSTOM_BBCODE_ALLOWED' => false,
 					],
 				],
