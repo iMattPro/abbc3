@@ -102,8 +102,8 @@ class abbc3_module
 	 */
 	protected function save_settings()
 	{
-		$this->config->set('abbc3_bbcode_bar', $this->request->variable('abbc3_bbcode_bar', 0));
-		$this->config->set('abbc3_icons_type', $this->request->variable('abbc3_icons_type', 'svg'));
+		$this->config->set('abbc3_bbcode_bar', $this->request->variable('abbc3_bbcode_bar', 1));
+		$this->config->set('abbc3_icons_type', $this->request->variable('abbc3_icons_type', 'png'));
 		$this->save_pipes();
 
 		trigger_error($this->language->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));

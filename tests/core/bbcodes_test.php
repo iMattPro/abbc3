@@ -34,7 +34,7 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		parent::setUp();
 
-		$this->config = new \phpbb\config\config(['abbc3_icons_type' => 'svg']);
+		$this->config = new \phpbb\config\config(['abbc3_icons_type' => 'png']);
 		$this->db = $this->new_dbal();
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$lang = new \phpbb\language\language($lang_loader);
@@ -145,15 +145,15 @@ class bbcodes_test extends \phpbb_database_test_case
 				],
 				[
 					[
-						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[1]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[1]['bbcode_tag'] . '.png',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					],
 					[
-						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[2]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[2]['bbcode_tag'] . '.png',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
 					],
 					[
-						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[3]['bbcode_tag'] . '.svg',
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[3]['bbcode_tag'] . '.png',
 						'S_CUSTOM_BBCODE_ALLOWED' => false,
 					],
 				],

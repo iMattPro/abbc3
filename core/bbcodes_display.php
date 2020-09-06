@@ -134,7 +134,7 @@ class bbcodes_display
 	 * Get paths/names to ABBC3's BBCode icons.
 	 * Search in ABBC3's icons dir and also the core's images dir.
 	 *
-	 * @return array Array of icon paths: ['img.svg' => './ext/vse/abbc3/images/icons/img.svg']
+	 * @return array Array of icon paths: ['foo' => './ext/vse/abbc3/images/icons/foo.png']
 	 * @access public
 	 */
 	public function get_icons()

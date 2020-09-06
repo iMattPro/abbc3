@@ -43,7 +43,7 @@ class v330_m13_acp extends \phpbb\db\migration\migration
 		return [
 			['config.add', ['abbc3_pipes', 1]],
 			['config.add', ['abbc3_bbcode_bar', 1]],
-			['config.add', ['abbc3_icons_type', 'svg']],
+			['config.add', ['abbc3_icons_type', 'png']],
 
 			['module.add', ['acp', 'ACP_CAT_DOT_MODS', 'ACP_ABBC3_MODULE']],
 			['module.add', ['acp', 'ACP_ABBC3_MODULE', [
