@@ -49,15 +49,13 @@ class abbc3_module
 	{
 		global $phpbb_container;
 
-		$this->container   = $phpbb_container;
-		$this->cache       = $this->container->get('cache');
-		$this->config      = $this->container->get('config');
-		$this->db          = $this->container->get('dbal.conn');
-		$this->language    = $this->container->get('language');
-		$this->request     = $this->container->get('request');
-		$this->template    = $this->container->get('template');
-
-		$this->language->add_lang('abbc3', 'vse/abbc3');
+		$this->container = $phpbb_container;
+		$this->cache     = $this->container->get('cache');
+		$this->config    = $this->container->get('config');
+		$this->db        = $this->container->get('dbal.conn');
+		$this->language  = $this->container->get('language');
+		$this->request   = $this->container->get('request');
+		$this->template  = $this->container->get('template');
 	}
 
 	/**
@@ -65,6 +63,8 @@ class abbc3_module
 	 */
 	public function main()
 	{
+		$this->language->add_lang('abbc3', 'vse/abbc3');
+
 		$this->tpl_name   = 'acp_abbc3_settings';
 		$this->page_title = $this->language->lang('ACP_ABBC3_SETTINGS');
 
