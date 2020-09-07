@@ -1,4 +1,5 @@
 {% include 'overall_header.html' %}
+{% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
 
 <h1>{{ lang('ACP_ABBC3_MODULE') }}</h1>
 
@@ -16,6 +17,21 @@
 			<dt><label for="abbc3_icons_type">{{ lang('ABBC3_ICONS_TYPE') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</span></dt>
 			<dd>
 				<select name="abbc3_icons_type" id="abbc3_icons_type">{{ S_ABBC3_ICONS_TYPE }}</select>
+				{% for img in ['png', 'svg'] %}
+					<div class="abbc3-bar abbc3-icons-{{ img }} hidden">
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/bold.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/italic.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/underline.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/quote.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/code.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/listb.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/listo.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/listitem.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/img.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/url.{{ img }}')"></span>
+						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/fontcolor.{{ img }}')"></span>
+					</div>
+				{% endfor %}
 			</dd>
 		</dl>
 	</fieldset>
@@ -33,5 +49,15 @@
 		{{ S_FORM_TOKEN }}
 	</fieldset>
 </form>
+
+<script>
+	const select = document.querySelector("select[name='abbc3_icons_type']");
+	document.querySelector(".abbc3-icons-" + select.value).classList.toggle("hidden");
+	select.addEventListener("change", () => {
+		document.querySelectorAll(".abbc3-bar").forEach(bar => {
+			bar.classList.toggle("hidden");
+		});
+	});
+</script>
 
 {% include 'overall_footer.html' %}

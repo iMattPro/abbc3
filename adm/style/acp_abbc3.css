@@ -22,3 +22,31 @@
 	margin: 10px 0;
 	padding: 10px 10px 10px 60px;
 }
+
+#abbc3_icons_type {
+	vertical-align: top;
+}
+
+.abbc3-bar {
+	background: #f9fbfd;
+	background: -moz-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
+	background: -webkit-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
+	background: linear-gradient(to bottom, #f9fbfd 0%, #d9dde2 100%);
+	border: 1px solid #b4bac0;
+	display: inline-flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 30px;
+	margin: 0 10px;
+}
+
+.abbc3-bar span {
+	background-size: 20px;
+	width: 20px;
+	height: 20px;
+	margin: 0 2px;
+}
+
+.hidden {
+	display: none;
+}
