@@ -59,6 +59,7 @@ class module_test extends \phpbb_database_test_case
 			'enable_mod_rewrite' => '0',
 			'abbc3_icons_type' => 'png',
 			'abbc3_bbcode_bar' => 1,
+			'abbc3_qr_bbcodes' => 1,
 			'abbc3_pipes' => 1,
 		]);
 		$this->db = $this->new_dbal();
@@ -119,6 +120,7 @@ class module_test extends \phpbb_database_test_case
 			->with([
 				'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
 				'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
+				'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 				'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
 				'U_ACTION'				=> $module->u_action,
 			]);

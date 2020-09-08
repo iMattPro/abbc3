@@ -92,6 +92,7 @@ class abbc3_module
 		$this->template->assign_vars([
 			'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
 			'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
+			'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 			'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
 			'U_ACTION'				=> $this->u_action,
 		]);
@@ -102,7 +103,8 @@ class abbc3_module
 	 */
 	protected function save_settings()
 	{
-		$this->config->set('abbc3_bbcode_bar', $this->request->variable('abbc3_bbcode_bar', 1));
+		$this->config->set('abbc3_bbcode_bar', $this->request->variable('abbc3_bbcode_bar', 0));
+		$this->config->set('abbc3_qr_bbcodes', $this->request->variable('abbc3_qr_bbcodes', 0));
 		$this->config->set('abbc3_icons_type', $this->request->variable('abbc3_icons_type', 'png'));
 		$this->save_pipes();
 

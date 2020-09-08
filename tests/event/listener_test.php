@@ -34,6 +34,8 @@ class listener_test extends listener_base
 			'core.text_formatter_s9e_parser_setup',
 			'core.text_formatter_s9e_configure_after',
 			'core.help_manager_add_block_after',
+			'core.viewtopic_modify_quick_reply_template_vars',
+			'core.viewtopic_modify_page_title',
 		], array_keys(\vse\abbc3\event\listener::getSubscribedEvents()));
 	}
 }

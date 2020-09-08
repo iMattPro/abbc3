@@ -38,6 +38,11 @@
 	<fieldset>
 		<legend>{{ lang('ABBC3_LEGEND_ADD_ONS') }}</legend>
 		<dl>
+			<dt><label for="abbc3_qr_bbcodes">{{ lang('ABBC3_QR_BBCODES') ~ lang('COLON') }}</label><br /><span>{{ lang('ABBC3_QR_BBCODES_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="abbc3_qr_bbcodes" id="abbc3_qr_bbcodes" value="1" {% if S_ABBC3_QR_BBCODES %}checked="checked"{% endif %}/> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="abbc3_qr_bbcodes" value="0" {% if not S_ABBC3_QR_BBCODES %}checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>
+		</dl>
+		<dl>
 			<dt><label for="abbc3_pipes">{{ lang('ABBC3_PIPES') ~ lang('COLON') }}</label><br /><span>{{ lang('ABBC3_PIPES_EXPLAIN') }}</span></dt>
 			<dd><label><input type="radio" class="radio" name="abbc3_pipes" id="abbc3_pipes" value="1" {% if S_ABBC3_PIPES %}checked="checked"{% endif %}/> {{ lang('YES') }}</label>
 				<label><input type="radio" class="radio" name="abbc3_pipes" value="0" {% if not S_ABBC3_PIPES %}checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>

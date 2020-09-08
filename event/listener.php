@@ -45,6 +45,8 @@ class listener implements EventSubscriberInterface
 	/** @var user */
 	protected $user;
 
+	protected $quick_reply = false;
+
 	/**
 	 * Constructor
 	 *
@@ -88,6 +90,9 @@ class listener implements EventSubscriberInterface
 			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force lowest priority
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
+
+			'core.viewtopic_modify_quick_reply_template_vars' 	=> 'set_quick_reply',
+			'core.viewtopic_modify_page_title'					=> 'add_to_quickreply',
 		];
 	}
 
@@ -176,6 +181,7 @@ class listener implements EventSubscriberInterface
 	 * Configure TextFormatter powered PlugIns and BBCodes
 	 *
 	 * @param \phpbb\event\data $event The event object
+	 * @access public
 	 */
 	public function configure_bbcodes($event)
 	{
@@ -198,6 +204,31 @@ class listener implements EventSubscriberInterface
 		if ($event['block_name'] === 'HELP_BBCODE_BLOCK_OTHERS')
 		{
 			$this->bbcodes_help->faq();
+		}
+	}
+
+	/**
+	 * If Quick Reply allowed, set our quick_reply property.
+	 *
+	 * @access public
+	 */
+	public function set_quick_reply()
+	{
+		$this->quick_reply = $this->config['abbc3_qr_bbcodes'];
+	}
+
+	/**
+	 * Add BBCodes to Quick Reply.
+	 *
+	 * @access public
+	 */
+	public function add_to_quickreply()
+	{
+		if ($this->quick_reply)
+		{
+			$this->user->add_lang('posting');
+			$this->template->assign_var('S_BBCODE_ALLOWED', true);
+			display_custom_bbcodes();
 		}
 	}
 }

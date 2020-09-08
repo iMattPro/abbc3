@@ -3,9 +3,11 @@
 ## 3.3.0-dev - xxxx-xx-xx
 
 - Replaced the antiquated, pixelated GIF BBCode icons with two new SVG and PNG icon sets.
+- Added BBCodes to Quick Reply.
 - Added an all new ACP settings section to the Extensions tab of the ACP:
   - Toggle between SVG or PNG icon sets for the ABBC3 Icon bar.
   - Enable or disable the ABBC3 Icon bar.
+  - Enable or disable the Quick Reply BBCodes.
   - Enable or disable the Pipe Tables plugin.
 - Created an ABBC3 folder in phpBB's images folder. Now you can add your BBCode icons to this folder which won't be deleted when updating ABBC3.
 - BBVideo deprecation continues: 
