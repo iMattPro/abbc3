@@ -43,4 +43,13 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 		$crawler = self::request('GET', 'ucp.php?i=pm&mode=compose&sid=' . $this->sid);
 		self::assertGreaterThan(0, $crawler->filter('#abbc3_buttons')->count());
 	}
+
+	/**
+	 * Test quick reply for presence of our BBCodes template data
+	 */
+	public function test_quick_reply()
+	{
+		$crawler = self::request('GET', 'viewtopic.php?f=2&p=1&sid=' . $this->sid);
+		self::assertGreaterThan(0, $crawler->filter('#abbc3_buttons')->count());
+	}
 }
