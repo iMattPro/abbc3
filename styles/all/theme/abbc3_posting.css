@@ -27,13 +27,23 @@
 
 .abbc3_button {
 	font-size: 11px;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
 	background: transparent no-repeat center;
 	background-size: 20px;
 	border: 1px solid transparent;
+	display: inline-block;
 	min-width: 24px;
 	height: 24px;
 	margin: 4px 0;
 	padding: 0;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .abbc3_button:hover {
