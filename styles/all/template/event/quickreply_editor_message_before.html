@@ -1,1 +1,3 @@
-{% include S_BBCODE_ALLOWED ? 'posting_buttons.html' %}
+{% if S_BBCODE_ALLOWED %}
+	{% include 'posting_buttons.html' %}
+{% endif %}
