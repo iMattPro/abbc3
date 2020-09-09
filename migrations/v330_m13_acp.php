@@ -51,6 +51,14 @@ class v330_m13_acp extends \phpbb\db\migration\migration
 				'module_basename'	=> '\vse\abbc3\acp\abbc3_module',
 				'modes'				=> ['settings'],
 			]]],
+			// Add phpBB's BBCodes settings to the ABBC3 module (this for convenience to the user)
+			['module.add', ['acp', 'ACP_ABBC3_MODULE', [
+				'module_basename'	=> 'acp_bbcodes',
+				'module_langname'	=> 'ACP_BBCODES',
+				'module_mode'		=> 'bbcodes',
+				'module_auth'		=> 'ext_vse/abbc3 && acl_a_bbcode',
+				'after'				=> ['settings', 'ACP_ABBC3_SETTINGS'],
+			]]],
 		];
 	}
 }
