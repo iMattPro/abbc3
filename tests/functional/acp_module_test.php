@@ -77,6 +77,6 @@ class acp_module_test extends \phpbb_functional_test_case
 		$form_data = ['enable_quick_reply' => 1];
 		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
 		$crawler = self::submit($form, $form_data);
-		$this->assertContainsLang('FORUM_UPDATED', $crawler->filter('.successbox')->text());
+		self::assertGreaterThan(0, $crawler->filter('.successbox')->count());
 	}
 }

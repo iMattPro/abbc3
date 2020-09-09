@@ -39,9 +39,6 @@ class bbcodes_display
 	/** @var array */
 	protected $memberships;
 
-	/** @var string */
-	protected $icon_path;
-
 	/**
 	 * Constructor
 	 *
