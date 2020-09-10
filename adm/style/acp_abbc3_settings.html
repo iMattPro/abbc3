@@ -9,9 +9,9 @@
 	<fieldset>
 		<legend>{{ lang('ABBC3_LEGEND_ICON_BAR') }}</legend>
 		<dl>
-			<dt><label for="abbc3_bbcode_bar">{{ lang('ABBC3_BBCODE_BAR') ~ lang('COLON') }}</label><br /><span>{{ lang('ABBC3_BBCODE_BAR_EXPLAIN') }}</span></dt>
-			<dd><label><input type="radio" class="radio" name="abbc3_bbcode_bar" id="abbc3_bbcode_bar" value="1" {% if S_ABBC3_BBCODE_BAR %}checked="checked"{% endif %}/> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="abbc3_bbcode_bar" value="0" {% if not S_ABBC3_BBCODE_BAR %}checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>
+			<dt><label for="abbc3_bbcode_bar">{{ lang('ABBC3_BBCODE_BAR') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_BBCODE_BAR_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="abbc3_bbcode_bar" id="abbc3_bbcode_bar" value="1"{% if S_ABBC3_BBCODE_BAR %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="abbc3_bbcode_bar" value="0"{% if not S_ABBC3_BBCODE_BAR %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
 		</dl>
 		<dl>
 			<dt><label for="abbc3_icons_type">{{ lang('ABBC3_ICONS_TYPE') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</span></dt>
@@ -38,19 +38,19 @@
 	<fieldset>
 		<legend>{{ lang('ABBC3_LEGEND_ADD_ONS') }}</legend>
 		<dl>
-			<dt><label for="abbc3_qr_bbcodes">{{ lang('ABBC3_QR_BBCODES') ~ lang('COLON') }}</label><br /><span>{{ lang('ABBC3_QR_BBCODES_EXPLAIN') }}</span></dt>
-			<dd><label><input type="radio" class="radio" name="abbc3_qr_bbcodes" id="abbc3_qr_bbcodes" value="1" {% if S_ABBC3_QR_BBCODES %}checked="checked"{% endif %}/> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="abbc3_qr_bbcodes" value="0" {% if not S_ABBC3_QR_BBCODES %}checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>
+			<dt><label for="abbc3_qr_bbcodes">{{ lang('ABBC3_QR_BBCODES') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_QR_BBCODES_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="abbc3_qr_bbcodes" id="abbc3_qr_bbcodes" value="1"{% if S_ABBC3_QR_BBCODES %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="abbc3_qr_bbcodes" value="0"{% if not S_ABBC3_QR_BBCODES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
 		</dl>
 		<dl>
-			<dt><label for="abbc3_pipes">{{ lang('ABBC3_PIPES') ~ lang('COLON') }}</label><br /><span>{{ lang('ABBC3_PIPES_EXPLAIN') }}</span></dt>
-			<dd><label><input type="radio" class="radio" name="abbc3_pipes" id="abbc3_pipes" value="1" {% if S_ABBC3_PIPES %}checked="checked"{% endif %}/> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="abbc3_pipes" value="0" {% if not S_ABBC3_PIPES %}checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>
+			<dt><label for="abbc3_pipes">{{ lang('ABBC3_PIPES') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_PIPES_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="abbc3_pipes" id="abbc3_pipes" value="1"{% if S_ABBC3_PIPES %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="abbc3_pipes" value="0"{% if not S_ABBC3_PIPES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
 		</dl>
 	</fieldset>
 	<fieldset class="submit-buttons">
-		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />&nbsp;
-		<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}">
 		{{ S_FORM_TOKEN }}
 	</fieldset>
 </form>
