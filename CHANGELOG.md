@@ -10,6 +10,7 @@
   - Enable or disable the Quick Reply BBCodes.
   - Enable or disable the Pipe Tables plugin.
 - Created an ABBC3 folder in phpBB's images folder. Now you can add your BBCode icons to this folder which won't be deleted when updating ABBC3.
+- BBCodes with no associated icon image will display like a standard phpBB BBCode.
 - BBVideo deprecation continues: 
   - If you have the phpBB Media Embed PlugIn installed, its `[media]` BBCode button now behaves just like the `[bbvideo]` button and opens the BBVideo wizard. You may now hide the `[bbvideo]` BBCode if you prefer to use the `[media]` BBCode (or vice versa) by turning off its display on posting page setting.
 - Added Open Sans to font BBCodes list since it is part of phpBB Prosilver.
