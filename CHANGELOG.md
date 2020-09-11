@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.3.0-dev - xxxx-xx-xx
+## 3.3.0 - 2020-09-11
 
 - Replaced the antiquated, pixelated GIF BBCode icons with two new SVG and PNG icon sets.
 - Added BBCodes to Quick Reply.
