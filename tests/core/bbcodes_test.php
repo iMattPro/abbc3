@@ -104,29 +104,36 @@ class bbcodes_test extends \phpbb_database_test_case
 	 * on registered bbcodes for users not in a group allowed to use it.
 	 *
 	 * @dataProvider allowed_bbcodes_data
+	 * @param $user_id
+	 * @param $data
+	 * @param $disable
 	 */
 	public function test_allow_custom_bbcodes($user_id, $data, $disable)
 	{
-		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit_Framework_MockObject_MockObject $parser */
-		$parser = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
+		/** @var \s9e\TextFormatter\Parser|\PHPUnit_Framework_MockObject_MockObject $parser */
+		$parser = $this->getMockBuilder('\s9e\TextFormatter\Parser')
 			->disableOriginalConstructor()
 			->getMock();
-		$parser->expects(self::once())
-			->method('get_parser')
-			->will(self::returnSelf());
 		$parser->registeredVars['abbc3.bbcode_groups'] = [
 			$data['bbcode_tag'] => $data['bbcode_group'],
 		];
 
-		$parser->expects($disable ? self::once() : self::never())
+		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit_Framework_MockObject_MockObject $service */
+		$service = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
+			->disableOriginalConstructor()
+			->getMock();
+		$service->expects($disable ? self::once() : self::never())
 			->method('disable_bbcode')
 			->with($data['bbcode_tag']);
+		$service->expects(self::once())
+			->method('get_parser')
+			->willReturn($parser);
 
 		$this->user->data['user_id'] = $user_id;
 
 		$bbcodes_manager = $this->bbcodes_manager();
 
-		$bbcodes_manager->allow_custom_bbcodes($parser);
+		$bbcodes_manager->allow_custom_bbcodes($service);
 	}
 
 	public function display_bbcodes_data()
@@ -162,8 +169,11 @@ class bbcodes_test extends \phpbb_database_test_case
 	}
 
 	/**
-	* @dataProvider display_bbcodes_data
-	*/
+	 * @dataProvider display_bbcodes_data
+	 * @param $user_id
+	 * @param $data
+	 * @param $expected
+	 */
 	public function test_display_custom_bbcodes($user_id, $data, $expected)
 	{
 		$this->user->data['user_id'] = $user_id;
@@ -194,8 +204,11 @@ class bbcodes_test extends \phpbb_database_test_case
 	}
 
 	/**
-	* @dataProvider bbcode_group_data
-	*/
+	 * @dataProvider bbcode_group_data
+	 * @param $user_id
+	 * @param $group_ids
+	 * @param $expected
+	 */
 	public function test_user_in_bbcode_group($user_id, $group_ids, $expected)
 	{
 		$this->user->data['user_id'] = $user_id;

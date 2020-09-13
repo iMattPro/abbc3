@@ -10,6 +10,8 @@
 
 namespace vse\abbc3\acp;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 require_once __DIR__ . '/../../../../../includes/functions_acp.php';
 
 class module_test extends \phpbb_database_test_case
@@ -79,30 +81,16 @@ class module_test extends \phpbb_database_test_case
 	 */
 	public function get_main_module()
 	{
-		$this->container->expects(self::at(0))
+		$this->container->expects(self::atLeastOnce())
 			->method('get')
-			->with('cache')
-			->willReturn($this->cache);
-		$this->container->expects(self::at(1))
-			->method('get')
-			->with('config')
-			->willReturn($this->config);
-		$this->container->expects(self::at(2))
-			->method('get')
-			->with('dbal.conn')
-			->willReturn($this->db);
-		$this->container->expects(self::at(3))
-			->method('get')
-			->with('language')
-			->willReturn($this->lang);
-		$this->container->expects(self::at(4))
-			->method('get')
-			->with('request')
-			->willReturn($this->request);
-		$this->container->expects(self::at(5))
-			->method('get')
-			->with('template')
-			->willReturn($this->template);
+			->willReturnMap([
+				['cache', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->cache],
+				['config', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config],
+				['dbal.conn', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->db],
+				['language', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->lang],
+				['request', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->request],
+				['template', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->template],
+			]);
 
 		// Test basic module instantiation
 		$module = new \vse\abbc3\acp\abbc3_module();
