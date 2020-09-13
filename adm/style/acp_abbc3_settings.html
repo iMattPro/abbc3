@@ -17,19 +17,20 @@
 			<dt><label for="abbc3_icons_type">{{ lang('ABBC3_ICONS_TYPE') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</span></dt>
 			<dd>
 				<select name="abbc3_icons_type" id="abbc3_icons_type">{{ S_ABBC3_ICONS_TYPE }}</select>
-				{% for img in ['png', 'svg'] %}
-					<div class="abbc3-bar abbc3-icons-{{ img }} hidden">
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/bold.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/italic.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/underline.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/quote.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/code.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/listb.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/listo.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/listitem.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/img.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/url.{{ img }}')"></span>
-						<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/fontcolor.{{ img }}')"></span>
+				{% set ABBC3_ICON_PATH = ROOT_PATH ~ 'ext/vse/abbc3/images/icons/' %}
+				{% for ext in ['png', 'svg'] %}
+					<div class="abbc3-bar abbc3-icons-{{ ext }} hidden">
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}bold.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}italic.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}underline.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}quote.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}code.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listb.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listo.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listitem.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}img.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}url.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}fontcolor.{{ ext }}')"></span>
 					</div>
 				{% endfor %}
 			</dd>
