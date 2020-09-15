@@ -5,4 +5,5 @@ Backup/
 
 /node_modules/
 /build/
+/develop/
 /vendor/
