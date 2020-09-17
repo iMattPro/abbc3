@@ -118,7 +118,7 @@ class acp_bbcode_move_test extends acp_base
 
 		$this->request->expects(self::exactly(2))
 			->method('variable')
-			->with($this->anything())
+			->with(self::anything())
 			->willReturnMap([
 				['id', 0, false, \phpbb\request\request_interface::REQUEST, $item],
 				['hash', '', false, \phpbb\request\request_interface::REQUEST, generate_link_hash($hash)]

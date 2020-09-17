@@ -17,6 +17,7 @@
 		<delete dir="${dir}/travis" />
 		<delete dir="${dir}/vendor" />
 		<delete dir="${dir}/node_modules" />
+		<delete dir="${dir}/develop" />
 
 		<delete file="${dir}/.gitignore" />
 		<delete file="${dir}/.gitattributes" />
