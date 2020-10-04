@@ -84,7 +84,7 @@ class bbcodes_help
 			'ABBC3_MARQUEE_HELPLINE'	=> "[marq=left]{$example_text}[/marq]",
 			'ABBC3_SPOILER_HELPLINE'	=> "[spoil]{$example_text}[/spoil]",
 			'ABBC3_HIDDEN_HELPLINE'		=> "[hidden]{$example_text}[/hidden]",
-			'ABBC3_MOD_HELPLINE'		=> "[mod=\"{$this->language->lang('USERNAME')}\"]{$example_text}[/mod]",
+			'ABBC3_MOD_HELPLINE'		=> "[mod={$this->language->lang('USERNAME')}]{$example_text}[/mod]",
 			'ABBC3_OFFTOPIC_HELPLINE'	=> "[offtopic]{$example_text}[/offtopic]",
 			'ABBC3_NFO_HELPLINE'		=> '[nfo]༼ つ ◕_◕ ༽つ    ʕ•ᴥ•ʔ   ¯\_(ツ)_/¯[/nfo]',
 			'ABBC3_BBVIDEO_HELPLINE'	=> '[bbvideo]http://www.youtube.com/watch?v=sP4NMoJcFd4[/bbvideo]',
