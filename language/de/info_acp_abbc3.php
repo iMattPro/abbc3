@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Advanced BBCode Box
+ * Advanced BBCode Box [German]
  *
  * @copyright (c) 2020 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
@@ -20,6 +20,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 	'ACP_ABBC3_MODULE'		=> 'Advanced BBCode Box',
-	'ACP_ABBC3_SETTINGS'	=> 'Settings',
-	'LOG_ABBC3_ENABLE_FAIL'	=> '<strong>Advanced BBCode Box was unable to create the directory:</strong><br>%s',
+	'ACP_ABBC3_SETTINGS'	=> 'Einstellungen',
+	'LOG_ABBC3_ENABLE_FAIL'	=> '<strong>Advanced BBCode Box konnte das folgende Verzeichnis nicht erstellen:</strong><br>%s',
 ]);
