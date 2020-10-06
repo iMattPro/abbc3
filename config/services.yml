@@ -5,10 +5,11 @@ services:
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display
         arguments:
+            - '@config'
             - '@dbal.conn'
             - '@ext.manager'
             - '@user'
-            - '%core.root_path%ext/vse/abbc3/'
+            - '%core.root_path%'
 
     vse.abbc3.bbcodes_help:
         class: vse\abbc3\core\bbcodes_help
@@ -33,10 +34,10 @@ services:
             - '@vse.abbc3.bbcodes_config'
             - '@vse.abbc3.bbcodes_display'
             - '@vse.abbc3.bbcodes_help'
+            - '@config'
             - '@routing.helper'
             - '@template'
             - '@user'
-            - ext/vse/abbc3/
         tags:
             - { name: event.listener }
 

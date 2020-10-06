@@ -24,7 +24,7 @@ class acp_base extends \phpbb_database_test_case
 {
 	protected static function setup_extensions()
 	{
-		return array('vse/abbc3');
+		return ['vse/abbc3'];
 	}
 
 	/** @var \phpbb\db\driver\driver_interface */

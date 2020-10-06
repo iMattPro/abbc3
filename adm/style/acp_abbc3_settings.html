@@ -1,0 +1,69 @@
+{% include 'overall_header.html' %}
+{% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
+
+<img src="{{ ROOT_PATH }}ext/vse/abbc3/adm/images/abbc3logo.png" alt="{{ lang('ACP_ABBC3_MODULE') }}">
+
+<p>{{ lang('ABBC3_SETTINGS_EXPLAIN') }}</p>
+
+<form id="abbc3_settings" method="post" action="{{ U_ACTION }}" data-ajax="true">
+	<fieldset>
+		<legend>{{ lang('ABBC3_LEGEND_ICON_BAR') }}</legend>
+		<dl>
+			<dt><label for="abbc3_bbcode_bar">{{ lang('ABBC3_BBCODE_BAR') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_BBCODE_BAR_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="abbc3_bbcode_bar" id="abbc3_bbcode_bar" value="1"{% if S_ABBC3_BBCODE_BAR %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="abbc3_bbcode_bar" value="0"{% if not S_ABBC3_BBCODE_BAR %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="abbc3_icons_type">{{ lang('ABBC3_ICONS_TYPE') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</span></dt>
+			<dd>
+				<select name="abbc3_icons_type" id="abbc3_icons_type">{{ S_ABBC3_ICONS_TYPE }}</select>
+				{% set ABBC3_ICON_PATH = ROOT_PATH ~ 'ext/vse/abbc3/images/icons/' %}
+				{% for ext in ['png', 'svg'] %}
+					<div class="abbc3-bar abbc3-icons-{{ ext }} hidden">
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}bold.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}italic.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}underline.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}quote.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}code.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listb.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listo.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listitem.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}img.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}url.{{ ext }}')"></span>
+						<span style="background-image:url('{{ ABBC3_ICON_PATH }}fontcolor.{{ ext }}')"></span>
+					</div>
+				{% endfor %}
+			</dd>
+		</dl>
+	</fieldset>
+	<fieldset>
+		<legend>{{ lang('ABBC3_LEGEND_ADD_ONS') }}</legend>
+		<dl>
+			<dt><label for="abbc3_qr_bbcodes">{{ lang('ABBC3_QR_BBCODES') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_QR_BBCODES_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="abbc3_qr_bbcodes" id="abbc3_qr_bbcodes" value="1"{% if S_ABBC3_QR_BBCODES %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="abbc3_qr_bbcodes" value="0"{% if not S_ABBC3_QR_BBCODES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
+		</dl>
+		<dl>
+			<dt><label for="abbc3_pipes">{{ lang('ABBC3_PIPES') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_PIPES_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="abbc3_pipes" id="abbc3_pipes" value="1"{% if S_ABBC3_PIPES %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="abbc3_pipes" value="0"{% if not S_ABBC3_PIPES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
+		</dl>
+	</fieldset>
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}">
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+
+<script>
+	const select = document.querySelector("select[name='abbc3_icons_type']");
+	document.querySelector(".abbc3-icons-" + select.value).classList.toggle("hidden");
+	select.addEventListener("change", () => {
+		document.querySelectorAll(".abbc3-bar").forEach(bar => {
+			bar.classList.toggle("hidden");
+		});
+	});
+</script>
+
+{% include 'overall_footer.html' %}

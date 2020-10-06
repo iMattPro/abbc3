@@ -14,30 +14,30 @@ class acp_install_bbcodes_test extends acp_base
 {
 	public function install_bbcodes_data()
 	{
-		return array(
-			array(array(
-				'foo' => array( // new
-					'bbcode_helpline'	=> 'ABBC3_FOO_HELPLINE',
-					'bbcode_match'		=> '[foo]{TEXT}[/foo]',
-					'bbcode_tpl'		=> '<span class="foo">{TEXT}</span>',
-				),
-				'bar' => array( // new
-					'bbcode_helpline'	=> 'ABBC3_BAR_HELPLINE',
-					'bbcode_match'		=> '[bar]{TEXT}[/bar]',
-					'bbcode_tpl'		=> '<span class="bar">{TEXT}</span>',
-				),
-				'align' => array( // update
-					'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
-					'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
-					'bbcode_tpl'		=> '<span class="align-{IDENTIFIER}">{TEXT}</span>',
-				),
-				'sup' => array( // update
-					'bbcode_helpline'	=> 'ABBC3_SUP_HELPLINE',
-					'bbcode_match'		=> '[sup]{TEXT}[/sup]',
-					'bbcode_tpl'		=> '<span class="sup">{TEXT}</span>',
-				),
-			)),
-		);
+		return [
+			[[
+				 'foo' => [ // new
+							'bbcode_helpline'	=> 'ABBC3_FOO_HELPLINE',
+							'bbcode_match'		=> '[foo]{TEXT}[/foo]',
+							'bbcode_tpl'		=> '<span class="foo">{TEXT}</span>',
+				 ],
+				 'bar' => [ // new
+							'bbcode_helpline'	=> 'ABBC3_BAR_HELPLINE',
+							'bbcode_match'		=> '[bar]{TEXT}[/bar]',
+							'bbcode_tpl'		=> '<span class="bar">{TEXT}</span>',
+				 ],
+				 'align' => [ // update
+							  'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
+							  'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
+							  'bbcode_tpl'		=> '<span class="align-{IDENTIFIER}">{TEXT}</span>',
+				 ],
+				 'sup' => [ // update
+							'bbcode_helpline'	=> 'ABBC3_SUP_HELPLINE',
+							'bbcode_match'		=> '[sup]{TEXT}[/sup]',
+							'bbcode_tpl'		=> '<span class="sup">{TEXT}</span>',
+				 ],
+			 ]],
+		];
 	}
 
 	/**
@@ -64,13 +64,13 @@ class acp_install_bbcodes_test extends acp_base
 				WHERE bbcode_tag = '" . $bbcode_tag . "'";
 			$result = $this->db->sql_query($sql);
 
-			$this->assertEquals($bbcode_data, $this->db->sql_fetchrow($result));
+			self::assertEquals($bbcode_data, $this->db->sql_fetchrow($result));
 		}
 
 		$bbcodes_installer->delete_bbcodes($data);
 		foreach ($data as $bbcode_tag => $bbcode_data)
 		{
-			$this->assertFalse($this->invokeMethod($bbcodes_installer, 'bbcode_exists', [$bbcode_tag, $bbcode_data['bbcode_tag']]));
+			self::assertFalse($this->invokeMethod($bbcodes_installer, 'bbcode_exists', [$bbcode_tag, $bbcode_data['bbcode_tag']]));
 		}
 	}
 
@@ -95,7 +95,7 @@ class acp_install_bbcodes_test extends acp_base
 	 * @return mixed Method return.
 	 * @throws \ReflectionException
 	 */
-	public function invokeMethod(&$object, $methodName, array $parameters = array())
+	public function invokeMethod(&$object, $methodName, array $parameters = [])
 	{
 		$reflection = new \ReflectionClass(get_class($object));
 		$method = $reflection->getMethod($methodName);

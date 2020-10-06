@@ -37,7 +37,7 @@ var bbwizard;
 					success: function(data) {
 						// Append the new html to the bbwizard div and show it
 						modal.fadeIn('fast');
-						wizard.append(data).fadeIn('fast');
+						wizard.append(data).fadeIn('fast').find('#bbcode_wizard_submit').attr('data-bbcode', bbcode);
 					},
 					error: function() {
 						// On AJAX error, revert to default bbcode application
@@ -133,7 +133,8 @@ var bbwizard;
 						bbinsert('[' + bbcode + ((description.length) ? '=' + link : '') + ']' + ((description.length) ? description : link) + '', '[/' + bbcode + ']');
 						break;
 					case 'bbvideo':
-						bbinsert('[bbvideo]' + $('#bbvideo_wizard_link').val() + '', '[/bbvideo]');
+					case 'media':
+						bbinsert('[' + bbcode + ']' + $('#bbvideo_wizard_link').val() + '', '[/' + bbcode + ']');
 						break;
 				}
 				closeWizard();

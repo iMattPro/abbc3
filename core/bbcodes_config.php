@@ -25,7 +25,7 @@ class bbcodes_config
 	 */
 	public function pipes(Configurator $configurator)
 	{
-		if (!isset($configurator->BBCodes['pipes']))
+		if (!isset($configurator->BBCodes['pipes']) || !$configurator->registeredVars['abbc3.pipes_enabled'])
 		{
 			return;
 		}

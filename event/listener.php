@@ -10,6 +10,7 @@
 
 namespace vse\abbc3\event;
 
+use phpbb\config\config;
 use phpbb\routing\helper;
 use phpbb\template\template;
 use phpbb\user;
@@ -32,6 +33,9 @@ class listener implements EventSubscriberInterface
 	/** @var bbcodes_help */
 	protected $bbcodes_help;
 
+	/** @var config */
+	protected $config;
+
 	/** @var helper */
 	protected $helper;
 
@@ -41,8 +45,7 @@ class listener implements EventSubscriberInterface
 	/** @var user */
 	protected $user;
 
-	/** @var string phpBB root path */
-	protected $ext_root_path;
+	protected $quick_reply = false;
 
 	/**
 	 * Constructor
@@ -50,21 +53,21 @@ class listener implements EventSubscriberInterface
 	 * @param bbcodes_config  $bbcodes_config
 	 * @param bbcodes_display $bbcodes_display
 	 * @param bbcodes_help    $bbcodes_help
+	 * @param config          $config
 	 * @param helper          $helper
 	 * @param template        $template
 	 * @param user            $user
-	 * @param string          $ext_root_path
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, helper $helper, template $template, user $user, $ext_root_path)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, helper $helper, template $template, user $user)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
 		$this->bbcodes_help = $bbcodes_help;
+		$this->config = $config;
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
-		$this->ext_root_path = $ext_root_path;
 	}
 
 	/**
@@ -76,7 +79,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public static function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.user_setup'							=> 'load_language_on_setup',
 
 			'core.display_custom_bbcodes'				=> 'setup_custom_bbcodes',
@@ -87,7 +90,10 @@ class listener implements EventSubscriberInterface
 			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force lowest priority
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
-		);
+
+			'core.viewtopic_modify_quick_reply_template_vars' 	=> 'set_quick_reply',
+			'core.viewtopic_modify_page_title'					=> 'add_to_quickreply',
+		];
 	}
 
 	/**
@@ -99,10 +105,10 @@ class listener implements EventSubscriberInterface
 	public function load_language_on_setup($event)
 	{
 		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
+		$lang_set_ext[] = [
 			'ext_name' => 'vse/abbc3',
 			'lang_set' => 'abbc3',
-		);
+		];
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
@@ -127,14 +133,16 @@ class listener implements EventSubscriberInterface
 	 */
 	public function setup_custom_bbcodes()
 	{
-		$this->template->assign_vars(array(
+		$this->template->assign_vars([
 			'ABBC3_USERNAME'			=> $this->user->data['username'],
-			'ABBC3_BBCODE_ICONS'		=> $this->ext_root_path . 'images/icons',
+			'ABBC3_BBCODE_ICONS'		=> $this->bbcodes_display->get_icons(),
 
-			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'bbvideo')),
-			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'pipes')),
-			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', array('mode' => 'url')),
-		));
+			'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
+
+			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'bbvideo']),
+			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'pipes']),
+			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'url']),
+		]);
 	}
 
 	/**
@@ -145,6 +153,11 @@ class listener implements EventSubscriberInterface
 	 */
 	public function display_custom_bbcodes($event)
 	{
+		if (!$this->config['abbc3_bbcode_bar'])
+		{
+			return;
+		}
+
 		$event['custom_tags'] = $this->bbcodes_display->display_custom_bbcodes($event['custom_tags'], $event['row']);
 	}
 
@@ -168,12 +181,16 @@ class listener implements EventSubscriberInterface
 	 * Configure TextFormatter powered PlugIns and BBCodes
 	 *
 	 * @param \phpbb\event\data $event The event object
+	 * @access public
 	 */
 	public function configure_bbcodes($event)
 	{
-		$this->bbcodes_config->pipes($event['configurator']);
-		$this->bbcodes_config->bbvideo($event['configurator']);
-		$this->bbcodes_config->hidden($event['configurator']);
+		$configurator = $event['configurator'];
+		$configurator->registeredVars['abbc3.pipes_enabled'] = $this->config['abbc3_pipes'];
+
+		$this->bbcodes_config->pipes($configurator);
+		$this->bbcodes_config->bbvideo($configurator);
+		$this->bbcodes_config->hidden($configurator);
 	}
 
 	/**
@@ -187,6 +204,31 @@ class listener implements EventSubscriberInterface
 		if ($event['block_name'] === 'HELP_BBCODE_BLOCK_OTHERS')
 		{
 			$this->bbcodes_help->faq();
+		}
+	}
+
+	/**
+	 * If Quick Reply allowed, set our quick_reply property.
+	 *
+	 * @access public
+	 */
+	public function set_quick_reply()
+	{
+		$this->quick_reply = $this->config['abbc3_qr_bbcodes'];
+	}
+
+	/**
+	 * Add BBCodes to Quick Reply.
+	 *
+	 * @access public
+	 */
+	public function add_to_quickreply()
+	{
+		if ($this->quick_reply)
+		{
+			$this->user->add_lang('posting');
+			$this->template->assign_var('S_BBCODE_ALLOWED', true);
+			display_custom_bbcodes();
 		}
 	}
 }

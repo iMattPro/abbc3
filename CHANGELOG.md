@@ -1,14 +1,29 @@
 # Changelog
 
-## 3.2.4 - 08-10-2020
+## 3.3.0 - 2020-09-11
+
+- Replaced the antiquated, pixelated GIF BBCode icons with two new SVG and PNG icon sets.
+- Added BBCodes to Quick Reply.
+- Added an all new ACP settings section to the Extensions tab of the ACP:
+  - Toggle between SVG or PNG icon sets for the ABBC3 Icon bar.
+  - Enable or disable the ABBC3 Icon bar.
+  - Enable or disable the Quick Reply BBCodes.
+  - Enable or disable the Pipe Tables plugin.
+- Created an ABBC3 folder in phpBB's images folder. Now you can add your BBCode icons to this folder which won't be deleted when updating ABBC3.
+- BBCodes with no associated icon image will display like a standard phpBB BBCode.
+- BBVideo deprecation continues: 
+  - If you have the phpBB Media Embed PlugIn installed, its `[media]` BBCode button now behaves just like the `[bbvideo]` button and opens the BBVideo wizard. You may now hide the `[bbvideo]` BBCode if you prefer to use the `[media]` BBCode (or vice versa) by turning off its display on posting page setting.
+- Added Open Sans to font BBCodes list since it is part of phpBB Prosilver.
+
+## 3.2.4 - 2020-08-10
 
 - Fixed an issue causing circular dependency errors when co-installed with mChat in phpBB 3.3.1.
 
-## 3.2.3 - 03-13-2020
+## 3.2.3 - 2020-03-13
 
 - Minor fixes that might cause unexpected JavaScript behaviors in phpBB 3.3.x using jQuery 3.
 
-## 3.2.2 - 04-29-2019
+## 3.2.2 - 2019-04-29
 
 - BBCode URL/BBVideo Wizard is now a modal/overlay, to solve some issues where it might have been obscured from view.
 - Ensure BBVideos are sorted alphabetically in the BBCode Wizard's examples drop down menu.

@@ -10,6 +10,8 @@
 
 namespace vse\abbc3;
 
+use phpbb\filesystem\exception\filesystem_exception;
+
 class ext extends \phpbb\extension\base
 {
 	const MOVE_UP = 'move_up';
@@ -26,5 +28,34 @@ class ext extends \phpbb\extension\base
 
 		return phpbb_version_compare($config['version'], self::PHPBB_MIN_VERSION, '>=') &&
 			phpbb_version_compare(PHPBB_VERSION, self::PHPBB_MIN_VERSION, '>=');
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function enable_step($old_state)
+	{
+		if ($old_state === false)
+		{
+			$filesystem = $this->container->get('filesystem');
+			$root_path = $this->container->getParameter('core.root_path');
+
+			try // Make an ABBC3 icon dir in phpBB's images dir
+			{
+				if (!$filesystem->exists($root_path . 'images/abbc3/icons'))
+				{
+					$filesystem->mkdir($root_path . 'images/abbc3/icons');
+				}
+			}
+			catch (filesystem_exception $e)
+			{
+				$user = $this->container->get('user');
+				$this->container->get('log')->add('critical', $user->data['user_id'], $user->ip, 'LOG_ABBC3_ENABLE_FAIL', false, [$e->get_filename()]);
+			}
+
+			return 'abbc3-step';
+		}
+
+		return parent::enable_step($old_state);
 	}
 }

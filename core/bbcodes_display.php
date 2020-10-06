@@ -4,12 +4,13 @@
  * Advanced BBCode Box
  *
  * @copyright (c) 2013 Matt Friedman
- * @license       GNU General Public License, version 2 (GPL-2.0)
+ * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
 
 namespace vse\abbc3\core;
 
+use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
 use phpbb\textformatter\s9e\parser;
@@ -20,6 +21,9 @@ use phpbb\user;
  */
 class bbcodes_display
 {
+	/** @var config */
+	protected $config;
+
 	/** @var driver_interface */
 	protected $db;
 
@@ -30,7 +34,7 @@ class bbcodes_display
 	protected $user;
 
 	/** @var string */
-	protected $ext_root_path;
+	protected $root_path;
 
 	/** @var array */
 	protected $memberships;
@@ -38,18 +42,20 @@ class bbcodes_display
 	/**
 	 * Constructor
 	 *
+	 * @param config           $config            Config object
 	 * @param driver_interface $db                Database connection
 	 * @param manager          $extension_manager Extension manager object
 	 * @param user             $user              User object
-	 * @param string           $ext_root_path     Path to abbc3 extension root
+	 * @param string           $root_path         Path to phpBB root
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, manager $extension_manager, user $user, $ext_root_path)
+	public function __construct(config $config, driver_interface $db, manager $extension_manager, user $user, $root_path)
 	{
+		$this->config = $config;
 		$this->db = $db;
 		$this->extension_manager = $extension_manager;
 		$this->user = $user;
-		$this->ext_root_path = $ext_root_path;
+		$this->root_path = $root_path;
 	}
 
 	/**
@@ -64,17 +70,11 @@ class bbcodes_display
 	 */
 	public function display_custom_bbcodes($custom_tags, $row)
 	{
-		static $images = array();
+		$icons = $this->get_icons();
 
-		if (empty($images))
-		{
-			$images = $this->get_images();
-		}
+		$icon_tag = strtolower(rtrim($row['bbcode_tag'], '='));
 
-		$bbcode_img = 'abbc3/images/icons/' . strtolower(rtrim($row['bbcode_tag'], '=')) . '.gif';
-		$images_key = 'ext/' . $bbcode_img;
-
-		$custom_tags['BBCODE_IMG'] = isset($images[$images_key]) ? 'ext/vse/' . $bbcode_img : '';
+		$custom_tags['BBCODE_IMG'] = isset($icons[$icon_tag]) ? $icons[$icon_tag] : '';
 		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = !empty($row['bbcode_group']) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
 
 		return $custom_tags;
@@ -128,19 +128,35 @@ class bbcodes_display
 	}
 
 	/**
-	 * Get image paths/names from ABBC3's icons folder
+	 * Get paths/names to ABBC3's BBCode icons.
+	 * Search in ABBC3's icons dir and also the core's images dir.
 	 *
-	 * @return array File data from ./ext/vse/abbc3/images/icons
-	 * @access protected
+	 * @return array Array of icon paths: ['foo' => './ext/vse/abbc3/images/icons/foo.png']
+	 * @access public
 	 */
-	protected function get_images()
+	public function get_icons()
 	{
-		$finder = $this->extension_manager->get_finder();
+		static $icons = [];
 
-		return $finder
-			->extension_suffix('.gif')
-			->extension_directory('/images/icons')
-			->find_from_extension('abbc3', $this->ext_root_path);
+		if (empty($icons))
+		{
+			$finder = $this->extension_manager->get_finder();
+			$icons = $finder
+				->set_extensions(['vse/abbc3'])
+				->suffix(".{$this->config['abbc3_icons_type']}")
+				->extension_directory('/images/icons')
+				->core_path('images/abbc3/icons/')
+				->get_files();
+
+			// Rewrite the image array with img names as keys and paths as values
+			foreach ($icons as $key => $path)
+			{
+				$icons[basename($path, ".{$this->config['abbc3_icons_type']}")] = $path;
+				unset($icons[$key]);
+			}
+		}
+
+		return $icons;
 	}
 
 	/**
@@ -155,7 +171,7 @@ class bbcodes_display
 			return;
 		}
 
-		$this->memberships = array();
+		$this->memberships = [];
 		$sql = 'SELECT group_id
 			FROM ' . USER_GROUP_TABLE . '
 			WHERE user_id = ' . (int) $this->user->data['user_id'] . '

@@ -47,7 +47,7 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public static function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_custom_sorting',
 			'core.acp_bbcodes_display_bbcodes'			=> 'acp_bbcodes_custom_sorting_buttons',
 			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create',
@@ -55,7 +55,7 @@ class acp_listener implements EventSubscriberInterface
 
 			// text_formatter events (for phpBB 3.2.x)
 			'core.text_formatter_s9e_configure_after'	=> 's9e_store_bbcode_groups',
-		);
+		];
 	}
 
 	/**
@@ -79,7 +79,7 @@ class acp_listener implements EventSubscriberInterface
 	 */
 	public function acp_bbcodes_group_select_box($event)
 	{
-		$bbcode_group = ($event['action'] === 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : array();
+		$bbcode_group = ($event['action'] === 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : [];
 
 		$event->update_subarray('tpl_ary', 'S_GROUP_OPTIONS', $this->acp_manager->bbcode_group_select_options($bbcode_group));
 	}

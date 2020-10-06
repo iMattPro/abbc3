@@ -18,7 +18,7 @@ class listener_test extends listener_base
 	public function test_construct()
 	{
 		$this->set_listener();
-		$this->assertInstanceOf('\Symfony\Component\EventDispatcher\EventSubscriberInterface', $this->listener);
+		self::assertInstanceOf('\Symfony\Component\EventDispatcher\EventSubscriberInterface', $this->listener);
 	}
 
 	/**
@@ -26,7 +26,7 @@ class listener_test extends listener_base
 	 */
 	public function test_getSubscribedEvents()
 	{
-		$this->assertEquals(array(
+		self::assertEquals([
 			'core.user_setup',
 			'core.display_custom_bbcodes',
 			'core.display_custom_bbcodes_modify_sql',
@@ -34,6 +34,8 @@ class listener_test extends listener_base
 			'core.text_formatter_s9e_parser_setup',
 			'core.text_formatter_s9e_configure_after',
 			'core.help_manager_add_block_after',
-		), array_keys(\vse\abbc3\event\listener::getSubscribedEvents()));
+			'core.viewtopic_modify_quick_reply_template_vars',
+			'core.viewtopic_modify_page_title',
+		], array_keys(\vse\abbc3\event\listener::getSubscribedEvents()));
 	}
 }

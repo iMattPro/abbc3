@@ -14,12 +14,13 @@ class bbcodes_test extends \phpbb_database_test_case
 {
 	protected static function setup_extensions()
 	{
-		return array('vse/abbc3');
+		return ['vse/abbc3'];
 	}
 
+	protected $config;
 	protected $db;
 	protected $user;
-	protected $ext_root_path;
+	protected $root_path;
 	protected $ext_manager;
 
 	public function getDataSet()
@@ -33,61 +34,69 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		parent::setUp();
 
+		$this->config = new \phpbb\config\config(['abbc3_icons_type' => 'png']);
 		$this->db = $this->new_dbal();
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$lang = new \phpbb\language\language($lang_loader);
 		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
-		$this->ext_root_path = $phpbb_root_path . 'ext/vse/abbc3/';
-		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager(__DIR__ . '/../../../../../phpBB/');
+		$this->root_path = $phpbb_root_path;
+		$phpbb_extension_manager = $this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path,
+			[
+				'vse/abbc3' => [
+					'ext_name' => 'vse/abbc3',
+					'ext_active' => '1',
+					'ext_path' => 'ext/vse/abbc3/',
+				],
+			]);
 	}
 
 	protected function bbcodes_manager()
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->db, $this->ext_manager, $this->user, $this->ext_root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->config, $this->db, $this->ext_manager, $this->user, $this->root_path);
 	}
 
 	public function bbcode_data()
 	{
-		return array(
-			1 => array(
+		return [
+			1 => [
 				'bbcode_tag'	=> 'sup',
 				'bbcode_id'		=> 1,
 				'bbcode_group'	=> '',
-			),
-			2 => array(
+			],
+			2 => [
 				'bbcode_tag'	=> 'sub',
 				'bbcode_id'		=> 2,
 				'bbcode_group'	=> '2',
-			),
-			3 => array(
+			],
+			3 => [
 				'bbcode_tag'	=> 'mod',
 				'bbcode_id'		=> 3,
 				'bbcode_group'	=> '3,4,5',
-			),
-		);
+			],
+		];
 	}
 
 	public function allowed_bbcodes_data()
 	{
 		$bbcode_data = $this->bbcode_data();
 
-		return array(
-			array(
+		return [
+			[
 				2, // Allowed: user 2 is member of group 2 and 6
 				$bbcode_data[1], // All groups allowed
 				false,
-			),
-			array(
+			],
+			[
 				2, // Allowed: user 2 is member of group 2 and 6
 				$bbcode_data[2], // Group 2 allowed only
 				false,
-			),
-			array(
+			],
+			[
 				2, // Disallowd: user 2 is member of group 2 and 6
 				$bbcode_data[3], // Groups 3,4,5 allowed only
 				true,
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -95,104 +104,117 @@ class bbcodes_test extends \phpbb_database_test_case
 	 * on registered bbcodes for users not in a group allowed to use it.
 	 *
 	 * @dataProvider allowed_bbcodes_data
+	 * @param $user_id
+	 * @param $data
+	 * @param $disable
 	 */
 	public function test_allow_custom_bbcodes($user_id, $data, $disable)
 	{
-		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit_Framework_MockObject_MockObject $parser */
-		$parser = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
+		/** @var \s9e\TextFormatter\Parser|\PHPUnit_Framework_MockObject_MockObject $parser */
+		$parser = $this->getMockBuilder('\s9e\TextFormatter\Parser')
 			->disableOriginalConstructor()
 			->getMock();
-		$parser->expects($this->once())
-			->method('get_parser')
-			->will($this->returnSelf());
-		$parser->registeredVars['abbc3.bbcode_groups'] = array(
+		$parser->registeredVars['abbc3.bbcode_groups'] = [
 			$data['bbcode_tag'] => $data['bbcode_group'],
-		);
+		];
 
-		$parser->expects($disable ? $this->once() : $this->never())
+		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit_Framework_MockObject_MockObject $service */
+		$service = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
+			->disableOriginalConstructor()
+			->getMock();
+		$service->expects($disable ? self::once() : self::never())
 			->method('disable_bbcode')
 			->with($data['bbcode_tag']);
+		$service->expects(self::once())
+			->method('get_parser')
+			->willReturn($parser);
 
 		$this->user->data['user_id'] = $user_id;
 
 		$bbcodes_manager = $this->bbcodes_manager();
 
-		$bbcodes_manager->allow_custom_bbcodes($parser);
+		$bbcodes_manager->allow_custom_bbcodes($service);
 	}
 
 	public function display_bbcodes_data()
 	{
-		$this->ext_root_path = 'ext/vse/abbc3/';
+		global $phpbb_root_path;
 
 		$bbcode_data = $this->bbcode_data();
 
-		return array(
-			array(
+		return [
+			[
 				2, // User 2 is member of group 2 and 6
-				array(
+				[
 					$bbcode_data[1], // All groups allowed
 					$bbcode_data[2], // Group 2 allowed only
 					$bbcode_data[3], // Groups 3,4,5 allowed only
-				),
-				array(
-					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[1]['bbcode_tag'] .'.gif',
+				],
+				[
+					[
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[1]['bbcode_tag'] . '.png',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
-					),
-					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[2]['bbcode_tag'] .'.gif',
+					],
+					[
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[2]['bbcode_tag'] . '.png',
 						'S_CUSTOM_BBCODE_ALLOWED' => true,
-					),
-					array(
-						'BBCODE_IMG' => $this->ext_root_path . 'images/icons/'. $bbcode_data[3]['bbcode_tag'] .'.gif',
+					],
+					[
+						'BBCODE_IMG' => $phpbb_root_path . 'ext/vse/abbc3/images/icons/'. $bbcode_data[3]['bbcode_tag'] . '.png',
 						'S_CUSTOM_BBCODE_ALLOWED' => false,
-					),
-				),
-			),
-		);
+					],
+				],
+			],
+		];
 	}
 
 	/**
-	* @dataProvider display_bbcodes_data
-	*/
+	 * @dataProvider display_bbcodes_data
+	 * @param $user_id
+	 * @param $data
+	 * @param $expected
+	 */
 	public function test_display_custom_bbcodes($user_id, $data, $expected)
 	{
 		$this->user->data['user_id'] = $user_id;
 
 		$bbcodes_manager = $this->bbcodes_manager();
 
-		$custom_tags = array();
+		$custom_tags = [];
 
 		// Test all bbcodes at once instead of one at a time
 		// for full coverage of load_memberships()
 		foreach ($data as $key => $bbcode_data)
 		{
-			$this->assertEquals($expected[$key], $bbcodes_manager->display_custom_bbcodes($custom_tags, $bbcode_data));
+			self::assertEquals($expected[$key], $bbcodes_manager->display_custom_bbcodes($custom_tags, $bbcode_data));
 		}
 	}
 
 	public function bbcode_group_data()
 	{
-		return array(
-			array(2, '1,2,3', true),
-			array(2, '1', false),
-			array(2, '', true),
-			array(2, array('1', '2', '3'), true),
-			array(2, array('1'), false),
-			array(2, array(), true),
-			array(null, null, true),
-		);
+		return [
+			[2, '1,2,3', true],
+			[2, '1', false],
+			[2, '', true],
+			[2, ['1', '2', '3'], true],
+			[2, ['1'], false],
+			[2, [], true],
+			[null, null, true],
+		];
 	}
 
 	/**
-	* @dataProvider bbcode_group_data
-	*/
+	 * @dataProvider bbcode_group_data
+	 * @param $user_id
+	 * @param $group_ids
+	 * @param $expected
+	 */
 	public function test_user_in_bbcode_group($user_id, $group_ids, $expected)
 	{
 		$this->user->data['user_id'] = $user_id;
 
 		$bbcodes_manager = $this->bbcodes_manager();
 
-		$this->assertEquals($expected, $bbcodes_manager->user_in_bbcode_group($group_ids));
+		self::assertEquals($expected, $bbcodes_manager->user_in_bbcode_group($group_ids));
 	}
 }
