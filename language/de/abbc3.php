@@ -25,7 +25,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	// Hidden BBCode
 	'ABBC3_HIDDEN_ON'			=> 'Verstecken ist aktiviert',
-	'ABBC3_HIDDEN_OFF'			=> 'Verstecken ist deaktiviert (nur für Mitglieder)',
+	'ABBC3_HIDDEN_OFF'			=> 'Verstecken ist deaktiviert (nur für Mitglieder sichtbar)',
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Um diesen versteckten Text lesen zu können, musst du registriert und angemeldet sein.',
 
 	// Spoiler BBCode
@@ -42,8 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_FONT_WIN'			=> 'Windows Schriftarten',
 
 	// BBCode help lines
-	'ABBC3_ALIGN_HELPLINE'		=> 'Ausrichten von Text: [align=Zentrierter|Linksbündiger|Rechtsbündiger|Block]Text[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Füge ein Webvideo hinzu: [bbvideo]http://Video URL[/bbvideo]',
+	'ABBC3_ALIGN_HELPLINE'		=> 'Ausrichten von Text: [align=center|left|right|justify]Text[/align] (zentriert, linksbündig, rechtsbündig und blocksatz)',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Webvideo hinzufügen: [bbvideo]http://Video URL[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Unscharfer Text: [blur=color]Text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Text Richtung (links nach rechts/rechts nach links): [dir=ltr|rtl]Text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Text mit Schattenfall: [dropshadow=color]Text[/dropshadow]',
@@ -55,36 +55,36 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Text hervorheben (Gelb): [highlight=yellow]text[/highlight]  Tipp: Du kannst auch color=#FF0000 benutzen',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Lauftext (nach unten|oben|links|rechts): [marq=up|down|left|right]text[/marq]',
 	'ABBC3_MOD_HELPLINE'		=> 'Moderator Nachricht: [mod=username]text[/mod]',
-	'ABBC3_NFO_HELPLINE'		=> 'NFO ASCII-Art Text: [nfo]Text[/nfo]',
+	'ABBC3_NFO_HELPLINE'		=> 'NFO-ASCII-Art-Text: [nfo]Text[/nfo]',
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off-topic Nachricht: [offtopic]Text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Vorformatierter Text: [pre]Text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Text mit Schatten: [shadow=color]Text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud Link: [soundcloud]http://soundcloud.com/Benutzername/Lied-Titel[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud-Link: [soundcloud]http://soundcloud.com/Benutzername/Lied-Titel[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler Nachricht: [spoil]Text[/spoil]',
-	'ABBC3_STRIKE_HELPLINE'		=> 'Text durchgestrichen: [s]Text[/s]',
-	'ABBC3_SUB_HELPLINE'		=> 'Tiefgestellter Text: [sub]Text[/sub]',
-	'ABBC3_SUP_HELPLINE'		=> 'Hochgestellter Text: [sup]Text[/sup]',
+	'ABBC3_STRIKE_HELPLINE'		=> 'Durchgestrichen: [s]Text[/s]',
+	'ABBC3_SUB_HELPLINE'		=> 'Tiefgestellt: [sub]Text[/sub]',
+	'ABBC3_SUP_HELPLINE'		=> 'Hochgestellt: [sup]Text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube-Video: [youtube]http://Youtube Url[/youtube]',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Den markierten Text kopieren',
-	'ABBC3_PASTE_BBCODE'		=> 'Den kopierten Text einfügen',
+	'ABBC3_COPY_BBCODE'			=> 'Markierten Text kopieren',
+	'ABBC3_PASTE_BBCODE'		=> 'Kopierten Text einfügen',
 	'ABBC3_PASTE_ERROR'			=> 'Du musst erst einen Text kopieren, bevor du ihn einfügen kannst',
-	'ABBC3_PLAIN_BBCODE'		=> 'Entferne alle BBCodes aus dem markierten Text',
-	'ABBC3_NOSELECT_ERROR'		=> 'Du musst erst einen Text markieren',
+	'ABBC3_PLAIN_BBCODE'		=> 'Alle BBCodes aus dem markierten Text entfernen',
+	'ABBC3_NOSELECT_ERROR'		=> 'Es wurde kein Text markiert',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'In die Nachricht einfügen',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Beispiel',
 
 	// BBvideo Wizard
-	'ABBC3_BBVIDEO_SITES'		=> 'Zugelassene Sites',
-	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
+	'ABBC3_BBVIDEO_SITES'		=> 'Zugelassene Websites',
+	'ABBC3_BBVIDEO_LINK'		=> 'Video-URL',
 
 	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Website-URL einfügen',
 	'ABBC3_URL_DESCRIPTION'		=> 'Optionale Beschreibung',
-	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Tabellen erstellen',
@@ -92,7 +92,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_DOCUMENTATION'	=> 'Benutzerhandbuch',
 	'ABBC3_PIPE_SIMPLE'			=> 'Einfache Tabelle',
 	'ABBC3_PIPE_COMPACT'		=> 'Kompakte Tabelle',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Die äußeren Striche und die Leerzeichen um die Striche sind optional.',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Die äußeren senkrechten Striche und die Leerzeichen um die senkrechten Striche sind optional.',
 	'ABBC3_PIPE_ALIGNMENT'		=> 'Textausrichtung',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
@@ -107,12 +107,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPES'				=> 'Aktiviere das „Pipe Table“-Plug-in.',
 	'ABBC3_PIPES_EXPLAIN'		=> 'Mit dem „Pipe Table“-Plug-in können Benutzer Tabellen in ihren Beiträgen und Privaten Nachrichten mit Hilfe der Markdown-Syntax erstellen.',
 	'ABBC3_BBCODE_BAR'			=> 'Aktiviere die BBCode-Menüleiste',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Falls aktiviert, wird die ABBC3s iconbasierte BBCode-Menüleiste angezeigt. Sofern deaktiviert werden die Standard phpBB Code Buttons verwendet.',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Falls aktiviert, wird die ABBC3s iconbasierte BBCode-Menüleiste angezeigt. Sofern deaktiviert, wird die Standard phpBB BBCode-Menüleiste verwendet.',
 	'ABBC3_QR_BBCODES'			=> 'Aktiviere BBCodes bei der Schnellantwort',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Falls aktiviert, werden bei der Schnellantwort die BBCode-Buttons angezeigt.',
-	'ABBC3_ICONS_TYPE'			=> 'Icon Menüleisten Bildformat',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Wähle das Bildformat, das für die ABBC3s Icons verwendet wird. Bitte beachte, dass nur ein Format für alle Icons gewählt.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Menüleiste',
+	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Falls aktiviert, wird bei der Schnellantwort die BBCode-Menüleiste angezeigt.',
+	'ABBC3_ICONS_TYPE'			=> 'Iconformat der Menüleiste',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Wähle das Iconformat, das für die ABBC3s Icons verwendet wird. Bitte beachte, dass nur ein Format für alle Icons gewählt werden kann.',
+	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode-Menüleiste',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Add-Ons',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
