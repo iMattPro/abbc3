@@ -113,7 +113,6 @@ class wizard
 
 		$this->template->assign_vars([
 			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites,
-			'ABBC3_BBVIDEO_LINK_EX'	=> isset($bbvideo_sites[self::BBVIDEO_DEFAULT]) ? $bbvideo_sites[self::BBVIDEO_DEFAULT] : '',
 			'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
 		]);
 	}

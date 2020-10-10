@@ -12,11 +12,11 @@
 						</select>
 					</dd>
 				</dl>
-				{% if ABBC3_BBVIDEO_LINK_EX %}
+				{% if attribute(ABBC3_BBVIDEO_SITES, ABBC3_BBVIDEO_DEFAULT) is defined %}
 				<dl>
 					<dt><label for="bbvideo_wizard_example">{{ lang('ABBC3_BBCODE_WIZ_EXAMPLE') ~ lang('COLON') }}</label></dt>
 					<dd>
-						<input type="text" id="bbvideo_wizard_example" name="bbvideo_wizard_example" readonly="readonly" value="{{ ABBC3_BBVIDEO_LINK_EX }}" size="45" class="inputbox disabled">
+						<input type="text" id="bbvideo_wizard_example" name="bbvideo_wizard_example" readonly="readonly" value="{{ attribute(ABBC3_BBVIDEO_SITES, ABBC3_BBVIDEO_DEFAULT) }}" size="45" class="inputbox disabled">
 					</dd>
 				</dl>
 				{% endif %}
