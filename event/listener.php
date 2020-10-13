@@ -209,12 +209,13 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * If Quick Reply allowed, set our quick_reply property.
+	 * Added compatibility check for Quick Reply Reloaded (qr_bbcode).
 	 *
 	 * @access public
 	 */
 	public function set_quick_reply()
 	{
-		$this->quick_reply = $this->config['abbc3_qr_bbcodes'];
+		$this->quick_reply = $this->config['abbc3_qr_bbcodes'] && !$this->config['qr_bbcode'];
 	}
 
 	/**
@@ -227,7 +228,10 @@ class listener implements EventSubscriberInterface
 		if ($this->quick_reply)
 		{
 			$this->user->add_lang('posting');
-			$this->template->assign_var('S_BBCODE_ALLOWED', true);
+			$this->template->assign_vars([
+				'S_ABBC3_QUICKREPLY' => true,
+				'S_BBCODE_ALLOWED'   => true,
+			]);
 			display_custom_bbcodes();
 		}
 	}

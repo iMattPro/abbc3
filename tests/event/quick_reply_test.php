@@ -34,8 +34,11 @@ class quick_reply_test extends \vse\abbc3\tests\event\listener_base
 			->with('posting');
 
 		$this->template->expects($enabled ? self::once() : self::never())
-			->method('assign_var')
-			->with('S_BBCODE_ALLOWED', true);
+			->method('assign_vars')
+			->with([
+				'S_ABBC3_QUICKREPLY' => true,
+				'S_BBCODE_ALLOWED' => true,
+			]);
 
 		$this->listener->set_quick_reply();
 		$this->listener->add_to_quickreply();
