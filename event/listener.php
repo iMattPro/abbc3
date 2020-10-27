@@ -221,18 +221,16 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Add BBCodes to Quick Reply.
 	 *
+	 * @param \phpbb\event\data $event The event object
 	 * @access public
 	 */
-	public function add_to_quickreply()
+	public function add_to_quickreply($event)
 	{
 		if ($this->quick_reply)
 		{
 			$this->user->add_lang('posting');
-			$this->template->assign_vars([
-				'S_ABBC3_QUICKREPLY' => true,
-				'S_BBCODE_ALLOWED'   => true,
-			]);
-			display_custom_bbcodes();
+			$this->template->assign_var('S_ABBC3_QUICKREPLY', true);
+			$this->template->assign_vars($this->bbcodes_display->bbcode_statuses($event['forum_id']));
 		}
 	}
 }

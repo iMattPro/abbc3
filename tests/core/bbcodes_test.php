@@ -8,7 +8,7 @@
 *
 */
 
-namespace vse\abbc3\tests\core;
+namespace vse\abbc3\core;
 
 class bbcodes_test extends \phpbb_database_test_case
 {
@@ -17,10 +17,22 @@ class bbcodes_test extends \phpbb_database_test_case
 		return ['vse/abbc3'];
 	}
 
+	/** @var \PHPUnit\Framework\MockObject\MockObject|\phpbb\auth\auth */
+	protected $auth;
+
+	/** @var \phpbb\config\config */
 	protected $config;
+
+	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
+
+	/** @var \phpbb\user */
 	protected $user;
+
+	/** @var string */
 	protected $root_path;
+
+	/** @var \phpbb_mock_extension_manager */
 	protected $ext_manager;
 
 	public function getDataSet()
@@ -34,6 +46,7 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		parent::setUp();
 
+		$this->auth = $this->getMockBuilder('\phpbb\auth\auth')->getMock();
 		$this->config = new \phpbb\config\config(['abbc3_icons_type' => 'png']);
 		$this->db = $this->new_dbal();
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
@@ -52,7 +65,7 @@ class bbcodes_test extends \phpbb_database_test_case
 
 	protected function bbcodes_manager()
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->config, $this->db, $this->ext_manager, $this->user, $this->root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->auth, $this->config, $this->db, $this->ext_manager, $this->user, $this->root_path);
 	}
 
 	public function bbcode_data()
@@ -217,4 +230,83 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		self::assertEquals($expected, $bbcodes_manager->user_in_bbcode_group($group_ids));
 	}
+
+	public function bbcode_statuses_test_data()
+	{
+		return [
+			[
+				[2 => ['f_bbcode' => true, 'f_img' => true, 'f_flash' => true]],
+				true,
+				true,
+				true,
+				[
+					'S_BBCODE_ALLOWED' => true,
+					'S_BBCODE_IMG'     => true,
+					'S_BBCODE_FLASH'   => true,
+					'S_BBCODE_QUOTE'   => true,
+					'S_LINKS_ALLOWED'  => true,
+				]
+			],
+			[
+				[3 => ['f_bbcode' => true, 'f_img' => true, 'f_flash' => true]],
+				false,
+				false,
+				false,
+				[
+					'S_BBCODE_ALLOWED' => false,
+					'S_BBCODE_IMG'     => false,
+					'S_BBCODE_FLASH'   => false,
+					'S_BBCODE_QUOTE'   => true,
+					'S_LINKS_ALLOWED'  => false,
+				]
+			],
+			[
+				[4 => ['f_bbcode' => false, 'f_img' => false, 'f_flash' => false]],
+				true,
+				true,
+				true,
+				[
+					'S_BBCODE_ALLOWED' => false,
+					'S_BBCODE_IMG'     => false,
+					'S_BBCODE_FLASH'   => false,
+					'S_BBCODE_QUOTE'   => true,
+					'S_LINKS_ALLOWED'  => true,
+				]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider bbcode_statuses_test_data
+	 * @param $forum
+	 * @param $allow_bbcode
+	 * @param $allow_links
+	 * @param $allow_flash
+	 * @param $expected
+	 */
+	public function test_bbcode_statuses($forum, $allow_bbcode, $allow_links, $allow_flash, $expected)
+	{
+		$forum_id = key($forum);
+		$forum_acl = $forum[$forum_id];
+
+		$this->config['allow_bbcode'] = $allow_bbcode;
+		$this->config['allow_post_links'] = $allow_links;
+		$this->config['allow_post_flash'] = $allow_flash;
+
+		$this->auth->method('acl_get')
+			->with(self::stringContains('f_'), self::anything())
+			->willReturnMap([
+				['f_bbcode', $forum_id, $forum_acl['f_bbcode']],
+				['f_img', $forum_id, $forum_acl['f_img']],
+				['f_flash', $forum_id, $forum_acl['f_flash']],
+			]);
+
+		$bbcodes_manager = $this->bbcodes_manager();
+
+		self::assertEquals($expected, $bbcodes_manager->bbcode_statuses($forum_id));
+	}
+}
+
+function display_custom_bbcodes()
+{
 }

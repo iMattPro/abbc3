@@ -10,6 +10,7 @@
 
 namespace vse\abbc3\core;
 
+use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
@@ -21,6 +22,9 @@ use phpbb\user;
  */
 class bbcodes_display
 {
+	/** @var auth */
+	protected $auth;
+
 	/** @var config */
 	protected $config;
 
@@ -42,6 +46,7 @@ class bbcodes_display
 	/**
 	 * Constructor
 	 *
+	 * @param auth             $auth              Auth object
 	 * @param config           $config            Config object
 	 * @param driver_interface $db                Database connection
 	 * @param manager          $extension_manager Extension manager object
@@ -49,8 +54,9 @@ class bbcodes_display
 	 * @param string           $root_path         Path to phpBB root
 	 * @access public
 	 */
-	public function __construct(config $config, driver_interface $db, manager $extension_manager, user $user, $root_path)
+	public function __construct(auth $auth, config $config, driver_interface $db, manager $extension_manager, user $user, $root_path)
 	{
+		$this->auth = $auth;
 		$this->config = $config;
 		$this->db = $db;
 		$this->extension_manager = $extension_manager;
@@ -182,5 +188,35 @@ class bbcodes_display
 			$this->memberships[] = $row['group_id'];
 		}
 		$this->db->sql_freeresult($result);
+	}
+
+	/**
+	 * Set BBCode statuses for posting IMG, URL, FLASH and QUOTE in a forum.
+	 *
+	 * @param int $forum_id The forum identifier
+	 * @return array An array containing booleans for each BBCode status
+	 */
+	public function bbcode_statuses($forum_id)
+	{
+		$bbcode_status = $this->config['allow_bbcode'] && $this->auth->acl_get('f_bbcode', $forum_id);
+		$url_status = $this->config['allow_post_links'];
+		$img_status = $flash_status = false;
+		$quote_status = true;
+
+		if ($bbcode_status)
+		{
+			$img_status = $this->auth->acl_get('f_img', $forum_id);
+			$flash_status = $this->auth->acl_get('f_flash', $forum_id) && $this->config['allow_post_flash'];
+
+			display_custom_bbcodes();
+		}
+
+		return [
+			'S_BBCODE_ALLOWED' => $bbcode_status,
+			'S_BBCODE_IMG'     => $img_status,
+			'S_BBCODE_FLASH'   => $flash_status,
+			'S_BBCODE_QUOTE'   => $quote_status,
+			'S_LINKS_ALLOWED'  => $url_status,
+		];
 	}
 }
