@@ -76,12 +76,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> '输入至消息',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> '范例',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> '允许的网站',
-	'ABBC3_BBVIDEO_LINK'		=> '视频网址',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> '添加 URL',
 	'ABBC3_URL_DESCRIPTION'		=> '可选说明',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',

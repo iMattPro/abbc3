@@ -76,12 +76,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Invoegen in bericht',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Voorbeeld',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Toegestane websites',
-	'ABBC3_BBVIDEO_LINK'		=> 'Video LINK',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Voeg een URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Optionele beschrijving',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',

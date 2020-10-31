@@ -75,12 +75,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Vložit do zprávy',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Například',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Povolené stránky',
-	'ABBC3_BBVIDEO_LINK'		=> 'UR videa',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Zadat URl adresu',
 	'ABBC3_URL_DESCRIPTION'		=> 'Volitelný popis',
 	'ABBC3_URL_EXAMPLE'			=> 'https://forums.volgeop.eu/',

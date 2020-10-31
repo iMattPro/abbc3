@@ -76,11 +76,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Sätt in meddelande',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Exempel',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Tillåtna hemsidor',
-	'ABBC3_BBVIDEO_LINK'		=> 'Video länk',
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Ange en länk',
 	'ABBC3_URL_DESCRIPTION'		=> 'Valfritt beskrivning',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',

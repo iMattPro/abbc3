@@ -75,12 +75,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Lisää viestiin',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Esimerkki',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Videon sallitut sivut',
-	'ABBC3_BBVIDEO_LINK'		=> 'Videon URL',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Syötä sivun URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Linkin kuvaus, vaihtoehtoinen',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
