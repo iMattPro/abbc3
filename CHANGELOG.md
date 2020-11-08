@@ -1,10 +1,12 @@
 # Changelog
 
-## 3.3.1
+## 3.3.1 - 2020-11-07
 
+- Joe Biden wins the US Presidential election.
 - Fixed missing IMG, URL and FLASH BBCode buttons from Quick Reply.
 - Fixed issues with duplication of BBCode button bars in Quick Reply when using Quick Reply Reloaded and other Quick Reply extensions.
 - Fixed the names of example sites in the BBVideo/Media Embed Wizard.
+- Added European Portuguese translation
 
 ## 3.3.0 - 2020-09-11
 
