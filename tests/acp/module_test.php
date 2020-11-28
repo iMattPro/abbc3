@@ -50,7 +50,7 @@ class module_test extends \phpbb_database_test_case
 		return $this->createXMLDataSet(__DIR__ . '/../core/fixtures/bbcodes.xml');
 	}
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		global $phpbb_container, $phpbb_root_path, $phpEx;
 
@@ -124,7 +124,7 @@ class module_test extends \phpbb_database_test_case
 
 		$module = $this->get_main_module();
 
-		$this->request->expects(self::at(0))
+		$this->request->expects(self::once())
 			->method('is_set_post')
 			->willReturn('submit');
 
@@ -139,7 +139,7 @@ class module_test extends \phpbb_database_test_case
 
 		$module = $this->get_main_module();
 
-		$this->request->expects(self::at(0))
+		$this->request->expects(self::once())
 			->method('is_set_post')
 			->willReturn('submit');
 

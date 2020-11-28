@@ -22,7 +22,7 @@ class acp_bbcode_group_select_test extends acp_base
 		$this->lang->add_lang('common');
 	}
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		parent::setUp();
 

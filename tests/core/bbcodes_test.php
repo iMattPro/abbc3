@@ -40,7 +40,7 @@ class bbcodes_test extends \phpbb_database_test_case
 		return $this->createXMLDataSet(__DIR__ . '/fixtures/user_group.xml');
 	}
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		global $phpbb_extension_manager, $phpbb_root_path, $phpEx;
 

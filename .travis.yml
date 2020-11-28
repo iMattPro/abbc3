@@ -19,9 +19,12 @@ matrix:
       env: DB=mysqli
     - php: 7.4
       env: DB=mysqli
+    - php: 8.0snapshot
+      env: DB=mysqli
     - php: nightly
       env: DB=mysqli
   allow_failures:
+    - php: 8.0snapshot
     - php: nightly
   fast_finish: true
 
@@ -56,7 +59,6 @@ install:
 
 before_script:
   - travis/setup-database.sh $DB $TRAVIS_PHP_VERSION $NOTESTS
-  - phantomjs --webdriver=8910 > /dev/null &
 
 script:
   - sh -c "if [ '$SNIFF' != '0' ]; then travis/ext-sniff.sh $DB $TRAVIS_PHP_VERSION $EXTNAME $NOTESTS; fi"
