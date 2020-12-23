@@ -76,11 +76,6 @@ class faq_test extends \phpbb_database_test_case
 	 */
 	public function test_faq($user_id, $expected)
 	{
-		if (PHP_VERSION_ID >= 80000)
-		{
-			self::markTestSkipped('Test errors in PHP 8 because lang keys not parsed so exploding it fails, figure out later.');
-		}
-
 		$this->user->data['user_id'] = $user_id;
 
 		$this->template->expects(self::exactly(count($expected) + 1))
@@ -91,19 +86,19 @@ class faq_test extends \phpbb_database_test_case
 					'SWITCH_COLUMN'	=> false,
 				]],
 				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> $expected[0],
+					'FAQ_QUESTION'	=> @$expected[0],
 					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
 				]],
 				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> $expected[1],
+					'FAQ_QUESTION'	=> @$expected[1],
 					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
 				]],
 				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> $expected[2],
+					'FAQ_QUESTION'	=> @$expected[2],
 					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
 				]],
 				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> $expected[3],
+					'FAQ_QUESTION'	=> @$expected[3],
 					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
 				]]
 			);
