@@ -17,24 +17,24 @@ class acp_install_bbcodes_test extends acp_base
 		return [
 			[[
 				 'foo' => [ // new
-							'bbcode_helpline'	=> 'ABBC3_FOO_HELPLINE',
-							'bbcode_match'		=> '[foo]{TEXT}[/foo]',
-							'bbcode_tpl'		=> '<span class="foo">{TEXT}</span>',
+					'bbcode_helpline'	=> 'ABBC3_FOO_HELPLINE',
+					'bbcode_match'		=> '[foo]{TEXT}[/foo]',
+					'bbcode_tpl'		=> '<span class="foo">{TEXT}</span>',
 				 ],
 				 'bar' => [ // new
-							'bbcode_helpline'	=> 'ABBC3_BAR_HELPLINE',
-							'bbcode_match'		=> '[bar]{TEXT}[/bar]',
-							'bbcode_tpl'		=> '<span class="bar">{TEXT}</span>',
+					'bbcode_helpline'	=> 'ABBC3_BAR_HELPLINE',
+					'bbcode_match'		=> '[bar]{TEXT}[/bar]',
+					'bbcode_tpl'		=> '<span class="bar">{TEXT}</span>',
 				 ],
 				 'align' => [ // update
-							  'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
-							  'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
-							  'bbcode_tpl'		=> '<span class="align-{IDENTIFIER}">{TEXT}</span>',
+					  'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
+					  'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
+					  'bbcode_tpl'		=> '<span class="align-{IDENTIFIER}">{TEXT}</span>',
 				 ],
 				 'sup' => [ // update
-							'bbcode_helpline'	=> 'ABBC3_SUP_HELPLINE',
-							'bbcode_match'		=> '[sup]{TEXT}[/sup]',
-							'bbcode_tpl'		=> '<span class="sup">{TEXT}</span>',
+					'bbcode_helpline'	=> 'ABBC3_SUP_HELPLINE',
+					'bbcode_match'		=> '[sup]{TEXT}[/sup]',
+					'bbcode_tpl'		=> '<span class="sup">{TEXT}</span>',
 				 ],
 			 ]],
 		];
@@ -70,7 +70,7 @@ class acp_install_bbcodes_test extends acp_base
 		$bbcodes_installer->delete_bbcodes($data);
 		foreach ($data as $bbcode_tag => $bbcode_data)
 		{
-			self::assertFalse($this->invokeMethod($bbcodes_installer, 'bbcode_exists', [$bbcode_tag, $bbcode_data['bbcode_tag']]));
+			self::assertFalse($this->invokeMethod($bbcodes_installer, 'bbcode_exists', [$bbcode_tag, null]));
 		}
 	}
 

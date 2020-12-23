@@ -21,7 +21,10 @@ class custom_bbcode_modify_sql_test extends listener_base
 	{
 		return [
 			[
-				[],
+				[
+					'SELECT'	=> '',
+					'ORDER_BY'	=> '',
+				],
 				[
 					'SELECT'	=> ', b.bbcode_group',
 					'ORDER_BY'	=> 'b.bbcode_order, b.bbcode_id',

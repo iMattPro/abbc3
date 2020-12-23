@@ -19,15 +19,11 @@ class acp_bbcodes_custom_sorting_buttons_test extends acp_listener_base
 	 */
 	public function acp_bbcodes_custom_sorting_buttons_data()
 	{
+		global $user;
+		$user = new \phpbb_mock_user();
+		$user->data['user_form_salt'] = '';
+
 		return [
-			[
-				[],
-				[],
-				[
-					'U_MOVE_UP'		=> '&amp;action=move_up&amp;id=&amp;hash=' . generate_link_hash('move_up'),
-					'U_MOVE_DOWN'	=> '&amp;action=move_down&amp;id=&amp;hash=' . generate_link_hash('move_down'),
-				],
-			],
 			[
 				[
 					'bbcode_id'		=> 13,
@@ -80,7 +76,7 @@ class acp_bbcodes_custom_sorting_buttons_test extends acp_listener_base
 		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
 		$dispatcher->addListener('core.acp_bbcodes_display_bbcodes', [$this->listener, 'acp_bbcodes_custom_sorting_buttons']);
 
-		$event_data = ['row', 'bbcodes_array', 'u_action'];
+		$event_data = ['row', 'bbcodes_array'];
 		$event = new \phpbb\event\data(compact($event_data));
 		$dispatcher->dispatch('core.acp_bbcodes_display_bbcodes', $event);
 
