@@ -18,6 +18,7 @@
 		<delete dir="${dir}/vendor" />
 		<delete dir="${dir}/node_modules" />
 		<delete dir="${dir}/develop" />
+		<delete dir="${dir}/.github" />
 
 		<delete file="${dir}/.gitignore" />
 		<delete file="${dir}/.gitattributes" />
