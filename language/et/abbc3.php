@@ -76,12 +76,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Sisesta otse sõnumisse',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Näide',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Lubatud veebilehed',
-	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Sisesta veebilehe URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Valikuline kirjeldus',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',

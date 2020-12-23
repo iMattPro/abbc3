@@ -51,6 +51,7 @@ class faq_test extends \phpbb_database_test_case
 		$this->get_test_case_helpers()->set_s9e_services($phpbb_container);
 
 		$db = $this->new_dbal();
+		$auth = new \phpbb\auth\auth();
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$this->language = new \phpbb\language\language($lang_loader);
 		$this->template = $this->getMockBuilder('\phpbb\template\template')
@@ -58,7 +59,7 @@ class faq_test extends \phpbb_database_test_case
 			->getMock();
 		$this->user = new \phpbb\user($this->language , '\phpbb\datetime');
 		$phpbb_extension_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
-		$bbcodes_display = new \vse\abbc3\core\bbcodes_display($config, $db, $phpbb_extension_manager, $this->user, $phpbb_root_path);
+		$bbcodes_display = new \vse\abbc3\core\bbcodes_display($auth, $config, $db, $phpbb_extension_manager, $this->user, $phpbb_root_path);
 		$this->bbcodes_help = new \vse\abbc3\core\bbcodes_help($bbcodes_display, $db, $this->language, $this->template, $this->user);
 	}
 

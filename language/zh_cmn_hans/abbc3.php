@@ -76,12 +76,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> '输入至消息',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> '范例',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> '允许的网站',
-	'ABBC3_BBVIDEO_LINK'		=> '视频网址',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> '添加 URL',
 	'ABBC3_URL_DESCRIPTION'		=> '可选说明',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
@@ -103,17 +98,17 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode 顺序已变更',
 	'ABBC3_BBCODE_GROUP'		=> '变更可使用此BBCode的使用者群组',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未选择任何群，则所有人皆可使用此 BBCode。若要选择多个群组，请按下 CTRL 键。Mac 电脑请用 CMD 键',
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box. For information about customizing the icon bar, visit the <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
-	'ABBC3_PIPES'				=> 'Enable the Pipe Table PlugIn',
-	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipes Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',
-	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
-	'ABBC3_QR_BBCODES'			=> 'Enable BBCodes in Quick Reply',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'This will add BBCode buttons to Quick Reply.',
-	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
-	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
+	'ABBC3_SETTINGS_EXPLAIN'	=> '在此您可以修改 Advanced BBCode Box 的设置。 要了解有关定制图标栏的信息，请访问 <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>。',
+	'ABBC3_PIPES'				=> '启用管道表格插件',
+	'ABBC3_PIPES_EXPLAIN'		=> '管道表格插件，会允许用户在帖子和私信中使用 markdown 语法来创建表格。',
+	'ABBC3_BBCODE_BAR'			=> '启用 BBCode 图标栏',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> '启用它来显示 ABBC3 的基于图标的 BBCode 工具栏。禁用它则会用 phpBB 自带的默认 BBCode 按钮。 ',
+	'ABBC3_QR_BBCODES'			=> '在快速回复中启用 BBCode',
+	'ABBC3_QR_BBCODES_EXPLAIN'	=> '这回在快速回复编辑器中启用 BBCode 的按钮。',
+	'ABBC3_ICONS_TYPE'			=> '图标栏的图片格式',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> '选择用于 ABBC3 图标的图片格式。注意您只能选择一种并用于所有的图标。 ',
+	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode 图标栏',
+	'ABBC3_LEGEND_ADD_ONS'		=> '附加设置',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 

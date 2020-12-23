@@ -151,7 +151,7 @@ function bbspecial(bbcode, bbcodeId) {
 		case 'BBvideo':
 		case 'BBvideo=':
 		case 'media':
-			var tag = (bbcode === 'media') ? bbcode : 'bbvideo';
+			var tag = bbcode.replace('=', '').toLowerCase();
 			if (theSelection || phpbb.isTouch) {
 				bbfontstyle('[' + tag + ']', '[/' + tag + ']');
 			} else {

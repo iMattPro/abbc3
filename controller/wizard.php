@@ -102,18 +102,20 @@ class wizard
 				// check that siteID is not already a custom bbcode and that it exists in MediaEmbed
 				if (!isset($configurator->BBCodes[$siteId]) && $configurator->tags->exists($siteId))
 				{
-					$bbvideo_sites[$siteId] = isset($siteConfig['example']) ? current((array) $siteConfig['example']) : '';
+					$bbvideo_sites[$siteId] = [
+						'name'    => $siteConfig['name'],
+						'example' => isset($siteConfig['example']) ? current((array) $siteConfig['example']) : '',
+					];
 				}
 			}
+
+			ksort($bbvideo_sites);
 
 			$this->cache->put('_bbvideo_sites', $bbvideo_sites);
 		}
 
-		ksort($bbvideo_sites);
-
 		$this->template->assign_vars([
 			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites,
-			'ABBC3_BBVIDEO_LINK_EX'	=> isset($bbvideo_sites[self::BBVIDEO_DEFAULT]) ? $bbvideo_sites[self::BBVIDEO_DEFAULT] : '',
 			'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
 		]);
 	}

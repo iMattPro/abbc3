@@ -77,12 +77,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Chèn vào nội dung',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Ví dụ',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Những trang video cho phép',
-	'ABBC3_BBVIDEO_LINK'		=> 'Đường dẫn',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Nhập liên kết',
 	'ABBC3_URL_DESCRIPTION'		=> 'Mô tả thêm',
 	'ABBC3_URL_EXAMPLE'			=> 'https://bienthuy.com',

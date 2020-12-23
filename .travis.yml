@@ -24,7 +24,7 @@ matrix:
     - php: nightly
       env: DB=mysqli
   allow_failures:
-    - php: 8.0snapshot
+    - php: 8.0
     - php: nightly
   fast_finish: true
 

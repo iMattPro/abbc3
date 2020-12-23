@@ -75,12 +75,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Inserir na mensagem',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Exemplo',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Sites permitidos',
-	'ABBC3_BBVIDEO_LINK'		=> 'Vídeo URL',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Digite uma URL do site',
 	'ABBC3_URL_DESCRIPTION'		=> 'Descrição opcional',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.google.com.br',

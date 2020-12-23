@@ -209,26 +209,28 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * If Quick Reply allowed, set our quick_reply property.
+	 * Added compatibility check for Quick Reply Reloaded (qr_bbcode).
 	 *
 	 * @access public
 	 */
 	public function set_quick_reply()
 	{
-		$this->quick_reply = $this->config['abbc3_qr_bbcodes'];
+		$this->quick_reply = $this->config['abbc3_qr_bbcodes'] && !$this->config['qr_bbcode'];
 	}
 
 	/**
 	 * Add BBCodes to Quick Reply.
 	 *
+	 * @param \phpbb\event\data $event The event object
 	 * @access public
 	 */
-	public function add_to_quickreply()
+	public function add_to_quickreply($event)
 	{
 		if ($this->quick_reply)
 		{
 			$this->user->add_lang('posting');
-			$this->template->assign_var('S_BBCODE_ALLOWED', true);
-			display_custom_bbcodes();
+			$this->template->assign_var('S_ABBC3_QUICKREPLY', true);
+			$this->template->assign_vars($this->bbcodes_display->bbcode_statuses($event['forum_id']));
 		}
 	}
 }

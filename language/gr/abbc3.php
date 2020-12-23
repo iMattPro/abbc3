@@ -77,12 +77,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Εισαγωγή στο μύνημα',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Παράδειγμα',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'επιτρεπόμενα sites',
-	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'URL ιστοσελίδας',
 	'ABBC3_URL_DESCRIPTION'		=> 'Προαιρετική περιγραφή',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
