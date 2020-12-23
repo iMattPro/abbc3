@@ -111,8 +111,8 @@ jobs:
                       db: "mysql:5.6"
                     - php: '7.1'
                       db: "mysql:5.7"
-#                    - php: '7.2'
-#                      db: "mysql:5.7"
+# for code coverage - php: '7.2'
+# for code coverage   db: "mysql:5.7"
                     - php: '7.3'
                       db: "mysql:5.7"
                     - php: '7.4'
@@ -499,12 +499,11 @@ jobs:
             - name: Run unit tests
               env:
                   DB: ${{steps.database-type.outputs.db}}
-              run: phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/.github/phpunit-$DB-github.xml --bootstrap ./tests/bootstrap.php --coverage-clover build/logs/clover.xml
+              run: phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/.github/phpunit-mysql-github.xml --bootstrap ./tests/bootstrap.php --coverage-clover build/logs/clover.xml
               working-directory: ./phpBB3
 
             - name: Send code coverage
-              run: |
-                  wget https://scrutinizer-ci.com/ocular.phar
-                  php ocular.phar code-coverage:upload --format=php-clover ../../../../build/logs/clover.xml
-              working-directory: ./phpBB3/phpBB/ext/${{ env.EXTNAME }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: ./phpBB3/build/logs/clover.xml
     # END Code Coverage Tests Job
