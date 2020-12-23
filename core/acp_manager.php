@@ -152,7 +152,7 @@ class acp_manager
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
 
-		return explode(',', $row['bbcode_group']);
+		return !empty($row['bbcode_group']) ? explode(',', $row['bbcode_group']) : [];
 	}
 
 	/**

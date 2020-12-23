@@ -49,7 +49,7 @@ class acp_base extends \phpbb_database_test_case
 
 	protected function setUp(): void
 	{
-		global $phpbb_root_path, $phpEx;
+		global $user, $phpbb_root_path, $phpEx;
 
 		parent::setUp();
 
@@ -59,7 +59,8 @@ class acp_base extends \phpbb_database_test_case
 			->getMock();
 		$lang_loader = new language_file_loader($phpbb_root_path, $phpEx);
 		$this->lang = new language($lang_loader);
-		$this->user = new user($this->lang, '\phpbb\datetime');
+		$this->user = $user = new user($this->lang, '\phpbb\datetime');
+		$user->data['user_form_salt'] = '';
 		$this->group_helper = new helper(
 			$this->getMockBuilder('\phpbb\auth\auth')->disableOriginalConstructor()->getMock(),
 			$this->getMockBuilder('\phpbb\cache\service')->disableOriginalConstructor()->getMock(),
