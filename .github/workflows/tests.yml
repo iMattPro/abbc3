@@ -111,8 +111,9 @@ jobs:
                       db: "mysql:5.6"
                     - php: '7.1'
                       db: "mysql:5.7"
-# for code coverage - php: '7.2'
-# for code coverage   db: "mysql:5.7"
+                    - php: '7.2'
+                      db: "mysql:5.7"
+                      COVERAGE: 1
                     - php: '7.3'
                       db: "mysql:5.7"
                     - php: '7.4'
@@ -171,11 +172,20 @@ jobs:
                   echo "::set-output name=db::$db"
 
             - name: Setup PHP
+              if: ${{ matrix.COVERAGE != 1 }}
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
                   extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
                   coverage: none
+
+            - name: Setup PHP with Coverage
+              if: ${{ matrix.COVERAGE == 1 }}
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
+                  coverage: xdebug
 
             - name: Setup environment for phpBB
               env:
@@ -205,14 +215,36 @@ jobs:
               working-directory: ./phpBB3
 
             - name: Setup PHPUnit files
-              run: mkdir -p phpBB/ext/$EXTNAME/.github && cp .github/phpunit* $_
+              env:
+                  DB: ${{steps.database-type.outputs.db}}
+                  COVERAGE: ${{ matrix.COVERAGE != 1 && '0' || '1' }}
+              run: |
+                  if [ $COVERAGE == '1' ]
+                  then
+                      sed -n '1h;1!H;${;g;s/<\/php>/<\/php>\n\t<filter>\n\t\t<whitelist>\n\t\t\t<directory>..\/<\/directory>\n\t\t\t<exclude>\n\t\t\t\t<directory>..\/tests\/<\/directory>\n\t\t\t\t<directory>..\/language\/<\/directory>\n\t\t\t\t<directory>..\/migrations\/<\/directory>\n\t\t\t<\/exclude>\n\t\t<\/whitelist>\n\t<\/filter>/g;p;}' .github/phpunit-$DB-github.xml &> phpBB/ext/$EXTNAME/.github/phpunit-$DB-github.xml
+                  else
+                      mkdir -p phpBB/ext/$EXTNAME/.github && cp .github/phpunit* $_
+                  fi
               working-directory: ./phpBB3
 
             - name: Run unit tests
               env:
                   DB: ${{steps.database-type.outputs.db}}
-              run: phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/.github/phpunit-$DB-github.xml --bootstrap ./tests/bootstrap.php
+                  COVERAGE: ${{ matrix.COVERAGE != 1 && '0' || '1' }}
+              run: |
+                  if [ $COVERAGE == '1' ]
+                  then
+                      phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/.github/phpunit-$DB-github.xml --bootstrap ./tests/bootstrap.php --coverage-clover build/logs/clover.xml
+                  else
+                      phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/.github/phpunit-$DB-github.xml --bootstrap ./tests/bootstrap.php
+                  fi
               working-directory: ./phpBB3
+
+            - name: Send code coverage
+              if: ${{ matrix.COVERAGE == 1 }}
+              uses: codecov/codecov-action@v1
+              with:
+                  file: ./phpBB3/build/logs/clover.xml
     # END MySQL and MariaDB Job
 
     # START PostgreSQL Job
@@ -414,96 +446,3 @@ jobs:
               run: phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/.github/phpunit-$DB-github.xml --bootstrap ./tests/bootstrap.php
               working-directory: ./phpBB3
     # END Other Tests Job
-
-    # START Code Coverage Tests Job
-    coverage-tests:
-        runs-on: ubuntu-18.04
-        strategy:
-            matrix:
-                include:
-                    - php: '7.2'
-                      db: "mysql:5.7"
-
-        name: PHP ${{ matrix.php }} - ${{ matrix.db_alias != '' && matrix.db_alias || matrix.db }}
-
-        services:
-            mysql:
-                image: ${{ matrix.db }}
-                env:
-                    MYSQL_ALLOW_EMPTY_PASSWORD: yes
-                    MYSQL_DATABASE: phpbb_tests
-                ports:
-                    - 3306:3306
-                options: >-
-                    --health-cmd="mysqladmin ping"
-                    --health-interval=10s
-                    --health-timeout=5s
-                    --health-retries=3
-
-            redis:
-                image: redis
-                options: >-
-                    --health-cmd "redis-cli ping"
-                    --health-interval 10s
-                    --health-timeout 5s
-                    --health-retries 5
-                ports:
-                    - 6379:6379
-
-        steps:
-            - name: Checkout phpBB
-              uses: actions/checkout@v2
-              with:
-                  repository: phpbb/phpbb
-                  ref: ${{ env.PHPBB_BRANCH }}
-                  path: phpBB3
-
-            - name: Checkout extension
-              uses: actions/checkout@v2
-              with:
-                  path: phpBB3/phpBB/ext/${{ env.EXTNAME }}
-
-            - id: database-type
-              env:
-                  MATRIX_DB: ${{ matrix.db }}
-              run: |
-                  db=$(echo "${MATRIX_DB%%:*}")
-                  echo "::set-output name=db::$db"
-
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
-                  coverage: xdebug
-
-            - name: Setup environment for phpBB
-              env:
-                  DB: ${{steps.database-type.outputs.db}}
-                  PHP_VERSION: ${{ matrix.php }}
-                  NOTESTS: '0'
-              run: .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
-              working-directory: ./phpBB3
-
-            - name: Setup database
-              env:
-                  DB: ${{steps.database-type.outputs.db}}
-                  MYISAM: ${{ matrix.MYISAM != 1 && '0' || '1' }}
-              run: .github/setup-database.sh $DB $MYISAM
-              working-directory: ./phpBB3
-
-            - name: Setup PHPUnit files for code coverage
-              run: sed -n '1h;1!H;${;g;s/<\/php>/<\/php>\n\t<filter>\n\t\t<whitelist>\n\t\t\t<directory>..\/<\/directory>\n\t\t\t<exclude>\n\t\t\t\t<directory>..\/tests\/<\/directory>\n\t\t\t\t<directory>..\/language\/<\/directory>\n\t\t\t\t<directory>..\/migrations\/<\/directory>\n\t\t\t<\/exclude>\n\t\t<\/whitelist>\n\t<\/filter>/g;p;}' .github/phpunit-mysql-github.xml &> phpBB/ext/$EXTNAME/.github/phpunit-mysql-github.xml
-              working-directory: ./phpBB3
-
-            - name: Run unit tests
-              env:
-                  DB: ${{steps.database-type.outputs.db}}
-              run: phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/.github/phpunit-mysql-github.xml --bootstrap ./tests/bootstrap.php --coverage-clover build/logs/clover.xml
-              working-directory: ./phpBB3
-
-            - name: Send code coverage
-              uses: codecov/codecov-action@v1
-              with:
-                  file: ./phpBB3/build/logs/clover.xml
-    # END Code Coverage Tests Job
