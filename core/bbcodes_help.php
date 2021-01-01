@@ -31,19 +31,18 @@ class bbcodes_help
 
 	/** @var user */
 	protected $user;
-	/**
-	 * @var \vse\abbc3\core\bbcodes_display
-	 */
+
+	/** @var bbcodes_display */
 	private $bbcodes_display;
 
 	/**
 	 * Constructor
 	 *
-	 * @param \vse\abbc3\core\bbcodes_display   $bbcodes_display
-	 * @param \phpbb\db\driver\driver_interface $db
-	 * @param language                          $language
-	 * @param \phpbb\template\template          $template
-	 * @param \phpbb\user                       $user
+	 * @param bbcodes_display  $bbcodes_display
+	 * @param driver_interface $db
+	 * @param language         $language
+	 * @param template         $template
+	 * @param user             $user
 	 */
 	public function __construct(bbcodes_display $bbcodes_display, driver_interface $db, language $language, template $template, user $user)
 	{
