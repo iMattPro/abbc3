@@ -42,11 +42,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		;
 
 		// Handle trigger_error() output called from json_response
-		if (isset(\PHPUnit\Framework\Error\Warning::$enabled))
-		{
-			\PHPUnit\Framework\Error\Warning::$enabled = true;
-		}
-		$this->expectException(\PHPUnit\Framework\Error\Warning::class);
+		$this->setExpectedTriggerError(E_WARNING);
 
 		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();

@@ -126,11 +126,7 @@ class acp_bbcode_move_test extends acp_base
 		;
 
 		// Handle trigger_error() output
-		if (isset(\PHPUnit\Framework\Error\Warning::$enabled))
-		{
-			\PHPUnit\Framework\Error\Warning::$enabled = true;
-		}
-		$this->expectException(\PHPUnit\Framework\Error\Warning::class);
+		$this->setExpectedTriggerError($errNo);
 
 		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();
