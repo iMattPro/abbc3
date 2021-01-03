@@ -152,13 +152,13 @@ class bbcodes_display
 				->suffix(".{$this->config['abbc3_icons_type']}")
 				->extension_directory('/images/icons')
 				->core_path('images/abbc3/icons/')
-				->get_files();
+				->find();
 
 			// Rewrite the image array with img names as keys and paths as values
-			foreach ($icons as $key => $path)
+			foreach ($icons as $path => $ext)
 			{
 				$icons[basename($path, ".{$this->config['abbc3_icons_type']}")] = $path;
-				unset($icons[$key]);
+				unset($icons[$path]);
 			}
 		}
 
