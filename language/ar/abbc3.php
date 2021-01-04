@@ -75,6 +75,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'إدخال إلى الرسالة',
+	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'مثال',
 	'ABBC3_BBVIDEO_SITES'		=> 'مواقع الفيديوهات المُتاحة',
 	'ABBC3_URL_LINK'			=> 'إدخال رابط الموقع',
 	'ABBC3_URL_DESCRIPTION'		=> 'وصف إختياري',
