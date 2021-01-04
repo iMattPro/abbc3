@@ -75,12 +75,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Insert into message',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Example',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Allowed sites',
-	'ABBC3_BBVIDEO_LINK'		=> 'Video URL',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Enter a site URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Optional description',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',

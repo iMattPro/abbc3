@@ -76,12 +76,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Umetni u poruku',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Primjer',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Dopuštene stranice',
-	'ABBC3_BBVIDEO_LINK'		=> 'URL videa',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Unesite URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Izborni opis',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',

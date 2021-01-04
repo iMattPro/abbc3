@@ -75,12 +75,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'הכנס לתוך ההודעה',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'דוגמא',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'אתרים מורשים ב',
-	'ABBC3_BBVIDEO_LINK'		=> 'קישור סרטון',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'הזן כתובת אתר',
 	'ABBC3_URL_DESCRIPTION'		=> 'תיאור אופציונאלי',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',

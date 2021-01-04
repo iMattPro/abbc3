@@ -76,12 +76,7 @@ $lang = array_merge($lang, array(
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Insérer dans le message',
 	'ABBC3_BBCODE_WIZ_EXAMPLE'	=> 'Exemple',
-
-	// BBvideo Wizard
 	'ABBC3_BBVIDEO_SITES'		=> 'Sites autorisés pour vidéo',
-	'ABBC3_BBVIDEO_LINK'		=> 'Lien vers la vidéo',
-
-	// URL Wizard
 	'ABBC3_URL_LINK'			=> 'Ajouter une adresse URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Description facultative',
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
@@ -103,17 +98,17 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'L’ordre des BBcode a été mis à jour.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestion des groupes pouvant utiliser ce BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si aucun groupe n’est sélectionné, tous les utilisateurs pourront utiliser ce BBCode. Appuyer sur la touche <samp>CTRL</samp> (ou <samp>&#8984;CMD</samp> sur Mac) tout en cliquant pour sélectionner / désélectionner plus d’un groupe.',
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box. For information about customizing the icon bar, visit the <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
-	'ABBC3_PIPES'				=> 'Enable the Pipe Table PlugIn',
-	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipes Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',
-	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
-	'ABBC3_QR_BBCODES'			=> 'Enable BBCodes in Quick Reply',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'This will add BBCode buttons to Quick Reply.',
-	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
-	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Ici, vous pouvez configurer les paramètres de Advanced BBCode Box. Pour plus d’informations sur la personnalisation de la barre d’icônes, visitez le site <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
+	'ABBC3_PIPES'				=> 'Activer le PlugIn Pipe Table',
+	'ABBC3_PIPES_EXPLAIN'		=> 'Le Pipes Table PlugIn permet aux utilisateurs de créer des tableaux dans leurs messages et leurs messages privés en utilisant la syntaxe de démarquage.',
+	'ABBC3_BBCODE_BAR'			=> 'Activer la barre d’icônes BBCode',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Cela affichera la barre d’outils BBCode d’ABBC3. Désactivez cette option pour afficher les boutons BBCode par défaut de phpBB.',
+	'ABBC3_QR_BBCODES'			=> 'Activer les BBCodes dans la réponse rapide',
+	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Cela affichera la barre d’outils BBCode d’ABBC3 dans la réponse rapide.',
+	'ABBC3_ICONS_TYPE'			=> 'Format de d’image de la barre d’icônes',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choisissez le format d’image à utiliser pour les icônes d’ABBC3. Notez que vous ne pouvez choisir qu’un seul format pour toutes vos icônes.',
+	'ABBC3_LEGEND_ICON_BAR'		=> 'Barre d’icônes du BBCode',
+	'ABBC3_LEGEND_ADD_ONS'		=> 'Paramètres supplémentaires',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 
