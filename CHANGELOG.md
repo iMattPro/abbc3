@@ -1,8 +1,13 @@
 # Changelog
 
+## 3.3.2-dev
+
+- Fixed compatibility issues with PHP 8.
+- Fixed compatibility issues with MSSQL databases.
+- Fixed an issue with missing BBCode icons when post editor is used on a front-end controller, such as the Knowledge Base extension.
+
 ## 3.3.1 - 2020-11-07
 
-- Joe Biden wins the US Presidential election.
 - Fixed missing IMG, URL and FLASH BBCode buttons from Quick Reply.
 - Fixed issues with duplication of BBCode button bars in Quick Reply when using Quick Reply Reloaded and other Quick Reply extensions.
 - Fixed the names of example sites in the BBVideo/Media Embed Wizard.
