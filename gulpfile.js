@@ -87,4 +87,4 @@ gulp.task('lint', gulp.series('jshint', 'csslint'));
 gulp.task('build', gulp.series('lint', 'js', 'css', 'tablednd'));
 
 // Run default tasks with $ gulp
-gulp.task('default', gulp.series('js', 'css'));
+gulp.task('default', gulp.series('lint', 'js', 'css'));
