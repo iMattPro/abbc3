@@ -5,7 +5,7 @@
   "license": "GPL-2.0",
   "main": "gulpfile.js",
   "dependencies": {
-    "tablednd": "^1.0.4"
+    "tablednd": "^1.0.5"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
