@@ -1,10 +1,11 @@
 # Changelog
 
-## 3.3.2-dev
+## 3.3.2 - 2021-01-16
 
 - Fixed compatibility issues with PHP 8.
 - Fixed compatibility issues with MSSQL databases.
-- Fixed an issue with missing BBCode icons when post editor is used on a front-end controller, such as the Knowledge Base extension.
+- Fixed an issue with missing BBCode icons in front-end controllers such as the Knowledge Base extension.
+- Updated the TableDnD plugin to 1.0.5.
 
 ## 3.3.1 - 2020-11-07
 
