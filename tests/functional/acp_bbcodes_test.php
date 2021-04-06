@@ -20,7 +20,7 @@ class acp_bbcodes_test extends \phpbb_functional_test_case
 		return ['vse/abbc3'];
 	}
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		parent::setUp();
 		$this->login();

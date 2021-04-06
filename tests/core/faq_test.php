@@ -42,7 +42,7 @@ class faq_test extends \phpbb_database_test_case
 		return $compositeDs;
 	}
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		parent::setUp();
 
@@ -86,19 +86,19 @@ class faq_test extends \phpbb_database_test_case
 					'SWITCH_COLUMN'	=> false,
 				]],
 				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> $expected[0],
+					'FAQ_QUESTION'	=> @$expected[0],
 					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
 				]],
 				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> $expected[1],
+					'FAQ_QUESTION'	=> @$expected[1],
 					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
 				]],
 				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> $expected[2],
+					'FAQ_QUESTION'	=> @$expected[2],
 					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
 				]],
 				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> $expected[3],
+					'FAQ_QUESTION'	=> @$expected[3],
 					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
 				]]
 			);

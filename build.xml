@@ -14,14 +14,13 @@
 		${dir}/ is the folder of your extension, e.g. ext/nickvergessen/newspage/
 		-->
 		<delete dir="${dir}/tests" />
-		<delete dir="${dir}/travis" />
 		<delete dir="${dir}/vendor" />
 		<delete dir="${dir}/node_modules" />
 		<delete dir="${dir}/develop" />
+		<delete dir="${dir}/.github" />
 
 		<delete file="${dir}/.gitignore" />
 		<delete file="${dir}/.gitattributes" />
-		<delete file="${dir}/.travis.yml" />
 		<delete file="${dir}/build.xml" />
 		<delete file="${dir}/composer.lock" />
 		<delete file="${dir}/composer.phar" />

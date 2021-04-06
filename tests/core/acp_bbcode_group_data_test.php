@@ -15,9 +15,9 @@ class acp_bbcode_group_data_test extends acp_base
 	public function bbcode_group_data()
 	{
 		return [
-			[0, ['']],
-			[13, ['']],
-			[14, ['']],
+			[0, []],
+			[13, []],
+			[14, []],
 			[15, [1]],
 			[16, [2, 3]],
 			[17, [4, 5, 6]],

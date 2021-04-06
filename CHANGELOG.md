@@ -1,8 +1,14 @@
 # Changelog
 
+## 3.3.2 - 2021-01-16
+
+- Fixed compatibility issues with PHP 8.
+- Fixed compatibility issues with MSSQL databases.
+- Fixed an issue with missing BBCode icons in front-end controllers such as the Knowledge Base extension.
+- Updated the TableDnD plugin to 1.0.5.
+
 ## 3.3.1 - 2020-11-07
 
-- Joe Biden wins the US Presidential election.
 - Fixed missing IMG, URL and FLASH BBCode buttons from Quick Reply.
 - Fixed issues with duplication of BBCode button bars in Quick Reply when using Quick Reply Reloaded and other Quick Reply extensions.
 - Fixed the names of example sites in the BBVideo/Media Embed Wizard.

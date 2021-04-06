@@ -79,7 +79,10 @@ class bbcodes_installer extends acp_manager
 	}
 
 	/**
-	 * Deletes bbcodes, used by migrations to perform add/updates
+	 * Deletes bbcodes, used by migrations to perform add/updates.
+	 * Don't delete just by ID. Also match replace fields. This is to ensure
+	 * we only delete BBCodes created by ABBC3, and not if, for example
+	 * ABBC3 BBCodes that have been altered by the user.
 	 *
 	 * @param array $bbcodes Array of bbcodes to delete
 	 * @access public
@@ -92,10 +95,21 @@ class bbcodes_installer extends acp_manager
 
 			if ($bbcode = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag']))
 			{
-				$sql = 'DELETE FROM ' . BBCODES_TABLE . "
+				if (strpos($this->db->get_sql_layer(), 'mssql') === 0)
+				{
+					// Fix for MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
+					$sql = 'DELETE FROM ' . BBCODES_TABLE . "
+					WHERE CONVERT(NVARCHAR(MAX), first_pass_match) = N'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
+						AND CONVERT(NVARCHAR(MAX), first_pass_replace) = N'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
+						AND bbcode_id = " . (int) $bbcode['bbcode_id'];
+				}
+				else
+				{
+					$sql = 'DELETE FROM ' . BBCODES_TABLE . "
 					WHERE first_pass_match = '" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
 						AND first_pass_replace = '" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
 						AND bbcode_id = " . (int) $bbcode['bbcode_id'];
+				}
 				$this->db->sql_query($sql);
 			}
 		}

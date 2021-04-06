@@ -50,9 +50,9 @@ class module_test extends \phpbb_database_test_case
 		return $this->createXMLDataSet(__DIR__ . '/../core/fixtures/bbcodes.xml');
 	}
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
-		global $phpbb_container, $phpbb_root_path, $phpEx;
+		global $user, $phpbb_container, $phpbb_root_path, $phpEx;
 
 		$this->cache = $this->getMockBuilder('\phpbb\cache\driver\driver_interface')
 			->disableOriginalConstructor()
@@ -74,6 +74,10 @@ class module_test extends \phpbb_database_test_case
 			->getMock();
 		$this->container = $phpbb_container = $this->getMockBuilder('\Symfony\Component\DependencyInjection\ContainerInterface')
 			->getMock();
+
+		// Used in build_select function
+		$user = new \phpbb_mock_user();
+		$user->lang = new \phpbb_mock_lang();
 	}
 
 	/**
@@ -124,11 +128,13 @@ class module_test extends \phpbb_database_test_case
 
 		$module = $this->get_main_module();
 
-		$this->request->expects(self::at(0))
+		$this->request->expects(self::once())
 			->method('is_set_post')
 			->willReturn('submit');
 
-		$this->setExpectedTriggerError(E_USER_NOTICE);
+		// Throws Notice in PHP 8.0+ and Error in earlier versions
+		$exceptionName = PHP_VERSION_ID < 80000 ? \PHPUnit\Framework\Error\Error::class : \PHPUnit\Framework\Error\Notice::class;
+		$this->expectException($exceptionName);
 
 		$module->main();
 	}
@@ -139,11 +145,13 @@ class module_test extends \phpbb_database_test_case
 
 		$module = $this->get_main_module();
 
-		$this->request->expects(self::at(0))
+		$this->request->expects(self::once())
 			->method('is_set_post')
 			->willReturn('submit');
 
-		$this->setExpectedTriggerError(E_USER_WARNING);
+		// Throws E_WARNING in PHP 8.0+ and E_USER_WARNING in earlier versions
+		$exceptionName = PHP_VERSION_ID < 80000 ? \PHPUnit\Framework\Error\Error::class : \PHPUnit\Framework\Error\Warning::class;
+		$this->expectException($exceptionName);
 
 		$module->main();
 	}
