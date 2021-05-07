@@ -27,6 +27,9 @@ class listener_base extends \phpbb_test_case
 	/** @var \phpbb\routing\helper|\PHPUnit_Framework_MockObject_MockObject */
 	protected $helper;
 
+	/** @var \phpbb\language\language */
+	protected $language;
+
 	/** @var \vse\abbc3\event\listener */
 	protected $listener;
 
@@ -64,11 +67,9 @@ class listener_base extends \phpbb_test_case
 
 		$this->template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
+		$this->language = new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx));
 		$this->user = $this->getMockBuilder('\phpbb\user')
-			->setConstructorArgs([
-				new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx)),
-				'\phpbb\datetime'
-			])
+			->setConstructorArgs([$this->language, '\phpbb\datetime'])
 			->getMock();
 		$this->user->data['username'] = 'admin';
 
@@ -96,6 +97,7 @@ class listener_base extends \phpbb_test_case
 			$this->bbcodes_help,
 			$this->config,
 			$this->helper,
+			$this->language,
 			$this->template,
 			$this->user
 		);

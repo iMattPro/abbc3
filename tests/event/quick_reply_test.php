@@ -34,15 +34,14 @@ class quick_reply_test extends \vse\abbc3\tests\event\listener_base
 			->with($forum_id)
 			->willReturn([]);
 
-		$this->user->expects($enabled ? self::once() : self::never())
-			->method('add_lang')
-			->with('posting');
-
 		$this->template->expects($enabled ? self::once() : self::never())
 			->method('assign_var')
 			->with('S_ABBC3_QUICKREPLY', true);
 
+		$event_data = ['forum_id'];
+		$event = new \phpbb\event\data(compact($event_data));
+
 		$this->listener->set_quick_reply();
-		$this->listener->add_to_quickreply(['forum_id' => $forum_id]);
+		$this->listener->add_to_quickreply($event);
 	}
 }
