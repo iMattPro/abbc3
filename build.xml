@@ -28,7 +28,6 @@
 		<delete file="${dir}/README.md" />
 		<delete file="${dir}/package.json" />
 		<delete file="${dir}/package-lock.json" />
-		<delete file="${dir}/gulpfile.js" />
 	</target>
 
 	<!--
@@ -79,7 +78,7 @@
 			</then>
 		</if>
 
-		<phingcall target="gulp-task">
+		<phingcall target="npm-build-task">
 			<property name="dir" value="${package-directory}" />
 		</phingcall>
 
@@ -125,10 +124,10 @@
 	</target>
 
 	<!--
-	Run gulp task
+	Run npm build task
 	-->
-	<target name="gulp-task" depends="npm-install">
-		<exec command="gulp build" dir="${package-directory}" passthru="true" checkreturn="true" />
+	<target name="npm-build-task" depends="npm-install">
+		<exec command="npm run-s" dir="${package-directory}" passthru="true" checkreturn="true" />
 	</target>
 
 </project>
