@@ -15,16 +15,16 @@ class listener_base extends \phpbb_test_case
 	/** @var \vse\abbc3\core\bbcodes_config */
 	protected $bbcodes_config;
 
-	/** @var \vse\abbc3\core\bbcodes_display|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \vse\abbc3\core\bbcodes_display|\PHPUnit\Framework\MockObject\MockObject */
 	protected $bbcodes_display;
 
-	/** @var \vse\abbc3\core\bbcodes_help|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \vse\abbc3\core\bbcodes_help|\PHPUnit\Framework\MockObject\MockObject */
 	protected $bbcodes_help;
 
 	/** @var \phpbb\config\config */
 	protected $config;
 
-	/** @var \phpbb\routing\helper|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\routing\helper|\PHPUnit\Framework\MockObject\MockObject */
 	protected $helper;
 
 	/** @var \phpbb\language\language */
@@ -33,7 +33,7 @@ class listener_base extends \phpbb_test_case
 	/** @var \vse\abbc3\event\listener */
 	protected $listener;
 
-	/** @var \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\template\template|\PHPUnit\Framework\MockObject\MockObject */
 	protected $template;
 
 	/** @var \phpbb\user */

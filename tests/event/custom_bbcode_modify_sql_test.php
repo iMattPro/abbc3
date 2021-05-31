@@ -57,16 +57,13 @@ class custom_bbcode_modify_sql_test extends listener_base
 	{
 		$this->set_listener();
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.display_custom_bbcodes_modify_sql', [$this->listener, 'custom_bbcode_modify_sql']);
 
 		$num_predefined_bbcodes = 22;
 		$event_data = ['sql_ary', 'num_predefined_bbcodes'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.display_custom_bbcodes_modify_sql', $event);
-
-		$sql_ary = $event->get_data_filtered($event_data);
-		$sql_ary = $sql_ary['sql_ary'];
+		$event_filtered_data = $dispatcher->trigger_event('core.display_custom_bbcodes_modify_sql', compact($event_data));
+		extract($event_filtered_data, EXTR_OVERWRITE);
 
 		self::assertEquals($expected, $sql_ary);
 	}

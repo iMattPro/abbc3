@@ -18,10 +18,10 @@ class wizard_test extends \phpbb_test_case
 	/** @var \vse\abbc3\controller\wizard */
 	protected $controller;
 
-	/** @var \phpbb\request\request|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\request\request|\PHPUnit\Framework\MockObject\MockObject */
 	protected $request;
 
-	/** @var \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\template\template|\PHPUnit\Framework\MockObject\MockObject */
 	protected $template;
 
 	/** @var \phpbb\textformatter\s9e\factory $factory */
@@ -38,7 +38,7 @@ class wizard_test extends \phpbb_test_case
 			->disableOriginalConstructor()
 			->getMock();
 
-		/** @var $controller_helper \phpbb\controller\helper|\PHPUnit_Framework_MockObject_MockObject */
+		/** @var $controller_helper \phpbb\controller\helper|\PHPUnit\Framework\MockObject\MockObject */
 		$controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
 			->disableOriginalConstructor()
 			->getMock();

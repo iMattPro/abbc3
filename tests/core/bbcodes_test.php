@@ -123,7 +123,7 @@ class bbcodes_test extends \phpbb_database_test_case
 	 */
 	public function test_allow_custom_bbcodes($user_id, $data, $disable)
 	{
-		/** @var \s9e\TextFormatter\Parser|\PHPUnit_Framework_MockObject_MockObject $parser */
+		/** @var \s9e\TextFormatter\Parser|\PHPUnit\Framework\MockObject\MockObject $parser */
 		$parser = $this->getMockBuilder('\s9e\TextFormatter\Parser')
 			->disableOriginalConstructor()
 			->getMock();
@@ -131,7 +131,7 @@ class bbcodes_test extends \phpbb_database_test_case
 			$data['bbcode_tag'] => $data['bbcode_group'],
 		];
 
-		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit_Framework_MockObject_MockObject $service */
+		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit\Framework\MockObject\MockObject $service */
 		$service = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
 			->disableOriginalConstructor()
 			->getMock();

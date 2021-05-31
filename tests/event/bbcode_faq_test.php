@@ -55,11 +55,10 @@ class bbcode_faq_test extends listener_base
 		$this->bbcodes_help->expects(($expected ? self::once() : self::never()))
 			->method('faq');
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.help_manager_add_block_after', [$this->listener, 'add_bbcode_faq']);
 
 		$event_data = ['block_name'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.help_manager_add_block_after', $event);
+		$dispatcher->trigger_event('core.help_manager_add_block_after', compact($event_data));
 	}
 }

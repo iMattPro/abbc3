@@ -23,7 +23,7 @@ class faq_test extends \phpbb_database_test_case
 	/** @var \phpbb\language\language */
 	protected $language;
 
-	/** @var \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\template\template|\PHPUnit\Framework\MockObject\MockObject */
 	protected $template;
 
 	/** @var \vse\abbc3\core\bbcodes_help */
