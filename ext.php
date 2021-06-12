@@ -25,9 +25,7 @@ class ext extends \phpbb\extension\base
 	public function is_enableable()
 	{
 		$config = $this->container->get('config');
-
-		return phpbb_version_compare($config['version'], self::PHPBB_MIN_VERSION, '>=') &&
-			phpbb_version_compare(PHPBB_VERSION, self::PHPBB_MIN_VERSION, '>=');
+		return phpbb_version_compare(min($config['version'], PHPBB_VERSION), self::PHPBB_MIN_VERSION, '>=');
 	}
 
 	/**
