@@ -61,8 +61,12 @@ class acp_base extends \phpbb_database_test_case
 		$this->lang = new language($lang_loader);
 		$this->user = $user = new user($this->lang, '\phpbb\datetime');
 		$user->data['user_form_salt'] = '';
+		$avatar_helper = $this->getMockBuilder('\phpbb\avatar\helper')
+			->disableOriginalConstructor()
+			->getMock();
 		$this->group_helper = new helper(
 			$this->getMockBuilder('\phpbb\auth\auth')->disableOriginalConstructor()->getMock(),
+			$avatar_helper,
 			$this->getMockBuilder('\phpbb\cache\service')->disableOriginalConstructor()->getMock(),
 			new config([]),
 			$this->lang,
@@ -71,7 +75,6 @@ class acp_base extends \phpbb_database_test_case
 				new symfony_request(
 					new \phpbb_mock_request()
 				),
-				new filesystem(),
 				$this->request,
 				$phpbb_root_path,
 				$phpEx
