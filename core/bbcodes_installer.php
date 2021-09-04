@@ -171,7 +171,7 @@ class bbcodes_installer extends acp_manager
 	 *
 	 * @param string $bbcode_name Name of bbcode
 	 * @param string $bbcode_tag  Tag name of bbcode
-	 * @return mixed Existing bbcode data array or false if not found
+	 * @return array|false Existing bbcode data array or false if not found
 	 * @access protected
 	 */
 	public function bbcode_exists($bbcode_name, $bbcode_tag)

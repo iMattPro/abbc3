@@ -81,7 +81,7 @@ class bbcodes_display
 		$icon_tag = strtolower(rtrim($row['bbcode_tag'], '='));
 
 		$custom_tags['BBCODE_IMG'] = isset($icons[$icon_tag]) ? $icons[$icon_tag] : '';
-		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = !empty($row['bbcode_group']) ? $this->user_in_bbcode_group($row['bbcode_group']) : true;
+		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = empty($row['bbcode_group']) || $this->user_in_bbcode_group($row['bbcode_group']);
 
 		return $custom_tags;
 	}
