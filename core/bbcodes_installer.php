@@ -210,12 +210,7 @@ class bbcodes_installer extends acp_manager
 	 */
 	protected function add_bbcode(array $bbcode_data)
 	{
-		$bbcode_id = $this->get_max_bbcode_id() + 1;
-
-		if ($bbcode_id <= NUM_CORE_BBCODES)
-		{
-			$bbcode_id = NUM_CORE_BBCODES + 1;
-		}
+		$bbcode_id = max($this->get_max_bbcode_id(), NUM_CORE_BBCODES) + 1;
 
 		if ($bbcode_id <= BBCODE_LIMIT)
 		{
