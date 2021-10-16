@@ -11,13 +11,16 @@
 namespace vse\abbc3\tests\core;
 
 use phpbb\config\config;
+use phpbb\db\driver\driver_interface as db;
 use phpbb\filesystem\filesystem;
 use phpbb\group\helper;
 use phpbb\language\language;
 use phpbb\language\language_file_loader;
 use phpbb\path_helper;
+use phpbb\request\request;
 use phpbb\symfony_request;
 use phpbb\user;
+use PHPUnit\Framework\MockObject\MockObject;
 use vse\abbc3\core\acp_manager;
 
 class acp_base extends \phpbb_database_test_case
@@ -27,19 +30,19 @@ class acp_base extends \phpbb_database_test_case
 		return ['vse/abbc3'];
 	}
 
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var db */
 	protected $db;
 
-	/** @var \phpbb\group\helper */
+	/** @var helper */
 	protected $group_helper;
 
-	/** @var \phpbb\language\language */
+	/** @var language */
 	protected $lang;
 
-	/** @var \phpbb\request\request|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var request|MockObject */
 	protected $request;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
 	public function getDataSet()

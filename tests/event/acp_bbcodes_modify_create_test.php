@@ -85,16 +85,12 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 			->method('get_bbcode_group_form_data')
 			->willReturn($bbcode_group);
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.acp_bbcodes_modify_create', [$this->listener, 'acp_bbcodes_modify_create']);
 
 		$event_data = ['action', 'sql_ary', 'hidden_fields'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.acp_bbcodes_modify_create', $event);
-
-		$event_data_returned = $event->get_data_filtered($event_data);
-		$hidden_fields = $event_data_returned['hidden_fields'];
-		$sql_ary = $event_data_returned['sql_ary'];
+		$event_data_returned = $dispatcher->trigger_event('core.acp_bbcodes_modify_create', compact($event_data));
+		extract($event_data_returned, EXTR_OVERWRITE);
 
 		self::assertEquals($expected_sql_ary, $sql_ary);
 		self::assertEquals($expected_hidden_fields, $hidden_fields);

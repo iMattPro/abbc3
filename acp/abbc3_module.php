@@ -44,6 +44,8 @@ class abbc3_module
 
 	/**
 	 * Constructor
+	 *
+	 * @throws \Exception
 	 */
 	public function __construct()
 	{

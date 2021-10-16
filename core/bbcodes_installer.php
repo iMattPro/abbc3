@@ -127,7 +127,7 @@ class bbcodes_installer extends acp_manager
 	{
 		if (!class_exists('acp_bbcodes'))
 		{
-			include ($this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
+			include $this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext;
 		}
 
 		return new \acp_bbcodes();
@@ -144,13 +144,13 @@ class bbcodes_installer extends acp_manager
 	{
 		$data = $this->acp_bbcodes->build_regexp($bbcode_data['bbcode_match'], $bbcode_data['bbcode_tpl']);
 
-		$bbcode_data = array_replace($bbcode_data, array(
+		$bbcode_data = array_replace($bbcode_data, [
 			'bbcode_tag'          => $data['bbcode_tag'],
 			'first_pass_match'    => $data['first_pass_match'],
 			'first_pass_replace'  => $data['first_pass_replace'],
 			'second_pass_match'   => $data['second_pass_match'],
 			'second_pass_replace' => $data['second_pass_replace'],
-		));
+		]);
 
 		return $bbcode_data;
 	}
@@ -171,7 +171,7 @@ class bbcodes_installer extends acp_manager
 	 *
 	 * @param string $bbcode_name Name of bbcode
 	 * @param string $bbcode_tag  Tag name of bbcode
-	 * @return mixed Existing bbcode data array or false if not found
+	 * @return array|false Existing bbcode data array or false if not found
 	 * @access protected
 	 */
 	public function bbcode_exists($bbcode_name, $bbcode_tag)
@@ -210,12 +210,7 @@ class bbcodes_installer extends acp_manager
 	 */
 	protected function add_bbcode(array $bbcode_data)
 	{
-		$bbcode_id = $this->get_max_bbcode_id() + 1;
-
-		if ($bbcode_id <= NUM_CORE_BBCODES)
-		{
-			$bbcode_id = NUM_CORE_BBCODES + 1;
-		}
+		$bbcode_id = max($this->get_max_bbcode_id(), NUM_CORE_BBCODES) + 1;
 
 		if ($bbcode_id <= BBCODE_LIMIT)
 		{

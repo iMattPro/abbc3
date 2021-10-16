@@ -61,16 +61,12 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 	{
 		$this->set_listener();
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.acp_bbcodes_display_form', [$this->listener, 'acp_bbcodes_custom_sorting']);
 
 		$event_data = ['template_data', 'sql_ary', 'u_action'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.acp_bbcodes_display_form', $event);
-
-		$event_data_returned = $event->get_data_filtered($event_data);
-		$template_data = $event_data_returned['template_data'];
-		$sql_ary = $event_data_returned['sql_ary'];
+		$event_data_returned = $dispatcher->trigger_event('core.acp_bbcodes_display_form', compact($event_data));
+		extract($event_data_returned, EXTR_OVERWRITE);
 
 		self::assertEquals($expected_template_data, $template_data);
 		self::assertEquals($expected_sql_ary, $sql_ary);
@@ -107,11 +103,10 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 		$this->acp_manager->expects(($call ? self::once() : self::never()))
 			->method($method);
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.acp_bbcodes_display_form', [$this->listener, 'acp_bbcodes_custom_sorting']);
 
 		$event_data = ['action'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.acp_bbcodes_display_form', $event);
+		$dispatcher->trigger_event('core.acp_bbcodes_display_form', compact($event_data));
 	}
 }
