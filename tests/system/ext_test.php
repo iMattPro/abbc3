@@ -105,7 +105,7 @@ class ext_test extends \phpbb_test_case
 	{
 		$filesystem = $this->getMockBuilder('\phpbb\filesystem\filesystem')
 			->disableOriginalConstructor()
-			->setMethods(['mkdir', 'exists'])
+			->onlyMethods(['mkdir', 'exists'])
 			->getMock();
 
 		$filesystem->expects($exists ? self::never() : self::once())
