@@ -45,9 +45,21 @@ plugins:
   enabled: true
  phpmd:
   enabled: true
-  config:
-    file_extensions: "php"
-    rulesets: "unusedcode,codesize,naming,design,cleancode"
+  checks:
+    Controversial/CamelCaseClassName:
+      enabled: false
+    Controversial/CamelCaseMethodName:
+      enabled: false
+    Controversial/CamelCaseParameterName:
+      enabled: false
+    Controversial/CamelCasePropertyName:
+      enabled: false
+    Controversial/CamelCaseVariableName:
+      enabled: false
+    Naming/ShortVariable:
+      enabled: false
+    CleanCode/IfStatementAssignment:
+      enabled: false
 exclude_patterns:
 - "config/"
 - "db/"
