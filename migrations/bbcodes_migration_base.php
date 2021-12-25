@@ -11,6 +11,7 @@
 namespace vse\abbc3\migrations;
 
 use phpbb\db\migration\container_aware_migration;
+use vse\abbc3\core\bbcodes_installer;
 
 /**
  * Helper for installing/updating bbcodes in migrations.
@@ -25,7 +26,7 @@ abstract class bbcodes_migration_base extends container_aware_migration
 	/**
 	 * Get the bbcodes installer object
 	 *
-	 * @return \vse\abbc3\core\bbcodes_installer
+	 * @return bbcodes_installer
 	 */
 	public function get_bbcodes_installer()
 	{
@@ -38,7 +39,7 @@ abstract class bbcodes_migration_base extends container_aware_migration
 		/** @var \phpbb\request\request $request */
 		$request = $this->container->get('request');
 
-		return new \vse\abbc3\core\bbcodes_installer($this->db, $group_helper, $language, $request, $this->phpbb_root_path, $this->php_ext);
+		return new bbcodes_installer($this->db, $group_helper, $language, $request, $this->phpbb_root_path, $this->php_ext);
 	}
 
 	/**
