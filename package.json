@@ -1,6 +1,4 @@
 {
-	"name": "vse-abbc3",
-	"version": "3.3.2",
 	"author": "Matt Friedman",
 	"license": "GPL-2.0",
 	"dependencies": {
@@ -31,9 +29,6 @@
 		"js-minify": "uglifyjs styles/all/template/js/abbc3.js --source-map --output styles/all/template/js/abbc3.min.js",
 		"css-minify": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --batch --batch-suffix '.min' styles/all/theme/*.css !styles/all/theme/*.min.css",
 		"copy-tablednd": "copyfiles --flat node_modules/tablednd/dist/jquery.tablednd.js node_modules/tablednd/dist/jquery.tablednd.min.js styles/all/template/js",
-		"bump-major": "npm version major --git-tag-version=false",
-		"bump-minor": "npm version minor --git-tag-version=false",
-		"bump-patch": "npm version patch --git-tag-version=false",
 		"build": "npm-run-all --parallel js css-minify copy-tablednd",
 		"watch": "npm-watch"
 	},
