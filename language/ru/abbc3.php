@@ -32,7 +32,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> '▼ Скрыть',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'Не по теме',
+	'ABBC3_OFFTOPIC'			=> 'Офтопик',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Шрифт',
@@ -82,11 +82,11 @@ $lang = array_merge($lang, array(
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Создание таблиц',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Создавайте таблицы, используя любой из доступных ASCII-фарматов.',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Создавайте таблицы, используя любой из доступных ASCII-форматов.',
 	'ABBC3_PIPE_DOCUMENTATION'	=> 'Руководство',
 	'ABBC3_PIPE_SIMPLE'			=> 'Простая таблица',
 	'ABBC3_PIPE_COMPACT'		=> 'Компактная таблица',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Внешние границы и отсутпы являются необязательными.',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Внешние границы и отступы являются необязательными.',
 	'ABBC3_PIPE_ALIGNMENT'		=> 'Выравнивание текта',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
@@ -96,18 +96,18 @@ $lang = array_merge($lang, array(
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BBCode изменён.',
 	'ABBC3_BBCODE_GROUP'		=> 'Группы, которые могут использовать BBCode',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Если группа выбрана, то все её пользователи могут использовать BBCode. Используйте CTRL+CLICK (или CMD+CLICK на Mac) для выбора нескольких групп.',
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box. For information about customizing the icon bar, visit the <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
-	'ABBC3_PIPES'				=> 'Enable the Pipe Table PlugIn',
-	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipes Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',
-	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
-	'ABBC3_QR_BBCODES'			=> 'Enable BBCodes in Quick Reply',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'This will add BBCode buttons to Quick Reply.',
-	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
-	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Если группа выбрана, то все её пользователи могут использовать BBCode. Используйте CTRL+клик (или CMD+клик на Mac) для выбора нескольких групп.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Здесь можно изменить настройки расширения «Advanced BBCode Box». Для получения дополнительной информации о настройке панели с иконками, откройте <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
+	'ABBC3_PIPES'				=> 'Включить плагин таблиц',
+	'ABBC3_PIPES_EXPLAIN'		=> 'Плагин таблиц позволяет пользователям добавлять в свои сообщения на форуме, а так же в личные сообщения таблицы, используя соответствующий синтаксис.',
+	'ABBC3_BBCODE_BAR'			=> 'Включить панель с иконками ББ-кодами',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Эта опция позволяет вам включить панель с иконками ББ-кодов расширения ABBC3. Отключите эту панель для использования панели, установленной в phpBB по умолчанию.',
+	'ABBC3_QR_BBCODES'			=> 'Включить ББ-коды в «Быстром ответе»',
+	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Эта опция добавить панель с иконками ББ-кодов в форму «Быстрый ответ».',
+	'ABBC3_ICONS_TYPE'			=> 'Формат иконок на панели с иконками',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Выберите формат иконок на панели с иконками ABBC3. Вы можете выбрать только один формат сразу для всех иконок на панели.',
+	'ABBC3_LEGEND_ICON_BAR'		=> 'Панель ББ-кодов',
+	'ABBC3_LEGEND_ADD_ONS'		=> 'Дополнения',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 

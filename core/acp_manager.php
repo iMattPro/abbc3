@@ -223,7 +223,7 @@ class acp_manager
 		$order = 0;
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			if (++$order != $row['bbcode_order'])
+			if (++$order !== (int) $row['bbcode_order'])
 			{
 				$this->db->sql_query($this->update_bbcode_order($row['bbcode_id'], $order));
 			}

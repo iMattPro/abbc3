@@ -35,8 +35,8 @@ class setup_custom_bbcodes_test extends listener_base
 				'UA_ABBC3_URL_WIZARD'		=> 'vse_abbc3_bbcode_wizard#a:1:{s:4:"mode";s:3:"url";}',
 			]);
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.display_custom_bbcodes', [$this->listener, 'setup_custom_bbcodes']);
-		$dispatcher->dispatch('core.display_custom_bbcodes');
+		$dispatcher->trigger_event('core.display_custom_bbcodes');
 	}
 }

@@ -45,16 +45,14 @@ class custom_bbcodes_test extends listener_base
 			->with(self::equalTo($custom_tags), self::equalTo($row))
 			->willReturn($custom_tags);
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.display_custom_bbcodes_modify_row', [$this->listener, 'display_custom_bbcodes']);
 
 		$event_data = ['custom_tags', 'row'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.display_custom_bbcodes_modify_row', $event);
+		$event_filtered_data = $dispatcher->trigger_event('core.display_custom_bbcodes_modify_row', compact($event_data));
+		extract($event_filtered_data, EXTR_OVERWRITE);
 
-		$result = $event->get_data_filtered($event_data);
-
-		self::assertEquals($custom_tags, $result['custom_tags']);
+		self::assertEquals($custom_tags, $custom_tags);
 	}
 
 	/**
@@ -94,11 +92,10 @@ class custom_bbcodes_test extends listener_base
 			->method('allow_custom_bbcodes')
 			->with($parser);
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', [$this->listener, 'allow_custom_bbcodes']);
 
 		$event_data = ['parser'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.text_formatter_s9e_parser_setup', $event);
+		$dispatcher->trigger_event('core.text_formatter_s9e_parser_setup', compact($event_data));
 	}
 }

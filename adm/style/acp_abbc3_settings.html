@@ -60,9 +60,9 @@
 	const select = document.querySelector("select[name='abbc3_icons_type']");
 	document.querySelector(".abbc3-icons-" + select.value).classList.toggle("hidden");
 	select.addEventListener("change", () => {
-		document.querySelectorAll(".abbc3-bar").forEach(bar => {
+		for (const bar of document.querySelectorAll(".abbc3-bar")) {
 			bar.classList.toggle("hidden");
-		});
+		}
 	});
 </script>
 

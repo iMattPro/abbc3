@@ -10,17 +10,21 @@
 
 namespace vse\abbc3\tests\system;
 
+use phpbb\finder;
+use phpbb\db\migrator;
+use PHPUnit\Framework\MockObject\MockObject;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use vse\abbc3\ext;
 
 class ext_test extends \phpbb_test_case
 {
-	/** @var \PHPUnit_Framework_MockObject_MockObject|\Symfony\Component\DependencyInjection\ContainerInterface */
+	/** @var MockObject|ContainerInterface */
 	protected $container;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject|\phpbb\finder */
+	/** @var MockObject|finder */
 	protected $extension_finder;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject|\phpbb\db\migrator */
+	/** @var MockObject|migrator */
 	protected $migrator;
 
 	protected function setUp(): void
@@ -80,8 +84,8 @@ class ext_test extends \phpbb_test_case
 			->with('config')
 			->willReturn($config);
 
-		/** @var \vse\abbc3\ext */
-		$ext = new \vse\abbc3\ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
+		/** @var ext */
+		$ext = new ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
 
 		self::assertSame($expected, $ext->is_enableable());
 	}
@@ -116,8 +120,8 @@ class ext_test extends \phpbb_test_case
 			->with('filesystem')
 			->willReturn($filesystem);
 
-		/** @var \vse\abbc3\ext */
-		$ext = new \vse\abbc3\ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
+		/** @var ext */
+		$ext = new ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
 
 		self::assertEquals($expected, $ext->enable_step($old_state));
 	}

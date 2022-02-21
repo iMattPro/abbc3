@@ -22,7 +22,7 @@ class plugins_test extends listener_base
 
 		$this->set_listener();
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.text_formatter_s9e_configure_after', [$this->listener, 'configure_bbcodes']);
 
 		// Assert plugins are NOT loaded before the event is dispatched
@@ -31,14 +31,13 @@ class plugins_test extends listener_base
 		self::assertFalse(isset($configurator->BBCodes['hidden']));
 
 		// Add bbcodes here to simulate existing BBCodes
-		$configurator->BBCodes->add('pipes');
-		$configurator->BBCodes->add('hidden');
-		$configurator->BBCodes->add('bbvideo');
+		$configurator->BBCodes->add('pipes', []);
+		$configurator->BBCodes->add('hidden', []);
+		$configurator->BBCodes->add('bbvideo', []);
 
 		// Dispatch event
 		$event_data = ['configurator'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
+		$dispatcher->trigger_event('core.text_formatter_s9e_configure_after', compact($event_data));
 
 		// Assert plugins ARE loaded after the event is dispatched
 		self::assertTrue(isset($configurator->plugins['PipeTables']));
@@ -52,8 +51,7 @@ class plugins_test extends listener_base
 
 		// Dispatch event again
 		$event_data = ['configurator'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
+		$dispatcher->trigger_event('core.text_formatter_s9e_configure_after', compact($event_data));
 
 		// Assert plugins are NOT loaded when their bbcodes do not exist
 		self::assertFalse(isset($configurator->plugins['PipeTables']));
@@ -61,13 +59,12 @@ class plugins_test extends listener_base
 		self::assertFalse(isset($configurator->BBCodes['hidden']));
 
 		// Retry Pipes with the config setting disabled
-		$configurator->BBCodes->add('pipes');
+		$configurator->BBCodes->add('pipes', []);
 		$this->config['abbc3_pipes'] = 0;
 
 		// Dispatch event again
 		$event_data = ['configurator'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
+		$dispatcher->trigger_event('core.text_formatter_s9e_configure_after', compact($event_data));
 
 		// Assert plugins are NOT loaded when their bbcodes do not exist
 		self::assertFalse(isset($configurator->plugins['PipeTables']));

@@ -11,6 +11,7 @@
 namespace vse\abbc3\acp;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 
 require_once __DIR__ . '/../../../../../includes/functions_acp.php';
 
@@ -19,10 +20,10 @@ class module_test extends \phpbb_database_test_case
 	/** @var bool A return value for check_form_key() */
 	public static $valid_form = false;
 
-	/** @var \Symfony\Component\DependencyInjection\ContainerInterface|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var ContainerInterface|MockObject */
 	protected $container;
 
-	/** @var \phpbb\cache\driver\driver_interface|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\cache\driver\driver_interface|MockObject */
 	protected $cache;
 
 	/** @var \phpbb\config\config */
@@ -34,10 +35,10 @@ class module_test extends \phpbb_database_test_case
 	/** @var \phpbb\language\language */
 	protected $lang;
 
-	/** @var \phpbb\request\request|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\request\request|MockObject */
 	protected $request;
 
-	/** @var \phpbb\template\template|\PHPUnit_Framework_MockObject_MockObject */
+	/** @var \phpbb\template\template|MockObject */
 	protected $template;
 
 	protected static function setup_extensions()

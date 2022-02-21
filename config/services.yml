@@ -37,6 +37,7 @@ services:
             - '@vse.abbc3.bbcodes_help'
             - '@config'
             - '@routing.helper'
+            - '@language'
             - '@template'
             - '@user'
         tags:

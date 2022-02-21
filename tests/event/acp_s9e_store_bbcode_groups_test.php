@@ -27,12 +27,11 @@ class acp_s9e_store_bbcode_groups_test extends acp_listener_base
 
 		$configurator = new \s9e\TextFormatter\Configurator();
 
-		$dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+		$dispatcher = new \phpbb\event\dispatcher();
 		$dispatcher->addListener('core.text_formatter_s9e_configure_after', [$this->listener, 's9e_store_bbcode_groups']);
 
 		$event_data = ['configurator'];
-		$event = new \phpbb\event\data(compact($event_data));
-		$dispatcher->dispatch('core.text_formatter_s9e_configure_after', $event);
+		$dispatcher->trigger_event('core.text_formatter_s9e_configure_after', compact($event_data));
 
 		self::assertSame($test_data, $configurator->registeredVars['abbc3.bbcode_groups']);
 	}

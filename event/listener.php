@@ -11,6 +11,7 @@
 namespace vse\abbc3\event;
 
 use phpbb\config\config;
+use phpbb\language\language;
 use phpbb\routing\helper;
 use phpbb\template\template;
 use phpbb\user;
@@ -39,6 +40,9 @@ class listener implements EventSubscriberInterface
 	/** @var helper */
 	protected $helper;
 
+	/** @var language */
+	protected $language;
+
 	/** @var template */
 	protected $template;
 
@@ -55,11 +59,12 @@ class listener implements EventSubscriberInterface
 	 * @param bbcodes_help    $bbcodes_help
 	 * @param config          $config
 	 * @param helper          $helper
+	 * @param language        $language
 	 * @param template        $template
 	 * @param user            $user
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, helper $helper, template $template, user $user)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, helper $helper, language $language, template $template, user $user)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
@@ -68,6 +73,7 @@ class listener implements EventSubscriberInterface
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
+		$this->language = $language;
 	}
 
 	/**
@@ -228,7 +234,7 @@ class listener implements EventSubscriberInterface
 	{
 		if ($this->quick_reply)
 		{
-			$this->user->add_lang('posting');
+			$this->language->add_lang('posting');
 			$this->template->assign_var('S_ABBC3_QUICKREPLY', true);
 			$this->template->assign_vars($this->bbcodes_display->bbcode_statuses($event['forum_id']));
 		}

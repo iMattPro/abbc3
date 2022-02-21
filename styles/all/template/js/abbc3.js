@@ -48,7 +48,7 @@ var bbwizard;
 						if ($loadingIndicator && $loadingIndicator.is(':visible')) {
 							$loadingIndicator.fadeOut(phpbb.alertTime);
 						}
-					}
+					},
 				});
 			}
 		}
@@ -148,8 +148,7 @@ var bbwizard;
 			.on('change', '#bbvideo_wizard_sites', function() {
 				$('#bbvideo_wizard_example').val($(this).val());
 			})
-			// Prevent clicks on bbcode wizard from bubbling up
-			// to the body and prematurely dismissing itself
+			// Prevent clicks on bbcode wizard from bubbling up to the body and prematurely dismissing itself
 			.on('click', function(event) {
 				event.stopPropagation();
 			})
