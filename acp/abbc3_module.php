@@ -18,6 +18,9 @@ class abbc3_module
 	/** @var \phpbb\config\config */
 	protected $config;
 
+	/** @var \phpbb\config\db_text */
+	protected $config_text;
+
 	/** @var \Symfony\Component\DependencyInjection\ContainerInterface */
 	protected $container;
 
@@ -51,13 +54,14 @@ class abbc3_module
 	{
 		global $phpbb_container;
 
-		$this->container = $phpbb_container;
-		$this->cache     = $this->container->get('cache');
-		$this->config    = $this->container->get('config');
-		$this->db        = $this->container->get('dbal.conn');
-		$this->language  = $this->container->get('language');
-		$this->request   = $this->container->get('request');
-		$this->template  = $this->container->get('template');
+		$this->container   = $phpbb_container;
+		$this->cache       = $this->container->get('cache');
+		$this->config      = $this->container->get('config');
+		$this->config_text = $this->container->get('config_text');
+		$this->db          = $this->container->get('dbal.conn');
+		$this->language    = $this->container->get('language');
+		$this->request     = $this->container->get('request');
+		$this->template    = $this->container->get('template');
 	}
 
 	/**
@@ -96,6 +100,7 @@ class abbc3_module
 			'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
 			'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 			'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
+			'S_ABBC3_GOOGLE_FONTS'	=> $this->show_google_fonts(),
 			'U_ACTION'				=> $this->u_action,
 		]);
 	}
@@ -109,6 +114,7 @@ class abbc3_module
 		$this->config->set('abbc3_qr_bbcodes', $this->request->variable('abbc3_qr_bbcodes', 0));
 		$this->config->set('abbc3_icons_type', $this->request->variable('abbc3_icons_type', 'png'));
 		$this->save_pipes();
+		$this->save_google_fonts();
 
 		trigger_error($this->language->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
 	}
@@ -132,5 +138,28 @@ class abbc3_module
 
 		$this->cache->destroy($this->container->getParameter('text_formatter.cache.parser.key'));
 		$this->cache->destroy($this->container->getParameter('text_formatter.cache.renderer.key'));
+	}
+
+	/**
+	 * Get the Google font setting data and format it for the form.
+	 *
+	 * @return string
+	 */
+	protected function show_google_fonts()
+	{
+		$fonts = json_decode($this->config_text->get('abbc3_google_fonts'), true);
+		return $fonts ? implode("\n", $fonts) : '';
+	}
+
+	/**
+	 * Save the Google fonts setting.
+	 * - If field has data, explode it to an array and save as JSON data.
+	 * - If field is empty, store just an empty string.
+	 */
+	protected function save_google_fonts()
+	{
+		$fonts = $this->request->variable('abbc3_google_fonts', '');
+		$fonts = $fonts ? json_encode(explode("\n", $fonts)) : '';
+		$this->config_text->set('abbc3_google_fonts', $fonts);
 	}
 }

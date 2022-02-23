@@ -28,6 +28,8 @@ class listener_test extends listener_base
 	{
 		self::assertEquals([
 			'core.user_setup',
+			'core.page_header',
+			'core.adm_page_header',
 			'core.display_custom_bbcodes',
 			'core.display_custom_bbcodes_modify_sql',
 			'core.display_custom_bbcodes_modify_row',

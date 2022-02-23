@@ -49,6 +49,12 @@
 				<label><input type="radio" class="radio" name="abbc3_pipes" value="0"{% if not S_ABBC3_PIPES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
 		</dl>
 	</fieldset>
+	<fieldset>
+		<dl>
+			<dt><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') }}</label><br /><br /><span>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}</span></dt>
+			<dd><textarea id="abbc3_google_fonts" cols="4" rows="8" name="abbc3_google_fonts">{{ S_ABBC3_GOOGLE_FONTS }}</textarea></dd>
+		</dl>
+	</fieldset>
 	<fieldset class="submit-buttons">
 		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
 		<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}">
