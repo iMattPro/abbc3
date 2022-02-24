@@ -10,6 +10,8 @@
 
 namespace vse\abbc3\tests\event;
 
+use vse\abbc3\ext;
+
 class setup_custom_bbcodes_test extends listener_base
 {
 	/**
@@ -29,6 +31,7 @@ class setup_custom_bbcodes_test extends listener_base
 			->with([
 				'ABBC3_USERNAME'			=> 'admin',
 				'ABBC3_BBCODE_ICONS' 		=> ['foo' => 'path/to/foo'],
+				'ABBC3_BBCODE_FONTS'		=> ext::ABBC3_BBCODE_FONTS,
 				'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
 				'UA_ABBC3_BBVIDEO_WIZARD'	=> 'vse_abbc3_bbcode_wizard#a:1:{s:4:"mode";s:7:"bbvideo";}',
 				'UA_ABBC3_PIPES_WIZARD'		=> 'vse_abbc3_bbcode_wizard#a:1:{s:4:"mode";s:5:"pipes";}',
