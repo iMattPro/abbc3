@@ -36,9 +36,8 @@ $lang = array_merge($lang, array(
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Font Menu',
-	'ABBC3_FONT_FANCY'			=> 'Fancy fonts',
 	'ABBC3_FONT_SAFE'			=> 'Safe fonts',
-	'ABBC3_FONT_WIN'			=> 'Windows fonts',
+	'ABBC3_GOOGLE_FONTS'		=> 'Google Fonts',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Align text: [align=center|left|right|justify]text[/align]',
@@ -97,6 +96,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'The BBCode order has been updated.',
 	'ABBC3_BBCODE_GROUP'		=> 'Manage groups that can use this BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'If no groups are selected, then all users can use this BBCode. Use CTRL+CLICK (or CMD+CLICK on Mac) to select/deselect more than one group.',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <a href="https://fonts.google.com" target="_blank">Google Fonts</a> to the <samp>font</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line. Example: <samp>Droid Sans</samp>',
 	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box. For information about customizing the icon bar, visit the <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
 	'ABBC3_PIPES'				=> 'Enable the Pipe Table PlugIn',
 	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipes Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',

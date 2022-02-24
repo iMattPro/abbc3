@@ -37,9 +37,8 @@ $lang = array_merge($lang, array(
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> '字体',
-	'ABBC3_FONT_FANCY'			=> '炫字体',
 	'ABBC3_FONT_SAFE'			=> '安全字体',
-	'ABBC3_FONT_WIN'			=> 'Windows 字体',
+	'ABBC3_GOOGLE_FONTS'		=> 'Google 字体',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> '文字对齐: [align=center|left|right|justify]文字[/align]',
@@ -98,6 +97,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode 顺序已变更',
 	'ABBC3_BBCODE_GROUP'		=> '变更可使用此BBCode的使用者群组',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未选择任何群，则所有人皆可使用此 BBCode。若要选择多个群组，请按下 CTRL 键。Mac 电脑请用 CMD 键',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <a href="https://fonts.google.com" target="_blank">Google Fonts</a> to the <samp>font</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line. Example: <samp>Droid Sans</samp>',
 	'ABBC3_SETTINGS_EXPLAIN'	=> '在此您可以修改 Advanced BBCode Box 的设置。 要了解有关定制图标栏的信息，请访问 <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>。',
 	'ABBC3_PIPES'				=> '启用管道表格插件',
 	'ABBC3_PIPES_EXPLAIN'		=> '管道表格插件，会允许用户在帖子和私信中使用 markdown 语法来创建表格。',
