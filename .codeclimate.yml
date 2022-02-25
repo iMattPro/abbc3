@@ -73,6 +73,5 @@ exclude_patterns:
 - "**/vendor/"
 - "**/*.d.ts"
 - "**/jquery.tablednd.js"
-- "gulpfile.js"
 - ".github/"
 - "language/"
