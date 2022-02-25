@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.3.3 - 2022-02-24
+
+- Made the Font BBCode more customizable and compatible for all users:
+  - Added Google font support to the font BBCode; add Google fonts via the ABBC3 settings in the ACP.
+  - Removed non-universal font styles from the font BBCode menu.
+  - These changes will not break existing posts.
+- Switched the text scrolling BBCode (marquee effect) to an HTML-valid CSS-only method.
+- Various minor code updates.
+
 ## 3.3.2 - 2021-01-16
 
 - Fixed compatibility issues with PHP 8.
@@ -103,7 +112,7 @@
 - Added the URL BBcode wizard to subsilver2
 - Complete conversion to TWIG syntax
 - Template events added to the ABBC3's bbcode button bars
-- Improve CSS for drop downs (Font Name and Font Size select menus)
+- Improve CSS for drop down menus (Font Name and Font Size select menus)
 - Installer removes BBcodes with negative IDs from the database (leftover from ABBC3.0)
 - Added Estonian language
 - Added Swedish language
@@ -117,7 +126,7 @@
 - Disable BBCode wizards for touch devices
 - Updated myspace.com BBVideo
 - Removed videu.de BBVideo (no longer in service)
-- Fixed a bug where new installs set the legacy youtube BBCode to be displayed
+- Fixed a bug where new installations set the legacy YouTube BBCode to be displayed
 - Major coding improvements
 - Added Croatian language
 - Added Greek language
