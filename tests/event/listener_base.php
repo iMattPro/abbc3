@@ -24,6 +24,9 @@ class listener_base extends \phpbb_test_case
 	/** @var \phpbb\config\config */
 	protected $config;
 
+	/** @var \phpbb\config\db_text|\PHPUnit\Framework\MockObject\MockObject */
+	protected $config_text;
+
 	/** @var \phpbb\routing\helper|\PHPUnit\Framework\MockObject\MockObject */
 	protected $helper;
 
@@ -65,6 +68,9 @@ class listener_base extends \phpbb_test_case
 			'abbc3_pipes' => 1,
 		]);
 
+		$this->config_text = $this->getMockBuilder('\phpbb\config\db_text')
+			->disableOriginalConstructor()
+			->getMock();
 		$this->template = $this->getMockBuilder('\phpbb\template\template')
 			->getMock();
 		$this->language = new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx));
@@ -96,6 +102,7 @@ class listener_base extends \phpbb_test_case
 			$this->bbcodes_display,
 			$this->bbcodes_help,
 			$this->config,
+			$this->config_text,
 			$this->helper,
 			$this->language,
 			$this->template,

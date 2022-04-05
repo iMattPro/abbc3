@@ -5,7 +5,7 @@
 				<dl>
 					<dt><label for="bbvideo_wizard_sites">{{ lang('ABBC3_BBVIDEO_SITES') ~ lang('COLON') }}</label></dt>
 					<dd>
-						<select id="bbvideo_wizard_sites" name="bbvideo_wizard_sites">
+						<select id="bbvideo_wizard_sites" name="bbvideo_wizard_sites" style="max-width: 38ch;">
 							{% for siteId, siteData in ABBC3_BBVIDEO_SITES %}
 								<option value="{{ siteData.example }}"{% if siteId == ABBC3_BBVIDEO_DEFAULT %} selected="selected"{% endif %}>{{ siteData.name }}</option>
 							{% endfor %}

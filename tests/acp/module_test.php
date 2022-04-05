@@ -29,6 +29,9 @@ class module_test extends \phpbb_database_test_case
 	/** @var \phpbb\config\config */
 	protected $config;
 
+	/** @var \phpbb\config\db_text */
+	protected $config_text;
+
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
@@ -48,11 +51,13 @@ class module_test extends \phpbb_database_test_case
 
 	public function getDataSet()
 	{
-		return $this->createXMLDataSet(__DIR__ . '/../core/fixtures/bbcodes.xml');
+		return $this->createXMLDataSet(__DIR__ . '/../core/fixtures/config_text.xml');
 	}
 
 	protected function setUp(): void
 	{
+		parent::setUp();
+
 		global $user, $phpbb_container, $phpbb_root_path, $phpEx;
 
 		$this->cache = $this->getMockBuilder('\phpbb\cache\driver\driver_interface')
@@ -66,6 +71,8 @@ class module_test extends \phpbb_database_test_case
 			'abbc3_pipes' => 1,
 		]);
 		$this->db = $this->new_dbal();
+		$this->config_text = new \phpbb\config\db_text($this->db, 'phpbb_config_text');
+		$this->config_text->set('abbc3_google_fonts', '["Droid Sans","Roboto"]');
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$this->lang = new \phpbb\language\language($lang_loader);
 		$this->request = $this->getMockBuilder('\phpbb\request\request')
@@ -91,6 +98,7 @@ class module_test extends \phpbb_database_test_case
 			->willReturnMap([
 				['cache', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->cache],
 				['config', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config],
+				['config_text', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config_text],
 				['dbal.conn', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->db],
 				['language', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->lang],
 				['request', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->request],
@@ -115,6 +123,7 @@ class module_test extends \phpbb_database_test_case
 				'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
 				'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 				'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
+				'S_ABBC3_GOOGLE_FONTS'	=> "Droid Sans\nRoboto",
 				'U_ACTION'				=> $module->u_action,
 			]);
 

@@ -1,0 +1,5 @@
+{% if abbc3_google_fonts is iterable %}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family={{ abbc3_google_fonts|join('&family=')|replace({" ": "+"}) }}&display=swap" rel="stylesheet">
+{% endif %}

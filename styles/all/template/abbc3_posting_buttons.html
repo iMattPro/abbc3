@@ -262,23 +262,18 @@ function bbspecial(bbcode, bbcodeId) {
 					{% if custom_tag.BBCODE_TAG == 'font=' or custom_tag.BBCODE_TAG == 'font' %}
 						<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
 							<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
-							<optgroup label="{{ lang('ABBC3_FONT_SAFE') }}">
-								{% set safeFonts = ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Times New Roman', 'Tahoma', 'Trebuchet MS', 'Verdana'] %}
-								{% if S_ALLOW_CDN %}{% set safeFonts = safeFonts|merge(['Open Sans']) %}{% endif %}
-								{% for font in safeFonts|sort %}
-									<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
-								{% endfor %}
-							</optgroup>
-							<optgroup label="{{ lang('ABBC3_FONT_FANCY') }}">
-								{% for font in ['Bradley Hand ITC', 'Century Gothic', 'Curlz MT', 'cursive', 'fantasy', 'French Script MT', 'Garamond', 'Garamond Bold', 'Goudy Stout', 'Helvetica', 'monospace', 'OCR A Extended', 'Script MT Bold'] %}
-									<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
-								{% endfor %}
-							</optgroup>
-							<optgroup label="{{ lang('ABBC3_FONT_WIN') }}">
-								{% for font in ['Lucida Console', 'Lucida Sans Unicode', 'MS Mincho', 'Palatino Linotype', 'Symbol'] %}
-									<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
-								{% endfor %}
-							</optgroup>
+							{% if S_ALLOW_CDN %}
+								{% if abbc3_google_fonts is not iterable %}{% set abbc3_google_fonts = [] %}{% endif %}
+								{% set abbc3_google_fonts = abbc3_google_fonts|merge(['Open Sans']) %}
+							{% endif %}
+							{% if abbc3_google_fonts is iterable %}{% set ABBC3_BBCODE_FONTS = { ABBC3_GOOGLE_FONTS: abbc3_google_fonts|sort }|merge(ABBC3_BBCODE_FONTS) %}{% endif %}
+							{% for group, fonts in ABBC3_BBCODE_FONTS %}
+								<optgroup label="{{ lang(group) }}">
+									{% for font in fonts %}
+										<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
+									{% endfor %}
+								</optgroup>
+							{% endfor %}
 						</select>
 					{% else %}
 						<button type="button" class="{{ custom_tag.BBCODE_IMG ? 'abbc3_button' : 'button button-secondary bbcode-' ~ custom_tag.BBCODE_TAG_CLEAN }}" name="addbbcode{{ custom_tag.BBCODE_ID }}" value="{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}"{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}</button>
