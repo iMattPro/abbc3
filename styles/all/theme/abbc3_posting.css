@@ -83,22 +83,23 @@ form td .abbc3_buttons_row {
 	width: 95%;
 }
 
+/* tweaks for font bbcode menu */
 .abbc3_font_menu_btn {
 	display: inline-block;
 }
 
 .abbc3_font_menu {
-	font-size: 14px;
+	font-size: 1.25em;
 }
 
 .abbc3_font_menu_font:hover {
-	color: orangered;
+	color: #ff4500;
 	cursor: pointer;
 }
 
 .abbc3_font_menu_disabled {
-	pointer-events: none;
 	opacity: 0.6;
+	pointer-events: none;
 }
 
 /* BBCode wizard */
