@@ -179,6 +179,12 @@ function bbspecial(bbcode, bbcodeId) {
 	theSelection = '';
 }
 
+function abbc3_bbfontstyle(font) {
+	bbfontstyle('[font=' + font + ']', '[/font]');
+	document.querySelector('.abbc3_font_menu_btn').classList.remove('visible', 'dropdown-visible');
+	document.querySelector('.abbc3_font_menu_btn .dropdown').style.display = 'none';
+}
+
 </script>
 
 <div id="abbc3_buttons">
@@ -262,7 +268,7 @@ function bbspecial(bbcode, bbcodeId) {
 					{% if custom_tag.BBCODE_TAG == 'font=' or custom_tag.BBCODE_TAG == 'font' %}
 						<div class="abbc3_font_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
 							<a href="#" class="dropdown-trigger button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ lang('ABBC3_FONT_BBCODE') }} <i class="icon fa-fw fa-caret-down"></i></a>
-							<div class="dropdown" id="abbc3_font_menu">
+							<div class="dropdown">
 								<ul class="abbc3_font_menu dropdown-contents" role="menu">
 									{% if S_ALLOW_CDN %}
 										{% if abbc3_google_fonts is not iterable %}{% set abbc3_google_fonts = [] %}{% endif %}
@@ -274,7 +280,7 @@ function bbspecial(bbcode, bbcodeId) {
 										<li>
 											<ul>
 												{% for font in fonts %}
-													<li class="abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" value="{{ font }}" onclick="bbfontstyle('[font=' + this.innerText + ']', '[/font]'); document.getElementById('abbc3_font_menu').style.display = 'none';">{{ font }}</li>
+													<li class="abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" value="{{ font }}" onclick="abbc3_bbfontstyle(this.innerText)">{{ font }}</li>
 												{% endfor %}
 											</ul>
 										</li>
