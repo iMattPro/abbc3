@@ -89,7 +89,14 @@ form td .abbc3_buttons_row {
 }
 
 .abbc3_font_menu {
-	font-size: 1.25em;
+	font-size: 1.1em;
+	margin-top: 1px;
+}
+
+.abbc3_font_menu_font {
+	margin: 0 !important;
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
 }
 
 .abbc3_font_menu_font:hover {
