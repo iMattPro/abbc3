@@ -36,7 +36,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Font Meny',
+	'ABBC3_FONT_BBCODE'			=> 'Typsnitt',
 	'ABBC3_FONT_SAFE'			=> 'Säkra typsnitt',
 	'ABBC3_GOOGLE_FONTS'		=> 'Google typsnitt',
 

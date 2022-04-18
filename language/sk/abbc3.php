@@ -35,7 +35,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Mimo tému (offtopic)',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Ponuka písma',
+	'ABBC3_FONT_BBCODE'			=> 'Písma',
 	'ABBC3_FONT_SAFE'			=> 'Bezpečné písmo',
 	'ABBC3_GOOGLE_FONTS'		=> 'Google písmo',
 

@@ -35,7 +35,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Ohi aiheesta',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Fonttivalikko',
+	'ABBC3_FONT_BBCODE'			=> 'Fontit',
 	'ABBC3_FONT_SAFE'			=> 'Turvalliset fontit',
 	'ABBC3_GOOGLE_FONTS'		=> 'Google fontit',
 

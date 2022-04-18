@@ -35,11 +35,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Izven teme',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Meni pisave',
-	//'ABBC3_FONT_FANCY'			=> 'Zabavne pisave',
+	'ABBC3_FONT_BBCODE'			=> 'Pisave',
 	'ABBC3_FONT_SAFE'			=> 'Varne pisave',
-	'ABBC3_GOOGLE_FONTS'		        => 'Googlove pisave',
-	//'ABBC3_FONT_WIN'			=> 'Windows pisave',
+	'ABBC3_GOOGLE_FONTS'		=> 'Googlove pisave',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Poravnaj besedilo: [align=center|left|right|justify]besedilo[/align]',

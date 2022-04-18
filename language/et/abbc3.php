@@ -36,7 +36,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Teemaväline',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Fondi menüü',
+	'ABBC3_FONT_BBCODE'			=> 'Fondid',
 	'ABBC3_FONT_SAFE'			=> 'Safe fondid',
 	'ABBC3_GOOGLE_FONTS'		=> 'Google fondid',
 
