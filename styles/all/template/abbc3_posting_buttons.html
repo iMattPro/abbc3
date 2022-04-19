@@ -179,12 +179,6 @@ function bbspecial(bbcode, bbcodeId) {
 	theSelection = '';
 }
 
-function abbc3_bbfontstyle(font) {
-	bbfontstyle('[font=' + font + ']', '[/font]');
-	document.querySelector('.abbc3_font_menu_btn').classList.remove('visible', 'dropdown-visible');
-	document.querySelector('.abbc3_font_menu_btn .dropdown').style.display = 'none';
-}
-
 </script>
 
 <div id="abbc3_buttons">
@@ -265,13 +259,13 @@ function abbc3_bbfontstyle(font) {
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
 			{% for custom_tag in custom_tags %}
 				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
-					{% if custom_tag.BBCODE_TAG == 'font=' or custom_tag.BBCODE_TAG == 'font' %}
+					{% if custom_tag.BBCODE_TAG in ['font=', 'font'] %}
 						{% if S_ALLOW_CDN %}
 							{% if abbc3_google_fonts is not iterable %}{% set abbc3_google_fonts = [] %}{% endif %}
 							{% set abbc3_google_fonts = abbc3_google_fonts|merge(['Open Sans']) %}
 						{% endif %}
 						{% if abbc3_google_fonts is iterable %}{% set ABBC3_BBCODE_FONTS = { ABBC3_GOOGLE_FONTS: abbc3_google_fonts|sort }|merge(ABBC3_BBCODE_FONTS) %}{% endif %}
-						{% if U_ADM_INDEX %}
+						{% if constant('IN_ADMIN') is defined %}
 							<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
 								<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
 								{% for group, fonts in ABBC3_BBCODE_FONTS %}
@@ -283,23 +277,23 @@ function abbc3_bbfontstyle(font) {
 								{% endfor %}
 							</select>
 						{% else %}
-						<div class="abbc3_font_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
-							<a href="#" class="dropdown-trigger button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ lang('ABBC3_FONT_BBCODE') }} <i class="icon fa-fw fa-caret-down"></i></a>
-							<div class="dropdown">
-								<ul class="abbc3_font_menu dropdown-contents" role="menu">
-									{% for group, fonts in ABBC3_BBCODE_FONTS %}
-										<li class="abbc3_font_menu_disabled">{{ lang(group) }}</li>
-										<li>
-											<ul>
-												{% for font in fonts %}
-													<li class="abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" value="{{ font }}" onclick="abbc3_bbfontstyle(this.innerText)">{{ font }}</li>
-												{% endfor %}
-											</ul>
-										</li>
-									{% endfor %}
-								</ul>
+							<div class="abbc3_font_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
+								<a href="#" class="dropdown-trigger button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ lang('ABBC3_FONT_BBCODE') }} <i class="icon fa-fw fa-caret-down"></i></a>
+								<div class="dropdown">
+									<ul class="dropdown-contents" role="menu">
+										{% for group, fonts in ABBC3_BBCODE_FONTS %}
+											<li class="abbc3_font_menu_disabled">{{ lang(group) }}</li>
+											<li>
+												<ul>
+													{% for font in fonts %}
+														<li class="abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" onclick="bbfontstyle('[font={{ font|e('js') }}]', '[/font]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ font }}</li>
+													{% endfor %}
+												</ul>
+											</li>
+										{% endfor %}
+									</ul>
+								</div>
 							</div>
-						</div>
 						{% endif %}
 					{% else %}
 						<button type="button" class="{{ custom_tag.BBCODE_IMG ? 'abbc3_button' : 'button button-secondary bbcode-' ~ custom_tag.BBCODE_TAG_CLEAN }}" name="addbbcode{{ custom_tag.BBCODE_ID }}" value="{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}"{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}</button>

@@ -88,16 +88,18 @@ form td .abbc3_buttons_row {
 	display: inline-block;
 }
 
-.abbc3_font_menu_btn .abbc3_font_menu {
+.abbc3_font_menu_btn .dropdown-contents {
 	font-size: 13px;
 	max-height: none;
 	margin-top: 1px;
 }
 
-.abbc3_font_menu_btn .abbc3_font_menu .abbc3_font_menu_font {
+.abbc3_font_menu_btn .dropdown-contents .abbc3_font_menu_font,
+.abbc3_font_menu_btn .dropdown-contents .abbc3_font_menu_disabled {
 	margin: 0;
 	padding-top: 3px;
 	padding-bottom: 3px;
+	padding-right: 3px;
 }
 
 .abbc3_font_menu_font:hover {
