@@ -36,9 +36,9 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Menu czcionek',
+	'ABBC3_FONT_BBCODE'			=> 'Czcionki',
 	'ABBC3_FONT_SAFE'			=> 'Bezpieczne Czcionki',
-	'ABBC3_GOOGLE_FONTS'		=> 'Google Fonts',
+	'ABBC3_GOOGLE_FONTS'		=> 'Czcionki Google',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Wyrównaj tekst: [align=center|left|right|justify]tekst[/align]',

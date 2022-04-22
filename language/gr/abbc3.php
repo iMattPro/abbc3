@@ -37,7 +37,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Εκτός Θέματος',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Μενού Γραμματοσειρών',
+	'ABBC3_FONT_BBCODE'			=> 'Γραμματοσειρές',
 	'ABBC3_FONT_SAFE'			=> 'Ασφαλής Γραμματοσειρές',
 	'ABBC3_GOOGLE_FONTS'		=> 'Γραμματοσειρές Google',
 

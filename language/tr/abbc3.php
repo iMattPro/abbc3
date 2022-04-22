@@ -36,7 +36,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC'			=> 'Konu Dışı',
 
 	// Font BBCode
-	'ABBC3_FONT_BBCODE'			=> 'Yazı Tipi Menüsü',
+	'ABBC3_FONT_BBCODE'			=> 'Yazı tipleri',
 	'ABBC3_FONT_SAFE'			=> 'Güvenli yazı tipleri',
 	'ABBC3_GOOGLE_FONTS'		=> 'Google yazı tipleri',
 

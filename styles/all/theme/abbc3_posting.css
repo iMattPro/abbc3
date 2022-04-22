@@ -83,6 +83,35 @@ form td .abbc3_buttons_row {
 	width: 95%;
 }
 
+/* tweaks for font bbcode menu */
+.abbc3_font_menu_btn {
+	display: inline-block;
+}
+
+.abbc3_font_menu_btn .dropdown-contents {
+	font-size: 13px;
+	max-height: none;
+	margin-top: 1px;
+}
+
+.abbc3_font_menu_btn .dropdown-contents .abbc3_font_menu_font,
+.abbc3_font_menu_btn .dropdown-contents .abbc3_font_menu_disabled {
+	margin: 0;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 3px;
+}
+
+.abbc3_font_menu_font:hover {
+	color: #ff4500;
+	cursor: pointer;
+}
+
+.abbc3_font_menu_disabled {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
 /* BBCode wizard */
 #bbcode_wizard {
 	font-size: 0.625rem;
