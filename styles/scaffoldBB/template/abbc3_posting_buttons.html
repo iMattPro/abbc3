@@ -181,7 +181,7 @@ function bbspecial(bbcode, bbcodeId) {
 
 </script>
 
-<div id="abbc3_buttons" class="my-2">
+<div id="abbc3_buttons" class="my-2 row gx-0">
 	<div class="abbc3_buttons_row bg-gradient bg-body border px-3 rounded-top {% if SCRIPT_NAME != 'viewtopic'%}col-md-10{% endif %}">
 		<button type="button" class="{{ ABBC3_BBCODE_ICONS.bold ? 'abbc3_button' : 'btn btn-sm btn-secondary bg-gradient button button-icon-only bbcode-b' }}" accesskey="b" name="addbbcode0" value=" B " style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.bold }}');" onclick="bbstyle(0)" title="{{ lang('BBCODE_B_HELP') }}">
 			{% if not ABBC3_BBCODE_ICONS.bold %}<i class="icon fa-bold fa-fw" aria-hidden="true"></i>{% endif %}
