@@ -13,6 +13,7 @@
 	</button>
 {% endmacro %}
 
+{% EVENT vse_abbc3_posting_editor_buttons_before %}
 <div id="abbc3_buttons">
 	<div class="abbc3_buttons_row">
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.bold, 'bbcode-b', 'b', 0, ' B ', 'BBCODE_B_HELP', 'fa-bold', ROOT_PATH) }}
@@ -104,4 +105,7 @@
 		</div>
 	{% endif %}
 </div>
+{% EVENT vse_abbc3_posting_editor_buttons_after %}
+{% EVENT vse_abbc3_posting_editor_wizard_before %}
 <div id="bbcode_wizard"></div>
+{% EVENT vse_abbc3_posting_editor_wizard_after %}
