@@ -1,56 +1,43 @@
 {% include '@vse_abbc3/abbc3_posting_script.html' %}
 
+{% macro bbcodeButton(bbcode, class, accesskey, id, value, title, icon, path, name = '', func = 'bbstyle') %}
+	<button type="button"
+			class="{{ bbcode ? 'abbc3_button' : 'button button-icon-only ' ~ class }}"
+			accesskey="{{ accesskey }}"
+			name="{{ name ?: 'addbbcode' ~ id }}"
+			value="{{ value }}"
+			style="background-image:url('{{ path ~ bbcode }}');"
+			onclick="{{ func ~ '(' ~ (id matches '/^-?\\d+$/' ? id : '\'' ~ id ~ '\'') ~ ')' }}"
+			title="{{ lang(title) }}">
+		{% if not bbcode %}<i class="icon fa-fw {{ icon }}" aria-hidden="true"></i>{% endif %}
+	</button>
+{% endmacro %}
+
 <div id="abbc3_buttons">
 	<div class="abbc3_buttons_row">
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.bold ? 'abbc3_button' : 'button button-icon-only bbcode-b' }}" accesskey="b" name="addbbcode0" value=" B " style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.bold }}');" onclick="bbstyle(0)" title="{{ lang('BBCODE_B_HELP') }}">
-			{% if not ABBC3_BBCODE_ICONS.bold %}<i class="icon fa-bold fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.italic ? 'abbc3_button' : 'button button-icon-only bbcode-i' }}" accesskey="i" name="addbbcode2" value=" i " style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.italic }}');" onclick="bbstyle(2)" title="{{ lang('BBCODE_I_HELP') }}">
-			{% if not ABBC3_BBCODE_ICONS.italic %}<i class="icon fa-underline fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.underline ? 'abbc3_button' : 'button button-icon-only bbcode-u' }}" accesskey="u" name="addbbcode4" value=" u " style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.underline }}');" onclick="bbstyle(4)" title="{{ lang('BBCODE_U_HELP') }}">
-			{% if not ABBC3_BBCODE_ICONS.underline %}<i class="icon fa-italic fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.bold, 'bbcode-b', 'b', 0, ' B ', 'BBCODE_B_HELP', 'fa-bold', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.italic, 'bbcode-i', 'i', 2, ' i ', 'BBCODE_I_HELP', 'fa-italic', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.underline, 'bbcode-u', 'u', 4, ' u ', 'BBCODE_U_HELP', 'fa-underline', ROOT_PATH) }}
 		{% if S_BBCODE_QUOTE %}
-			<button type="button" class="{{ ABBC3_BBCODE_ICONS.quote ? 'abbc3_button' : 'button button-icon-only bbcode-quote' }}" accesskey="q" name="addbbcode6" value="Quote" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.quote }}');" onclick="bbstyle(6)" title="{{ lang('BBCODE_Q_HELP') }}">
-				{% if not ABBC3_BBCODE_ICONS.quote %}<i class="icon fa-quote-left fa-fw" aria-hidden="true"></i>{% endif %}
-			</button>
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.quote, 'bbcode-quote', 'q', 6, 'Quote', 'BBCODE_Q_HELP', 'fa-quote-left', ROOT_PATH) }}
 		{% endif %}
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.code ? 'abbc3_button' : 'button button-icon-only bbcode-code' }}" accesskey="c" name="addbbcode8" value="Code" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.code }}');" onclick="bbstyle(8)" title="{{ lang('BBCODE_C_HELP') }}">
-			{% if not ABBC3_BBCODE_ICONS.code %}<i class="icon fa-code fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.listb ? 'abbc3_button' : 'button button-icon-only bbcode-list' }}" accesskey="l" name="addbbcode10" value="List" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.listb }}');" onclick="bbstyle(10)" title="{{ lang('BBCODE_L_HELP') }}">
-			{% if not ABBC3_BBCODE_ICONS.listb %}<i class="icon fa-list fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.listo ? 'abbc3_button' : 'button button-icon-only bbcode-list-' }}" accesskey="o" name="addbbcode12" value="List=" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.listo }}');" onclick="bbstyle(12)" title="{{ lang('BBCODE_O_HELP') }}">
-			{% if not ABBC3_BBCODE_ICONS.bold %}<i class="icon fa-list-ol fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.listitem ? 'abbc3_button' : 'button button-icon-only bbcode-asterisk' }}" accesskey="y" name="addlistitem" value="[*]" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.listitem }}');" onclick="bbstyle(-1)" title="{{ lang('BBCODE_LISTITEM_HELP') }}">
-			{% if not ABBC3_BBCODE_ICONS.listitem %}<i class="icon fa-asterisk fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.code, 'bbcode-code', 'c', 8, 'Code', 'BBCODE_C_HELP', 'fa-code', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listb, 'bbcode-list', 'l', 10, 'List', 'BBCODE_L_HELP', 'fa-list', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listo, 'bbcode-list-', 'o', 12, 'List=', 'BBCODE_O_HELP', 'fa-list-ol', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listitem, 'bbcode-asterisk', 'y', -1, '[*]', 'BBCODE_LISTITEM_HELP', 'fa-asterisk', ROOT_PATH, 'addlistitem') }}
 		{% if S_BBCODE_IMG %}
-			<button type="button" class="{{ ABBC3_BBCODE_ICONS.img ? 'abbc3_button' : 'button button-icon-only bbcode-img' }}" accesskey="p" name="addbbcode14" value="Img" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.img }}');" onclick="bbstyle(14)" title="{{ lang('BBCODE_P_HELP') }}">
-				{% if not ABBC3_BBCODE_ICONS.img %}<i class="icon fa-image fa-fw" aria-hidden="true"></i>{% endif %}
-			</button>
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.img, 'bbcode-img', 'p', 14, 'Img', 'BBCODE_P_HELP', 'fa-image', ROOT_PATH) }}
 		{% endif %}
 		{% if S_LINKS_ALLOWED %}
-			<button type="button" class="{{ ABBC3_BBCODE_ICONS.url ? 'abbc3_button' : 'button button-icon-only bbcode-url' }}" accesskey="w" name="addbbcode16" value="URL" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.url }}');" onclick="bbspecial('url')" title="{{ lang('BBCODE_W_HELP') }}">
-				{% if not ABBC3_BBCODE_ICONS.url %}<i class="icon fa-link fa-fw" aria-hidden="true"></i>{% endif %}
-			</button>
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.url, 'bbcode-url', 'w', 'url', 'URL', 'BBCODE_W_HELP', 'fa-link', ROOT_PATH, 'addbbcode16', 'bbspecial') }}
 		{% endif %}
 		{% if S_BBCODE_FLASH %}
-			<button type="button" class="{{ ABBC3_BBCODE_ICONS.flash ? 'abbc3_button' : 'button button-icon-only bbcode-flash' }}" accesskey="d" name="addbbcode18" value="Flash" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.flash }}');" onclick="bbstyle(18)" title="{{ lang('BBCODE_D_HELP') }}">
-				{% if not ABBC3_BBCODE_ICONS.flash %}<i class="icon fa-flash fa-fw" aria-hidden="true"></i>{% endif %}
-			</button>
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.flash, 'bbcode-flash', 'd', 18, 'Flash', 'BBCODE_D_HELP', 'fa-flash', ROOT_PATH) }}
 		{% endif %}
 		{% if S_BBCODE_MEDIA %}
-			<button type="button" class="{{ ABBC3_BBCODE_ICONS.media ? 'abbc3_button' : 'button button-icon-only bbcode-media' }}" accesskey="m" name="addmedia" value="Media" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.media }}');" onclick="bbspecial('media');" title="{{ lang('BBCODE_MEDIA_HELP') }}">
-				{% if not ABBC3_BBCODE_ICONS.media %}<i class="icon fa-television fa-fw" aria-hidden="true"></i>{% endif %}
-			</button>
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.media, 'bbcode-media', 'm', 'media', 'Media', 'BBCODE_MEDIA_HELP', 'fa-television', ROOT_PATH, 'addmedia', 'bbspecial') }}
 		{% endif %}
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.fontcolor ? 'abbc3_button' : 'button button-icon-only bbcode-color' }}" name="abbc3_bbpalette" id="abbc3_bbpalette" value="{{ not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR') }}" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.fontcolor }}');" onclick="change_palette();" title="{{ lang('BBCODE_S_HELP') }}">
-			{% if not ABBC3_BBCODE_ICONS.fontcolor %}<i class="icon fa-tint fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.fontcolor, 'bbcode-color', '', '', (not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR')), 'BBCODE_S_HELP', 'fa-tint', ROOT_PATH, 'abbc3_bbpalette', 'change_palette') }}
 		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
 			<option value="50">{{ lang('FONT_TINY') }}</option>
 			<option value="85">{{ lang('FONT_SMALL') }}</option>
@@ -62,15 +49,9 @@
 				{% endif %}
 			{% endif %}
 		</select>
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.copy ? 'abbc3_button' : 'button button-icon-only bbcode-copy' }}" name="copybbcode" value="copy" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.copy }}');" onclick="bbspecial('abbc3_copy')" title="{{ lang('ABBC3_COPY_BBCODE') }}">
-			{% if not ABBC3_BBCODE_ICONS.copy %}<i class="icon fa-copy fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.paste ? 'abbc3_button' : 'button button-icon-only bbcode-paste' }}" name="pastebbcode" value="paste" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.paste }}');" onclick="bbspecial('abbc3_paste')" title="{{ lang('ABBC3_PASTE_BBCODE') }}">
-			{% if not ABBC3_BBCODE_ICONS.paste %}<i class="icon fa-paste fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
-		<button type="button" class="{{ ABBC3_BBCODE_ICONS.plain ? 'abbc3_button' : 'button button-icon-only bbcode-plain' }}" name="plainbbcode" value="clear" style="background-image:url('{{ ROOT_PATH ~ ABBC3_BBCODE_ICONS.plain }}');" onclick="bbspecial('abbc3_plain')" title="{{ lang('ABBC3_PLAIN_BBCODE') }}">
-			{% if not ABBC3_BBCODE_ICONS.plain %}<i class="icon fa-trash fa-fw" aria-hidden="true"></i>{% endif %}
-		</button>
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.copy, 'bbcode-copy', '', 'abbc3_copy', 'copy', 'ABBC3_COPY_BBCODE', 'fa-copy', ROOT_PATH, 'copybbcode', 'bbspecial') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.paste, 'bbcode-paste', '', 'abbc3_paste', 'paste', 'ABBC3_PASTE_BBCODE', 'fa-paste', ROOT_PATH, 'pastebbcode', 'bbspecial') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.plain, 'bbcode-plain', '', 'abbc3_plain', 'clear', 'ABBC3_PLAIN_BBCODE', 'fa-trash', ROOT_PATH, 'plainbbcode', 'bbspecial') }}
 		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 	</div>
 	{% if custom_tags %}
