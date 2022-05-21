@@ -1,15 +1,15 @@
 {% include '@vse_abbc3/abbc3_posting_script.html' %}
 
-{% macro bbcodeButton(bbcode, class, accesskey, id, value, title, icon, path, name = '', func = 'bbstyle') %}
+{% macro bbcodeButton(icon, class, accesskey, id, value, title, iconClass, path, name = '', func = 'bbstyle') %}
 	<button type="button"
-			class="{{ bbcode ? 'abbc3_button' : 'button button-icon-only ' ~ class }}"
+			class="{{ icon ? 'abbc3_button' : 'button button-icon-only ' ~ class }}"
 			accesskey="{{ accesskey }}"
 			name="{{ name ?: 'addbbcode' ~ id }}"
 			value="{{ value }}"
-			style="background-image:url('{{ path ~ bbcode }}');"
+			style="background-image:url('{{ path ~ icon }}');"
 			onclick="{{ func ~ '(' ~ (id matches '/^-?\\d+$/' ? id : '\'' ~ id ~ '\'') ~ ')' }}"
 			title="{{ lang(title) }}">
-		{% if not bbcode %}<i class="icon fa-fw {{ icon }}" aria-hidden="true"></i>{% endif %}
+		{% if not icon %}<i class="icon fa-fw {{ iconClass }}" aria-hidden="true"></i>{% endif %}
 	</button>
 {% endmacro %}
 
