@@ -13,9 +13,9 @@
 
 #abbc3_buttons select {
 	vertical-align: middle;
-	background-color: #ffffff !important;
+	background-color: #ffffff;
 	border: 1px solid #b4bac0;
-	color: #000000 !important;
+	color: #000000;
 	height: 24px;
 	margin: 4px;
 	padding: 0;
@@ -61,8 +61,13 @@
 	display: block;
 	width: 80%;
 	min-height: 30px;
-	margin: 0 !important;
+	margin: 0;
 	padding: 0 2px;
+}
+
+/* force buttons row margin to 0 */
+fieldset div.abbc3_buttons_row {
+	margin: 0;
 }
 
 .rtl .abbc3_buttons_row {
