@@ -5,6 +5,7 @@ const modal = document.querySelector('#bbcode_wizard');
 const dropdown = document.querySelector('.abbc3_font_menu_btn');
 const dropdownLists = [...document.querySelectorAll('.abbc3_font_menu_btn ul')];
 
+if (mainBox !== null) {
 modal.classList.add('modal');
 modal.setAttribute("tabindex","-1")
 modal.style.cssText += 'border: inherit;font-size: inherit;background: inherit;border-radius: inherit;box-shadow: inherit;top: 0;left: 0;width: 100%;margin-top: unset;margin-left: unset;';
@@ -13,6 +14,7 @@ mainBox.firstElementChild.classList.remove('abbc3_buttons_row');
 mainBox.firstElementChild.classList.add('bg-gradient', 'bg-body', 'border', 'px-3', 'rounded-top');
 mainBox.lastElementChild.classList.remove('abbc3_buttons_row');
 mainBox.lastElementChild.classList.add('bg-gradient', 'bg-body', 'border', 'border-top-0', 'px-3', 'rounded-bottom','pt-1', 'pb-2');
+
 
 if (document.body.contains(document.querySelector('.section-viewtopic'))) {
     mainBox.firstElementChild.classList.add('col-md-12')
@@ -47,3 +49,5 @@ dropdown.lastElementChild.lastElementChild.classList.remove('dropdown-contents')
 dropdownLists.forEach(elem => {
     elem.classList.add('list-unstyled', 'dropdown-header')
 })
+
+}
