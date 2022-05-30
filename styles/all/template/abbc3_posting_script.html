@@ -1,0 +1,182 @@
+<script>
+
+	/*global theSelection, form_name */
+
+	var copyPaste = '';
+
+	/**
+	 * Strip all BBCodes from the selected text
+	 */
+	function bbcodeToPlain(data) {
+		if (data.indexOf('[') < 0) {
+			return data;
+		}
+
+		function bbcodeToPlainSimpleReplace(str) {
+			return str.replace(basicBBcodeMatch, bbcodeToPlainPattern);
+		}
+
+		function bbcodeToPlainPattern(match_0, match_1, match_2, match_3) {
+			if (match_3 && match_3.indexOf('[') > -1) {
+				match_3 = bbcodeToPlainSimpleReplace(match_3);
+			}
+			return match_3;
+		}
+
+		var basicBBcodeMatch = new RegExp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
+
+		return bbcodeToPlainSimpleReplace(data);
+	}
+
+	/**
+	 * Apply special BBCodes
+	 */
+	function bbspecial(bbcode, bbcodeId) {
+		theSelection = false;
+
+		var textarea = document.forms[form_name].elements[text_name];
+
+		textarea.focus();
+
+		var selLength, selStart, selEnd, s1, s2, s3;
+
+		if ((clientVer >= 4) && is_ie && is_win) {
+			// Get text selection
+			theSelection = document.selection.createRange().text;
+		} else if (document.forms[form_name].elements[text_name].selectionEnd
+			&& (document.forms[form_name].elements[text_name].selectionEnd - document.forms[form_name].elements[text_name].selectionStart > 0)) {
+			selLength = textarea.textLength;
+			selLength = (typeof(selLength) === 'undefined' || selLength === '' || selLength === null) ? textarea.value.length : selLength;
+			selStart = textarea.selectionStart;
+			selEnd = textarea.selectionEnd;
+
+			if (selEnd === 1 || selEnd === 2) {
+				selEnd = selLength;
+			}
+
+			s1 = (textarea.value).substring(0, selStart);
+			s2 = (textarea.value).substring(selStart, selEnd);
+			s3 = (textarea.value).substring(selEnd, selLength);
+			theSelection = s2;
+		}
+
+		switch (bbcode) {
+			case 'abbc3_plain':
+				if (theSelection) {
+					try {
+						var tempSelection = bbcodeToPlain(theSelection);
+
+						if ((clientVer >= 4) && is_ie && is_win) {
+							document.selection.createRange().text = tempSelection;
+						}
+						else if (textarea.selectionEnd && (textarea.selectionEnd - textarea.selectionStart > 0)) {
+							textarea.value = s1 + tempSelection + s3;
+							selEnd = textarea.selectionEnd = (textarea.value).substring(0, selStart).length + tempSelection.length;
+						}
+					} catch (e) {}
+				} else {
+					alert('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
+					return;
+				}
+				break;
+
+			case 'abbc3_copy':
+				if (theSelection) {
+					copyPaste = theSelection;
+				} else {
+					alert('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
+					return;
+				}
+				break;
+
+			case 'abbc3_paste':
+				if (copyPaste) {
+					bbfontstyle(copyPaste, '');
+				} else {
+					alert('{{ lang('ABBC3_PASTE_ERROR')|e("js") }}');
+				}
+				break;
+
+			case 'align':
+			case 'align=':
+				bbfontstyle('[align=center]', '[/align]');
+				break;
+
+			case 'float':
+			case 'float=':
+				bbfontstyle('[float=left]', '[/float]');
+				break;
+
+			case 'dir':
+			case 'dir=':
+				bbfontstyle('[dir=rtl]', '[/dir]');
+				break;
+
+			case 'marq':
+			case 'marq=':
+				bbfontstyle('[marq=left]', '[/marq]');
+				break;
+
+			case 'mod':
+			case 'mod=':
+				bbfontstyle('[mod={{ ABBC3_USERNAME|e("js") }}]', '[/mod]');
+				break;
+
+			case 'highlight':
+			case 'highlight=':
+				bbfontstyle('[highlight=yellow]', '[/highlight]');
+				break;
+
+			case 'glow':
+			case 'glow=':
+				bbfontstyle('[glow=red]', '[/glow]');
+				break;
+
+			case 'shadow':
+			case 'shadow=':
+				bbfontstyle('[shadow=blue]', '[/shadow]');
+				break;
+
+			case 'dropshadow':
+			case 'dropshadow=':
+				bbfontstyle('[dropshadow=blue]', '[/dropshadow]');
+				break;
+
+			case 'blur':
+			case 'blur=':
+				bbfontstyle('[blur=blue]', '[/blur]');
+				break;
+
+			case 'bbvideo':
+			case 'BBvideo':
+			case 'BBvideo=':
+			case 'media':
+				var tag = bbcode.replace('=', '').toLowerCase();
+				if (theSelection || phpbb.isTouch) {
+					bbfontstyle('[' + tag + ']', '[/' + tag + ']');
+				} else {
+					bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', tag);
+				}
+				break;
+
+			case 'url':
+				if (theSelection || phpbb.isTouch) {
+					bbstyle(16);
+				} else {
+					bbwizard('{{ UA_ABBC3_URL_WIZARD }}', bbcode);
+				}
+				break;
+
+			case 'pipes':
+				bbwizard('{{ UA_ABBC3_PIPES_WIZARD }}', bbcode);
+				break;
+
+			default:
+				bbstyle(bbcodeId);
+				break;
+		}
+
+		theSelection = '';
+	}
+
+</script>

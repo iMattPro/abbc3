@@ -1,0 +1,36 @@
+<form class="modal-dialog modal-dialog-centered">
+	<div class="panel modal-content">
+		<div class="inner modal-body">
+			<fieldset>
+				<dl class="row gx-0">
+					<dt class="col-4"><label for="bbcode_wizard_example">{{ lang('ABBC3_BBCODE_WIZ_EXAMPLE') ~ lang('COLON') }}</label></dt>
+					<dd class="col-8">
+						<input type="text" id="bbcode_wizard_example" name="bbcode_wizard_example" readonly="readonly" value="{{ lang('ABBC3_URL_EXAMPLE') }}" size="45" class="inputbox disabled form-control form-control-sm">
+					</dd>
+				</dl>
+				<hr>
+				<dl class="row gx-0">
+					<dt class="col-4"><label for="bbcode_wizard_link">{{ lang('ABBC3_URL_LINK') ~ lang('COLON') }}</label></dt>
+					<dd class="col-8">
+						<input type="text" id="bbcode_wizard_link" name="bbcode_wizard_link" value="" class="inputbox form-control form-control-sm" size="45">
+					</dd>
+				</dl>
+				<dl class="row gx-0">
+					<dt class="col-4"><label for="bbcode_wizard_description">{{ lang('ABBC3_URL_DESCRIPTION') ~ lang('COLON') }}</label></dt>
+					<dd class="col-8">
+						<input type="text" id="bbcode_wizard_description" name="bbcode_wizard_description" value="" class="inputbox form-control form-control-sm" size="45">
+					</dd>
+				</dl>
+			</fieldset>
+		</div>
+		<div class="panel modal-footer" style="margin-bottom: 0;">
+			<div class="inner w-100">
+				<fieldset class="submit-buttons d-flex justify-content-center">
+					<input type="button" name="bbcode_wizard_submit" id="bbcode_wizard_submit" value="{{ lang('ABBC3_BBCODE_WIZ_SUBMIT') }}" class="button1 button button-form btn btn-success btn-sm button" data-bbcode="url">&nbsp;
+					<input type="button" name="bbcode_wizard_cancel" id="bbcode_wizard_cancel" value="{{ lang('CANCEL') }}" class="button2 button button-form btn btn-danger btn-sm button">
+				</fieldset>
+			</div>
+		</div>
+	</div>
+
+</form>

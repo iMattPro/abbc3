@@ -1,0 +1,25 @@
+<form class="modal-dialog modal-dialog-centered">
+	<div class="panel modal-content">
+		<div class="inner modal-body">
+			<h2 class="fs-4">{{ lang('ABBC3_PIPE_TABLES') }}</h2>
+			<p>{{ lang('ABBC3_PIPE_TABLES_EXPLAIN') }} <a class="text-decoration-none" href="https://pandoc.org/MANUAL.html#extension-pipe_tables"><i class="icon fa fa-external-link fa-fw" aria-hidden="true"></i><span>{{ lang('ABBC3_PIPE_DOCUMENTATION') }}</span></a>.</p>
+			<h3 class="fs-5">{{ lang('ABBC3_PIPE_SIMPLE') ~ lang('COLON') }}</h3>
+			<pre>{{ lang('ABBC3_PIPE_SIMPLE_EX') }}</pre>
+			<br>
+			<h3 class="fs-5">{{ lang('ABBC3_PIPE_COMPACT') ~ lang('COLON') }}</h3>
+			<p>{{ lang('ABBC3_PIPE_COMPACT_EXPLAIN') }}</p>
+			<pre>{{ lang('ABBC3_PIPE_COMPACT_EX') }}</pre>
+			<br>
+			<h3 class="fs-5">{{ lang('ABBC3_PIPE_ALIGNMENT') ~ lang('COLON') }}</h3>
+			<pre>{{ lang('ABBC3_PIPE_ALIGNMENT_EX') }}</pre>
+		</div>
+		<div class="panel modal-footer" style="margin-bottom: 0;">
+			<div class="inner w-100">
+				<fieldset class="submit-buttons d-flex justify-content-center">
+					<input type="button" name="bbcode_wizard_cancel" id="bbcode_wizard_cancel" value="{{ lang('CLOSE_WINDOW') }}" class="button2 button button-form btn btn-danger btn-sm button">
+				</fieldset>
+			</div>
+		</div>
+	</div>
+
+</form>
