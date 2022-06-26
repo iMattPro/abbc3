@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.4 - 2022-06-16
+
+- Updated the Font BBCode menu to show the font name in the style of the font in all browsers
+- Added additional template events around the ABBC3 toolbar
+- Added support for Scaffold style
+
 ## 3.3.3 - 2022-02-24
 
 - Made the Font BBCode more customizable and compatible for all users:
