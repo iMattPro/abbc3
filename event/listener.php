@@ -135,6 +135,11 @@ class listener implements EventSubscriberInterface
 	 */
 	public function load_google_fonts()
 	{
+		if (!$this->config['allow_cdn'])
+		{
+			return;
+		}
+
 		$this->template->assign_var(
 			'abbc3_google_fonts',
 			json_decode($this->config_text->get('abbc3_google_fonts'), true)

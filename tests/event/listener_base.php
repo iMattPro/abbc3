@@ -63,6 +63,7 @@ class listener_base extends \phpbb_test_case
 			->getMock();
 		$this->config = new \phpbb\config\config([
 			'enable_mod_rewrite' => '0',
+			'allow_cdn' => '1',
 			'abbc3_icons_type' => 'png',
 			'abbc3_bbcode_bar' => 1,
 			'abbc3_pipes' => 1,
