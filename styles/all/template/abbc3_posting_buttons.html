@@ -70,11 +70,11 @@
 							<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
 								<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
 								{% for group, fonts in ABBC3_BBCODE_FONTS %}
-									<optgroup label="{{ lang(group) }}">
+									{% if loop.length > 1 %}<optgroup label="{{ lang(group) }}">{% endif %}
 										{% for font in fonts %}
 											<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
 										{% endfor %}
-									</optgroup>
+									{% if loop.length > 1 %}</optgroup>{% endif %}
 								{% endfor %}
 							</select>
 						{% else %}
@@ -83,14 +83,18 @@
 								<div class="dropdown">
 									<ul class="dropdown-contents" role="menu">
 										{% for group, fonts in ABBC3_BBCODE_FONTS %}
+											{% if loop.length > 1 %}
 											<li class="abbc3_font_menu_disabled">{{ lang(group) }}</li>
 											<li>
 												<ul>
+											{% endif %}
 													{% for font in fonts %}
 														<li class="abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" onclick="bbfontstyle('[font={{ font|e('js') }}]', '[/font]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ font }}</li>
 													{% endfor %}
+											{% if loop.length > 1 %}
 												</ul>
 											</li>
+											{% endif %}
 										{% endfor %}
 									</ul>
 								</div>
