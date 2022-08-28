@@ -96,7 +96,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'Vrstni red BBKode je bil posodobljen.',
 	'ABBC3_BBCODE_GROUP'		=> 'Upravljajte skupine, ki lahko uporabljajo to BBKodo',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Če ni izbrana nobena skupina, lahko vsi uporabniki uporabljajo to BBKodo. Uporabite CTRL+CLIK (ali CMD+CLIK na Macu), da izberete/prekličete izbiro več kot ene skupine.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Dodajte <a href="https://fonts.google.com" target="_blank">Googlove pisave</a> v <samp>font</samp> BBKode. Uporabite natančno črkovanje in razlikovanje med velikimi in malimi črkami. Vsako ime pisave postavite v ločeno vrstico. Primer: <samp>Droid Sans</samp>',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Dodajte <a href="https://fonts.google.com" target="_blank">Googlove pisave</a> v <samp>font</samp> BBKode. Uporabite natančno črkovanje in razlikovanje med velikimi in malimi črkami. Vsako ime pisave postavite v ločeno vrstico. Primer: <samp>Droid Sans</samp><br><br>Upoštevajte, da mora biti za uporabo te funkcije v razdelku Nastavitve nalaganja omogočeno Dovoli uporabo tretjeosebnih omrežij.',
 	'ABBC3_SETTINGS_EXPLAIN'	=> 'Tukaj lahko konfigurirate nastavitve za napredno polje BBKode. Za informacije o prilagajanju vrstice z ikonami obiščite <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
 	'ABBC3_PIPES'				=> 'Omogočite vtičnik Pipe Table',
 	'ABBC3_PIPES_EXPLAIN'		=> 'Pipes Table vtičnik uporabnikom omogoča ustvarjanje tabel v svojih objavah in zasebnih sporočilih z uporabo sintakse markdown.',

@@ -102,7 +102,7 @@ class listener implements EventSubscriberInterface
 			'core.display_custom_bbcodes_modify_row'	=> 'display_custom_bbcodes',
 
 			'core.text_formatter_s9e_parser_setup'		=> 'allow_custom_bbcodes',
-			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force lowest priority
+			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force the lowest priority
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 
@@ -135,6 +135,11 @@ class listener implements EventSubscriberInterface
 	 */
 	public function load_google_fonts()
 	{
+		if (!$this->config['allow_cdn'])
+		{
+			return;
+		}
+
 		$this->template->assign_var(
 			'abbc3_google_fonts',
 			json_decode($this->config_text->get('abbc3_google_fonts'), true)

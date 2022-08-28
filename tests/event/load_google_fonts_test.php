@@ -31,17 +31,31 @@ class load_google_fonts_test extends listener_base
 	/**
 	 * @dataProvider load_google_fonts_data
 	 */
-	public function test_load_google_fonts_common($config, $expected)
+	public function test_load_google_fonts_common($data, $expected)
 	{
 		$this->set_listener();
 
 		$this->config_text->expects(self::once())
 			->method('get')
-			->willReturn($config);
+			->willReturn($data);
 
 		$this->template->expects(self::once())
 			->method('assign_var')
 			->with('abbc3_google_fonts', $expected);
+
+		$this->listener->load_google_fonts();
+	}
+
+	public function test_load_google_fonts_disabled()
+	{
+		$this->config['allow_cdn'] = '0'; // disabled CDN content
+		$this->set_listener();
+
+		$this->config_text->expects(self::never())
+			->method('get');
+
+		$this->template->expects(self::never())
+			->method('assign_var');
 
 		$this->listener->load_google_fonts();
 	}
