@@ -1,16 +1,22 @@
 # Changelog
 
+## 3.3.5-dev
+
+- Google fonts will only be loaded when phpBB's CDN option allows 3rd-party content to be loaded to better comply with GDPR.
+- Minor tweaks to the FONT BBCode drop down menu.
+- Added sans-serif as a fall-back font to the FONT BBCode to avoid using the browser's default font when a custom font can't be loaded.
+
 ## 3.3.4 - 2022-06-16
 
-- Updated the Font BBCode menu to show the font name in the style of the font in all browsers
+- Updated the FONT BBCode menu to show the font name in the style of the font in all browsers
 - Added additional template events around the ABBC3 toolbar
 - Added support for Scaffold style
 
 ## 3.3.3 - 2022-02-24
 
-- Made the Font BBCode more customizable and compatible for all users:
-  - Added Google font support to the font BBCode; add Google fonts via the ABBC3 settings in the ACP.
-  - Removed non-universal font styles from the font BBCode menu.
+- Made the FONT BBCode more customizable and compatible for all users:
+  - Added Google font support to the FONT BBCode; add Google fonts via the ABBC3 settings in the ACP.
+  - Removed non-universal font styles from the FONT BBCode menu.
   - These changes will not break existing posts.
 - Switched the text scrolling BBCode (marquee effect) to an HTML-valid CSS-only method.
 - Various minor code updates.
@@ -42,7 +48,7 @@
 - BBCodes with no associated icon image will display like a standard phpBB BBCode.
 - BBVideo deprecation continues: 
   - If you have the phpBB Media Embed PlugIn installed, its `[media]` BBCode button now behaves just like the `[bbvideo]` button and opens the BBVideo wizard. You may now hide the `[bbvideo]` BBCode if you prefer to use the `[media]` BBCode (or vice versa) by turning off its display on posting page setting.
-- Added Open Sans to font BBCodes list since it is part of phpBB Prosilver.
+- Added Open Sans to FONT BBCodes list since it is part of phpBB Prosilver.
 
 ## 3.2.4 - 2020-08-10
 
@@ -73,11 +79,11 @@
 - [BBVideo] deprecated:
     - BBVideo is now an alias for the [MEDIA] tag, part of the Media Embed feature bundled with phpBB (you do NOT need to install phpBB Media Embed extension to work).
     - Many more sites and media services are supported through the Media Embed feature bundled with phpBB.
-    - Many old BBVideo exclusive sites are no longer supported (most of which are dead and gone anyways). `5min.com, allocine.fr, clipfish.de, clipmoon.com, cnet.com, colbertnation.com, crackle.com, dotsub.com, ebaumsworld.com, g4tv.com, gameprotv.com, howcast.com, maker.tv, moddb.com, mpora.com, myspace.com, myvideo.de, on.aol.com, photobucket.com, sapo.pt, screenr.com, snotr.com, spike.com, streetfire.net, thedailyshow.cc.com, tu.tv, tudou.com, viddler.com, videogamer.com`
+    - Many old BBVideo exclusive sites are no longer supported (most of which are dead and gone anyway). `5min.com, allocine.fr, clipfish.de, clipmoon.com, cnet.com, colbertnation.com, crackle.com, dotsub.com, ebaumsworld.com, g4tv.com, gameprotv.com, howcast.com, maker.tv, moddb.com, mpora.com, myspace.com, myvideo.de, on.aol.com, photobucket.com, sapo.pt, screenr.com, snotr.com, spike.com, streetfire.net, thedailyshow.cc.com, tu.tv, tudou.com, viddler.com, videogamer.com`
     - Custom video sizing is no longer available. phpBB's bundled Media embedding has predetermined hard-coded video sizes.
     - Raw URLs for compatible media sites will automatically be converted into content even without being wrapped in the BBVideo tag.
     - The original URLs will no longer display if they can be converted to embedded content.
-    - All Posts and PM's will be re-parsed after updating, over time using CRON jobs to fix broken posts with BBVideos.
+    - All Posts and PM's will be reparsed after updating, over time using CRON jobs to fix broken posts with BBVideos.
     - Incompatible BBVideos will remain broken (sorry 'bout that, but moving on usually means leaving old stuff behind).
 - Improved align BBCode when used on non-text like images, videos, etc.
 - Show AJAX loading indicators while loading BBCode wizards
