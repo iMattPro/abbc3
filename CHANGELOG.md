@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.3.5-dev
+## 3.3.5 - 2022-09-25
 
 - Google fonts will only be loaded when phpBB's CDN option allows 3rd-party content to be loaded to better comply with GDPR.
 - Minor tweaks to the FONT BBCode drop down menu.
