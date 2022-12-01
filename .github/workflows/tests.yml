@@ -6,17 +6,19 @@ env:
     IMAGE_ICC: 1         # Run icc profile sniffer on your images? 1 or 0
     EPV: 1               # Run EPV (Extension Pre Validator) on your code? 1 or 0
     EXECUTABLE_FILES: 1  # Run check for executable files? 1 or 0
-    PHPBB_BRANCH: 3.3.x  # The phpBB branch to run tests on
+    PHPBB_BRANCH: master # The phpBB branch to run tests on
 
 on:
     push:
         branches:        # Run tests when commits are pushed to these branches in your repo
             - master
             - develop
+            - dev/4.0
     pull_request:        # Run tests when pull requests are made on these branches in your repo
         branches:
             - master
             - develop
+            - dev/4.0
 
 jobs:
     # START Basic Checks Job (EPV, code sniffer, images check, etc.)
@@ -25,7 +27,7 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '7.2'
+                    - php: '7.3'
                       db: "none"
                       NOTESTS: 1
 
@@ -93,32 +95,28 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "mariadb:10.1"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "mariadb:10.2"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "mariadb:10.3"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "mariadb:10.4"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "mariadb:10.5"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "mysql:5.6"
                       db_alias: "MyISAM Tests"
                       MYISAM: 1
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "mysql:5.6"
-                    - php: '7.1'
-                      db: "mysql:5.7"
-                    - php: '7.2'
-                      db: "mysql:5.7"
-                      COVERAGE: 1
-                      db_alias: "mysql:5.7 with Coverage"
                     - php: '7.3'
                       db: "mysql:5.7"
                     - php: '7.4'
                       db: "mysql:5.7"
+                      COVERAGE: 0
+#                      db_alias: "mysql:5.7 with Coverage"
                     - php: '7.4'
                       db: "mysql:8.0"
                     - php: '8.0'
@@ -244,20 +242,16 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "postgres:9.5"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "postgres:9.6"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "postgres:10"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "postgres:11"
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "postgres:12"
-                    - php: '7.1'
-                      db: "postgres:13"
-                    - php: '7.2'
-                      db: "postgres:13"
                     - php: '7.3'
                       db: "postgres:13"
                     - php: '7.4'
@@ -358,12 +352,12 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - php: '7.1'
+                    - php: '7.3'
                       db: "sqlite3"
-                    - php: '7.2'
+                    - php: '7.3'
                       db: "mcr.microsoft.com/mssql/server:2017-latest"
                       db_alias: 'MSSQL 2017'
-                    - php: '7.2'
+                    - php: '7.3'
                       db: "mcr.microsoft.com/mssql/server:2019-latest"
                       db_alias: 'MSSQL 2019'
 
