@@ -62,7 +62,8 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertEquals('1', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
 		self::assertEquals('0', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
 		self::assertEquals('svg', $crawler->filter('option[selected]')->attr('value'));
-		self::assertEquals("Droid Sans\nRoboto", $crawler->filter('textarea#abbc3_google_fonts')->text());
+		self::assertStringContainsString("Droid Sans", $crawler->filter('textarea#abbc3_google_fonts')->text());
+		self::assertStringContainsString("Roboto", $crawler->filter('textarea#abbc3_google_fonts')->text());
 
 		// Resubmit form with settings needed for future functional tests
 		$form_data = [

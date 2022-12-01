@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\tests\system;
 
-use phpbb\finder;
+use phpbb\finder\finder;
 use phpbb\db\migrator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -35,7 +35,7 @@ class ext_test extends \phpbb_test_case
 		$this->container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
 
 		// Stub the ext finder and disable its constructor
-		$this->extension_finder = $this->createMock('\phpbb\finder');
+		$this->extension_finder = $this->createMock('\phpbb\finder\finder');
 
 		// Stub the migrator and disable its constructor
 		$this->migrator = $this->createMock('\phpbb\db\migrator');
