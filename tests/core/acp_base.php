@@ -57,16 +57,14 @@ class acp_base extends \phpbb_database_test_case
 		parent::setUp();
 
 		$this->db = $this->new_dbal();
-		$this->request = $this->getMockBuilder('\phpbb\request\request')
-			->disableOriginalConstructor()
-			->getMock();
+		$this->request = $this->createMock('\phpbb\request\request');
 		$lang_loader = new language_file_loader($phpbb_root_path, $phpEx);
 		$this->lang = new language($lang_loader);
 		$this->user = $user = new user($this->lang, '\phpbb\datetime');
 		$user->data['user_form_salt'] = '';
 		$this->group_helper = new helper(
-			$this->getMockBuilder('\phpbb\auth\auth')->disableOriginalConstructor()->getMock(),
-			$this->getMockBuilder('\phpbb\cache\service')->disableOriginalConstructor()->getMock(),
+			$this->createMock('\phpbb\auth\auth'),
+			$this->createMock('\phpbb\cache\service'),
 			new config([]),
 			$this->lang,
 			new \phpbb_mock_event_dispatcher(),

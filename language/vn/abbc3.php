@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Chủ đề đóng: [offtopic]đoạn văn[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Preformatted: [pre]đoạn văn[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Tạo hiệu ứng bóng đổ: [shadow=color]đoạn văn[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Ẩn/ hiện nội dung đoạn văn: [spoil]đoạn văn[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Chữ gạch ngang thân: [s]đoạn văn[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript: [sub]đoạn văn[/sub]',

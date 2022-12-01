@@ -58,7 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> '离题: [offtopic]文字[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> '保留格式: [pre]文字[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> '阴影: [shadow=color]文字[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> '剧情透露: [spoil]文字[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> '删除: [s]文字[/s]',
 	'ABBC3_SUB_HELPLINE'		=> '上标: [sub]文字[/sub]',
@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> '允许的网站',
 	'ABBC3_URL_LINK'			=> '添加 URL',
 	'ABBC3_URL_DESCRIPTION'		=> '可选说明',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> '添加表格',

@@ -34,22 +34,17 @@ class wizard_test extends \phpbb_test_case
 	{
 		parent::setUp();
 
-		$this->request = $this->getMockBuilder('\phpbb\request\request')
-			->disableOriginalConstructor()
-			->getMock();
+		$this->request = $this->createMock('\phpbb\request\request');
 
 		/** @var $controller_helper \phpbb\controller\helper|\PHPUnit\Framework\MockObject\MockObject */
-		$controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
-			->disableOriginalConstructor()
-			->getMock();
+		$controller_helper = $this->createMock('\phpbb\controller\helper');
 		$controller_helper->expects(self::atMost(1))
 			->method('render')
 			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200) {
 				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
 			});
 
-		$this->template = $this->getMockBuilder('\phpbb\template\template')
-			->getMock();
+		$this->template = $this->createMock('\phpbb\template\template');
 
 		$container = $this->get_test_case_helpers()->set_s9e_services();
 		$this->textformatter = $container->get('text_formatter.s9e.factory');

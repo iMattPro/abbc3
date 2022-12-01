@@ -58,7 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Konu Dışı mesajı: [offtopic]metin[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Ön biçimlendirilmeli metin: [pre]metin[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Gölgeli metin: [shadow=color]metin[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/kullanici-adi/sarki-basligi[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/kullanici-adi/sarki-basligi[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler mesajı: [spoil]metin[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Üstü çizili metin: [s]metin[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Alt simge metni: [sub]metin[/sub]',
@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'İzin verilen siteler',
 	'ABBC3_URL_LINK'			=> 'Bir site URL adresi girin',
 	'ABBC3_URL_DESCRIPTION'		=> 'İsteğe bağlı açıklama',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Tablolar oluştur',

@@ -46,7 +46,7 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		parent::setUp();
 
-		$this->auth = $this->getMockBuilder('\phpbb\auth\auth')->getMock();
+		$this->auth = $this->createMock('\phpbb\auth\auth');
 		$this->config = new \phpbb\config\config(['abbc3_icons_type' => 'png']);
 		$this->db = $this->new_dbal();
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
@@ -124,17 +124,13 @@ class bbcodes_test extends \phpbb_database_test_case
 	public function test_allow_custom_bbcodes($user_id, $data, $disable)
 	{
 		/** @var \s9e\TextFormatter\Parser|\PHPUnit\Framework\MockObject\MockObject $parser */
-		$parser = $this->getMockBuilder('\s9e\TextFormatter\Parser')
-			->disableOriginalConstructor()
-			->getMock();
+		$parser = $this->createMock('\s9e\TextFormatter\Parser');
 		$parser->registeredVars['abbc3.bbcode_groups'] = [
 			$data['bbcode_tag'] => $data['bbcode_group'],
 		];
 
 		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit\Framework\MockObject\MockObject $service */
-		$service = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
-			->disableOriginalConstructor()
-			->getMock();
+		$service = $this->createMock('\phpbb\textformatter\s9e\parser');
 		$service->expects($disable ? self::once() : self::never())
 			->method('disable_bbcode')
 			->with($data['bbcode_tag']);

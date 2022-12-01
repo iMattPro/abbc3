@@ -86,7 +86,7 @@ class bbcodes_help
 			'ABBC3_MOD_HELPLINE'		=> "[mod={$this->language->lang('USERNAME')}]{$example_text}[/mod]",
 			'ABBC3_OFFTOPIC_HELPLINE'	=> "[offtopic]{$example_text}[/offtopic]",
 			'ABBC3_NFO_HELPLINE'		=> '[nfo]༼ つ ◕_◕ ༽つ    ʕ•ᴥ•ʔ   ¯\_(ツ)_/¯[/nfo]',
-			'ABBC3_BBVIDEO_HELPLINE'	=> '[bbvideo]http://www.youtube.com/watch?v=sP4NMoJcFd4[/bbvideo]',
+			'ABBC3_BBVIDEO_HELPLINE'	=> '[bbvideo]https://www.youtube.com/watch?v=sP4NMoJcFd4[/bbvideo]',
 		], $this->allowed_bbcodes());
 
 		// Process faq data for display as parsed and un-parsed bbcodes

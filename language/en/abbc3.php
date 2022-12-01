@@ -57,7 +57,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic message: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Preformatted text: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Shadow text: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler message: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Strike-through text: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript text: [sub]text[/sub]',
@@ -77,7 +77,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'Allowed sites',
 	'ABBC3_URL_LINK'			=> 'Enter a site URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Optional description',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Create tables',

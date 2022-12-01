@@ -66,7 +66,7 @@ class wizard
 	 *
 	 * @param string $mode Mode taken from the URL
 	 * @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
-	 * @throws http_exception An http exception
+	 * @throws http_exception A http exception
 	 * @access public
 	 */
 	public function bbcode_wizard($mode)

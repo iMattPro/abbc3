@@ -75,7 +75,7 @@ class acp_module_test extends \phpbb_functional_test_case
 		$crawler = self::submit($form, $form_data);
 		$this->assertContainsLang('CONFIG_UPDATED', $crawler->filter('.successbox')->text());
 
-		// While we're here, lets enable quick reply so we can test that later
+		// While we're here, lets enable quick reply, so we can test that later
 		$crawler = self::request('GET', "adm/index.php?i=acp_forums&sid={$this->sid}&icat=6&mode=manage&parent_id=1&f=2&action=edit");
 		$form_data = ['enable_quick_reply' => 1];
 		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();

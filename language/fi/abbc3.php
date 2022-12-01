@@ -57,7 +57,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Aiheesta poikkeava viesti: [offtopic]teksti[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Esityylitetty teksti: [pre]teksti[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Varjotettu teksti: [shadow=color]teksti[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/tunnus/kappaleen-nimi[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]https://soundcloud.com/tunnus/kappaleen-nimi[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoilausviesti: [spoil]teksti[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Tekstin yliviivaus: [s]teksti[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Alaindeksi: [sub]teksti[/sub]',
@@ -77,7 +77,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'Videon sallitut sivut',
 	'ABBC3_URL_LINK'			=> 'Syötä sivun URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Linkin kuvaus, vaihtoehtoinen',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Create tables',
