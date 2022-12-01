@@ -60,9 +60,7 @@ class module_test extends \phpbb_database_test_case
 
 		global $user, $phpbb_container, $phpbb_root_path, $phpEx;
 
-		$this->cache = $this->getMockBuilder('\phpbb\cache\driver\driver_interface')
-			->disableOriginalConstructor()
-			->getMock();
+		$this->cache = $this->createMock('\phpbb\cache\driver\driver_interface');
 		$this->config = new \phpbb\config\config([
 			'enable_mod_rewrite' => '0',
 			'abbc3_icons_type' => 'png',
@@ -75,13 +73,9 @@ class module_test extends \phpbb_database_test_case
 		$this->config_text->set('abbc3_google_fonts', '["Droid Sans","Roboto"]');
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
 		$this->lang = new \phpbb\language\language($lang_loader);
-		$this->request = $this->getMockBuilder('\phpbb\request\request')
-			->disableOriginalConstructor()
-			->getMock();
-		$this->template = $this->getMockBuilder('\phpbb\template\template')
-			->getMock();
-		$this->container = $phpbb_container = $this->getMockBuilder('\Symfony\Component\DependencyInjection\ContainerInterface')
-			->getMock();
+		$this->request = $this->createMock('\phpbb\request\request');
+		$this->template = $this->createMock('\phpbb\template\template');
+		$this->container = $phpbb_container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
 
 		// Used in build_select function
 		$user = new \phpbb_mock_user();

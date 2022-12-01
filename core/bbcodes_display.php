@@ -47,7 +47,7 @@ class bbcodes_display
 	 * Constructor
 	 *
 	 * @param auth             $auth              Auth object
-	 * @param config           $config            Config object
+	 * @param config            $config             Config object
 	 * @param driver_interface $db                Database connection
 	 * @param manager          $extension_manager Extension manager object
 	 * @param user             $user              User object

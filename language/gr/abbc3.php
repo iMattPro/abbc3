@@ -59,7 +59,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Μύνημα εκτός θέματος: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Προδιαμορφωμένο κείμενο: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Σκιασμένο κείμενο: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Μύνημα Spoiler: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Διεγραμένο κείμενο: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Κείμενο στο κάτω μέρος της γραμμής: [sub]text[/sub]',
@@ -79,7 +79,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'επιτρεπόμενα sites',
 	'ABBC3_URL_LINK'			=> 'URL ιστοσελίδας',
 	'ABBC3_URL_DESCRIPTION'		=> 'Προαιρετική περιγραφή',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Create tables',

@@ -55,12 +55,8 @@ class listener_base extends \phpbb_test_case
 		global $phpbb_root_path, $phpEx;
 
 		$this->bbcodes_config = new \vse\abbc3\core\bbcodes_config();
-		$this->bbcodes_display = $this->getMockBuilder('\vse\abbc3\core\bbcodes_display')
-			->disableOriginalConstructor()
-			->getMock();
-		$this->bbcodes_help = $this->getMockBuilder('\vse\abbc3\core\bbcodes_help')
-			->disableOriginalConstructor()
-			->getMock();
+		$this->bbcodes_display = $this->createMock('\vse\abbc3\core\bbcodes_display');
+		$this->bbcodes_help = $this->createMock('\vse\abbc3\core\bbcodes_help');
 		$this->config = new \phpbb\config\config([
 			'enable_mod_rewrite' => '0',
 			'allow_cdn' => '1',
@@ -69,20 +65,15 @@ class listener_base extends \phpbb_test_case
 			'abbc3_pipes' => 1,
 		]);
 
-		$this->config_text = $this->getMockBuilder('\phpbb\config\db_text')
-			->disableOriginalConstructor()
-			->getMock();
-		$this->template = $this->getMockBuilder('\phpbb\template\template')
-			->getMock();
+		$this->config_text = $this->createMock('\phpbb\config\db_text');
+		$this->template = $this->createMock('\phpbb\template\template');
 		$this->language = new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx));
 		$this->user = $this->getMockBuilder('\phpbb\user')
 			->setConstructorArgs([$this->language, '\phpbb\datetime'])
 			->getMock();
 		$this->user->data['username'] = 'admin';
 
-		$this->helper = $this->getMockBuilder('\phpbb\routing\helper')
-			->disableOriginalConstructor()
-			->getMock();
+		$this->helper = $this->createMock('\phpbb\routing\helper');
 		$this->helper->expects(self::atMost(3))
 			->method('route')
 			->willReturnCallback(function ($route, array $params = []) {

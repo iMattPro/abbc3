@@ -80,14 +80,14 @@ class disable_bbcodes extends container_aware_migration
 	}
 
 	/**
-	 * Set ABBC3 BBCodes Display on Post to 0 so they will no longer
+	 * Set ABBC3 BBCodes Display on Post to 0, so they will no longer
 	 * appear in posting buttons when extension is purged.
 	 */
 	public function display_bbcodes_off()
 	{
 		$bbcodes = [];
 
-		$sql = 'SELECT bbcode_id 
+		$sql = 'SELECT bbcode_id
 			FROM ' . BBCODES_TABLE . '
 			WHERE display_on_posting = 1
 				AND bbcode_helpline ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char());

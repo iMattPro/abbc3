@@ -57,7 +57,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Sporočilo izven teme: [offtopic]besedilo[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Vnaprej oblikovano besedilo: [pre]besedilo[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Senčno besedilo: [shadow=color]besedilo[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> '“Spoiler” sporočilo: [spoil]besedilo[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Prečrtano besedilo: [s]besedilo[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Podpisno besedilo: [sub]besedilo[/sub]',
@@ -77,7 +77,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'Dovoljena spletna mesta',
 	'ABBC3_URL_LINK'			=> 'Vnesite URL spletnega mesta',
 	'ABBC3_URL_DESCRIPTION'		=> 'Neobvezen opis',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Ustvari tabele',

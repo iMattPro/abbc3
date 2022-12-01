@@ -57,7 +57,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'הודעה מחוץ לנושא: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Preformatted text: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'צל לטקסט: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'הודעת ספוילר: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'טקסט קו-דרכו: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript text: [sub]text[/sub]',
@@ -77,7 +77,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'אתרים מורשים ב',
 	'ABBC3_URL_LINK'			=> 'הזן כתובת אתר',
 	'ABBC3_URL_DESCRIPTION'		=> 'תיאור אופציונאלי',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Create tables',

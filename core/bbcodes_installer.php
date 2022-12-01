@@ -144,15 +144,13 @@ class bbcodes_installer extends acp_manager
 	{
 		$data = $this->acp_bbcodes->build_regexp($bbcode_data['bbcode_match'], $bbcode_data['bbcode_tpl']);
 
-		$bbcode_data = array_replace($bbcode_data, [
+		return array_replace($bbcode_data, [
 			'bbcode_tag'          => $data['bbcode_tag'],
 			'first_pass_match'    => $data['first_pass_match'],
 			'first_pass_replace'  => $data['first_pass_replace'],
 			'second_pass_match'   => $data['second_pass_match'],
 			'second_pass_replace' => $data['second_pass_replace'],
 		]);
-
-		return $bbcode_data;
 	}
 
 	/**

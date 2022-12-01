@@ -25,9 +25,7 @@ class acp_listener_base extends \phpbb_test_case
 	{
 		global $phpbb_root_path;
 
-		$this->acp_manager = $this->getMockBuilder('\vse\abbc3\core\acp_manager')
-			->disableOriginalConstructor()
-			->getMock();
+		$this->acp_manager = $this->createMock('\vse\abbc3\core\acp_manager');
 
 		$this->listener = new \vse\abbc3\event\acp_listener($this->acp_manager, $phpbb_root_path);
 	}

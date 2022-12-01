@@ -58,7 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'رسالة خارج عن الموضوع: [offtopic]النص[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'نص مُنسق: [pre]النص[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'نص مع ظل: [shadow=color]النص[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'موسيقى موقع SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'موسيقى موقع SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'رسالة مُنسدلة: [spoil]النص[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'نص مع خط بالوسط: [s]النص[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'نص منخفض: [sub]النص[/sub]',

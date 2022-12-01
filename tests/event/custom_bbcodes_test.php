@@ -84,9 +84,7 @@ class custom_bbcodes_test extends listener_base
 		$this->set_listener();
 
 		// Mock the text_formatter.parser service
-		$parser = $this->getMockBuilder('\phpbb\textformatter\s9e\parser')
-			->disableOriginalConstructor()
-			->getMock();
+		$parser = $this->createMock('\phpbb\textformatter\s9e\parser');
 
 		$this->bbcodes_display->expects($in_cron ? self::never() : self::once())
 			->method('allow_custom_bbcodes')

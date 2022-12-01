@@ -58,7 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic meddelande: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Förformaterad text: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Skugga text: [shadow=color]text[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoiler meddelande: [spoil]text[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Stryk text: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Nedsänkt text: [sub]text[/sub]',
@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'Tillåtna hemsidor',
 	'ABBC3_URL_LINK'			=> 'Ange en länk',
 	'ABBC3_URL_DESCRIPTION'		=> 'Valfritt beskrivning',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Create tables',

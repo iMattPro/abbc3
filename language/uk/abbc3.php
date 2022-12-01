@@ -57,7 +57,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Повідомлення не по темі: [offtopic]текст[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Попередньо відформатований текст: [pre]текст[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Розмита тінь: [shadow=колір]текст[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'Музика з SoundCloud: [soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'Музика з SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Спойлер: [spoil]текст[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Закреслений текст: [s]текст[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Підстрочний текст: [sub]текст[/sub]',
@@ -77,7 +77,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'Дозволені сайти',
 	'ABBC3_URL_LINK'			=> 'Додати URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Додатковий опис',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Create tables',

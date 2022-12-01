@@ -45,9 +45,13 @@ class plugins_test extends listener_base
 		self::assertTrue(isset($configurator->BBCodes['hidden']));
 
 		// Un-set bbcodes and plugins and check everything remains unset
-		unset($configurator->BBCodes['pipes'], $configurator->plugins['PipeTables']);
-		unset($configurator->BBCodes['bbvideo'], $configurator->plugins['MediaEmbed']);
-		unset($configurator->BBCodes['hidden']);
+		unset(
+			$configurator->BBCodes['pipes'],
+			$configurator->plugins['PipeTables'],
+			$configurator->BBCodes['bbvideo'],
+			$configurator->plugins['MediaEmbed'],
+			$configurator->BBCodes['hidden']
+		);
 
 		// Dispatch event again
 		$event_data = ['configurator'];

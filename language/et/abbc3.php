@@ -58,7 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Teemaväline sõnum: [offtopic]tekst[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Eelvormindatud tekst: [pre]tekst[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Varjestusega tekst: [shadow=color]tekst[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]http://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> '[soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> 'Spoileriga sõnum: [spoil]tekst[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> 'Joonega läbitõmmatud: [s]tekst[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Alaindeksiga tekst: [sub]tekst[/sub]',
@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO_SITES'		=> 'Lubatud veebilehed',
 	'ABBC3_URL_LINK'			=> 'Sisesta veebilehe URL',
 	'ABBC3_URL_DESCRIPTION'		=> 'Valikuline kirjeldus',
-	'ABBC3_URL_EXAMPLE'			=> 'http://www.phpbb.com',
+	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
 	'ABBC3_PIPE_TABLES'			=> 'Create tables',
