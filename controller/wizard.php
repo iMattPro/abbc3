@@ -72,17 +72,20 @@ class wizard
 	public function bbcode_wizard($mode)
 	{
 		// Only allow valid AJAX requests
-		if ($this->request->is_ajax() && in_array($mode, ['bbvideo', 'pipes', 'url']))
+		if (!$this->request->is_ajax() || !in_array($mode, ['bbvideo', 'pipes', 'url']))
 		{
-			if ($mode === 'bbvideo')
-			{
-				$this->generate_bbvideo_wizard();
-			}
-
-			return $this->helper->render("abbc3_{$mode}_wizard.html");
+			throw new http_exception(404, 'GENERAL_ERROR');
 		}
 
-		throw new http_exception(404, 'GENERAL_ERROR');
+		if ($mode === 'bbvideo')
+		{
+			$this->template->assign_vars([
+				'ABBC3_BBVIDEO_SITES'	=> $this->get_bbvideo_sites(),
+				'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
+			]);
+		}
+
+		return $this->helper->render("@vse_abbc3/abbc3_{$mode}_wizard.html");
 	}
 
 	/**
@@ -90,32 +93,31 @@ class wizard
 	 *
 	 * @access protected
 	 */
-	protected function generate_bbvideo_wizard()
+	protected function get_bbvideo_sites()
 	{
-		if (($bbvideo_sites = $this->cache->get('_bbvideo_sites')) === false)
+		if (($bbvideo_sites = $this->cache->get('_bbvideo_sites')) !== false)
 		{
-			$bbvideo_sites = [];
-			$configurator = $this->textformatter->get_configurator();
-			foreach ($configurator->MediaEmbed->defaultSites as $siteId => $siteConfig)
-			{
-				// check that siteID is not already a custom bbcode and that it exists in MediaEmbed
-				if (!isset($configurator->BBCodes[$siteId]) && $configurator->tags->exists($siteId))
-				{
-					$bbvideo_sites[$siteId] = [
-						'name'    => $siteConfig['name'],
-						'example' => isset($siteConfig['example']) ? current((array) $siteConfig['example']) : '',
-					];
-				}
-			}
-
-			ksort($bbvideo_sites);
-
-			$this->cache->put('_bbvideo_sites', $bbvideo_sites);
+			return $bbvideo_sites;
 		}
 
-		$this->template->assign_vars([
-			'ABBC3_BBVIDEO_SITES'	=> $bbvideo_sites,
-			'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
-		]);
+		$bbvideo_sites = [];
+		$configurator = $this->textformatter->get_configurator();
+		foreach ($configurator->MediaEmbed->defaultSites as $siteId => $siteConfig)
+		{
+			// check that siteID is not already a custom bbcode and that it exists in MediaEmbed
+			if (!isset($configurator->BBCodes[$siteId]) && $configurator->tags->exists($siteId))
+			{
+				$bbvideo_sites[$siteId] = [
+					'name'    => $siteConfig['name'],
+					'example' => isset($siteConfig['example']) ? current((array) $siteConfig['example']) : '',
+				];
+			}
+		}
+
+		ksort($bbvideo_sites);
+
+		$this->cache->put('_bbvideo_sites', $bbvideo_sites);
+
+		return $bbvideo_sites;
 	}
 }
