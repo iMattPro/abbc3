@@ -93,28 +93,56 @@ class bbcodes_installer extends acp_manager
 		{
 			$bbcode_data = $this->build_bbcode($bbcode_data);
 
-			if ($bbcode = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag']))
+			if (!($bbcode = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag'])))
 			{
-				if (strpos($this->db->get_sql_layer(), 'mssql') === 0)
-				{
-					// Fix for MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
-					$sql = 'DELETE FROM ' . BBCODES_TABLE . "
-					WHERE CONVERT(NVARCHAR(MAX), first_pass_match) = N'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
-						AND CONVERT(NVARCHAR(MAX), first_pass_replace) = N'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
-						AND bbcode_id = " . (int) $bbcode['bbcode_id'];
-				}
-				else
-				{
-					$sql = 'DELETE FROM ' . BBCODES_TABLE . "
-					WHERE first_pass_match = '" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
-						AND first_pass_replace = '" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
-						AND bbcode_id = " . (int) $bbcode['bbcode_id'];
-				}
-				$this->db->sql_query($sql);
+				continue;
 			}
+
+			$sql = 'DELETE FROM ' . BBCODES_TABLE . "
+			WHERE {$this->first_pass_match()}'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
+				AND {$this->first_pass_replace()}'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
+				AND bbcode_id = " . (int) $bbcode['bbcode_id'];
+
+			$this->db->sql_query($sql);
 		}
 
 		$this->resynchronize_bbcode_order();
+	}
+
+	/**
+	 * Get SQL statement for first_pass_match
+	 * Addresses MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
+	 *
+	 * @return string
+	 */
+	private function first_pass_match()
+	{
+		static $first_pass_match;
+
+		if (null === $first_pass_match)
+		{
+			$first_pass_match = strpos($this->db->get_sql_layer(), 'mssql') === 0 ? 'CONVERT(NVARCHAR(MAX), first_pass_match) = N' : 'first_pass_match = ';
+		}
+
+		return $first_pass_match;
+	}
+
+	/**
+	 * Get SQL statement for first_pass_replace
+	 * Addresses MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
+	 *
+	 * @return string
+	 */
+	private function first_pass_replace()
+	{
+		static $first_pass_replace;
+
+		if (null === $first_pass_replace)
+		{
+			$first_pass_replace = strpos($this->db->get_sql_layer(), 'mssql') === 0 ? 'CONVERT(NVARCHAR(MAX), first_pass_replace) = N' : 'first_pass_replace = ';
+		}
+
+		return $first_pass_replace;
 	}
 
 	/**

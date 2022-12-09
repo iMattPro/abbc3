@@ -81,6 +81,13 @@ class wizard_test extends \phpbb_test_case
 			->willReturn($ajax)
 		;
 
+		$this->template->expects($mode === 'bbvideo' ? self::once() : self::never())
+			->method('assign_vars')
+			->with([
+				'ABBC3_BBVIDEO_SITES'   => [],
+				'ABBC3_BBVIDEO_DEFAULT' => \vse\abbc3\controller\wizard::BBVIDEO_DEFAULT,
+			]);
+
 		$response = $this->controller->bbcode_wizard($mode);
 		self::assertInstanceOf('\Symfony\Component\HttpFoundation\Response', $response);
 		self::assertEquals($status_code, $response->getStatusCode());
@@ -114,48 +121,9 @@ class wizard_test extends \phpbb_test_case
 		$this->request->expects(self::once())
 			->method('is_ajax')
 			->willReturn($ajax);
+		$this->template->expects(self::never())
+			->method('assign_vars');
 
 		$this->controller->bbcode_wizard($mode);
-	}
-
-	/**
-	 * Test generate_bbvideo_wizard works
-	 */
-	public function test_generate_bbvideo_wizard()
-	{
-		$this->template->expects(self::once())
-			->method('assign_vars')
-			->with([
-				'ABBC3_BBVIDEO_SITES'   => [],
-				'ABBC3_BBVIDEO_DEFAULT' => \vse\abbc3\controller\wizard::BBVIDEO_DEFAULT,
-			]);
-
-		try
-		{
-			$this->invokeMethod($this->controller, 'generate_bbvideo_wizard');
-		}
-		catch (\ReflectionException $e)
-		{
-			self::fail($e->getMessage());
-		}
-	}
-
-	/**
-	 * Call protected/private method of a class.
-	 *
-	 * @param \vse\abbc3\controller\wizard &$object     Instantiated object that we will run method on.
-	 * @param string                        $methodName Method name to call
-	 * @param array                         $parameters Array of parameters to pass into method.
-	 *
-	 * @return mixed Method return.
-	 * @throws \ReflectionException
-	 */
-	public function invokeMethod(&$object, $methodName, array $parameters = [])
-	{
-		$reflection = new \ReflectionClass(get_class($object));
-		$method = $reflection->getMethod($methodName);
-		$method->setAccessible(true);
-
-		return $method->invokeArgs($object, $parameters);
 	}
 }
