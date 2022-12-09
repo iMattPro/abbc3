@@ -61,9 +61,9 @@ class wizard_test extends \phpbb_test_case
 	public function bbcode_wizard_data()
 	{
 		return [
-			['bbvideo', true, 200, 'abbc3_bbvideo_wizard.html'],
-			['pipes', true, 200, 'abbc3_pipes_wizard.html'],
-			['url', true, 200, 'abbc3_url_wizard.html'],
+			['bbvideo', true, 200, '@vse_abbc3/abbc3_bbvideo_wizard.html'],
+			['pipes', true, 200, '@vse_abbc3/abbc3_pipes_wizard.html'],
+			['url', true, 200, '@vse_abbc3/abbc3_url_wizard.html'],
 		];
 	}
 

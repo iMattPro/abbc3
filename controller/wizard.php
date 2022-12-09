@@ -79,7 +79,7 @@ class wizard
 				$this->generate_bbvideo_wizard();
 			}
 
-			return $this->helper->render("abbc3_{$mode}_wizard.html");
+			return $this->helper->render("@vse_abbc3/abbc3_{$mode}_wizard.html");
 		}
 
 		throw new http_exception(404, 'GENERAL_ERROR');
