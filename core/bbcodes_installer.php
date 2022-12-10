@@ -98,9 +98,9 @@ class bbcodes_installer extends acp_manager
 				continue;
 			}
 
-			$sql = 'DELETE FROM ' . BBCODES_TABLE . "
-			WHERE {$this->first_pass_match()}'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
-				AND {$this->first_pass_replace()}'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
+			$sql = 'DELETE FROM ' . BBCODES_TABLE . '
+			WHERE ' . $this->first_pass_match() . "'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
+				AND " . $this->first_pass_replace() . "'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
 				AND bbcode_id = " . (int) $bbcode['bbcode_id'];
 
 			$this->db->sql_query($sql);
