@@ -89,6 +89,9 @@ class bbcodes_installer extends acp_manager
 	 */
 	public function delete_bbcodes(array $bbcodes)
 	{
+		// Addresses MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
+		$is_mssql = strpos($this->db->get_sql_layer(), 'mssql') === 0;
+
 		foreach ($bbcodes as $bbcode_name => $bbcode_data)
 		{
 			$bbcode_data = $this->build_bbcode($bbcode_data);
@@ -99,50 +102,14 @@ class bbcodes_installer extends acp_manager
 			}
 
 			$sql = 'DELETE FROM ' . BBCODES_TABLE . '
-			WHERE ' . $this->first_pass_match() . "'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
-				AND " . $this->first_pass_replace() . "'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
+			WHERE ' . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), first_pass_match) = N' : 'first_pass_match = ') . "'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
+				AND " . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), first_pass_replace) = N' : 'first_pass_replace = ') . "'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
 				AND bbcode_id = " . (int) $bbcode['bbcode_id'];
 
 			$this->db->sql_query($sql);
 		}
 
 		$this->resynchronize_bbcode_order();
-	}
-
-	/**
-	 * Get SQL statement for first_pass_match
-	 * Addresses MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
-	 *
-	 * @return string
-	 */
-	private function first_pass_match()
-	{
-		static $first_pass_match;
-
-		if (null === $first_pass_match)
-		{
-			$first_pass_match = strpos($this->db->get_sql_layer(), 'mssql') === 0 ? 'CONVERT(NVARCHAR(MAX), first_pass_match) = N' : 'first_pass_match = ';
-		}
-
-		return $first_pass_match;
-	}
-
-	/**
-	 * Get SQL statement for first_pass_replace
-	 * Addresses MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
-	 *
-	 * @return string
-	 */
-	private function first_pass_replace()
-	{
-		static $first_pass_replace;
-
-		if (null === $first_pass_replace)
-		{
-			$first_pass_replace = strpos($this->db->get_sql_layer(), 'mssql') === 0 ? 'CONVERT(NVARCHAR(MAX), first_pass_replace) = N' : 'first_pass_replace = ';
-		}
-
-		return $first_pass_replace;
 	}
 
 	/**
