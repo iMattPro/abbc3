@@ -1,62 +1,28 @@
 services:
+    _defaults:
+        autowire: true # phpBB 3.3.x required
+        bind:
+            $root_path: '%core.root_path%'
+
     vse.abbc3.bbcodes_config:
         class: vse\abbc3\core\bbcodes_config
 
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display
-        arguments:
-            - '@auth'
-            - '@config'
-            - '@dbal.conn'
-            - '@ext.manager'
-            - '@user'
-            - '%core.root_path%'
 
     vse.abbc3.bbcodes_help:
         class: vse\abbc3\core\bbcodes_help
-        arguments:
-            - '@vse.abbc3.bbcodes_display'
-            - '@dbal.conn'
-            - '@language'
-            - '@template'
-            - '@user'
 
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
-        arguments:
-            - '@dbal.conn'
-            - '@group_helper'
-            - '@language'
-            - '@request'
 
     vse.abbc3.listener:
         class: vse\abbc3\event\listener
-        arguments:
-            - '@vse.abbc3.bbcodes_config'
-            - '@vse.abbc3.bbcodes_display'
-            - '@vse.abbc3.bbcodes_help'
-            - '@config'
-            - '@config_text'
-            - '@routing.helper'
-            - '@language'
-            - '@template'
-            - '@user'
-        tags:
-            - { name: event.listener }
+        tags: ['event.listener']
 
     vse.abbc3.acp_listener:
         class: vse\abbc3\event\acp_listener
-        arguments:
-            - '@vse.abbc3.acp_manager'
-            - '%core.root_path%'
-        tags:
-            - { name: event.listener }
+        tags: ['event.listener']
 
     vse.abbc3.wizard:
         class: vse\abbc3\controller\wizard
-        arguments:
-            - '@cache.driver'
-            - '@controller.helper'
-            - '@request'
-            - '@template'
-            - '@text_formatter.s9e.factory'
