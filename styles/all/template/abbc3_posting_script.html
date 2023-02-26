@@ -109,7 +109,7 @@
 
 			case 'dir':
 			case 'dir=':
-				bbfontstyle('[dir={{ S_CONTENT_DIRECTION == 'ltr' ? 'rtl' : 'ltr' }}]', '[/dir]');
+				bbfontstyle('[dir={{ S_CONTENT_DIRECTION|reverse }}]', '[/dir]');
 				break;
 
 			case 'marq':
