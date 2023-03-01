@@ -119,7 +119,7 @@
 
 			case 'mod':
 			case 'mod=':
-				bbfontstyle('[mod={{ ABBC3_USERNAME|e("js") }}]', '[/mod]');
+				bbfontstyle('[mod={{ (S_USERNAME ?: USERNAME)|e("js") }}]', '[/mod]');
 				break;
 
 			case 'highlight':

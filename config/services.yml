@@ -40,7 +40,6 @@ services:
             - '@routing.helper'
             - '@language'
             - '@template'
-            - '@user'
         tags:
             - { name: event.listener }
 
