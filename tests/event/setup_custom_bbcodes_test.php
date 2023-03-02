@@ -29,7 +29,6 @@ class setup_custom_bbcodes_test extends listener_base
 		$this->template->expects(self::once())
 			->method('assign_vars')
 			->with([
-				'ABBC3_USERNAME'			=> 'admin',
 				'ABBC3_BBCODE_ICONS' 		=> ['foo' => 'path/to/foo'],
 				'ABBC3_BBCODE_FONTS'		=> ext::ABBC3_BBCODE_FONTS,
 				'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
