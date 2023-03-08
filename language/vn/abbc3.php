@@ -38,7 +38,7 @@ $lang = array_merge($lang, array(
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Danh sách font chữ',
-	'ABBC3_FONT_SAFE'			=> 'Safe fonts',
+	'ABBC3_FONT_SAFE'			=> 'System fonts',
 	'ABBC3_GOOGLE_FONTS'		=> 'Google fonts',
 
 	// BBCode help lines
