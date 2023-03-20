@@ -36,8 +36,8 @@ $lang = array_merge($lang, array(
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Fonts',
-	'ABBC3_FONT_SAFE'			=> 'Safe fonts',
-	'ABBC3_GOOGLE_FONTS'		=> 'Google Fonts',
+	'ABBC3_FONT_SAFE'			=> 'System fonts',
+	'ABBC3_GOOGLE_FONTS'		=> 'Google fonts',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Align text: [align=center|left|right|justify]text[/align]',
