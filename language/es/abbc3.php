@@ -95,7 +95,7 @@ $lang = array_merge($lang, array(
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'El orden de los BBCodes ha sido resincronizado.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestionar grupos que pueden utilizar este BBCode',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br />Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse CTRL+CLICK (o CMD-CLICK en Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br>Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse CTRL+CLICK (o CMD-CLICK en Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Añada fuentes de <a href="https://fonts.google.com" target="_blank">Google Fonts</a> al BBCode <samp>font</samp>. Utilice la ortografía exacta y la distinción entre mayúsculas y minúsculas. Coloque cada nombre de fuente en una línea separada. Por ejemplo: <samp>Droid Sans</samp>',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Tenga en cuenta que “Permitir el uso de las redes de distribución de contenidos de terceros” debe estar habilitado en "Configuración de carga" para usar esta función.',
 	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aquí puede configurar los ajustes para Advanced BBCode Box. Para obtener información sobre cómo personalizar la barra de iconos, visite el <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
@@ -115,5 +115,5 @@ $lang = array_merge($lang, array(
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'BBCodes de la Caja Avanzada de BBCode',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'El zorro marrón rápido salta sobre el perro perezoso',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Ejemplo:</strong><br />%2$s<br /><br /><strong>Resultado:</strong><br />%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Ejemplo:</strong><br>%2$s<br><br><strong>Resultado:</strong><br>%3$s<hr />',
 ));

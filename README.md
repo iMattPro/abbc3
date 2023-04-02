@@ -35,6 +35,6 @@ Replace phpBB3's default BBCode buttons with icons in a customizable toolbar. Th
 * Read the [How To: Customize BBCode Icons & Toolbar](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551) at phpBB.com
 
 ## License
-[GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
+[GNU General Public License v2](https://opensource.org/licenses/GPL-2.0)
 
 © 2013 - Matt Friedman

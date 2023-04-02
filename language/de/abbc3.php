@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Ausrichten von Text: [align=center|left|right|justify]Text[/align] (zentriert, linksbündig, rechtsbündig und blocksatz)',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Webvideo hinzufügen: [bbvideo]http://Video URL[/bbvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Webvideo hinzufügen: [bbvideo]http://Video_URL[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Unscharfer Text: [blur=color]Text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Text Richtung (links nach rechts/rechts nach links): [dir=ltr|rtl]Text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Text mit Schattenfall: [dropshadow=color]Text[/dropshadow]',
@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Durchgestrichen: [s]Text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Tiefgestellt: [sub]Text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Hochgestellt: [sup]Text[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube-Video: [youtube]http://Youtube Url[/youtube]',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube-Video: [youtube]http://Youtube_Url[/youtube]',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Markierten Text kopieren',
@@ -116,5 +116,5 @@ $lang = array_merge($lang, array(
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Der schnelle braune Fuchs springt über den faulen Hund',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Beispiel:</strong><br />%2$s<br /><br /><strong>Ergebnis:</strong><br />%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Beispiel:</strong><br>%2$s<br><br><strong>Ergebnis:</strong><br>%3$s<hr />',
 ));

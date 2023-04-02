@@ -116,5 +116,5 @@ $lang = array_merge($lang, array(
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCode’ları',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Hızlı kahverengi tilki tembel köpeğin üzerinden atlar',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Örnek:</strong><br />%2$s<br /><br /><strong>Sonuç:</strong><br />%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Örnek:</strong><br>%2$s<br><br><strong>Sonuç:</strong><br>%3$s<hr />',
 ));
