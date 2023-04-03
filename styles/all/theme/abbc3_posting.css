@@ -59,10 +59,15 @@
 	background: linear-gradient(to bottom, #f9fbfd 0%, #d9dde2 100%);
 	border: 1px solid #b4bac0;
 	display: block;
+	box-sizing: border-box;
 	width: 80%;
 	min-height: 30px;
 	margin: 0;
 	padding: 0 2px;
+}
+
+.abbc3_buttons_row_legacy {
+	box-sizing: content-box;
 }
 
 /* force buttons row margin to 0 */
@@ -85,6 +90,7 @@ form td .abbc3_buttons_row {
 }
 
 #main #abbc3_buttons .abbc3_buttons_row {
+	box-sizing: content-box;
 	width: 95%;
 }
 
@@ -103,8 +109,8 @@ form td .abbc3_buttons_row {
 .abbc3_font_menu_btn .dropdown-contents .abbc3_font_menu_disabled {
 	margin: 0;
 	padding-top: 3px;
-	padding-bottom: 3px;
 	padding-right: 3px;
+	padding-bottom: 3px;
 }
 
 .abbc3_font_menu_font:hover {

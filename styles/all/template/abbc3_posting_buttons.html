@@ -15,7 +15,7 @@
 
 {% EVENT vse_abbc3_posting_editor_buttons_before %}
 <div id="abbc3_buttons">
-	<div class="abbc3_buttons_row">
+	<div class="abbc3_buttons_row{{ S_ABBC3_BCSTYLE_BAR ? ' abbc3_buttons_row_legacy' }}">
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.bold, 'bbcode-b', 'b', 0, ' B ', 'BBCODE_B_HELP', 'fa-bold', ROOT_PATH) }}
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.italic, 'bbcode-i', 'i', 2, ' i ', 'BBCODE_I_HELP', 'fa-italic', ROOT_PATH) }}
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.underline, 'bbcode-u', 'u', 4, ' u ', 'BBCODE_U_HELP', 'fa-underline', ROOT_PATH) }}
@@ -56,7 +56,7 @@
 		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 	</div>
 	{% if custom_tags %}
-		<div class="abbc3_buttons_row" style="border-top:0;">
+		<div class="abbc3_buttons_row{{ S_ABBC3_BCSTYLE_BAR ? ' abbc3_buttons_row_legacy' }}" style="border-top:0;">
 			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
 			{% for custom_tag in custom_tags %}
 				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
