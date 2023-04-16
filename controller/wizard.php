@@ -89,9 +89,10 @@ class wizard
 	}
 
 	/**
-	 * Set template variables for the BBvideo wizard
+	 * Get BBvideo sites
 	 *
 	 * @access protected
+	 * @return array An array of BBVideo sites containing [id => name, example]
 	 */
 	protected function get_bbvideo_sites()
 	{
