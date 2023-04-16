@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.3.6 - 2023-04-16
+
+- Improved support for using the [dir] BBCode in RTL languages.
+- Adjusted appearance of BBCode toolbar to size properly with the message editor.
+- Popup wizards for BBVideo, IMG and URL have better responsive behavior in mobile devices.
+- Lots of little improvements under the hood.
+
 ## 3.3.5 - 2022-09-25
 
 - Google fonts will only be loaded when phpBB's CDN option allows 3rd-party content to be loaded to better comply with GDPR.
