@@ -5,6 +5,7 @@
 - Improved support for using the [dir] BBCode in RTL languages.
 - Adjusted appearance of BBCode toolbar to size properly with the message editor.
 - Popup wizards for BBVideo, IMG and URL have better responsive behavior in mobile devices.
+- Prevent unnecessary running of text re-parsers for first time installations.
 - Lots of little improvements under the hood.
 
 ## 3.3.5 - 2022-09-25
