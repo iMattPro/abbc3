@@ -117,4 +117,40 @@ class ext_test extends \phpbb_test_case
 
 		self::assertEquals($expected, $ext->enable_step($old_state));
 	}
+
+	public function test_enable_fails()
+	{
+		$filesystem = $this->getMockBuilder('\phpbb\filesystem\filesystem')
+			->disableOriginalConstructor()
+			->setMethods(['mkdir', 'exists'])
+			->getMock();
+
+		$filesystem->expects( self::once())
+			->method('exists')
+			->willReturn(false);
+
+		$filesystem->expects(self::once())
+			->method('mkdir')
+			->willThrowException(new \phpbb\filesystem\exception\filesystem_exception('Test Error', 'images/abbc3/icons'));
+
+		$user = new \phpbb_mock_user();
+		$user->data['user_id'] = '2';
+		$user->ip = '1.0.0.01';
+		$log = $this->getMockBuilder('\phpbb\log\log')
+			->disableOriginalConstructor()
+			->getMock();
+
+		$log->expects($this->once())
+			->method('add')
+			->with('critical', '2', '1.0.0.01', 'LOG_ABBC3_ENABLE_FAIL', false, ['images/abbc3/icons']);
+
+		$this->container->expects(self::exactly(3))
+			->method('get')
+			->withConsecutive(['filesystem'], ['user'], ['log'])
+			->willReturnOnConsecutiveCalls($filesystem, $user, $log);
+
+		$ext = new ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
+
+		$ext->enable_step(false);
+	}
 }
