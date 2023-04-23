@@ -31,6 +31,7 @@ class v336_m17_unparse extends \phpbb\db\migration\migration
 	 */
 	public function effectively_installed()
 	{
+		// Check if very first migration was skipped (proves we're not updating ABBC3 3.0)
 		$sql = 'SELECT 1 as no_30
 			FROM ' . $this->table_prefix . "migrations
 			WHERE migration_name = '\\\\vse\\\\abbc3\\\\migrations\\\\v310_m1_remove_data'
@@ -40,10 +41,11 @@ class v336_m17_unparse extends \phpbb\db\migration\migration
 		$no_30 = (bool) $this->db->sql_fetchfield('no_30');
 		$this->db->sql_freeresult($result);
 
+		// Check if any ABBC3 v310 migrations were installed less than a minute ago (proves we're not updating ABBC3 3.1)
 		$sql = 'SELECT 1 as fresh_install
 			FROM ' . $this->table_prefix . 'migrations
 			WHERE migration_name ' . $this->db->sql_like_expression('\\\\vse\\\\abbc3\\\\migrations\\\\v310' . $this->db->get_any_char()) . '
-				AND migration_start_time BETWEEN ' . (time() - 180) . ' AND ' . (time() + 180);
+				AND migration_start_time >= ' . (time() - 60);
 		$result = $this->db->sql_query_limit($sql, 1);
 		$fresh_install = (bool) $this->db->sql_fetchfield('fresh_install');
 		$this->db->sql_freeresult($result);
