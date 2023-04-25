@@ -233,9 +233,9 @@ jobs:
 
             - name: Send code coverage
               if: ${{ matrix.COVERAGE == 1 }}
-              uses: codecov/codecov-action@v1
+              uses: codecov/codecov-action@v3
               with:
-                  file: ./phpBB3/build/logs/clover.xml
+                  files: ./phpBB3/build/logs/clover.xml
     # END MySQL and MariaDB Job
 
     # START PostgreSQL Job
