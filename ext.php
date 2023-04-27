@@ -27,7 +27,7 @@ class ext extends \phpbb\extension\base
 	public function is_enableable()
 	{
 		$config = $this->container->get('config');
-		return phpbb_version_compare(min($config['version'], PHPBB_VERSION), self::PHPBB_MIN_VERSION, '>=');
+		return $this->version_check($config['version']) && $this->version_check(PHPBB_VERSION);
 	}
 
 	/**
@@ -57,5 +57,16 @@ class ext extends \phpbb\extension\base
 		}
 
 		return parent::enable_step($old_state);
+	}
+
+	/**
+	 * Enable version check
+	 *
+	 * @param string|int $version The version to check
+	 * @return bool
+	 */
+	protected function version_check($version)
+	{
+		return phpbb_version_compare($version, self::PHPBB_MIN_VERSION, '>=');
 	}
 }
