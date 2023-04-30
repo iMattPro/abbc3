@@ -141,8 +141,8 @@ class bbcodes_installer extends acp_manager
 
 		return array_replace($bbcode_data, [
 			'bbcode_tag'          => $data['bbcode_tag'],
-			'first_pass_match'     => $data['first_pass_match'],
-			'first_pass_replace'   => $data['first_pass_replace'],
+			'first_pass_match'    => $data['first_pass_match'],
+			'first_pass_replace'  => $data['first_pass_replace'],
 			'second_pass_match'   => $data['second_pass_match'],
 			'second_pass_replace' => $data['second_pass_replace'],
 		]);
