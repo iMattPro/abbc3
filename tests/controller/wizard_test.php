@@ -12,8 +12,8 @@ namespace vse\abbc3\tests\controller;
 
 class wizard_test extends \phpbb_test_case
 {
-	/** @var \ReflectionClass */
-	protected static $reflection_method_load_json_data;
+	/** @var \phpbb_mock_cache */
+	protected $cache;
 
 	/** @var \vse\abbc3\controller\wizard */
 	protected $controller;
@@ -49,8 +49,10 @@ class wizard_test extends \phpbb_test_case
 		$container = $this->get_test_case_helpers()->set_s9e_services();
 		$this->textformatter = $container->get('text_formatter.s9e.factory');
 
+		$this->cache = new \phpbb_mock_cache;
+
 		$this->controller = new \vse\abbc3\controller\wizard(
-			new \phpbb_mock_cache,
+			$this->cache,
 			$controller_helper,
 			$this->request,
 			$this->template,
@@ -92,6 +94,34 @@ class wizard_test extends \phpbb_test_case
 		self::assertInstanceOf('\Symfony\Component\HttpFoundation\Response', $response);
 		self::assertEquals($status_code, $response->getStatusCode());
 		self::assertEquals($page_content, $response->getContent());
+	}
+
+	public function test_bbvideo_sites_cached()
+	{
+		$cached_data = [
+			'youtube' => [
+				'name'    => 'YouTube',
+				'example' => 'https://www.youtube.com/foobar',
+			]
+		];
+
+		$this->cache->put('_bbvideo_sites', $cached_data);
+
+		$this->request->expects(self::once())
+			->method('is_ajax')
+			->willReturn(true)
+		;
+
+		$this->template->expects(self::once())
+			->method('assign_vars')
+			->with([
+				'ABBC3_BBVIDEO_SITES'   => $cached_data,
+				'ABBC3_BBVIDEO_DEFAULT' => \vse\abbc3\controller\wizard::BBVIDEO_DEFAULT,
+			]);
+
+		$response = $this->controller->bbcode_wizard('bbvideo');
+		self::assertInstanceOf('\Symfony\Component\HttpFoundation\Response', $response);
+		self::assertEquals(200, $response->getStatusCode());
 	}
 
 	public function bbcode_wizard_fails_data()
