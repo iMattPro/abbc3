@@ -25,7 +25,8 @@
 		"version-check": {
 			"host": "www.phpbb.com",
 			"directory": "/customise/db/extension/advanced_bbcode_box",
-			"filename": "version_check"
+			"filename": "version_check",
+			"ssl": true
 		}
 	},
 	"require-dev": {
