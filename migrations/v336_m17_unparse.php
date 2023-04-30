@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\migrations;
 
-class v336_m17_unparse extends \phpbb\db\migration\migration
+class v336_m17_unparse extends \phpbb\db\migration\container_aware_migration
 {
 	/**
 	 * {@inheritdoc}
@@ -76,6 +76,35 @@ class v336_m17_unparse extends \phpbb\db\migration\migration
 				!$this->config->offsetExists('text_reparser.post_text_last_cron'),
 				['config.remove', ['text_reparser.post_text_cron_interval']],
 			]],
+			['custom', [[$this, 'clear_reparsers']]],
 		];
+	}
+
+	/**
+	 * Prevent CLI command from wanting to run post and pm re-parsers
+	 * after ABBC3 installation.
+	 *
+	 * @return void
+	 */
+	public function clear_reparsers()
+	{
+		/** @var \phpbb\textreparser\manager $reparser_manager */
+		$reparser_manager = $this->container->get('text_reparser.manager');
+
+		/** @var \phpbb\di\service_collection $reparsers */
+		$reparsers = $this->container->get('text_reparser_collection');
+
+		foreach ($reparsers as $name => $reparser)
+		{
+			if (in_array($name, ['text_reparser.post_text', 'text_reparser.pm_text']))
+			{
+				$resume_data = $reparser_manager->get_resume_data($name);
+
+				if (!empty($resume_data['range-max']))
+				{
+					$reparser_manager->update_resume_data($name, 1, 0, 100);
+				}
+			}
+		}
 	}
 }
