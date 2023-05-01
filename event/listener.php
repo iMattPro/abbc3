@@ -170,7 +170,6 @@ class listener implements EventSubscriberInterface
 			'ABBC3_BBCODE_FONTS'		=> ext::ABBC3_BBCODE_FONTS,
 
 			'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
-			'S_ABBC3_BCSTYLE_BAR'		=> phpbb_version_compare(PHPBB_VERSION, ext::PHPBB_LEGACY_MAX, '<='),
 
 			'UA_ABBC3_BBVIDEO_WIZARD'	=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'bbvideo']),
 			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'pipes']),

@@ -66,10 +66,6 @@
 	padding: 0 2px;
 }
 
-.abbc3_buttons_row_legacy {
-	box-sizing: content-box;
-}
-
 /* force buttons row margin to 0 */
 fieldset div.abbc3_buttons_row {
 	margin: 0;
