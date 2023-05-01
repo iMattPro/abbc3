@@ -38,8 +38,8 @@ $lang = array_merge($lang, array(
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Danh sách font chữ',
-	'ABBC3_FONT_SAFE'			=> 'System fonts',
-	'ABBC3_GOOGLE_FONTS'		=> 'Google fonts',
+	'ABBC3_FONT_SAFE'			=> 'System Fonts',
+	'ABBC3_GOOGLE_FONTS'		=> 'Google Fonts',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Căn lề đoạn văn: [align=center|left|right|justify]đoạn văn[/align]',
@@ -117,5 +117,5 @@ $lang = array_merge($lang, array(
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Example:</strong><br />%2$s<br /><br /><strong>Result:</strong><br />%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr />',
 ));

@@ -116,5 +116,5 @@ $lang = array_merge($lang, array(
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Boite des BBCodes avancés',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Le renard brun et rapide saute sur le chien paresseux.',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>Exemple :</strong><br />%2$s<br /><br /><strong>Résultat :</strong><br />%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exemple :</strong><br>%2$s<br><br><strong>Résultat :</strong><br>%3$s<hr />',
 ));

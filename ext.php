@@ -18,6 +18,7 @@ class ext extends \phpbb\extension\base
 	const MOVE_DOWN = 'move_down';
 	const MOVE_DRAG = 'move_drag';
 	const PHPBB_MIN_VERSION = '3.2.2'; // Require 3.2.2 due to TextFormatter and BBCode changes
+	const PHPBB_LEGACY_MAX = '3.3.10'; // Max version of phpBB to use legacy settings
 	const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
 
 	/**
@@ -26,7 +27,7 @@ class ext extends \phpbb\extension\base
 	public function is_enableable()
 	{
 		$config = $this->container->get('config');
-		return phpbb_version_compare(min($config['version'], PHPBB_VERSION), self::PHPBB_MIN_VERSION, '>=');
+		return $this->version_check($config['version']) && $this->version_check(PHPBB_VERSION);
 	}
 
 	/**
@@ -56,5 +57,16 @@ class ext extends \phpbb\extension\base
 		}
 
 		return parent::enable_step($old_state);
+	}
+
+	/**
+	 * Enable version check
+	 *
+	 * @param string|int $version The version to check
+	 * @return bool
+	 */
+	protected function version_check($version)
+	{
+		return phpbb_version_compare($version, self::PHPBB_MIN_VERSION, '>=');
 	}
 }

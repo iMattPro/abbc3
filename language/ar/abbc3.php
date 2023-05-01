@@ -116,5 +116,5 @@ $lang = array_merge($lang, array(
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'محرر الكتابة المتقدم',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'شبكة الهتاري لدعم منتديات phpBB وترجمة الإضافات',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br /><br /><strong>مثال:</strong><br />%2$s<br /><br /><strong>النتيجة:</strong><br />%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>مثال:</strong><br>%2$s<br><br><strong>النتيجة:</strong><br>%3$s<hr />',
 ));
