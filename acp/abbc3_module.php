@@ -27,6 +27,9 @@ class abbc3_module
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+	/** @var \phpbb\extension\manager */
+	protected $ext_manager;
+
 	/** @var \phpbb\language\language */
 	protected $language;
 
@@ -59,6 +62,7 @@ class abbc3_module
 		$this->config      = $this->container->get('config');
 		$this->config_text = $this->container->get('config_text');
 		$this->db          = $this->container->get('dbal.conn');
+		$this->ext_manager = $this->container->get('ext.manager');
 		$this->language    = $this->container->get('language');
 		$this->request     = $this->container->get('request');
 		$this->template    = $this->container->get('template');
@@ -101,6 +105,7 @@ class abbc3_module
 			'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 			'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
 			'S_ABBC3_GOOGLE_FONTS'	=> $this->show_google_fonts(),
+			'S_ABBC3_MEDIA_EMBED'	=> (int) $this->ext_manager->is_enabled('phpbb/mediaembed'),
 			'U_ACTION'				=> $this->u_action,
 		]);
 	}

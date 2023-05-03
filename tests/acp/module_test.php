@@ -35,6 +35,9 @@ class module_test extends \phpbb_database_test_case
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+	/** @var \phpbb_mock_extension_manager */
+	protected $ext_manager;
+
 	/** @var \phpbb\language\language */
 	protected $lang;
 
@@ -75,6 +78,7 @@ class module_test extends \phpbb_database_test_case
 		$this->lang = new \phpbb\language\language($lang_loader);
 		$this->request = $this->createMock('\phpbb\request\request');
 		$this->template = $this->createMock('\phpbb\template\template');
+		$this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
 		$this->container = $phpbb_container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
 
 		// Used in build_select function
@@ -94,6 +98,7 @@ class module_test extends \phpbb_database_test_case
 				['config', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config],
 				['config_text', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config_text],
 				['dbal.conn', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->db],
+				['ext.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->ext_manager],
 				['language', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->lang],
 				['request', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->request],
 				['template', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->template],
@@ -118,6 +123,7 @@ class module_test extends \phpbb_database_test_case
 				'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 				'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
 				'S_ABBC3_GOOGLE_FONTS'	=> "Droid Sans\nRoboto",
+				'S_ABBC3_MEDIA_EMBED'	=> 0,
 				'U_ACTION'				=> $module->u_action,
 			]);
 

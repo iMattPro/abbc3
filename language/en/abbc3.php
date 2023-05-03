@@ -109,6 +109,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
+	'ABBC3_BBVIDEO'				=> 'BBVideo',
+	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Install the optional phpBB Media Embed extension to access settings and management options for embedded rich media content.',
+	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
+		0	=> 'phpBB Media Embed extension is not installed. <a href="https://www.phpbb.com/customise/db/extension/mediaembed/" target="_blank">Download <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
+		1	=> 'phpBB Media Embed extension is installed. Settings are accessible under the Posting tab.'
+	],
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 
