@@ -109,6 +109,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
+	'ABBC3_AUTO_VIDEO'			=> 'Auto Video PlugIn Formats',
+	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'This plugin will convert plain-text video URLs into playable videos. Please note that only URLs beginning with <samp class="error">http://</samp> or <samp class="error">https://</samp> are converted. You can customize the plugin by selecting the video formats you want to allow from the list. To select multiple formats, hold down CTRL (or ⌘CMD on Mac) and click. If you want to disable the plugin, simply de-select all options.<br><br>Please be aware that changing the allowed video formats will not affect existing posts. To apply the changes to your forum, you need to run the <strong><a href="https://www.phpbb.com/support/docs/en/3.3/kb/article/phpbb-32%2B-text-reparser/" target="_blank">Text Reparser</a></strong>. This is necessary because the plugin needs to re-process the existing posts to make sure they use the new allowed video formats.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Install the optional phpBB Media Embed extension to access settings and management options for embedded rich media content.',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [

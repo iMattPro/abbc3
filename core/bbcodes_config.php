@@ -18,6 +18,23 @@ use s9e\TextFormatter\Configurator;
 class bbcodes_config
 {
 	/**
+	 * Configure s9e Auto Video plugin
+	 *
+	 * @param Configurator $configurator
+	 * @access public
+	 */
+	public function auto_video(Configurator $configurator)
+	{
+		if (!$configurator->registeredVars['abbc3.auto_video_enabled'] || !($extensions = json_decode($configurator->registeredVars['abbc3.auto_video_enabled'], true)))
+		{
+			return;
+		}
+
+		$configurator->plugins->load('Autovideo');
+		$configurator->Autovideo->fileExtensions = $extensions;
+	}
+
+	/**
 	 * Configure s9e Pipes table plugin
 	 *
 	 * @param Configurator $configurator

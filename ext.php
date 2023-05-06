@@ -20,6 +20,7 @@ class ext extends \phpbb\extension\base
 	const PHPBB_MIN_VERSION = '3.2.2'; // Require 3.2.2 due to TextFormatter and BBCode changes
 	const PHPBB_LEGACY_MAX = '3.3.10'; // Max version of phpBB to use legacy settings
 	const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
+	const ABBC3_VIDEO_FORMATS = ['avi', 'm4v', 'mkv', 'mov', 'mp4', 'mpg', 'ogg', 'webm', 'wmv'];
 
 	/**
 	 * {@inheritdoc}

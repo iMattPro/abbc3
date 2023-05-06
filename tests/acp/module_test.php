@@ -123,6 +123,7 @@ class module_test extends \phpbb_database_test_case
 				'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 				'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
 				'S_ABBC3_GOOGLE_FONTS'	=> "Droid Sans\nRoboto",
+				'S_ABBC3_AUTO_VIDEO'	=> ['avi' => false, 'm4v' => false, 'mkv' => false, 'mov' => false, 'mp4' => false, 'mpg' => false, 'ogg' => false, 'webm' => false, 'wmv' => false],
 				'S_ABBC3_MEDIA_EMBED'	=> 0,
 				'U_ACTION'				=> $module->u_action,
 			]);

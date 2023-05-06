@@ -39,10 +39,6 @@
 	<fieldset>
 		<legend>{{ lang('ABBC3_LEGEND_ADD_ONS') }}</legend>
 		<dl>
-			<dt><label>{{ lang('ABBC3_BBVIDEO') }}</label><br><span>{{ lang('ABBC3_BBVIDEO_EXPLAIN') }}</span></dt>
-			<dd><span class="{{ S_ABBC3_MEDIA_EMBED ? 'success' : 'error' }}">{{ lang('ABBC3_MEDIA_EMBED_INSTALL', S_ABBC3_MEDIA_EMBED) }}</span></dd>
-		</dl>
-		<dl>
 			<dt><label for="abbc3_qr_bbcodes">{{ lang('ABBC3_QR_BBCODES') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_QR_BBCODES_EXPLAIN') }}</span></dt>
 			<dd><label><input type="radio" class="radio" name="abbc3_qr_bbcodes" id="abbc3_qr_bbcodes" value="1"{% if S_ABBC3_QR_BBCODES %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
 				<label><input type="radio" class="radio" name="abbc3_qr_bbcodes" value="0"{% if not S_ABBC3_QR_BBCODES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
@@ -55,6 +51,20 @@
 		<dl>
 			<dt><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br><br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</span></dt>
 			<dd><textarea id="abbc3_google_fonts" cols="40" rows="8" name="abbc3_google_fonts">{{ S_ABBC3_GOOGLE_FONTS }}</textarea></dd>
+		</dl>
+		<dl>
+			<dt><label for="abbc3_auto_video">{{ lang('ABBC3_AUTO_VIDEO') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_AUTO_VIDEO_EXPLAIN') }}</span></dt>
+			<dd>
+				<select id="abbc3_auto_video" name="abbc3_auto_video[]" style="width: 80px;" size="10" multiple="multiple">
+					{% for auto_video_value, auto_video_selected in S_ABBC3_AUTO_VIDEO %}
+						<option value="{{ auto_video_value }}"{% if auto_video_selected %} selected="selected"{% endif %}>{{ auto_video_value }}</option>
+					{% endfor %}
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label>{{ lang('ABBC3_BBVIDEO') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_BBVIDEO_EXPLAIN') }}</span></dt>
+			<dd><span class="{{ S_ABBC3_MEDIA_EMBED ? 'success' : 'error' }}">{{ lang('ABBC3_MEDIA_EMBED_INSTALL', S_ABBC3_MEDIA_EMBED) }}</span></dd>
 		</dl>
 	</fieldset>
 	<fieldset class="submit-buttons">
