@@ -121,6 +121,9 @@ class abbc3_module
 		$this->save_pipes();
 		$this->save_google_fonts();
 
+		$this->cache->destroy($this->container->getParameter('text_formatter.cache.parser.key'));
+		$this->cache->destroy($this->container->getParameter('text_formatter.cache.renderer.key'));
+
 		trigger_error($this->language->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
 	}
 
@@ -140,9 +143,6 @@ class abbc3_module
 			SET display_on_posting = ' . (int) $enable_pipes . "
 			WHERE bbcode_tag = 'pipes'";
 		$this->db->sql_query($sql);
-
-		$this->cache->destroy($this->container->getParameter('text_formatter.cache.parser.key'));
-		$this->cache->destroy($this->container->getParameter('text_formatter.cache.renderer.key'));
 	}
 
 	/**
