@@ -63,7 +63,7 @@ class listener_base extends \phpbb_test_case
 			'abbc3_icons_type' => 'png',
 			'abbc3_bbcode_bar' => 1,
 			'abbc3_pipes' => 1,
-			'abbc3_auto_video' => '["mp4"]',
+			'abbc3_auto_video' => 1,
 		]);
 
 		$this->config_text = $this->createMock('\phpbb\config\db_text');

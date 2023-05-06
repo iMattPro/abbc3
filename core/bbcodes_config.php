@@ -25,13 +25,12 @@ class bbcodes_config
 	 */
 	public function auto_video(Configurator $configurator)
 	{
-		if (!$configurator->registeredVars['abbc3.auto_video_enabled'] || !($extensions = json_decode($configurator->registeredVars['abbc3.auto_video_enabled'], true)))
+		if (!$configurator->registeredVars['abbc3.auto_video_enabled'])
 		{
 			return;
 		}
 
 		$configurator->plugins->load('Autovideo');
-		$configurator->Autovideo->fileExtensions = $extensions;
 	}
 
 	/**

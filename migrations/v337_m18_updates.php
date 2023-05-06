@@ -37,7 +37,7 @@ class v337_m18_updates extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return [
-			['config.add', ['abbc3_auto_video', '']],
+			['config.add', ['abbc3_auto_video', 0]],
 		];
 	}
 }

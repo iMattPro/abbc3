@@ -10,8 +10,6 @@
 
 namespace vse\abbc3\acp;
 
-use vse\abbc3\ext;
-
 class abbc3_module
 {
 	/** @var \phpbb\cache\driver\driver_interface */
@@ -105,9 +103,9 @@ class abbc3_module
 			'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
 			'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
 			'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
+			'S_ABBC3_AUTO_VIDEO'	=> $this->config['abbc3_auto_video'],
 			'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
 			'S_ABBC3_GOOGLE_FONTS'	=> $this->show_google_fonts(),
-			'S_ABBC3_AUTO_VIDEO'	=> $this->show_video_formats(),
 			'S_ABBC3_MEDIA_EMBED'	=> (int) $this->ext_manager->is_enabled('phpbb/mediaembed'),
 			'U_ACTION'				=> $this->u_action,
 		]);
@@ -120,10 +118,10 @@ class abbc3_module
 	{
 		$this->config->set('abbc3_bbcode_bar', $this->request->variable('abbc3_bbcode_bar', 0));
 		$this->config->set('abbc3_qr_bbcodes', $this->request->variable('abbc3_qr_bbcodes', 0));
+		$this->config->set('abbc3_auto_video', $this->request->variable('abbc3_auto_video', 0));
 		$this->config->set('abbc3_icons_type', $this->request->variable('abbc3_icons_type', 'png'));
 		$this->save_pipes();
 		$this->save_google_fonts();
-		$this->save_video_formats();
 
 		$this->cache->destroy($this->container->getParameter('text_formatter.cache.parser.key'));
 		$this->cache->destroy($this->container->getParameter('text_formatter.cache.renderer.key'));
@@ -170,35 +168,5 @@ class abbc3_module
 		$fonts = $this->request->variable('abbc3_google_fonts', '');
 		$fonts = $fonts ? json_encode(explode("\n", $fonts)) : '';
 		$this->config_text->set('abbc3_google_fonts', $fonts);
-	}
-
-	/**
-	 * Get the Auto Video setting data and format it for the form.
-	 *
-	 * @return array
-	 */
-	protected function show_video_formats()
-	{
-		$options = [];
-		$selected = json_decode($this->config['abbc3_auto_video'], true) ?: [];
-
-		foreach (ext::ABBC3_VIDEO_FORMATS as $extension)
-		{
-			$options[$extension] = in_array($extension, $selected);
-		}
-
-		return $options;
-	}
-
-	/**
-	 * Save the Auto Video setting.
-	 * - If field is empty, store just an empty string.
-	 */
-	protected function save_video_formats()
-	{
-		$formats = $this->request->variable('abbc3_auto_video', ['']);
-		$formats = array_values(array_intersect($formats, ext::ABBC3_VIDEO_FORMATS));
-		$formats = !empty($formats) ? json_encode($formats) : '';
-		$this->config->set('abbc3_auto_video', $formats);
 	}
 }

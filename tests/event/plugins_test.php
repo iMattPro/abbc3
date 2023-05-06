@@ -56,7 +56,7 @@ class plugins_test extends listener_base
 			$configurator->plugins['Autovideo']
 		);
 
-		$this->config['abbc3_auto_video'] = '';
+		$this->config['abbc3_auto_video'] = 0;
 
 		// Dispatch event again
 		$event_data = ['configurator'];
