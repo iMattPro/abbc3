@@ -10,16 +10,19 @@
 
 namespace vse\abbc3\core;
 
+use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\language\language;
 use phpbb\template\template;
-use phpbb\user;
 
 /**
- * ABBC3 core BBCodes parser class
+ * ABBC3 FAQ class
  */
 class bbcodes_help
 {
+	/** @var config */
+	protected $config;
+
 	/** @var driver_interface */
 	protected $db;
 
@@ -29,28 +32,25 @@ class bbcodes_help
 	/** @var template */
 	protected $template;
 
-	/** @var user */
-	protected $user;
-
 	/** @var bbcodes_display */
 	private $bbcodes_display;
 
 	/**
 	 * Constructor
 	 *
-	 * @param bbcodes_display  $bbcodes_display
+	 * @param bbcodes_display $bbcodes_display
+	 * @param config $config
 	 * @param driver_interface $db
-	 * @param language         $language
-	 * @param template         $template
-	 * @param user             $user
+	 * @param language $language
+	 * @param template $template
 	 */
-	public function __construct(bbcodes_display $bbcodes_display, driver_interface $db, language $language, template $template, user $user)
+	public function __construct(bbcodes_display $bbcodes_display, config $config, driver_interface $db, language $language, template $template)
 	{
 		$this->bbcodes_display = $bbcodes_display;
+		$this->config = $config;
 		$this->db = $db;
 		$this->language = $language;
 		$this->template = $template;
-		$this->user = $user;
 	}
 
 	/**
@@ -71,8 +71,8 @@ class bbcodes_help
 			'ABBC3_ALIGN_HELPLINE'		=> "[align=center]{$example_text}[/align]",
 			'ABBC3_FLOAT_HELPLINE'		=> "[float=right]{$example_text}[/float]",
 			'ABBC3_STRIKE_HELPLINE'		=> "[s]{$example_text}[/s]",
-			'ABBC3_SUB_HELPLINE'		=> "[sub]{$example_text}[/sub] {$example_text}",
-			'ABBC3_SUP_HELPLINE'		=> "[sup]{$example_text}[/sup] {$example_text}",
+			'ABBC3_SUB_HELPLINE'		=> "[sub]{$example_text}[/sub] $example_text",
+			'ABBC3_SUP_HELPLINE'		=> "[sup]{$example_text}[/sup] $example_text",
 			'ABBC3_GLOW_HELPLINE'		=> "[glow=red]{$example_text}[/glow]",
 			'ABBC3_SHADOW_HELPLINE'		=> "[shadow=blue]{$example_text}[/shadow]",
 			'ABBC3_DROPSHADOW_HELPLINE'	=> "[dropshadow=blue]{$example_text}[/dropshadow]",
@@ -86,7 +86,8 @@ class bbcodes_help
 			'ABBC3_MOD_HELPLINE'		=> "[mod={$this->language->lang('USERNAME')}]{$example_text}[/mod]",
 			'ABBC3_OFFTOPIC_HELPLINE'	=> "[offtopic]{$example_text}[/offtopic]",
 			'ABBC3_NFO_HELPLINE'		=> '[nfo]༼ つ ◕_◕ ༽つ    ʕ•ᴥ•ʔ   ¯\_(ツ)_/¯[/nfo]',
-			'ABBC3_BBVIDEO_HELPLINE'	=> '[bbvideo]https://www.youtube.com/watch?v=sP4NMoJcFd4[/bbvideo]',
+			'ABBC3_BBVIDEO_HELPLINE'	=> '[BBvideo]https://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
+			'ABBC3_AUTOVIDEO_HELPLINE'	=> 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
 		], $this->allowed_bbcodes());
 
 		// Process faq data for display as parsed and un-parsed bbcodes
@@ -126,6 +127,12 @@ class bbcodes_help
 			}
 		}
 		$this->db->sql_freeresult($result);
+
+		// Add plugins
+		if ($this->config['abbc3_auto_video'])
+		{
+			$allowed['ABBC3_AUTOVIDEO_HELPLINE'] = true;
+		}
 
 		return $allowed;
 	}

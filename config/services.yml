@@ -16,10 +16,10 @@ services:
         class: vse\abbc3\core\bbcodes_help
         arguments:
             - '@vse.abbc3.bbcodes_display'
+            - '@config'
             - '@dbal.conn'
             - '@language'
             - '@template'
-            - '@user'
 
     vse.abbc3.acp_manager:
         class: vse\abbc3\core\acp_manager
