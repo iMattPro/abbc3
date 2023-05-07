@@ -31,6 +31,14 @@ class bbcodes_config
 		}
 
 		$configurator->plugins->load('Autovideo');
+
+		/** @var \s9e\TextFormatter\Configurator\Items\TemplateDocument $dom Add class "auto-video" to allow us to style the video with our CSS */
+		$dom = $configurator->tags['VIDEO']->template->asDOM();
+		foreach ($dom->getElementsByTagName('video') as $video)
+		{
+			$video->setAttribute('class', 'auto-video');
+		}
+		$dom->saveChanges();
 	}
 
 	/**
