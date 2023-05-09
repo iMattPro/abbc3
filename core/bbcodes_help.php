@@ -128,7 +128,7 @@ class bbcodes_help
 		}
 		$this->db->sql_freeresult($result);
 
-		// Add plugins
+		// Add non-bbcode plugins
 		if ($this->config['abbc3_auto_video'])
 		{
 			$allowed['ABBC3_AUTOVIDEO_HELPLINE'] = true;
