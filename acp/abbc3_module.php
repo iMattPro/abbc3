@@ -76,7 +76,7 @@ class abbc3_module
 	 */
 	public function main()
 	{
-		$this->language->add_lang('abbc3', 'vse/abbc3');
+		$this->language->add_lang('acp_abbc3', 'vse/abbc3');
 
 		$this->tpl_name   = 'acp_abbc3_settings';
 		$this->page_title = $this->language->lang('ACP_ABBC3_SETTINGS');
