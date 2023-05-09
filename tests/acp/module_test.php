@@ -171,18 +171,21 @@ class module_test extends \phpbb_database_test_case
 	public function save_google_fonts_data()
 	{
 		return [
-			['Droid Sans', \PHPUnit\Framework\Error\Notice::class],
-			['Mac Donald', \PHPUnit\Framework\Error\Warning::class],
+			['', '[]', \PHPUnit\Framework\Error\Notice::class],
+			['Droid Sans', '["Droid Sans"]', \PHPUnit\Framework\Error\Notice::class],
+			["Droid Sans\nRoboto", '["Droid Sans","Roboto"]', \PHPUnit\Framework\Error\Notice::class],
+			["Droid Sans\nRoboto\nMac Donald", '["Droid Sans","Roboto"]', \PHPUnit\Framework\Error\Warning::class],
+			['Mac Donald', '[]', \PHPUnit\Framework\Error\Warning::class],
 		];
 	}
 
 	/**
 	 * @dataProvider save_google_fonts_data
-	 * @param $font
+	 * @param $input
 	 * @param $expected
-	 * @return void
+	 * @param $error
 	 */
-	public function test_save_google_fonts($font, $expected)
+	public function test_save_google_fonts($input, $expected, $error)
 	{
 		self::$valid_form = true;
 
@@ -195,13 +198,15 @@ class module_test extends \phpbb_database_test_case
 		$this->request->expects(self::at(6))
 			->method('variable')
 			->with('abbc3_google_fonts', '')
-			->willReturn($font);
+			->willReturn($input);
 
 		// Throws Notice in PHP 8.0+ and Error in earlier versions
-		$exceptionName = PHP_VERSION_ID < 80000 ? \PHPUnit\Framework\Error\Error::class : $expected;
+		$exceptionName = PHP_VERSION_ID < 80000 ? \PHPUnit\Framework\Error\Error::class : $error;
 		$this->expectException($exceptionName);
 
 		$module->main();
+
+		$this->assertSame($expected, $this->config_text->get('abbc3_google_fonts'));
 	}
 
 	public function test_info()
