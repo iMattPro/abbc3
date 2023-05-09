@@ -48,6 +48,9 @@ class abbc3_module
 	/** @var string */
 	public $u_action;
 
+	/** @var array */
+	protected $errors = [];
+
 	/**
 	 * Constructor
 	 *
@@ -126,6 +129,11 @@ class abbc3_module
 		$this->cache->destroy($this->container->getParameter('text_formatter.cache.parser.key'));
 		$this->cache->destroy($this->container->getParameter('text_formatter.cache.renderer.key'));
 
+		if ($this->errors)
+		{
+			trigger_error(implode('<br>', $this->errors) . adm_back_link($this->u_action), E_USER_WARNING);
+		}
+
 		trigger_error($this->language->lang('CONFIG_UPDATED') . adm_back_link($this->u_action));
 	}
 
@@ -166,7 +174,43 @@ class abbc3_module
 	protected function save_google_fonts()
 	{
 		$fonts = $this->request->variable('abbc3_google_fonts', '');
-		$fonts = $fonts ? json_encode(explode("\n", $fonts)) : '';
-		$this->config_text->set('abbc3_google_fonts', $fonts);
+		$fonts = explode("\n", $fonts);
+		$this->validate_google_fonts($fonts);
+		$this->config_text->set('abbc3_google_fonts', json_encode($fonts));
+	}
+
+	/**
+	 * @param array $fonts
+	 * @return void
+	 */
+	protected function validate_google_fonts(&$fonts)
+	{
+		foreach ($fonts as $key => $font)
+		{
+			if (empty($font) || $this->valid_url('https://fonts.googleapis.com/css?family=' . urlencode($font)))
+			{
+				continue;
+			}
+
+			$this->errors[] = $this->language->lang('ABBC3_INVALID_FONT', $font);
+			unset($fonts[$key]);
+		}
+	}
+
+	/**
+	 * Check for valid URL headers if possible
+	 *
+	 * @param string $url
+	 * @return bool Return false only if URL could be checked and wasn't found, otherwise true.
+	 */
+	protected function valid_url($url)
+	{
+		if (!function_exists('get_headers'))
+		{
+			return true;
+		}
+
+		$headers = @get_headers($url);
+		return !$headers || stripos($headers[0], '200 OK') !== false;
 	}
 }

@@ -168,6 +168,42 @@ class module_test extends \phpbb_database_test_case
 		$module->main();
 	}
 
+	public function save_google_fonts_data()
+	{
+		return [
+			['Droid Sans', \PHPUnit\Framework\Error\Notice::class],
+			['Mac Donald', \PHPUnit\Framework\Error\Warning::class],
+		];
+	}
+
+	/**
+	 * @dataProvider save_google_fonts_data
+	 * @param $font
+	 * @param $expected
+	 * @return void
+	 */
+	public function test_save_google_fonts($font, $expected)
+	{
+		self::$valid_form = true;
+
+		$module = $this->get_main_module();
+
+		$this->request->expects(self::once())
+			->method('is_set_post')
+			->willReturn('submit');
+
+		$this->request->expects(self::at(6))
+			->method('variable')
+			->with('abbc3_google_fonts', '')
+			->willReturn($font);
+
+		// Throws Notice in PHP 8.0+ and Error in earlier versions
+		$exceptionName = PHP_VERSION_ID < 80000 ? \PHPUnit\Framework\Error\Error::class : $expected;
+		$this->expectException($exceptionName);
+
+		$module->main();
+	}
+
 	public function test_info()
 	{
 		$info_class = new \vse\abbc3\acp\abbc3_info();
