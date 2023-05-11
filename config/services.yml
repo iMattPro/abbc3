@@ -54,6 +54,20 @@ services:
             - { name: event.listener }
 
     # ----- Controllers -----
+    vse.abbc3.acp_controller:
+        class: vse\abbc3\acp\acp_controller
+        arguments:
+            - '@cache.driver'
+            - '@config'
+            - '@config_text'
+            - '@dbal.conn'
+            - '@ext.manager'
+            - '@language'
+            - '@request'
+            - '@template'
+            - '%text_formatter.cache.parser.key%'
+            - '%text_formatter.cache.renderer.key%'
+
     vse.abbc3.wizard:
         class: vse\abbc3\controller\wizard
         arguments:

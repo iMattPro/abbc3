@@ -81,6 +81,7 @@ class module_test extends \phpbb_database_test_case
 		$this->template = $this->createMock('\phpbb\template\template');
 		$this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
 		$this->container = $phpbb_container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+		$this->acp_controller = new \vse\abbc3\acp\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '');
 
 		// Used in build_select function
 		$user = new \phpbb_mock_user();
@@ -92,17 +93,10 @@ class module_test extends \phpbb_database_test_case
 	 */
 	public function get_main_module()
 	{
-		$this->container->expects(self::atLeastOnce())
+		$this->container->expects(self::once())
 			->method('get')
 			->willReturnMap([
-				['cache', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->cache],
-				['config', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config],
-				['config_text', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config_text],
-				['dbal.conn', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->db],
-				['ext.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->ext_manager],
-				['language', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->lang],
-				['request', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->request],
-				['template', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->template],
+				['vse.abbc3.acp_controller', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->acp_controller],
 			]);
 
 		// Test basic module instantiation
