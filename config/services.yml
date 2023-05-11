@@ -1,4 +1,5 @@
 services:
+    # ----- Core models -----
     vse.abbc3.bbcodes_config:
         class: vse\abbc3\core\bbcodes_config
 
@@ -29,6 +30,7 @@ services:
             - '@language'
             - '@request'
 
+    # ----- Event listeners -----
     vse.abbc3.listener:
         class: vse\abbc3\event\listener
         arguments:
@@ -51,6 +53,7 @@ services:
         tags:
             - { name: event.listener }
 
+    # ----- Controllers -----
     vse.abbc3.wizard:
         class: vse\abbc3\controller\wizard
         arguments:

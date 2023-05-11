@@ -37,6 +37,7 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertEquals('1', $crawler->filter('input[name="abbc3_bbcode_bar"][checked]')->attr('value'));
 		self::assertEquals('0', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
 		self::assertEquals('1', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
+		self::assertEquals('0', $crawler->filter('input[name="abbc3_auto_video"][checked]')->attr('value'));
 		self::assertEquals('png', $crawler->filter('option[selected]')->attr('value'));
 		self::assertEquals('', $crawler->filter('textarea#abbc3_google_fonts')->text());
 
@@ -46,11 +47,11 @@ class acp_module_test extends \phpbb_functional_test_case
 		// Submit form with settings changed
 		$form_data = [
 			'abbc3_bbcode_bar'	=> 0,
-			'abbc3_qr_bbcodes'	=> 1,
 			'abbc3_icons_type'	=> 'svg',
 			'abbc3_pipes'		=> 0,
+			'abbc3_qr_bbcodes'	=> 1,
+			'abbc3_auto_video'	=> 1,
 			'abbc3_google_fonts'=> "Droid Sans\nRoboto",
-			'abbc3_auto_video'	=> 0,
 		];
 		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
 		$crawler = self::submit($form, $form_data);
@@ -62,7 +63,7 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertEquals('0', $crawler->filter('input[name="abbc3_bbcode_bar"][checked]')->attr('value'));
 		self::assertEquals('1', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
 		self::assertEquals('0', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
-		self::assertEquals('0', $crawler->filter('input[name="abbc3_auto_video"][checked]')->attr('value'));
+		self::assertEquals('1', $crawler->filter('input[name="abbc3_auto_video"][checked]')->attr('value'));
 		self::assertEquals('svg', $crawler->filter('option[selected]')->attr('value'));
 		self::assertEquals("Droid Sans\nRoboto", $crawler->filter('textarea#abbc3_google_fonts')->text());
 

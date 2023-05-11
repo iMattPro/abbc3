@@ -10,7 +10,7 @@
 
 namespace vse\abbc3\migrations;
 
-class v337_m18_updates extends \phpbb\db\migration\migration
+class v337_m18_auto_video extends \phpbb\db\migration\migration
 {
 	/**
 	 * {@inheritdoc}

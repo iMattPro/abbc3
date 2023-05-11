@@ -108,8 +108,8 @@ class abbc3_module
 			'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 			'S_ABBC3_AUTO_VIDEO'	=> $this->config['abbc3_auto_video'],
 			'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
-			'S_ABBC3_GOOGLE_FONTS'	=> $this->show_google_fonts(),
-			'S_ABBC3_MEDIA_EMBED'	=> (int) $this->ext_manager->is_enabled('phpbb/mediaembed'),
+			'S_ABBC3_GOOGLE_FONTS'	=> $this->get_google_fonts(),
+			'S_ABBC3_MEDIA_EMBED'	=> $this->ext_manager->is_enabled('phpbb/mediaembed'),
 			'U_ACTION'				=> $this->u_action,
 		]);
 	}
@@ -160,7 +160,7 @@ class abbc3_module
 	 *
 	 * @return string
 	 */
-	protected function show_google_fonts()
+	protected function get_google_fonts()
 	{
 		$fonts = json_decode($this->config_text->get('abbc3_google_fonts'), true);
 		return $fonts ? implode("\n", $fonts) : '';
