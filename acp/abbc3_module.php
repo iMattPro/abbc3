@@ -129,7 +129,7 @@ class abbc3_module
 		$this->cache->destroy($this->container->getParameter('text_formatter.cache.parser.key'));
 		$this->cache->destroy($this->container->getParameter('text_formatter.cache.renderer.key'));
 
-		if ($this->errors)
+		if (!empty($this->errors))
 		{
 			trigger_error(implode('<br>', $this->errors) . adm_back_link($this->u_action), E_USER_WARNING);
 		}
