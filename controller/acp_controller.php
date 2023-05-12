@@ -8,7 +8,7 @@
  *
  */
 
-namespace vse\abbc3\acp;
+namespace vse\abbc3\controller;
 
 use phpbb\cache\driver\driver_interface as cache;
 use phpbb\config\config;

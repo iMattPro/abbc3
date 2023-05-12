@@ -55,7 +55,7 @@ services:
 
     # ----- Controllers -----
     vse.abbc3.acp_controller:
-        class: vse\abbc3\acp\acp_controller
+        class: vse\abbc3\controller\acp_controller
         arguments:
             - '@cache.driver'
             - '@config'

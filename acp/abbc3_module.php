@@ -29,6 +29,7 @@ class abbc3_module
 	{
 		global $phpbb_container;
 
+		/** @var \vse\abbc3\controller\acp_controller $acp_controller */
 		$acp_controller = $phpbb_container->get('vse.abbc3.acp_controller');
 
 		$this->tpl_name = 'acp_abbc3_settings';

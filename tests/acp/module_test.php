@@ -8,10 +8,10 @@
  *
  */
 
-namespace vse\abbc3\acp;
+namespace vse\abbc3\controller;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use PHPUnit\Framework\MockObject\MockObject;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 require_once __DIR__ . '/../../../../../includes/functions_acp.php';
 
@@ -81,7 +81,7 @@ class module_test extends \phpbb_database_test_case
 		$this->template = $this->createMock('\phpbb\template\template');
 		$this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
 		$this->container = $phpbb_container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
-		$this->acp_controller = new \vse\abbc3\acp\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '');
+		$this->acp_controller = new \vse\abbc3\controller\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '');
 
 		// Used in build_select function
 		$user = new \phpbb_mock_user();
@@ -222,7 +222,7 @@ class module_test extends \phpbb_database_test_case
  */
 function check_form_key()
 {
-	return \vse\abbc3\acp\module_test::$valid_form;
+	return \vse\abbc3\controller\module_test::$valid_form;
 }
 
 /**
