@@ -14,6 +14,7 @@ use phpbb\cache\driver\driver_interface as cache;
 use phpbb\config\config;
 use phpbb\config\db_text;
 use phpbb\db\driver\driver_interface as db;
+use phpbb\exception\runtime_exception;
 use phpbb\extension\manager as ext_manager;
 use phpbb\language\language;
 use phpbb\request\request;
@@ -88,7 +89,7 @@ class acp_controller
 	/**
 	 * Main handler for this controller
 	 *
-	 * @return array|false
+	 * @throws runtime_exception
 	 */
 	public function handle()
 	{
@@ -101,15 +102,13 @@ class acp_controller
 		{
 			if (!check_form_key($form_key))
 			{
-				return ['msg' => 'FORM_INVALID', 'error' => E_USER_WARNING];
+				throw new runtime_exception($this->language->lang('FORM_INVALID'), [], null, E_USER_WARNING);
 			}
 
-			return $this->save_settings();
+			$this->save_settings();
 		}
 
 		$this->display_settings();
-
-		return false;
 	}
 
 	/**
@@ -132,7 +131,7 @@ class acp_controller
 	/**
 	 * Save settings data to the database
 	 *
-	 * @return array
+	 * @throws runtime_exception
 	 */
 	protected function save_settings()
 	{
@@ -148,10 +147,10 @@ class acp_controller
 
 		if (!empty($this->errors))
 		{
-			return ['msg' => implode('<br>', $this->errors) . adm_back_link($this->u_action), 'error' => E_USER_WARNING];
+			throw new runtime_exception(implode('<br>', $this->errors), [], null, E_USER_WARNING);
 		}
 
-		return ['msg' => $this->language->lang('CONFIG_UPDATED') . adm_back_link($this->u_action), 'error' => E_USER_NOTICE];
+		throw new runtime_exception($this->language->lang('CONFIG_UPDATED'), [], null, E_USER_NOTICE);
 	}
 
 	/**

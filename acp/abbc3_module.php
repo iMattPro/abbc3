@@ -37,9 +37,13 @@ class abbc3_module
 
 		$acp_controller->set_u_action($this->u_action);
 
-		if (($output = $acp_controller->handle()) !== false)
+		try
 		{
-			trigger_error($output['msg'], $output['error']);
+			$acp_controller->handle();
+		}
+		catch (\phpbb\exception\runtime_exception $e)
+		{
+			trigger_error($e->getMessage() . adm_back_link($this->u_action), $e->getCode());
 		}
 	}
 }
