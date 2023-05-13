@@ -178,6 +178,7 @@ class module_test extends \phpbb_database_test_case
 	 * @param $input
 	 * @param $expected
 	 * @param $error
+	 * @throws \Exception
 	 */
 	public function test_save_google_fonts($input, $expected, $error)
 	{

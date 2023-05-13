@@ -131,9 +131,7 @@ class acp_manager
 	public function get_bbcode_group_form_data()
 	{
 		$bbcode_group = $this->request->variable('bbcode_group', [0]);
-		$bbcode_group = (!count($bbcode_group)) ? $this->request->variable('bbcode_group', '') : implode(',', $bbcode_group);
-
-		return $bbcode_group;
+		return (!count($bbcode_group)) ? $this->request->variable('bbcode_group', '') : implode(',', $bbcode_group);
 	}
 
 	/**

@@ -37,7 +37,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_LEGEND_ICON_BAR'		=> 'Barra de iconos de BBCode',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Añadidos',
 	'ABBC3_AUTO_VIDEO'			=> 'Enable Auto Video PlugIn',
-	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'This plugin converts plain-text video URLs into playable videos. Only URLs starting with <samp class="error">http://</samp> or <samp class="error">https://</samp> and ending with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> are converted.',
+	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'This plugin converts plain-text video file URLs into playable videos. Only URLs starting with <samp class="error">http://</samp> or <samp class="error">https://</samp> and ending with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> are converted.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Install the optional phpBB Media Embed extension to access settings and management options for embedded rich media content.',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [

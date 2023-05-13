@@ -30,7 +30,7 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		// Test creating a post with our Highlight BBCode
 		$post = $this->create_topic(2, 'Test Topic 1', '[highlight=yellow]This is a test topic posted by the testing framework.[/highlight]');
 
-		$crawler = self::request('GET', "viewtopic.php?t={$post['topic_id']}&sid={$this->sid}");
+		$crawler = self::request('GET', "viewtopic.php?t={$post['topic_id']}&sid=$this->sid");
 		self::assertStringContainsString('background-color:yellow', $crawler->filter('div.content > span')->attr('style'));
 		self::assertStringContainsString('This is a test topic posted by the testing framework.', $crawler->filter('html')->text());
 	}

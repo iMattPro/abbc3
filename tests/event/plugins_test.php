@@ -59,7 +59,6 @@ class plugins_test extends listener_base
 		$this->config['abbc3_auto_video'] = 0;
 
 		// Dispatch event again
-		$event_data = ['configurator'];
 		$dispatcher->trigger_event('core.text_formatter_s9e_configure_after', compact($event_data));
 
 		// Assert plugins are NOT loaded
@@ -73,7 +72,6 @@ class plugins_test extends listener_base
 		$this->config['abbc3_pipes'] = 0;
 
 		// Dispatch event again
-		$event_data = ['configurator'];
 		$dispatcher->trigger_event('core.text_formatter_s9e_configure_after', compact($event_data));
 
 		// Assert plugins are NOT loaded when their bbcodes do not exist
