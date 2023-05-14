@@ -29,20 +29,16 @@ class abbc3_module
 	{
 		global $phpbb_container;
 
-		/** @var \vse\abbc3\controller\acp_controller $acp_controller */
-		$acp_controller = $phpbb_container->get('vse.abbc3.acp_controller');
-
 		$this->tpl_name = 'acp_abbc3_settings';
-
-		$this->page_title = $acp_controller->get_page_title();
-
-		$acp_controller->set_u_action($this->u_action);
+		$this->page_title = 'ACP_ABBC3_SETTINGS';
 
 		try
 		{
-			$acp_controller->handle();
+			$phpbb_container->get('vse.abbc3.acp_controller')
+				->set_u_action($this->u_action)
+				->handle();
 		}
-		catch (\phpbb\exception\runtime_exception $e)
+		catch (\RuntimeException $e)
 		{
 			trigger_error($e->getMessage() . adm_back_link($this->u_action), $e->getCode());
 		}

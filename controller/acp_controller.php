@@ -14,7 +14,6 @@ use phpbb\cache\driver\driver_interface as cache;
 use phpbb\config\config;
 use phpbb\config\db_text;
 use phpbb\db\driver\driver_interface as db;
-use phpbb\exception\runtime_exception;
 use phpbb\extension\manager as ext_manager;
 use phpbb\language\language;
 use phpbb\request\request;
@@ -89,7 +88,7 @@ class acp_controller
 	/**
 	 * Main handler for this controller
 	 *
-	 * @throws runtime_exception
+	 * @throws \RuntimeException
 	 */
 	public function handle()
 	{
@@ -102,7 +101,7 @@ class acp_controller
 		{
 			if (!check_form_key($form_key))
 			{
-				throw new runtime_exception($this->language->lang('FORM_INVALID'), [], null, E_USER_WARNING);
+				throw new \RuntimeException($this->language->lang('FORM_INVALID'), E_USER_WARNING);
 			}
 
 			$this->save_settings();
@@ -131,7 +130,7 @@ class acp_controller
 	/**
 	 * Save settings data to the database
 	 *
-	 * @throws runtime_exception
+	 * @throws \RuntimeException
 	 */
 	protected function save_settings()
 	{
@@ -147,10 +146,10 @@ class acp_controller
 
 		if (!empty($this->errors))
 		{
-			throw new runtime_exception(implode('<br>', $this->errors), [], null, E_USER_WARNING);
+			throw new \RuntimeException(implode('<br>', $this->errors), E_USER_WARNING);
 		}
 
-		throw new runtime_exception($this->language->lang('CONFIG_UPDATED'), [], null, E_USER_NOTICE);
+		throw new \RuntimeException($this->language->lang('CONFIG_UPDATED'), E_USER_NOTICE);
 	}
 
 	/**
@@ -232,22 +231,14 @@ class acp_controller
 	}
 
 	/**
-	 * Get the translated page title
-	 *
-	 * @return string
-	 */
-	public function get_page_title()
-	{
-		return $this->language->lang('ACP_ABBC3_SETTINGS');
-	}
-
-	/**
 	 * Set the u_action variable
 	 *
 	 * @param string $u_action
+	 * @return acp_controller
 	 */
 	public function set_u_action($u_action)
 	{
 		$this->u_action = $u_action;
+		return $this;
 	}
 }
