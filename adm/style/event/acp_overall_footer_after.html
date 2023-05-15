@@ -4,9 +4,14 @@
 	{% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
 	{% INCLUDEJS '@vse_abbc3/js/jquery.tablednd.min.js' %}
 
-	<div style="display: none;" id="abbc3-successbox" class="successbox">
-		<h3>{{ lang('INFORMATION') }}</h3>
-		<p>{{ lang('ABBC3_BBCODE_ORDERED') }}</p>
+	<div class="toast hidden" id="abbc3-successbox">
+		<div class="toast-content">
+			<i class="fa fa-check-circle toast-check"></i>
+			<div class="toast-message">
+				<span class="toast-text toast-text-info">{{ lang('INFORMATION') }}</span>
+				<span class="toast-text toast-text-body">{{ lang('ABBC3_BBCODE_ORDERED') }}</span>
+			</div>
+		</div>
 	</div>
 
 	<script>
@@ -33,9 +38,9 @@
 								// Show the message
 								if (res.success) {
 									clearTimeout(msgTimer);
-									msgSuccessBox.stop(true, true).hide().fadeIn(500);
+									msgSuccessBox.stop(true, true).hide().fadeIn(250);
 									msgTimer = setTimeout(function() {
-										msgSuccessBox.fadeOut(500);
+										msgSuccessBox.fadeOut(250);
 									}, 3000);
 								}
 							}
