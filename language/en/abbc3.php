@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript text: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Superscript text: [sup]text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed plain-text MP4/OGG/WEBM url: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copy selected text',
