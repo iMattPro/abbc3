@@ -1,12 +1,16 @@
 # Changelog
 
-## 3.3.6 - 2023-04-16
+## 3.3.7 - 2023-05-18
 
-- Improved support for using the [dir] BBCode in RTL languages.
-- Adjusted appearance of BBCode toolbar to size properly with the message editor.
-- Popup wizards for BBVideo, IMG and URL have better responsive behavior in mobile devices.
-- Prevent unnecessary running of text re-parsers for first time installations.
-- Lots of little improvements under the hood.
+- Auto Video PlugIn: This optional feature enables direct links to MP3, OGG, and WEBM files to be presented in an HTML5 video player.
+- Google Fonts Validation: Added a validation check in the ACP to ensure that the entered font names are valid Google Fonts.
+- ACP settings now detects the presence of phpBB Media Embed extension and recommends its installation if it's not already installed.
+- Updated the appearance of the toast-style notification that appears when rearranging BBCode order through drag-n-drop.
+- Improved compatibility with RTL languages when using the [dir] BBCode.
+- Resized the BBCode toolbar to properly fit with the message editor.
+- Optimized the behavior of the popup wizards for BBVideo, IMG, and URL in mobile devices to ensure better responsiveness.
+- Prevented unnecessary reparsing of text for first-time installations.
+- Made numerous smaller enhancements to enhance the overall functioning and efficiency.
 
 ## 3.3.5 - 2022-09-25
 
