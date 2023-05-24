@@ -28,7 +28,7 @@ class acp_install_bbcodes_test extends acp_base
 				 ],
 				 'align' => [ // update
 					  'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
-					  'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',
+					  'bbcode_match'	=> '[align={IDENTIFIER}]{TEXT}[/align]',
 					  'bbcode_tpl'		=> '<span class="align-{IDENTIFIER}">{TEXT}</span>',
 				 ],
 				 'sup' => [ // update

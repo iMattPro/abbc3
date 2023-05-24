@@ -86,7 +86,7 @@ class bbcodes_help
 			'ABBC3_MOD_HELPLINE'		=> "[mod={$this->language->lang('USERNAME')}]{$example_text}[/mod]",
 			'ABBC3_OFFTOPIC_HELPLINE'	=> "[offtopic]{$example_text}[/offtopic]",
 			'ABBC3_NFO_HELPLINE'		=> '[nfo]༼ つ ◕_◕ ༽つ    ʕ•ᴥ•ʔ   ¯\_(ツ)_/¯[/nfo]',
-			'ABBC3_BBVIDEO_HELPLINE'	=> '[BBvideo]https://www.youtube.com/watch?v=sP4NMoJcFd4[/BBvideo]',
+			'ABBC3_BBVIDEO_HELPLINE'	=> '[bbvideo]https://www.youtube.com/watch?v=sP4NMoJcFd4[/bbvideo]',
 			'ABBC3_AUTOVIDEO_HELPLINE'	=> 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
 		], $this->allowed_bbcodes());
 

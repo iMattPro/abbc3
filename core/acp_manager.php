@@ -125,7 +125,7 @@ class acp_manager
 	/**
 	 * Get the bbcode_group data from the posted form
 	 *
-	 * @return string The usergroup id numbers, comma delimited, or empty
+	 * @return string The user-group id numbers, comma delimited, or empty
 	 * @access public
 	 */
 	public function get_bbcode_group_form_data()

@@ -41,7 +41,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Аранжиране на текст: [align=center|left|right|justify]text[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Вмъкни URL на видео: [BBvideo=width,height]http://video_url[/BBvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Вмъкни URL на видео: [bbvideo=width,height]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Замъглен текст: [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Направление на текста: [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Текст със сянка: [dropshadow=color]text[/dropshadow]',
