@@ -122,7 +122,7 @@ class acp_controller
 			'S_ABBC3_AUTO_VIDEO'	=> $this->config['abbc3_auto_video'],
 			'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
 			'S_ABBC3_GOOGLE_FONTS'	=> $this->get_google_fonts(),
-			'S_ABBC3_MEDIA_EMBED'	=> $this->ext_manager->is_enabled('phpbb/mediaembed'),
+			'S_ABBC3_MEDIA_EMBED'	=> (int) $this->ext_manager->is_enabled('phpbb/mediaembed'),
 			'U_ACTION'				=> $this->u_action,
 		]);
 	}
