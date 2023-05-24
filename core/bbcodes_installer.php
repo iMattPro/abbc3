@@ -209,7 +209,7 @@ class bbcodes_installer extends acp_manager
 	 *
 	 * Note special handling for MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
 	 *
-	 * @param int $bbcode_id bbcode identifier
+	 * @param string|int $bbcode_id bbcode identifier
 	 * @param array $bbcode_data bbcode data
 	 * @access protected
 	 */
