@@ -61,7 +61,7 @@ class module_test extends \phpbb_database_test_case
 	{
 		parent::setUp();
 
-		global $user, $phpbb_container, $phpbb_root_path, $phpEx;
+		global $language, $phpbb_container, $phpbb_root_path, $phpEx;
 
 		$this->cache = $this->createMock('\phpbb\cache\driver\driver_interface');
 		$this->config = new \phpbb\config\config([
@@ -76,16 +76,12 @@ class module_test extends \phpbb_database_test_case
 		$this->config_text = new \phpbb\config\db_text($this->db, 'phpbb_config_text');
 		$this->config_text->set('abbc3_google_fonts', '["Droid Sans","Roboto"]');
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
-		$this->lang = new \phpbb\language\language($lang_loader);
+		$this->lang = $language = new \phpbb\language\language($lang_loader);
 		$this->request = $this->createMock('\phpbb\request\request');
 		$this->template = $this->createMock('\phpbb\template\template');
 		$this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
 		$this->container = $phpbb_container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
 		$this->acp_controller = new \vse\abbc3\controller\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '');
-
-		// Used in build_select function
-		$user = new \phpbb_mock_user();
-		$user->lang = new \phpbb_mock_lang();
 	}
 
 	/**
@@ -190,7 +186,7 @@ class module_test extends \phpbb_database_test_case
 			->method('is_set_post')
 			->willReturn('submit');
 
-		$this->request->expects(self::at(6))
+		$this->request
 			->method('variable')
 			->with('abbc3_google_fonts', '')
 			->willReturn($input);
