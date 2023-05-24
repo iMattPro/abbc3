@@ -28,6 +28,7 @@ class plugins_test extends listener_base
 		// Assert plugins are NOT loaded before the event is dispatched
 		self::assertFalse(isset($configurator->plugins['PipeTables']));
 		self::assertFalse(isset($configurator->plugins['MediaEmbed']));
+		self::assertFalse(isset($configurator->plugins['AutoVideo']));
 		self::assertFalse(isset($configurator->BBCodes['hidden']));
 
 		// Add bbcodes here to simulate existing BBCodes
@@ -42,6 +43,7 @@ class plugins_test extends listener_base
 		// Assert plugins ARE loaded after the event is dispatched
 		self::assertTrue(isset($configurator->plugins['PipeTables']));
 		self::assertTrue(isset($configurator->plugins['MediaEmbed']));
+		self::assertTrue(isset($configurator->plugins['Autovideo']));
 		self::assertTrue(isset($configurator->BBCodes['hidden']));
 
 		// Un-set bbcodes and plugins and check everything remains unset
@@ -50,16 +52,19 @@ class plugins_test extends listener_base
 			$configurator->plugins['PipeTables'],
 			$configurator->BBCodes['bbvideo'],
 			$configurator->plugins['MediaEmbed'],
-			$configurator->BBCodes['hidden']
+			$configurator->BBCodes['hidden'],
+			$configurator->plugins['Autovideo']
 		);
 
+		$this->config['abbc3_auto_video'] = 0;
+
 		// Dispatch event again
-		$event_data = ['configurator'];
 		$dispatcher->trigger_event('core.text_formatter_s9e_configure_after', compact($event_data));
 
-		// Assert plugins are NOT loaded when their bbcodes do not exist
+		// Assert plugins are NOT loaded
 		self::assertFalse(isset($configurator->plugins['PipeTables']));
 		self::assertFalse(isset($configurator->plugins['MediaEmbed']));
+		self::assertFalse(isset($configurator->plugins['Autovideo']));
 		self::assertFalse(isset($configurator->BBCodes['hidden']));
 
 		// Retry Pipes with the config setting disabled
@@ -67,7 +72,6 @@ class plugins_test extends listener_base
 		$this->config['abbc3_pipes'] = 0;
 
 		// Dispatch event again
-		$event_data = ['configurator'];
 		$dispatcher->trigger_event('core.text_formatter_s9e_configure_after', compact($event_data));
 
 		// Assert plugins are NOT loaded when their bbcodes do not exist

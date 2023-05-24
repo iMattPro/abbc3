@@ -8,10 +8,10 @@
  *
  */
 
-namespace vse\abbc3\acp;
+namespace vse\abbc3\controller;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use PHPUnit\Framework\MockObject\MockObject;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 require_once __DIR__ . '/../../../../../includes/functions_acp.php';
 
@@ -34,6 +34,9 @@ class module_test extends \phpbb_database_test_case
 
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
+
+	/** @var \phpbb_mock_extension_manager */
+	protected $ext_manager;
 
 	/** @var \phpbb\language\language */
 	protected $lang;
@@ -67,6 +70,7 @@ class module_test extends \phpbb_database_test_case
 			'abbc3_bbcode_bar' => 1,
 			'abbc3_qr_bbcodes' => 1,
 			'abbc3_pipes' => 1,
+			'abbc3_auto_video' => 1,
 		]);
 		$this->db = $this->new_dbal();
 		$this->config_text = new \phpbb\config\db_text($this->db, 'phpbb_config_text');
@@ -75,7 +79,9 @@ class module_test extends \phpbb_database_test_case
 		$this->lang = new \phpbb\language\language($lang_loader);
 		$this->request = $this->createMock('\phpbb\request\request');
 		$this->template = $this->createMock('\phpbb\template\template');
+		$this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
 		$this->container = $phpbb_container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+		$this->acp_controller = new \vse\abbc3\controller\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '');
 
 		// Used in build_select function
 		$user = new \phpbb_mock_user();
@@ -87,16 +93,10 @@ class module_test extends \phpbb_database_test_case
 	 */
 	public function get_main_module()
 	{
-		$this->container->expects(self::atLeastOnce())
+		$this->container->expects(self::once())
 			->method('get')
 			->willReturnMap([
-				['cache', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->cache],
-				['config', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config],
-				['config_text', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->config_text],
-				['dbal.conn', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->db],
-				['language', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->lang],
-				['request', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->request],
-				['template', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->template],
+				['vse.abbc3.acp_controller', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->acp_controller],
 			]);
 
 		// Test basic module instantiation
@@ -116,8 +116,10 @@ class module_test extends \phpbb_database_test_case
 				'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
 				'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
 				'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
+				'S_ABBC3_AUTO_VIDEO'	=> $this->config['abbc3_auto_video'],
 				'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
 				'S_ABBC3_GOOGLE_FONTS'	=> "Droid Sans\nRoboto",
+				'S_ABBC3_MEDIA_EMBED'	=> 0,
 				'U_ACTION'				=> $module->u_action,
 			]);
 
@@ -160,6 +162,48 @@ class module_test extends \phpbb_database_test_case
 		$module->main();
 	}
 
+	public function save_google_fonts_data()
+	{
+		return [
+			['', '[]', \PHPUnit\Framework\Error\Notice::class],
+			['Droid Sans', '["Droid Sans"]', \PHPUnit\Framework\Error\Notice::class],
+			["Droid Sans\nRoboto", '["Droid Sans","Roboto"]', \PHPUnit\Framework\Error\Notice::class],
+			["Droid Sans\nRoboto\nMac Donald", '["Droid Sans","Roboto"]', \PHPUnit\Framework\Error\Warning::class],
+			['Mac Donald', '[]', \PHPUnit\Framework\Error\Warning::class],
+		];
+	}
+
+	/**
+	 * @dataProvider save_google_fonts_data
+	 * @param $input
+	 * @param $expected
+	 * @param $error
+	 * @throws \Exception
+	 */
+	public function test_save_google_fonts($input, $expected, $error)
+	{
+		self::$valid_form = true;
+
+		$module = $this->get_main_module();
+
+		$this->request->expects(self::once())
+			->method('is_set_post')
+			->willReturn('submit');
+
+		$this->request->expects(self::at(6))
+			->method('variable')
+			->with('abbc3_google_fonts', '')
+			->willReturn($input);
+
+		// Throws Notice in PHP 8.0+ and Error in earlier versions
+		$exceptionName = PHP_VERSION_ID < 80000 ? \PHPUnit\Framework\Error\Error::class : $error;
+		$this->expectException($exceptionName);
+
+		$module->main();
+
+		$this->assertSame($expected, $this->config_text->get('abbc3_google_fonts'));
+	}
+
 	public function test_info()
 	{
 		$info_class = new \vse\abbc3\acp\abbc3_info();
@@ -179,7 +223,7 @@ class module_test extends \phpbb_database_test_case
  */
 function check_form_key()
 {
-	return \vse\abbc3\acp\module_test::$valid_form;
+	return \vse\abbc3\controller\module_test::$valid_form;
 }
 
 /**

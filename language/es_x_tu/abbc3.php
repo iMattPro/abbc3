@@ -63,6 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Texto subíndice: [sub]texto[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texto superíndice: [sup]texto[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vídeo de YouTube: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copiar el texto seleccionado',
@@ -96,21 +97,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'El orden de los BBCodes ha sido resincronizado.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestionar grupos que pueden utilizar este BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br>Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse CTRL+CLICK (o CMD-CLICK en Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Añade fuentes de <a href="https://fonts.google.com" target="_blank">Google Fonts</a> al BBCode <samp>font</samp>. Utiliza la ortografía exacta y la distinción entre mayúsculas y minúsculas. Coloca cada nombre de fuente en una línea separada. Por ejemplo: <samp>Droid Sans</samp>',
-	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Tenga en cuenta que “Permitir el uso de las redes de distribución de contenidos de terceros” debe estar habilitado en "Configuración de carga" para usar esta función.',
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aquí puedes configurar los ajustes para Advanced BBCode Box. Para obtener información sobre cómo personalizar la barra de iconos, visita el <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
-	'ABBC3_PIPES'				=> 'Habilitar el complemento de tablas de Pipe (tubo)',
-	'ABBC3_PIPES_EXPLAIN'		=> 'El complemento de tabla de tubo permite a los usuarios crear tablas en sus mensajes y mensajes privados utilizando la sintaxis markdown.',
-	'ABBC3_BBCODE_BAR'			=> 'Habilitar la barra de iconos de BBCode',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Esto mostrará la barra de herramientas BBCode basada en iconos de ABBC3. Desactiva esto para mostrar los botones BBCode predeterminados de phpBB.',
-	'ABBC3_QR_BBCODES'			=> 'Habilitar BBCodes en Respuesta rápida',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Esto añade los botones BBCode a Respuesta rápida.',
-	'ABBC3_ICONS_TYPE'			=> 'Formato de imagen de la barra de iconos',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Selecciona el formato de imagen que se utilizará para los iconos de ABBC3. Ten en cuenta que solo puedes elegir un formato para todos tus iconos.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'Barra de iconos de BBCode',
-	'ABBC3_LEGEND_ADD_ONS'		=> 'Añadidos',
-	'PNG' => 'PNG',
-	'SVG' => 'SVG',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'BBCodes de la Caja Avanzada de BBCode',

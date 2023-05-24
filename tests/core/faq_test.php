@@ -49,7 +49,7 @@ class faq_test extends \phpbb_database_test_case
 		global $config, $phpbb_dispatcher, $phpbb_container, $phpbb_root_path, $phpEx;
 		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
 		$this->get_test_case_helpers()->set_s9e_services($phpbb_container);
-
+		$config->set('abbc3_auto_video', true);
 		$db = $this->new_dbal();
 		$auth = new \phpbb\auth\auth();
 		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
@@ -58,14 +58,14 @@ class faq_test extends \phpbb_database_test_case
 		$this->user = new \phpbb\user($this->language , '\phpbb\datetime');
 		$phpbb_extension_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
 		$bbcodes_display = new \vse\abbc3\core\bbcodes_display($auth, $config, $db, $phpbb_extension_manager, $this->user, $phpbb_root_path);
-		$this->bbcodes_help = new \vse\abbc3\core\bbcodes_help($bbcodes_display, $db, $this->language, $this->template, $this->user);
+		$this->bbcodes_help = new \vse\abbc3\core\bbcodes_help($bbcodes_display, $config, $db, $this->language, $this->template);
 	}
 
 	public function faq_test_data()
 	{
 		return [
-			[1, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_ALIGN_HELPLINE']],
-			[2, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_FLOAT_HELPLINE', 'ABBC3_SUP_HELPLINE']],
+			[1, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_ALIGN_HELPLINE', 'ABBC3_AUTOVIDEO_HELPLINE']],
+			[2, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_FLOAT_HELPLINE', 'ABBC3_SUP_HELPLINE', 'ABBC3_AUTOVIDEO_HELPLINE']],
 		];
 	}
 

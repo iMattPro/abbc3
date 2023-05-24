@@ -128,7 +128,7 @@
 	Run npm build task
 	-->
 	<target name="npm-build-task" depends="npm-install">
-		<exec command="npm run-s" dir="${package-directory}" passthru="true" checkreturn="true" />
+		<exec command="npm run build" dir="${package-directory}" passthru="true" checkreturn="true" />
 	</target>
 
 </project>

@@ -63,6 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> '上標: [sub]文字[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> '下標: [sup]文字[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube影片: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> '複製',
@@ -96,21 +97,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode順序已變更',
 	'ABBC3_BBCODE_GROUP'		=> '變更可使用此BBCode的使用者群組',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未選擇任何群組，則所有人皆可使用此BBCode。若要選擇多個群組，請按下CTRL鍵。蘋果電腦請用CMD鍵',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line. Example: <samp>Droid Sans</samp>',
-	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box. For information about customizing the icon bar, visit the <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
-	'ABBC3_PIPES'				=> 'Enable the Pipe Table PlugIn',
-	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipes Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',
-	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
-	'ABBC3_QR_BBCODES'			=> 'Enable BBCodes in Quick Reply',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'This will add BBCode buttons to Quick Reply.',
-	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
-	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
-	'PNG' => 'PNG',
-	'SVG' => 'SVG',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',

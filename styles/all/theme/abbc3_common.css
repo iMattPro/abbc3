@@ -56,6 +56,11 @@
 	}
 }
 
+/* video player styling */
+.auto-video {
+	max-width: 100%;
+}
+
 /* Pipe Table styling */
 .pipe-table {
 	margin-bottom: 0.813rem;

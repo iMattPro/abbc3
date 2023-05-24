@@ -64,6 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Alt simge metni: [sub]metin[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Üst simge metni: [sup]text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Seçilen metni kopyala',
@@ -97,21 +98,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode sırası güncellendi.',
 	'ABBC3_BBCODE_GROUP'		=> 'Bu BBCode’u kullanabilen grupları yönetin',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Eğer hiç bir grup seçilmezse, tüm kullanıcılar bu BBCode’u kullanabilirler. Birden fazla grup seçmek ya da seçimi bırakmak için CTRL+SAĞ TIK (ya da Mac bilgisayarlarda CMD+SAĞ TIK) klavye ile mouse kombinasyonunu kullanın.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line. Example: <samp>Droid Sans</samp>',
-	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Buradan Advanced BBCode Box için ayarları yapılandırabilirsiniz. Simge çubuğunu özelleştirme hakkında bilgi almak için, <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a> sayfasını ziyaret edin.',
-	'ABBC3_PIPES'				=> 'Borulu Tablo Eklentisini etkinleştir',
-	'ABBC3_PIPES_EXPLAIN'		=> 'Borulu Tablo Eklentisi, kullanıcıların markdown sözdizimini kullanarak mesajlarında ve özel mesajlarında tablolar oluşturmasına olanak sağlar.',
-	'ABBC3_BBCODE_BAR'			=> 'BBCode simge çubuğunu etkinleştir',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Bu özellik ABBC3’ün simge tabanlı BBCode araç çubuğunu gösterir. phpBB’nin varsayılan BBCode butonlarını göstermek için bu ayarı kapatın.',
-	'ABBC3_QR_BBCODES'			=> 'Hızlı Cevap bölümünde BBCode’ları etkinleştir',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Bu özellik Hızlı Cevap paneline BBCode butonları ekleyecektir.',
-	'ABBC3_ICONS_TYPE'			=> 'Simge çubuğu görüntü biçimi',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'ABBC3’ün simgeleri için kullanılacak resim formatını seçin. Not: tüm simgeleriniz için sadece bir format seçebilirsiniz.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Simge Çubuüu',
-	'ABBC3_LEGEND_ADD_ONS'		=> 'Eklentiler',
-	'PNG' => 'PNG',
-	'SVG' => 'SVG',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCode’ları',

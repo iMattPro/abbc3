@@ -125,15 +125,13 @@ class acp_manager
 	/**
 	 * Get the bbcode_group data from the posted form
 	 *
-	 * @return string The usergroup id numbers, comma delimited, or empty
+	 * @return string The user-group id numbers, comma delimited, or empty
 	 * @access public
 	 */
 	public function get_bbcode_group_form_data()
 	{
 		$bbcode_group = $this->request->variable('bbcode_group', [0]);
-		$bbcode_group = (!count($bbcode_group)) ? $this->request->variable('bbcode_group', '') : implode(',', $bbcode_group);
-
-		return $bbcode_group;
+		return (!count($bbcode_group)) ? $this->request->variable('bbcode_group', '') : implode(',', $bbcode_group);
 	}
 
 	/**

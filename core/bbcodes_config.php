@@ -18,6 +18,30 @@ use s9e\TextFormatter\Configurator;
 class bbcodes_config
 {
 	/**
+	 * Configure s9e Auto Video plugin
+	 *
+	 * @param Configurator $configurator
+	 * @access public
+	 */
+	public function auto_video(Configurator $configurator)
+	{
+		if (!$configurator->registeredVars['abbc3.auto_video_enabled'])
+		{
+			return;
+		}
+
+		$configurator->plugins->load('Autovideo');
+
+		/** @var \s9e\TextFormatter\Configurator\Items\TemplateDocument $dom Add class "auto-video" to allow us to style the video with our CSS */
+		$dom = $configurator->tags['VIDEO']->template->asDOM();
+		foreach ($dom->getElementsByTagName('video') as $video)
+		{
+			$video->setAttribute('class', 'auto-video');
+		}
+		$dom->saveChanges();
+	}
+
+	/**
 	 * Configure s9e Pipes table plugin
 	 *
 	 * @param Configurator $configurator

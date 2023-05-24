@@ -65,6 +65,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Texto subscrito: [sub]texto[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texto sobrescrito: [sup]texto[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vídeo no YouTube: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copiar texto seleccionado',
@@ -98,21 +99,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_ORDERED'		=> 'A ordem do BBCode foi actualizada.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gerir os grupos que podem usar este BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Se nenhum grupo for seleccionado, então todos os utilizadores podem usar estes BBCode. Use CTRL+CLIQUE (or CMD+CLIQUE no Mac) para seleccionar/desmarcar mais de um grupo.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line. Example: <samp>Droid Sans</samp>',
-	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aqui pode alterar as configurações do «Advanced BBCode Box». Para mais informações (em inglês) sobre a customização da barra de ícones, visite <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">a FAQ do ABBC3 <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
-	'ABBC3_PIPES'				=> 'Activar o plugin «Pipe Table PlugIn»',
-	'ABBC3_PIPES_EXPLAIN'		=> 'O «Pipes Table PlugIn» permite aos utilizadores criarem tabelas nos seus posts e mensagens privadas usando a sintaxe <a href="https://pt.wikipedia.org/wiki/Markdown" target="_blank">markdown</a>.',
-	'ABBC3_BBCODE_BAR'			=> 'Activar este BBCode na barra de ícones',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Isto irá activar o plugin ABBC3, uma barra de ferramentas BBCode, baseada em ícones. Desactive para ver os botões por omissão do phpBB.',
-	'ABBC3_QR_BBCODES'			=> 'Activar BBCodes na Resposta Rápida',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Esta opção irá acrescentar botões BBCode à Resposta Rápida.',
-	'ABBC3_ICONS_TYPE'			=> 'Fomato das imagens para a barra de ícones',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Escolha o formato de imagem usado pelos ícones do ABBC3. Note que só pode usar um único formato para todos os ícones.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'Barra de ícones BBCode',
-	'ABBC3_LEGEND_ADD_ONS'		=> 'Extras',
-	'PNG' => 'PNG',
-	'SVG' => 'SVG',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',

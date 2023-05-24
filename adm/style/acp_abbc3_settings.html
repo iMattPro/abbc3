@@ -17,20 +17,11 @@
 			<dt><label for="abbc3_icons_type">{{ lang('ABBC3_ICONS_TYPE') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</span></dt>
 			<dd>
 				<select name="abbc3_icons_type" id="abbc3_icons_type">{{ S_ABBC3_ICONS_TYPE }}</select>
-				{% set ABBC3_ICON_PATH = ROOT_PATH ~ 'ext/vse/abbc3/images/icons/' %}
 				{% for ext in ['png', 'svg'] %}
 					<div class="abbc3-bar abbc3-icons-{{ ext }} hidden">
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}bold.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}italic.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}underline.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}quote.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}code.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listb.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listo.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}listitem.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}img.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}url.{{ ext }}')"></span>
-						<span style="background-image:url('{{ ABBC3_ICON_PATH }}fontcolor.{{ ext }}')"></span>
+						{% for button in ['bold', 'italic', 'underline', 'quote', 'code', 'listb', 'listo', 'listitem', 'img', 'url', 'fontcolor'] %}
+							<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/{{ button }}.{{ ext }}')"></span>
+						{% endfor %}
 					</div>
 				{% endfor %}
 			</dd>
@@ -49,8 +40,17 @@
 				<label><input type="radio" class="radio" name="abbc3_pipes" value="0"{% if not S_ABBC3_PIPES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
 		</dl>
 		<dl>
-			<dt><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') }}</label><br><span>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br><br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</span></dt>
-			<dd><textarea id="abbc3_google_fonts" cols="40" rows="8" name="abbc3_google_fonts">{{ S_ABBC3_GOOGLE_FONTS }}</textarea></dd>
+			<dt><label for="abbc3_auto_video">{{ lang('ABBC3_AUTO_VIDEO') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_AUTO_VIDEO_EXPLAIN') }}</span></dt>
+			<dd><label><input type="radio" class="radio" name="abbc3_auto_video" id="abbc3_auto_video" value="1"{% if S_ABBC3_AUTO_VIDEO %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="abbc3_auto_video" value="0"{% if not S_ABBC3_AUTO_VIDEO %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
+		</dl>
+		<dl>
+			<dt><label>{{ lang('ABBC3_BBVIDEO') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_BBVIDEO_EXPLAIN') }}</span></dt>
+			<dd><span class="{{ S_ABBC3_MEDIA_EMBED ? 'success' : 'error' }}">{{ lang('ABBC3_MEDIA_EMBED_INSTALL', S_ABBC3_MEDIA_EMBED) }}</span></dd>
+		</dl>
+		<dl>
+			<dt><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br><br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</span></dt>
+			<dd><textarea id="abbc3_google_fonts" cols="40" rows="8" name="abbc3_google_fonts" placeholder="Roboto&#10;Droid Sans&#10;Noto Sans JP">{{ S_ABBC3_GOOGLE_FONTS }}</textarea></dd>
 		</dl>
 	</fieldset>
 	<fieldset class="submit-buttons">

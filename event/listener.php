@@ -219,9 +219,11 @@ class listener implements EventSubscriberInterface
 	{
 		$configurator = $event['configurator'];
 		$configurator->registeredVars['abbc3.pipes_enabled'] = $this->config['abbc3_pipes'];
+		$configurator->registeredVars['abbc3.auto_video_enabled'] = $this->config['abbc3_auto_video'];
 
 		$this->bbcodes_config->pipes($configurator);
 		$this->bbcodes_config->bbvideo($configurator);
+		$this->bbcodes_config->auto_video($configurator);
 		$this->bbcodes_config->hidden($configurator);
 	}
 
