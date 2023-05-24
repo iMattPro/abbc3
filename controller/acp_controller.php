@@ -221,12 +221,7 @@ class acp_controller
 	 */
 	protected function valid_url($url)
 	{
-		if (!function_exists('get_headers'))
-		{
-			return true;
-		}
-
-		$headers = @get_headers($url);
+		$headers = function_exists('get_headers') ? @get_headers($url) : false;
 		return !$headers || stripos($headers[0], '200 OK') !== false;
 	}
 
