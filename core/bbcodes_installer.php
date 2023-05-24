@@ -66,9 +66,9 @@ class bbcodes_installer extends acp_manager
 		{
 			$bbcode_data = $this->build_bbcode($bbcode_data);
 
-			if ($bbcode = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag']))
+			if ($bbcode_id = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag']))
 			{
-				$this->update_bbcode($bbcode, $bbcode_data);
+				$this->update_bbcode($bbcode_id, $bbcode_data);
 				continue;
 			}
 
@@ -80,33 +80,20 @@ class bbcodes_installer extends acp_manager
 
 	/**
 	 * Deletes bbcodes, used by migrations to perform add/updates.
-	 * Don't delete just by ID. Also match replace fields. This is to ensure
-	 * we only delete BBCodes created by ABBC3, and not if, for example
-	 * ABBC3 BBCodes that have been altered by the user.
 	 *
 	 * @param array $bbcodes Array of bbcodes to delete
 	 * @access public
 	 */
 	public function delete_bbcodes(array $bbcodes)
 	{
-		// Addresses MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
-		$is_mssql = strpos($this->db->get_sql_layer(), 'mssql') === 0;
-
 		foreach ($bbcodes as $bbcode_name => $bbcode_data)
 		{
 			$bbcode_data = $this->build_bbcode($bbcode_data);
 
-			if (!($bbcode = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag'])))
+			if ($bbcode_id = $this->bbcode_exists($bbcode_name, $bbcode_data['bbcode_tag']))
 			{
-				continue;
+				$this->remove_bbcode($bbcode_id, $bbcode_data);
 			}
-
-			$sql = 'DELETE FROM ' . BBCODES_TABLE . '
-			WHERE ' . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), first_pass_match) = N' : 'first_pass_match = ') . "'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
-				AND " . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), first_pass_replace) = N' : 'first_pass_replace = ') . "'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
-				AND bbcode_id = " . (int) $bbcode['bbcode_id'];
-
-			$this->db->sql_query($sql);
 		}
 
 		$this->resynchronize_bbcode_order();
@@ -164,7 +151,7 @@ class bbcodes_installer extends acp_manager
 	 *
 	 * @param string $bbcode_name Name of bbcode
 	 * @param string $bbcode_tag  Tag name of bbcode
-	 * @return array|false Existing bbcode data array or false if not found
+	 * @return string|false Existing bbcode identifier or false if not found
 	 * @access protected
 	 */
 	public function bbcode_exists($bbcode_name, $bbcode_tag)
@@ -174,24 +161,24 @@ class bbcodes_installer extends acp_manager
 			WHERE LOWER(bbcode_tag) = '" . $this->db->sql_escape(strtolower($bbcode_name)) . "'
 			OR LOWER(bbcode_tag) = '" . $this->db->sql_escape(strtolower($bbcode_tag)) . "'";
 		$result = $this->db->sql_query($sql);
-		$row = $this->db->sql_fetchrow($result);
+		$bbcode_id = $this->db->sql_fetchfield('bbcode_id');
 		$this->db->sql_freeresult($result);
 
-		return $row ? (array) $row : false;
+		return $bbcode_id;
 	}
 
 	/**
 	 * Update existing bbcode
 	 *
-	 * @param array $old_bbcode Existing bbcode data
-	 * @param array $new_bbcode New bbcode data
+	 * @param int $bbcode_id bbcode identifier
+	 * @param array $bbcode_data bbcode data
 	 * @access protected
 	 */
-	protected function update_bbcode(array $old_bbcode, array $new_bbcode)
+	protected function update_bbcode($bbcode_id, array $bbcode_data)
 	{
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
-			SET ' . $this->db->sql_build_array('UPDATE', $new_bbcode) . '
-			WHERE bbcode_id = ' . (int) $old_bbcode['bbcode_id'];
+			SET ' . $this->db->sql_build_array('UPDATE', $bbcode_data) . '
+			WHERE bbcode_id = ' . (int) $bbcode_id;
 		$this->db->sql_query($sql);
 	}
 
@@ -213,5 +200,33 @@ class bbcodes_installer extends acp_manager
 
 			$this->db->sql_query('INSERT INTO ' . BBCODES_TABLE . ' ' . $this->db->sql_build_array('INSERT', $bbcode_data));
 		}
+	}
+
+	/**
+	 * Remove a bbcode
+	 * Don't remove just by ID. Also match replace fields. This is to ensure we only delete BBCodes created by ABBC3,
+	 * and not if, for example ABBC3 BBCodes that have been altered by the user.
+	 *
+	 * Note special handling for MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
+	 *
+	 * @param int $bbcode_id bbcode identifier
+	 * @param array $bbcode_data bbcode data
+	 * @access protected
+	 */
+	protected function remove_bbcode($bbcode_id, array $bbcode_data)
+	{
+		static $is_mssql;
+
+		if (!isset($is_mssql))
+		{
+			$is_mssql = strpos($this->db->get_sql_layer(), 'mssql') === 0;
+		}
+
+		$sql = 'DELETE FROM ' . BBCODES_TABLE . '
+			WHERE ' . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), first_pass_match) = N' : 'first_pass_match = ') . "'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
+				AND " . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), first_pass_replace) = N' : 'first_pass_replace = ') . "'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
+				AND bbcode_id = " . (int) $bbcode_id;
+
+		$this->db->sql_query($sql);
 	}
 }
