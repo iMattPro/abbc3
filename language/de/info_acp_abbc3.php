@@ -2,6 +2,7 @@
 /**
  *
  * Advanced BBCode Box [German]
+ * Translated by wintstar - http://www.wintstar.de and Scanialady (https://ladyscommunity.de)
  *
  * @copyright (c) 2020 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
