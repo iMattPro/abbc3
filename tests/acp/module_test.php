@@ -61,7 +61,7 @@ class module_test extends \phpbb_database_test_case
 	{
 		parent::setUp();
 
-		global $language, $phpbb_container, $phpbb_root_path, $phpEx;
+		global $user, $language, $phpbb_container, $phpbb_root_path, $phpEx;
 
 		$this->cache = $this->createMock('\phpbb\cache\driver\driver_interface');
 		$this->config = new \phpbb\config\config([
@@ -82,6 +82,10 @@ class module_test extends \phpbb_database_test_case
 		$this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
 		$this->container = $phpbb_container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
 		$this->acp_controller = new \vse\abbc3\controller\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '');
+
+		// Used in build_select function
+		$user = new \phpbb_mock_user();
+		$user->lang = new \phpbb_mock_lang();
 	}
 
 	/**
