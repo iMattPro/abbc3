@@ -68,9 +68,9 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copy selected text',
 	'ABBC3_PASTE_BBCODE'		=> 'Paste copied text',
-	'ABBC3_PASTE_ERROR'			=> 'You must first copy a selection of text, then paste it',
+	'ABBC3_PASTE_ERROR'			=> 'You must first copy a selection of text, then paste it.',
 	'ABBC3_PLAIN_BBCODE'		=> 'Remove all BBCode tags from the selected text',
-	'ABBC3_NOSELECT_ERROR'		=> 'No text was seleted.',
+	'ABBC3_NOSELECT_ERROR'		=> 'No text was selected.',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Insert into message',

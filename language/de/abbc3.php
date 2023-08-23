@@ -2,7 +2,7 @@
 /**
 *
 * Advanced BBCode Box [German]
-* Translated by wintstar - http://www.wintstar.de
+* Translated by wintstar - http://www.wintstar.de and Scanialady (https://ladyscommunity.de)
 *
 * @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -33,7 +33,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> '▼ Text verstecken',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'Off-topic',
+	'ABBC3_OFFTOPIC'			=> 'Off-Topic',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Schriftarten',
@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Tiefgestellt: [sub]Text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Hochgestellt: [sup]Text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube-Video: [youtube]http://Youtube_Url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'MP4/OGG/WEBM video files einbetten: URL muss mit <samp class="error">https</samp> oder <samp class="error">http</samp> starten, und enden mit <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> oder <samp class="error">.webm</samp> (no BBCode needed). dass die Unterstützung durch Browser und die GUI-Implementierung unterschiedlich sind.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Markierten Text kopieren',

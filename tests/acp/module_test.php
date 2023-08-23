@@ -188,8 +188,14 @@ class module_test extends \phpbb_database_test_case
 
 		$this->request
 			->method('variable')
-			->with('abbc3_google_fonts', '')
-			->willReturn($input);
+			->willReturnMap([
+				['abbc3_bbcode_bar', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+				['abbc3_qr_bbcodes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+				['abbc3_auto_video', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+				['abbc3_icons_type', 'png', false, \phpbb\request\request_interface::REQUEST, 'png'],
+				['abbc3_pipes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+				['abbc3_google_fonts', '', false, \phpbb\request\request_interface::REQUEST, $input],
+			]);
 
 		// Throws Notice in PHP 8.0+ and Error in earlier versions
 		$exceptionName = PHP_VERSION_ID < 80000 ? \PHPUnit\Framework\Error\Error::class : $error;
@@ -213,7 +219,7 @@ class module_test extends \phpbb_database_test_case
 
 /**
  * Mock check_form_key()
- * Note: use the same namespace as the admin_input
+ * Note: use the same namespace as the controller
  *
  * @return bool
  */
@@ -224,7 +230,7 @@ function check_form_key()
 
 /**
  * Mock add_form_key()
- * Note: use the same namespace as the admin_input
+ * Note: use the same namespace as the controller
  */
 function add_form_key()
 {
