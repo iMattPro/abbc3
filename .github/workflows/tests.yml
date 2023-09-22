@@ -23,12 +23,12 @@ on:
 jobs:
     # START Basic Checks Job (EPV, code sniffer, images check, etc.)
     basic-checks:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         strategy:
             matrix:
                 include:
-                    - php: '7.3'
-                      db: "none"
+                    - db: 'none'
+                      php: '8.1'
                       NOTESTS: 1
 
         name: PHP ${{ matrix.php }} - ${{ matrix.db }}
@@ -91,40 +91,44 @@ jobs:
 
     # START MySQL and MariaDB Job
     mysql-tests:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         strategy:
             matrix:
                 include:
-                    - php: '7.3'
-                      db: "mariadb:10.1"
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "mariadb:10.2"
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "mariadb:10.3"
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "mariadb:10.4"
-                    - php: '7.3'
-                      db: "mariadb:10.5"
-                    - php: '7.3'
-                      db: "mysql:5.6"
+                    - php: '8.1'
+                      db: "mariadb:10.6"
+                    - php: '8.1'
+                      db: "mariadb:10.9"
+                    - php: '8.1'
+                      db: "mariadb:10.10"
+                    - php: '8.1'
+                      db: "mariadb:10.11"
+                    - php: '8.1'
+                      db: "mysql:5.7"
                       db_alias: "MyISAM Tests"
                       MYISAM: 1
-                    - php: '7.3'
-                      db: "mysql:5.6"
-                    - php: '7.3'
-                      db: "mysql:5.7"
-                    - php: '7.4'
+                    - php: '8.1'
                       db: "mysql:5.7"
                       COVERAGE: 0
 #                      db_alias: "mysql:5.7 with Coverage"
-                    - php: '7.4'
-                      db: "mysql:8.0"
-                    - php: '8.0'
-                      db: "mysql:5.7"
                     - php: '8.1'
-                      db: "mysql:5.7"
+                      db: "mysql:8.0"
+                    - php: '8.1'
+                      db: "mysql:8.1"
                     - php: '8.2'
+                      db: "mysql:8.0"
+                    - php: '8.2'
+                      db: "mariadb:10.2"
+                    - php: '8.3'
                       db: "mysql:5.7"
+                    - php: '8.3'
+                      db: "mariadb:10.2"
 
         name: PHP ${{ matrix.php }} - ${{ matrix.db_alias != '' && matrix.db_alias || matrix.db }}
 
@@ -238,38 +242,36 @@ jobs:
 
     # START PostgreSQL Job
     postgres-tests:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         strategy:
             matrix:
                 include:
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "postgres:9.5"
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "postgres:9.6"
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "postgres:10"
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "postgres:11"
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "postgres:12"
-                    - php: '7.3'
-                      db: "postgres:13"
-                    - php: '7.4'
-                      db: "postgres:13"
-                    - php: '8.0'
-                      db: "postgres:12"
-                    - php: '8.0'
+                    - php: '8.1'
                       db: "postgres:13"
                     - php: '8.1'
                       db: "postgres:14"
+                    - php: '8.1'
+                      db: "postgres:15"
                     - php: '8.2'
-                      db: "postgres:14"
+                      db: "postgres:9.5"
+                    - php: '8.3'
+                      db: "postgres:9.5"
 
         name: PHP ${{ matrix.php }} - ${{ matrix.db }}
 
         services:
             postgres:
-                image: ${{ matrix.db != 'postgres:9.5' && matrix.db != 'postgres:9.6' && matrix.db != 'postgres:10' && matrix.db != 'postgres:11' && matrix.db != 'postgres:12' && matrix.db != 'postgres:13' && 'postgres:10' || matrix.db }}
+                image: ${{ matrix.db != 'postgres:9.5' && matrix.db != 'postgres:9.6' && matrix.db != 'postgres:10' && matrix.db != 'postgres:11' && matrix.db != 'postgres:12' && matrix.db != 'postgres:13' && matrix.db != 'postgres:14' && matrix.db != 'postgres:15' && 'postgres:10' || matrix.db }}
                 env:
                     POSTGRES_HOST: localhost
                     POSTGRES_USER: postgres
@@ -317,7 +319,7 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, intl, gd, exif, iconv, pgsql, pdo, pdo_pgsql
                   coverage: none
 
             - name: Setup environment for phpBB
@@ -348,24 +350,27 @@ jobs:
 
     # START Other Tests Job (SQLite 3 and mssql)
     other-tests:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         strategy:
             matrix:
                 include:
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "sqlite3"
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "mcr.microsoft.com/mssql/server:2017-latest"
                       db_alias: 'MSSQL 2017'
-                    - php: '7.3'
+                    - php: '8.1'
                       db: "mcr.microsoft.com/mssql/server:2019-latest"
                       db_alias: 'MSSQL 2019'
+                    - php: '8.1'
+                      db: "mcr.microsoft.com/mssql/server:2022-latest"
+                      db_alias: 'MSSQL 2022'
 
         name: PHP ${{ matrix.php }} - ${{ matrix.db_alias != '' && matrix.db_alias || matrix.db }}
 
         services:
             mssql:
-                image: ${{ matrix.db != 'mcr.microsoft.com/mssql/server:2017-latest' && matrix.db != 'mcr.microsoft.com/mssql/server:2019-latest' && 'mcr.microsoft.com/mssql/server:2017-latest' || matrix.db }}
+                image: ${{ matrix.db != 'mcr.microsoft.com/mssql/server:2017-latest' && matrix.db != 'mcr.microsoft.com/mssql/server:2019-latest' && matrix.db != 'mcr.microsoft.com/mssql/server:2022-latest' && 'mcr.microsoft.com/mssql/server:2017-latest' || matrix.db }}
                 env:
                     SA_PASSWORD: "Pssw0rd_12"
                     ACCEPT_EULA: "y"
@@ -405,7 +410,7 @@ jobs:
               env:
                   MATRIX_DB: ${{ matrix.db }}
               run: |
-                  if [ $MATRIX_DB == 'mcr.microsoft.com/mssql/server:2017-latest' ] || [ $MATRIX_DB == 'mcr.microsoft.com/mssql/server:2019-latest' ]
+                  if [ $MATRIX_DB == 'mcr.microsoft.com/mssql/server:2017-latest' ] || [ $MATRIX_DB == 'mcr.microsoft.com/mssql/server:2019-latest' ] || [ $MATRIX_DB == 'mcr.microsoft.com/mssql/server:2022-latest' ]
                   then
                       db='mssql'
                   else
@@ -417,7 +422,7 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, intl, gd, exif, iconv, sqlsrv, pdo, pdo_sqlsrv
                   coverage: none
 
             - name: Setup environment for phpBB
