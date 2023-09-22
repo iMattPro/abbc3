@@ -59,6 +59,7 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 	public function test_acp_posting_page()
 	{
 		$this->admin_login();
+		$this->add_lang('acp/users');
 		$crawler = self::request('GET', 'adm/index.php?i=users&u=2&mode=sig&sid=' . $this->sid);
 		$this->run_checks($crawler);
 	}
