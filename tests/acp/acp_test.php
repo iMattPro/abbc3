@@ -203,11 +203,7 @@ class acp_test extends \phpbb_database_test_case
 			->method('is_set_post')
 			->willReturn('submit');
 
-<<<<<<< HEAD:tests/acp/module_test.php
-		$this->request
-=======
 		$this->request->expects(self::exactly(6))
->>>>>>> master:tests/acp/acp_test.php
 			->method('variable')
 			->willReturnMap([
 				['abbc3_bbcode_bar', 0, false, \phpbb\request\request_interface::REQUEST, 0],
