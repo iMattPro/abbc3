@@ -113,9 +113,9 @@ jobs:
                       db: "mysql:5.7"
                       db_alias: "MyISAM Tests"
                       MYISAM: 1
-                    - php: '8.1'
-                      db: "mysql:5.7"
-                      COVERAGE: 0
+#                    - php: '8.1'
+#                      db: "mysql:5.7"
+#                      COVERAGE: 1
 #                      db_alias: "mysql:5.7 with Coverage"
                     - php: '8.1'
                       db: "mysql:8.0"
@@ -125,10 +125,10 @@ jobs:
                       db: "mysql:8.0"
                     - php: '8.2'
                       db: "mariadb:10.2"
-#                    - php: '8.3'
-#                      db: "mysql:5.7"
-#                    - php: '8.3'
-#                      db: "mariadb:10.2"
+                    - php: '8.3'
+                      db: "mysql:5.7"
+                    - php: '8.3'
+                      db: "mariadb:10.2"
 
         name: PHP ${{ matrix.php }} - ${{ matrix.db_alias != '' && matrix.db_alias || matrix.db }}
 
@@ -197,7 +197,11 @@ jobs:
                   DB: ${{steps.database-type.outputs.db}}
                   PHP_VERSION: ${{ matrix.php }}
                   NOTESTS: '0'
-              run: .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
+              run: |
+                  .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
+                  cd phpBB
+                  php ../composer.phar update s9e/sweetdom --dev --no-interaction
+                  cd ..
               working-directory: ./phpBB3
 
             - name: Setup database
@@ -264,8 +268,8 @@ jobs:
                       db: "postgres:15"
                     - php: '8.2'
                       db: "postgres:9.5"
-#                    - php: '8.3'
-#                      db: "postgres:9.5"
+                    - php: '8.3'
+                      db: "postgres:9.5"
 
         name: PHP ${{ matrix.php }} - ${{ matrix.db }}
 
@@ -327,7 +331,11 @@ jobs:
                   DB: ${{steps.database-type.outputs.db}}
                   PHP_VERSION: ${{ matrix.php }}
                   NOTESTS: '0'
-              run: .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
+              run: |
+                  .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
+                  cd phpBB
+                  php ../composer.phar update s9e/sweetdom --dev --no-interaction
+                  cd ..
               working-directory: ./phpBB3
 
             - name: Setup database
