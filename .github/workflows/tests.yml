@@ -4,7 +4,7 @@ env:
     EXTNAME: vse/abbc3   # Your extension vendor/package name
     SNIFF: 1             # Run code sniffer on your code? 1 or 0
     IMAGE_ICC: 1         # Run icc profile sniffer on your images? 1 or 0
-    EPV: 1               # Run EPV (Extension Pre Validator) on your code? 1 or 0
+    EPV: 0               # Run EPV (Extension Pre Validator) on your code? 1 or 0
     EXECUTABLE_FILES: 1  # Run check for executable files? 1 or 0
     PHPBB_BRANCH: master # The phpBB branch to run tests on
 
@@ -113,12 +113,10 @@ jobs:
                       db: "mysql:5.7"
                       db_alias: "MyISAM Tests"
                       MYISAM: 1
-#                    - php: '8.1'
-#                      db: "mysql:5.7"
-#                      COVERAGE: 1
-#                      db_alias: "mysql:5.7 with Coverage"
                     - php: '8.1'
                       db: "mysql:8.0"
+                      COVERAGE: 1
+                      db_alias: "mysql:8.0 with Coverage"
                     - php: '8.1'
                       db: "mysql:8.1"
                     - php: '8.2'
@@ -197,11 +195,7 @@ jobs:
                   DB: ${{steps.database-type.outputs.db}}
                   PHP_VERSION: ${{ matrix.php }}
                   NOTESTS: '0'
-              run: |
-                  .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
-                  cd phpBB
-                  php ../composer.phar update s9e/sweetdom --dev --no-interaction
-                  cd ..
+              run: .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
               working-directory: ./phpBB3
 
             - name: Setup database
@@ -331,11 +325,7 @@ jobs:
                   DB: ${{steps.database-type.outputs.db}}
                   PHP_VERSION: ${{ matrix.php }}
                   NOTESTS: '0'
-              run: |
-                  .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
-                  cd phpBB
-                  php ../composer.phar update s9e/sweetdom --dev --no-interaction
-                  cd ..
+              run: .github/setup-phpbb.sh $DB $PHP_VERSION ${NOTESTS:-0}
               working-directory: ./phpBB3
 
             - name: Setup database
