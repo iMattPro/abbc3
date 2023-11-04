@@ -25,8 +25,8 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ABBC3_SETTINGS_EXPLAIN'	=> '在此您可以修改 Advanced BBCode Box 的设置。 要了解有关定制图标栏的信息，请访问 <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>。',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> '添加 <a href="https://fonts.google.com" target="_blank">Google Fonts</a> 到 <samp>font</samp> BBCode 中。使用完全一致的大小写和拼写。每行写一个字体名称。 例如： <samp>Droid Sans</samp>',
-	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
-	'ABBC3_INVALID_FONT'		=> 'Invalid font name for “%s”',
+	'ABBC3_GOOGLE_FONTS_NOTE'	=> '要使用此特性，请在‘负载设置’页面，设置“允许使用第三方内容分发网络”。',
+	'ABBC3_INVALID_FONT'		=> '无效的字体名称 “%s”',
 	'ABBC3_PIPES'				=> '启用管道表格插件',
 	'ABBC3_PIPES_EXPLAIN'		=> '管道表格插件，会允许用户在帖子和私信中使用 markdown 语法来创建表格。',
 	'ABBC3_BBCODE_BAR'			=> '启用 BBCode 图标栏',
@@ -37,13 +37,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_ICONS_TYPE_EXPLAIN'	=> '选择用于 ABBC3 图标的图片格式。注意您只能选择一种并用于所有的图标。 ',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode 图标栏',
 	'ABBC3_LEGEND_ADD_ONS'		=> '附加设置',
-	'ABBC3_AUTO_VIDEO'			=> 'Enable Auto Video PlugIn',
-	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'This plugin converts plain-text video file URLs into playable videos. Only URLs starting with <samp class="error">http://</samp> or <samp class="error">https://</samp> and ending with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> are converted.',
+	'ABBC3_AUTO_VIDEO'			=> '启用自动视频插件',
+	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> '此插件可将纯文本视频文件 URL 转换为可播放的视频。只有 URLs 网址以 <samp class="error">http://</samp> 或 <samp class="error">https://</samp> 开头，并且以 <samp class="error">.mp4</samp>， <samp class="error">.ogg</samp> 或 <samp class="error">.webm</samp> 结尾的才能转换。',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
-	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Install the optional phpBB Media Embed extension to access settings and management options for embedded rich media content.',
+	'ABBC3_BBVIDEO_EXPLAIN'		=> '安装可选的  phpBB Media Embed 扩展，以访问内嵌富媒体内容的设置和管理选项。',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed extension is not installed. <a href="https://www.phpbb.com/customise/db/extension/mediaembed/" target="_blank">Download <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
-		1	=> 'phpBB Media Embed extension is installed. Settings are accessible under the Posting tab.'
+		0	=> 'phpBB Media Embed 扩展没有安装。 <a href="https://www.phpbb.com/customise/db/extension/mediaembed/" target="_blank">Download <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>。',
+		1	=> 'phpBB Media Embed 扩展已安装。 在帖子选项卡下设置。'
 	],
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
