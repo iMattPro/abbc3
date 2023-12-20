@@ -5,7 +5,6 @@
 		"tablednd": "^1.0.5"
 	},
 	"devDependencies": {
-		"clean-css-cli": "^5.4.2",
 		"copyfiles": "^2.4.1",
 		"eslint": "^8.1.0",
 		"jshint": "^2.13.1",
@@ -15,21 +14,15 @@
 		"uglify-js": "^3.14.3"
 	},
 	"watch": {
-		"js-minify": "styles/all/template/js/abbc3.js",
-		"css-minify": {
-			"patterns": "styles/all/theme/*.css",
-			"extensions": "css",
-			"ignore": "styles/all/theme/*.min.css"
-		}
+		"js-minify": "styles/all/template/js/abbc3.js"
 	},
 	"scripts": {
 		"js": "npm-run-all jshint eslint js-minify",
 		"jshint": "jshint styles/all/template/js/abbc3.js",
 		"eslint": "eslint styles/all/template/js/abbc3.js",
 		"js-minify": "uglifyjs styles/all/template/js/abbc3.js --source-map --output styles/all/template/js/abbc3.min.js",
-		"css-minify": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --batch --batch-suffix '.min' styles/all/theme/*.css !styles/all/theme/*.min.css",
 		"copy-tablednd": "copyfiles --flat node_modules/tablednd/dist/jquery.tablednd.js node_modules/tablednd/dist/jquery.tablednd.min.js styles/all/template/js",
-		"build": "npm-run-all --parallel js css-minify copy-tablednd",
+		"build": "npm-run-all --parallel js copy-tablednd",
 		"watch": "npm-watch"
 	},
 	"jshintConfig": {
