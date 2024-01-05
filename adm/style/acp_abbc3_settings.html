@@ -16,7 +16,11 @@
 		<dl>
 			<dt><label for="abbc3_icons_type">{{ lang('ABBC3_ICONS_TYPE') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</span></dt>
 			<dd>
-				<select name="abbc3_icons_type" id="abbc3_icons_type">{{ S_ABBC3_ICONS_TYPE }}</select>
+				<select name="abbc3_icons_type" id="abbc3_icons_type">
+					{% for item in S_ABBC3_ICONS_TYPE %}
+						<option value="{{ item.value }}"{% if item.selected %} selected="selected"{% endif %}>{{ item.label }}</option>
+					{% endfor %}
+				</select>
 				{% for ext in ['png', 'svg'] %}
 					<div class="abbc3-bar abbc3-icons-{{ ext }} hidden">
 						{% for button in ['bold', 'italic', 'underline', 'quote', 'code', 'listb', 'listo', 'listitem', 'img', 'url', 'fontcolor'] %}

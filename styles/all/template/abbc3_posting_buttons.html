@@ -9,36 +9,33 @@
 			style="background-image:url('{{ path ~ icon }}');"
 			onclick="{{ func ~ '(' ~ (id matches '/^-?\\d+$/' ? id : '\'' ~ id ~ '\'') ~ ')' }}"
 			title="{{ lang(title) }}">
-		{% if not icon %}{{ Icon('iconify', iconClass, '', true, 'c-button-icon') }}{% endif %}
+		{% if not icon %}{{ Icon('font', iconClass, '', true, 'fas c-button-icon') }}{% endif %}
 	</button>
 {% endmacro %}
 
 {% EVENT vse_abbc3_posting_editor_buttons_before %}
 <div id="abbc3_buttons">
 	<div class="abbc3_buttons_row">
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.bold, 'bbcode-b', 'b', 0, ' B ', 'BBCODE_B_HELP', 'mdi:format-bold', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.italic, 'bbcode-i', 'i', 2, ' i ', 'BBCODE_I_HELP', 'mdi:format-italic', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.underline, 'bbcode-u', 'u', 4, ' u ', 'BBCODE_U_HELP', 'mdi:format-underline', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.bold, 'bbcode-b', 'b', 0, ' B ', 'BBCODE_B_HELP', 'bold', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.italic, 'bbcode-i', 'i', 2, ' i ', 'BBCODE_I_HELP', 'italic', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.underline, 'bbcode-u', 'u', 4, ' u ', 'BBCODE_U_HELP', 'underline', ROOT_PATH) }}
 		{% if S_BBCODE_QUOTE %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.quote, 'bbcode-quote', 'q', 6, 'Quote', 'BBCODE_Q_HELP', 'mdi:format-quote-open', ROOT_PATH) }}
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.quote, 'bbcode-quote', 'q', 6, 'Quote', 'BBCODE_Q_HELP', 'quote-left', ROOT_PATH) }}
 		{% endif %}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.code, 'bbcode-code', 'c', 8, 'Code', 'BBCODE_C_HELP', 'fa:code', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listb, 'bbcode-list', 'l', 10, 'List', 'BBCODE_L_HELP', 'mdi:format-list-bulleted', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listo, 'bbcode-list-', 'o', 12, 'List=', 'BBCODE_O_HELP', 'mdi:format-list-numbered', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listitem, 'bbcode-asterisk', 'y', -1, '[*]', 'BBCODE_LISTITEM_HELP', 'mdi:playlist-add', ROOT_PATH, 'addlistitem') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.code, 'bbcode-code', 'c', 8, 'Code', 'BBCODE_C_HELP', 'code', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listb, 'bbcode-list', 'l', 10, 'List', 'BBCODE_L_HELP', 'list-ul', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listo, 'bbcode-list-', 'o', 12, 'List=', 'BBCODE_O_HELP', 'list-ol', ROOT_PATH) }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listitem, 'bbcode-asterisk', 'y', -1, '[*]', 'BBCODE_LISTITEM_HELP', 'asterisk', ROOT_PATH, 'addlistitem') }}
 		{% if S_BBCODE_IMG %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.img, 'bbcode-img', 'p', 14, 'Img', 'BBCODE_P_HELP', 'mdi:image-outline', ROOT_PATH) }}
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.img, 'bbcode-img', 'p', 14, 'Img', 'BBCODE_P_HELP', 'image', ROOT_PATH) }}
 		{% endif %}
 		{% if S_LINKS_ALLOWED %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.url, 'bbcode-url', 'w', 'url', 'URL', 'BBCODE_W_HELP', 'mdi:link-variant', ROOT_PATH, 'addbbcode16', 'bbspecial') }}
-		{% endif %}
-		{% if S_BBCODE_FLASH %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.flash, 'bbcode-flash', 'd', 18, 'Flash', 'BBCODE_D_HELP', 'fa:flash', ROOT_PATH) }}
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.url, 'bbcode-url', 'w', 'url', 'URL', 'BBCODE_W_HELP', 'link', ROOT_PATH, 'addbbcode16', 'bbspecial') }}
 		{% endif %}
 		{% if S_BBCODE_MEDIA %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.media, 'bbcode-media', 'm', 'media', 'Media', 'BBCODE_MEDIA_HELP', 'fa:television', ROOT_PATH, 'addmedia', 'bbspecial') }}
+			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.media, 'bbcode-media', 'm', 'media', 'Media', 'BBCODE_MEDIA_HELP', 'television', ROOT_PATH, 'addmedia', 'bbspecial') }}
 		{% endif %}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.fontcolor, 'bbcode-color', '', '', (not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR')), 'BBCODE_S_HELP', 'fa:tint', ROOT_PATH, 'abbc3_bbpalette', 'change_palette') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.fontcolor, 'bbcode-color', '', '', (not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR')), 'BBCODE_S_HELP', 'droplet', ROOT_PATH, 'abbc3_bbpalette', 'change_palette') }}
 		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
 			<option value="50">{{ lang('FONT_TINY') }}</option>
 			<option value="85">{{ lang('FONT_SMALL') }}</option>
@@ -50,9 +47,9 @@
 				{% endif %}
 			{% endif %}
 		</select>
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.copy, 'bbcode-copy', '', 'abbc3_copy', 'copy', 'ABBC3_COPY_BBCODE', 'fa:copy', ROOT_PATH, 'copybbcode', 'bbspecial') }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.paste, 'bbcode-paste', '', 'abbc3_paste', 'paste', 'ABBC3_PASTE_BBCODE', 'fa:paste', ROOT_PATH, 'pastebbcode', 'bbspecial') }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.plain, 'bbcode-plain', '', 'abbc3_plain', 'clear', 'ABBC3_PLAIN_BBCODE', 'fa:trash', ROOT_PATH, 'plainbbcode', 'bbspecial') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.copy, 'bbcode-copy', '', 'abbc3_copy', 'copy', 'ABBC3_COPY_BBCODE', 'copy', ROOT_PATH, 'copybbcode', 'bbspecial') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.paste, 'bbcode-paste', '', 'abbc3_paste', 'paste', 'ABBC3_PASTE_BBCODE', 'paste', ROOT_PATH, 'pastebbcode', 'bbspecial') }}
+		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.plain, 'bbcode-plain', '', 'abbc3_plain', 'clear', 'ABBC3_PLAIN_BBCODE', 'trash', ROOT_PATH, 'plainbbcode', 'bbspecial') }}
 		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
 	</div>
 	{% if custom_tags %}
@@ -79,7 +76,7 @@
 							</select>
 						{% else %}
 							<div class="abbc3_font_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
-								<a href="#" class="dropdown-trigger dropdown-toggle button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}"><span>{{ lang('ABBC3_FONT_BBCODE') }}</span> {{ Icon('iconify', 'fa:caret-down', '', true, '', {'style': 'height: 10px; width: 10px; padding-top: 6px;'}) }}</a>
+								<a href="#" class="dropdown-trigger dropdown-toggle button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}"><span>{{ lang('ABBC3_FONT_BBCODE') }}</span> {{ Icon('font', 'caret-down', '', true, '', {'style': 'height: 10px; width: 10px; padding-top: 6px;'}) }}</a>
 								<div class="dropdown">
 									<ul class="dropdown-contents" role="menu">
 										{% for group, fonts in ABBC3_BBCODE_FONTS %}
