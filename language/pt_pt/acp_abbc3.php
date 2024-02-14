@@ -24,7 +24,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aqui pode alterar as configurações do «Advanced BBCode Box». Para mais informações (em inglês) sobre a customização da barra de ícones, visite <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">a FAQ do ABBC3 <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aqui pode alterar as configurações do «Advanced BBCode Box». Para mais informações (em inglês) sobre a customização da barra de ícones, visite <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">a FAQ do ABBC3 %2$s.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
 	'ABBC3_INVALID_FONT'		=> 'Invalid font name for “%s”',
@@ -43,7 +43,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Install the optional phpBB Media Embed extension to access settings and management options for embedded rich media content.',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed extension is not installed. <a href="https://www.phpbb.com/customise/db/extension/mediaembed/" target="_blank">Download <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
+		0	=> 'phpBB Media Embed extension is not installed. %2$s Download %3$s.',
 		1	=> 'phpBB Media Embed extension is installed. Settings are accessible under the Posting tab.'
 	],
 	'PNG' => 'PNG',
