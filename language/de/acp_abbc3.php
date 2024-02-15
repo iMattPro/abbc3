@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Hier kannst du die Einstellungen für die Advanced BBCode Box verändern. Für weitere Informationen, wie du die Menüleiste verändern kannst, rufe bitte die <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">ABBC3 FAQ <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a> auf.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Hier kannst du die Einstellungen für die Advanced BBCode Box verändern. Für weitere Informationen, wie du die Menüleiste verändern kannst, rufe bitte die %1$s ABBC3 FAQ %2$s auf.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Füge <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> zum <samp class="error">[font]</samp> BBCode hinzu. Achte auf genaue Schreibweise und Groß-/Kleinschreibung. Setze jeden Schriftartnamen in eine eigene Zeile.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '„Nutzung von Drittanbieter-Servern zulassen“ muss aktiviert sein unter den “Serverlast”-Einstellungen, um diese Funktion zu nutzen.',
 	'ABBC3_INVALID_FONT'		=> 'Ungültiger Schriftname „%s“',
@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installiere die optionale Erweiterung „phpBB Media Embed“, um auf Einstellungen und Verwaltungsoptionen für eingebettete Rich Media-Inhalte zuzugreifen.',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed-Erweiterung ist nicht installiert. <a href="https://www.phpbb.com/customise/db/extension/mediaembed/" target="_blank">Download <i class="icon fa-external-link fa-fw" aria-hidden="true"></i></a>.',
+		0	=> 'phpBB Media Embed-Erweiterung ist nicht installiert. %2$s Download %3$s.',
 		1	=> 'phpBB Media Embed-Erweiterung ist installiert. Auf die Einstellungen kann über den Tab „Beiträge“ zugegriffen werden.'
 	],
 	'PNG' => 'PNG',
