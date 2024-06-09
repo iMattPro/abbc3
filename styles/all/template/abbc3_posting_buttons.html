@@ -76,7 +76,7 @@
 							</select>
 						{% else %}
 							<div class="abbc3_font_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
-								<a href="#" class="dropdown-trigger dropdown-toggle button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}"><span>{{ lang('ABBC3_FONT_BBCODE') }}</span> {{ Icon('font', 'caret-down', '', true, '', {'style': 'height: 10px; width: 10px; padding-top: 6px;'}) }}</a>
+								<a href="#" class="dropdown-trigger dropdown-toggle button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}"><span>{{ lang('ABBC3_FONT_BBCODE') }}</span> {{ Icon('font', 'caret-down', '', true, '') }}</a>
 								<div class="dropdown">
 									<ul class="dropdown-contents" role="menu">
 										{% for group, fonts in ABBC3_BBCODE_FONTS %}
