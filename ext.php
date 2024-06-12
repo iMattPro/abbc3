@@ -14,11 +14,11 @@ use phpbb\filesystem\exception\filesystem_exception;
 
 class ext extends \phpbb\extension\base
 {
-	const MOVE_UP = 'move_up';
-	const MOVE_DOWN = 'move_down';
-	const MOVE_DRAG = 'move_drag';
-	const PHPBB_MIN_VERSION = '3.2.2'; // Require 3.2.2 due to TextFormatter and BBCode changes
-	const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
+	public const MOVE_UP = 'move_up';
+	public const MOVE_DOWN = 'move_down';
+	public const MOVE_DRAG = 'move_drag';
+	public const PHPBB_MIN_VERSION = '4.0.0-a1-dev';
+	public const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
 
 	/**
 	 * {@inheritdoc}

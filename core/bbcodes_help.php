@@ -101,7 +101,7 @@ class bbcodes_help
 
 			$this->template->assign_block_vars('faq_block.faq_row', [
 				'FAQ_QUESTION'	=> $title[0],
-				'FAQ_ANSWER'	=> $this->language->lang('ABBC3_FAQ_ANSWER', (isset($title[1]) ? $title[1] : $title[0]), $example['text'], $result),
+				'FAQ_ANSWER'	=> $this->language->lang('ABBC3_FAQ_ANSWER', ($title[1] ?? $title[0]), $example['text'], $result),
 			]);
 		}
 	}

@@ -23,7 +23,7 @@ use phpbb\textformatter\s9e\factory as textformatter;
 class wizard
 {
 	/** @var string The default BBvideo site */
-	const BBVIDEO_DEFAULT = 'youtube';
+	public const BBVIDEO_DEFAULT = 'youtube';
 
 	/** @var cache_driver */
 	protected $cache;
