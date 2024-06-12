@@ -20,7 +20,7 @@
 	"extra": {
 		"display-name": "Advanced BBCode Box",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2.2"
+			"phpbb/phpbb": ">=3.2.2,<4.0.0@dev"
 		},
 		"version-check": {
 			"host": "www.phpbb.com",
