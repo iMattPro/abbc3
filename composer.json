@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Replace phpBB3's default BBCode buttons with icons in a customizable toolbar. This extension also adds many new and useful custom BBCodes giving users more ways to customize their posts, including BBvideo (embed videos from dozens of media sites). Custom BBCodes can be arranged and sorted in any order and assigned to specific usergroups (such as Moderators and Admins only).",
 	"homepage": "https://github.com/iMattPro/abbc3",
-	"version": "3.3.8-dev",
+	"version": "3.4.0-dev",
 	"keywords": ["phpbb", "extension", "bbcodes", "bbvideo"],
 	"license": "GPL-2.0-only",
 	"authors": [
@@ -14,13 +14,13 @@
 		}
 	],
 	"require": {
-		"php": ">=5.4",
+		"php": ">=8.1",
 		"composer/installers": "~1.0"
 	},
 	"extra": {
 		"display-name": "Advanced BBCode Box",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2.2"
+			"phpbb/phpbb": ">4.0.0@dev"
 		},
 		"version-check": {
 			"host": "www.phpbb.com",
