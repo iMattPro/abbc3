@@ -75,7 +75,7 @@
 						}
 					} catch (e) {}
 				} else {
-					alert('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
+					alert('{{ lang_js('ABBC3_NOSELECT_ERROR') }}');
 					return;
 				}
 				break;
@@ -84,7 +84,7 @@
 				if (theSelection) {
 					copyPaste = theSelection;
 				} else {
-					alert('{{ lang('ABBC3_NOSELECT_ERROR')|e("js") }}');
+					alert('{{ lang_js('ABBC3_NOSELECT_ERROR') }}');
 					return;
 				}
 				break;
@@ -93,7 +93,7 @@
 				if (copyPaste) {
 					bbfontstyle(copyPaste, '');
 				} else {
-					alert('{{ lang('ABBC3_PASTE_ERROR')|e("js") }}');
+					alert('{{ lang_js('ABBC3_PASTE_ERROR') }}');
 				}
 				break;
 
