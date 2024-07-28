@@ -17,7 +17,7 @@ class ext extends \phpbb\extension\base
 	public const MOVE_UP = 'move_up';
 	public const MOVE_DOWN = 'move_down';
 	public const MOVE_DRAG = 'move_drag';
-	public const PHPBB_MIN_VERSION = '4.0.0-a1-dev';
+	public const PHPBB_MIN_VERSION = '4.0.0-dev';
 	public const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
 
 	/**
