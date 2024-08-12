@@ -36,7 +36,7 @@
 			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.media, 'bbcode-media', 'm', 'media', 'Media', 'BBCODE_MEDIA_HELP', 'television', ROOT_PATH, 'addmedia', 'bbspecial') }}
 		{% endif %}
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.fontcolor, 'bbcode-color', '', '', (not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR')), 'BBCODE_S_HELP', 'droplet', ROOT_PATH, 'abbc3_bbpalette', 'change_palette') }}
-		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
+		<select class="abbc3_select" name="abbc3_addbbcode18" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode18.options[this.form.abbc3_addbbcode18.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode18.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
 			<option value="50">{{ lang('FONT_TINY') }}</option>
 			<option value="85">{{ lang('FONT_SMALL') }}</option>
 			<option value="100" selected="selected">{{ lang('FONT_NORMAL') }}</option>
