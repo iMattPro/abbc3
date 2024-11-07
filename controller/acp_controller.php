@@ -189,9 +189,19 @@ class acp_controller
 	protected function save_google_fonts()
 	{
 		$fonts = $this->request->variable('abbc3_google_fonts', '');
-		$fonts = explode("\n", $fonts);
-		$this->validate_google_fonts($fonts);
-		$this->config_text->set('abbc3_google_fonts', json_encode($fonts));
+		if (!empty($fonts))
+		{
+			$fonts = explode("\n", $fonts);
+			$fonts = array_filter($fonts, 'strlen'); // Remove empty strings
+
+			if (!empty($fonts))
+			{
+				$this->validate_google_fonts($fonts);
+			}
+		}
+
+		$fonts = (is_array($fonts) && !empty($fonts)) ? json_encode($fonts) : '';
+		$this->config_text->set('abbc3_google_fonts', $fonts);
 	}
 
 	/**
