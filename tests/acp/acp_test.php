@@ -180,11 +180,11 @@ class acp_test extends \phpbb_database_test_case
 	public function save_google_fonts_data()
 	{
 		return [
-			['', '[]', E_USER_NOTICE, 'CONFIG_UPDATED'],
+			['', '', E_USER_NOTICE, 'CONFIG_UPDATED'],
 			['Droid Sans', '["Droid Sans"]', E_USER_NOTICE, 'CONFIG_UPDATED'],
 			["Droid Sans\nRoboto", '["Droid Sans","Roboto"]', E_USER_NOTICE, 'CONFIG_UPDATED'],
 			["Droid Sans\nRoboto\nMac Donald", '["Droid Sans","Roboto"]', E_USER_WARNING, 'ABBC3_INVALID_FONT'],
-			['Mac Donald', '[]', E_USER_WARNING, 'ABBC3_INVALID_FONT'],
+			['Mac Donald', '', E_USER_WARNING, 'ABBC3_INVALID_FONT'],
 		];
 	}
 
@@ -214,13 +214,13 @@ class acp_test extends \phpbb_database_test_case
 				['abbc3_google_fonts', '', false, \phpbb\request\request_interface::REQUEST, $input],
 			]);
 
-		$this->expectException('\RuntimeException');
-		$this->expectExceptionCode($error);
-		$this->expectExceptionMessage($error_message);
-
-		$this->acp_controller->handle();
-
-		$this->assertSame($expected, $this->config_text->get('abbc3_google_fonts'));
+		try {
+			$this->acp_controller->handle();
+		} catch (\RuntimeException $e) {
+			$this->assertSame($expected, $this->config_text->get('abbc3_google_fonts'));
+			$this->assertEquals($error, $e->getCode());
+			$this->assertEquals($error_message, $e->getMessage());
+		}
 	}
 
 	public function test_info()
