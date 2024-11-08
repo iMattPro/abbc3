@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Hier kunt u de instellingen voor Advanced BBCode Box configureren. Voor informatie over het aanpassen van de werkbalk met pictogrammen, bezoek de %1$s ABBC3 FAQ %2$s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Hier kunt u de instellingen voor Advanced BBCode Box configureren. Voor informatie over het aanpassen van de werkbalk met pictogrammen, bezoek de %s.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Voeg <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> toe aan de <samp class="error">[font]</samp> BBCode. Gebruik exacte spelling en hoofdlettergevoeligheid. Plaats elke lettertype naam op een aparte regel.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Gebruik van externe content delivery networks toestaan” moet ingeschakeld zijn onder “Laadinstellingen” om deze functie te gebruiken.',
 	'ABBC3_INVALID_FONT'		=> 'Ongeldige lettertype naam voor “%s”',
@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installeer de optionele phpBB Media Embed extensie om toegang te krijgen tot de instellings-en beheeropties voor embedded rich media content.',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed-extensie is niet geïnstalleerd. %2$s Download %3$s.',
+		0	=> 'phpBB Media Embed-extensie is niet geïnstalleerd. %2$s.',
 		1	=> 'phpBB Media Embed-extensie is geïnstalleerd. Instellingen zijn toegankelijk onder het tabblad Plaatsen.'
 	],
 	'PNG' => 'PNG',

@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Tukaj lahko konfigurirate nastavitve za napredno polje BBKode. Za informacije o prilagajanju vrstice z ikonami obiščite %1$s ABBC3 FAQ %2$s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Tukaj lahko konfigurirate nastavitve za napredno polje BBKode. Za informacije o prilagajanju vrstice z ikonami obiščite %s.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Dodajte <a href="https://fonts.google.com" target="_blank">Googlove pisave</a> v <samp>font</samp> BBKode. Uporabite natančno črkovanje in razlikovanje med velikimi in malimi črkami. Vsako ime pisave postavite v ločeno vrstico. Primer: <samp>Droid Sans</samp>',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Upoštevajte, da mora biti za uporabo te funkcije v razdelku Nastavitve nalaganja omogočeno Dovoli uporabo tretjeosebnih omrežij.',
 	'ABBC3_INVALID_FONT'		=> 'Invalid font name for “%s”',
@@ -41,7 +41,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Install the optional phpBB Media Embed extension to access settings and management options for embedded rich media content.',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed extension is not installed. %2$s Download %3$s.',
+		0	=> 'phpBB Media Embed extension is not installed. %2$s.',
 		1	=> 'phpBB Media Embed extension is installed. Settings are accessible under the Posting tab.'
 	],
 	'PNG' => 'PNG',
