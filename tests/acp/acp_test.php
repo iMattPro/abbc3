@@ -183,6 +183,7 @@ class acp_test extends \phpbb_database_test_case
 			['', '', E_USER_NOTICE, 'CONFIG_UPDATED'],
 			['Droid Sans', '["Droid Sans"]', E_USER_NOTICE, 'CONFIG_UPDATED'],
 			["Droid Sans\nRoboto", '["Droid Sans","Roboto"]', E_USER_NOTICE, 'CONFIG_UPDATED'],
+			["\n\nDroid Sans\n\nRoboto\n\n", '["Droid Sans","Roboto"]', E_USER_NOTICE, 'CONFIG_UPDATED'],
 			["Droid Sans\nRoboto\nMac Donald", '["Droid Sans","Roboto"]', E_USER_WARNING, 'ABBC3_INVALID_FONT'],
 			['Mac Donald', '', E_USER_WARNING, 'ABBC3_INVALID_FONT'],
 		];
