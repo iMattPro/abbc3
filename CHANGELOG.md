@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.3.8 - 2024-11-08
+
+- Fixed minor issues that could occur if the Google Fonts field was left empty.
+- No longer using minified CSS files so it's easier to modify them for specific style tweaks.
+- Moved some HTML links and icons code out of the language files and into the template files.
+- Notifications in the ACP when arranging BBCodes now support browser dark mode.
+- Fixes for ScaffoldBB style.
+
 ## 3.3.7 - 2023-05-18
 
 - Auto Video PlugIn: This optional feature enables direct links to MP3, OGG, and WEBM files to be presented in an HTML5 video player.
