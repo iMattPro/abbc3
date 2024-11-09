@@ -49,6 +49,25 @@
 				});
 			});
 		})(jQuery);
+
+		function darkToast() {
+			const toast = document.getElementById('abbc3-successbox');
+
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				toast.classList.add("toast-dark");
+			} else {
+				toast.classList.remove("toast-dark");
+			}
+		}
+
+		// Initial check
+		darkToast();
+
+		// Add event listener to detect changes
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			darkToast();
+		});
+
 	</script>
 
 {% endif %}

@@ -1,11 +1,26 @@
 {% include 'overall_header.html' %}
 {% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
 
+{% set links = {
+	'faq': {
+		'url': 'https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551',
+		'text': lang('FAQ')
+	},
+	'media_embed': {
+		'url': 'https://www.phpbb.com/customise/db/extension/mediaembed/',
+		'text': lang('DOWNLOAD')
+	}
+} %}
+
+{% macro external_link(url, text) -%}
+	<a href="{{ url }}" target="_blank">
+		Icon('font', 'arrow-up-right-from-square', '', true)
+		{{ text -}}
+	</a>
+{%- endmacro %}
+
 <img src="{{ ROOT_PATH }}ext/vse/abbc3/adm/images/abbc3logo.png" alt="{{ lang('ACP_ABBC3_MODULE') }}">
-{% set LINK_FAQ = '<a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551" target="_blank">' %}
-{% set LINK_ME_EXT = '<a href="https://www.phpbb.com/customise/db/extension/mediaembed/" target="_blank">' %}
-{% set LINK_ICON = Icon('font', 'arrow-up-right-from-square', '', true) ~ '</a>' %}
-<p>{{ lang('ABBC3_SETTINGS_EXPLAIN', LINK_FAQ, LINK_ICON) }}</p>
+<p>{{ lang('ABBC3_SETTINGS_EXPLAIN', _self.external_link(links.faq.url, links.faq.text)) }}</p>
 
 <form id="abbc3_settings" method="post" action="{{ U_ACTION }}" data-ajax="true">
 	<fieldset>
@@ -52,7 +67,7 @@
 		</dl>
 		<dl>
 			<dt><label>{{ lang('ABBC3_BBVIDEO') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_BBVIDEO_EXPLAIN') }}</span></dt>
-			<dd><span class="{{ S_ABBC3_MEDIA_EMBED ? 'success' : 'error' }}">{{ lang('ABBC3_MEDIA_EMBED_INSTALL', S_ABBC3_MEDIA_EMBED, LINK_ME_EXT, LINK_ICON) }}</span></dd>
+			<dd><span class="{{ S_ABBC3_MEDIA_EMBED ? 'success' : 'error' }}">{{ lang('ABBC3_MEDIA_EMBED_INSTALL', S_ABBC3_MEDIA_EMBED, _self.external_link(links.media_embed.url, links.media_embed.text)) }}</span></dd>
 		</dl>
 		<dl>
 			<dt><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br><br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</span></dt>

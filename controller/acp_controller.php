@@ -189,28 +189,42 @@ class acp_controller
 	protected function save_google_fonts()
 	{
 		$fonts = $this->request->variable('abbc3_google_fonts', '');
-		$fonts = explode("\n", $fonts);
-		$this->validate_google_fonts($fonts);
-		$this->config_text->set('abbc3_google_fonts', json_encode($fonts));
+
+		if (!empty($fonts))
+		{
+			$fonts = array_filter(
+				array_map('trim', explode("\n", $fonts)),
+				[$this, 'validate_google_fonts']
+			);
+
+			$fonts = $fonts ? json_encode(array_values($fonts)) : '';
+		}
+
+		$this->config_text->set('abbc3_google_fonts', $fonts);
 	}
 
 	/**
-	 * Validate Google Font names provided link to a CSS file
+	 * Validate Google Font names link to an existing CSS file
 	 *
-	 * @param array $fonts
+	 * @param string $font
+	 * @return bool
 	 */
-	protected function validate_google_fonts(&$fonts)
+	protected function validate_google_fonts($font)
 	{
-		foreach ($fonts as $key => $font)
+		if ($font === '')
 		{
-			if (empty($font) || $this->valid_url('https://fonts.googleapis.com/css?family=' . urlencode($font)))
-			{
-				continue;
-			}
-
-			$this->errors[] = $this->language->lang('ABBC3_INVALID_FONT', $font);
-			unset($fonts[$key]);
+			return false;
 		}
+
+		$url = 'https://fonts.googleapis.com/css?family=' . urlencode($font);
+
+		if ($this->valid_url($url))
+		{
+			return true;
+		}
+
+		$this->errors[] = $this->language->lang('ABBC3_INVALID_FONT', $font);
+		return false;
 	}
 
 	/**

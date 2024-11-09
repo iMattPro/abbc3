@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> '在此您可以修改 Advanced BBCode Box 的设置。 要了解有关定制图标栏的信息，请访问 %1$s ABBC3 FAQ %2$s。',
+	'ABBC3_SETTINGS_EXPLAIN'	=> '在此您可以修改 Advanced BBCode Box 的设置。 要了解有关定制图标栏的信息，请访问 %s。',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> '添加 <a href="https://fonts.google.com" target="_blank">Google Fonts</a> 到 <samp>font</samp> BBCode 中。使用完全一致的大小写和拼写。每行写一个字体名称。 例如： <samp>Droid Sans</samp>',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '要使用此特性，请在‘负载设置’页面，设置“允许使用第三方内容分发网络”。',
 	'ABBC3_INVALID_FONT'		=> '无效的字体名称 “%s”',
@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> '安装可选的  phpBB Media Embed 扩展，以访问内嵌富媒体内容的设置和管理选项。',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed 扩展没有安装。 %2$s Download %3$s。',
+		0	=> 'phpBB Media Embed 扩展没有安装。 %2$s。',
 		1	=> 'phpBB Media Embed 扩展已安装。 在帖子选项卡下设置。'
 	],
 	'PNG' => 'PNG',

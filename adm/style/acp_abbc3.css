@@ -45,6 +45,14 @@
 	color: #333333;
 }
 
+.toast.toast-dark {
+	background: hsl(0, 0%, 20%);
+}
+
+.toast.toast-dark .toast-message .toast-text {
+	color: #ffffff;
+}
+
 #abbc3_icons_type {
 	vertical-align: top;
 }
