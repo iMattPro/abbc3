@@ -1,5 +1,6 @@
 tests/			export-ignore
 develop/		export-ignore
+node_modules/	export-ignore
 .github/		export-ignore
 .gitignore		export-ignore
 .gitattributes	export-ignore
@@ -7,3 +8,7 @@ phpunit.xml.*	export-ignore
 composer.lock	export-ignore
 README.md		export-ignore
 build.xml		export-ignore
+package.js		export-ignore
+package-lock.js	export-ignore
+eslint.config.mjs	export-ignore
+.codeclimate.yml	export-ignore
