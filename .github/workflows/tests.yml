@@ -11,11 +11,13 @@ env:
 on:
     push:
         branches:        # Run tests when commits are pushed to these branches in your repo
+            - main
             - master
             - develop
             - dev/4.0
     pull_request:        # Run tests when pull requests are made on these branches in your repo
         branches:
+            - main
             - master
             - develop
             - dev/4.0
@@ -191,7 +193,7 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
-                  extensions: dom, curl, libxml, mbstring, zip, pcntl, intl, gd, exif, iconv, mysqli, pdo, pdo_mysql, ldap
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
                   coverage: xdebug
 
             - name: Setup environment for phpBB
@@ -354,7 +356,7 @@ jobs:
 
     # START Other Tests Job (SQLite 3 and mssql)
     other-tests:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-20.04
         strategy:
             matrix:
                 include:
