@@ -14,13 +14,13 @@ on:
             - main
             - master
             - develop
-            - dev/4.0
+            - dev/*
     pull_request:        # Run tests when pull requests are made on these branches in your repo
         branches:
             - main
             - master
             - develop
-            - dev/4.0
+            - dev/*
 
 jobs:
     # START Basic Checks Job (EPV, code sniffer, images check, etc.)
