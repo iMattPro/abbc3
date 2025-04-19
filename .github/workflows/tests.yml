@@ -16,7 +16,7 @@ on:
 
 jobs:
     call-tests:
-        uses: iMattPro/central-repo/.github/workflows/tests.yml@master
+        uses: phpbb-extensions/test-framework/.github/workflows/tests.yml@master
         with:
             EXTNAME: vse/abbc3   # Your extension vendor/package name
             SNIFF: 1             # Run code sniffer on your code? 1 or 0
