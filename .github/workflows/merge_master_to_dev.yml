@@ -1,0 +1,47 @@
+name: Merge master into dev/4.0
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout dev/4.0
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: dev/4.0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Create merge branch
+        run: |
+          git fetch origin master
+          # Create a unique branch name based on time
+          BRANCH_NAME="merge-master-into-dev-4.0-$(date +'%Y%m%d%H%M%S')"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+          git checkout -b "$BRANCH_NAME"
+          git merge --no-ff origin/master || echo "merge_failed=true" >> $GITHUB_ENV
+
+      - name: Push merge branch
+        run: git push origin ${{ env.BRANCH_NAME }}
+
+      - name: Create Pull Request if merge failed
+        if: env.merge_failed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Merge master into dev/4.0"
+          body: "This PR merges changes from `master` into `dev/4.0`. The merge failed due to conflicts."
+          head: ${{ env.BRANCH_NAME }}
+          base: dev/4.0
+          draft: false
