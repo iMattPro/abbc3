@@ -23,25 +23,39 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Create merge branch
+        id: merge
         run: |
           git fetch origin master
-          # Create a unique branch name based on time
+          # Create a unique branch name
           BRANCH_NAME="merge-master-into-dev-4.0-$(date +'%Y%m%d%H%M%S')"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
           git checkout -b "$BRANCH_NAME"
-          git merge --no-ff origin/master || echo "merge_failed=true" >> $GITHUB_ENV
+          set +e
+          git merge --no-ff origin/master
+          echo "MERGE_EXIT_CODE=$?" >> $GITHUB_ENV
+          set -e
 
-      - name: Push merge branch
-        run: git push origin ${{ env.BRANCH_NAME }}
+      - name: Push clean merge directly to dev/4.0
+        if: env.MERGE_EXIT_CODE == '0'
+        run: |
+          git push origin HEAD:dev/4.0
+          echo "Merged cleanly and pushed to dev/4.0."
+
+      - name: Push temp branch if merge failed
+        if: env.MERGE_EXIT_CODE != '0'
+        run: |
+          git push origin ${{ env.BRANCH_NAME }}
+          echo "Conflict detected. Temp branch pushed."
 
       - name: Create Pull Request if merge failed
-        if: env.merge_failed == 'true'
+        if: env.MERGE_EXIT_CODE != '0'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Merge master into dev/4.0"
-          body: "This PR merges changes from `master` into `dev/4.0`. The merge failed due to conflicts."
+          title: "Conflict: Merge master into dev/4.0"
+          body: "This PR was created because merging `master` into `dev/4.0` resulted in conflicts. Manual resolution is required."
           head: ${{ env.BRANCH_NAME }}
           base: dev/4.0
           draft: false
+          labels: conflict
