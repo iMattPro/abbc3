@@ -28,5 +28,13 @@
 			"filename": "version_check",
 			"ssl": true
 		}
+	},
+	"require-dev": {
+		"phing/phing": "^2.16"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
 	}
 }

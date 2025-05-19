@@ -1,21 +1,10 @@
 name: Tests
 
-on:
-    push:
-        branches:        # Run tests when commits are pushed to these branches in your repo
-            - main
-            - master
-            - develop
-            - dev/*
-    pull_request:        # Run tests when pull requests are made on these branches in your repo
-        branches:
-            - main
-            - master
-            - develop
-            - dev/*
+on: [push, pull_request]
 
 jobs:
     call-tests:
+        name: Extension tests
         uses: phpbb-extensions/test-framework/.github/workflows/tests.yml@master
         with:
             EXTNAME: vse/abbc3   # Your extension vendor/package name
