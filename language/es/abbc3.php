@@ -101,5 +101,5 @@ $lang = array_merge($lang, array(
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'BBCodes de la Caja Avanzada de BBCode',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'El zorro marrón rápido salta sobre el perro perezoso',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Ejemplo:</strong><br>%2$s<br><br><strong>Resultado:</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Ejemplo:</strong><br>%2$s<br><br><strong>Resultado:</strong><br>%3$s<hr>',
 ));
