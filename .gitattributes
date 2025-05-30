@@ -11,4 +11,3 @@ build.xml		export-ignore
 package.js		export-ignore
 package-lock.js	export-ignore
 eslint.config.mjs	export-ignore
-.codeclimate.yml	export-ignore

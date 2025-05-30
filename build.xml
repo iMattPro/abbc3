@@ -19,7 +19,6 @@
 		<delete dir="${dir}/develop" />
 		<delete dir="${dir}/.github" />
 
-		<delete file="${dir}/.codeclimate.yml" />
 		<delete file="${dir}/.gitattributes" />
 		<delete file="${dir}/.gitignore" />
 		<delete file="${dir}/build.xml" />
