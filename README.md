@@ -7,7 +7,7 @@ Tailor your custom BBCodes to perfection by arranging and sorting them in any de
 Install Advanced BBCode Box today and unlock a world of enhanced formatting possibilities for your phpBB forum.
 
 [![Build Status](https://github.com/iMattPro/abbc3/actions/workflows/tests.yml/badge.svg)](https://github.com/iMattPro/abbc3/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8d41d4a3ec4e8a3e4e76/maintainability)](https://codeclimate.com/github/iMattPro/abbc3/maintainability)
+[![Maintainability](https://qlty.sh/badges/6853fa75-7bf8-4f43-80ea-448278f31b68/maintainability.svg)](https://qlty.sh/gh/iMattPro/projects/abbc3)
 [![codecov](https://codecov.io/gh/iMattPro/abbc3/branch/master/graph/badge.svg?token=C5Big3OlKM)](https://codecov.io/gh/iMattPro/abbc3)
 [![Latest Stable Version](https://poser.pugx.org/vse/abbc3/v/stable)](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/)
 
