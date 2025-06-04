@@ -6,9 +6,6 @@
 	},
 	"devDependencies": {
 		"copyfiles": "^2.4.1",
-		"eslint": "^9.14.0",
-		"jshint": "^2.13.1",
-		"jshint-stylish": "^2.0.1",
 		"npm-run-all": "^4.1.5",
 		"npm-watch": "^0.13.0",
 		"uglify-js": "^3.14.3"
@@ -17,38 +14,9 @@
 		"js-minify": "styles/all/template/js/abbc3.js"
 	},
 	"scripts": {
-		"js": "npm-run-all jshint eslint js-minify",
-		"jshint": "jshint styles/all/template/js/abbc3.js",
-		"eslint": "eslint styles/all/template/js/abbc3.js",
 		"js-minify": "uglifyjs styles/all/template/js/abbc3.js --source-map --output styles/all/template/js/abbc3.min.js",
 		"copy-tablednd": "copyfiles --flat node_modules/tablednd/dist/jquery.tablednd.js node_modules/tablednd/dist/jquery.tablednd.min.js styles/all/template/js",
-		"build": "npm-run-all --parallel js copy-tablednd",
+		"build": "npm-run-all --parallel js-minify copy-tablednd",
 		"watch": "npm-watch"
-	},
-	"jshintConfig": {
-		"globals": {
-			"is_ie": true,
-			"form_name": true,
-			"text_name": true,
-			"baseHeight": true,
-			"storeCaret": true,
-			"bbfontstyle": true,
-			"insert_text": true,
-			"phpbb": true
-		},
-		"bitwise": true,
-		"curly": true,
-		"eqeqeq": true,
-		"esversion": 6,
-		"forin": false,
-		"freeze": true,
-		"noarg": true,
-		"nonbsp": true,
-		"undef": true,
-		"unused": true,
-		"strict": true,
-		"browser": true,
-		"devel": false,
-		"jquery": true
 	}
 }

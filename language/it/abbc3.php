@@ -102,5 +102,5 @@ $lang = array_merge($lang, array(
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'BBCode dell\'Advanced BBCode Box',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Qualche vago ione tipo zolfo, bromo, sodio',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Esempio:</strong><br>%2$s<br><br><strong>Risultato:</strong><br>%3$s<hr />',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Esempio:</strong><br>%2$s<br><br><strong>Risultato:</strong><br>%3$s<hr>',
 ));
