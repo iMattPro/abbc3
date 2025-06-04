@@ -43,7 +43,7 @@ class v323_m12_table_bbcode extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = array(
+	protected static array $bbcode_data = array(
 		'pipes' => array(
 			'bbcode_helpline'	=> 'ABBC3_PIPE_TABLES',
 			'bbcode_match'		=> '[pipes]{TEXT}[/pipes]',

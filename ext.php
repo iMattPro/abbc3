@@ -10,9 +10,10 @@
 
 namespace vse\abbc3;
 
+use phpbb\extension\base;
 use phpbb\filesystem\exception\filesystem_exception;
 
-class ext extends \phpbb\extension\base
+class ext extends base
 {
 	public const MOVE_UP = 'move_up';
 	public const MOVE_DOWN = 'move_down';
@@ -23,7 +24,7 @@ class ext extends \phpbb\extension\base
 	/**
 	 * {@inheritdoc}
 	 */
-	public function is_enableable()
+	public function is_enableable(): array|bool
 	{
 		$config = $this->container->get('config');
 		return $this->version_check($config['version']) && $this->version_check(PHPBB_VERSION);
@@ -32,7 +33,7 @@ class ext extends \phpbb\extension\base
 	/**
 	 * {@inheritdoc}
 	 */
-	public function enable_step($old_state)
+	public function enable_step($old_state): bool|string
 	{
 		if ($old_state === false)
 		{
@@ -49,7 +50,15 @@ class ext extends \phpbb\extension\base
 			catch (filesystem_exception $e)
 			{
 				$user = $this->container->get('user');
-				$this->container->get('log')->add('critical', $user->data['user_id'], $user->ip, 'LOG_ABBC3_ENABLE_FAIL', false, [$e->get_filename()]);
+				$log = $this->container->get('log');
+				$log->add(
+					'critical',
+					$user->data['user_id'],
+					$user->ip,
+					'LOG_ABBC3_ENABLE_FAIL',
+					false,
+					[$e->get_filename()]
+				);
 			}
 
 			return 'abbc3-step';
@@ -61,10 +70,10 @@ class ext extends \phpbb\extension\base
 	/**
 	 * Enable version check
 	 *
-	 * @param string|int $version The version to check
+	 * @param int|string $version The version to check
 	 * @return bool
 	 */
-	protected function version_check($version)
+	protected function version_check(int|string $version): bool
 	{
 		return phpbb_version_compare($version, self::PHPBB_MIN_VERSION, '>=');
 	}

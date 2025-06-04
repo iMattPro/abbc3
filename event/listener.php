@@ -12,10 +12,10 @@ namespace vse\abbc3\event;
 
 use phpbb\config\config;
 use phpbb\config\db_text;
+use phpbb\event\data;
 use phpbb\language\language;
 use phpbb\routing\helper;
 use phpbb\template\template;
-use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\bbcodes_display;
 use vse\abbc3\core\bbcodes_help;
@@ -28,45 +28,42 @@ use vse\abbc3\ext;
 class listener implements EventSubscriberInterface
 {
 	/** @var bbcodes_config */
-	protected $bbcodes_config;
+	protected bbcodes_config $bbcodes_config;
 
 	/** @var bbcodes_display */
-	protected $bbcodes_display;
+	protected bbcodes_display $bbcodes_display;
 
 	/** @var bbcodes_help */
-	protected $bbcodes_help;
+	protected bbcodes_help $bbcodes_help;
 
 	/** @var config */
-	protected $config;
+	protected config $config;
 
 	/** @var db_text */
-	protected $config_text;
+	protected db_text $config_text;
 
 	/** @var helper */
-	protected $helper;
+	protected helper $helper;
 
 	/** @var language */
-	protected $language;
+	protected language $language;
 
 	/** @var template */
-	protected $template;
+	protected template $template;
 
-	/** @var user */
-	protected $user;
-
-	protected $quick_reply = false;
+	protected bool $quick_reply = false;
 
 	/**
 	 * Constructor
 	 *
-	 * @param bbcodes_config  $bbcodes_config
+	 * @param bbcodes_config $bbcodes_config
 	 * @param bbcodes_display $bbcodes_display
-	 * @param bbcodes_help    $bbcodes_help
-	 * @param config          $config
-	 * @param db_text         $db_text
-	 * @param helper          $helper
-	 * @param language        $language
-	 * @param template        $template
+	 * @param bbcodes_help $bbcodes_help
+	 * @param config $config
+	 * @param db_text $db_text
+	 * @param helper $helper
+	 * @param language $language
+	 * @param template $template
 	 * @access public
 	 */
 	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template)
@@ -88,7 +85,7 @@ class listener implements EventSubscriberInterface
 	 * @static
 	 * @access public
 	 */
-	public static function getSubscribedEvents()
+	public static function getSubscribedEvents(): array
 	{
 		return [
 			'core.user_setup'							=> 'load_language_on_setup',
@@ -112,10 +109,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Load common files during user setup
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function load_language_on_setup($event)
+	public function load_language_on_setup(data $event): void
 	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = [
@@ -131,7 +128,7 @@ class listener implements EventSubscriberInterface
 	 *
 	 * @access public
 	 */
-	public function load_google_fonts()
+	public function load_google_fonts(): void
 	{
 		if (!$this->config['allow_cdn'])
 		{
@@ -147,10 +144,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Modify the SQL array to gather custom BBCode data
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function custom_bbcode_modify_sql($event)
+	public function custom_bbcode_modify_sql(data $event): void
 	{
 		$sql_ary = $event['sql_ary'];
 		$sql_ary['SELECT'] .= ', b.bbcode_group';
@@ -163,7 +160,7 @@ class listener implements EventSubscriberInterface
 	 *
 	 * @access public
 	 */
-	public function setup_custom_bbcodes()
+	public function setup_custom_bbcodes(): void
 	{
 		$this->template->assign_vars([
 			'ABBC3_BBCODE_ICONS'		=> $this->bbcodes_display->get_icons(),
@@ -180,10 +177,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Alter custom BBCodes display
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function display_custom_bbcodes($event)
+	public function display_custom_bbcodes(data $event): void
 	{
 		if (!$this->config['abbc3_bbcode_bar'])
 		{
@@ -196,10 +193,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Allow custom BBCodes based on user's group memberships
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function allow_custom_bbcodes($event)
+	public function allow_custom_bbcodes(data $event): void
 	{
 		if (defined('IN_CRON'))
 		{
@@ -212,10 +209,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Configure TextFormatter powered PlugIns and BBCodes
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function configure_bbcodes($event)
+	public function configure_bbcodes(data $event): void
 	{
 		$configurator = $event['configurator'];
 		$configurator->registeredVars['abbc3.pipes_enabled'] = $this->config['abbc3_pipes'];
@@ -230,10 +227,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Add ABBC3 BBCodes to the BBCode FAQ after the HELP_BBCODE_BLOCK_OTHERS block
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function add_bbcode_faq($event)
+	public function add_bbcode_faq(data $event): void
 	{
 		if ($event['block_name'] === 'HELP_BBCODE_BLOCK_OTHERS')
 		{
@@ -243,11 +240,11 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * If Quick Reply allowed, set our quick_reply property.
-	 * Added compatibility check for Quick Reply Reloaded (qr_bbcode).
+	 * Added a compatibility check for Quick Reply Reloaded (qr_bbcode).
 	 *
 	 * @access public
 	 */
-	public function set_quick_reply()
+	public function set_quick_reply(): void
 	{
 		$this->quick_reply = $this->config['abbc3_qr_bbcodes'] && !$this->config['qr_bbcode'];
 	}
@@ -255,10 +252,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Add BBCodes to Quick Reply.
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function add_to_quickreply($event)
+	public function add_to_quickreply(data $event): void
 	{
 		if ($this->quick_reply)
 		{

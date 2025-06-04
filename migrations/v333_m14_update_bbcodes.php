@@ -35,7 +35,7 @@ class v333_m14_update_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = [
+	protected static array $bbcode_data = [
 		'marq=' => [
 			'bbcode_helpline'	=> 'ABBC3_MARQUEE_HELPLINE',
 			'bbcode_match'		=> '[marq={IDENTIFIER}]{TEXT}[/marq]',

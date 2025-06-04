@@ -10,6 +10,8 @@
 
 namespace vse\abbc3\event;
 
+use phpbb\event\data;
+use s9e\TextFormatter\Configurator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\acp_manager;
 use vse\abbc3\ext;
@@ -20,19 +22,19 @@ use vse\abbc3\ext;
 class acp_listener implements EventSubscriberInterface
 {
 	/** @var acp_manager */
-	protected $acp_manager;
+	protected acp_manager $acp_manager;
 
 	/** @var string */
-	protected $root_path;
+	protected string $root_path;
 
 	/**
 	 * Constructor
 	 *
 	 * @param acp_manager $acp_manager
-	 * @param string      $root_path
+	 * @param string $root_path
 	 * @access public
 	 */
-	public function __construct(acp_manager $acp_manager, $root_path)
+	public function __construct(acp_manager $acp_manager, string $root_path)
 	{
 		$this->acp_manager = $acp_manager;
 		$this->root_path = $root_path;
@@ -45,7 +47,7 @@ class acp_listener implements EventSubscriberInterface
 	 * @static
 	 * @access public
 	 */
-	public static function getSubscribedEvents()
+	public static function getSubscribedEvents(): array
 	{
 		return [
 			'core.acp_bbcodes_display_form'				=> 'acp_bbcodes_custom_sorting',
@@ -61,23 +63,29 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Add some additional elements to the BBCodes template
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function acp_bbcodes_custom_sorting_buttons($event)
+	public function acp_bbcodes_custom_sorting_buttons(data $event): void
 	{
 		$bbcode_id = $event['row']['bbcode_id'];
-		$event->update_subarray('bbcodes_array', 'U_MOVE_UP', $event['u_action'] . '&amp;action=' . ext::MOVE_UP . '&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash(ext::MOVE_UP . $bbcode_id));
-		$event->update_subarray('bbcodes_array', 'U_MOVE_DOWN', $event['u_action'] . '&amp;action=' . ext::MOVE_DOWN . '&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash(ext::MOVE_DOWN . $bbcode_id));
+		$event->update_subarray('bbcodes_array',
+			'U_MOVE_UP',
+			$event['u_action'] . '&amp;action=' . ext::MOVE_UP . '&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash(ext::MOVE_UP . $bbcode_id)
+		);
+		$event->update_subarray('bbcodes_array',
+			'U_MOVE_DOWN',
+			$event['u_action'] . '&amp;action=' . ext::MOVE_DOWN . '&amp;id=' . $bbcode_id . '&amp;hash=' . generate_link_hash(ext::MOVE_DOWN . $bbcode_id)
+		);
 	}
 
 	/**
-	 * Add the Group select form field on BBCode edit page
+	 * Add the Group select form field on the BBCode edit page
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function acp_bbcodes_group_select_box($event)
+	public function acp_bbcodes_group_select_box(data $event): void
 	{
 		$bbcode_group = ($event['action'] === 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : [];
 
@@ -87,10 +95,10 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Handle BBCode order changes when moving them up/down
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function acp_bbcodes_custom_sorting($event)
+	public function acp_bbcodes_custom_sorting(data $event): void
 	{
 		// Move up/down actions
 		switch ($event['action'])
@@ -115,12 +123,12 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Handle BBCode order and group data during modify/create routines
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function acp_bbcodes_modify_create($event)
+	public function acp_bbcodes_modify_create(data $event): void
 	{
-		// Set a new BBCode order value on create
+		// Set a new BBCode order value on creation
 		if ($event['action'] === 'create')
 		{
 			$event->update_subarray('sql_ary', 'bbcode_order', $this->acp_manager->get_max_bbcode_order() + 1);
@@ -137,12 +145,12 @@ class acp_listener implements EventSubscriberInterface
 	/**
 	 * Store BBCode groups in a s9e\TextFormatter variable
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function s9e_store_bbcode_groups($event)
+	public function s9e_store_bbcode_groups(data $event): void
 	{
-		/** @var \s9e\TextFormatter\Configurator $configurator */
+		/** @var Configurator $configurator */
 		$configurator = $event['configurator'];
 		$bbcode_groups = $this->acp_manager->get_bbcode_groups_data();
 

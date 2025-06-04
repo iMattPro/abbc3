@@ -43,7 +43,7 @@ class v310_m5_update_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = array(
+	protected static array $bbcode_data = array(
 		'pre' => array(
 			'bbcode_helpline'	=> 'ABBC3_PREFORMAT_HELPLINE',
 			'bbcode_match'		=> '[pre]{TEXT}[/pre]',

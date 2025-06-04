@@ -65,7 +65,7 @@ class load_language_on_setup_test extends listener_base
 
 		$event_data = ['lang_set_ext'];
 		$event_filtered_data = $dispatcher->trigger_event('core.user_setup', compact($event_data));
-		extract($event_filtered_data, EXTR_OVERWRITE);
+		extract($event_filtered_data);
 
 		foreach ($expected_contains as $expected)
 		{

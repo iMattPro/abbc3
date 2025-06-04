@@ -10,6 +10,7 @@
 
 namespace vse\abbc3\core;
 
+use acp_bbcodes;
 use phpbb\db\driver\driver_interface;
 use phpbb\group\helper;
 use phpbb\language\language;
@@ -22,27 +23,27 @@ use phpbb\request\request;
  */
 class bbcodes_installer extends acp_manager
 {
-	/** @var \acp_bbcodes */
-	protected $acp_bbcodes;
+	/** @var acp_bbcodes */
+	protected acp_bbcodes $acp_bbcodes;
 
 	/** @var string */
-	protected $phpbb_root_path;
+	protected string $phpbb_root_path;
 
 	/** @var string */
-	protected $php_ext;
+	protected string $php_ext;
 
 	/**
 	 * Constructor
 	 *
-	 * @param driver_interface $db
-	 * @param helper           $group_helper
-	 * @param language         $language
-	 * @param request          $request
-	 * @param string           $phpbb_root_path
-	 * @param string           $php_ext
+	 * @param driver_interface	$db
+	 * @param helper			$group_helper
+	 * @param language			$language
+	 * @param request			$request
+	 * @param string			$phpbb_root_path
+	 * @param string			$php_ext
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, helper $group_helper, language $language, request $request, $phpbb_root_path, $php_ext)
+	public function __construct(driver_interface $db, helper $group_helper, language $language, request $request, string $phpbb_root_path, string $php_ext)
 	{
 		parent::__construct($db, $group_helper, $language, $request);
 
@@ -60,7 +61,7 @@ class bbcodes_installer extends acp_manager
 	 * @param array $bbcodes Array of bbcodes to install
 	 * @access public
 	 */
-	public function install_bbcodes(array $bbcodes)
+	public function install_bbcodes(array $bbcodes): void
 	{
 		foreach ($bbcodes as $bbcode_name => $bbcode_data)
 		{
@@ -84,7 +85,7 @@ class bbcodes_installer extends acp_manager
 	 * @param array $bbcodes Array of bbcodes to delete
 	 * @access public
 	 */
-	public function delete_bbcodes(array $bbcodes)
+	public function delete_bbcodes(array $bbcodes): void
 	{
 		foreach ($bbcodes as $bbcode_name => $bbcode_data)
 		{
@@ -102,17 +103,17 @@ class bbcodes_installer extends acp_manager
 	/**
 	 * Get the acp_bbcodes class
 	 *
-	 * @return \acp_bbcodes
+	 * @return acp_bbcodes
 	 * @access protected
 	 */
-	protected function get_acp_bbcodes()
+	protected function get_acp_bbcodes(): acp_bbcodes
 	{
 		if (!class_exists('acp_bbcodes'))
 		{
 			include $this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext;
 		}
 
-		return new \acp_bbcodes();
+		return new acp_bbcodes();
 	}
 
 	/**
@@ -122,7 +123,7 @@ class bbcodes_installer extends acp_manager
 	 * @return array Complete bbcode data array
 	 * @access protected
 	 */
-	protected function build_bbcode(array $bbcode_data)
+	protected function build_bbcode(array $bbcode_data): array
 	{
 		$data = $this->acp_bbcodes->build_regexp($bbcode_data['bbcode_match'], $bbcode_data['bbcode_tpl']);
 
@@ -141,7 +142,7 @@ class bbcodes_installer extends acp_manager
 	 * @return int bbcode identifier
 	 * @access protected
 	 */
-	protected function get_max_bbcode_id()
+	protected function get_max_bbcode_id(): int
 	{
 		return $this->get_max_column_value('bbcode_id');
 	}
@@ -154,7 +155,7 @@ class bbcodes_installer extends acp_manager
 	 * @return string|false Existing bbcode identifier or false if not found
 	 * @access protected
 	 */
-	public function bbcode_exists($bbcode_name, $bbcode_tag)
+	public function bbcode_exists(string $bbcode_name, string $bbcode_tag): bool|string
 	{
 		$sql = 'SELECT bbcode_id
 			FROM ' . BBCODES_TABLE . "
@@ -174,7 +175,7 @@ class bbcodes_installer extends acp_manager
 	 * @param array $bbcode_data bbcode data
 	 * @access protected
 	 */
-	protected function update_bbcode($bbcode_id, array $bbcode_data)
+	protected function update_bbcode(int $bbcode_id, array $bbcode_data): void
 	{
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
 			SET ' . $this->db->sql_build_array('UPDATE', $bbcode_data) . '
@@ -188,7 +189,7 @@ class bbcodes_installer extends acp_manager
 	 * @param array $bbcode_data New bbcode data
 	 * @access protected
 	 */
-	protected function add_bbcode(array $bbcode_data)
+	protected function add_bbcode(array $bbcode_data): void
 	{
 		$bbcode_id = max($this->get_max_bbcode_id(), NUM_CORE_BBCODES) + 1;
 
@@ -204,22 +205,22 @@ class bbcodes_installer extends acp_manager
 
 	/**
 	 * Remove a bbcode
-	 * Don't remove just by ID. Also match replace fields. This is to ensure we only delete BBCodes created by ABBC3,
-	 * and not if, for example ABBC3 BBCodes that have been altered by the user.
+	 * Don't remove just by ID. Also, the match replaces fields. This is to ensure we only delete BBCodes created by ABBC3,
+	 * and not if, for example, ABBC3 BBCodes that have been altered by the user.
 	 *
 	 * Note special handling for MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
 	 *
-	 * @param string|int $bbcode_id bbcode identifier
+	 * @param int|string $bbcode_id bbcode identifier
 	 * @param array $bbcode_data bbcode data
 	 * @access protected
 	 */
-	protected function remove_bbcode($bbcode_id, array $bbcode_data)
+	protected function remove_bbcode(int|string $bbcode_id, array $bbcode_data): void
 	{
 		static $is_mssql;
 
 		if (!isset($is_mssql))
 		{
-			$is_mssql = strpos($this->db->get_sql_layer(), 'mssql') === 0;
+			$is_mssql = str_starts_with($this->db->get_sql_layer(), 'mssql');
 		}
 
 		$sql = 'DELETE FROM ' . BBCODES_TABLE . '

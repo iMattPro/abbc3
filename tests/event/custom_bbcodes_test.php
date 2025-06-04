@@ -20,11 +20,9 @@ class custom_bbcodes_test extends listener_base
 	public function custom_bbcodes_data()
 	{
 		return [
-			['', '', true],
-			['FOO', 'BAR', true],
 			[[], [], true],
 			[['FOO1', 'FOO2'], ['BAR1', 'BAR2'], true],
-			['', '', false],
+			[[], [], false],
 		];
 	}
 
@@ -50,7 +48,7 @@ class custom_bbcodes_test extends listener_base
 
 		$event_data = ['custom_tags', 'row'];
 		$event_filtered_data = $dispatcher->trigger_event('core.display_custom_bbcodes_modify_row', compact($event_data));
-		extract($event_filtered_data, EXTR_OVERWRITE);
+		extract($event_filtered_data);
 
 		self::assertEquals($custom_tags, $custom_tags);
 	}

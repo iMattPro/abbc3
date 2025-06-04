@@ -21,19 +21,19 @@ use phpbb\template\template;
 class bbcodes_help
 {
 	/** @var config */
-	protected $config;
+	protected config $config;
 
 	/** @var driver_interface */
-	protected $db;
+	protected driver_interface $db;
 
 	/** @var language */
-	protected $language;
+	protected language $language;
 
 	/** @var template */
-	protected $template;
+	protected template $template;
 
 	/** @var bbcodes_display */
-	private $bbcodes_display;
+	private bbcodes_display $bbcodes_display;
 
 	/**
 	 * Constructor
@@ -56,7 +56,7 @@ class bbcodes_help
 	/**
 	 * Generate BBCode help FAQ for ABBC3's custom BBCodes
 	 */
-	public function faq()
+	public function faq(): void
 	{
 		// Set the block template data
 		$this->template->assign_block_vars('faq_block', [
@@ -90,7 +90,7 @@ class bbcodes_help
 			'ABBC3_AUTOVIDEO_HELPLINE'	=> 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
 		], $this->allowed_bbcodes());
 
-		// Process faq data for display as parsed and un-parsed bbcodes
+		// Process faq data for display as parsed and unparsed bbcodes
 		foreach ($abbc3_faq_data as $key => $question)
 		{
 			$uid = $bitfield = $flags = '';
@@ -111,7 +111,7 @@ class bbcodes_help
 	 *
 	 * @return array
 	 */
-	protected function allowed_bbcodes()
+	protected function allowed_bbcodes(): array
 	{
 		$allowed = [];
 		$sql = 'SELECT bbcode_helpline, bbcode_group

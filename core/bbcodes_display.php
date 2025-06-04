@@ -23,25 +23,25 @@ use phpbb\user;
 class bbcodes_display
 {
 	/** @var auth */
-	protected $auth;
+	protected auth $auth;
 
 	/** @var config */
-	protected $config;
+	protected config $config;
 
 	/** @var driver_interface */
-	protected $db;
+	protected driver_interface $db;
 
 	/** @var manager */
-	protected $extension_manager;
+	protected manager $extension_manager;
 
 	/** @var user */
-	protected $user;
+	protected user $user;
 
 	/** @var string */
-	protected $root_path;
+	protected string $root_path;
 
 	/** @var array */
-	protected $memberships;
+	protected array $memberships;
 
 	/**
 	 * Constructor
@@ -54,7 +54,7 @@ class bbcodes_display
 	 * @param string           $root_path         Path to phpBB root
 	 * @access public
 	 */
-	public function __construct(auth $auth, config $config, driver_interface $db, manager $extension_manager, user $user, $root_path)
+	public function __construct(auth $auth, config $config, driver_interface $db, manager $extension_manager, user $user, string $root_path)
 	{
 		$this->auth = $auth;
 		$this->config = $config;
@@ -74,7 +74,7 @@ class bbcodes_display
 	 * @return array Update template data of the bbcode
 	 * @access public
 	 */
-	public function display_custom_bbcodes($custom_tags, $row)
+	public function display_custom_bbcodes(array $custom_tags, array $row): array
 	{
 		$icons = $this->get_icons();
 
@@ -93,7 +93,7 @@ class bbcodes_display
 	 * @return void
 	 * @access public
 	 */
-	public function allow_custom_bbcodes(parser $service)
+	public function allow_custom_bbcodes(parser $service): void
 	{
 		$parser = $service->get_parser();
 		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
@@ -109,15 +109,15 @@ class bbcodes_display
 	/**
 	 * Determine if a user is in a group allowed to use a custom BBCode
 	 *
-	 * @param string|array $group_ids Allowed group IDs, comma separated string or array
+	 * @param array|string|null $group_ids Allowed group IDs, comma-separated string or array
 	 * @return bool Return true if allowed to use BBCode
 	 * @access public
 	 */
-	public function user_in_bbcode_group($group_ids = '')
+	public function user_in_bbcode_group(array|string|null $group_ids = ''): bool
 	{
 		if ($group_ids)
 		{
-			// Convert string to an array
+			// Convert a string to an array
 			if (!is_array($group_ids))
 			{
 				$group_ids = explode(',', $group_ids);
@@ -135,12 +135,12 @@ class bbcodes_display
 
 	/**
 	 * Get paths/names to ABBC3's BBCode icons.
-	 * Search in ABBC3's icons dir and also the core's images dir.
+	 * Search in ABBC3's icon dir and also the core's images dir.
 	 *
 	 * @return array Array of icon paths: ['foo' => './ext/vse/abbc3/images/icons/foo.png']
 	 * @access public
 	 */
-	public function get_icons()
+	public function get_icons(): array
 	{
 		static $icons = [];
 
@@ -170,9 +170,9 @@ class bbcodes_display
 	 *
 	 * @access protected
 	 */
-	protected function load_memberships()
+	protected function load_memberships(): void
 	{
-		if ($this->memberships !== null)
+		if (!empty($this->memberships))
 		{
 			return;
 		}
@@ -196,12 +196,11 @@ class bbcodes_display
 	 * @param int $forum_id The forum identifier
 	 * @return array An array containing booleans for each BBCode status
 	 */
-	public function bbcode_statuses($forum_id)
+	public function bbcode_statuses(int $forum_id): array
 	{
 		$bbcode_status = $this->config['allow_bbcode'] && $this->auth->acl_get('f_bbcode', $forum_id);
 		$url_status = $this->config['allow_post_links'];
 		$img_status = $flash_status = false;
-		$quote_status = true;
 
 		if ($bbcode_status)
 		{
@@ -215,7 +214,7 @@ class bbcodes_display
 			'S_BBCODE_ALLOWED' => $bbcode_status,
 			'S_BBCODE_IMG'     => $img_status,
 			'S_BBCODE_FLASH'   => $flash_status,
-			'S_BBCODE_QUOTE'   => $quote_status,
+			'S_BBCODE_QUOTE'   => true,
 			'S_LINKS_ALLOWED'  => $url_status,
 		];
 	}

@@ -10,22 +10,33 @@
 
 namespace vse\abbc3\tests\controller;
 
-class wizard_test extends \phpbb_test_case
+use phpbb\controller\helper;
+use phpbb\exception\http_exception;
+use phpbb\request\request;
+use phpbb\template\template;
+use phpbb\textformatter\s9e\factory;
+use phpbb_mock_cache;
+use phpbb_test_case;
+use PHPUnit\Framework\MockObject\MockObject;
+use Symfony\Component\HttpFoundation\Response;
+use vse\abbc3\controller\wizard;
+
+class wizard_test extends phpbb_test_case
 {
-	/** @var \phpbb_mock_cache */
-	protected $cache;
+	/** @var phpbb_mock_cache */
+	protected phpbb_mock_cache $cache;
 
-	/** @var \vse\abbc3\controller\wizard */
-	protected $controller;
+	/** @var wizard */
+	protected wizard $controller;
 
-	/** @var \phpbb\request\request|\PHPUnit\Framework\MockObject\MockObject */
-	protected $request;
+	/** @var MockObject|request */
+	protected MockObject|request $request;
 
-	/** @var \phpbb\template\template|\PHPUnit\Framework\MockObject\MockObject */
-	protected $template;
+	/** @var template|MockObject */
+	protected template|MockObject $template;
 
-	/** @var \phpbb\textformatter\s9e\factory $factory */
-	protected $textformatter;
+	/** @var factory $factory */
+	protected mixed $textformatter;
 
 	/**
 	 * {@inheritdoc}
@@ -34,24 +45,24 @@ class wizard_test extends \phpbb_test_case
 	{
 		parent::setUp();
 
-		$this->request = $this->createMock('\phpbb\request\request');
+		$this->request = $this->createMock(request::class);
 
-		/** @var $controller_helper \phpbb\controller\helper|\PHPUnit\Framework\MockObject\MockObject */
-		$controller_helper = $this->createMock('\phpbb\controller\helper');
+		/** @var $controller_helper helper|MockObject */
+		$controller_helper = $this->createMock(helper::class);
 		$controller_helper->expects(self::atMost(1))
 			->method('render')
 			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200) {
-				return new \Symfony\Component\HttpFoundation\Response($template_file, $status_code);
+				return new Response($template_file, $status_code);
 			});
 
-		$this->template = $this->createMock('\phpbb\template\template');
+		$this->template = $this->createMock(template::class);
 
 		$container = $this->get_test_case_helpers()->set_s9e_services();
 		$this->textformatter = $container->get('text_formatter.s9e.factory');
 
-		$this->cache = new \phpbb_mock_cache;
+		$this->cache = new phpbb_mock_cache;
 
-		$this->controller = new \vse\abbc3\controller\wizard(
+		$this->controller = new wizard(
 			$this->cache,
 			$controller_helper,
 			$this->request,
@@ -60,7 +71,7 @@ class wizard_test extends \phpbb_test_case
 		);
 	}
 
-	public function bbcode_wizard_data()
+	public function bbcode_wizard_data(): array
 	{
 		return [
 			['bbvideo', true, 200, '@vse_abbc3/abbc3_bbvideo_wizard.html'],
@@ -87,11 +98,11 @@ class wizard_test extends \phpbb_test_case
 			->method('assign_vars')
 			->with([
 				'ABBC3_BBVIDEO_SITES'   => [],
-				'ABBC3_BBVIDEO_DEFAULT' => \vse\abbc3\controller\wizard::BBVIDEO_DEFAULT,
+				'ABBC3_BBVIDEO_DEFAULT' => wizard::BBVIDEO_DEFAULT,
 			]);
 
 		$response = $this->controller->bbcode_wizard($mode);
-		self::assertInstanceOf('\Symfony\Component\HttpFoundation\Response', $response);
+		self::assertInstanceOf(Response::class, $response);
 		self::assertEquals($status_code, $response->getStatusCode());
 		self::assertEquals($page_content, $response->getContent());
 	}
@@ -116,15 +127,15 @@ class wizard_test extends \phpbb_test_case
 			->method('assign_vars')
 			->with([
 				'ABBC3_BBVIDEO_SITES'   => $cached_data,
-				'ABBC3_BBVIDEO_DEFAULT' => \vse\abbc3\controller\wizard::BBVIDEO_DEFAULT,
+				'ABBC3_BBVIDEO_DEFAULT' => wizard::BBVIDEO_DEFAULT,
 			]);
 
 		$response = $this->controller->bbcode_wizard('bbvideo');
-		self::assertInstanceOf('\Symfony\Component\HttpFoundation\Response', $response);
+		self::assertInstanceOf(Response::class, $response);
 		self::assertEquals(200, $response->getStatusCode());
 	}
 
-	public function bbcode_wizard_fails_data()
+	public function bbcode_wizard_fails_data(): array
 	{
 		return [
 			['bbvideo', false],
@@ -140,14 +151,14 @@ class wizard_test extends \phpbb_test_case
 	/**
 	 * Test the controller throws an exception on erroneous calls
 	 *
-	 * @dataProvider             bbcode_wizard_fails_data
+	 * @dataProvider bbcode_wizard_fails_data
 	 * @param $mode
 	 * @param $ajax
 	 */
 	public function test_bbcode_wizard_fails($mode, $ajax)
 	{
 		$this->expectExceptionMessage('GENERAL_ERROR');
-		$this->expectException(\phpbb\exception\http_exception::class);
+		$this->expectException(http_exception::class);
 		$this->request->expects(self::once())
 			->method('is_ajax')
 			->willReturn($ajax);

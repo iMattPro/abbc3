@@ -33,7 +33,7 @@ class v322_m8_update_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = array(
+	protected static array $bbcode_data = array(
 		'align=' => array(
 			'bbcode_helpline'	=> 'ABBC3_ALIGN_HELPLINE',
 			'bbcode_match'		=> '[align={IDENTIFIER}]{TEXT}[/align]',

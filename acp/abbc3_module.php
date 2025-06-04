@@ -10,22 +10,24 @@
 
 namespace vse\abbc3\acp;
 
+use Exception;
+use RuntimeException;
+
 class abbc3_module
 {
 	/** @var string */
-	public $page_title;
+	public string $page_title = '';
 
 	/** @var string */
-	public $tpl_name;
+	public string $tpl_name = '';
 
 	/** @var string */
-	public $u_action;
+	public string $u_action = '';
 
 	/**
 	 * Main ACP module
-	 * @throws \Exception
 	 */
-	public function main()
+	public function main(): void
 	{
 		global $phpbb_container;
 
@@ -34,13 +36,17 @@ class abbc3_module
 
 		try
 		{
-			$phpbb_container->get('vse.abbc3.acp_controller')
-				->set_u_action($this->u_action)
+			$controller = $phpbb_container->get('vse.abbc3.acp_controller');
+			$controller->set_u_action($this->u_action)
 				->handle();
 		}
-		catch (\RuntimeException $e)
+		catch (RuntimeException $e)
 		{
 			trigger_error($e->getMessage() . adm_back_link($this->u_action), $e->getCode());
+		}
+		catch (Exception $e)
+		{
+			trigger_error($e->getMessage() . adm_back_link($this->u_action), E_USER_WARNING);
 		}
 	}
 }

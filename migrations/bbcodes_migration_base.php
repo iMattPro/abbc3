@@ -11,6 +11,9 @@
 namespace vse\abbc3\migrations;
 
 use phpbb\db\migration\container_aware_migration;
+use phpbb\group\helper;
+use phpbb\language\language;
+use phpbb\request\request;
 use vse\abbc3\core\bbcodes_installer;
 
 /**
@@ -21,22 +24,22 @@ abstract class bbcodes_migration_base extends container_aware_migration
 	/**
 	 * @var array An array of bbcodes data to install
 	 */
-	protected static $bbcode_data;
+	protected static array $bbcode_data;
 
 	/**
 	 * Get the bbcodes installer object
 	 *
 	 * @return bbcodes_installer
 	 */
-	public function get_bbcodes_installer()
+	public function get_bbcodes_installer(): bbcodes_installer
 	{
-		/** @var \phpbb\group\helper $group_helper */
+		/** @var helper $group_helper */
 		$group_helper = $this->container->get('group_helper');
 
-		/** @var \phpbb\language\language $language */
+		/** @var language $language */
 		$language = $this->container->get('language');
 
-		/** @var \phpbb\request\request $request */
+		/** @var request $request */
 		$request = $this->container->get('request');
 
 		return new bbcodes_installer($this->db, $group_helper, $language, $request, $this->phpbb_root_path, $this->php_ext);
@@ -45,7 +48,7 @@ abstract class bbcodes_migration_base extends container_aware_migration
 	/**
 	 * Wrapper for installing bbcodes in migrations
 	 */
-	public function install_abbc3_bbcodes()
+	public function install_abbc3_bbcodes(): void
 	{
 		$this->get_bbcodes_installer()->install_bbcodes(static::$bbcode_data);
 	}
@@ -53,7 +56,7 @@ abstract class bbcodes_migration_base extends container_aware_migration
 	/**
 	 * Wrapper for deleting bbcodes in migrations
 	 */
-	public function delete_abbc3_bbcodes()
+	public function delete_abbc3_bbcodes(): void
 	{
 		$this->get_bbcodes_installer()->delete_bbcodes(static::$bbcode_data);
 	}

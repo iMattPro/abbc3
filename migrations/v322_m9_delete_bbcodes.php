@@ -33,7 +33,7 @@ class v322_m9_delete_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = array(
+	protected static array $bbcode_data = array(
 		'youtube' => array(
 			'bbcode_helpline'	=> 'ABBC3_YOUTUBE_HELPLINE',
 			'bbcode_match'		=> '[youtube]{URL}[/youtube]',

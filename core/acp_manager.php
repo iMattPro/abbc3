@@ -23,16 +23,16 @@ use vse\abbc3\ext;
 class acp_manager
 {
 	/** @var driver_interface */
-	protected $db;
+	protected driver_interface $db;
 
 	/** @var helper */
-	protected $group_helper;
+	protected helper $group_helper;
 
 	/** @var language */
-	protected $language;
+	protected language $language;
 
 	/** @var request */
-	protected $request;
+	protected request $request;
 
 	/**
 	 * Constructor
@@ -57,7 +57,7 @@ class acp_manager
 	 * @param string $action The action move_up|move_down
 	 * @access public
 	 */
-	public function move($action)
+	public function move(string $action): void
 	{
 		$bbcode_id = $this->request->variable('id', 0);
 
@@ -68,7 +68,7 @@ class acp_manager
 
 		$current_order = $this->get_bbcode_order($bbcode_id);
 
-		// First one can't be moved up
+		// The first one can't be moved up
 		if ($current_order <= 1 && $action === ext::MOVE_UP)
 		{
 			return;
@@ -86,14 +86,14 @@ class acp_manager
 	 *
 	 * @access public
 	 */
-	public function move_drag()
+	public function move_drag(): void
 	{
 		if (!$this->request->is_ajax())
 		{
 			return;
 		}
 
-		// Get the bbcodes html table's name
+		// Get the bbcodes HTML table's name
 		$tablename = $this->request->variable('tablename', '');
 
 		// Fetch the posted list
@@ -117,7 +117,7 @@ class acp_manager
 	 * @return int The maximum order
 	 * @access public
 	 */
-	public function get_max_bbcode_order()
+	public function get_max_bbcode_order(): int
 	{
 		return $this->get_max_column_value('bbcode_order');
 	}
@@ -125,10 +125,10 @@ class acp_manager
 	/**
 	 * Get the bbcode_group data from the posted form
 	 *
-	 * @return string The user-group id numbers, comma delimited, or empty
+	 * @return string The user-group id numbers, comma-delimited, or empty
 	 * @access public
 	 */
-	public function get_bbcode_group_form_data()
+	public function get_bbcode_group_form_data(): string
 	{
 		$bbcode_group = $this->request->variable('bbcode_group', [0]);
 		return (!count($bbcode_group)) ? $this->request->variable('bbcode_group', '') : implode(',', $bbcode_group);
@@ -141,7 +141,7 @@ class acp_manager
 	 * @return array Custom BBCode user group ids
 	 * @access public
 	 */
-	public function get_bbcode_group_data($bbcode_id)
+	public function get_bbcode_group_data(int $bbcode_id): array
 	{
 		$sql = 'SELECT bbcode_group
 			FROM ' . BBCODES_TABLE . '
@@ -154,13 +154,13 @@ class acp_manager
 	}
 
 	/**
-	 * Get the bbcode_group data from the database,
+	 * Get the bbcode_group data from the database
 	 * for every BBCode that has groups assigned
 	 *
 	 * @return array Custom BBCode user group ids for each BBCode, by name
 	 * @access public
 	 */
-	public function get_bbcode_groups_data()
+	public function get_bbcode_groups_data(): array
 	{
 		$sql = 'SELECT bbcode_tag, bbcode_group
 			FROM ' . BBCODES_TABLE . "
@@ -180,10 +180,10 @@ class acp_manager
 	 * Generate a select box containing user groups
 	 *
 	 * @param array $select_id The user groups to mark as selected
-	 * @return string HTML markup of user groups select box for the form
+	 * @return string HTML mark-up of user groups select-box for the form
 	 * @access public
 	 */
-	public function bbcode_group_select_options(array $select_id = [])
+	public function bbcode_group_select_options(array $select_id = []): string
 	{
 		// Get all groups except bots
 		$sql = 'SELECT group_id, group_name, group_type
@@ -209,7 +209,7 @@ class acp_manager
 	 *
 	 * @access public
 	 */
-	public function resynchronize_bbcode_order()
+	public function resynchronize_bbcode_order(): void
 	{
 		$this->db->sql_transaction('begin');
 
@@ -238,7 +238,7 @@ class acp_manager
 	 * @return int The bbcode's order
 	 * @access protected
 	 */
-	protected function get_bbcode_order($bbcode_id)
+	protected function get_bbcode_order(int $bbcode_id): int
 	{
 		$sql = 'SELECT bbcode_order
 			FROM ' . BBCODES_TABLE . "
@@ -253,13 +253,13 @@ class acp_manager
 	/**
 	 * Update the bbcode orders for bbcodes moved up/down
 	 *
-	 * @param int    $bbcode_order Value of the bbcode order
+	 * @param int $bbcode_order Value of the bbcode order
 	 * @param string $action       The action move_up|move_down
 	 * @return mixed Number of the affected rows by the last query
 	 *                             false if no query has been run before
 	 * @access protected
 	 */
-	protected function update_bbcode_orders($bbcode_order, $action)
+	protected function update_bbcode_orders(int $bbcode_order, string $action): mixed
 	{
 		$amount = ($action === ext::MOVE_UP) ? -1 : 1;
 
@@ -284,7 +284,7 @@ class acp_manager
 	 * @return string The SQL query to run
 	 * @access protected
 	 */
-	protected function update_bbcode_order($bbcode_id, $bbcode_order)
+	protected function update_bbcode_order(int $bbcode_id, int $bbcode_order): string
 	{
 		return 'UPDATE ' . BBCODES_TABLE . '
 			SET bbcode_order = ' . (int) $bbcode_order . '
@@ -298,7 +298,7 @@ class acp_manager
 	 * @return int The maximum value in the column
 	 * @access protected
 	 */
-	protected function get_max_column_value($column)
+	protected function get_max_column_value(string $column): int
 	{
 		$sql = 'SELECT MAX(' . $this->db->sql_escape($column) . ') AS maximum
 			FROM ' . BBCODES_TABLE;
@@ -315,7 +315,7 @@ class acp_manager
 	 * @param bool $content The content of the JSON response (true|false)
 	 * @access protected
 	 */
-	protected function send_json_response($content)
+	protected function send_json_response(bool $content): void
 	{
 		if ($this->request->is_ajax())
 		{

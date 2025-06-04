@@ -12,7 +12,7 @@ namespace vse\abbc3\acp;
 
 class abbc3_info
 {
-	public function module()
+	public function module(): array
 	{
 		return [
 			'filename'	=> '\vse\abbc3\acp\abbc3_module',

@@ -14,7 +14,7 @@
 
 {% macro external_link(url, text) -%}
 	<a href="{{ url }}" target="_blank">
-		Icon('font', 'arrow-up-right-from-square', '', true)
+		{{ Icon('font', 'arrow-up-right-from-square', '', true) }}
 		{{ text -}}
 	</a>
 {%- endmacro %}

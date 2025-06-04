@@ -35,7 +35,7 @@ class v333_m13_update_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = [
+	protected static array $bbcode_data = [
 		'sup' => [
 			'bbcode_helpline'	=> 'ABBC3_SUP_HELPLINE',
 			'bbcode_match'		=> '[sup]{TEXT}[/sup]',

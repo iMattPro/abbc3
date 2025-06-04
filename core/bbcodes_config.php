@@ -11,6 +11,7 @@
 namespace vse\abbc3\core;
 
 use s9e\TextFormatter\Configurator;
+use s9e\TextFormatter\Configurator\Items\TemplateDocument;
 
 /**
  * ABBC3 custom BBCodes configurator
@@ -23,7 +24,7 @@ class bbcodes_config
 	 * @param Configurator $configurator
 	 * @access public
 	 */
-	public function auto_video(Configurator $configurator)
+	public function auto_video(Configurator $configurator): void
 	{
 		if (!$configurator->registeredVars['abbc3.auto_video_enabled'])
 		{
@@ -32,7 +33,7 @@ class bbcodes_config
 
 		$configurator->plugins->load('Autovideo');
 
-		/** @var \s9e\TextFormatter\Configurator\Items\TemplateDocument $dom Add class "auto-video" to allow us to style the video with our CSS */
+		/** @var TemplateDocument $dom Add class "auto-video" to allow us to style the video with our CSS */
 		$dom = $configurator->tags['VIDEO']->template->asDOM();
 		foreach ($dom->getElementsByTagName('video') as $video)
 		{
@@ -47,7 +48,7 @@ class bbcodes_config
 	 * @param Configurator $configurator
 	 * @access public
 	 */
-	public function pipes(Configurator $configurator)
+	public function pipes(Configurator $configurator): void
 	{
 		if (!isset($configurator->BBCodes['pipes']) || !$configurator->registeredVars['abbc3.pipes_enabled'])
 		{
@@ -56,7 +57,7 @@ class bbcodes_config
 
 		$configurator->plugins->load('PipeTables');
 
-		/** @var \s9e\TextFormatter\Configurator\Items\TemplateDocument $dom Add class "pipe-table" to allow us to style the table with our CSS */
+		/** @var TemplateDocument $dom Add class "pipe-table" to allow us to style the table with our CSS */
 		$dom = $configurator->tags['TABLE']->template->asDOM();
 		foreach ($dom->getElementsByTagName('table') as $table)
 		{
@@ -71,14 +72,14 @@ class bbcodes_config
 	 * @param Configurator $configurator
 	 * @access public
 	 */
-	public function bbvideo(Configurator $configurator)
+	public function bbvideo(Configurator $configurator): void
 	{
 		if (!isset($configurator->BBCodes['bbvideo']))
 		{
 			return;
 		}
 
-		// If MediaEmbed is not already active (for example due to another ext) lets enable it
+		// If MediaEmbed is not already active (for example, due to another ext), let's enable it
 		if (!isset($configurator->MediaEmbed) && !isset($configurator->BBCodes['MEDIA']))
 		{
 			foreach ($configurator->MediaEmbed->defaultSites as $tagName => $tag)
@@ -106,7 +107,7 @@ class bbcodes_config
 	 * @param Configurator $configurator
 	 * @access public
 	 */
-	public function hidden(Configurator $configurator)
+	public function hidden(Configurator $configurator): void
 	{
 		if (!isset($configurator->BBCodes['hidden']))
 		{

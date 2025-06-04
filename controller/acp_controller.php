@@ -18,44 +18,45 @@ use phpbb\extension\manager as ext_manager;
 use phpbb\language\language;
 use phpbb\request\request;
 use phpbb\template\template;
+use RuntimeException;
 
 class acp_controller
 {
 	/** @var cache */
-	protected $cache;
+	protected cache $cache;
 
 	/** @var config */
-	protected $config;
+	protected config $config;
 
 	/** @var db_text */
-	protected $config_text;
+	protected db_text $config_text;
 
 	/** @var db */
-	protected $db;
+	protected db $db;
 
 	/** @var ext_manager */
-	protected $ext_manager;
+	protected ext_manager $ext_manager;
 
 	/** @var language */
-	protected $language;
+	protected language $language;
 
 	/** @var request */
-	protected $request;
+	protected request $request;
 
 	/** @var template */
-	protected $template;
+	protected template $template;
 
 	/** @var string */
-	protected $parser_key;
+	protected string $parser_key;
 
 	/** @var string */
-	protected $renderer_key;
+	protected string $renderer_key;
 
 	/** @var string */
-	public $u_action;
+	public string $u_action;
 
 	/** @var array */
-	protected $errors = [];
+	protected array $errors = [];
 
 	/**
 	 * Constructor
@@ -88,9 +89,9 @@ class acp_controller
 	/**
 	 * Main handler for this controller
 	 *
-	 * @throws \RuntimeException
+	 * @throws RuntimeException
 	 */
-	public function handle()
+	public function handle(): void
 	{
 		$this->language->add_lang('acp_abbc3', 'vse/abbc3');
 
@@ -101,7 +102,7 @@ class acp_controller
 		{
 			if (!check_form_key($form_key))
 			{
-				throw new \RuntimeException($this->language->lang('FORM_INVALID'), E_USER_WARNING);
+				throw new RuntimeException($this->language->lang('FORM_INVALID'), E_USER_WARNING);
 			}
 
 			$this->save_settings();
@@ -113,7 +114,7 @@ class acp_controller
 	/**
 	 * Add settings template vars to the form
 	 */
-	protected function display_settings()
+	protected function display_settings(): void
 	{
 		$this->template->assign_vars([
 			'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
@@ -130,7 +131,7 @@ class acp_controller
 	/**
 	 * Save settings data to the database
 	 *
-	 * @throws \RuntimeException
+	 * @throws RuntimeException
 	 */
 	protected function save_settings()
 	{
@@ -146,10 +147,10 @@ class acp_controller
 
 		if (!empty($this->errors))
 		{
-			throw new \RuntimeException(implode('<br>', $this->errors), E_USER_WARNING);
+			throw new RuntimeException(implode('<br>', $this->errors), E_USER_WARNING);
 		}
 
-		throw new \RuntimeException($this->language->lang('CONFIG_UPDATED'), E_USER_NOTICE);
+		throw new RuntimeException($this->language->lang('CONFIG_UPDATED'), E_USER_NOTICE);
 	}
 
 	/**
@@ -158,7 +159,7 @@ class acp_controller
 	 * - Show or hide the Pipes BBCode button
 	 * - Purge BBCode caches.
 	 */
-	protected function save_pipes()
+	protected function save_pipes(): void
 	{
 		$enable_pipes = $this->request->variable('abbc3_pipes', 0);
 
@@ -175,7 +176,7 @@ class acp_controller
 	 *
 	 * @return string
 	 */
-	protected function get_google_fonts()
+	protected function get_google_fonts(): string
 	{
 		$fonts = json_decode($this->config_text->get('abbc3_google_fonts'), true);
 		return $fonts ? implode("\n", $fonts) : '';
@@ -183,10 +184,10 @@ class acp_controller
 
 	/**
 	 * Save the Google fonts setting.
-	 * - If field has data, explode it to an array and save as JSON data.
-	 * - If field is empty, store just an empty string.
+	 * - If a field has data, explode it to an array and save as JSON data.
+	 * - If the field is empty, store just an empty string.
 	 */
-	protected function save_google_fonts()
+	protected function save_google_fonts(): void
 	{
 		$fonts = $this->request->variable('abbc3_google_fonts', '');
 
@@ -209,7 +210,7 @@ class acp_controller
 	 * @param string $font
 	 * @return bool
 	 */
-	protected function validate_google_fonts($font)
+	protected function validate_google_fonts(string $font): bool
 	{
 		if ($font === '')
 		{
@@ -231,9 +232,9 @@ class acp_controller
 	 * Check for valid URL headers if possible
 	 *
 	 * @param string $url
-	 * @return bool Return false only if URL could be checked and wasn't found, otherwise true.
+	 * @return bool Return false only if the URL could be checked and wasn't found, otherwise true.
 	 */
-	protected function valid_url($url)
+	protected function valid_url(string $url): bool
 	{
 		$headers = function_exists('get_headers') ? @get_headers($url) : false;
 		return !$headers || stripos($headers[0], '200 OK') !== false;
@@ -245,7 +246,7 @@ class acp_controller
 	 * @param string $u_action
 	 * @return acp_controller
 	 */
-	public function set_u_action($u_action)
+	public function set_u_action(string $u_action): static
 	{
 		$this->u_action = $u_action;
 		return $this;

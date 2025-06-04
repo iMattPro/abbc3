@@ -16,6 +16,7 @@ use phpbb\exception\http_exception;
 use phpbb\request\request;
 use phpbb\template\template;
 use phpbb\textformatter\s9e\factory as textformatter;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * ABBC3 BBCode Wizard class
@@ -26,19 +27,19 @@ class wizard
 	public const BBVIDEO_DEFAULT = 'youtube';
 
 	/** @var cache_driver */
-	protected $cache;
+	protected cache_driver $cache;
 
 	/** @var helper */
-	protected $helper;
+	protected helper $helper;
 
 	/** @var request */
-	protected $request;
+	protected request $request;
 
 	/** @var template */
-	protected $template;
+	protected template $template;
 
 	/** @var textformatter */
-	protected $textformatter;
+	protected textformatter $textformatter;
 
 	/**
 	 * Constructor
@@ -65,11 +66,11 @@ class wizard
 	 * intended to be accessed via AJAX only
 	 *
 	 * @param string $mode Mode taken from the URL
-	 * @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
-	 * @throws http_exception A http exception
+	 * @return Response A Symfony Response object
+	 * @throws http_exception An http exception
 	 * @access public
 	 */
-	public function bbcode_wizard($mode)
+	public function bbcode_wizard(string $mode): Response
 	{
 		// Only allow valid AJAX requests
 		if (!$this->request->is_ajax() || !in_array($mode, ['bbvideo', 'pipes', 'url']))
@@ -94,7 +95,7 @@ class wizard
 	 * @access protected
 	 * @return array An array of BBVideo sites containing [id => name, example]
 	 */
-	protected function get_bbvideo_sites()
+	protected function get_bbvideo_sites(): array
 	{
 		if (($bbvideo_sites = $this->cache->get('_bbvideo_sites')) !== false)
 		{

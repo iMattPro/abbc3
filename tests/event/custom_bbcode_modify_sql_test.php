@@ -63,7 +63,7 @@ class custom_bbcode_modify_sql_test extends listener_base
 		$num_predefined_bbcodes = 22;
 		$event_data = ['sql_ary', 'num_predefined_bbcodes'];
 		$event_filtered_data = $dispatcher->trigger_event('core.display_custom_bbcodes_modify_sql', compact($event_data));
-		extract($event_filtered_data, EXTR_OVERWRITE);
+		extract($event_filtered_data);
 
 		self::assertEquals($expected, $sql_ary);
 	}

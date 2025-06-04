@@ -90,7 +90,7 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 
 		$event_data = ['action', 'sql_ary', 'hidden_fields'];
 		$event_data_returned = $dispatcher->trigger_event('core.acp_bbcodes_modify_create', compact($event_data));
-		extract($event_data_returned, EXTR_OVERWRITE);
+		extract($event_data_returned);
 
 		self::assertEquals($expected_sql_ary, $sql_ary);
 		self::assertEquals($expected_hidden_fields, $hidden_fields);

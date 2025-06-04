@@ -66,7 +66,7 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 
 		$event_data = ['template_data', 'sql_ary', 'u_action'];
 		$event_data_returned = $dispatcher->trigger_event('core.acp_bbcodes_display_form', compact($event_data));
-		extract($event_data_returned, EXTR_OVERWRITE);
+		extract($event_data_returned);
 
 		self::assertEquals($expected_template_data, $template_data);
 		self::assertEquals($expected_sql_ary, $sql_ary);

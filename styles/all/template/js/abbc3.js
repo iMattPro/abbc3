@@ -22,11 +22,11 @@ var bbwizard;
 	 */
 	bbwizard = function(href, bbcode) {
 		if (!requestRunning) {
-			var wizard = $('#bbcode_wizard'),
+			const wizard = $('#bbcode_wizard'),
 				modal = $('#darkenwrapper');
 			if (!wizard.is(':visible')) {
 				requestRunning = true;
-				var $loadingIndicator = phpbb.loadingIndicator();
+				const $loadingIndicator = phpbb.loadingIndicator();
 				$.ajax({
 					url: href,
 					dataType: 'html',
@@ -57,8 +57,8 @@ var bbwizard;
 	/**
 	 * Insert BBCode into message (position cursor after insertion)
 	 */
-	var bbinsert = function(bbopen, bbclose) {
-		var textarea;
+	const bbinsert = function(bbopen, bbclose) {
+		let textarea;
 
 		if (is_ie) {
 			textarea = document.forms[form_name].elements[text_name];
@@ -71,11 +71,11 @@ var bbwizard;
 
 		// The new position for the cursor after adding the bbcode
 		if (is_ie) {
-			var text = bbopen + bbclose;
-			var pos = textarea.innerHTML.indexOf(text);
+			const text = bbopen + bbclose;
+			const pos = textarea.innerHTML.indexOf(text);
 			if (pos > 0) {
-				var new_pos = pos + text.length;
-				var range = textarea.createTextRange();
+				const new_pos = pos + text.length;
+				const range = textarea.createTextRange();
 				range.move('character', new_pos);
 				range.select();
 				storeCaret(textarea);
@@ -89,14 +89,14 @@ var bbwizard;
 	 */
 	$(function() {
 
-		var body = $('body');
+		const body = $('body');
 
 		/**
 		 * Function spoiler toggle
 		 */
 		body.on('click', '.spoilbtn', function(event) {
 			event.preventDefault();
-			var trigger = $(this),
+			const trigger = $(this),
 				spoiler = trigger.closest('div').next('.spoilcontent');
 			spoiler.slideToggle('fast', function() {
 				trigger.text(spoiler.is(':visible') ? trigger.data('hide') : trigger.data('show'));
@@ -106,9 +106,9 @@ var bbwizard;
 		/**
 		 * BBCode Wizard listener events
 		 */
-		var wizard = $('#bbcode_wizard'),
+		const wizard = $('#bbcode_wizard'),
 			modal = $('#darkenwrapper');
-		var closeWizard = function() {
+		const closeWizard = function() {
 			if (wizard.is(':visible')) {
 				wizard.fadeOut('fast');
 				modal.fadeOut('fast');
@@ -125,10 +125,10 @@ var bbwizard;
 			// Click on bbcode wizard submit button to apply bbcode to message
 			.on('click', '#bbcode_wizard_submit', function(event) {
 				event.preventDefault();
-				var bbcode = $(this).data('bbcode');
+				const bbcode = $(this).data('bbcode');
 				switch (bbcode) {
 					case 'url':
-						var link = $('#bbcode_wizard_link').val(),
+						const link = $('#bbcode_wizard_link').val(),
 							description = $('#bbcode_wizard_description').val();
 						bbinsert('[' + bbcode + ((description.length) ? '=' + link : '') + ']' + ((description.length) ? description : link) + '', '[/' + bbcode + ']');
 						break;

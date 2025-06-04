@@ -35,7 +35,7 @@ class v335_m16_update_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = [
+	protected static array $bbcode_data = [
 		'font=' => [
 			'bbcode_helpline'	=> 'ABBC3_FONT_HELPLINE',
 			'bbcode_match'		=> '[font={INTTEXT}]{TEXT}[/font]',

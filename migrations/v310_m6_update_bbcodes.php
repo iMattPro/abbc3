@@ -33,7 +33,7 @@ class v310_m6_update_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = array(
+	protected static array $bbcode_data = array(
 		'soundcloud' => array(
 			'bbcode_helpline'	=> 'ABBC3_SOUNDCLOUD_HELPLINE',
 			'bbcode_match'		=> '[soundcloud]{URL}[/soundcloud]',
