@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * Advanced BBCode Box
+ * Advanced BBCodes
  *
- * @copyright (c) 2014 Matt Friedman
+ * @copyright (c) 2013-2025 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -49,7 +49,7 @@ class wizard_test extends phpbb_test_case
 
 		/** @var $controller_helper helper|MockObject */
 		$controller_helper = $this->createMock(helper::class);
-		$controller_helper->expects(self::atMost(1))
+		$controller_helper->expects($this->atMost(1))
 			->method('render')
 			->willReturnCallback(function ($template_file, $page_title = '', $status_code = 200) {
 				return new Response($template_file, $status_code);
@@ -89,12 +89,12 @@ class wizard_test extends phpbb_test_case
 	 */
 	public function test_bbcode_wizard($mode, $ajax, $status_code, $page_content)
 	{
-		$this->request->expects(self::once())
+		$this->request->expects($this->once())
 			->method('is_ajax')
 			->willReturn($ajax)
 		;
 
-		$this->template->expects($mode === 'bbvideo' ? self::once() : self::never())
+		$this->template->expects($mode === 'bbvideo' ? $this->once() : $this->never())
 			->method('assign_vars')
 			->with([
 				'ABBC3_BBVIDEO_SITES'   => [],
@@ -102,9 +102,8 @@ class wizard_test extends phpbb_test_case
 			]);
 
 		$response = $this->controller->bbcode_wizard($mode);
-		self::assertInstanceOf(Response::class, $response);
-		self::assertEquals($status_code, $response->getStatusCode());
-		self::assertEquals($page_content, $response->getContent());
+		$this->assertEquals($status_code, $response->getStatusCode());
+		$this->assertEquals($page_content, $response->getContent());
 	}
 
 	public function test_bbvideo_sites_cached()
@@ -118,12 +117,12 @@ class wizard_test extends phpbb_test_case
 
 		$this->cache->put('_bbvideo_sites', $cached_data);
 
-		$this->request->expects(self::once())
+		$this->request->expects($this->once())
 			->method('is_ajax')
 			->willReturn(true)
 		;
 
-		$this->template->expects(self::once())
+		$this->template->expects($this->once())
 			->method('assign_vars')
 			->with([
 				'ABBC3_BBVIDEO_SITES'   => $cached_data,
@@ -131,8 +130,7 @@ class wizard_test extends phpbb_test_case
 			]);
 
 		$response = $this->controller->bbcode_wizard('bbvideo');
-		self::assertInstanceOf(Response::class, $response);
-		self::assertEquals(200, $response->getStatusCode());
+		$this->assertEquals(200, $response->getStatusCode());
 	}
 
 	public function bbcode_wizard_fails_data(): array
@@ -159,10 +157,10 @@ class wizard_test extends phpbb_test_case
 	{
 		$this->expectExceptionMessage('GENERAL_ERROR');
 		$this->expectException(http_exception::class);
-		$this->request->expects(self::once())
+		$this->request->expects($this->once())
 			->method('is_ajax')
 			->willReturn($ajax);
-		$this->template->expects(self::never())
+		$this->template->expects($this->never())
 			->method('assign_vars');
 
 		$this->controller->bbcode_wizard($mode);

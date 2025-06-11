@@ -1,24 +1,27 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\core;
 
+use phpbb\language\language;
+use phpbb\language\language_file_loader;
+
 class acp_bbcode_group_select_test extends acp_base
 {
-	public function get_lang_instance()
+	public function get_lang_instance(): void
 	{
 		global $phpbb_root_path, $phpEx;
 
 		// Get instance of phpbb\user (dataProvider is called before setUp(), so this must be done here)
-		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
-		$this->lang = new \phpbb\language\language($lang_loader);
+		$lang_loader = new language_file_loader($phpbb_root_path, $phpEx);
+		$this->lang = new language($lang_loader);
 		$this->lang->add_lang('common');
 	}
 
@@ -29,7 +32,7 @@ class acp_bbcode_group_select_test extends acp_base
 		$this->get_lang_instance();
 	}
 
-	public function bbcode_group_select_data()
+	public function bbcode_group_select_data(): array
 	{
 		$this->get_lang_instance();
 
@@ -89,6 +92,6 @@ class acp_bbcode_group_select_test extends acp_base
 	{
 		$acp_manager = $this->get_acp_manager();
 
-		self::assertEquals($expected, $acp_manager->bbcode_group_select_options($data));
+		$this->assertEquals($expected, $acp_manager->bbcode_group_select_options($data));
 	}
 }

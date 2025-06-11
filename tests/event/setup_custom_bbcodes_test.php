@@ -1,15 +1,16 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
 
+use phpbb\event\dispatcher;
 use vse\abbc3\ext;
 
 class setup_custom_bbcodes_test extends listener_base
@@ -26,7 +27,7 @@ class setup_custom_bbcodes_test extends listener_base
 			->method('get_icons')
 			->willReturn(['foo' => 'path/to/foo']);
 
-		$this->template->expects(self::once())
+		$this->template->expects($this->once())
 			->method('assign_vars')
 			->with([
 				'ABBC3_BBCODE_ICONS' 		=> ['foo' => 'path/to/foo'],
@@ -37,7 +38,7 @@ class setup_custom_bbcodes_test extends listener_base
 				'UA_ABBC3_URL_WIZARD'		=> 'vse_abbc3_bbcode_wizard#a:1:{s:4:"mode";s:3:"url";}',
 			]);
 
-		$dispatcher = new \phpbb\event\dispatcher();
+		$dispatcher = new dispatcher();
 		$dispatcher->addListener('core.display_custom_bbcodes', [$this->listener, 'setup_custom_bbcodes']);
 		$dispatcher->trigger_event('core.display_custom_bbcodes');
 	}

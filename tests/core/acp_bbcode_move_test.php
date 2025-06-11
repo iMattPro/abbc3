@@ -1,18 +1,20 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\core;
 
+use phpbb\request\request_interface;
+
 class acp_bbcode_move_test extends acp_base
 {
-	public function bbcode_move_data()
+	public function bbcode_move_data(): array
 	{
 		// bbcode_id or array of bbcode_ids
 		// action move_up|move_down
@@ -66,22 +68,22 @@ class acp_bbcode_move_test extends acp_base
 	 */
 	public function test_bbcode_move($item, $action, $expected)
 	{
-		$this->request->expects(self::exactly(2))
+		$this->request->expects($this->exactly(2))
 			->method('variable')
-			->with(self::anything())
+			->with($this->anything())
 			->willReturnMap([
-				['id', 0, false, \phpbb\request\request_interface::REQUEST, $item],
-				['hash', '', false, \phpbb\request\request_interface::REQUEST, generate_link_hash($action . $item)]
+				['id', 0, false, request_interface::REQUEST, $item],
+				['hash', '', false, request_interface::REQUEST, generate_link_hash($action . $item)]
 			])
 		;
 
 		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();
 
-		// Call move() and assert it returns null
-		self::assertNull($acp_manager->move($action));
+		// Call move()
+		$acp_manager->move($action);
 
-		// Get new order
+		// Get a new order
 		$sql = 'SELECT bbcode_id, bbcode_order
 			FROM phpbb_bbcodes
 			ORDER BY bbcode_order';
@@ -93,10 +95,10 @@ class acp_bbcode_move_test extends acp_base
 		}
 		$this->db->sql_freeresult($result);
 
-		self::assertEquals($expected, $bbcode_order);
+		$this->assertEquals($expected, $bbcode_order);
 	}
 
-	public function bbcode_move_triggers_error_data()
+	public function bbcode_move_triggers_error_data(): array
 	{
 		return [
 			// invalid hash
@@ -111,17 +113,17 @@ class acp_bbcode_move_test extends acp_base
 	 */
 	public function test_bbcode_move_triggers_error($item, $action, $hash, $ajax, $errNo)
 	{
-		$this->request->expects($ajax? self::once() : self::never())
+		$this->request->expects($ajax? $this->once() : $this->never())
 			->method('is_ajax')
 			->willReturn($ajax)
 		;
 
-		$this->request->expects(self::exactly(2))
+		$this->request->expects($this->exactly(2))
 			->method('variable')
-			->with(self::anything())
+			->with($this->anything())
 			->willReturnMap([
-				['id', 0, false, \phpbb\request\request_interface::REQUEST, $item],
-				['hash', '', false, \phpbb\request\request_interface::REQUEST, generate_link_hash($hash)]
+				['id', 0, false, request_interface::REQUEST, $item],
+				['hash', '', false, request_interface::REQUEST, generate_link_hash($hash)]
 			])
 		;
 
@@ -131,7 +133,7 @@ class acp_bbcode_move_test extends acp_base
 		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();
 
-		// Call move() and assert it returns null
-		self::assertNull($acp_manager->move($action));
+		// Call move()
+		$acp_manager->move($action);
 	}
 }

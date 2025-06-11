@@ -1,21 +1,23 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\functional;
+
+use phpbb_functional_test_case;
 
 /**
 * @group functional
 */
-class bbcode_editor_test extends \phpbb_functional_test_case
+class bbcode_editor_test extends phpbb_functional_test_case
 {
-	protected static function setup_extensions()
+	protected static function setup_extensions(): array
 	{
 		return ['vse/abbc3'];
 	}
@@ -45,7 +47,7 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 	}
 
 	/**
-	 * Test quick reply for presence of our BBCodes template data
+	 * Test quick reply for the presence of our BBCodes template data
 	 */
 	public function test_quick_reply()
 	{
@@ -69,12 +71,12 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 	 *
 	 * @param $crawler
 	 */
-	protected function run_checks($crawler)
+	protected function run_checks($crawler): void
 	{
-		self::assertGreaterThan(0, $crawler->filter('#abbc3_buttons')->count());
+		$this->assertGreaterThan(0, $crawler->filter('#abbc3_buttons')->count());
 
-		// test a couple of dynamic bbcodes set in the javascript
-		self::assertStringContainsString('[dir=rtl]', $crawler->filter('body')->html());
-		self::assertStringContainsString('[mod=admin]', $crawler->filter('body')->html());
+		// test a couple of dynamic bbcodes set in the JavaScript
+		$this->assertStringContainsString('[dir=rtl]', $crawler->filter('body')->html());
+		$this->assertStringContainsString('[mod=admin]', $crawler->filter('body')->html());
 	}
 }

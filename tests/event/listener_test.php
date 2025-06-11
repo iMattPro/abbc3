@@ -1,14 +1,17 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
+
+use vse\abbc3\event\listener;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class listener_test extends listener_base
 {
@@ -18,7 +21,7 @@ class listener_test extends listener_base
 	public function test_construct()
 	{
 		$this->set_listener();
-		self::assertInstanceOf('\Symfony\Component\EventDispatcher\EventSubscriberInterface', $this->listener);
+		$this->assertInstanceOf(EventSubscriberInterface::class, $this->listener);
 	}
 
 	/**
@@ -26,7 +29,7 @@ class listener_test extends listener_base
 	 */
 	public function test_getSubscribedEvents()
 	{
-		self::assertEquals([
+		$this->assertEquals([
 			'core.user_setup',
 			'core.page_header',
 			'core.adm_page_header',
@@ -38,6 +41,6 @@ class listener_test extends listener_base
 			'core.help_manager_add_block_after',
 			'core.viewtopic_modify_quick_reply_template_vars',
 			'core.viewtopic_modify_page_title',
-		], array_keys(\vse\abbc3\event\listener::getSubscribedEvents()));
+		], array_keys(listener::getSubscribedEvents()));
 	}
 }

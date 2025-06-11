@@ -1,61 +1,80 @@
 <?php
 /**
  *
- * Advanced BBCode Box
+ * Advanced BBCodes
  *
- * @copyright (c) 2020 Matt Friedman
+ * @copyright (c) 2013-2025 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
 
 namespace vse\abbc3\controller;
 
+use Exception;
+use phpbb\cache\driver\driver_interface;
+use phpbb\config\config;
+use phpbb\config\db_text;
+use phpbb\db\driver\driver_interface as dbal;
+use phpbb\language\language;
+use phpbb\language\language_file_loader;
+use phpbb\request\request;
+use phpbb\request\request_interface;
+use phpbb\template\template;
+use phpbb_database_test_case;
+use phpbb_mock_extension_manager;
+use phpbb_mock_lang;
+use phpbb_mock_user;
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\XmlDataSet;
 use PHPUnit\Framework\MockObject\MockObject;
+use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use vse\abbc3\acp\abbc3_info;
+use vse\abbc3\acp\abbc3_module;
 
 require_once __DIR__ . '/../../../../../includes/functions_acp.php';
 
-class acp_test extends \phpbb_database_test_case
+class acp_test extends phpbb_database_test_case
 {
 	/** @var bool A return value for check_form_key() */
-	public static $valid_form = false;
+	public static bool $valid_form = false;
 
-	/** @var \vse\abbc3\controller\acp_controller */
-	protected $acp_controller;
+	/** @var acp_controller */
+	protected acp_controller $acp_controller;
 
 	/** @var ContainerInterface|MockObject */
-	protected $container;
+	protected ContainerInterface|MockObject $container;
 
-	/** @var \phpbb\cache\driver\driver_interface|MockObject */
-	protected $cache;
+	/** @var driver_interface|MockObject */
+	protected driver_interface|MockObject $cache;
 
-	/** @var \phpbb\config\config */
-	protected $config;
+	/** @var config */
+	protected config $config;
 
-	/** @var \phpbb\config\db_text */
-	protected $config_text;
+	/** @var db_text */
+	protected db_text $config_text;
 
-	/** @var \phpbb\db\driver\driver_interface */
-	protected $db;
+	/** @var dbal */
+	protected dbal $db;
 
-	/** @var \phpbb_mock_extension_manager */
-	protected $ext_manager;
+	/** @var phpbb_mock_extension_manager */
+	protected phpbb_mock_extension_manager $ext_manager;
 
-	/** @var \phpbb\language\language */
-	protected $lang;
+	/** @var language */
+	protected language $lang;
 
-	/** @var \phpbb\request\request|MockObject */
-	protected $request;
+	/** @var request|MockObject */
+	protected MockObject|request $request;
 
-	/** @var \phpbb\template\template|MockObject */
-	protected $template;
+	/** @var template|MockObject */
+	protected template|MockObject $template;
 
-	protected static function setup_extensions()
+	protected static function setup_extensions(): array
 	{
 		return ['vse/abbc3'];
 	}
 
-	public function getDataSet()
+	public function getDataSet(): XmlDataSet|DefaultDataSet
 	{
 		return $this->createXMLDataSet(__DIR__ . '/../core/fixtures/config_text.xml');
 	}
@@ -66,8 +85,8 @@ class acp_test extends \phpbb_database_test_case
 
 		global $user, $language, $phpbb_container, $phpbb_root_path, $phpEx;
 
-		$this->cache = $this->createMock('\phpbb\cache\driver\driver_interface');
-		$this->config = new \phpbb\config\config([
+		$this->cache = $this->createMock(driver_interface::class);
+		$this->config = new config([
 			'enable_mod_rewrite' => '0',
 			'abbc3_icons_type' => 'png',
 			'abbc3_bbcode_bar' => 1,
@@ -76,22 +95,22 @@ class acp_test extends \phpbb_database_test_case
 			'abbc3_auto_video' => 1,
 		]);
 		$this->db = $this->new_dbal();
-		$this->config_text = new \phpbb\config\db_text($this->db, 'phpbb_config_text');
+		$this->config_text = new db_text($this->db, 'phpbb_config_text');
 		$this->config_text->set('abbc3_google_fonts', '["Droid Sans","Roboto"]');
-		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
-		$this->lang = $language = new \phpbb\language\language($lang_loader);
-		$this->request = $this->createMock('\phpbb\request\request');
-		$this->template = $this->createMock('\phpbb\template\template');
-		$this->ext_manager = new \phpbb_mock_extension_manager($phpbb_root_path);
-		$this->container = $phpbb_container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
-		$this->acp_controller = new \vse\abbc3\controller\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '');
+		$lang_loader = new language_file_loader($phpbb_root_path, $phpEx);
+		$this->lang = $language = new language($lang_loader);
+		$this->request = $this->createMock(request::class);
+		$this->template = $this->createMock(template::class);
+		$this->ext_manager = new phpbb_mock_extension_manager($phpbb_root_path);
+		$this->container = $phpbb_container = $this->createMock(ContainerInterface::class);
+		$this->acp_controller = new acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '');
 
 		// Used in build_select function
-		$user = new \phpbb_mock_user();
-		$user->lang = new \phpbb_mock_lang();
+		$user = new phpbb_mock_user();
+		$user->lang = new phpbb_mock_lang();
 	}
 
-	public function main_module_data()
+	public function main_module_data(): array
 	{
 		return [
 			[0],
@@ -104,11 +123,11 @@ class acp_test extends \phpbb_database_test_case
 	 * @dataProvider main_module_data
 	 * @param $error
 	 * @return void
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function test_main_module($error)
 	{
-		$controller = $this->container->expects(self::once())
+		$controller = $this->container->expects($this->once())
 			->method('get')
 			->willReturnMap([
 				['vse.abbc3.acp_controller', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->acp_controller],
@@ -116,20 +135,20 @@ class acp_test extends \phpbb_database_test_case
 
 		if ($error)
 		{
-			$controller->willThrowException(new \RuntimeException('ERROR_TEST', $error));
+			$controller->willThrowException(new RuntimeException('ERROR_TEST', $error));
 			$this->setExpectedTriggerError($error, 'ERROR_TEST');
 		}
 
-		$module = new \vse\abbc3\acp\abbc3_module();
+		$module = new abbc3_module();
 
 		$module->main();
 
-		self::assertEquals('acp_abbc3_settings', $module->tpl_name);
+		$this->assertEquals('acp_abbc3_settings', $module->tpl_name);
 	}
 
 	public function test_main_display()
 	{
-		$this->template->expects(self::once())
+		$this->template->expects($this->once())
 			->method('assign_vars')
 			->with([
 				'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
@@ -151,11 +170,11 @@ class acp_test extends \phpbb_database_test_case
 	{
 		self::$valid_form = true;
 
-		$this->request->expects(self::once())
+		$this->request->expects($this->once())
 			->method('is_set_post')
 			->willReturn('submit');
 
-		$this->expectException('\RuntimeException');
+		$this->expectException(RuntimeException::class);
 		$this->expectExceptionCode(E_USER_NOTICE);
 		$this->expectExceptionMessage('CONFIG_UPDATED');
 
@@ -166,18 +185,18 @@ class acp_test extends \phpbb_database_test_case
 	{
 		self::$valid_form = false;
 
-		$this->request->expects(self::once())
+		$this->request->expects($this->once())
 			->method('is_set_post')
 			->willReturn('submit');
 
-		$this->expectException('\RuntimeException');
+		$this->expectException(RuntimeException::class);
 		$this->expectExceptionCode(E_USER_WARNING);
 		$this->expectExceptionMessage($this->lang->lang('FORM_INVALID'));
 
 		$this->acp_controller->handle();
 	}
 
-	public function save_google_fonts_data()
+	public function save_google_fonts_data(): array
 	{
 		return [
 			['', '', E_USER_NOTICE, 'CONFIG_UPDATED'],
@@ -200,24 +219,24 @@ class acp_test extends \phpbb_database_test_case
 	{
 		self::$valid_form = true;
 
-		$this->request->expects(self::once())
+		$this->request->expects($this->once())
 			->method('is_set_post')
 			->willReturn('submit');
 
-		$this->request->expects(self::exactly(6))
+		$this->request->expects($this->exactly(6))
 			->method('variable')
 			->willReturnMap([
-				['abbc3_bbcode_bar', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-				['abbc3_qr_bbcodes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-				['abbc3_auto_video', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-				['abbc3_icons_type', 'png', false, \phpbb\request\request_interface::REQUEST, 'png'],
-				['abbc3_pipes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-				['abbc3_google_fonts', '', false, \phpbb\request\request_interface::REQUEST, $input],
+				['abbc3_bbcode_bar', 0, false, request_interface::REQUEST, 0],
+				['abbc3_qr_bbcodes', 0, false, request_interface::REQUEST, 0],
+				['abbc3_auto_video', 0, false, request_interface::REQUEST, 0],
+				['abbc3_icons_type', 'png', false, request_interface::REQUEST, 'png'],
+				['abbc3_pipes', 0, false, request_interface::REQUEST, 0],
+				['abbc3_google_fonts', '', false, request_interface::REQUEST, $input],
 			]);
 
 		try {
 			$this->acp_controller->handle();
-		} catch (\RuntimeException $e) {
+		} catch (RuntimeException $e) {
 			$this->assertSame($expected, $this->config_text->get('abbc3_google_fonts'));
 			$this->assertEquals($error, $e->getCode());
 			$this->assertEquals($error_message, $e->getMessage());
@@ -226,11 +245,11 @@ class acp_test extends \phpbb_database_test_case
 
 	public function test_info()
 	{
-		$info_class = new \vse\abbc3\acp\abbc3_info();
+		$info_class = new abbc3_info();
 		$info_array = $info_class->module();
-		self::assertArrayHasKey('filename', $info_array);
-		self::assertEquals('\vse\abbc3\acp\abbc3_module', $info_array['filename']);
-		self::assertEquals('ACP_ABBC3_SETTINGS', $info_array['modes']['settings']['title']);
+		$this->assertArrayHasKey('filename', $info_array);
+		$this->assertEquals('\\vse\\abbc3\\acp\\abbc3_module', $info_array['filename']);
+		$this->assertEquals('ACP_ABBC3_SETTINGS', $info_array['modes']['settings']['title']);
 	}
 }
 
@@ -240,7 +259,7 @@ class acp_test extends \phpbb_database_test_case
  *
  * @return bool
  */
-function check_form_key()
+function check_form_key(): bool
 {
 	return \vse\abbc3\controller\acp_test::$valid_form;
 }

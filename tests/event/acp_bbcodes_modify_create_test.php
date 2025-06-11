@@ -1,14 +1,16 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2015 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
+
+use phpbb\event\dispatcher;
 
 class acp_bbcodes_modify_create_test extends acp_listener_base
 {
@@ -17,7 +19,7 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function acp_bbcodes_modify_create_data()
+	public function acp_bbcodes_modify_create_data(): array
 	{
 		return [
 			[
@@ -78,21 +80,21 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 	{
 		$this->set_listener();
 
-		$this->acp_manager->expects($action === 'create' ? self::once() : self::never())
+		$this->acp_manager->expects($action === 'create' ? $this->once() : self::never())
 			->method('get_max_bbcode_order')
 			->willReturn($max_order);
-		$this->acp_manager->expects(self::once())
+		$this->acp_manager->expects($this->once())
 			->method('get_bbcode_group_form_data')
 			->willReturn($bbcode_group);
 
-		$dispatcher = new \phpbb\event\dispatcher();
+		$dispatcher = new dispatcher();
 		$dispatcher->addListener('core.acp_bbcodes_modify_create', [$this->listener, 'acp_bbcodes_modify_create']);
 
 		$event_data = ['action', 'sql_ary', 'hidden_fields'];
 		$event_data_returned = $dispatcher->trigger_event('core.acp_bbcodes_modify_create', compact($event_data));
 		extract($event_data_returned);
 
-		self::assertEquals($expected_sql_ary, $sql_ary);
-		self::assertEquals($expected_hidden_fields, $hidden_fields);
+		$this->assertEquals($expected_sql_ary, $sql_ary);
+		$this->assertEquals($expected_hidden_fields, $hidden_fields);
 	}
 }

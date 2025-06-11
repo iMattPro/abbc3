@@ -1,29 +1,29 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2015 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\core;
 
 class acp_bbcode_resync_order_test extends acp_base
 {
-	public function bbcode_resync_order_data()
+	public function bbcode_resync_order_data(): array
 	{
 		return [
-			[ // order is good, so no change
+			[ // the order is good, so no change
 			  [13 => 1, 14 => 2, 15 => 3, 16 => 4, 17 => 5],
 			  [13 => 1, 14 => 2, 15 => 3, 16 => 4, 17 => 5],
 			],
-			[ // order is out of sync, so resync
+			[ // the order is out of sync, so resync
 			  [13 => 1, 14 => 10, 15 => 4, 16 => 3, 17 => 5],
 			  [13 => 1, 16 => 2, 15 => 3, 17 => 4, 14 => 5],
 			],
-			[ // order is all null, so resync
+			[ // the order is all null, so resync
 			  [13 => 0, 14 => 0, 15 => 0, 16 => 0, 17 => 0],
 			  [13 => 1, 14 => 2, 15 => 3, 16 => 4, 17 => 5],
 			],
@@ -48,7 +48,7 @@ class acp_bbcode_resync_order_test extends acp_base
 
 		$acp_manager->resynchronize_bbcode_order();
 
-		// Get new order
+		// Get a new order
 		$sql = 'SELECT bbcode_id, bbcode_order
 			FROM phpbb_bbcodes
 			ORDER BY bbcode_order';
@@ -60,6 +60,6 @@ class acp_bbcode_resync_order_test extends acp_base
 		}
 		$this->db->sql_freeresult($result);
 
-		self::assertEquals($expected_order, $bbcode_order);
+		$this->assertEquals($expected_order, $bbcode_order);
 	}
 }

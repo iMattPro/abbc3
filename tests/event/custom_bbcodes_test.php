@@ -1,14 +1,17 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2015 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
+
+use phpbb\event\dispatcher;
+use phpbb\textformatter\s9e\parser;
 
 class custom_bbcodes_test extends listener_base
 {
@@ -17,7 +20,7 @@ class custom_bbcodes_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function custom_bbcodes_data()
+	public function custom_bbcodes_data(): array
 	{
 		return [
 			[[], [], true],
@@ -38,19 +41,19 @@ class custom_bbcodes_test extends listener_base
 
 		$this->set_listener();
 
-		$this->bbcodes_display->expects($enabled ? self::once() : self::never())
+		$this->bbcodes_display->expects($enabled ? $this->once() : self::never())
 			->method('display_custom_bbcodes')
 			->with(self::equalTo($custom_tags), self::equalTo($row))
 			->willReturn($custom_tags);
 
-		$dispatcher = new \phpbb\event\dispatcher();
+		$dispatcher = new dispatcher();
 		$dispatcher->addListener('core.display_custom_bbcodes_modify_row', [$this->listener, 'display_custom_bbcodes']);
 
 		$event_data = ['custom_tags', 'row'];
 		$event_filtered_data = $dispatcher->trigger_event('core.display_custom_bbcodes_modify_row', compact($event_data));
 		extract($event_filtered_data);
 
-		self::assertEquals($custom_tags, $custom_tags);
+		$this->assertEquals($custom_tags, $custom_tags);
 	}
 
 	/**
@@ -58,7 +61,7 @@ class custom_bbcodes_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function s9e_allow_custom_bbcodes_data()
+	public function s9e_allow_custom_bbcodes_data(): array
 	{
 		return [
 			[false],
@@ -82,13 +85,13 @@ class custom_bbcodes_test extends listener_base
 		$this->set_listener();
 
 		// Mock the text_formatter.parser service
-		$parser = $this->createMock('\phpbb\textformatter\s9e\parser');
+		$parser = $this->createMock(parser::class);
 
-		$this->bbcodes_display->expects($in_cron ? self::never() : self::once())
+		$this->bbcodes_display->expects($in_cron ? self::never() : $this->once())
 			->method('allow_custom_bbcodes')
 			->with($parser);
 
-		$dispatcher = new \phpbb\event\dispatcher();
+		$dispatcher = new dispatcher();
 		$dispatcher->addListener('core.text_formatter_s9e_parser_setup', [$this->listener, 'allow_custom_bbcodes']);
 
 		$event_data = ['parser'];

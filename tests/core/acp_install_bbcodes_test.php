@@ -1,18 +1,20 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\core;
 
+use vse\abbc3\core\bbcodes_installer;
+
 class acp_install_bbcodes_test extends acp_base
 {
-	public function install_bbcodes_data()
+	public function install_bbcodes_data(): array
 	{
 		return [
 			[[
@@ -47,7 +49,7 @@ class acp_install_bbcodes_test extends acp_base
 	{
 		global $phpbb_root_path, $phpEx;
 
-		$bbcodes_installer = new \vse\abbc3\core\bbcodes_installer(
+		$bbcodes_installer = new bbcodes_installer(
 			$this->db,
 			$this->group_helper,
 			$this->lang,
@@ -64,14 +66,14 @@ class acp_install_bbcodes_test extends acp_base
 				WHERE bbcode_tag = '" . $bbcode_tag . "'";
 			$result = $this->db->sql_query($sql);
 
-			self::assertEquals($bbcode_data, $this->db->sql_fetchrow($result));
-			self::assertNotFalse($bbcodes_installer->bbcode_exists($bbcode_tag, $bbcode_tag));
+			$this->assertEquals($bbcode_data, $this->db->sql_fetchrow($result));
+			$this->assertNotFalse($bbcodes_installer->bbcode_exists($bbcode_tag, $bbcode_tag));
 		}
 
 		$bbcodes_installer->delete_bbcodes($data);
 		foreach ($data as $bbcode_tag => $bbcode_data)
 		{
-			self::assertFalse($bbcodes_installer->bbcode_exists($bbcode_tag, $bbcode_tag));
+			$this->assertFalse($bbcodes_installer->bbcode_exists($bbcode_tag, $bbcode_tag));
 		}
 	}
 
@@ -80,7 +82,7 @@ class acp_install_bbcodes_test extends acp_base
 	 */
 	public function test_clean_install_bbcodes($data)
 	{
-		// Remove any existing bbcodes from database
+		// Remove any existing bbcodes from the database
 		$this->db->sql_query('DELETE FROM phpbb_bbcodes');
 
 		$this->test_install_bbcodes($data);

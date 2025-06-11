@@ -1,52 +1,66 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
 
-class listener_base extends \phpbb_test_case
+use phpbb\config\config;
+use phpbb\config\db_text;
+use phpbb\language\language;
+use phpbb\language\language_file_loader;
+use phpbb\routing\helper;
+use phpbb\template\template;
+use phpbb\user;
+use phpbb_test_case;
+use PHPUnit\Framework\MockObject\MockObject;
+use vse\abbc3\core\bbcodes_config;
+use vse\abbc3\core\bbcodes_display;
+use vse\abbc3\core\bbcodes_help;
+use vse\abbc3\event\listener;
+
+class listener_base extends phpbb_test_case
 {
-	/** @var \vse\abbc3\core\bbcodes_config */
-	protected $bbcodes_config;
+	/** @var bbcodes_config */
+	protected bbcodes_config $bbcodes_config;
 
-	/** @var \vse\abbc3\core\bbcodes_display|\PHPUnit\Framework\MockObject\MockObject */
-	protected $bbcodes_display;
+	/** @var bbcodes_display|MockObject */
+	protected bbcodes_display|MockObject $bbcodes_display;
 
-	/** @var \vse\abbc3\core\bbcodes_help|\PHPUnit\Framework\MockObject\MockObject */
-	protected $bbcodes_help;
+	/** @var bbcodes_help|MockObject */
+	protected bbcodes_help|MockObject $bbcodes_help;
 
-	/** @var \phpbb\config\config */
-	protected $config;
+	/** @var config */
+	protected config $config;
 
-	/** @var \phpbb\config\db_text|\PHPUnit\Framework\MockObject\MockObject */
-	protected $config_text;
+	/** @var db_text|MockObject */
+	protected db_text|MockObject $config_text;
 
-	/** @var \phpbb\routing\helper|\PHPUnit\Framework\MockObject\MockObject */
-	protected $helper;
+	/** @var helper|MockObject */
+	protected helper|MockObject $helper;
 
-	/** @var \phpbb\language\language */
-	protected $language;
+	/** @var language */
+	protected language $language;
 
-	/** @var \vse\abbc3\event\listener */
-	protected $listener;
+	/** @var listener */
+	protected listener $listener;
 
-	/** @var \phpbb\template\template|\PHPUnit\Framework\MockObject\MockObject */
-	protected $template;
+	/** @var template|MockObject */
+	protected template|MockObject $template;
 
-	/** @var \phpbb\user */
-	protected $user;
+	/** @var user */
+	protected user $user;
 
-	/** @var string */
-	protected $bbvideo_width;
+	/** @var string|int */
+	protected string|int $bbvideo_width;
 
-	/** @var string */
-	protected $bbvideo_height;
+	/** @var string|int */
+	protected string|int $bbvideo_height;
 
 	protected function setUp(): void
 	{
@@ -54,10 +68,10 @@ class listener_base extends \phpbb_test_case
 
 		global $phpbb_root_path, $phpEx;
 
-		$this->bbcodes_config = new \vse\abbc3\core\bbcodes_config();
-		$this->bbcodes_display = $this->createMock('\vse\abbc3\core\bbcodes_display');
-		$this->bbcodes_help = $this->createMock('\vse\abbc3\core\bbcodes_help');
-		$this->config = new \phpbb\config\config([
+		$this->bbcodes_config = new bbcodes_config();
+		$this->bbcodes_display = $this->createMock(bbcodes_display::class);
+		$this->bbcodes_help = $this->createMock(bbcodes_help::class);
+		$this->config = new config([
 			'enable_mod_rewrite' => '0',
 			'allow_cdn' => '1',
 			'abbc3_icons_type' => 'png',
@@ -66,10 +80,10 @@ class listener_base extends \phpbb_test_case
 			'abbc3_auto_video' => 1,
 		]);
 
-		$this->config_text = $this->createMock('\phpbb\config\db_text');
-		$this->template = $this->createMock('\phpbb\template\template');
-		$this->language = new \phpbb\language\language(new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx));
-		$this->helper = $this->createMock('\phpbb\routing\helper');
+		$this->config_text = $this->createMock(db_text::class);
+		$this->template = $this->createMock(template::class);
+		$this->language = new language(new language_file_loader($phpbb_root_path, $phpEx));
+		$this->helper = $this->createMock(helper::class);
 		$this->helper->expects(self::atMost(3))
 			->method('route')
 			->willReturnCallback(function ($route, array $params = []) {
@@ -83,9 +97,9 @@ class listener_base extends \phpbb_test_case
 	/**
 	 * Set up an instance of the event listener
 	 */
-	protected function set_listener()
+	protected function set_listener(): void
 	{
-		$this->listener = new \vse\abbc3\event\listener(
+		$this->listener = new listener(
 			$this->bbcodes_config,
 			$this->bbcodes_display,
 			$this->bbcodes_help,

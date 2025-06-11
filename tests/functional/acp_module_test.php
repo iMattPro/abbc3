@@ -1,19 +1,21 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2020 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\functional;
+
+use phpbb_functional_test_case;
 
 /**
 * @group functional
 */
-class acp_module_test extends \phpbb_functional_test_case
+class acp_module_test extends phpbb_functional_test_case
 {
 	protected static function setup_extensions(): array
 	{
@@ -34,12 +36,12 @@ class acp_module_test extends \phpbb_functional_test_case
 		// Check ABBC3 ACP module
 		$crawler = self::request('GET', 'adm/index.php?i=\vse\abbc3\acp\abbc3_module&mode=settings&sid=' . $this->sid);
 		$this->assertContainsLang('ACP_ABBC3_MODULE', $crawler->text());
-		self::assertEquals('1', $crawler->filter('input[name="abbc3_bbcode_bar"][checked]')->attr('value'));
-		self::assertEquals('0', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
-		self::assertEquals('1', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
-		self::assertEquals('0', $crawler->filter('input[name="abbc3_auto_video"][checked]')->attr('value'));
-		self::assertEquals('png', $crawler->filter('select[name="abbc3_icons_type"] > option[selected]')->attr('value'));
-		self::assertEquals('', $crawler->filter('textarea#abbc3_google_fonts')->text());
+		$this->assertEquals('1', $crawler->filter('input[name="abbc3_bbcode_bar"][checked]')->attr('value'));
+		$this->assertEquals('0', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
+		$this->assertEquals('1', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
+		$this->assertEquals('0', $crawler->filter('input[name="abbc3_auto_video"][checked]')->attr('value'));
+		$this->assertEquals('png', $crawler->filter('select[name="abbc3_icons_type"] > option[selected]')->attr('value'));
+		$this->assertEquals('', $crawler->filter('textarea#abbc3_google_fonts')->text());
 
 		// Check the BBCodes module is installed in the ABBC3 module
 		$this->assertContainsLang('ACP_BBCODES', $crawler->filter("#menu")->text());
@@ -60,13 +62,13 @@ class acp_module_test extends \phpbb_functional_test_case
 		// Verify ABBC3 module settings have been updated
 		$crawler = self::request('GET', 'adm/index.php?i=\vse\abbc3\acp\abbc3_module&mode=settings&sid=' . $this->sid);
 		$this->assertContainsLang('ACP_ABBC3_MODULE', $crawler->text());
-		self::assertEquals('0', $crawler->filter('input[name="abbc3_bbcode_bar"][checked]')->attr('value'));
-		self::assertEquals('1', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
-		self::assertEquals('0', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
-		self::assertEquals('1', $crawler->filter('input[name="abbc3_auto_video"][checked]')->attr('value'));
-		self::assertEquals('svg', $crawler->filter('select[name="abbc3_icons_type"] > option[selected]')->attr('value'));
-		self::assertStringContainsString("Droid Sans", $crawler->filter('textarea#abbc3_google_fonts')->text());
-		self::assertStringContainsString("Roboto", $crawler->filter('textarea#abbc3_google_fonts')->text());
+		$this->assertEquals('0', $crawler->filter('input[name="abbc3_bbcode_bar"][checked]')->attr('value'));
+		$this->assertEquals('1', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
+		$this->assertEquals('0', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
+		$this->assertEquals('1', $crawler->filter('input[name="abbc3_auto_video"][checked]')->attr('value'));
+		$this->assertEquals('svg', $crawler->filter('select[name="abbc3_icons_type"] > option[selected]')->attr('value'));
+		$this->assertStringContainsString("Droid Sans", $crawler->filter('textarea#abbc3_google_fonts')->text());
+		$this->assertStringContainsString("Roboto", $crawler->filter('textarea#abbc3_google_fonts')->text());
 
 		// Resubmit form with settings needed for future functional tests
 		$form_data = [
@@ -85,7 +87,7 @@ class acp_module_test extends \phpbb_functional_test_case
 		$crawler = self::request('GET', "adm/index.php?i=acp_board&mode=post&sid=$this->sid");
 		$form = $crawler->selectButton('allow_quick_reply_enable')->form();
 		$crawler = self::submit($form);
-		self::assertGreaterThan(0, $crawler->filter('.successbox')->count());
+		$this->assertGreaterThan(0, $crawler->filter('.successbox')->count());
 		$this->assertContainsLang('CONFIG_UPDATED', $crawler->text());
 	}
 }

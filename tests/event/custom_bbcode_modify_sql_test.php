@@ -1,14 +1,16 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
+
+use phpbb\event\dispatcher;
 
 class custom_bbcode_modify_sql_test extends listener_base
 {
@@ -17,7 +19,7 @@ class custom_bbcode_modify_sql_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function custom_bbcode_modify_sql_data()
+	public function custom_bbcode_modify_sql_data(): array
 	{
 		return [
 			[
@@ -57,7 +59,7 @@ class custom_bbcode_modify_sql_test extends listener_base
 	{
 		$this->set_listener();
 
-		$dispatcher = new \phpbb\event\dispatcher();
+		$dispatcher = new dispatcher();
 		$dispatcher->addListener('core.display_custom_bbcodes_modify_sql', [$this->listener, 'custom_bbcode_modify_sql']);
 
 		$num_predefined_bbcodes = 22;
@@ -65,6 +67,6 @@ class custom_bbcode_modify_sql_test extends listener_base
 		$event_filtered_data = $dispatcher->trigger_event('core.display_custom_bbcodes_modify_sql', compact($event_data));
 		extract($event_filtered_data);
 
-		self::assertEquals($expected, $sql_ary);
+		$this->assertEquals($expected, $sql_ary);
 	}
 }

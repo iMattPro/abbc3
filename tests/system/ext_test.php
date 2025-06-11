@@ -1,44 +1,50 @@
 <?php
 /**
  *
- * Advanced BBCode Box
+ * Advanced BBCodes
  *
- * @copyright (c) 2016 Matt Friedman
+ * @copyright (c) 2013-2025 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
 
 namespace vse\abbc3\tests\system;
 
+use phpbb\config\config;
+use phpbb\filesystem\exception\filesystem_exception;
 use phpbb\finder\finder;
 use phpbb\db\migrator;
+use phpbb_mock_user;
+use phpbb_test_case;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use vse\abbc3\ext;
+use phpbb\filesystem\filesystem;
+use phpbb\log\log;
 
-class ext_test extends \phpbb_test_case
+class ext_test extends phpbb_test_case
 {
 	/** @var MockObject|ContainerInterface */
-	protected $container;
+	protected ContainerInterface|MockObject $container;
 
 	/** @var MockObject|finder */
-	protected $extension_finder;
+	protected finder|MockObject $extension_finder;
 
 	/** @var MockObject|migrator */
-	protected $migrator;
+	protected MockObject|migrator $migrator;
 
 	protected function setUp(): void
 	{
 		parent::setUp();
 
 		// Stub the container
-		$this->container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+		$this->container = $this->createMock(ContainerInterface::class);
 
 		// Stub the ext finder and disable its constructor
-		$this->extension_finder = $this->createMock('\phpbb\finder\finder');
+		$this->extension_finder = $this->createMock(finder::class);
 
 		// Stub the migrator and disable its constructor
-		$this->migrator = $this->createMock('\phpbb\db\migrator');
+		$this->migrator = $this->createMock(migrator::class);
 	}
 
 	/**
@@ -46,10 +52,10 @@ class ext_test extends \phpbb_test_case
 	 *
 	 * @return array
 	 */
-	public function ext_test_data()
+	public function ext_test_data(): array
 	{
 		return [
-			[ext::PHPBB_MIN_VERSION, true], // current setting is enableable
+			[ext::PHPBB_MIN_VERSION, true], // the current setting is enableable
 			['4.0.0', true], // future phpbb is enableable
 			['3.1.0', false], // old phpbb is not enableable
 		];
@@ -67,23 +73,23 @@ class ext_test extends \phpbb_test_case
 	public function test_ext($version, $expected)
 	{
 		// Instantiate config object and set config version
-		$config = new \phpbb\config\config([
+		$config = new config([
 			'version' => $version,
 		]);
 
 		// Mocked container should return the config object
 		// when encountering $this->container->get('config')
-		$this->container->expects(self::once())
+		$this->container->expects($this->once())
 			->method('get')
 			->with('config')
 			->willReturn($config);
 
 		$ext = new ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
 
-		self::assertSame($expected, $ext->is_enableable());
+		$this->assertSame($expected, $ext->is_enableable());
 	}
 
-	public function enable_test_data()
+	public function enable_test_data(): array
 	{
 		return [
 			[true, false, 'abbc3-step'],
@@ -96,47 +102,47 @@ class ext_test extends \phpbb_test_case
 	 */
 	public function test_enable($exists, $old_state, $expected)
 	{
-		$filesystem = $this->getMockBuilder('\phpbb\filesystem\filesystem')
+		$filesystem = $this->getMockBuilder(filesystem::class)
 			->disableOriginalConstructor()
 			->onlyMethods(['mkdir', 'exists'])
 			->getMock();
 
-		$filesystem->expects($exists ? self::never() : self::once())
+		$filesystem->expects($exists ? self::never() : $this->once())
 			->method('mkdir');
 
-		$filesystem->expects($old_state ? self::never() : self::once())
+		$filesystem->expects($old_state ? self::never() : $this->once())
 			->method('exists')
 			->willReturn($exists);
 
-		$this->container->expects(self::once())
+		$this->container->expects($this->once())
 			->method('get')
 			->with('filesystem')
 			->willReturn($filesystem);
 
 		$ext = new ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
 
-		self::assertEquals($expected, $ext->enable_step($old_state));
+		$this->assertEquals($expected, $ext->enable_step($old_state));
 	}
 
 	public function test_enable_fails()
 	{
-		$filesystem = $this->getMockBuilder('\phpbb\filesystem\filesystem')
+		$filesystem = $this->getMockBuilder(filesystem::class)
 			->disableOriginalConstructor()
-			->setMethods(['mkdir', 'exists'])
+			->onlyMethods(['mkdir', 'exists'])
 			->getMock();
 
-		$filesystem->expects( self::once())
+		$filesystem->expects( $this->once())
 			->method('exists')
 			->willReturn(false);
 
-		$filesystem->expects(self::once())
+		$filesystem->expects($this->once())
 			->method('mkdir')
-			->willThrowException(new \phpbb\filesystem\exception\filesystem_exception('Test Error', 'images/abbc3/icons'));
+			->willThrowException(new filesystem_exception('Test Error', 'images/abbc3/icons'));
 
-		$user = new \phpbb_mock_user();
+		$user = new phpbb_mock_user();
 		$user->data['user_id'] = '2';
 		$user->ip = '1.0.0.01';
-		$log = $this->getMockBuilder('\phpbb\log\log')
+		$log = $this->getMockBuilder(log::class)
 			->disableOriginalConstructor()
 			->getMock();
 

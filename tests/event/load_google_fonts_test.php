@@ -1,12 +1,12 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2022 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
 
@@ -15,7 +15,7 @@ class load_google_fonts_test extends listener_base
 	/**
 	 * @return array Test data
 	 */
-	public function load_google_fonts_data()
+	public function load_google_fonts_data(): array
 	{
 		return [
 			['', null],
@@ -35,11 +35,11 @@ class load_google_fonts_test extends listener_base
 	{
 		$this->set_listener();
 
-		$this->config_text->expects(self::once())
+		$this->config_text->expects($this->once())
 			->method('get')
 			->willReturn($data);
 
-		$this->template->expects(self::once())
+		$this->template->expects($this->once())
 			->method('assign_var')
 			->with('abbc3_google_fonts', $expected);
 

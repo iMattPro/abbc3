@@ -1,14 +1,21 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2015 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
+
+use phpbb\config\config;
+use phpbb\event\dispatcher;
+use phpbb\language\language;
+use phpbb\language\language_file_loader;
+use phpbb\user;
+use phpbb\datetime;
 
 class bbcode_faq_test extends listener_base
 {
@@ -17,12 +24,12 @@ class bbcode_faq_test extends listener_base
 		parent::setUp();
 
 		global $config, $phpbb_container, $phpbb_root_path, $phpEx;
-		$config = new \phpbb\config\config([]);
+		$config = new config([]);
 
-		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
-		$lang = new \phpbb\language\language($lang_loader);
+		$lang_loader = new language_file_loader($phpbb_root_path, $phpEx);
+		$lang = new language($lang_loader);
 		$lang->add_lang('abbc3', 'vse/abbc3');
-		$this->user = new \phpbb\user($lang, '\phpbb\datetime');
+		$this->user = new user($lang, datetime::class);
 
 		// This is needed to set up the s9e text formatter services
 		$this->get_test_case_helpers()->set_s9e_services($phpbb_container);
@@ -33,7 +40,7 @@ class bbcode_faq_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function add_bbcode_faq_data()
+	public function add_bbcode_faq_data(): array
 	{
 		return [
 			['HELP_BBCODE_BLOCK_OTHERS', true],
@@ -52,10 +59,10 @@ class bbcode_faq_test extends listener_base
 	{
 		$this->set_listener();
 
-		$this->bbcodes_help->expects(($expected ? self::once() : self::never()))
+		$this->bbcodes_help->expects(($expected ? $this->once() : self::never()))
 			->method('faq');
 
-		$dispatcher = new \phpbb\event\dispatcher();
+		$dispatcher = new dispatcher();
 		$dispatcher->addListener('core.help_manager_add_block_after', [$this->listener, 'add_bbcode_faq']);
 
 		$event_data = ['block_name'];

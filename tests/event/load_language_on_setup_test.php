@@ -1,14 +1,16 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2014 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
+
+use phpbb\event\dispatcher;
 
 class load_language_on_setup_test extends listener_base
 {
@@ -17,7 +19,7 @@ class load_language_on_setup_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function load_language_on_setup_data()
+	public function load_language_on_setup_data(): array
 	{
 		return [
 			[
@@ -60,7 +62,7 @@ class load_language_on_setup_test extends listener_base
 	{
 		$this->set_listener();
 
-		$dispatcher = new \phpbb\event\dispatcher();
+		$dispatcher = new dispatcher();
 		$dispatcher->addListener('core.user_setup', [$this->listener, 'load_language_on_setup']);
 
 		$event_data = ['lang_set_ext'];
@@ -69,7 +71,7 @@ class load_language_on_setup_test extends listener_base
 
 		foreach ($expected_contains as $expected)
 		{
-			self::assertContains($expected, $lang_set_ext);
+			$this->assertContains($expected, $lang_set_ext);
 		}
 	}
 }

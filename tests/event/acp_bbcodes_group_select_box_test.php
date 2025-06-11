@@ -1,14 +1,16 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2015 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\event;
+
+use phpbb\event\dispatcher;
 
 class acp_bbcodes_group_select_box_test extends acp_listener_base
 {
@@ -17,7 +19,7 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function acp_bbcodes_group_select_box_data()
+	public function acp_bbcodes_group_select_box_data(): array
 	{
 		return [
 			[
@@ -67,22 +69,22 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 	{
 		$this->set_listener();
 
-		$this->acp_manager->expects($action === 'edit' ? self::once() : self::never())
+		$this->acp_manager->expects($action === 'edit' ? $this->once() : self::never())
 			->method('get_bbcode_group_data')
 			->with($bbcode_id)
 			->willReturn($bbcode_group);
-		$this->acp_manager->expects(self::once())
+		$this->acp_manager->expects($this->once())
 			->method('bbcode_group_select_options')
 			->with($bbcode_group)
 			->willReturn($group_opts);
 
-		$dispatcher = new \phpbb\event\dispatcher();
+		$dispatcher = new dispatcher();
 		$dispatcher->addListener('core.acp_bbcodes_edit_add', [$this->listener, 'acp_bbcodes_group_select_box']);
 
 		$event_data = ['action', 'bbcode_id', 'tpl_ary'];
 		$event_data_returned = $dispatcher->trigger_event('core.acp_bbcodes_edit_add', compact($event_data));
 		extract($event_data_returned);
 
-		self::assertEquals($expected, $tpl_ary);
+		$this->assertEquals($expected, $tpl_ary);
 	}
 }
