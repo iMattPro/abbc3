@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Arabic]
+* Advanced BBCodes [Arabic]
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 * Translated By : Bassel Taha Alhitary - www.alhitary.net

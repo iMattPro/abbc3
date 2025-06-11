@@ -1,12 +1,12 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2021 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\migrations;
 

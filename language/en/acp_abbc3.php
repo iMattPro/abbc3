@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* Advanced BBCode Box [English]
+* Advanced BBCodes [English]
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -22,18 +22,18 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box. For information about customizing the icon bar, visit the %s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for ' . \vse\abbc3\ext::ABBC3_EXT_NAME . '. For information about customizing the icon bar, visit the %s.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
 	'ABBC3_INVALID_FONT'		=> 'Invalid font name for “%s”',
 	'ABBC3_PIPES'				=> 'Enable Pipe Table PlugIn',
 	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipe Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',
 	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display an icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
 	'ABBC3_QR_BBCODES'			=> 'Enable BBCodes in Quick Reply',
 	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'This will add BBCode buttons to Quick Reply.',
 	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for Advanced BBCode icons. Note that you can only choose one format for all your icons.',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
 	'ABBC3_AUTO_VIDEO'			=> 'Enable Auto Video PlugIn',

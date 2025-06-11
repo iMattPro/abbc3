@@ -1,10 +1,10 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Italian]
+* Advanced BBCodes [Italian]
 * Translated by Loll.
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -100,7 +100,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Se nessun gruppo è selezionato, allora tutti gli utenti potranno usare questo BBCode. Usa CTRL+CLICK (o CMD+CLICK su Mac) per selezionare/deselezionare più di un gruppo.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'BBCode dell\'Advanced BBCode Box',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Qualche vago ione tipo zolfo, bromo, sodio',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Esempio:</strong><br>%2$s<br><br><strong>Risultato:</strong><br>%3$s<hr>',
 ));

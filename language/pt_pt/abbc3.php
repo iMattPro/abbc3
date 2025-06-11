@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* Advanced BBCode Box [European Portuguese]
+* Advanced BBCodes [European Portuguese]
 *
 * Translation by Gwyneth Llewelyn
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -101,7 +101,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Se nenhum grupo for seleccionado, então todos os utilizadores podem usar estes BBCode. Use CTRL+CLIQUE (or CMD+CLIQUE no Mac) para seleccionar/desmarcar mais de um grupo.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Bancos fúteis pagavam-lhe queijo, whisky e xadrez.',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exemplo:</strong><br>%2$s<br><br><strong>Resultado:</strong><br>%3$s<hr>',
 ));

@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Greek]
+* Advanced BBCodes [Greek]
 *
 * Greek translation by the_observer April 2015(gnikits@gmail.com)
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -101,7 +101,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Αν δεν επιλεχθεί ομάδα τότε όλοι οι χρήστες μπορούν να χρησιμοποιήσουν αυτό το BBCode. Πάτα CTRL+CLICK (ή CMD+CLICK για Mac) για να επιλέξεις/αποεπιλέξεις περισσότερες από μία ομάδες.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
 ));

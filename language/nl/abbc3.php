@@ -1,10 +1,10 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Dutch]
+* Advanced BBCodes [Dutch]
 * Translated by Dutch Translators (https://github.com/dutch-translators)
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -100,7 +100,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	  => 'Als je geen groep hebt geselecteerd, kunnen alle groepen deze BBcode gebruiken. Gebruik CTRL+KLIK (of CMD+KLIK bij Mac) om meer dan één groep te selecteren/deselecteren.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'De snelle bruine vos springt over de luie hond',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Voorbeeld:</strong><br>%2$s<br><br><strong>Resultaat:</strong><br>%3$s<hr>',
 ));

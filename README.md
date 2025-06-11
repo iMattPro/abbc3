@@ -1,10 +1,10 @@
-# Advanced BBCode Box
+# Advanced BBCodes 3.4
 
-Revamp phpBB's default BBCode buttons with a sleek toolbar featuring customizable icons. Elevate your users' posting experience with an array of new custom BBCodes. With the Advanced BBCode Box extension, users gain new flexibility to personalize their posts, including the ability to effortlessly embed videos from many media platforms.
+Revamp phpBB's default BBCode buttons with a sleek toolbar featuring customizable icons. Elevate your users' posting experience with an array of new custom BBCodes. With the Advanced BBCodes 3.4 extension, users gain new flexibility to personalize their posts, including the ability to effortlessly embed videos from many media platforms.
 
 Tailor your custom BBCodes to perfection by arranging and sorting them in any desired order. Moreover, with the option to assign specific custom BBCodes to designated user groups—such as Moderators and Admins only—you can ensure precise control and enhance the overall forum experience.
 
-Install Advanced BBCode Box today and unlock a world of enhanced formatting possibilities for your phpBB forum.
+Install Advanced BBCodes 3.4 today and unlock a world of enhanced formatting possibilities for your phpBB forum.
 
 [![Build Status](https://github.com/iMattPro/abbc3/actions/workflows/tests.yml/badge.svg)](https://github.com/iMattPro/abbc3/actions)
 [![Maintainability](https://qlty.sh/badges/6853fa75-7bf8-4f43-80ea-448278f31b68/maintainability.svg)](https://qlty.sh/gh/iMattPro/projects/abbc3)

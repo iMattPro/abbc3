@@ -1,10 +1,10 @@
 <?php
 /**
 *
-* Advanced BBCode Box [German]
+* Advanced BBCodes [German]
 * Translated by wintstar - http://www.wintstar.de and Scanialady (https://ladyscommunity.de)
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -23,18 +23,18 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Hier kannst du die Einstellungen für die Advanced BBCode Box verändern. Für weitere Informationen, wie du die Menüleiste verändern kannst, rufe bitte die %s auf.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Hier kannst du die Einstellungen für die ' . \vse\abbc3\ext::ABBC3_EXT_NAME . ' verändern. Für weitere Informationen, wie du die Menüleiste verändern kannst, rufe bitte die %s auf.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Füge <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> zum <samp class="error">[font]</samp> BBCode hinzu. Achte auf genaue Schreibweise und Groß-/Kleinschreibung. Setze jeden Schriftartnamen in eine eigene Zeile.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '„Nutzung von Drittanbieter-Servern zulassen“ muss aktiviert sein unter den “Serverlast”-Einstellungen, um diese Funktion zu nutzen.',
 	'ABBC3_INVALID_FONT'		=> 'Ungültiger Schriftname „%s“',
 	'ABBC3_PIPES'				=> 'Aktiviere das „Pipe Table“-Plug-in.',
 	'ABBC3_PIPES_EXPLAIN'		=> 'Mit dem „Pipe Table“-Plug-in können Benutzer Tabellen in ihren Beiträgen und Privaten Nachrichten mit Hilfe der Markdown-Syntax erstellen.',
 	'ABBC3_BBCODE_BAR'			=> 'Aktiviere die BBCode-Menüleiste',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Falls aktiviert, wird die ABBC3s iconbasierte BBCode-Menüleiste angezeigt. Sofern deaktiviert, wird die Standard phpBB BBCode-Menüleiste verwendet.',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Wenn aktiviert, wird eine symbolbasierte BBCode-Menüleiste angezeigt. Sofern deaktiviert, wird die Standard phpBB BBCode-Menüleiste verwendet.',
 	'ABBC3_QR_BBCODES'			=> 'Aktiviere BBCodes bei der Schnellantwort',
 	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Falls aktiviert, wird bei der Schnellantwort die BBCode-Menüleiste angezeigt.',
 	'ABBC3_ICONS_TYPE'			=> 'Iconformat der Menüleiste',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Wähle das Iconformat, das für die ABBC3s Icons verwendet wird. Bitte beachte, dass nur ein Format für alle Icons gewählt werden kann.',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Wählen Sie das für die BBCode-Symbole verwendete Symbolformat aus. Bitte beachte, dass nur ein Format für alle Icons gewählt werden kann.',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode-Menüleiste',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Add-Ons',
 	'ABBC3_AUTO_VIDEO'			=> 'Aktiviere Auto Video PlugIn',

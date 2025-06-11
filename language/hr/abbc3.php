@@ -1,10 +1,10 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Croatian]
+* Advanced BBCodes [Croatian]
 * Croatian translation by Ančica Sečan (http://ancica.sunceko.net)
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -100,7 +100,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Ukoliko niti jedna grupa nije odabrana, svi/e korisnici/e mogu koristiti ovaj BBKod.<br>Za o(do)značavanje više od jedne grupe, koristi CTRL+KLIK (CMD+KLIK na Macu).',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
 ));

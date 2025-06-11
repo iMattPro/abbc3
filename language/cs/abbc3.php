@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Czech]
+* Advanced BBCodes [Czech]
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -99,7 +99,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Pokud nebudou vybrány žádné skupiny, tak tento BBCode budou moci používat všichni uživatelé. Použijte CTRL+KLIK (nebo CMD+KLIK na Mac) k vybrání / zrušení výběru jedné nebo více skupin',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
 ));

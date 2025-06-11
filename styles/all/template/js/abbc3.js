@@ -1,8 +1,8 @@
 /**
  *
- * Advanced BBCode Box
+ * Advanced BBCodes
  *
- * @copyright (c) 2013 Matt Friedman
+ * @copyright (c) 2013-2025 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */

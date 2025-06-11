@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Spanish - Formal Honorifics]
+* Advanced BBCodes [Spanish - Formal Honorifics]
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -22,18 +22,18 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aquí puede configurar los ajustes para Advanced BBCode Box. Para obtener información sobre cómo personalizar la barra de iconos, visite el %s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aquí puede configurar los ajustes para ' . \vse\abbc3\ext::ABBC3_EXT_NAME . '. Para obtener información sobre cómo personalizar la barra de iconos, visite el %s.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Añada fuentes de <a href="https://fonts.google.com" target="_blank">Google Fonts</a> al BBCode <samp>font</samp>. Utilice la ortografía exacta y la distinción entre mayúsculas y minúsculas. Coloque cada nombre de fuente en una línea separada. Por ejemplo: <samp>Droid Sans</samp>',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Tenga en cuenta que “Permitir el uso de las redes de distribución de contenidos de terceros” debe estar habilitado en "Configuración de carga" para usar esta función.',
 	'ABBC3_INVALID_FONT'		=> 'Invalid font name for “%s”',
 	'ABBC3_PIPES'				=> 'Habilitar el complemento de tablas de Pipe (tubo)',
 	'ABBC3_PIPES_EXPLAIN'		=> 'El complemento de tabla de tubo permite a los usuarios crear tablas en sus mensajes y mensajes privados utilizando la sintaxis markdown.',
 	'ABBC3_BBCODE_BAR'			=> 'Habilitar la barra de iconos de BBCode',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Esto mostrará la barra de herramientas BBCode basada en iconos de ABBC3. Desactive esto para mostrar los botones BBCode predeterminados de phpBB.',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Esto mostrará la barra de herramientas BBCode basada en iconos. Desactive esto para mostrar los botones BBCode predeterminados de phpBB.',
 	'ABBC3_QR_BBCODES'			=> 'Habilitar BBCodes en Respuesta rápida',
 	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Esto añade los botones BBCode a Respuesta rápida.',
 	'ABBC3_ICONS_TYPE'			=> 'Formato de imagen de la barra de iconos',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Seleccione el formato de imagen que se utilizará para los iconos de ABBC3. Tenga en cuenta que solo puede elegir un formato para todos sus iconos.',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Seleccione el formato de imagen que se utilizará para los iconos de Advanced BBCodes. Tenga en cuenta que solo puede elegir un formato para todos sus iconos.',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'Barra de iconos de BBCode',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Añadidos',
 	'ABBC3_AUTO_VIDEO'			=> 'Enable Auto Video PlugIn',

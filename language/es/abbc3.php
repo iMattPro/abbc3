@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Spanish - Formal Honorifics]
+* Advanced BBCodes [Spanish - Formal Honorifics]
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */

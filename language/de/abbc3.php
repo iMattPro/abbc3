@@ -1,10 +1,10 @@
 <?php
 /**
 *
-* Advanced BBCode Box [German]
+* Advanced BBCodes [German]
 * Translated by wintstar - http://www.wintstar.de and Scanialady (https://ladyscommunity.de)
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -100,7 +100,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Wenn keine Gruppen ausgewählt sind, können alle Benutzer diesen BBCode verwenden. Verwende STRG+CLICK (oder CMD+CLICK auf Mac) mehr als eine Gruppe zu aktivieren/deaktivieren.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Der schnelle braune Fuchs springt über den faulen Hund',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Beispiel:</strong><br>%2$s<br><br><strong>Ergebnis:</strong><br>%3$s<hr>',
 ));

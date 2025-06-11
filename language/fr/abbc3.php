@@ -1,10 +1,10 @@
 <?php
 /**
 *
-* Advanced BBCode Box [French]
+* Advanced BBCodes [French]
 * Translated by ForumsFaciles - http://www.forumsfaciles.fr & Galixte (http://www.galixte.com)
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */

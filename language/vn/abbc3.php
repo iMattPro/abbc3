@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Vietnamese]
+* Advanced BBCodes [Vietnamese]
 *
 * Vietnamese translation by Bien Thuy (https://bienthuy.com)
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -101,7 +101,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Nếu không có nhóm nào được chọn, tất cả mọi thành viên đều được sử dụng BBCode này. Sử dụng CTRL+CLICK (hoặc CMD+CLICK trên các máy Mac) để chọn hoặc bỏ chọn nhiều hơn 1 nhóm.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
 ));

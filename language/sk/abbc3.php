@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Slovak]
+* Advanced BBCodes [Slovak]
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -99,7 +99,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Pokiaľ nebudú vybrané žiadne skupiny, tak tento BBCode budú môcť používať všetci uživatelia. Použite CTRL+KLIK (alebo CMD+KLIK na Mac) k vybraniu / zrušeniu výberu jednej alebo viac skupín',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Rýchla hnedá liška skočí cez lenivého psa',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Príklad:</strong><br>%2$s<br><br><strong>Výsledok:</strong><br>%3$s<hr>',
 ));

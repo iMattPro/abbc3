@@ -1,10 +1,10 @@
 <?php
 /**
 *
-* Advanced BBCode Box [Simplified Chinese]
+* Advanced BBCodes [Simplified Chinese]
 * @简体中文语言　David Yin <https://www.phpbbchinese.com/>
 *
-* @copyright (c) 2013 Matt Friedman
+* @copyright (c) 2013-2025 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -100,7 +100,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未选择任何群，则所有人皆可使用此 BBCode。若要选择多个群组，请按下 CTRL 键。Mac 电脑请用 CMD 键',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
 ));

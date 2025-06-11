@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * Advanced BBCode Box
+ * Advanced BBCodes
  *
- * @copyright (c) 2015 Matt Friedman
+ * @copyright (c) 2013-2025 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -20,6 +20,7 @@ class ext extends base
 	public const MOVE_DRAG = 'move_drag';
 	public const PHPBB_MIN_VERSION = '4.0.0-dev';
 	public const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
+	public const ABBC3_EXT_NAME = 'Advanced BBCodes 3.4';
 
 	/**
 	 * {@inheritdoc}
