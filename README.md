@@ -17,21 +17,23 @@ Tailor your custom BBCodes to perfection by arranging and sorting them in any de
 Install Advanced BBCodes 3.4 today and unlock a world of enhanced formatting possibilities for your phpBB forum.
 
 ## Features:
-* Customizable icon-based BBCode toolbar
-* Custom BBCode sorting/arrangement
-* BBCodes can be assigned to certain user groups for private use.
-* Add BBCodes to the Quick Reply editor
-* Embed video from most popular media content sites with BBvideo. Also, raw URLs will automatically be converted to embedded content.
-* Supports phpBB’s custom BBCodes.
-* New BBCodes:
+* A fully customizable toolbar with icons that actually make sense
+* Drag-and-drop BBCode arrangement for total control
+* Restrict BBCodes to specific user groups (e.g., Mods only? No problem)
+* Instant video embeds from all the big platforms via [BBvideo] or raw links
+* Support for phpBB’s native custom BBCodes
+* Add BBCodes to the Quick Reply editor too
 
-		Copy, Paste, Plain, Font Family, Highlight text, Strike through text,
-		Superscript, Subscript, Glow text, Shadow text, Dropshadow text, Blur
-		text, Fade In/Out, Align (Left, Right Center, Justify), Float (Left,
-		Right), LTR/RTL Direction, Preformatted text, Marquee scroll, Spoiler,
-		Hidden, Moderator Message, Off Topic, NFO/ascii text, BBvideo
+### ➕ Includes a bunch of new, ready-to-use BBCodes:
 
-* Multiple languages are supported. View the pre-installed [localizations](https://github.com/iMattPro/abbc3/tree/master/language).
+	Copy, Paste, Plain, Font Family, Highlight text, Strike through text,
+	Superscript, Subscript, Glow text, Shadow text, Dropshadow text, Blur
+	text, Fade In/Out, Align (Left, Right Center, Justify), Float (Left,
+	Right), LTR/RTL Direction, Preformatted text, Marquee scroll, Spoiler,
+	Hidden, Moderator Message, Off Topic, NFO/ascii text, BBvideo
+
+### 🌍 Multi-language support  
+Already localized in several languages. [See what's included.](https://github.com/iMattPro/abbc3/tree/master/language)
 
 ## Minimum Requirements
 * phpBB 4.0.0 or higher
