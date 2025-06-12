@@ -4,8 +4,8 @@
 
 <p align="center">
 <a href="https://github.com/iMattPro/abbc3/actions"><img src="https://github.com/iMattPro/abbc3/actions/workflows/tests.yml/badge.svg" alt="Build Status"></a>
-<a href="https://qlty.sh/gh/iMattPro/projects/abbc3"><img src="https://qlty.sh/badges/6853fa75-7bf8-4f43-80ea-448278f31b68/maintainability.svg" alt="Maintainability"></a>
 <a href="https://codecov.io/gh/iMattPro/abbc3"><img src="https://codecov.io/gh/iMattPro/abbc3/branch/master/graph/badge.svg?token=C5Big3OlKM" alt="codecov"></a>
+<a href="https://qlty.sh/gh/iMattPro/projects/abbc3"><img src="https://qlty.sh/badges/6853fa75-7bf8-4f43-80ea-448278f31b68/maintainability.svg" alt="Maintainability"></a>
 <a href="https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/"><img src="https://poser.pugx.org/vse/abbc3/v/stable" alt="Latest Stable Version"></a>
 </p>
 <br>
