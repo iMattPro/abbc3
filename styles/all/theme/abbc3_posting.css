@@ -51,11 +51,6 @@
 .abbc3_buttons_row {
 	text-align: left;
 	background: #f9fbfd;
-	background: -moz-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9fbfd), color-stop(100%, #d9dde2));
-	background: -webkit-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
-	background: -o-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
-	background: -ms-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
 	background: linear-gradient(to bottom, #f9fbfd 0%, #d9dde2 100%);
 	border: 1px solid #b4bac0;
 	display: block;

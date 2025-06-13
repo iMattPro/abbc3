@@ -10,8 +10,8 @@
 /*global bbfontstyle, is_ie, form_name, text_name, insert_text, storeCaret, baseHeight:true */
 
 // global scope vars
-var requestRunning = false;
-var bbwizard;
+let requestRunning = false;
+let bbwizard;
 
 (function($) { // Avoid conflicts with other libraries
 
@@ -55,36 +55,6 @@ var bbwizard;
 	};
 
 	/**
-	 * Insert BBCode into message (position cursor after insertion)
-	 */
-	const bbinsert = function(bbopen, bbclose) {
-		let textarea;
-
-		if (is_ie) {
-			textarea = document.forms[form_name].elements[text_name];
-			textarea.focus();
-			baseHeight = document.selection.createRange().duplicate().boundingHeight;
-		}
-
-		//initInsertions();
-		insert_text(bbopen + bbclose);
-
-		// The new position for the cursor after adding the bbcode
-		if (is_ie) {
-			const text = bbopen + bbclose;
-			const pos = textarea.innerHTML.indexOf(text);
-			if (pos > 0) {
-				const new_pos = pos + text.length;
-				const range = textarea.createTextRange();
-				range.move('character', new_pos);
-				range.select();
-				storeCaret(textarea);
-				textarea.focus();
-			}
-		}
-	};
-
-	/**
 	 * DOM READY
 	 */
 	$(function() {
@@ -122,7 +92,7 @@ var bbwizard;
 			}
 		});
 		wizard
-			// Click on bbcode wizard submit button to apply bbcode to message
+			// Click on the bbcode wizard submit button to apply bbcode to the message
 			.on('click', '#bbcode_wizard_submit', function(event) {
 				event.preventDefault();
 				const bbcode = $(this).data('bbcode');
@@ -130,16 +100,16 @@ var bbwizard;
 					case 'url':
 						const link = $('#bbcode_wizard_link').val(),
 							description = $('#bbcode_wizard_description').val();
-						bbinsert('[' + bbcode + ((description.length) ? '=' + link : '') + ']' + ((description.length) ? description : link) + '', '[/' + bbcode + ']');
+						insert_text('[' + bbcode + ((description.length) ? '=' + link : '') + ']' + ((description.length) ? description : link) + '' + '[/' + bbcode + ']');
 						break;
 					case 'bbvideo':
 					case 'media':
-						bbinsert('[' + bbcode + ']' + $('#bbvideo_wizard_link').val() + '', '[/' + bbcode + ']');
+						insert_text('[' + bbcode + ']' + $('#bbvideo_wizard_link').val() + '' + '[/' + bbcode + ']');
 						break;
 				}
 				closeWizard();
 			})
-			// Click on bbcode wizard cancel button to dismiss bbcode wizard
+			// Click on the bbcode wizard cancel button to dismiss bbcode wizard
 			.on('click', '#bbcode_wizard_cancel', function(event) {
 				event.preventDefault();
 				closeWizard();
