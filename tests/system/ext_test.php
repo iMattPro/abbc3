@@ -150,10 +150,15 @@ class ext_test extends phpbb_test_case
 			->method('add')
 			->with('critical', '2', '1.0.0.01', 'LOG_ABBC3_ENABLE_FAIL', false, ['images/abbc3/icons']);
 
+		$services = ['filesystem', 'user', 'log'];
+		$returns = [$filesystem, $user, $log];
+		$callCount = 0;
 		$this->container->expects(self::exactly(3))
 			->method('get')
-			->withConsecutive(['filesystem'], ['user'], ['log'])
-			->willReturnOnConsecutiveCalls($filesystem, $user, $log);
+			->willReturnCallback(function($service) use ($services, $returns, &$callCount) {
+				$this->assertEquals($services[$callCount], $service);
+				return $returns[$callCount++];
+			});
 
 		$ext = new ext($this->container, $this->extension_finder, $this->migrator, 'vse/abbc3', '');
 

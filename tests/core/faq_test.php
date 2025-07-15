@@ -90,31 +90,31 @@ class faq_test extends phpbb_database_test_case
 	{
 		$this->user->data['user_id'] = $user_id;
 
+		$calls = [];
 		$this->template->expects($this->exactly(count($expected) + 1))
 			->method('assign_block_vars')
-			->withConsecutive(
-				['faq_block', [
-					'BLOCK_TITLE'	=> 'ABBC3_FAQ_TITLE',
-					'SWITCH_COLUMN'	=> false,
-				]],
-				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> @$expected[0],
-					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
-				]],
-				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> @$expected[1],
-					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
-				]],
-				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> @$expected[2],
-					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
-				]],
-				['faq_block.faq_row', [
-					'FAQ_QUESTION'	=> @$expected[3],
-					'FAQ_ANSWER'	=> 'ABBC3_FAQ_ANSWER',
-				]]
-			);
+			->willReturnCallback(function($arg1, $arg2) use (&$calls, $expected) {
+				$calls[] = [$arg1, $arg2];
+				return null;
+			});
 
 		$this->bbcodes_help->faq();
+
+		// Assert the calls
+		$expectedCalls = [
+			['faq_block', [
+				'BLOCK_TITLE'   => 'ABBC3_FAQ_TITLE',
+				'SWITCH_COLUMN' => false,
+			]],
+		];
+
+		foreach ($expected as $question) {
+			$expectedCalls[] = ['faq_block.faq_row', [
+				'FAQ_QUESTION' => $question,
+				'FAQ_ANSWER'   => 'ABBC3_FAQ_ANSWER',
+			]];
+		}
+
+		$this->assertEquals($expectedCalls, $calls);
 	}
 }
