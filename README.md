@@ -10,21 +10,19 @@
 </p>
 <br>
 
-Revamp phpBB's default BBCode buttons with a sleek toolbar featuring customizable icons. Elevate your users' posting experience with an array of new custom BBCodes. With the Advanced BBCodes 3.4 extension, users gain new flexibility to personalize their posts, including the ability to effortlessly embed videos from many media platforms.
+Revamp phpBB's default BBCode buttons with a sleek toolbar featuring customizable icons. Elevate your users' posting experience with an array of new custom BBCodes. With the Advanced BBCodes 3.4 extension, users gain new flexibility to personalize their posts, including the ability to embed videos from many media platforms.
 
 Tailor your custom BBCodes to perfection by arranging and sorting them in any desired order. Moreover, with the option to assign specific custom BBCodes to designated user groups—such as Moderators and Admins only—you can ensure precise control and enhance the overall forum experience.
 
-Install Advanced BBCodes 3.4 today and unlock a world of enhanced formatting possibilities for your phpBB forum.
-
 ## Features:
-* A fully customizable toolbar with icons that actually make sense
-* Drag-and-drop BBCode arrangement for total control
+* A fully customizable toolbar with icons
+* Drag-and-drop BBCode sorting/arrangement
 * Restrict BBCodes to specific user groups (e.g., Mods only? No problem)
 * Instant video embeds from all the big platforms via [BBvideo] or raw links
 * Support for phpBB’s native custom BBCodes
 * Add BBCodes to the Quick Reply editor too
 
-### ➕ Includes a bunch of new, ready-to-use BBCodes:
+### Includes a bunch of new, ready-to-use BBCodes:
 
 	Copy, Paste, Plain, Font Family, Highlight text, Strike through text,
 	Superscript, Subscript, Glow text, Shadow text, Dropshadow text, Blur
@@ -32,7 +30,7 @@ Install Advanced BBCodes 3.4 today and unlock a world of enhanced formatting pos
 	Right), LTR/RTL Direction, Preformatted text, Marquee scroll, Spoiler,
 	Hidden, Moderator Message, Off Topic, NFO/ascii text, BBvideo
 
-### 🌍 Multi-language support  
+### Multi-language support  
 Already localized in several languages. [See what's included.](https://github.com/iMattPro/abbc3/tree/master/language)
 
 ## Minimum Requirements
