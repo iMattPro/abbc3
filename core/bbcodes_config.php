@@ -17,6 +17,18 @@ use s9e\TextFormatter\Configurator;
  */
 class bbcodes_config
 {
+	/** @var string */
+	protected $phpbb_root_path;
+
+	/** @var string */
+	protected $php_ext;
+
+	public function __construct($phpbb_root_path, $phpEx)
+	{
+		$this->phpbb_root_path = $phpbb_root_path;
+		$this->php_ext = $phpEx;
+	}
+
 	/**
 	 * Configure s9e Auto Video plugin
 	 *
@@ -113,6 +125,9 @@ class bbcodes_config
 			return;
 		}
 
+		$u_login = append_sid("{$this->phpbb_root_path}ucp.$this->php_ext", 'mode=login');
+		$u_register = append_sid("{$this->phpbb_root_path}ucp.$this->php_ext", 'mode=register');
+
 		unset($configurator->BBCodes['hidden'], $configurator->tags['hidden']);
 		$configurator->BBCodes->addCustom(
 			'[hidden]{TEXT}[/hidden]',
@@ -136,8 +151,8 @@ class bbcodes_config
 								<strong>{L_ABBC3_HIDDEN_ON}</strong>
 								<span>{L_ABBC3_HIDDEN_EXPLAIN}</span>
 								<div class="hc-actions">
-									<a class="hc-btn" href="ucp.php?mode=login">{L_LOGIN}</a>
-									<a class="hc-btn hc-btn--primary" href="ucp.php?mode=register">{L_REGISTER}</a>
+									<a class="hc-btn" href="' . $u_login . '">{L_LOGIN}</a>
+									<a class="hc-btn hc-btn--primary" href="' . $u_register . '">{L_REGISTER}</a>
 								</div>
 							</div>
 						</div>

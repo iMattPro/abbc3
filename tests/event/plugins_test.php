@@ -17,6 +17,9 @@ class plugins_test extends listener_base
 	 */
 	public function test_display_custom_bbcodes()
 	{
+		global $phpbb_dispatcher;
+		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
+
 		$configurator = new \s9e\TextFormatter\Configurator();
 		self::assertInstanceOf('s9e\\TextFormatter\\Configurator', $configurator);
 

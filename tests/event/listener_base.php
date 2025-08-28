@@ -54,7 +54,7 @@ class listener_base extends \phpbb_test_case
 
 		global $phpbb_root_path, $phpEx;
 
-		$this->bbcodes_config = new \vse\abbc3\core\bbcodes_config();
+		$this->bbcodes_config = new \vse\abbc3\core\bbcodes_config($phpbb_root_path, $phpEx);
 		$this->bbcodes_display = $this->createMock('\vse\abbc3\core\bbcodes_display');
 		$this->bbcodes_help = $this->createMock('\vse\abbc3\core\bbcodes_help');
 		$this->config = new \phpbb\config\config([

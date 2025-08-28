@@ -15,7 +15,6 @@ use phpbb\config\db_text;
 use phpbb\language\language;
 use phpbb\routing\helper;
 use phpbb\template\template;
-use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\bbcodes_display;
 use vse\abbc3\core\bbcodes_help;
@@ -51,18 +50,15 @@ class listener implements EventSubscriberInterface
 	/** @var template */
 	protected $template;
 
-	/** @var user */
-	protected $user;
-
 	protected $quick_reply = false;
 
 	/**
 	 * Constructor
 	 *
-	 * @param bbcodes_config  $bbcodes_config
+	 * @param bbcodes_config   $bbcodes_config
 	 * @param bbcodes_display $bbcodes_display
 	 * @param bbcodes_help    $bbcodes_help
-	 * @param config          $config
+	 * @param config           $config
 	 * @param db_text         $db_text
 	 * @param helper          $helper
 	 * @param language        $language
