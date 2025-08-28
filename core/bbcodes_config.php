@@ -118,15 +118,29 @@ class bbcodes_config
 			'[hidden]{TEXT}[/hidden]',
 			'<xsl:choose>
 				<xsl:when test="$S_USER_LOGGED_IN and not($S_IS_BOT)">
-					<div class="hidebox hidebox_visible">
-						<div class="hidebox_title hidebox_visible">{L_ABBC3_HIDDEN_OFF}</div>
-						<div class="hidebox_visible">{TEXT}</div>
+					<div class="hc-box hc-box--member">
+						<div class="hc-header">
+							<span class="hc-lock" aria-hidden="true"></span>
+							<strong>{L_ABBC3_HIDDEN_OFF}</strong>
+						</div>
+						<div class="hc-content">
+							{TEXT}
+						</div>
 					</div>
 				</xsl:when>
 				<xsl:otherwise>
-					<div class="hidebox hidebox_hidden">
-						<div class="hidebox_title hidebox_hidden">{L_ABBC3_HIDDEN_ON}</div>
-						<div class="hidebox_hidden">{L_ABBC3_HIDDEN_EXPLAIN}</div>
+					<div class="hc-box" role="group" aria-label="{L_ABBC3_HIDDEN_ON}">
+						<div class="hc-overlay">
+							<span class="hc-lock" aria-hidden="true"></span>
+							<div class="hc-text">
+								<strong>{L_ABBC3_HIDDEN_ON}</strong>
+								<span>{L_ABBC3_HIDDEN_EXPLAIN}</span>
+								<div class="hc-actions">
+									<a class="hc-btn" href="ucp.php?mode=login">{L_LOGIN}</a>
+									<a class="hc-btn hc-btn--primary" href="ucp.php?mode=register">{L_REGISTER}</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</xsl:otherwise>
 			</xsl:choose>'
