@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Log in or register to view this post.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Show Spoiler',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Hide Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> 'Show Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> 'Hide Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',
