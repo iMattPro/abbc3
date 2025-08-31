@@ -15,6 +15,7 @@ use phpbb\config\db_text;
 use phpbb\language\language;
 use phpbb\routing\helper;
 use phpbb\template\template;
+use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use vse\abbc3\core\bbcodes_display;
 use vse\abbc3\core\bbcodes_help;
@@ -50,22 +51,30 @@ class listener implements EventSubscriberInterface
 	/** @var template */
 	protected $template;
 
+	/** @var user */
+	protected $user;
+
+	/** @var bool */
+	protected $render_params_set = false;
+
+	/** @var bool */
 	protected $quick_reply = false;
 
 	/**
 	 * Constructor
 	 *
-	 * @param bbcodes_config   $bbcodes_config
+	 * @param bbcodes_config $bbcodes_config
 	 * @param bbcodes_display $bbcodes_display
-	 * @param bbcodes_help    $bbcodes_help
-	 * @param config           $config
-	 * @param db_text         $db_text
-	 * @param helper          $helper
-	 * @param language        $language
-	 * @param template        $template
+	 * @param bbcodes_help $bbcodes_help
+	 * @param config $config
+	 * @param db_text $db_text
+	 * @param helper $helper
+	 * @param language $language
+	 * @param template $template
+	 * @param user $user
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
@@ -75,6 +84,7 @@ class listener implements EventSubscriberInterface
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->language = $language;
+		$this->user = $user;
 	}
 
 	/**
@@ -97,6 +107,7 @@ class listener implements EventSubscriberInterface
 
 			'core.text_formatter_s9e_parser_setup'		=> 'allow_custom_bbcodes',
 			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force the lowest priority
+			'core.text_formatter_s9e_render_before'		=> 'add_render_params',
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 
@@ -222,6 +233,26 @@ class listener implements EventSubscriberInterface
 		$this->bbcodes_config->bbvideo($configurator);
 		$this->bbcodes_config->auto_video($configurator);
 		$this->bbcodes_config->hidden($configurator);
+	}
+
+	/**
+	 * Configure TextFormatter renderer's parsed text before it's rendered
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function add_render_params($event)
+	{
+		if ($this->render_params_set)
+		{
+			return;
+		}
+
+		/** @var \s9e\TextFormatter\Renderer $renderer */
+		$renderer = $event['renderer']->get_renderer();
+		$renderer->setParameter('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
+
+		$this->render_params_set = true;
 	}
 
 	/**
