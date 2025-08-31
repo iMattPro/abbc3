@@ -62,14 +62,14 @@ let bbwizard;
 		const body = $('body');
 
 		/**
-		 * Function spoiler toggle
+		 * Spoiler toggle
 		 */
-		body.on('click', '.spoilbtn', function(event) {
-			event.preventDefault();
-			const trigger = $(this),
-				spoiler = trigger.closest('div').next('.spoilcontent');
-			spoiler.slideToggle('fast', function() {
-				trigger.text(spoiler.is(':visible') ? trigger.data('hide') : trigger.data('show'));
+		document.querySelectorAll('.abbc3_spoiler').forEach(spoiler => {
+			const summary = spoiler.querySelector('summary');
+			const showText = spoiler.getAttribute('data-show');
+			const hideText = spoiler.getAttribute('data-hide');
+			spoiler.addEventListener('toggle', () => {
+				summary.textContent = spoiler.open ? hideText : showText;
 			});
 		});
 
