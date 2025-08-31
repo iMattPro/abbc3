@@ -2,6 +2,9 @@ services:
     # ----- Core models -----
     vse.abbc3.bbcodes_config:
         class: vse\abbc3\core\bbcodes_config
+        arguments:
+            - '%core.root_path%'
+            - '%core.php_ext%'
 
     vse.abbc3.bbcodes_display:
         class: vse\abbc3\core\bbcodes_display

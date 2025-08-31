@@ -1,35 +1,100 @@
-/* [hidden] hide BBCode */
-.hidebox {
-	font-weight: normal;
-	background-color: #c5e3bf;
-	border: 1px solid #72b173;
-	border-radius: 4px;
-	position: relative;
-	margin: 5px 0;
-	padding: 39px 19px 14px;
+/* [hidden] Hidden Content (guest view) */
+
+/* Container */
+.hc-box {
+	background: #ffffff;
+	border: 1px solid rgba(120, 120, 120, 0.25);
+	border-radius: 12px;
+	margin: 1em 0;
+	padding: 20px;
 }
 
-.hidebox_title {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-	border: 1px solid #72b173;
-	border-radius: 4px 0;
-	color: #2f4f2f;
-	position: absolute;
-	top: -1px;
-	left: -1px;
-	padding: 5px 12px;
+/* Guest overlay */
+.hc-overlay {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
 }
 
-.hidebox_hidden {
-	background-color: #f2dede;
-	border-color: #ebccd1;
-	color: #80001c;
+/* Lock icon */
+.hc-lock:before {
+	font-size: 1.5rem;
+	line-height: 1;
+	content: "\1F512"; /* lock glyph */
 }
 
-.hidebox_visible {
-	color: #2f4f2f;
+/* Overlay text */
+.hc-text {
+	display: grid;
+	max-width: 32rem;
+	gap: 6px;
+}
+
+.hc-text strong {
+	font-size: 1rem;
+}
+
+.hc-text span {
+	font-size: 0.9rem;
+	opacity: 0.85;
+}
+
+/* Buttons */
+.hc-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 8px;
+	gap: 8px;
+}
+
+.hc-btn {
+	font-size: 0.9rem;
+	line-height: 1;
+	text-decoration: none;
+	border: 1px solid rgba(120, 120, 120, 0.35);
+	border-radius: 10px;
+	display: inline-block;
+	padding: 8px 12px;
+}
+
+.hc-btn--primary {
+	background: #4c7af1;
+	border-color: transparent;
+	color: #ffffff;
+}
+
+/* Member content styling */
+.hc-box--member .hc-content {
+	padding: 5px 0;
+}
+
+/* Member view header */
+.hc-header {
+	font-size: 0.85rem;
+	font-weight: 500;
+	border-bottom: 1px solid rgba(120, 120, 120, 0.2);
+	opacity: 0.85;
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	padding-bottom: 4px;
+	gap: 6px;
+}
+
+.hc-box--member .hc-lock:before {
+	font-size: 1rem;
+	content: "\1F512"; /* lock glyph */
+}
+
+/* Dark mode tweak */
+@media (prefers-color-scheme: dark) {
+	.hc-box {
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(255, 255, 255, 0.12);
+	}
 }
 
 /* [spoil] spoiler BBCode */

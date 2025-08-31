@@ -152,7 +152,7 @@
 			case 'BBvideo=':
 			case 'media':
 				var tag = bbcode.replace('=', '').toLowerCase();
-				if (theSelection || phpbb.isTouch) {
+				if (theSelection) {
 					bbfontstyle('[' + tag + ']', '[/' + tag + ']');
 				} else {
 					bbwizard('{{ UA_ABBC3_BBVIDEO_WIZARD }}', tag);
@@ -160,7 +160,7 @@
 				break;
 
 			case 'url':
-				if (theSelection || phpbb.isTouch) {
+				if (theSelection) {
 					bbstyle(16);
 				} else {
 					bbwizard('{{ UA_ABBC3_URL_WIZARD }}', bbcode);

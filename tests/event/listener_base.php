@@ -68,7 +68,7 @@ class listener_base extends phpbb_test_case
 
 		global $phpbb_root_path, $phpEx;
 
-		$this->bbcodes_config = new bbcodes_config();
+		$this->bbcodes_config = new bbcodes_config($phpbb_root_path, $phpEx);
 		$this->bbcodes_display = $this->createMock(bbcodes_display::class);
 		$this->bbcodes_help = $this->createMock(bbcodes_help::class);
 		$this->config = new config([
