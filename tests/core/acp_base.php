@@ -59,7 +59,8 @@ class acp_base extends phpbb_database_test_case
 
 	protected function setUp(): void
 	{
-		global $user, $phpbb_root_path, $phpEx;
+		global $user, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
+		$phpbb_dispatcher = new phpbb_mock_event_dispatcher();
 
 		parent::setUp();
 
