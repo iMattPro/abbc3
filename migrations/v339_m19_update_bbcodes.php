@@ -35,7 +35,7 @@ class v339_m19_update_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = [
+	protected static array $bbcode_data = [
 		'offtopic' => array(
 			'bbcode_helpline'	=> 'ABBC3_OFFTOPIC_HELPLINE',
 			'bbcode_match'		=> '[offtopic]{TEXT}[/offtopic]',
