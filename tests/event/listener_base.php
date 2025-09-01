@@ -83,6 +83,7 @@ class listener_base extends phpbb_test_case
 		$this->config_text = $this->createMock(db_text::class);
 		$this->template = $this->createMock(template::class);
 		$this->language = new language(new language_file_loader($phpbb_root_path, $phpEx));
+		$this->user = new \phpbb\user($this->language, '\phpbb\datetime');
 		$this->helper = $this->createMock(helper::class);
 		$this->helper->expects(self::atMost(3))
 			->method('route')
@@ -107,7 +108,8 @@ class listener_base extends phpbb_test_case
 			$this->config_text,
 			$this->helper,
 			$this->language,
-			$this->template
+			$this->template,
+			$this->user
 		);
 	}
 }

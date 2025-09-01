@@ -83,4 +83,64 @@ class plugins_test extends listener_base
 		// Assert plugins are NOT loaded when their bbcodes do not exist
 		$this->assertFalse(isset($configurator->plugins['PipeTables']));
 	}
+
+	/**
+	 * Test the add_render_params method
+	 */
+	public function test_add_render_params()
+	{
+		$this->set_listener();
+
+		// Mock the renderer
+		$renderer = $this->createMock('\s9e\TextFormatter\Renderer');
+
+		// Mock the renderer wrapper
+		$renderer_wrapper = $this->createMock('\phpbb\textformatter\s9e\renderer');
+		$renderer_wrapper->expects($this->once())
+			->method('get_renderer')
+			->willReturn($renderer);
+
+		// Set up user page data
+		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
+
+		// Should set parameter on first call
+		$renderer->expects($this->once())
+			->method('setParameter')
+			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
+
+		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
+		$this->listener->add_render_params($event);
+	}
+
+	/**
+	 * Test add_render_params only executes once
+	 */
+	public function test_add_render_params_executes_once()
+	{
+		$this->set_listener();
+
+		// Mock the renderer
+		$renderer = $this->createMock('\s9e\TextFormatter\Renderer');
+
+		// Mock the renderer wrapper
+		$renderer_wrapper = $this->createMock('\phpbb\textformatter\s9e\renderer');
+		$renderer_wrapper->expects($this->once())
+			->method('get_renderer')
+			->willReturn($renderer);
+
+		// Set up user page data
+		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
+
+		// Should only set parameter once despite multiple calls
+		$renderer->expects($this->once())
+			->method('setParameter')
+			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
+
+		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
+
+		// Call multiple times
+		$this->listener->add_render_params($event);
+		$this->listener->add_render_params($event);
+		$this->listener->add_render_params($event);
+	}
 }

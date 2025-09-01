@@ -152,7 +152,7 @@ class bbcodes_config
 								<strong>{L_ABBC3_HIDDEN_ON}</strong>
 								<span>{L_ABBC3_HIDDEN_EXPLAIN}</span>
 								<div class="hc-actions">
-									<a class="hc-btn" href="' . $u_login . '">{L_LOGIN}</a>
+									<a class="hc-btn" href="' . $u_login . '&redirect={U_USER_PAGE_ABBC3}">{L_LOGIN}</a>
 									<a class="hc-btn hc-btn--primary" href="' . $u_register . '">{L_REGISTER}</a>
 								</div>
 							</div>
