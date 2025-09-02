@@ -82,9 +82,9 @@ class plugins_test extends listener_base
 	}
 
 	/**
-	 * Test the add_render_params method
+	 * Test the set_hidden_bbcode_params method
 	 */
-	public function test_add_render_params()
+	public function test_set_hidden_bbcode_params()
 	{
 		$this->set_listener();
 
@@ -106,13 +106,13 @@ class plugins_test extends listener_base
 			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
 
 		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
-		$this->listener->add_render_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
 	}
 
 	/**
-	 * Test add_render_params only executes once
+	 * Test set_hidden_bbcode_params only executes once
 	 */
-	public function test_add_render_params_executes_once()
+	public function test_set_hidden_bbcode_params_executes_once()
 	{
 		$this->set_listener();
 
@@ -136,8 +136,8 @@ class plugins_test extends listener_base
 		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
 
 		// Call multiple times
-		$this->listener->add_render_params($event);
-		$this->listener->add_render_params($event);
-		$this->listener->add_render_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
 	}
 }
