@@ -97,6 +97,9 @@ class plugins_test extends listener_base
 			->method('get_renderer')
 			->willReturn($renderer);
 
+		// Set user as anonymous
+		$this->user->data['user_id'] = ANONYMOUS;
+
 		// Set up user page data
 		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
 
@@ -125,6 +128,9 @@ class plugins_test extends listener_base
 			->method('get_renderer')
 			->willReturn($renderer);
 
+		// Set user as anonymous
+		$this->user->data['user_id'] = ANONYMOUS;
+
 		// Set up user page data
 		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
 
@@ -138,6 +144,25 @@ class plugins_test extends listener_base
 		// Call multiple times
 		$this->listener->set_hidden_bbcode_params($event);
 		$this->listener->set_hidden_bbcode_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
+	}
+
+	/**
+	 * Test set_hidden_bbcode_params does not execute for logged-in users
+	 */
+	public function test_set_hidden_bbcode_params_skips_logged_in_users()
+	{
+		$this->set_listener();
+
+		// Set the user as logged-in (not anonymous)
+		$this->user->data['user_id'] = 2;
+
+		// Mock the renderer wrapper
+		$renderer_wrapper = $this->createMock('\phpbb\textformatter\s9e\renderer');
+		$renderer_wrapper->expects($this->never())
+			->method('get_renderer');
+
+		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
 		$this->listener->set_hidden_bbcode_params($event);
 	}
 }
