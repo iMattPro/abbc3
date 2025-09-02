@@ -49,7 +49,7 @@ class plugins_test extends listener_base
 		self::assertTrue(isset($configurator->plugins['Autovideo']));
 		self::assertTrue(isset($configurator->BBCodes['hidden']));
 
-		// Un-set bbcodes and plugins and check everything remains unset
+		// Unset bbcodes and plugins and check everything remains unset
 		unset(
 			$configurator->BBCodes['pipes'],
 			$configurator->plugins['PipeTables'],
@@ -100,7 +100,7 @@ class plugins_test extends listener_base
 		// Set up user page data
 		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
 
-		// Should set parameter on first call
+		// Should set parameter on the first call
 		$renderer->expects($this->once())
 			->method('setParameter')
 			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
@@ -128,7 +128,7 @@ class plugins_test extends listener_base
 		// Set up user page data
 		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
 
-		// Should only set parameter once despite multiple calls
+		// Should only set a parameter once despite multiple calls
 		$renderer->expects($this->once())
 			->method('setParameter')
 			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));

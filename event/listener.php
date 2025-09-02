@@ -271,7 +271,7 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * If Quick Reply allowed, set our quick_reply property.
-	 * Added compatibility check for Quick Reply Reloaded (qr_bbcode).
+	 * Added a compatibility check for Quick Reply Reloaded (qr_bbcode).
 	 *
 	 * @access public
 	 */
