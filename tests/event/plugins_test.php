@@ -85,9 +85,9 @@ class plugins_test extends listener_base
 	}
 
 	/**
-	 * Test the add_render_params method
+	 * Test the set_hidden_bbcode_params method
 	 */
-	public function test_add_render_params()
+	public function test_set_hidden_bbcode_params()
 	{
 		$this->set_listener();
 
@@ -100,22 +100,25 @@ class plugins_test extends listener_base
 			->method('get_renderer')
 			->willReturn($renderer);
 
+		// Set user as anonymous
+		$this->user->data['user_id'] = ANONYMOUS;
+
 		// Set up user page data
 		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
 
-		// Should set parameter on first call
+		// Should set parameter on the first call
 		$renderer->expects($this->once())
 			->method('setParameter')
 			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
 
 		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
-		$this->listener->add_render_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
 	}
 
 	/**
-	 * Test add_render_params only executes once
+	 * Test set_hidden_bbcode_params only executes once
 	 */
-	public function test_add_render_params_executes_once()
+	public function test_set_hidden_bbcode_params_executes_once()
 	{
 		$this->set_listener();
 
@@ -128,10 +131,13 @@ class plugins_test extends listener_base
 			->method('get_renderer')
 			->willReturn($renderer);
 
+		// Set user as anonymous
+		$this->user->data['user_id'] = ANONYMOUS;
+
 		// Set up user page data
 		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
 
-		// Should only set parameter once despite multiple calls
+		// Should only set a parameter once despite multiple calls
 		$renderer->expects($this->once())
 			->method('setParameter')
 			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
@@ -139,8 +145,27 @@ class plugins_test extends listener_base
 		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
 
 		// Call multiple times
-		$this->listener->add_render_params($event);
-		$this->listener->add_render_params($event);
-		$this->listener->add_render_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
+		$this->listener->set_hidden_bbcode_params($event);
+	}
+
+	/**
+	 * Test set_hidden_bbcode_params does not execute for logged-in users
+	 */
+	public function test_set_hidden_bbcode_params_skips_logged_in_users()
+	{
+		$this->set_listener();
+
+		// Set the user as logged-in (not anonymous)
+		$this->user->data['user_id'] = 2;
+
+		// Mock the renderer wrapper
+		$renderer_wrapper = $this->createMock('\phpbb\textformatter\s9e\renderer');
+		$renderer_wrapper->expects($this->never())
+			->method('get_renderer');
+
+		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
+		$this->listener->set_hidden_bbcode_params($event);
 	}
 }

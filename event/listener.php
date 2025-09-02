@@ -108,7 +108,7 @@ class listener implements EventSubscriberInterface
 
 			'core.text_formatter_s9e_parser_setup'		=> 'allow_custom_bbcodes',
 			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force the lowest priority
-			'core.text_formatter_s9e_render_before'		=> 'add_render_params',
+			'core.text_formatter_s9e_render_before'		=> 'set_hidden_bbcode_params',
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 
@@ -241,9 +241,9 @@ class listener implements EventSubscriberInterface
 	 * @param data $event The event object
 	 * @access public
 	 */
-	public function add_render_params($event)
+	public function set_hidden_bbcode_params($event)
 	{
-		if ($this->render_params_set)
+		if ($this->render_params_set || ANONYMOUS !== (int) $this->user->data['user_id'])
 		{
 			return;
 		}
