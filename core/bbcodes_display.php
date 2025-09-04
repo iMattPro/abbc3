@@ -15,6 +15,7 @@ use phpbb\config\config;
 use phpbb\db\driver\driver_interface;
 use phpbb\extension\manager;
 use phpbb\textformatter\s9e\parser;
+use phpbb\textformatter\s9e\renderer;
 use phpbb\user;
 
 /**
@@ -42,6 +43,9 @@ class bbcodes_display
 
 	/** @var array */
 	protected array $memberships;
+
+	/** @var array */
+	protected $render_params_set = [];
 
 	/**
 	 * Constructor
@@ -103,6 +107,24 @@ class bbcodes_display
 				$bbcode_name = rtrim($bbcode_name, '=');
 				$service->disable_bbcode($bbcode_name);
 			}
+		}
+	}
+
+	/**
+	 * Set parameter variables for use in bbcode templates
+	 *
+	 * @param renderer $renderer
+	 * @param array $params Key-value pairs for renderer parameters
+	 * @return void
+	 */
+	public function set_renderer_params($renderer, $params)
+	{
+		$params_to_set = array_diff_key($params, $this->render_params_set);
+
+		if ($params_to_set)
+		{
+			$renderer->get_renderer()->setParameters($params_to_set);
+			$this->render_params_set = array_merge($this->render_params_set, $params_to_set);
 		}
 	}
 
