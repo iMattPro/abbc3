@@ -35,7 +35,7 @@ class listener_test extends listener_base
 			'core.display_custom_bbcodes_modify_row',
 			'core.text_formatter_s9e_parser_setup',
 			'core.text_formatter_s9e_configure_after',
-			'core.text_formatter_s9e_render_before',
+			'core.text_formatter_s9e_renderer_setup',
 			'core.help_manager_add_block_after',
 			'core.viewtopic_modify_quick_reply_template_vars',
 			'core.viewtopic_modify_page_title',

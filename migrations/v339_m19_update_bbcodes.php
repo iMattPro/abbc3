@@ -51,5 +51,10 @@ class v339_m19_update_bbcodes extends bbcodes_migration_base
 			'bbcode_match'		=> '[spoil]{TEXT}[/spoil]',
 			'bbcode_tpl'		=> '<details class="abbc3-spoiler" data-show="{L_ABBC3_SPOILER_SHOW}" data-hide="{L_ABBC3_SPOILER_HIDE}" style="background:#fff;border:1px solid #ddd;border-radius:8px;margin:1em 0;color:#333;overflow:hidden;"><summary style="display:list-item;background:#f1f3f5;font-weight:bold;cursor:pointer;padding:10px 12px;border-bottom:1px solid #ddd;outline:none;">{L_ABBC3_SPOILER_SHOW}</summary><div style="padding:12px 12px 14px 12px;line-height:1.5;">{TEXT}</div></details>',
 		],
+		'hidden' => array(
+			'bbcode_helpline'	=> 'ABBC3_HIDDEN_HELPLINE',
+			'bbcode_match'		=> '[hidden]{TEXT}[/hidden]',
+			'bbcode_tpl'		=> '<xsl:choose><xsl:when test="$S_USER_LOGGED_IN and not($S_IS_BOT)"><div class="hc-box hc-box--member"><div class="hc-header"><span class="hc-lock" aria-hidden="true"></span><strong>{L_ABBC3_HIDDEN_OFF}</strong></div><div class="hc-content">{TEXT}</div></div></xsl:when><xsl:otherwise><div class="hc-box" role="group" aria-label="{L_ABBC3_HIDDEN_ON}"><div class="hc-overlay"><span class="hc-lock" aria-hidden="true"></span><div class="hc-text"><strong>{L_ABBC3_HIDDEN_ON}</strong><span>{L_ABBC3_HIDDEN_EXPLAIN}</span><div class="hc-actions"><a class="hc-btn" href="{U_LOGIN}">{L_LOGIN}</a><a class="hc-btn hc-btn--primary" href="{U_REGISTER}">{L_REGISTER}</a></div></div></div></div></xsl:otherwise></xsl:choose>',
+		),
 	];
 }

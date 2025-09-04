@@ -54,6 +54,12 @@ class listener implements EventSubscriberInterface
 	/** @var user */
 	protected $user;
 
+	/** @var string */
+	protected $phpbb_root_path;
+
+	/** @var string */
+	protected $php_ext;
+
 	/** @var bool */
 	protected $quick_reply = false;
 
@@ -69,9 +75,11 @@ class listener implements EventSubscriberInterface
 	 * @param language $language
 	 * @param template $template
 	 * @param user $user
+	 * @param string $phpbb_root_path
+	 * @param string $phpEx
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user, $phpbb_root_path, $phpEx)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
@@ -82,6 +90,8 @@ class listener implements EventSubscriberInterface
 		$this->template = $template;
 		$this->language = $language;
 		$this->user = $user;
+		$this->phpbb_root_path = $phpbb_root_path;
+		$this->php_ext = $phpEx;
 	}
 
 	/**
@@ -104,7 +114,7 @@ class listener implements EventSubscriberInterface
 
 			'core.text_formatter_s9e_parser_setup'		=> 'allow_custom_bbcodes',
 			'core.text_formatter_s9e_configure_after'	=> ['configure_bbcodes', -1], // force the lowest priority
-			'core.text_formatter_s9e_render_before'		=> 'set_hidden_bbcode_params',
+			'core.text_formatter_s9e_renderer_setup'	=> 'set_hidden_bbcode_params',
 
 			'core.help_manager_add_block_after'			=> 'add_bbcode_faq',
 
@@ -229,12 +239,11 @@ class listener implements EventSubscriberInterface
 		$this->bbcodes_config->pipes($configurator);
 		$this->bbcodes_config->bbvideo($configurator);
 		$this->bbcodes_config->auto_video($configurator);
-		$this->bbcodes_config->hidden($configurator);
 	}
 
 	/**
 	 * Set [hidden] BBCode parameters for anonymous users,
-	 * sets the current page, for use in login redirect.
+	 * sets the register and login with redirect URLs.
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
@@ -246,9 +255,12 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$this->bbcodes_display->set_renderer_params($event['renderer'], [
-			'U_USER_PAGE_ABBC3' => rawurlencode($this->user->page['page']),
-		]);
+		$urls = [
+			'U_LOGIN' => append_sid("{$this->phpbb_root_path}ucp.$this->php_ext", 'mode=login&redirect=' . rawurlencode($this->user->page['page'])),
+			'U_REGISTER' => append_sid("{$this->phpbb_root_path}ucp.$this->php_ext", 'mode=register'),
+		];
+
+		$this->bbcodes_display->set_renderer_params($event['renderer'], $urls);
 	}
 
 	/**
