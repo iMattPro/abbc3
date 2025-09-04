@@ -55,9 +55,6 @@ class listener implements EventSubscriberInterface
 	protected $user;
 
 	/** @var bool */
-	protected $render_params_set = false;
-
-	/** @var bool */
 	protected $quick_reply = false;
 
 	/**
@@ -236,23 +233,22 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Configure TextFormatter renderer's parsed text before it's rendered
+	 * Set [hidden] BBCode parameters for anonymous users,
+	 * sets the current page, for use in login redirect.
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
 	 */
 	public function set_hidden_bbcode_params($event)
 	{
-		if ($this->render_params_set || ANONYMOUS !== (int) $this->user->data['user_id'])
+		if (ANONYMOUS !== (int) $this->user->data['user_id'])
 		{
 			return;
 		}
 
-		/** @var \s9e\TextFormatter\Renderer $renderer */
-		$renderer = $event['renderer']->get_renderer();
-		$renderer->setParameter('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
-
-		$this->render_params_set = true;
+		$this->bbcodes_display->set_renderer_params($event['renderer'], [
+			'U_USER_PAGE_ABBC3' => rawurlencode($this->user->page['page']),
+		]);
 	}
 
 	/**

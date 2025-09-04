@@ -299,6 +299,90 @@ class bbcodes_test extends \phpbb_database_test_case
 
 		self::assertEquals($expected, $bbcodes_manager->bbcode_statuses($forum_id));
 	}
+
+	/**
+	 * Test set_renderer_params method
+	 */
+	public function test_set_renderer_params()
+	{
+		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
+		$s9e_renderer_mock = $this->createMock('\\s9e\\TextFormatter\\Renderer');
+
+		$renderer_mock->expects(self::once())
+			->method('get_renderer')
+			->willReturn($s9e_renderer_mock);
+
+		$s9e_renderer_mock->expects(self::once())
+			->method('setParameters')
+			->with([
+				'param1' => 'value1',
+				'param2' => 'value2'
+			]);
+
+		$bbcodes_manager = $this->bbcodes_manager();
+		$bbcodes_manager->set_renderer_params($renderer_mock, [
+			'param1' => 'value1',
+			'param2' => 'value2'
+		]);
+	}
+
+	/**
+	 * Test set_renderer_params caching behavior
+	 */
+	public function test_set_renderer_params_caching()
+	{
+		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
+		$s9e_renderer_mock = $this->createMock('\\s9e\\TextFormatter\\Renderer');
+
+		$renderer_mock->expects(self::exactly(2))
+			->method('get_renderer')
+			->willReturn($s9e_renderer_mock);
+
+		$s9e_renderer_mock->expects(self::exactly(2))
+			->method('setParameters')
+			->withConsecutive(
+				[['param1' => 'value1', 'param2' => 'value2']],
+				[['param3' => 'value3']]
+			);
+
+		$bbcodes_manager = $this->bbcodes_manager();
+
+		// First call
+		$bbcodes_manager->set_renderer_params($renderer_mock, [
+			'param1' => 'value1',
+			'param2' => 'value2'
+		]);
+
+		// Second call - should only set param3 (param1 and param2 are cached)
+		$bbcodes_manager->set_renderer_params($renderer_mock, [
+			'param1' => 'value1', // cached won't be set again
+			'param3' => 'value3'  // new will be set
+		]);
+	}
+
+	/**
+	 * Test set_renderer_params with no new parameters
+	 */
+	public function test_set_renderer_params_no_new_params()
+	{
+		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
+
+		// get_renderer should not be called when no new parameters
+		$renderer_mock->expects(self::never())
+			->method('get_renderer');
+
+		$bbcodes_manager = $this->bbcodes_manager();
+
+		// First call to set parameters
+		$renderer_mock2 = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
+		$s9e_renderer_mock = $this->createMock('\\s9e\\TextFormatter\\Renderer');
+		$renderer_mock2->method('get_renderer')->willReturn($s9e_renderer_mock);
+
+		$bbcodes_manager->set_renderer_params($renderer_mock2, ['param1' => 'value1']);
+
+		// Second call with same parameters - should not call get_renderer
+		$bbcodes_manager->set_renderer_params($renderer_mock, ['param1' => 'value1']);
+	}
 }
 
 function display_custom_bbcodes()

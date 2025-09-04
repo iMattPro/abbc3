@@ -82,87 +82,46 @@ class plugins_test extends listener_base
 	}
 
 	/**
-	 * Test the set_hidden_bbcode_params method
+	 * Test set_hidden_bbcode_params method
 	 */
 	public function test_set_hidden_bbcode_params()
 	{
 		$this->set_listener();
 
-		// Mock the renderer
-		$renderer = $this->createMock('\s9e\TextFormatter\Renderer');
-
-		// Mock the renderer wrapper
-		$renderer_wrapper = $this->createMock('\phpbb\textformatter\s9e\renderer');
-		$renderer_wrapper->expects($this->once())
-			->method('get_renderer')
-			->willReturn($renderer);
-
 		// Set user as anonymous
 		$this->user->data['user_id'] = ANONYMOUS;
+		$this->user->page = ['page' => 'test_page'];
 
-		// Set up user page data
-		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
+		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
 
-		// Should set parameter on the first call
-		$renderer->expects($this->once())
-			->method('setParameter')
-			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
+		$this->bbcodes_display->expects(self::once())
+			->method('set_renderer_params')
+			->with($renderer_mock, ['U_USER_PAGE_ABBC3' => rawurlencode('test_page')]);
 
-		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
+		$event_data = ['renderer' => $renderer_mock];
+		$event = new \phpbb\event\data($event_data);
+
 		$this->listener->set_hidden_bbcode_params($event);
 	}
 
 	/**
-	 * Test set_hidden_bbcode_params only executes once
+	 * Test set_hidden_bbcode_params skips for logged-in users
 	 */
-	public function test_set_hidden_bbcode_params_executes_once()
+	public function test_set_hidden_bbcode_params_logged_in_user()
 	{
 		$this->set_listener();
 
-		// Mock the renderer
-		$renderer = $this->createMock('\s9e\TextFormatter\Renderer');
-
-		// Mock the renderer wrapper
-		$renderer_wrapper = $this->createMock('\phpbb\textformatter\s9e\renderer');
-		$renderer_wrapper->expects($this->once())
-			->method('get_renderer')
-			->willReturn($renderer);
-
-		// Set user as anonymous
-		$this->user->data['user_id'] = ANONYMOUS;
-
-		// Set up user page data
-		$this->user->page = ['page' => 'viewtopic.php?f=1&t=1'];
-
-		// Should only set a parameter once despite multiple calls
-		$renderer->expects($this->once())
-			->method('setParameter')
-			->with('U_USER_PAGE_ABBC3', rawurlencode($this->user->page['page']));
-
-		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
-
-		// Call multiple times
-		$this->listener->set_hidden_bbcode_params($event);
-		$this->listener->set_hidden_bbcode_params($event);
-		$this->listener->set_hidden_bbcode_params($event);
-	}
-
-	/**
-	 * Test set_hidden_bbcode_params does not execute for logged-in users
-	 */
-	public function test_set_hidden_bbcode_params_skips_logged_in_users()
-	{
-		$this->set_listener();
-
-		// Set the user as logged-in (not anonymous)
+		// Set the user as logged in (not anonymous)
 		$this->user->data['user_id'] = 2;
 
-		// Mock the renderer wrapper
-		$renderer_wrapper = $this->createMock('\phpbb\textformatter\s9e\renderer');
-		$renderer_wrapper->expects($this->never())
-			->method('get_renderer');
+		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
 
-		$event = new \phpbb\event\data(['renderer' => $renderer_wrapper]);
+		$this->bbcodes_display->expects(self::never())
+			->method('set_renderer_params');
+
+		$event_data = ['renderer' => $renderer_mock];
+		$event = new \phpbb\event\data($event_data);
+
 		$this->listener->set_hidden_bbcode_params($event);
 	}
 }
