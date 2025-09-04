@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Um diesen versteckten Text lesen zu können, musst du registriert und angemeldet sein.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Text anzeigen',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Text verstecken',
+	'ABBC3_SPOILER_SHOW'		=> 'Text anzeigen',
+	'ABBC3_SPOILER_HIDE'		=> 'Text verstecken',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off-Topic',

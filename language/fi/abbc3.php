@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Sinun tulee olla rekisteröitynyt ja kirjautunut sisään nähdäksesi tämän sisällön.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Näytä spoileri',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Piilota spoileri',
+	'ABBC3_SPOILER_SHOW'		=> 'Näytä spoileri',
+	'ABBC3_SPOILER_HIDE'		=> 'Piilota spoileri',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Ohi aiheesta',

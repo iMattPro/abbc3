@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Você tem que está registrado e logado para ver o conteúdo oculto.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Exibir Spoiler',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Esconder Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> 'Exibir Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> 'Esconder Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',

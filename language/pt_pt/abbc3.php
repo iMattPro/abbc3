@@ -30,8 +30,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Este forum requer que esteja registado e conectado para ver o conteúdo oculto.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Mostrar «spoiler»',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Esconder «spoiler»',
+	'ABBC3_SPOILER_SHOW'		=> 'Mostrar «spoiler»',
+	'ABBC3_SPOILER_HIDE'		=> 'Esconder «spoiler»',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Fora de tópico',

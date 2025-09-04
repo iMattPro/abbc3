@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'See foorum nõuab, et oleksid registreeritud ja sisselogitud vaatamaks peidetud sisu.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Näita Spoilerit',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Peida Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> 'Näita Spoilerit',
+	'ABBC3_SPOILER_HIDE'		=> 'Peida Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Teemaväline',

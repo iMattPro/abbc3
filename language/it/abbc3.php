@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Registrati ed effettua l\'accesso per visualizzare questo contenuto.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Mostra testo',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Nascondi testo',
+	'ABBC3_SPOILER_SHOW'		=> 'Mostra testo',
+	'ABBC3_SPOILER_HIDE'		=> 'Nascondi testo',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',

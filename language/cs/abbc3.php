@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Toto fórum vyžaduje, abyste se pro zobrazení skrytého obsahu přihlásili.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Ukázat spoiler',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Skrýt spoiler',
+	'ABBC3_SPOILER_SHOW'		=> 'Ukázat spoiler',
+	'ABBC3_SPOILER_HIDE'		=> 'Skrýt spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Mimo téma (offtopic)',

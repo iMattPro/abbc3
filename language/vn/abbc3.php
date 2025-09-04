@@ -30,8 +30,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Diễn đàn yêu cầu bạn phải đăng ký và đăng nhập để có thể xem nội dung ẩn.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Hiển thị mô tả',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Ẩn mô tả',
+	'ABBC3_SPOILER_SHOW'		=> 'Hiển thị mô tả',
+	'ABBC3_SPOILER_HIDE'		=> 'Ẩn mô tả',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Chủ đề đóng',
