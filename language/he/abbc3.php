@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'אתר זה מחייב להיות להיות מחובר על מנת לצפות בתוכן חבוי.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► הצג ספוילר',
-	'ABBC3_SPOILER_HIDE'		=> '▼ הסתר ספוילר',
+	'ABBC3_SPOILER_SHOW'		=> 'הצג ספוילר',
+	'ABBC3_SPOILER_HIDE'		=> 'הסתר ספוילר',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'מחוץ לנושא',

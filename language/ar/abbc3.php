@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'يجب أن تكون عضو في هذا المنتدى أو تسجل دخولك لمُشاهدة هذا المحتوى المخفي.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► إظهار المحتوى',
-	'ABBC3_SPOILER_HIDE'		=> '▼ إخفاء المحتوى',
+	'ABBC3_SPOILER_SHOW'		=> 'إظهار المحتوى',
+	'ABBC3_SPOILER_HIDE'		=> 'إخفاء المحتوى',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'خارج عن الموضوع',

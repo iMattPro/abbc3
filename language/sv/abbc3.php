@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Detta forum kräver att du registrera eller loggar in för att se dolt innehåll.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Visa Spoiler',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Göm Spoiler',
+	'ABBC3_SPOILER_SHOW'		=> 'Visa Spoiler',
+	'ABBC3_SPOILER_HIDE'		=> 'Göm Spoiler',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Off Topic',

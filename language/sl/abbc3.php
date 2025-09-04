@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Ta tabla zahteva, da ste registrirani in prijavljeni za ogled skrite vsebine.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Prikaži “Spoiler”',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Skrij “Spoiler”',
+	'ABBC3_SPOILER_SHOW'		=> 'Prikaži “Spoiler”',
+	'ABBC3_SPOILER_HIDE'		=> 'Skrij “Spoiler”',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Izven teme',

@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Изисква се да бъдете регистрирани за да видите това съдържание.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Виж съдържание',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Скрий съдържание',
+	'ABBC3_SPOILER_SHOW'		=> 'Виж съдържание',
+	'ABBC3_SPOILER_HIDE'		=> 'Скрий съдържание',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Офтопик',

@@ -29,8 +29,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Bu mesaj panosunda gizli içeriği görüntülemek için kayıt olmanız ve giriş yapmanız gerekmektedir.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Spoiler’ı Göster',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Spoiler’ı Gizle',
+	'ABBC3_SPOILER_SHOW'		=> 'Spoiler’ı Göster',
+	'ABBC3_SPOILER_HIDE'		=> 'Spoiler’ı Gizle',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Konu Dışı',

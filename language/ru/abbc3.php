@@ -28,8 +28,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_EXPLAIN'		=> 'Для просмотра скрытого текста необходимо быть авторизованным пользователем.',
 
 	// Spoiler BBCode
-	'ABBC3_SPOILER_SHOW'		=> '► Показать',
-	'ABBC3_SPOILER_HIDE'		=> '▼ Скрыть',
+	'ABBC3_SPOILER_SHOW'		=> 'Показать',
+	'ABBC3_SPOILER_HIDE'		=> 'Скрыть',
 
 	// Off Topic BBCode
 	'ABBC3_OFFTOPIC'			=> 'Офтопик',
