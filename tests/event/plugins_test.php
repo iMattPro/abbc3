@@ -20,9 +20,6 @@ class plugins_test extends listener_base
 	 */
 	public function test_display_custom_bbcodes()
 	{
-		global $phpbb_dispatcher;
-		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
-
 		$configurator = new \s9e\TextFormatter\Configurator();
 		$this->assertInstanceOf(Configurator::class, $configurator);
 
@@ -35,11 +32,9 @@ class plugins_test extends listener_base
 		$this->assertFalse(isset($configurator->plugins['PipeTables']));
 		$this->assertFalse(isset($configurator->plugins['MediaEmbed']));
 		$this->assertFalse(isset($configurator->plugins['AutoVideo']));
-		$this->assertFalse(isset($configurator->BBCodes['hidden']));
 
 		// Add bbcodes here to simulate existing BBCodes
 		$configurator->BBCodes->add('pipes', []);
-		$configurator->BBCodes->add('hidden', []);
 		$configurator->BBCodes->add('bbvideo', []);
 
 		// Dispatch event
@@ -50,7 +45,6 @@ class plugins_test extends listener_base
 		$this->assertTrue(isset($configurator->plugins['PipeTables']));
 		$this->assertTrue(isset($configurator->plugins['MediaEmbed']));
 		$this->assertTrue(isset($configurator->plugins['Autovideo']));
-		$this->assertTrue(isset($configurator->BBCodes['hidden']));
 
 		// Unset bbcodes and plugins and check everything remains unset
 		unset(
@@ -58,7 +52,6 @@ class plugins_test extends listener_base
 			$configurator->plugins['PipeTables'],
 			$configurator->BBCodes['bbvideo'],
 			$configurator->plugins['MediaEmbed'],
-			$configurator->BBCodes['hidden'],
 			$configurator->plugins['Autovideo']
 		);
 
@@ -71,7 +64,6 @@ class plugins_test extends listener_base
 		$this->assertFalse(isset($configurator->plugins['PipeTables']));
 		$this->assertFalse(isset($configurator->plugins['MediaEmbed']));
 		$this->assertFalse(isset($configurator->plugins['Autovideo']));
-		$this->assertFalse(isset($configurator->BBCodes['hidden']));
 
 		// Retry Pipes with the config setting disabled
 		$configurator->BBCodes->add('pipes', []);
@@ -97,9 +89,14 @@ class plugins_test extends listener_base
 
 		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
 
+		$expected_urls = [
+			'U_LOGIN' => append_sid("{$this->phpbb_root_path}ucp.$this->php_ext", 'mode=login&redirect=' . rawurlencode('test_page')),
+			'U_REGISTER' => append_sid("{$this->phpbb_root_path}ucp.$this->php_ext", 'mode=register'),
+		];
+
 		$this->bbcodes_display->expects(self::once())
 			->method('set_renderer_params')
-			->with($renderer_mock, ['U_USER_PAGE_ABBC3' => rawurlencode('test_page')]);
+			->with($renderer_mock, $expected_urls);
 
 		$event_data = ['renderer' => $renderer_mock];
 		$event = new \phpbb\event\data($event_data);

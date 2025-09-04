@@ -62,13 +62,23 @@ class listener_base extends phpbb_test_case
 	/** @var string|int */
 	protected string|int $bbvideo_height;
 
+	/** @var string */
+	protected $phpbb_root_path;
+
+	/** @var string */
+	protected $php_ext;
+
 	protected function setUp(): void
 	{
 		parent::setUp();
 
-		global $phpbb_root_path, $phpEx;
+		global $phpbb_dispatcher, $phpbb_root_path, $phpEx;
 
-		$this->bbcodes_config = new bbcodes_config($phpbb_root_path, $phpEx);
+		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
+		$this->phpbb_root_path = $phpbb_root_path;
+		$this->php_ext = $phpEx;
+
+		$this->bbcodes_config = new bbcodes_config();
 		$this->bbcodes_display = $this->createMock(bbcodes_display::class);
 		$this->bbcodes_help = $this->createMock(bbcodes_help::class);
 		$this->config = new config([
@@ -109,7 +119,9 @@ class listener_base extends phpbb_test_case
 			$this->helper,
 			$this->language,
 			$this->template,
-			$this->user
+			$this->user,
+			$this->phpbb_root_path,
+			$this->php_ext
 		);
 	}
 }
