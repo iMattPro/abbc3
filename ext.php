@@ -23,7 +23,6 @@ class ext extends base
 	public const PHPBB_MIN_VERSION = '4.0.0-dev';
 	public const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
 	public const ABBC3_EXT_NAME = 'Advanced BBCodes 3.4';
-	private const ICONS_PATH = 'images/abbc3/icons';
 
 	/**
 	 * {@inheritdoc}
@@ -54,8 +53,7 @@ class ext extends base
 	protected function create_icons_directory(): void
 	{
 		$filesystem = $this->container->get('filesystem');
-		$root_path = $this->container->getParameter('core.root_path');
-		$icons_path = $root_path . self::ICONS_PATH;
+		$icons_path = $this->container->getParameter('core.root_path') . 'images/abbc3/icons';
 
 		try
 		{
