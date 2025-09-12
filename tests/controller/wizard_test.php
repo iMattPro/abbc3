@@ -98,7 +98,7 @@ class wizard_test extends phpbb_test_case
 			->method('assign_vars')
 			->with([
 				'ABBC3_BBVIDEO_SITES'   => [],
-				'ABBC3_BBVIDEO_DEFAULT' => wizard::BBVIDEO_DEFAULT,
+				'ABBC3_BBVIDEO_DEFAULT' => null,
 			]);
 
 		$response = $this->controller->bbcode_wizard($mode);
@@ -126,7 +126,7 @@ class wizard_test extends phpbb_test_case
 			->method('assign_vars')
 			->with([
 				'ABBC3_BBVIDEO_SITES'   => $cached_data,
-				'ABBC3_BBVIDEO_DEFAULT' => wizard::BBVIDEO_DEFAULT,
+				'ABBC3_BBVIDEO_DEFAULT' => 'youtube',
 			]);
 
 		$response = $this->controller->bbcode_wizard('bbvideo');

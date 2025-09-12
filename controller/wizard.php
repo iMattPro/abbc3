@@ -23,9 +23,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class wizard
 {
-	/** @var string The default BBvideo site */
-	public const BBVIDEO_DEFAULT = 'youtube';
-
 	/** @var cache_driver */
 	protected cache_driver $cache;
 
@@ -83,7 +80,7 @@ class wizard
 			$sites = $this->get_bbvideo_sites();
 			$this->template->assign_vars([
 				'ABBC3_BBVIDEO_SITES'	=> $sites,
-				'ABBC3_BBVIDEO_DEFAULT'	=> array_key_exists(self::BBVIDEO_DEFAULT, $sites) ? self::BBVIDEO_DEFAULT : key($sites),
+				'ABBC3_BBVIDEO_DEFAULT'	=> array_key_exists('youtube', $sites) ? 'youtube' : key($sites),
 			]);
 		}
 
