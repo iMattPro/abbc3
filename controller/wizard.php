@@ -66,7 +66,7 @@ class wizard
 	 *
 	 * @param string $mode Mode taken from the URL
 	 * @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
-	 * @throws http_exception A http exception
+	 * @throws http_exception An http exception
 	 * @access public
 	 */
 	public function bbcode_wizard($mode)
@@ -79,9 +79,10 @@ class wizard
 
 		if ($mode === 'bbvideo')
 		{
+			$sites = $this->get_bbvideo_sites();
 			$this->template->assign_vars([
-				'ABBC3_BBVIDEO_SITES'	=> $this->get_bbvideo_sites(),
-				'ABBC3_BBVIDEO_DEFAULT'	=> self::BBVIDEO_DEFAULT,
+				'ABBC3_BBVIDEO_SITES'	=> $sites,
+				'ABBC3_BBVIDEO_DEFAULT'	=> array_key_exists(self::BBVIDEO_DEFAULT, $sites) ? self::BBVIDEO_DEFAULT : key($sites),
 			]);
 		}
 
