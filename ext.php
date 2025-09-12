@@ -38,13 +38,13 @@ class ext extends \phpbb\extension\base
 		if ($old_state === false)
 		{
 			$filesystem = $this->container->get('filesystem');
-			$root_path = $this->container->getParameter('core.root_path');
+			$icon_path = $this->container->getParameter('core.root_path') . 'images/abbc3/icons';
 
 			try // Make an ABBC3 icon dir in phpBB's images dir
 			{
-				if (!$filesystem->exists($root_path . 'images/abbc3/icons'))
+				if (!$filesystem->exists($icon_path))
 				{
-					$filesystem->mkdir($root_path . 'images/abbc3/icons');
+					$filesystem->mkdir($icon_path);
 				}
 			}
 			catch (filesystem_exception $e)
