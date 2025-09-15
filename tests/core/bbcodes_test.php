@@ -19,8 +19,6 @@ use phpbb\textformatter\s9e\parser as service;
 use phpbb\user;
 use phpbb_database_test_case;
 use phpbb_mock_extension_manager;
-use PHPUnit\DbUnit\DataSet\DefaultDataSet;
-use PHPUnit\DbUnit\DataSet\XmlDataSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use phpbb\datetime;
 use s9e\TextFormatter\Parser;
@@ -50,7 +48,7 @@ class bbcodes_test extends phpbb_database_test_case
 	/** @var phpbb_mock_extension_manager */
 	protected phpbb_mock_extension_manager $ext_manager;
 
-	public function getDataSet(): XmlDataSet|DefaultDataSet
+	public function getDataSet()
 	{
 		return $this->createXMLDataSet(__DIR__ . '/fixtures/user_group.xml');
 	}
@@ -353,12 +351,17 @@ class bbcodes_test extends phpbb_database_test_case
 			->method('get_renderer')
 			->willReturn($s9e_renderer_mock);
 
+		$expectedCalls = [
+			['param1' => 'value1', 'param2' => 'value2'],
+			['param3' => 'value3']
+		];
+		$callIndex = 0;
 		$s9e_renderer_mock->expects(self::exactly(2))
 			->method('setParameters')
-			->withConsecutive(
-				[['param1' => 'value1', 'param2' => 'value2']],
-				[['param3' => 'value3']]
-			);
+			->willReturnCallback(function($params) use (&$expectedCalls, &$callIndex) {
+				self::assertEquals($expectedCalls[$callIndex], $params);
+				$callIndex++;
+			});
 
 		$bbcodes_manager = $this->bbcodes_manager();
 

@@ -43,7 +43,7 @@ class faq_test extends phpbb_database_test_case
 	/** @var bbcodes_help */
 	protected bbcodes_help $bbcodes_help;
 
-	public function getDataSet(): CompositeDataSet
+	public function getDataSet()
 	{
 		// Aggregate multiple fixtures into a single dataset
 		$ds1 = $this->createXMLDataSet(__DIR__ . '/fixtures/bbcodes.xml');

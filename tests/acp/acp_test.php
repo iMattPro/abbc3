@@ -24,8 +24,6 @@ use phpbb_database_test_case;
 use phpbb_mock_extension_manager;
 use phpbb_mock_lang;
 use phpbb_mock_user;
-use PHPUnit\DbUnit\DataSet\DefaultDataSet;
-use PHPUnit\DbUnit\DataSet\XmlDataSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -74,7 +72,7 @@ class acp_test extends phpbb_database_test_case
 		return ['vse/abbc3'];
 	}
 
-	public function getDataSet(): XmlDataSet|DefaultDataSet
+	public function getDataSet()
 	{
 		return $this->createXMLDataSet(__DIR__ . '/../core/fixtures/config_text.xml');
 	}

@@ -11,6 +11,7 @@
 namespace vse\abbc3\tests\core;
 
 use phpbb\request\request_interface;
+use vse\abbc3\core\acp_manager;
 
 class acp_bbcode_move_test extends acp_base
 {
@@ -127,13 +128,33 @@ class acp_bbcode_move_test extends acp_base
 			])
 		;
 
-		// Handle trigger_error() output
-		$this->setExpectedTriggerError($errNo);
-
-		// Get the acp_manager
-		$acp_manager = $this->get_acp_manager();
+		if ($ajax)
+		{
+			// Expect JSON output for ajax requests
+			$this->expectOutputString('{"success":true}');
+			$acp_manager = $this->get_testable_acp_manager();
+		}
+		else
+		{
+			// Handle trigger_error() output for non-ajax
+			$this->setExpectedTriggerError($errNo);
+			$acp_manager = $this->get_acp_manager();
+		}
 
 		// Call move()
 		$acp_manager->move($action);
+	}
+
+	protected function get_testable_acp_manager(): acp_manager
+	{
+		return new class($this->db, $this->group_helper, $this->lang, $this->request) extends acp_manager {
+			protected function send_json_response(bool $content): void
+			{
+				if ($this->request->is_ajax())
+				{
+					echo json_encode(['success' => (bool) $content]);
+				}
+			}
+		};
 	}
 }
