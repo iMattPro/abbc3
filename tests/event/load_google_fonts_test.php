@@ -15,7 +15,7 @@ class load_google_fonts_test extends listener_base
 	/**
 	 * @return array Test data
 	 */
-	public function load_google_fonts_data(): array
+	public static function load_google_fonts_data(): array
 	{
 		return [
 			['', null],

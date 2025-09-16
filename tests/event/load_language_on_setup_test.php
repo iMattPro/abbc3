@@ -19,7 +19,7 @@ class load_language_on_setup_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function load_language_on_setup_data(): array
+	public static function load_language_on_setup_data(): array
 	{
 		return [
 			[

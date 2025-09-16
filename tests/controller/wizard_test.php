@@ -71,7 +71,7 @@ class wizard_test extends phpbb_test_case
 		);
 	}
 
-	public function bbcode_wizard_data(): array
+	public static function bbcode_wizard_data(): array
 	{
 		return [
 			['bbvideo', true, 200, '@vse_abbc3/abbc3_bbvideo_wizard.html'],
@@ -133,7 +133,7 @@ class wizard_test extends phpbb_test_case
 		$this->assertEquals(200, $response->getStatusCode());
 	}
 
-	public function bbcode_wizard_fails_data(): array
+	public static function bbcode_wizard_fails_data(): array
 	{
 		return [
 			['bbvideo', false],

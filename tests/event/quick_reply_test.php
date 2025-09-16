@@ -14,7 +14,7 @@ use phpbb\event\data;
 
 class quick_reply_test extends \vse\abbc3\tests\event\listener_base
 {
-	public function set_quick_reply_data(): array
+	public static function set_quick_reply_data(): array
 	{
 		return [
 			[1, 2],

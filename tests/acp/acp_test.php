@@ -108,7 +108,7 @@ class acp_test extends phpbb_database_test_case
 		$user->lang = new phpbb_mock_lang();
 	}
 
-	public function main_module_data(): array
+	public static function main_module_data(): array
 	{
 		return [
 			[0],
@@ -194,7 +194,7 @@ class acp_test extends phpbb_database_test_case
 		$this->acp_controller->handle();
 	}
 
-	public function save_google_fonts_data(): array
+	public static function save_google_fonts_data(): array
 	{
 		return [
 			['', '', E_USER_NOTICE, 'CONFIG_UPDATED'],

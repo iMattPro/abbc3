@@ -15,7 +15,7 @@ use vse\abbc3\core\acp_manager;
 
 class acp_bbcode_drag_drop_test extends acp_base
 {
-	public function bbcode_drag_drop_data(): array
+	public static function bbcode_drag_drop_data(): array
 	{
 		return [
 			[[0 => 0, 1 => 13, 2 => 14, 3 => 15, 4 => 16]],

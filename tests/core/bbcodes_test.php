@@ -81,7 +81,7 @@ class bbcodes_test extends phpbb_database_test_case
 		return new \vse\abbc3\core\bbcodes_display($this->auth, $this->config, $this->db, $this->ext_manager, $this->user, $this->root_path);
 	}
 
-	public function bbcode_data(): array
+	public static function bbcode_data(): array
 	{
 		return [
 			1 => [
@@ -102,9 +102,9 @@ class bbcodes_test extends phpbb_database_test_case
 		];
 	}
 
-	public function allowed_bbcodes_data(): array
+	public static function allowed_bbcodes_data(): array
 	{
-		$bbcode_data = $this->bbcode_data();
+		$bbcode_data = self::bbcode_data();
 
 		return [
 			[
@@ -158,9 +158,9 @@ class bbcodes_test extends phpbb_database_test_case
 		$bbcodes_manager->allow_custom_bbcodes($service);
 	}
 
-	public function display_bbcodes_data(): array
+	public static function display_bbcodes_data(): array
 	{
-		$bbcode_data = $this->bbcode_data();
+		$bbcode_data = self::bbcode_data();
 
 		return [
 			[
@@ -210,7 +210,7 @@ class bbcodes_test extends phpbb_database_test_case
 		}
 	}
 
-	public function bbcode_group_data(): array
+	public static function bbcode_group_data(): array
 	{
 		return [
 			[2, '1,2,3', true],
@@ -238,7 +238,7 @@ class bbcodes_test extends phpbb_database_test_case
 		$this->assertEquals($expected, $bbcodes_manager->user_in_bbcode_group($group_ids));
 	}
 
-	public function bbcode_statuses_test_data(): array
+	public static function bbcode_statuses_test_data(): array
 	{
 		return [
 			[

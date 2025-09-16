@@ -20,7 +20,7 @@ class custom_bbcodes_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function custom_bbcodes_data(): array
+	public static function custom_bbcodes_data(): array
 	{
 		return [
 			[[], [], true],
@@ -61,7 +61,7 @@ class custom_bbcodes_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function s9e_allow_custom_bbcodes_data(): array
+	public static function s9e_allow_custom_bbcodes_data(): array
 	{
 		return [
 			[false],

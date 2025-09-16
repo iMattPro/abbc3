@@ -19,7 +19,7 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function acp_bbcodes_modify_create_data(): array
+	public static function acp_bbcodes_modify_create_data(): array
 	{
 		return [
 			[

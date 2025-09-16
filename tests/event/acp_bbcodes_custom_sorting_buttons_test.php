@@ -20,7 +20,7 @@ class acp_bbcodes_custom_sorting_buttons_test extends acp_listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function acp_bbcodes_custom_sorting_buttons_data(): array
+	public static function acp_bbcodes_custom_sorting_buttons_data(): array
 	{
 		global $user;
 		$user = new phpbb_mock_user();

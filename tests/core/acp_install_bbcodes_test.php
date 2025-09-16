@@ -14,7 +14,7 @@ use vse\abbc3\core\bbcodes_installer;
 
 class acp_install_bbcodes_test extends acp_base
 {
-	public function install_bbcodes_data(): array
+	public static function install_bbcodes_data(): array
 	{
 		return [
 			[[

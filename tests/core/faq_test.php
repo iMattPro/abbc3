@@ -75,7 +75,7 @@ class faq_test extends phpbb_database_test_case
 		$this->bbcodes_help = new bbcodes_help($bbcodes_display, $config, $db, $this->language, $this->template);
 	}
 
-	public function faq_test_data(): array
+	public static function faq_test_data(): array
 	{
 		return [
 			[1, ['ABBC3_FONT_HELPLINE', 'ABBC3_HIGHLIGHT_HELPLINE', 'ABBC3_ALIGN_HELPLINE', 'ABBC3_AUTOVIDEO_HELPLINE']],

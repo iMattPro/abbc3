@@ -15,7 +15,7 @@ use vse\abbc3\core\acp_manager;
 
 class acp_bbcode_move_test extends acp_base
 {
-	public function bbcode_move_data(): array
+	public static function bbcode_move_data(): array
 	{
 		// bbcode_id or array of bbcode_ids
 		// action move_up|move_down
@@ -99,7 +99,7 @@ class acp_bbcode_move_test extends acp_base
 		$this->assertEquals($expected, $bbcode_order);
 	}
 
-	public function bbcode_move_triggers_error_data(): array
+	public static function bbcode_move_triggers_error_data(): array
 	{
 		return [
 			// invalid hash

@@ -40,7 +40,7 @@ class bbcode_faq_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function add_bbcode_faq_data(): array
+	public static function add_bbcode_faq_data(): array
 	{
 		return [
 			['HELP_BBCODE_BLOCK_OTHERS', true],

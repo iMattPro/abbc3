@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\core;
 
 class acp_bbcode_groups_data_test extends acp_base
 {
-	public function bbcode_groups_data(): array
+	public static function bbcode_groups_data(): array
 	{
 		return [
 			[[

@@ -153,9 +153,11 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
+		$fonts = $this->config_text->get('abbc3_google_fonts') ?: '';
+
 		$this->template->assign_var(
 			'abbc3_google_fonts',
-			json_decode($this->config_text->get('abbc3_google_fonts'), true)
+			json_decode($fonts, true)
 		);
 	}
 

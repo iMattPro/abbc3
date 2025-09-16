@@ -19,7 +19,7 @@ class custom_bbcode_modify_sql_test extends listener_base
 	 *
 	 * @return array Test data
 	 */
-	public function custom_bbcode_modify_sql_data(): array
+	public static function custom_bbcode_modify_sql_data(): array
 	{
 		return [
 			[

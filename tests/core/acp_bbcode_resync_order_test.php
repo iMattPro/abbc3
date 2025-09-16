@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\core;
 
 class acp_bbcode_resync_order_test extends acp_base
 {
-	public function bbcode_resync_order_data(): array
+	public static function bbcode_resync_order_data(): array
 	{
 		return [
 			[ // the order is good, so no change
