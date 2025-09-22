@@ -43,8 +43,9 @@ class acp_bbcode_drag_drop_test extends acp_base
 			])
 		;
 
-		// Expect JSON output but prevent exit()
+		// Expect JSON output
 		$this->expectOutputString('{"success":true}');
+		$this->expectException(\RuntimeException::class);
 
 		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();
