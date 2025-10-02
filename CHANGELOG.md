@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.9 - 2025-10-02
+
+- Redesigned the [hidden], [offtopic], [spoiler] and [mod] BBCodes.
+- BBCode popup wizards for [url], [bbvideo] and [pipes] will now work on mobile/touch devices.
+- If YouTube is disabled (via Media Embed Extension), then the BBVideo popup wizard will show another site as an example.
+
 ## 3.3.8 - 2024-11-08
 
 - Fixed minor issues that could occur if the Google Fonts field was left empty.
