@@ -89,14 +89,6 @@
 	content: "\1F512"; /* lock glyph */
 }
 
-/* Dark mode tweak */
-@media (prefers-color-scheme: dark) {
-	.hc-box {
-		background: rgba(255, 255, 255, 0.05);
-		border-color: rgba(255, 255, 255, 0.12);
-	}
-}
-
 /* [spoil] spoiler BBCode */
 .spoilbtn:hover {
 	color: #d31141 !important;
