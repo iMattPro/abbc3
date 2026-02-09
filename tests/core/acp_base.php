@@ -10,7 +10,11 @@
 
 namespace vse\abbc3\tests\core;
 
+use PHPUnit\Framework\MockObject\MockObject;
+use phpbb\auth\auth;
+use phpbb\cache\service;
 use phpbb\config\config;
+use phpbb\datetime;
 use phpbb\db\driver\driver_interface as db;
 use phpbb\group\helper;
 use phpbb\language\language;
@@ -18,15 +22,12 @@ use phpbb\language\language_file_loader;
 use phpbb\path_helper;
 use phpbb\request\request;
 use phpbb\symfony_request;
+use phpbb\template\template;
 use phpbb\user;
 use phpbb_database_test_case;
 use phpbb_mock_event_dispatcher;
 use phpbb_mock_request;
-use PHPUnit\Framework\MockObject\MockObject;
 use vse\abbc3\core\acp_manager;
-use phpbb\datetime;
-use phpbb\auth\auth;
-use phpbb\cache\service;
 
 class acp_base extends phpbb_database_test_case
 {
@@ -72,6 +73,7 @@ class acp_base extends phpbb_database_test_case
 		$this->group_helper = new helper(
 			$this->createMock(auth::class),
 			$avatar_helper,
+			$this->db,
 			$this->createMock(service::class),
 			new config([]),
 			$this->lang,
@@ -84,6 +86,7 @@ class acp_base extends phpbb_database_test_case
 				$phpbb_root_path,
 				$phpEx
 			),
+			$this->createMock(template::class),
 			$this->user
 		);
 	}

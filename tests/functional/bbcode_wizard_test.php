@@ -27,7 +27,7 @@ class bbcode_wizard_test extends phpbb_functional_test_case
 	*/
 	public function test_wizard_fails()
 	{
-		$crawler = self::request('GET', 'app.php/wizard/bbcode/bbvideo', [], false);
+		$crawler = self::request('GET', 'index.php/wizard/bbcode/bbvideo', [], false);
 		self::assert_response_status_code(404);
 		$this->assertStringContainsString($this->lang('GENERAL_ERROR'), $crawler->text());
 	}
