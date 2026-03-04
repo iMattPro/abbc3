@@ -45,7 +45,7 @@ class acp_install_bbcodes_test extends acp_base
 	/**
 	 * @dataProvider install_bbcodes_data
 	 */
-	public function test_install_bbcodes($data)
+	public function test_install_bbcodes($data): void
 	{
 		global $phpbb_root_path, $phpEx;
 
@@ -80,7 +80,7 @@ class acp_install_bbcodes_test extends acp_base
 	/**
 	 * @dataProvider install_bbcodes_data
 	 */
-	public function test_clean_install_bbcodes($data)
+	public function test_clean_install_bbcodes($data): void
 	{
 		// Remove any existing bbcodes from the database
 		$this->db->sql_query('DELETE FROM phpbb_bbcodes');

@@ -10,6 +10,8 @@
 
 namespace vse\abbc3\tests\core;
 
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\XmlDataSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use phpbb\auth\auth;
 use phpbb\cache\service;
@@ -51,7 +53,7 @@ class acp_base extends phpbb_database_test_case
 	/** @var user */
 	protected user $user;
 
-	public function getDataSet()
+	public function getDataSet(): DefaultDataSet|XmlDataSet
 	{
 		return $this->createXMLDataSet(__DIR__ . '/fixtures/bbcodes.xml');
 	}

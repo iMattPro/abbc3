@@ -35,7 +35,7 @@ class custom_bbcodes_test extends listener_base
 	 *
 	 * @dataProvider custom_bbcodes_data
 	 */
-	public function test_display_custom_bbcodes($custom_tags, $row, $enabled)
+	public function test_display_custom_bbcodes($custom_tags, $row, $enabled): void
 	{
 		$this->config['abbc3_bbcode_bar'] = $enabled;
 
@@ -75,7 +75,7 @@ class custom_bbcodes_test extends listener_base
 	 *
 	 * @dataProvider s9e_allow_custom_bbcodes_data
 	 */
-	public function test_s9e_allow_custom_bbcodes($in_cron)
+	public function test_s9e_allow_custom_bbcodes($in_cron): void
 	{
 		if ($in_cron)
 		{

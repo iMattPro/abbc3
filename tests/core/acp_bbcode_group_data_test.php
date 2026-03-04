@@ -27,7 +27,7 @@ class acp_bbcode_group_data_test extends acp_base
 	/**
 	 * @dataProvider bbcode_group_data
 	 */
-	public function test_get_bbcode_group_data($data, $expected)
+	public function test_get_bbcode_group_data($data, $expected): void
 	{
 		$acp_manager = $this->get_acp_manager();
 

@@ -76,7 +76,7 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 	 *
 	 * @dataProvider acp_bbcodes_modify_create_data
 	 */
-	public function test_acp_bbcodes_modify_create($max_order, $bbcode_group, $action, $sql_ary, $hidden_fields, $expected_sql_ary, $expected_hidden_fields)
+	public function test_acp_bbcodes_modify_create($max_order, $bbcode_group, $action, $sql_ary, $hidden_fields, $expected_sql_ary, $expected_hidden_fields): void
 	{
 		$this->set_listener();
 

@@ -58,7 +58,7 @@ class load_language_on_setup_test extends listener_base
 	 *
 	 * @dataProvider load_language_on_setup_data
 	 */
-	public function test_load_language_on_setup($lang_set_ext, $expected_contains)
+	public function test_load_language_on_setup($lang_set_ext, $expected_contains): void
 	{
 		$this->set_listener();
 

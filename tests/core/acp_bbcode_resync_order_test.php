@@ -33,7 +33,7 @@ class acp_bbcode_resync_order_test extends acp_base
 	/**
 	 * @dataProvider bbcode_resync_order_data
 	 */
-	public function test_bbcode_resync_order($set_order, $expected_order)
+	public function test_bbcode_resync_order($set_order, $expected_order): void
 	{
 		// Set up the initial order
 		foreach ($set_order as $id => $order)

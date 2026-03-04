@@ -19,7 +19,7 @@ class setup_custom_bbcodes_test extends listener_base
 	 * Test the setup_custom_bbcodes event is assigning
 	 * the expected data to the template vars array.
 	 */
-	public function test_setup_custom_bbcodes()
+	public function test_setup_custom_bbcodes(): void
 	{
 		$this->set_listener();
 

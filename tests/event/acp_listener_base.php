@@ -20,8 +20,8 @@ class acp_listener_base extends phpbb_test_case
 	/** @var acp_listener */
 	protected acp_listener $listener;
 
-	/** @var acp_manager|MockObject */
-	protected acp_manager|MockObject $acp_manager;
+	/** @var MockObject|acp_manager */
+	protected MockObject|acp_manager $acp_manager;
 
 	/**
 	 * Set the acp_listener object

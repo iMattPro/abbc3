@@ -65,7 +65,7 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 	 *
 	 * @dataProvider acp_bbcodes_group_select_box_data
 	 */
-	public function test_acp_bbcodes_group_select_box($bbcode_id, $action, $bbcode_group, $group_opts, $tpl_ary, $expected)
+	public function test_acp_bbcodes_group_select_box($bbcode_id, $action, $bbcode_group, $group_opts, $tpl_ary, $expected): void
 	{
 		$this->set_listener();
 

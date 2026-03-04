@@ -55,7 +55,7 @@ class custom_bbcode_modify_sql_test extends listener_base
 	 *
 	 * @dataProvider custom_bbcode_modify_sql_data
 	 */
-	public function test_custom_bbcode_modify_sql($sql_ary, $expected)
+	public function test_custom_bbcode_modify_sql($sql_ary, $expected): void
 	{
 		$this->set_listener();
 

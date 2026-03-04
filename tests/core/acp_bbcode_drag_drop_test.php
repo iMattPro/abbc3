@@ -11,6 +11,7 @@
 namespace vse\abbc3\tests\core;
 
 use phpbb\request\request_interface;
+use RuntimeException;
 
 class acp_bbcode_drag_drop_test extends acp_base
 {
@@ -25,7 +26,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 	/**
 	 * @dataProvider bbcode_drag_drop_data
 	 */
-	public function test_bbcode_drag_drop($bbcodes)
+	public function test_bbcode_drag_drop($bbcodes): void
 	{
 		// Return true for request->is_ajax()
 		$this->request->expects($this->atMost(2))
@@ -45,7 +46,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 
 		// Expect JSON output
 		$this->expectOutputString('{"success":true}');
-		$this->expectException(\RuntimeException::class);
+		$this->expectException(RuntimeException::class);
 
 		// Get the acp_manager
 		$acp_manager = $this->get_acp_manager();
@@ -54,7 +55,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		$acp_manager->move_drag();
 	}
 
-	public function test_bbcode_drag_drop_fails()
+	public function test_bbcode_drag_drop_fails(): void
 	{
 		// Return true for request->is_ajax()
 		$this->request->expects($this->once())

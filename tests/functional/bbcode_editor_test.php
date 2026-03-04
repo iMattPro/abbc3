@@ -25,13 +25,13 @@ class bbcode_editor_test extends phpbb_functional_test_case
 	protected function setUp(): void
 	{
 		parent::setUp();
-		$this->login();
+		self::login();
 	}
 
 	/**
 	* Test posting page for presence of our BBCodes template data
 	*/
-	public function test_posting_page()
+	public function test_posting_page(): void
 	{
 		$crawler = self::request('GET', 'posting.php?mode=post&f=2&sid=' . $this->sid);
 		$this->run_checks($crawler);
@@ -40,7 +40,7 @@ class bbcode_editor_test extends phpbb_functional_test_case
 	/**
 	* Test PM posting page for presence of our BBCodes template data
 	*/
-	public function test_pm_posting_page()
+	public function test_pm_posting_page(): void
 	{
 		$crawler = self::request('GET', 'ucp.php?i=pm&mode=compose&sid=' . $this->sid);
 		$this->run_checks($crawler);
@@ -49,7 +49,7 @@ class bbcode_editor_test extends phpbb_functional_test_case
 	/**
 	 * Test quick reply for the presence of our BBCodes template data
 	 */
-	public function test_quick_reply()
+	public function test_quick_reply(): void
 	{
 		$crawler = self::request('GET', 'viewtopic.php?f=2&p=1&sid=' . $this->sid);
 		$this->run_checks($crawler);
@@ -58,10 +58,10 @@ class bbcode_editor_test extends phpbb_functional_test_case
 	/**
 	 * Test ACP user signature for presence of our BBCodes template data
 	 */
-	public function test_acp_posting_page()
+	public function test_acp_posting_page(): void
 	{
-		$this->admin_login();
-		$this->add_lang('acp/users');
+		self::admin_login();
+		self::add_lang('acp/users');
 		$crawler = self::request('GET', 'adm/index.php?i=users&u=2&mode=sig&sid=' . $this->sid);
 		$this->run_checks($crawler);
 	}

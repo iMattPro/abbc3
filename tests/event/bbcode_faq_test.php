@@ -55,7 +55,7 @@ class bbcode_faq_test extends listener_base
 	 *
 	 * @dataProvider add_bbcode_faq_data
 	 */
-	public function test_add_bbcode_faq($block_name, $expected)
+	public function test_add_bbcode_faq($block_name, $expected): void
 	{
 		$this->set_listener();
 

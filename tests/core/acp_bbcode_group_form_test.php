@@ -24,7 +24,7 @@ class acp_bbcode_group_form_test extends acp_base
 	/**
 	 * @dataProvider bbcode_group_data
 	 */
-	public function test_bbcode_group_form($group_data, $expected)
+	public function test_bbcode_group_form($group_data, $expected): void
 	{
 		$this->request->expects($this->atMost(2))
 			->method('variable')

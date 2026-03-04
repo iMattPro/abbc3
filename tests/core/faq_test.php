@@ -43,7 +43,7 @@ class faq_test extends phpbb_database_test_case
 	/** @var bbcodes_help */
 	protected bbcodes_help $bbcodes_help;
 
-	public function getDataSet()
+	public function getDataSet(): CompositeDataSet
 	{
 		// Aggregate multiple fixtures into a single dataset
 		$ds1 = $this->createXMLDataSet(__DIR__ . '/fixtures/bbcodes.xml');
@@ -86,14 +86,14 @@ class faq_test extends phpbb_database_test_case
 	/**
 	 * @dataProvider faq_test_data
 	 */
-	public function test_faq($user_id, $expected)
+	public function test_faq($user_id, $expected): void
 	{
 		$this->user->data['user_id'] = $user_id;
 
 		$calls = [];
 		$this->template->expects($this->exactly(count($expected) + 1))
 			->method('assign_block_vars')
-			->willReturnCallback(function($arg1, $arg2) use (&$calls, $expected) {
+			->willReturnCallback(function($arg1, $arg2) use (&$calls) {
 				$calls[] = [$arg1, $arg2];
 				return null;
 			});
@@ -108,7 +108,8 @@ class faq_test extends phpbb_database_test_case
 			]],
 		];
 
-		foreach ($expected as $question) {
+		foreach ($expected as $question)
+		{
 			$expectedCalls[] = ['faq_block.faq_row', [
 				'FAQ_QUESTION' => $question,
 				'FAQ_ANSWER'   => 'ABBC3_FAQ_ANSWER',

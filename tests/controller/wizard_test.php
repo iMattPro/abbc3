@@ -32,8 +32,8 @@ class wizard_test extends phpbb_test_case
 	/** @var MockObject|request */
 	protected MockObject|request $request;
 
-	/** @var template|MockObject */
-	protected template|MockObject $template;
+	/** @var MockObject|template */
+	protected MockObject|template $template;
 
 	/** @var factory $factory */
 	protected mixed $textformatter;
@@ -87,7 +87,7 @@ class wizard_test extends phpbb_test_case
 	 * @param $status_code
 	 * @param $page_content
 	 */
-	public function test_bbcode_wizard($mode, $ajax, $status_code, $page_content)
+	public function test_bbcode_wizard($mode, $ajax, $status_code, $page_content): void
 	{
 		$this->request->expects($this->once())
 			->method('is_ajax')
@@ -106,7 +106,7 @@ class wizard_test extends phpbb_test_case
 		$this->assertEquals($page_content, $response->getContent());
 	}
 
-	public function test_bbvideo_sites_cached()
+	public function test_bbvideo_sites_cached(): void
 	{
 		$cached_data = [
 			'youtube' => [
@@ -153,7 +153,7 @@ class wizard_test extends phpbb_test_case
 	 * @param $mode
 	 * @param $ajax
 	 */
-	public function test_bbcode_wizard_fails($mode, $ajax)
+	public function test_bbcode_wizard_fails($mode, $ajax): void
 	{
 		$this->expectExceptionMessage('GENERAL_ERROR');
 		$this->expectException(http_exception::class);

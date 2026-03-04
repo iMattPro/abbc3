@@ -12,16 +12,17 @@ namespace vse\abbc3\tests\core;
 
 use phpbb\language\language;
 use phpbb\language\language_file_loader;
+use phpbb_mock_extension_manager;
 
 class acp_bbcode_group_select_test extends acp_base
 {
-	public static function get_language_instance()
+	public static function get_language_instance(): language
 	{
 		global $phpbb_root_path, $phpEx;
 
-		$lang_loader = new \phpbb\language\language_file_loader($phpbb_root_path, $phpEx);
-		$lang_loader->set_extension_manager(new \phpbb_mock_extension_manager($phpbb_root_path));
-		$lang = new \phpbb\language\language($lang_loader);
+		$lang_loader = new language_file_loader($phpbb_root_path, $phpEx);
+		$lang_loader->set_extension_manager(new phpbb_mock_extension_manager($phpbb_root_path));
+		$lang = new language($lang_loader);
 		$lang->add_lang('common');
 
 		return $lang;
@@ -90,7 +91,7 @@ class acp_bbcode_group_select_test extends acp_base
 	/**
 	 * @dataProvider bbcode_group_select_data
 	 */
-	public function test_bbcode_group_select_options($data, $expected)
+	public function test_bbcode_group_select_options($data, $expected): void
 	{
 		$acp_manager = $this->get_acp_manager();
 

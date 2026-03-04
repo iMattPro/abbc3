@@ -59,7 +59,7 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 	 *
 	 * @dataProvider acp_bbcodes_custom_sorting_data
 	 */
-	public function test_acp_bbcodes_custom_sorting($template_data, $sql_ary, $u_action, $expected_template_data, $expected_sql_ary)
+	public function test_acp_bbcodes_custom_sorting($template_data, $sql_ary, $u_action, $expected_template_data, $expected_sql_ary): void
 	{
 		$this->set_listener();
 
@@ -98,7 +98,7 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 	 *
 	 * @dataProvider acp_bbcodes_custom_sorting_move_data
 	 */
-	public function test_acp_bbcodes_custom_sorting_move($action, $method, $call)
+	public function test_acp_bbcodes_custom_sorting_move($action, $method, $call): void
 	{
 		$this->set_listener();
 

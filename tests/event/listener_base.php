@@ -17,32 +17,34 @@ use phpbb\language\language_file_loader;
 use phpbb\routing\helper;
 use phpbb\template\template;
 use phpbb\user;
+use phpbb_mock_event_dispatcher;
 use phpbb_test_case;
 use PHPUnit\Framework\MockObject\MockObject;
 use vse\abbc3\core\bbcodes_config;
 use vse\abbc3\core\bbcodes_display;
 use vse\abbc3\core\bbcodes_help;
 use vse\abbc3\event\listener;
+use phpbb\datetime;
 
 class listener_base extends phpbb_test_case
 {
 	/** @var bbcodes_config */
 	protected bbcodes_config $bbcodes_config;
 
-	/** @var bbcodes_display|MockObject */
-	protected bbcodes_display|MockObject $bbcodes_display;
+	/** @var MockObject|bbcodes_display */
+	protected MockObject|bbcodes_display $bbcodes_display;
 
-	/** @var bbcodes_help|MockObject */
-	protected bbcodes_help|MockObject $bbcodes_help;
+	/** @var MockObject|bbcodes_help */
+	protected MockObject|bbcodes_help $bbcodes_help;
 
 	/** @var config */
 	protected config $config;
 
-	/** @var db_text|MockObject */
-	protected db_text|MockObject $config_text;
+	/** @var MockObject|db_text */
+	protected MockObject|db_text $config_text;
 
-	/** @var helper|MockObject */
-	protected helper|MockObject $helper;
+	/** @var MockObject|helper */
+	protected MockObject|helper $helper;
 
 	/** @var language */
 	protected language $language;
@@ -50,23 +52,23 @@ class listener_base extends phpbb_test_case
 	/** @var listener */
 	protected listener $listener;
 
-	/** @var template|MockObject */
-	protected template|MockObject $template;
+	/** @var MockObject|template */
+	protected MockObject|template $template;
 
 	/** @var user */
 	protected user $user;
 
-	/** @var string|int */
-	protected string|int $bbvideo_width;
+	/** @var int|string */
+	protected int|string $bbvideo_width;
 
-	/** @var string|int */
-	protected string|int $bbvideo_height;
-
-	/** @var string */
-	protected $phpbb_root_path;
+	/** @var int|string */
+	protected int|string $bbvideo_height;
 
 	/** @var string */
-	protected $php_ext;
+	protected string $phpbb_root_path;
+
+	/** @var string */
+	protected string $php_ext;
 
 	protected function setUp(): void
 	{
@@ -74,7 +76,7 @@ class listener_base extends phpbb_test_case
 
 		global $phpbb_dispatcher, $phpbb_root_path, $phpEx;
 
-		$phpbb_dispatcher = new \phpbb_mock_event_dispatcher();
+		$phpbb_dispatcher = new phpbb_mock_event_dispatcher();
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $phpEx;
 
@@ -93,7 +95,7 @@ class listener_base extends phpbb_test_case
 		$this->config_text = $this->createMock(db_text::class);
 		$this->template = $this->createMock(template::class);
 		$this->language = new language(new language_file_loader($phpbb_root_path, $phpEx));
-		$this->user = new \phpbb\user($this->language, '\phpbb\datetime');
+		$this->user = new user($this->language, datetime::class);
 		$this->helper = $this->createMock(helper::class);
 		$this->helper->expects(self::atMost(3))
 			->method('route')

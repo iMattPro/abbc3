@@ -25,17 +25,17 @@ class acp_module_test extends phpbb_functional_test_case
 	protected function setUp(): void
 	{
 		parent::setUp();
-		$this->add_lang_ext('vse/abbc3', 'info_acp_abbc3');
+		self::add_lang_ext('vse/abbc3', 'info_acp_abbc3');
 	}
 
-	public function test_module_page()
+	public function test_module_page(): void
 	{
-		$this->login();
-		$this->admin_login();
+		self::login();
+		self::admin_login();
 
 		// Check ABBC3 ACP module
 		$crawler = self::request('GET', 'adm/index.php?i=\vse\abbc3\acp\abbc3_module&mode=settings&sid=' . $this->sid);
-		$this->assertContainsLang('ACP_ABBC3_MODULE', $crawler->text());
+		self::assertContainsLang('ACP_ABBC3_MODULE', $crawler->text());
 		$this->assertEquals('1', $crawler->filter('input[name="abbc3_bbcode_bar"][checked]')->attr('value'));
 		$this->assertEquals('0', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
 		$this->assertEquals('1', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
@@ -44,7 +44,7 @@ class acp_module_test extends phpbb_functional_test_case
 		$this->assertEquals('', $crawler->filter('textarea#abbc3_google_fonts')->text());
 
 		// Check the BBCodes module is installed in the ABBC3 module
-		$this->assertContainsLang('ACP_BBCODES', $crawler->filter("#menu")->text());
+		self::assertContainsLang('ACP_BBCODES', $crawler->filter("#menu")->text());
 
 		// Submit form with settings changed
 		$form_data = [
@@ -55,13 +55,13 @@ class acp_module_test extends phpbb_functional_test_case
 			'abbc3_auto_video'	=> 1,
 			'abbc3_google_fonts'=> "Droid Sans\nRoboto",
 		];
-		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
+		$form = $crawler->selectButton(self::lang('SUBMIT'))->form();
 		$crawler = self::submit($form, $form_data);
-		$this->assertContainsLang('CONFIG_UPDATED', $crawler->filter('.successbox')->text());
+		self::assertContainsLang('CONFIG_UPDATED', $crawler->filter('.successbox')->text());
 
 		// Verify ABBC3 module settings have been updated
 		$crawler = self::request('GET', 'adm/index.php?i=\vse\abbc3\acp\abbc3_module&mode=settings&sid=' . $this->sid);
-		$this->assertContainsLang('ACP_ABBC3_MODULE', $crawler->text());
+		self::assertContainsLang('ACP_ABBC3_MODULE', $crawler->text());
 		$this->assertEquals('0', $crawler->filter('input[name="abbc3_bbcode_bar"][checked]')->attr('value'));
 		$this->assertEquals('1', $crawler->filter('input[name="abbc3_qr_bbcodes"][checked]')->attr('value'));
 		$this->assertEquals('0', $crawler->filter('input[name="abbc3_pipes"][checked]')->attr('value'));
@@ -70,7 +70,7 @@ class acp_module_test extends phpbb_functional_test_case
 		$this->assertStringContainsString("Droid Sans", $crawler->filter('textarea#abbc3_google_fonts')->text());
 		$this->assertStringContainsString("Roboto", $crawler->filter('textarea#abbc3_google_fonts')->text());
 
-		// Resubmit form with settings needed for future functional tests
+		// Resubmit a form with settings needed for future functional tests
 		$form_data = [
 			'abbc3_bbcode_bar'	=> 1,
 			'abbc3_qr_bbcodes'	=> 1,
@@ -78,16 +78,16 @@ class acp_module_test extends phpbb_functional_test_case
 			'abbc3_pipes'		=> 1,
 			'abbc3_auto_video'	=> 1,
 		];
-		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
+		$form = $crawler->selectButton(self::lang('SUBMIT'))->form();
 		$crawler = self::submit($form, $form_data);
-		$this->assertContainsLang('CONFIG_UPDATED', $crawler->filter('.successbox')->text());
+		self::assertContainsLang('CONFIG_UPDATED', $crawler->filter('.successbox')->text());
 
 		// While we're here, let's enable quick reply, so we can test that later
-		$this->add_lang('acp/board');
+		self::add_lang('acp/board');
 		$crawler = self::request('GET', "adm/index.php?i=acp_board&mode=post&sid=$this->sid");
 		$form = $crawler->selectButton('allow_quick_reply_enable')->form();
 		$crawler = self::submit($form);
 		$this->assertGreaterThan(0, $crawler->filter('.successbox')->count());
-		$this->assertContainsLang('CONFIG_UPDATED', $crawler->text());
+		self::assertContainsLang('CONFIG_UPDATED', $crawler->text());
 	}
 }

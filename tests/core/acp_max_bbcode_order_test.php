@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\core;
 
 class acp_max_bbcode_order_test extends acp_base
 {
-	public function test_get_max_bbcode_order()
+	public function test_get_max_bbcode_order(): void
 	{
 		$acp_manager = $this->get_acp_manager();
 

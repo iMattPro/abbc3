@@ -28,7 +28,7 @@ class ext_test extends phpbb_test_case
 	protected ContainerInterface|MockObject $container;
 
 	/** @var MockObject|finder */
-	protected finder|MockObject $extension_finder;
+	protected MockObject|finder $extension_finder;
 
 	/** @var MockObject|migrator */
 	protected MockObject|migrator $migrator;
@@ -70,9 +70,9 @@ class ext_test extends phpbb_test_case
 	 *
 	 * @dataProvider ext_test_data
 	 */
-	public function test_ext($version, $expected)
+	public function test_ext($version, $expected): void
 	{
-		// Instantiate config object and set config version
+		// Instantiate a config object and set a config version
 		$config = new config([
 			'version' => $version,
 		]);
@@ -100,7 +100,7 @@ class ext_test extends phpbb_test_case
 	/**
 	 * @dataProvider enable_test_data
 	 */
-	public function test_enable($exists, $old_state, $expected)
+	public function test_enable($exists, $old_state, $expected): void
 	{
 		$filesystem = $this->getMockBuilder(filesystem::class)
 			->disableOriginalConstructor()
@@ -124,7 +124,7 @@ class ext_test extends phpbb_test_case
 		$this->assertEquals($expected, $ext->enable_step($old_state));
 	}
 
-	public function test_enable_fails()
+	public function test_enable_fails(): void
 	{
 		$filesystem = $this->getMockBuilder(filesystem::class)
 			->disableOriginalConstructor()
@@ -150,12 +150,12 @@ class ext_test extends phpbb_test_case
 			->method('add')
 			->with('critical', '2', '1.0.0.01', 'LOG_ABBC3_ENABLE_FAIL', false, ['images/abbc3/icons']);
 
-		$services = ['filesystem', 'user', 'log'];
 		$returns = [$filesystem, $user, $log];
 		$callCount = 0;
 		$this->container->expects(self::exactly(3))
 			->method('get')
-			->willReturnCallback(function($service) use ($services, $returns, &$callCount) {
+			->willReturnCallback(function($service) use ($returns, &$callCount) {
+				$services = ['filesystem', 'user', 'log'];
 				$this->assertEquals($services[$callCount], $service);
 				return $returns[$callCount++];
 			});

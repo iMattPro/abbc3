@@ -31,7 +31,7 @@ class load_google_fonts_test extends listener_base
 	/**
 	 * @dataProvider load_google_fonts_data
 	 */
-	public function test_load_google_fonts_common($data, $expected)
+	public function test_load_google_fonts_common($data, $expected): void
 	{
 		$this->set_listener();
 
@@ -46,7 +46,7 @@ class load_google_fonts_test extends listener_base
 		$this->listener->load_google_fonts();
 	}
 
-	public function test_load_google_fonts_disabled()
+	public function test_load_google_fonts_disabled(): void
 	{
 		$this->config['allow_cdn'] = '0'; // disabled CDN content
 		$this->set_listener();

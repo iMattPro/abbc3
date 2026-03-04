@@ -45,7 +45,7 @@ class bbcodes_display
 	protected array $memberships;
 
 	/** @var array */
-	protected $render_params_set = [];
+	protected array $render_params_set = [];
 
 	/**
 	 * Constructor
@@ -117,7 +117,7 @@ class bbcodes_display
 	 * @param array $params Key-value pairs for renderer parameters
 	 * @return void
 	 */
-	public function set_renderer_params($renderer, $params)
+	public function set_renderer_params(renderer $renderer, array $params): void
 	{
 		$params_to_set = array_diff_key($params, $this->render_params_set);
 

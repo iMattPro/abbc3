@@ -18,7 +18,7 @@ class acp_listener_test extends acp_listener_base
 	/**
 	 * Test the listener constructor is instantiated
 	 */
-	public function test_construct()
+	public function test_construct(): void
 	{
 		$this->set_listener();
 		$this->assertInstanceOf(EventSubscriberInterface::class, $this->listener);
@@ -27,7 +27,7 @@ class acp_listener_test extends acp_listener_base
 	/**
 	 * Test the event listener is subscribing its events
 	 */
-	public function test_getSubscribedEvents()
+	public function test_getSubscribedEvents(): void
 	{
 		$this->assertEquals([
 			'core.acp_bbcodes_display_form',

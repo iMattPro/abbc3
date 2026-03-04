@@ -25,10 +25,10 @@ class bbcode_wizard_test extends phpbb_functional_test_case
 	/**
 	* Test accessing the bbcode wizard directly, w/o ajax
 	*/
-	public function test_wizard_fails()
+	public function test_wizard_fails(): void
 	{
 		$crawler = self::request('GET', 'index.php/wizard/bbcode/bbvideo', [], false);
 		self::assert_response_status_code(404);
-		$this->assertStringContainsString($this->lang('GENERAL_ERROR'), $crawler->text());
+		$this->assertStringContainsString(self::lang('GENERAL_ERROR'), $crawler->text());
 	}
 }

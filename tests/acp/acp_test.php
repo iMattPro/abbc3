@@ -24,6 +24,8 @@ use phpbb_database_test_case;
 use phpbb_mock_extension_manager;
 use phpbb_mock_lang;
 use phpbb_mock_user;
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\XmlDataSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -43,8 +45,8 @@ class acp_test extends phpbb_database_test_case
 	/** @var ContainerInterface|MockObject */
 	protected ContainerInterface|MockObject $container;
 
-	/** @var driver_interface|MockObject */
-	protected driver_interface|MockObject $cache;
+	/** @var MockObject|driver_interface */
+	protected MockObject|driver_interface $cache;
 
 	/** @var config */
 	protected config $config;
@@ -61,18 +63,18 @@ class acp_test extends phpbb_database_test_case
 	/** @var language */
 	protected language $lang;
 
-	/** @var request|MockObject */
+	/** @var MockObject|request */
 	protected MockObject|request $request;
 
-	/** @var template|MockObject */
-	protected template|MockObject $template;
+	/** @var MockObject|template */
+	protected MockObject|template $template;
 
 	protected static function setup_extensions(): array
 	{
 		return ['vse/abbc3'];
 	}
 
-	public function getDataSet()
+	public function getDataSet(): DefaultDataSet|XmlDataSet
 	{
 		return $this->createXMLDataSet(__DIR__ . '/../core/fixtures/config_text.xml');
 	}
@@ -123,7 +125,7 @@ class acp_test extends phpbb_database_test_case
 	 * @return void
 	 * @throws Exception
 	 */
-	public function test_main_module($error)
+	public function test_main_module($error): void
 	{
 		$controller = $this->container->expects($this->once())
 			->method('get')
@@ -144,7 +146,7 @@ class acp_test extends phpbb_database_test_case
 		$this->assertEquals('acp_abbc3_settings', $module->tpl_name);
 	}
 
-	public function test_main_display()
+	public function test_main_display(): void
 	{
 		$this->template->expects($this->once())
 			->method('assign_vars')
@@ -164,7 +166,7 @@ class acp_test extends phpbb_database_test_case
 			->handle();
 	}
 
-	public function test_main_save()
+	public function test_main_save(): void
 	{
 		self::$valid_form = true;
 
@@ -179,7 +181,7 @@ class acp_test extends phpbb_database_test_case
 		$this->acp_controller->handle();
 	}
 
-	public function test_main_save_error()
+	public function test_main_save_error(): void
 	{
 		self::$valid_form = false;
 
@@ -213,7 +215,7 @@ class acp_test extends phpbb_database_test_case
 	 * @param $error
 	 * @param $error_message
 	 */
-	public function test_save_google_fonts($input, $expected, $error, $error_message)
+	public function test_save_google_fonts($input, $expected, $error, $error_message): void
 	{
 		self::$valid_form = true;
 
@@ -241,7 +243,7 @@ class acp_test extends phpbb_database_test_case
 		}
 	}
 
-	public function test_info()
+	public function test_info(): void
 	{
 		$info_class = new abbc3_info();
 		$info_array = $info_class->module();
@@ -259,7 +261,7 @@ class acp_test extends phpbb_database_test_case
  */
 function check_form_key(): bool
 {
-	return \vse\abbc3\controller\acp_test::$valid_form;
+	return acp_test::$valid_form;
 }
 
 /**

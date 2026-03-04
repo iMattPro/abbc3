@@ -11,6 +11,7 @@
 namespace vse\abbc3\tests\core;
 
 use phpbb\request\request_interface;
+use RuntimeException;
 
 class acp_bbcode_move_test extends acp_base
 {
@@ -66,7 +67,7 @@ class acp_bbcode_move_test extends acp_base
 	/**
 	 * @dataProvider bbcode_move_data
 	 */
-	public function test_bbcode_move($item, $action, $expected)
+	public function test_bbcode_move($item, $action, $expected): void
 	{
 		$this->request->expects($this->exactly(2))
 			->method('variable')
@@ -111,7 +112,7 @@ class acp_bbcode_move_test extends acp_base
 	/**
 	 * @dataProvider bbcode_move_triggers_error_data
 	 */
-	public function test_bbcode_move_triggers_error($item, $action, $hash, $ajax, $errNo)
+	public function test_bbcode_move_triggers_error($item, $action, $hash, $ajax, $errNo): void
 	{
 		$this->request->expects($ajax? $this->once() : $this->never())
 			->method('is_ajax')
@@ -133,7 +134,7 @@ class acp_bbcode_move_test extends acp_base
 		{
 			// Expect JSON output for ajax requests
 			$this->expectOutputString('{"success":true}');
-			$this->expectException(\RuntimeException::class);
+			$this->expectException(RuntimeException::class);
 		}
 		else
 		{

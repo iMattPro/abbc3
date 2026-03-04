@@ -15,7 +15,7 @@ use s9e\TextFormatter\Configurator;
 
 class acp_s9e_store_bbcode_groups_test extends acp_listener_base
 {
-	public function test_s9e_store_bbcode_groups()
+	public function test_s9e_store_bbcode_groups(): void
 	{
 		$test_data = [
 			'FOO' => '',

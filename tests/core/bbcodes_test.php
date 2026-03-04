@@ -19,9 +19,13 @@ use phpbb\textformatter\s9e\parser as service;
 use phpbb\user;
 use phpbb_database_test_case;
 use phpbb_mock_extension_manager;
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\XmlDataSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use phpbb\datetime;
 use s9e\TextFormatter\Parser;
+use s9e\TextFormatter\Renderer;
+use phpbb\textformatter\s9e\renderer as textformatter_render;
 
 class bbcodes_test extends phpbb_database_test_case
 {
@@ -48,7 +52,7 @@ class bbcodes_test extends phpbb_database_test_case
 	/** @var phpbb_mock_extension_manager */
 	protected phpbb_mock_extension_manager $ext_manager;
 
-	public function getDataSet()
+	public function getDataSet(): DefaultDataSet|XmlDataSet
 	{
 		return $this->createXMLDataSet(__DIR__ . '/fixtures/user_group.xml');
 	}
@@ -78,7 +82,7 @@ class bbcodes_test extends phpbb_database_test_case
 
 	protected function bbcodes_manager(): bbcodes_display
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->auth, $this->config, $this->db, $this->ext_manager, $this->user, $this->root_path);
+		return new bbcodes_display($this->auth, $this->config, $this->db, $this->ext_manager, $this->user, $this->root_path);
 	}
 
 	public static function bbcode_data(): array
@@ -134,7 +138,7 @@ class bbcodes_test extends phpbb_database_test_case
 	 * @param $data
 	 * @param $disable
 	 */
-	public function test_allow_custom_bbcodes($user_id, $data, $disable)
+	public function test_allow_custom_bbcodes($user_id, $data, $disable): void
 	{
 		/** @var Parser|MockObject $parser */
 		$parser = $this->createMock(Parser::class);
@@ -194,7 +198,7 @@ class bbcodes_test extends phpbb_database_test_case
 	 * @param $data
 	 * @param $expected
 	 */
-	public function test_display_custom_bbcodes($user_id, $data, $expected)
+	public function test_display_custom_bbcodes($user_id, $data, $expected): void
 	{
 		$this->user->data['user_id'] = $user_id;
 
@@ -229,7 +233,7 @@ class bbcodes_test extends phpbb_database_test_case
 	 * @param $group_ids
 	 * @param $expected
 	 */
-	public function test_user_in_bbcode_group($user_id, $group_ids, $expected)
+	public function test_user_in_bbcode_group($user_id, $group_ids, $expected): void
 	{
 		$this->user->data['user_id'] = $user_id;
 
@@ -291,7 +295,7 @@ class bbcodes_test extends phpbb_database_test_case
 	 * @param $allow_flash
 	 * @param $expected
 	 */
-	public function test_bbcode_statuses($forum, $allow_bbcode, $allow_links, $allow_flash, $expected)
+	public function test_bbcode_statuses($forum, $allow_bbcode, $allow_links, $allow_flash, $expected): void
 	{
 		$forum_id = key($forum);
 		$forum_acl = $forum[$forum_id];
@@ -316,10 +320,10 @@ class bbcodes_test extends phpbb_database_test_case
 	/**
 	 * Test set_renderer_params method
 	 */
-	public function test_set_renderer_params()
+	public function test_set_renderer_params(): void
 	{
-		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
-		$s9e_renderer_mock = $this->createMock('\\s9e\\TextFormatter\\Renderer');
+		$renderer_mock = $this->createMock(textformatter_render::class);
+		$s9e_renderer_mock = $this->createMock(Renderer::class);
 
 		$renderer_mock->expects(self::once())
 			->method('get_renderer')
@@ -342,10 +346,10 @@ class bbcodes_test extends phpbb_database_test_case
 	/**
 	 * Test set_renderer_params caching behavior
 	 */
-	public function test_set_renderer_params_caching()
+	public function test_set_renderer_params_caching(): void
 	{
-		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
-		$s9e_renderer_mock = $this->createMock('\\s9e\\TextFormatter\\Renderer');
+		$renderer_mock = $this->createMock(textformatter_render::class);
+		$s9e_renderer_mock = $this->createMock(Renderer::class);
 
 		$renderer_mock->expects(self::exactly(2))
 			->method('get_renderer')
@@ -381,9 +385,9 @@ class bbcodes_test extends phpbb_database_test_case
 	/**
 	 * Test set_renderer_params with no new parameters
 	 */
-	public function test_set_renderer_params_no_new_params()
+	public function test_set_renderer_params_no_new_params(): void
 	{
-		$renderer_mock = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
+		$renderer_mock = $this->createMock(textformatter_render::class);
 
 		// get_renderer should not be called when no new parameters
 		$renderer_mock->expects(self::never())
@@ -392,8 +396,8 @@ class bbcodes_test extends phpbb_database_test_case
 		$bbcodes_manager = $this->bbcodes_manager();
 
 		// First call to set parameters
-		$renderer_mock2 = $this->createMock('\\phpbb\\textformatter\\s9e\\renderer');
-		$s9e_renderer_mock = $this->createMock('\\s9e\\TextFormatter\\Renderer');
+		$renderer_mock2 = $this->createMock(textformatter_render::class);
+		$s9e_renderer_mock = $this->createMock(Renderer::class);
 		$renderer_mock2->method('get_renderer')->willReturn($s9e_renderer_mock);
 
 		$bbcodes_manager->set_renderer_params($renderer_mock2, ['param1' => 'value1']);

@@ -56,10 +56,10 @@ class listener implements EventSubscriberInterface
 	protected user $user;
 
 	/** @var string */
-	protected $phpbb_root_path;
+	protected string $phpbb_root_path;
 
 	/** @var string */
-	protected $php_ext;
+	protected string $php_ext;
 
 	/** @var bool */
 	protected bool $quick_reply = false;
@@ -80,7 +80,7 @@ class listener implements EventSubscriberInterface
 	 * @param string $phpEx
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user, $phpbb_root_path, $phpEx)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user, string $phpbb_root_path, string $phpEx)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
@@ -250,7 +250,7 @@ class listener implements EventSubscriberInterface
 	 * @param data $event The event object
 	 * @access public
 	 */
-	public function set_hidden_bbcode_params($event)
+	public function set_hidden_bbcode_params(data $event): void
 	{
 		if (ANONYMOUS !== (int) $this->user->data['user_id'])
 		{

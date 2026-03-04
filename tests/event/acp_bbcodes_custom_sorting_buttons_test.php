@@ -72,7 +72,7 @@ class acp_bbcodes_custom_sorting_buttons_test extends acp_listener_base
 	 *
 	 * @dataProvider acp_bbcodes_custom_sorting_buttons_data
 	 */
-	public function test_acp_bbcodes_custom_sorting_buttons($row, $bbcodes_array, $expected)
+	public function test_acp_bbcodes_custom_sorting_buttons($row, $bbcodes_array, $expected): void
 	{
 		$this->set_listener();
 

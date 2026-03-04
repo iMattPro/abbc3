@@ -133,7 +133,7 @@ class acp_controller
 	 *
 	 * @throws RuntimeException
 	 */
-	protected function save_settings()
+	protected function save_settings(): void
 	{
 		$this->config->set('abbc3_bbcode_bar', $this->request->variable('abbc3_bbcode_bar', 0));
 		$this->config->set('abbc3_qr_bbcodes', $this->request->variable('abbc3_qr_bbcodes', 0));

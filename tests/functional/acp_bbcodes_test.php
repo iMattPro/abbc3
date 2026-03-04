@@ -25,14 +25,14 @@ class acp_bbcodes_test extends phpbb_functional_test_case
 	protected function setUp(): void
 	{
 		parent::setUp();
-		$this->login();
-		$this->admin_login();
+		self::login();
+		self::admin_login();
 	}
 
 	/**
 	* Test BBCodes page for presence of our BBCodes
 	*/
-	public function test_bbcodes_page()
+	public function test_bbcodes_page(): void
 	{
 		$crawler = self::request('GET', 'adm/index.php?i=acp_bbcodes&mode=bbcodes&sid=' . $this->sid);
 		$this->assertStringContainsString('BBvideo', $crawler->filter('#acp_bbcodes')->text());
@@ -43,9 +43,9 @@ class acp_bbcodes_test extends phpbb_functional_test_case
 	*
 	* @depends test_bbcodes_page
 	*/
-	public function test_edit_bbcodes_page()
+	public function test_edit_bbcodes_page(): void
 	{
 		$crawler = self::request('GET', 'adm/index.php?i=acp_bbcodes&mode=bbcodes&action=edit&bbcode=13&sid=' . $this->sid);
-		$this->assertStringContainsString($this->lang('ACP_GROUPS_PERMISSIONS'), $crawler->filter('#acp_bbcodes')->text());
+		$this->assertStringContainsString(self::lang('ACP_GROUPS_PERMISSIONS'), $crawler->filter('#acp_bbcodes')->text());
 	}
 }

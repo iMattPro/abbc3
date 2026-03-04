@@ -12,7 +12,7 @@ namespace vse\abbc3\tests\event;
 
 use phpbb\event\data;
 
-class quick_reply_test extends \vse\abbc3\tests\event\listener_base
+class quick_reply_test extends listener_base
 {
 	public static function set_quick_reply_data(): array
 	{
@@ -25,7 +25,7 @@ class quick_reply_test extends \vse\abbc3\tests\event\listener_base
 	/**
 	 * @dataProvider set_quick_reply_data
 	 */
-	public function test_set_quick_reply($enabled, $forum_id)
+	public function test_set_quick_reply($enabled, $forum_id): void
 	{
 		$this->set_listener();
 
