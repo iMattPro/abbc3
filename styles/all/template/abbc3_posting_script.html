@@ -8,24 +8,21 @@
 	 * Strip all BBCodes from the selected text
 	 */
 	function bbcodeToPlain(data) {
-		if (data.indexOf('[') < 0) {
+		if (!data || data.indexOf('[') < 0) {
 			return data;
 		}
 
-		function bbcodeToPlainSimpleReplace(str) {
-			return str.replace(basicBBcodeMatch, bbcodeToPlainPattern);
-		}
+		const bbcodePattern = /\[([a-z][a-z0-9]*?)(?:=[^\]]*)?]([\s\S]*?)\[\/\1]/gi;
+		let result = data;
+		let prevResult;
 
-		function bbcodeToPlainPattern(match_0, match_1, match_2, match_3) {
-			if (match_3 && match_3.indexOf('[') > -1) {
-				match_3 = bbcodeToPlainSimpleReplace(match_3);
-			}
-			return match_3;
-		}
+		// Keep removing BBCodes until no more are found (handles nested tags)
+		do {
+			prevResult = result;
+			result = result.replace(bbcodePattern, '$2');
+		} while (result !== prevResult);
 
-		var basicBBcodeMatch = new RegExp('\\[([a-z][a-z0-9]*)(?:=([^\\]]+))?]((?:.|[\r\n])*?)\\[/\\1]', 'gim');
-
-		return bbcodeToPlainSimpleReplace(data);
+		return result;
 	}
 
 	/**

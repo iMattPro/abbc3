@@ -104,6 +104,14 @@ var bbwizard;
 		});
 
 		/**
+		 * Dynamically adjust highlight bbcode's text color
+		 */
+		document.querySelectorAll('.abbc3-highlight').forEach(highlight => {
+			const rgb = window.getComputedStyle(highlight).backgroundColor.match(/\d+/g);
+			highlight.style.color = (rgb && (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 < 128) ? 'white' : 'black';
+		});
+
+		/**
 		 * BBCode Wizard listener events
 		 */
 		var wizard = $('#bbcode_wizard'),
