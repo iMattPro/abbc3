@@ -1,7 +1,8 @@
 # Changelog
 
-## 3.3.9 - 2025-10-02
+## 3.3.9 - 2026-03-19
 
+- The [highlight] BBCode will now use a text color that contrasts well with the highlight color.
 - Redesigned the [hidden], [offtopic], [spoiler] and [mod] BBCodes.
 - BBCode popup wizards for [url], [bbvideo] and [pipes] will now work on mobile/touch devices.
 - If YouTube is disabled (via Media Embed Extension), then the BBVideo popup wizard will show another site as an example.
