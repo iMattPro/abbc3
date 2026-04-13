@@ -98,7 +98,23 @@
 							</div>
 						{% endif %}
 					{% else %}
-						<button type="button" class="{{ custom_tag.BBCODE_IMG ? 'abbc3_button' : 'button button-secondary bbcode-' ~ custom_tag.BBCODE_TAG_CLEAN }}" name="addbbcode{{ custom_tag.BBCODE_ID }}" value="{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}"{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}</button>
+						{# Use BBCode font icon if set, otherwise use BBCode image if a match exists, otherwise use BBCode tag name #}
+						{% set use_bbcode_img = custom_tag.BBCODE_FONT_ICON == '' and custom_tag.BBCODE_IMG %}
+						<button type="button"
+								class="{{ use_bbcode_img ? 'abbc3_button' : 'button button-secondary bbcode-' ~ custom_tag.BBCODE_TAG_CLEAN }}"
+								name="addbbcode{{ custom_tag.BBCODE_ID }}"
+								value="{{ not use_bbcode_img ? custom_tag.BBCODE_TAG }}"
+							{% if use_bbcode_img %}
+								style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"
+							{% endif %}
+								onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})"
+								title="{{ custom_tag.BBCODE_HELPLINE }}">
+							{% if custom_tag.BBCODE_FONT_ICON != '' %}
+								{{ Icon('font', custom_tag.BBCODE_FONT_ICON, '', false, custom_tag.BBCODE_TAG_CLEAN) }}
+							{% elseif not custom_tag.BBCODE_IMG %}
+								{{ custom_tag.BBCODE_TAG }}
+							{% endif %}
+						</button>
 					{% endif %}
 				{% endif %}
 			{% endfor %}
