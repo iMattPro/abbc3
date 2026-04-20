@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.3.10 - 2026-04-20
+
+- Fixed an issue where some installations could fail while trying to install a BBCode with an emoji on boards with legacy or incompatible schema charset.
+- Updated the Polish translation.
+
 ## 3.3.9 - 2026-03-19
 
 - The [highlight] BBCode will now use a text color that contrasts well with the highlight color.
@@ -88,7 +93,7 @@
 ## 3.2.2 - 2019-04-29
 
 - BBCode URL/BBVideo Wizard is now a modal / overlay to solve some issues where it might have been obscured from view.
-- Ensure BBVideos are sorted alphabetically in the BBCode Wizard's example drop-down menu.
+- Ensure BBVideos are sorted alphabetically in the BBCode Wizard's drop-down example menu.
 - Added Slovak translation.
 - Additional minor code improvements.
 
