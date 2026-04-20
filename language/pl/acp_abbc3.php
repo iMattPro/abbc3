@@ -2,11 +2,10 @@
 /**
 *
 * Advanced BBCode Box [Polish]
-* Translated by Pico88
 *
 * @copyright (c) 2013 Matt Friedman
 * @license GNU General Public License, version 2 (GPL-2.0)
-*
+* Tłumaczenie na Polski: Tomasz Hetman - ToTemat YT and Pico88
 */
 
 /**
@@ -23,27 +22,27 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box. For information about customizing the icon bar, visit the %s.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line.',
-	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
-	'ABBC3_INVALID_FONT'		=> 'Invalid font name for “%s”',
-	'ABBC3_PIPES'				=> 'Enable Pipe Table PlugIn',
-	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipe Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',
-	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
-	'ABBC3_QR_BBCODES'			=> 'Enable BBCodes in Quick Reply',
-	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'This will add BBCode buttons to Quick Reply.',
-	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
-	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
-	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
-	'ABBC3_AUTO_VIDEO'			=> 'Enable Auto Video PlugIn',
-	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'This plugin converts plain-text video file URLs into playable videos. Only URLs starting with <samp class="error">http://</samp> or <samp class="error">https://</samp> and ending with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> are converted.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Tutaj możesz skonfigurować ustawienia Advanced BBCode Box. Aby uzyskać informacje na temat dostosowywania paska ikon, odwiedź %s.',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Dodaj <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> do BBCode <samp class="error">[font]</samp>. Używaj dokładnej pisowni i zwracaj uwagę na wielkość liter. Nazwę każdej czcionki umieść w nowej linii.',
+	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Opcja „Zezwalaj na używanie zewnętrznych sieci dostarczania treści” (CDN) musi być włączona w „Ustawieniach obciążenia”, aby móc korzystać z tej funkcji.',
+	'ABBC3_INVALID_FONT'		=> 'Nieprawidłowa nazwa czcionki dla „%s”',
+	'ABBC3_PIPES'				=> 'Włącz wtyczkę Pipe Table',
+	'ABBC3_PIPES_EXPLAIN'		=> 'Wtyczka Pipe Table pozwala użytkownikom tworzyć tabele w postach i prywatnych wiadomościach przy użyciu składni markdown.',
+	'ABBC3_BBCODE_BAR'			=> 'Włącz pasek ikon BBCode',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Spowoduje to wyświetlenie paska narzędzi BBCode opartego na ikonach ABBC3. Wyłącz to, aby wyświetlać domyślne przyciski BBCode phpBB.',
+	'ABBC3_QR_BBCODES'			=> 'Włącz BBCode w szybkiej odpowiedzi',
+	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'Spowoduje to dodanie przycisków BBCode do okna szybkiej odpowiedzi.',
+	'ABBC3_ICONS_TYPE'			=> 'Format obrazów paska ikon',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Wybierz format obrazu, który ma być używany dla ikon ABBC3. Pamiętaj, że możesz wybrać tylko jeden format dla wszystkich ikon.',
+	'ABBC3_LEGEND_ICON_BAR'		=> 'Pasek ikon BBCode',
+	'ABBC3_LEGEND_ADD_ONS'		=> 'Dodatki',
+	'ABBC3_AUTO_VIDEO'			=> 'Włącz wtyczkę Auto Video',
+	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Ta wtyczka konwertuje adresy URL plików wideo w formie czystego tekstu na odtwarzalne wideo. Konwertowane są tylko adresy URL zaczynające się od <samp class="error">http://</samp> lub <samp class="error">https://</samp> i kończące się na <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> lub <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
-	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Install the optional phpBB Media Embed extension to access settings and management options for embedded rich media content.',
+	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Zainstaluj opcjonalne rozszerzenie phpBB Media Embed, aby uzyskać dostęp do ustawień i opcji zarządzania osadzoną zawartością multimedialną.',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed extension is not installed. %2$s.',
-		1	=> 'phpBB Media Embed extension is installed. Settings are accessible under the Posting tab.'
+		0	=> 'Rozszerzenie phpBB Media Embed nie jest zainstalowane. %2$s.',
+		1	=> 'Rozszerzenie phpBB Media Embed jest zainstalowane. Ustawienia są dostępne w zakładce Pisanie.',
 	],
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
