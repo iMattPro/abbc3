@@ -1,167 +1,199 @@
 /**
- *
  * Advanced BBCode Box
- *
  * @copyright (c) 2013 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
- *
  */
 
-/*global bbfontstyle, is_ie, form_name, text_name, insert_text, storeCaret, baseHeight:true */
+/*global bbfontstyle, insert_text, phpbb */
 
 // global scope vars
 var requestRunning = false;
 var bbwizard;
 
-(function($) { // Avoid conflicts with other libraries
-
+(() => {
 	'use strict';
 
-	/**
-	 * Show the bbcode wizard (scope must be global)
-	 */
-	bbwizard = function(href, bbcode) {
-		if (!requestRunning) {
-			var wizard = $('#bbcode_wizard'),
-				modal = $('#darkenwrapper');
-			if (!wizard.is(':visible')) {
-				requestRunning = true;
-				var $loadingIndicator = phpbb.loadingIndicator();
-				$.ajax({
-					url: href,
-					dataType: 'html',
-					beforeSend: function() {
-						// Clear the bbwizard div
-						wizard.hide().empty();
-					},
-					success: function(data) {
-						// Append the new html to the bbwizard div and show it
-						modal.fadeIn('fast');
-						wizard.append(data).fadeIn('fast').find('#bbcode_wizard_submit').attr('data-bbcode', bbcode);
-					},
-					error: function() {
-						// On AJAX error, revert to default bbcode application
-						bbfontstyle('[' + bbcode + ']', '[/' + bbcode + ']');
-					},
-					complete: function() {
-						requestRunning = false;
-						if ($loadingIndicator && $loadingIndicator.is(':visible')) {
-							$loadingIndicator.fadeOut(phpbb.alertTime);
-						}
-					},
-				});
-			}
+	const fadeTime = 180;
+
+	const isVisible = (element) => !!(element && (element.offsetWidth || element.offsetHeight || element.getClientRects().length));
+
+	const fade = (element, show) => {
+		if (!element) {
+			return;
+		}
+
+		clearTimeout(element.abbc3FadeTimer);
+		element.style.transition = `opacity ${fadeTime}ms ease`;
+
+		if (show) {
+			element.style.opacity = '0';
+			element.style.display = 'block';
+
+			requestAnimationFrame(() => {
+				element.style.opacity = '1';
+			});
+
+			return;
+		}
+
+		element.style.opacity = '0';
+		element.abbc3FadeTimer = setTimeout(() => {
+			element.style.display = 'none';
+		}, fadeTime);
+	};
+
+	const hideLoadingIndicator = (loadingIndicator) => {
+		if (loadingIndicator && typeof loadingIndicator.is === 'function' && loadingIndicator.is(':visible')) {
+			loadingIndicator.fadeOut(phpbb.alertTime);
 		}
 	};
 
-	/**
-	 * Insert BBCode into message (position cursor after insertion)
-	 */
-	var bbinsert = function(bbopen, bbclose) {
-		var textarea;
+	const getAllowedWizardUrl = (href, bbcode) => {
+		const allowedModes = {
+			bbvideo: ['bbvideo', 'media'],
+			pipes: ['pipes'],
+			url: ['url']
+		};
 
-		if (is_ie) {
-			textarea = document.forms[form_name].elements[text_name];
-			textarea.focus();
-			baseHeight = document.selection.createRange().duplicate().boundingHeight;
-		}
+		try {
+			const url = new URL(href, window.location.href);
+			const match = url.pathname.match(/\/wizard\/bbcode\/(bbvideo|pipes|url)$/);
+			const mode = match && match[1];
 
-		//initInsertions();
-		insert_text(bbopen + bbclose);
-
-		// The new position for the cursor after adding the bbcode
-		if (is_ie) {
-			var text = bbopen + bbclose;
-			var pos = textarea.innerHTML.indexOf(text);
-			if (pos > 0) {
-				var new_pos = pos + text.length;
-				var range = textarea.createTextRange();
-				range.move('character', new_pos);
-				range.select();
-				storeCaret(textarea);
-				textarea.focus();
+			if (url.origin !== window.location.origin || !mode || !allowedModes[mode].includes(bbcode)) {
+				return null;
 			}
+
+			return url.toString();
+		} catch (error) {
+			return null;
 		}
 	};
 
-	/**
-	 * DOM READY
-	 */
-	$(function() {
+	// Show the bbcode wizard (scope must be global)
+	bbwizard = (href, bbcode) => {
+		const wizard = document.getElementById('bbcode_wizard');
+		const modal = document.getElementById('darkenwrapper');
+		const wizardUrl = getAllowedWizardUrl(href, bbcode);
 
-		var body = $('body');
+		if (!wizard || !wizardUrl) {
+			bbfontstyle(`[${bbcode}]`, `[/${bbcode}]`);
+			return;
+		}
 
-		/**
-		 * Spoiler toggle
-		 */
+		if (requestRunning || isVisible(wizard)) {
+			return;
+		}
+
+		requestRunning = true;
+		const loadingIndicator = phpbb.loadingIndicator();
+		fade(wizard, false);
+		wizard.replaceChildren();
+
+		fetch(wizardUrl, {
+			credentials: 'same-origin',
+			headers: {
+				'X-Requested-With': 'XMLHttpRequest'
+			}
+		})
+			.then((response) => response.ok ? response.text() : Promise.reject(response))
+			.then((data) => {
+				wizard.insertAdjacentHTML('beforeend', data);
+
+				const submit = wizard.querySelector('#bbcode_wizard_submit');
+				if (submit) {
+					submit.dataset.bbcode = bbcode;
+				}
+
+				fade(modal, true);
+				fade(wizard, true);
+			})
+			.catch(() => {
+				// On AJAX error, revert to default bbcode application.
+				bbfontstyle(`[${bbcode}]`, `[/${bbcode}]`);
+			})
+			.finally(() => {
+				requestRunning = false;
+				hideLoadingIndicator(loadingIndicator);
+			});
+	};
+
+	// Document ready
+	document.addEventListener('DOMContentLoaded', () => {
+		const body = document.body;
+		const wizard = document.getElementById('bbcode_wizard');
+		const modal = document.getElementById('darkenwrapper');
+
+		// Spoiler toggle
 		document.querySelectorAll('.abbc3_spoiler').forEach(spoiler => {
 			const summary = spoiler.querySelector('summary');
-			const showText = spoiler.getAttribute('data-show');
-			const hideText = spoiler.getAttribute('data-hide');
+			const showText = spoiler.dataset.show;
+			const hideText = spoiler.dataset.hide;
 			spoiler.addEventListener('toggle', () => {
 				summary.textContent = spoiler.open ? hideText : showText;
 			});
 		});
 
-		/**
-		 * Dynamically adjust highlight bbcode's text color
-		 */
+		// Dynamically adjust highlight bbcode's text color
 		document.querySelectorAll('.abbc3-highlight').forEach(highlight => {
 			const rgb = window.getComputedStyle(highlight).backgroundColor.match(/\d+/g);
 			highlight.style.color = (rgb && (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 < 128) ? 'white' : 'black';
 		});
 
-		/**
-		 * BBCode Wizard listener events
-		 */
-		var wizard = $('#bbcode_wizard'),
-			modal = $('#darkenwrapper');
-		var closeWizard = function() {
-			if (wizard.is(':visible')) {
-				wizard.fadeOut('fast');
-				modal.fadeOut('fast');
+		// BBCode Wizard listener events
+		if (!wizard) {
+			return;
+		}
+
+		const closeWizard = () => {
+			if (isVisible(wizard)) {
+				fade(wizard, false);
+				fade(modal, false);
 			}
 		};
-		// Click on body or ESC to dismiss bbcode wizard
-		body.on('click', closeWizard).on('keyup', function(event) {
-			if (event.key === 'Escape' || event.keyCode === 27) {
+
+		body.addEventListener('click', closeWizard);
+		body.addEventListener('keyup', (event) => {
+			if (event.key === 'Escape') {
 				event.preventDefault();
 				closeWizard();
 			}
 		});
-		wizard
-			// Click on bbcode wizard submit button to apply bbcode to message
-			.on('click', '#bbcode_wizard_submit', function(event) {
+
+		wizard.addEventListener('click', (event) => {
+			event.stopPropagation();
+			const submit = event.target.closest('#bbcode_wizard_submit');
+			const cancel = event.target.closest('#bbcode_wizard_cancel');
+			if (submit) {
 				event.preventDefault();
-				var bbcode = $(this).data('bbcode');
+				const bbcode = submit.dataset.bbcode;
 				switch (bbcode) {
-					case 'url':
-						var link = $('#bbcode_wizard_link').val(),
-							description = $('#bbcode_wizard_description').val();
-						bbinsert('[' + bbcode + ((description.length) ? '=' + link : '') + ']' + ((description.length) ? description : link) + '', '[/' + bbcode + ']');
+					case 'url': {
+						const link = document.getElementById('bbcode_wizard_link').value;
+						const description = document.getElementById('bbcode_wizard_description').value;
+						const text = description.length ? description : link;
+						const attribute = description.length ? `=${link}` : '';
+						insert_text(`[${bbcode}${attribute}]${text}[/${bbcode}]`);
 						break;
+					}
 					case 'bbvideo':
 					case 'media':
-						bbinsert('[' + bbcode + ']' + $('#bbvideo_wizard_link').val() + '', '[/' + bbcode + ']');
+						insert_text(`[${bbcode}]${document.getElementById('bbvideo_wizard_link').value}[/${bbcode}]`);
 						break;
 				}
 				closeWizard();
-			})
-			// Click on bbcode wizard cancel button to dismiss bbcode wizard
-			.on('click', '#bbcode_wizard_cancel', function(event) {
+				return;
+			}
+			if (cancel) {
 				event.preventDefault();
 				closeWizard();
-			})
-			// Change bbvideo allowed sites option updates bbvideo example
-			.on('change', '#bbvideo_wizard_sites', function() {
-				$('#bbvideo_wizard_example').val($(this).val());
-			})
-			// Prevent clicks on bbcode wizard from bubbling up to the body and prematurely dismissing itself
-			.on('click', function(event) {
-				event.stopPropagation();
-			})
-		;
+			}
+		});
 
+		wizard.addEventListener('change', (event) => {
+			if (event.target.id === 'bbvideo_wizard_sites') {
+				document.getElementById('bbvideo_wizard_example').value = event.target.value;
+			}
+		});
 	});
-
-})(jQuery); // Avoid conflicts with other libraries
+})();
