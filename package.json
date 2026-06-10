@@ -1,11 +1,7 @@
 {
 	"author": "Matt Friedman",
 	"license": "GPL-2.0",
-	"dependencies": {
-		"tablednd": "^1.0.5"
-	},
 	"devDependencies": {
-		"copyfiles": "^2.4.1",
 		"npm-run-all": "^4.1.5",
 		"npm-watch": "^0.13.0",
 		"uglify-js": "^3.14.3"
@@ -15,8 +11,7 @@
 	},
 	"scripts": {
 		"js-minify": "uglifyjs styles/all/template/js/abbc3.js --source-map --output styles/all/template/js/abbc3.min.js",
-		"copy-tablednd": "copyfiles --flat node_modules/tablednd/dist/jquery.tablednd.js node_modules/tablednd/dist/jquery.tablednd.min.js styles/all/template/js",
-		"build": "npm-run-all --parallel js-minify copy-tablednd",
+		"build": "npm-run-all --parallel js-minify",
 		"watch": "npm-watch"
 	}
 }

@@ -2,70 +2,216 @@
 {% if bbcodes %}
 
 	{% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
-	{% INCLUDEJS '@vse_abbc3/js/jquery.tablednd.min.js' %}
 
 	<div class="toast hidden" id="abbc3-successbox">
 		<div class="toast-content">
-			<i class="fa fa-check-circle toast-check"></i>
+			<i class="fa fa-check-circle toast-icon toast-icon-success"></i>
+			<i class="fa fa-exclamation-circle toast-icon toast-icon-error"></i>
 			<div class="toast-message">
-				<span class="toast-text toast-text-info">{{ lang('INFORMATION') }}</span>
+				<span class="toast-text toast-text-info toast-title-success">{{ lang('INFORMATION') }}</span>
+				<span class="toast-text toast-text-info toast-title-error">{{ lang('ERROR') }}</span>
 				<span class="toast-text toast-text-body">{{ lang('ABBC3_BBCODE_ORDERED') }}</span>
 			</div>
 		</div>
 	</div>
 
 	<script>
-		(function($) {  // Avoid conflicts with other libraries
+		document.addEventListener('DOMContentLoaded', () => {
 			'use strict';
-			$(function() {
-				var msgTimer,
-					bbcodeTable = $('#down'),
-					msgSuccessBox = $('#abbc3-successbox');
-				// Get BBCode ids from the delete button,
-				// and create tr row IDs on the fly for use by tableDnD
-				bbcodeTable.find('tbody').find('tr').each(function() {
-					var url = $(this).find('a').last().attr('href');
-					if (url) $(this).attr('id', 'bbcode-' + url.split('bbcode=')[1]);
+
+			const bbcodeTable = document.getElementById('down');
+			const msgSuccessBox = document.getElementById('abbc3-successbox');
+			const colorSchemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+			const messageBody = msgSuccessBox.querySelector('.toast-text-body');
+			const successMessage = messageBody.textContent;
+			let msgTimer;
+			let msgHideTimer;
+			let draggedRow = null;
+			let originalOrder = '';
+
+			const getRows = () => Array.from(bbcodeTable.tBodies[0].rows).filter((row) => row.id);
+
+			const getOrder = () => getRows().map((row) => row.id).join('');
+
+			const getBbcodeId = (row) => {
+				const link = Array.from(row.querySelectorAll('a')).find((anchor) => {
+					return anchor.getAttribute('href') && anchor.getAttribute('href').indexOf('bbcode=') !== -1;
 				});
-				// Enable table row drag-drop
-				bbcodeTable.tableDnD({
-					onDragClass: 'row3',
-					onDrop: function(table, row) {
-						$.ajax({
-							url: '{{ UA_DRAG_DROP }}&tablename=' + $(table).attr('id'),
-							data: $.tableDnD.serialize(),
-							success: function(res) {
-								// Show the message
-								if (res.success) {
-									clearTimeout(msgTimer);
-									msgSuccessBox.stop(true, true).hide().fadeIn(250);
-									msgTimer = setTimeout(function() {
-										msgSuccessBox.fadeOut(250);
-									}, 3000);
-								}
-							}
-						});
+
+				if (!link) {
+					return '';
+				}
+
+				const href = link.getAttribute('href');
+				const match = href.match(/[?&]amp;bbcode=([^&]+)|[?&]bbcode=([^&]+)/);
+
+				return decodeURIComponent((match && (match[1] || match[2])) || '');
+			};
+
+			const showMessage = (success, message) => {
+				clearTimeout(msgTimer);
+				clearTimeout(msgHideTimer);
+				messageBody.textContent = message || (success ? successMessage : '{{ lang('ABBC3_BBCODE_ORDERED_FAIL')|e('js') }}');
+				msgSuccessBox.classList.toggle('toast-success', success);
+				msgSuccessBox.classList.toggle('toast-error', !success);
+				msgSuccessBox.classList.remove('hidden');
+				requestAnimationFrame(() => {
+					msgSuccessBox.classList.add('toast-visible');
+				});
+
+				msgTimer = setTimeout(() => {
+					msgSuccessBox.classList.remove('toast-visible');
+
+					msgHideTimer = setTimeout(() => {
+						msgSuccessBox.classList.add('hidden');
+					}, 180);
+				}, 3000);
+			};
+
+			const serializeRows = () => {
+				const params = ['table_name=' + encodeURIComponent(bbcodeTable.id)];
+
+				getRows().forEach((row) => {
+					params.push(bbcodeTable.id + '[]=' + encodeURIComponent(row.id.replace(/^.*-/, '')));
+				});
+
+				return params.join('&');
+			};
+
+			const getDragDropUrl = () => {
+				const dragDropAction = '{{ UA_DRAG_DROP }}'.replace(/&amp;/g, '&');
+				const url = dragDropAction.charAt(0) === '&' ? new URL(window.location.href) : new URL(dragDropAction, window.location.href);
+				const actionParams = dragDropAction.charAt(0) === '&' ? new URLSearchParams(dragDropAction.substring(1)) : null;
+
+				if (actionParams) {
+					actionParams.forEach((value, key) => {
+						url.searchParams.set(key, value);
+					});
+				}
+
+				url.hash = '';
+
+				return url.toString() + (url.search ? '&' : '?') + serializeRows();
+			};
+
+			const saveOrder = () => {
+				fetch(getDragDropUrl(), {
+					credentials: 'same-origin',
+					headers: {
+						'Accept': 'application/json',
+						'X-Requested-With': 'XMLHttpRequest'
 					}
+				})
+					.then((response) => response.ok ? response.json() : Promise.reject(response))
+					.then((res) => {
+						if (res.success) {
+							showMessage(true, res.message);
+						} else {
+							showMessage(false, res.message);
+						}
+					})
+					.catch(() => {
+						showMessage(false);
+					});
+			};
+
+			const getDropPosition = (clientY) => {
+				const rows = getRows().filter((row) => row !== draggedRow);
+				const lastRow = rows[rows.length - 1];
+
+				for (const row of rows) {
+					const rect = row.getBoundingClientRect();
+
+					if (clientY < rect.top + (rect.height / 2)) {
+						return {
+							row,
+							after: false
+						};
+					}
+				}
+
+				return {
+					row: lastRow,
+					after: true
+				};
+			};
+
+			const handlePointerMove = (event) => {
+				if (!draggedRow) {
+					return;
+				}
+
+				event.preventDefault();
+				const dropPosition = getDropPosition(event.clientY);
+
+				if (dropPosition.row) {
+					dropPosition.row.parentNode.insertBefore(draggedRow, dropPosition.after ? dropPosition.row.nextSibling : dropPosition.row);
+				}
+			};
+
+			const handlePointerUp = (event) => {
+				if (!draggedRow) {
+					return;
+				}
+
+				draggedRow.classList.remove('row3');
+				if (draggedRow.hasPointerCapture(event.pointerId)) {
+					draggedRow.releasePointerCapture(event.pointerId);
+				}
+
+				if (originalOrder !== getOrder()) {
+					saveOrder();
+				}
+
+				draggedRow = null;
+				document.removeEventListener('pointermove', handlePointerMove);
+				document.removeEventListener('pointerup', handlePointerUp);
+				document.removeEventListener('pointercancel', handlePointerUp);
+			};
+
+			const darkToast = () => {
+				if (!colorSchemeQuery) {
+					return;
+				}
+
+				msgSuccessBox.classList.toggle('toast-dark', colorSchemeQuery.matches);
+			};
+
+			if (!bbcodeTable || !bbcodeTable.tBodies.length || !msgSuccessBox) {
+				return;
+			}
+
+			Array.from(bbcodeTable.tBodies[0].rows).forEach((row) => {
+				const bbcodeId = getBbcodeId(row);
+
+				if (bbcodeId) {
+					row.id = 'bbcode-' + bbcodeId;
+				} else {
+					return;
+				}
+
+				row.style.cursor = 'move';
+				row.addEventListener('pointerdown', (event) => {
+					if (event.target.tagName !== 'TD') {
+						return;
+					}
+
+					event.preventDefault();
+					draggedRow = row;
+					originalOrder = getOrder();
+					row.classList.add('row3');
+					row.setPointerCapture(event.pointerId);
+					document.addEventListener('pointermove', handlePointerMove);
+					document.addEventListener('pointerup', handlePointerUp);
+					document.addEventListener('pointercancel', handlePointerUp);
 				});
 			});
-		})(jQuery);
 
-		function darkToast() {
-			const toast = document.getElementById('abbc3-successbox');
-
-			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				toast.classList.add("toast-dark");
-			} else {
-				toast.classList.remove("toast-dark");
-			}
-		}
-
-		// Initial check
-		darkToast();
-
-		// Add event listener to detect changes
-		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
 			darkToast();
+
+			if (colorSchemeQuery) {
+				colorSchemeQuery.addEventListener('change', darkToast);
+			}
 		});
 
 	</script>

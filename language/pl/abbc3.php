@@ -95,6 +95,10 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Kolejność BBCode została zaktualizowana.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
 	'ABBC3_BBCODE_GROUP'		=> 'Zarządzaj grupami, które mogą używać tego BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Jeśli nie wybrano żadnych grup, wszyscy użytkownicy będą mogli używać tego BBCode. Użyj CTRL+KLIK (lub CMD+KLIK na Macu), aby zaznaczyć/odznaczyć więcej niż jedną grupę.',
 

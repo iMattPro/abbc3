@@ -96,6 +96,10 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBkoodi järjestus on uuendatud.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
 	'ABBC3_BBCODE_GROUP'		=> 'Halda gruppe, kes saavad kasutada seda BBkoodi',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Kui ühtegi gruppi ei ole valitud, siis kõik kasutajad saavad kasutada seda BBkoodi. Kasuta CTRL+CLICK (või CMD+CLICK Mac\'is), et valida / või valikud eemaldada rohkem kui ühelt grupilt.',
 
