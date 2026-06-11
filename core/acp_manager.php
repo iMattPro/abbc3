@@ -94,21 +94,37 @@ class acp_manager
 		}
 
 		// Get the bbcodes HTML table's name
-		$tablename = $this->request->variable('tablename', '');
+		$table_name = $this->request->variable('table_name', '');
+		if (!$table_name)
+		{
+			$this->send_json_response(false, $this->language->lang('ABBC3_BBCODE_ORDER_NO_TABLE'));
+			return;
+		}
 
 		// Fetch the posted list
-		$bbcodes_list = (array) $this->request->variable($tablename, [0 => '']);
+		$bbcodes_list = (array) $this->request->variable($table_name, [0 => '']);
 
+		if (empty($bbcodes_list) || $bbcodes_list === [0 => ''])
+		{
+			$this->send_json_response(false, $this->language->lang('ABBC3_BBCODE_ORDER_NO_DATA'));
+			return;
+		}
+
+		$updated = false;
 		$this->db->sql_transaction('begin');
 		foreach ($bbcodes_list as $order => $bbcode_id)
 		{
 			$this->db->sql_query($this->update_bbcode_order($bbcode_id, $order));
+			$updated = $this->db->sql_affectedrows() || $updated;
 		}
 		$this->db->sql_transaction('commit');
 
-		$this->resynchronize_bbcode_order();
+		if ($updated)
+		{
+			$this->resynchronize_bbcode_order();
+		}
 
-		$this->send_json_response(true);
+		$this->send_json_response($updated, $this->language->lang($updated ? 'ABBC3_BBCODE_ORDERED' : 'ABBC3_BBCODE_ORDER_NO_ORDER'));
 	}
 
 	/**
@@ -315,13 +331,14 @@ class acp_manager
 	 * @param bool $content The content of the JSON response (true|false)
 	 * @access protected
 	 */
-	protected function send_json_response(bool $content): void
+	protected function send_json_response(bool $content, string $message = ''): void
 	{
 		if ($this->request->is_ajax())
 		{
 			$json_response = new json_response;
 			$json_response->send([
 				'success' => (bool) $content,
+				'message' => $message,
 			]);
 		}
 	}

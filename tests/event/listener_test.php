@@ -39,9 +39,40 @@ class listener_test extends listener_base
 			'core.text_formatter_s9e_parser_setup',
 			'core.text_formatter_s9e_configure_after',
 			'core.text_formatter_s9e_renderer_setup',
+			'core.search_modify_rowset',
+			'core.topic_review_modify_post_list',
+			'core.mcp_topic_modify_post_data',
 			'core.help_manager_add_block_after',
 			'core.viewtopic_modify_quick_reply_template_vars',
 			'core.viewtopic_modify_page_title',
 		], array_keys(listener::getSubscribedEvents()));
+	}
+
+	/**
+	 * Test attachment sorting matches viewtopic inline indexes.
+	 */
+	public function test_sort_attachments()
+	{
+		$this->set_listener();
+
+		$event = new \phpbb\event\data([
+			'attachments' => [
+				3 => [
+					['attach_id' => 10, 'real_filename' => 'visible.jpg'],
+					['attach_id' => 12, 'real_filename' => 'hidden.jpg'],
+				],
+				4 => [
+					['attach_id' => 8, 'real_filename' => 'single.jpg'],
+				],
+			],
+		]);
+
+		$this->listener->sort_attachments($event);
+
+		$attachments = $event['attachments'];
+
+		self::assertSame(12, $attachments[3][0]['attach_id']);
+		self::assertSame(10, $attachments[3][1]['attach_id']);
+		self::assertSame(8, $attachments[4][0]['attach_id']);
 	}
 }

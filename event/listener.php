@@ -121,6 +121,13 @@ class listener implements EventSubscriberInterface
 
 			'core.viewtopic_modify_quick_reply_template_vars' 	=> 'set_quick_reply',
 			'core.viewtopic_modify_page_title'					=> 'add_to_quickreply',
+
+			// These are meant to fix inline attachment sorting until phpBB can fix this issue,
+			// which can be an issue if inline attachments are bbcodes like hidden, spoiler, etc.
+			// Not all areas in the phpBB with this issue have events, so we only fix these.
+			'core.search_modify_rowset'					=> 'sort_attachments',
+			'core.topic_review_modify_post_list'		=> 'sort_attachments',
+			'core.mcp_topic_modify_post_data'			=> 'sort_attachments',
 		];
 	}
 
@@ -263,6 +270,32 @@ class listener implements EventSubscriberInterface
 		];
 
 		$this->bbcodes_display->set_renderer_params($event['renderer'], $urls);
+	}
+
+	/**
+	 * Keep inline attachment indexes aligned with viewtopic.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function sort_attachments($event)
+	{
+		$attachments = $event['attachments'];
+
+		foreach ($attachments as &$post_attachments)
+		{
+			if (count($post_attachments) < 2)
+			{
+				continue;
+			}
+
+			usort($post_attachments, static function ($a, $b) {
+				return (int) $b['attach_id'] <=> (int) $a['attach_id'];
+			});
+		}
+		unset($post_attachments);
+
+		$event['attachments'] = $attachments;
 	}
 
 	/**
