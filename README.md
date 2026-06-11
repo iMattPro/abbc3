@@ -30,7 +30,7 @@ Install Advanced BBCode Box today and unlock a world of enhanced formatting poss
 
 ## Minimum Requirements
 * phpBB 3.2.2 or higher
-* PHP 5.4 or higher
+* PHP 7 or higher
 
 ## Install
 * Get [the latest release](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/) at phpBB.com.
