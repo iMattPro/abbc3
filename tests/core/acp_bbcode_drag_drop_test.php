@@ -1,15 +1,16 @@
 <?php
 /**
-*
-* Advanced BBCode Box
-*
-* @copyright (c) 2015 Matt Friedman
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Advanced BBCodes
+ *
+ * @copyright (c) 2013-2025 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace vse\abbc3\tests\core;
 
+use phpbb\request\request_interface;
 use vse\abbc3\core\acp_manager;
 
 class acp_bbcode_drag_drop_test extends acp_base
@@ -21,7 +22,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		$this->lang->add_lang('abbc3', 'vse/abbc3');
 	}
 
-	public function bbcode_drag_drop_data()
+	public static function bbcode_drag_drop_data(): array
 	{
 		return [
 			[
@@ -42,7 +43,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 	/**
 	 * @dataProvider bbcode_drag_drop_data
 	 */
-	public function test_bbcode_drag_drop($bbcodes, $expected, $success, $message)
+	public function test_bbcode_drag_drop($bbcodes, $expected, $success, $message): void
 	{
 		$this->request->expects(self::once())
 			->method('is_ajax')
@@ -53,14 +54,14 @@ class acp_bbcode_drag_drop_test extends acp_base
 			->method('variable')
 			->with(self::anything())
 			->willReturnMap([
-				['table_name', '', false, \phpbb\request\request_interface::REQUEST, 'drag_drop'],
-				['drag_drop', [0 => ''], false, \phpbb\request\request_interface::REQUEST, $bbcodes],
+				['table_name', '', false, request_interface::REQUEST, 'drag_drop'],
+				['drag_drop', [0 => ''], false, request_interface::REQUEST, $bbcodes],
 			])
 		;
 
 		$acp_manager = $this->get_acp_manager_with_response_capture();
 
-		self::assertNull($acp_manager->move_drag());
+		$acp_manager->move_drag();
 		self::assertSame([
 			'success'	=> $success,
 			'message'	=> $message,
@@ -69,19 +70,19 @@ class acp_bbcode_drag_drop_test extends acp_base
 		self::assertSame($expected, $this->get_bbcode_order());
 	}
 
-	public function bbcode_drag_drop_guard_data()
+	public static function bbcode_drag_drop_guard_data(): array
 	{
 		return [
 			[
 				[
-					['table_name', '', false, \phpbb\request\request_interface::REQUEST, ''],
+					['table_name', '', false, request_interface::REQUEST, ''],
 				],
 				'ABBC3_BBCODE_ORDER_NO_TABLE',
 			],
 			[
 				[
-					['table_name', '', false, \phpbb\request\request_interface::REQUEST, 'drag_drop'],
-					['drag_drop', [0 => ''], false, \phpbb\request\request_interface::REQUEST, [0 => '']],
+					['table_name', '', false, request_interface::REQUEST, 'drag_drop'],
+					['drag_drop', [0 => ''], false, request_interface::REQUEST, [0 => '']],
 				],
 				'ABBC3_BBCODE_ORDER_NO_DATA',
 			],
@@ -91,7 +92,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 	/**
 	 * @dataProvider bbcode_drag_drop_guard_data
 	 */
-	public function test_bbcode_drag_drop_guards($return_map, $message)
+	public function test_bbcode_drag_drop_guards($return_map, $message): void
 	{
 		$this->request->expects(self::once())
 			->method('is_ajax')
@@ -106,7 +107,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 
 		$acp_manager = $this->get_acp_manager_with_response_capture();
 
-		self::assertNull($acp_manager->move_drag());
+		$acp_manager->move_drag();
 		self::assertSame([
 			'success'	=> false,
 			'message'	=> $message,
@@ -114,7 +115,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		self::assertSame([1 => 13, 2 => 14, 3 => 15, 4 => 16, 5 => 17], $this->get_bbcode_order());
 	}
 
-	public function test_bbcode_drag_drop_fails()
+	public function test_bbcode_drag_drop_fails(): void
 	{
 		$this->request->expects(self::once())
 			->method('is_ajax')
@@ -126,16 +127,16 @@ class acp_bbcode_drag_drop_test extends acp_base
 
 		$acp_manager = $this->get_acp_manager_with_response_capture();
 
-		self::assertNull($acp_manager->move_drag());
+		$acp_manager->move_drag();
 		self::assertNull($acp_manager->json_response);
 	}
 
-	protected function get_acp_manager_with_response_capture()
+	protected function get_acp_manager_with_response_capture(): acp_manager
 	{
 		return new class($this->db, $this->group_helper, $this->lang, $this->request) extends acp_manager {
 			public $json_response;
 
-			protected function send_json_response($content, $message = '')
+			protected function send_json_response($content, $message = ''): void
 			{
 				$this->json_response = [
 					'success'	=> (bool) $content,
@@ -145,7 +146,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		};
 	}
 
-	protected function get_bbcode_order()
+	protected function get_bbcode_order(): array
 	{
 		$sql = 'SELECT bbcode_id, bbcode_order
 			FROM phpbb_bbcodes

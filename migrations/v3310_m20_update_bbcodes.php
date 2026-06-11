@@ -33,7 +33,7 @@ class v3310_m20_update_bbcodes extends bbcodes_migration_base
 	/**
 	 * {@inheritdoc}
 	 */
-	protected static $bbcode_data = [
+	protected static array $bbcode_data = [
 		// I replaced the emoji in the previous migration already, so this update is just to ensure
 		// removal of that emoji from boards that installed the previous migration before I replaced it
 		'offtopic' => [

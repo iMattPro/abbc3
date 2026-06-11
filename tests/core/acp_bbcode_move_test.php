@@ -133,7 +133,7 @@ class acp_bbcode_move_test extends acp_base
 		if ($ajax)
 		{
 			// Expect JSON output for ajax requests
-			$this->expectOutputString('{"success":true}');
+			$this->expectOutputString('{"success":true,"message":""}');
 			$this->expectException(RuntimeException::class);
 		}
 		else

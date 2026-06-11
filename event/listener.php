@@ -275,10 +275,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Keep inline attachment indexes aligned with viewtopic.
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function sort_attachments($event)
+	public function sort_attachments(data $event): void
 	{
 		$attachments = $event['attachments'];
 
