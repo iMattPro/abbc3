@@ -21,7 +21,7 @@ class ext extends base
 	public const MOVE_DOWN = 'move_down';
 	public const MOVE_DRAG = 'move_drag';
 	public const PHPBB_MIN_VERSION = '4.0.0-dev';
-	public const PHP_MIN_VERSION_ID = 700000;
+	public const PHP_MIN_VERSION_ID = 70000;
 	public const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
 	public const ABBC3_EXT_NAME = 'Advanced BBCodes 3.4';
 

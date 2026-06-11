@@ -39,12 +39,12 @@ class listener_test extends listener_base
 			'core.text_formatter_s9e_parser_setup',
 			'core.text_formatter_s9e_configure_after',
 			'core.text_formatter_s9e_renderer_setup',
-			'core.search_modify_rowset',
-			'core.topic_review_modify_post_list',
-			'core.mcp_topic_modify_post_data',
 			'core.help_manager_add_block_after',
 			'core.viewtopic_modify_quick_reply_template_vars',
 			'core.viewtopic_modify_page_title',
+			'core.search_modify_rowset',
+			'core.topic_review_modify_post_list',
+			'core.mcp_topic_modify_post_data',
 		], array_keys(listener::getSubscribedEvents()));
 	}
 
