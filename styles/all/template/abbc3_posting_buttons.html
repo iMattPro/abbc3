@@ -39,17 +39,35 @@
 			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.media, 'bbcode-media', 'm', 'media', 'Media', 'BBCODE_MEDIA_HELP', 'fa-television', ROOT_PATH, 'addmedia', 'bbspecial') }}
 		{% endif %}
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.fontcolor, 'bbcode-color', '', '', (not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR')), 'BBCODE_S_HELP', 'fa-tint', ROOT_PATH, 'abbc3_bbpalette', 'change_palette') }}
-		<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
-			<option value="50">{{ lang('FONT_TINY') }}</option>
-			<option value="85">{{ lang('FONT_SMALL') }}</option>
-			<option value="100" selected="selected">{{ lang('FONT_NORMAL') }}</option>
-			{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 %}
-				<option value="150">{{ lang('FONT_LARGE') }}</option>
-				{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 %}
-					<option value="200">{{ lang('FONT_HUGE') }}</option>
-				{% endif %}
+		{% set ABBC3_FONT_SIZES = [
+			{value: 50, label: lang('FONT_TINY')},
+			{value: 85, label: lang('FONT_SMALL')},
+			{value: 100, label: lang('FONT_NORMAL')}
+		] %}
+		{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 %}
+			{% set ABBC3_FONT_SIZES = ABBC3_FONT_SIZES|merge([{value: 150, label: lang('FONT_LARGE')}]) %}
+			{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 %}
+				{% set ABBC3_FONT_SIZES = ABBC3_FONT_SIZES|merge([{value: 200, label: lang('FONT_HUGE')}]) %}
 			{% endif %}
-		</select>
+		{% endif %}
+		{% if constant('IN_ADMIN') is defined %}
+			<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
+				{% for size in ABBC3_FONT_SIZES %}
+					<option value="{{ size.value }}"{% if size.value == 100 %} selected="selected"{% endif %}>{{ size.label }}</option>
+				{% endfor %}
+			</select>
+		{% else %}
+			<div class="abbc3_dropdown_menu_btn abbc3_size_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
+				<a href="#" class="dropdown-trigger button button-secondary" title="{{ lang('BBCODE_F_HELP') }}">{{ lang('FONT_SIZE') }} <i class="icon fa-fw fa-caret-down"></i></a>
+				<div class="dropdown">
+					<ul class="dropdown-contents" role="menu">
+						{% for size in ABBC3_FONT_SIZES %}
+							<li class="abbc3_dropdown_menu_item abbc3_size_menu_item" onclick="bbfontstyle('[size={{ size.value }}]', '[/size]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ size.label }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		{% endif %}
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.copy, 'bbcode-copy', '', 'abbc3_copy', 'copy', 'ABBC3_COPY_BBCODE', 'fa-copy', ROOT_PATH, 'copybbcode', 'bbspecial') }}
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.paste, 'bbcode-paste', '', 'abbc3_paste', 'paste', 'ABBC3_PASTE_BBCODE', 'fa-paste', ROOT_PATH, 'pastebbcode', 'bbspecial') }}
 		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.plain, 'bbcode-plain', '', 'abbc3_plain', 'clear', 'ABBC3_PLAIN_BBCODE', 'fa-trash', ROOT_PATH, 'plainbbcode', 'bbspecial') }}
@@ -78,18 +96,18 @@
 								{% endfor %}
 							</select>
 						{% else %}
-							<div class="abbc3_font_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
+							<div class="abbc3_dropdown_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
 								<a href="#" class="dropdown-trigger button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ lang('ABBC3_FONT_BBCODE') }} <i class="icon fa-fw fa-caret-down"></i></a>
 								<div class="dropdown">
 									<ul class="dropdown-contents" role="menu">
 										{% for group, fonts in ABBC3_BBCODE_FONTS %}
 											{% if loop.length > 1 %}
-											<li class="abbc3_font_menu_disabled">{{ lang(group) }}</li>
+											<li class="abbc3_dropdown_menu_disabled">{{ lang(group) }}</li>
 											<li>
 												<ul>
 											{% endif %}
 													{% for font in fonts %}
-														<li class="abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" onclick="bbfontstyle('[font={{ font|e('js') }}]', '[/font]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ font }}</li>
+														<li class="abbc3_dropdown_menu_item abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" onclick="bbfontstyle('[font={{ font|e('js') }}]', '[/font]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ font }}</li>
 													{% endfor %}
 											{% if loop.length > 1 %}
 												</ul>
