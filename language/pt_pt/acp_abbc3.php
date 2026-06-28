@@ -25,11 +25,11 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aqui pode alterar as configurações do «Advanced BBCode Box». Para mais informações (em inglês) sobre a customização da barra de ícones, visite %s.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line.',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
 	'ABBC3_INVALID_FONT'		=> 'Invalid font name for “%s”',
 	'ABBC3_PIPES'				=> 'Activar o plugin «Pipe Table PlugIn»',
-	'ABBC3_PIPES_EXPLAIN'		=> 'O «Pipes Table PlugIn» permite aos utilizadores criarem tabelas nos seus posts e mensagens privadas usando a sintaxe <a href="https://pt.wikipedia.org/wiki/Markdown" target="_blank">markdown</a>.',
+	'ABBC3_PIPES_EXPLAIN'		=> 'O «Pipes Table PlugIn» permite aos utilizadores criarem tabelas nos seus posts e mensagens privadas usando a sintaxe <a href="https://pt.wikipedia.org/wiki/Markdown" target="_blank" rel="noopener noreferrer">markdown</a>.',
 	'ABBC3_BBCODE_BAR'			=> 'Activar este BBCode na barra de ícones',
 	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'Isto irá activar o plugin ABBC3, uma barra de ferramentas BBCode, baseada em ícones. Desactive para ver os botões por omissão do phpBB.',
 	'ABBC3_QR_BBCODES'			=> 'Activar BBCodes na Resposta Rápida',

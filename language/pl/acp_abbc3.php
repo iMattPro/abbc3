@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ABBC3_SETTINGS_EXPLAIN'	=> 'Tutaj możesz skonfigurować ustawienia Advanced BBCode Box. Aby uzyskać informacje na temat dostosowywania paska ikon, odwiedź %s.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Dodaj <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> do BBCode <samp class="error">[font]</samp>. Używaj dokładnej pisowni i zwracaj uwagę na wielkość liter. Nazwę każdej czcionki umieść w nowej linii.',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Dodaj <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> do BBCode <samp class="error">[font]</samp>. Używaj dokładnej pisowni i zwracaj uwagę na wielkość liter. Nazwę każdej czcionki umieść w nowej linii.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Opcja „Zezwalaj na używanie zewnętrznych sieci dostarczania treści” (CDN) musi być włączona w „Ustawieniach obciążenia”, aby móc korzystać z tej funkcji.',
 	'ABBC3_INVALID_FONT'		=> 'Nieprawidłowa nazwa czcionki dla „%s”',
 	'ABBC3_PIPES'				=> 'Włącz wtyczkę Pipe Table',

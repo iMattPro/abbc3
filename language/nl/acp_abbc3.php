@@ -24,7 +24,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ABBC3_SETTINGS_EXPLAIN'	=> 'Hier kunt u de instellingen voor Advanced BBCode Box configureren. Voor informatie over het aanpassen van de werkbalk met pictogrammen, bezoek de %s.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Voeg <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> toe aan de <samp class="error">[font]</samp> BBCode. Gebruik exacte spelling en hoofdlettergevoeligheid. Plaats elke lettertype naam op een aparte regel.',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Voeg <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> toe aan de <samp class="error">[font]</samp> BBCode. Gebruik exacte spelling en hoofdlettergevoeligheid. Plaats elke lettertype naam op een aparte regel.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Gebruik van externe content delivery networks toestaan” moet ingeschakeld zijn onder “Laadinstellingen” om deze functie te gebruiken.',
 	'ABBC3_INVALID_FONT'		=> 'Ongeldige lettertype naam voor “%s”',
 	'ABBC3_PIPES'				=> 'Schakel Pipe Table PlugIn in',

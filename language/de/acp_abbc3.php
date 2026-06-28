@@ -24,7 +24,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ABBC3_SETTINGS_EXPLAIN'	=> 'Hier kannst du die Einstellungen für die Advanced BBCode Box verändern. Für weitere Informationen, wie du die Menüleiste verändern kannst, rufe bitte die %s auf.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Füge <strong><a href="https://fonts.google.com" target="_blank">Google Fonts</a></strong> zum <samp class="error">[font]</samp> BBCode hinzu. Achte auf genaue Schreibweise und Groß-/Kleinschreibung. Setze jeden Schriftartnamen in eine eigene Zeile.',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Füge <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> zum <samp class="error">[font]</samp> BBCode hinzu. Achte auf genaue Schreibweise und Groß-/Kleinschreibung. Setze jeden Schriftartnamen in eine eigene Zeile.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '„Nutzung von Drittanbieter-Servern zulassen“ muss aktiviert sein unter den “Serverlast”-Einstellungen, um diese Funktion zu nutzen.',
 	'ABBC3_INVALID_FONT'		=> 'Ungültiger Schriftname „%s“',
 	'ABBC3_PIPES'				=> 'Aktiviere das „Pipe Table“-Plug-in.',

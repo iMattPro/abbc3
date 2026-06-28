@@ -13,7 +13,7 @@
 } %}
 
 {% macro external_link(url, text) -%}
-	<a href="{{ url }}" target="_blank">
+	<a href="{{ url }}" target="_blank" rel="noopener noreferrer">
 		<i class="icon fa-external-link fa-fw" aria-hidden="true"></i>
 		{{ text -}}
 	</a>
