@@ -14,6 +14,8 @@ use vse\abbc3\core\acp_manager;
 
 class acp_bbcode_drag_drop_test extends acp_base
 {
+	const VALID_HASH = '__valid_hash__';
+
 	protected function setUp(): void
 	{
 		parent::setUp();
@@ -75,14 +77,14 @@ class acp_bbcode_drag_drop_test extends acp_base
 		return [
 			[
 				[
-					['hash', '', false, \phpbb\request\request_interface::REQUEST, generate_link_hash('move_drag')],
+					['hash', '', false, \phpbb\request\request_interface::REQUEST, self::VALID_HASH],
 					['table_name', '', false, \phpbb\request\request_interface::REQUEST, ''],
 				],
 				'ABBC3_BBCODE_ORDER_NO_TABLE',
 			],
 			[
 				[
-					['hash', '', false, \phpbb\request\request_interface::REQUEST, generate_link_hash('move_drag')],
+					['hash', '', false, \phpbb\request\request_interface::REQUEST, self::VALID_HASH],
 					['table_name', '', false, \phpbb\request\request_interface::REQUEST, 'drag_drop'],
 					['drag_drop', [0 => ''], false, \phpbb\request\request_interface::REQUEST, [0 => '']],
 				],
@@ -96,6 +98,8 @@ class acp_bbcode_drag_drop_test extends acp_base
 	 */
 	public function test_bbcode_drag_drop_guards($return_map, $message)
 	{
+		$return_map = $this->replace_valid_hash_marker($return_map);
+
 		$this->request->expects(self::once())
 			->method('is_ajax')
 			->willReturn(true)
@@ -115,6 +119,20 @@ class acp_bbcode_drag_drop_test extends acp_base
 			'message'	=> $message,
 		], $acp_manager->json_response);
 		self::assertSame([1 => 13, 2 => 14, 3 => 15, 4 => 16, 5 => 17], $this->get_bbcode_order());
+	}
+
+	protected function replace_valid_hash_marker(array $return_map)
+	{
+		foreach ($return_map as &$map)
+		{
+			if (isset($map[4]) && $map[4] === self::VALID_HASH)
+			{
+				$map[4] = generate_link_hash('move_drag');
+			}
+		}
+		unset($map);
+
+		return $return_map;
 	}
 
 	public function test_bbcode_drag_drop_rejects_invalid_hash()
