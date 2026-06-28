@@ -193,11 +193,11 @@ class acp_controller
 		if (!empty($fonts))
 		{
 			$fonts = array_filter(
-				array_map('trim', explode("\n", $fonts)),
+				array_map([$this, 'normalize_google_font'], preg_split('/[\r\n,]+/', $fonts)),
 				[$this, 'validate_google_fonts']
 			);
 
-			$fonts = $fonts ? json_encode(array_values($fonts)) : '';
+			$fonts = $fonts ? json_encode(array_values(array_unique($fonts))) : '';
 		}
 
 		$this->config_text->set('abbc3_google_fonts', $fonts);
@@ -216,6 +216,12 @@ class acp_controller
 			return false;
 		}
 
+		if (!preg_match('/^[\p{L}\p{N}][\p{L}\p{N} ._-]{0,63}$/u', $font))
+		{
+			$this->errors[] = $this->language->lang('ABBC3_INVALID_FONT', $font);
+			return false;
+		}
+
 		$url = 'https://fonts.googleapis.com/css?family=' . urlencode($font);
 
 		if ($this->valid_url($url))
@@ -225,6 +231,17 @@ class acp_controller
 
 		$this->errors[] = $this->language->lang('ABBC3_INVALID_FONT', $font);
 		return false;
+	}
+
+	/**
+	 * Normalize Google Font names before storing them.
+	 *
+	 * @param string $font
+	 * @return string
+	 */
+	protected function normalize_google_font($font)
+	{
+		return trim(preg_replace('/\s+/u', ' ', $font));
 	}
 
 	/**
