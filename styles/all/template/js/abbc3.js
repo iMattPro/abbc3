@@ -125,12 +125,33 @@ var bbwizard;
 		const modal = document.getElementById('darkenwrapper');
 
 		// Spoiler toggle
-		document.querySelectorAll('.abbc3_spoiler').forEach(spoiler => {
+		document.querySelectorAll('details.abbc3-spoiler, details.abbc3_spoiler').forEach(spoiler => {
 			const summary = spoiler.querySelector('summary');
-			const showText = spoiler.dataset.show;
-			const hideText = spoiler.dataset.hide;
+			if (!summary) {
+				return;
+			}
+
+			const showText = spoiler.dataset.show || summary.textContent;
+			const hideText = spoiler.dataset.hide || showText;
 			spoiler.addEventListener('toggle', () => {
 				summary.textContent = spoiler.open ? hideText : showText;
+			});
+		});
+
+		// Legacy spoiler toggle support
+		document.querySelectorAll('.spoilbtn').forEach(button => {
+			const wrapper = button.closest('.spoilwrapper');
+			const content = wrapper && wrapper.querySelector('.spoilcontent');
+			if (!content) {
+				return;
+			}
+
+			const showText = button.dataset.show || button.textContent;
+			const hideText = button.dataset.hide || showText;
+			button.addEventListener('click', () => {
+				const show = !isVisible(content);
+				fade(content, show);
+				button.textContent = show ? hideText : showText;
 			});
 		});
 
