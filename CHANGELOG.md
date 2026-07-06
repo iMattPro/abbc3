@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.3.11 - 2026-07-05
+
+- In the ABBC3 BBCode toolbar, the **Font Size** BBCode is now a stylized drop-menu that matches the **Fonts** font-family BBCode drop-menu.
+- Replaced the third-party JavaScript library TableDnD with a custom version that is compatible with phpBB 3.3.x.
+- Modernized ABBC3's JavaScript and dropped the use of minified JS and CSS files (this should be a QOL improvement for those who need to patch or customize ABBC3).
+- Fixed cases where attachments could be sorted in the wrong order in search results and topic reviews. This could cause them to be unintentionally displayed when they were hidden by a spoiler or hidden bbcode.
+- Fixed cases where the spoiler would not work due to a JavaScript error. Also restored legacy spoiler support for cases where the spoiler BBCode is still using the legacy version.
+- Added `rel="noopener noreferrer"` to all `target="_blank"` links to prevent tabnabbing and reduce referrer leakage.
+- Hardened Google Font validation against potential XSS attacks.
+- Dropped legacy support for PHP 5.
+
 ## 3.3.10 - 2026-04-20
 
 - Fixed an issue where some installations could fail while trying to install a BBCode with an emoji on boards with legacy or incompatible schema charset.
