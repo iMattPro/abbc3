@@ -120,6 +120,7 @@ class listener implements EventSubscriberInterface
 
 			'core.viewtopic_modify_quick_reply_template_vars' 	=> 'set_quick_reply',
 			'core.viewtopic_modify_page_title'					=> 'add_to_quickreply',
+			'core.viewtopic_modify_post_row'					=> 'remove_hidden_attachments',
 
 			// These are meant to fix inline attachment sorting until phpBB can fix this issue,
 			// which can be an issue if inline attachments are bbcodes like hidden, spoiler, etc.
@@ -294,6 +295,25 @@ class listener implements EventSubscriberInterface
 		unset($post_attachments);
 
 		$event['attachments'] = $attachments;
+	}
+
+	/**
+	 * Remove hidden inline attachments left behind as detached attachments.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @access public
+	 */
+	public function remove_hidden_attachments($event)
+	{
+		$post_id = $event['row']['post_id'];
+		$attachments = $this->bbcodes_display->remove_hidden_attachments($event['attachments'], $event['row']);
+
+		$post_row = $event['post_row'];
+		$post_row['S_HAS_ATTACHMENTS'] = !empty($attachments[$post_id]);
+		$post_row['S_MULTIPLE_ATTACHMENTS'] = !empty($attachments[$post_id]) && count($attachments[$post_id]) > 1;
+
+		$event['attachments'] = $attachments;
+		$event['post_row'] = $post_row;
 	}
 
 	/**

@@ -39,6 +39,7 @@ class listener_test extends listener_base
 			'core.help_manager_add_block_after',
 			'core.viewtopic_modify_quick_reply_template_vars',
 			'core.viewtopic_modify_page_title',
+			'core.viewtopic_modify_post_row',
 			'core.search_modify_rowset',
 			'core.topic_review_modify_post_list',
 			'core.mcp_topic_modify_post_data',
@@ -71,5 +72,31 @@ class listener_test extends listener_base
 		self::assertSame(12, $attachments[3][0]['attach_id']);
 		self::assertSame(10, $attachments[3][1]['attach_id']);
 		self::assertSame(8, $attachments[4][0]['attach_id']);
+	}
+
+	/**
+	 * Test attachments inside [hidden] are not displayed as detached files.
+	 */
+	public function test_remove_hidden_attachments()
+	{
+		$this->set_listener();
+
+		$attachments = [3 => [0 => 'hidden', 2 => 'detached']];
+		$row = ['post_id' => 3, 'post_text' => '<r/>'];
+		$this->bbcodes_display->expects(self::once())
+			->method('remove_hidden_attachments')
+			->with($attachments, $row)
+			->willReturn([3 => [2 => 'detached']]);
+
+		$event = new \phpbb\event\data([
+			'attachments' => $attachments,
+			'row' => $row,
+			'post_row' => ['S_HAS_ATTACHMENTS' => true, 'S_MULTIPLE_ATTACHMENTS' => true],
+		]);
+		$this->listener->remove_hidden_attachments($event);
+
+		self::assertSame([2 => 'detached'], $event['attachments'][3]);
+		self::assertTrue($event['post_row']['S_HAS_ATTACHMENTS']);
+		self::assertFalse($event['post_row']['S_MULTIPLE_ATTACHMENTS']);
 	}
 }
