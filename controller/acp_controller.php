@@ -183,53 +183,93 @@ class acp_controller
 
 	/**
 	 * Save the Google fonts setting.
-	 * - If field has data, explode it to an array and save as JSON data.
-	 * - If field is empty, store just an empty string.
+	 * - Normalize and validate all submitted font names.
+	 * - Preserve the previous setting if any font cannot be validated.
 	 */
 	protected function save_google_fonts()
 	{
 		$fonts = $this->request->variable('abbc3_google_fonts', '');
+		$stored_value = $this->config_text->get('abbc3_google_fonts');
+		$stored_fonts = json_decode($stored_value, true);
 
 		if (!empty($fonts))
 		{
-			$fonts = array_filter(
+			$fonts = array_values(array_unique(array_filter(
 				array_map([$this, 'normalize_google_font'], preg_split('/[\r\n,]+/', $fonts)),
-				[$this, 'validate_google_fonts']
-			);
-
-			$fonts = $fonts ? json_encode(array_values(array_unique($fonts))) : '';
+				'strlen'
+			)));
+		}
+		else
+		{
+			$fonts = [];
 		}
 
-		$this->config_text->set('abbc3_google_fonts', $fonts);
+		// Avoid contacting Google when the font setting has not changed.
+		if (($stored_value === '' && empty($fonts)) ||
+			(is_array($stored_fonts) && $fonts === $stored_fonts))
+		{
+			return;
+		}
+
+		// Validate all names locally before making any remote requests.
+		foreach ($fonts as $font)
+		{
+			$this->validate_google_font_name($font);
+		}
+
+		if (!empty($this->errors))
+		{
+			return;
+		}
+
+		foreach ($fonts as $font)
+		{
+			$this->validate_google_font_url($font);
+		}
+
+		// Keep the previous font list unless every submitted font is valid.
+		if (empty($this->errors))
+		{
+			$this->config_text->set('abbc3_google_fonts', $fonts ? json_encode($fonts) : '');
+		}
 	}
 
 	/**
-	 * Validate Google Font names link to an existing CSS file
+	 * Validate Google Font name syntax.
 	 *
 	 * @param string $font
 	 * @return bool
 	 */
-	protected function validate_google_fonts($font)
+	protected function validate_google_font_name($font)
 	{
-		if ($font === '')
-		{
-			return false;
-		}
-
 		if (!preg_match('/^[\p{L}\p{N}][\p{L}\p{N} ._-]{0,63}$/u', $font))
 		{
 			$this->errors[] = $this->language->lang('ABBC3_INVALID_FONT', $font);
 			return false;
 		}
 
-		$url = 'https://fonts.googleapis.com/css?family=' . urlencode($font);
+		return true;
+	}
 
-		if ($this->valid_url($url))
+	/**
+	 * Validate a Google Font against the CSS2 endpoint used by rendered pages.
+	 *
+	 * @param string $font
+	 * @return bool
+	 */
+	protected function validate_google_font_url($font)
+	{
+		$url = 'https://fonts.googleapis.com/css2?family=' . rawurlencode($font) . '&display=swap';
+		$status = $this->get_url_status($url);
+
+		if ($status === 200)
 		{
 			return true;
 		}
 
-		$this->errors[] = $this->language->lang('ABBC3_INVALID_FONT', $font);
+		$this->errors[] = $status === null
+			? $this->language->lang('ABBC3_FONT_CHECK_FAILED', $font)
+			: $this->language->lang('ABBC3_INVALID_FONT', $font);
 		return false;
 	}
 
@@ -245,15 +285,43 @@ class acp_controller
 	}
 
 	/**
-	 * Check for valid URL headers if possible
+	 * Get final HTTP status for a URL using a bounded request.
 	 *
 	 * @param string $url
-	 * @return bool Return false only if URL could be checked and wasn't found, otherwise true.
+	 * @return int|null HTTP status, or null when the request could not be made.
 	 */
-	protected function valid_url($url)
+	protected function get_url_status($url)
 	{
-		$headers = function_exists('get_headers') ? @get_headers($url) : false;
-		return !$headers || stripos($headers[0], '200 OK') !== false;
+		if (!function_exists('get_headers'))
+		{
+			return null;
+		}
+
+		$context = stream_context_create([
+			'http' => [
+				'timeout' => 5,
+				'follow_location' => 1,
+				'max_redirects' => 3,
+				'ignore_errors' => true,
+			],
+		]);
+		$headers = @get_headers($url, false, $context);
+
+		if (!$headers)
+		{
+			return null;
+		}
+
+		$status = null;
+		foreach ($headers as $header)
+		{
+			if (is_string($header) && preg_match('#^HTTP/\S+\s+(\d{3})#i', $header, $matches))
+			{
+				$status = (int) $matches[1];
+			}
+		}
+
+		return $status;
 	}
 
 	/**

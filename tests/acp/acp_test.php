@@ -20,6 +20,18 @@ class acp_test extends \phpbb_database_test_case
 	/** @var bool A return value for check_form_key() */
 	public static $valid_form = false;
 
+	/** @var array|false Mock response for get_headers() */
+	public static $font_headers = ['HTTP/1.1 200 OK'];
+
+	/** @var int Number of get_headers() calls */
+	public static $font_header_calls = 0;
+
+	/** @var string Last URL passed to get_headers() */
+	public static $font_url = '';
+
+	/** @var array Last stream context options passed to get_headers() */
+	public static $font_context_options = [];
+
 	/** @var \vse\abbc3\controller\acp_controller */
 	protected $acp_controller;
 
@@ -63,6 +75,10 @@ class acp_test extends \phpbb_database_test_case
 	protected function setUp(): void
 	{
 		parent::setUp();
+		self::$font_headers = ['HTTP/1.1 200 OK'];
+		self::$font_header_calls = 0;
+		self::$font_url = '';
+		self::$font_context_options = [];
 
 		global $user, $phpbb_container, $phpbb_root_path, $phpEx;
 
@@ -187,7 +203,7 @@ class acp_test extends \phpbb_database_test_case
 			["Droid   Sans\nRoboto\nDroid Sans", '["Droid Sans","Roboto"]', E_USER_NOTICE, 'CONFIG_UPDATED'],
 			["\n\nDroid Sans\n\nRoboto\n\n", '["Droid Sans","Roboto"]', E_USER_NOTICE, 'CONFIG_UPDATED'],
 			["Droid Sans\nRoboto\nBad<script>", '["Droid Sans","Roboto"]', E_USER_WARNING, 'ABBC3_INVALID_FONT'],
-			['Bad<script>', '', E_USER_WARNING, 'ABBC3_INVALID_FONT'],
+			['Bad<script>', '["Droid Sans","Roboto"]', E_USER_WARNING, 'ABBC3_INVALID_FONT'],
 		];
 	}
 
@@ -226,6 +242,93 @@ class acp_test extends \phpbb_database_test_case
 		}
 	}
 
+	public function test_unchanged_google_fonts_are_not_checked_remotely()
+	{
+		$this->save_google_fonts_request("Droid Sans\nRoboto");
+
+		$this->assertSame(0, self::$font_header_calls);
+	}
+
+	public function test_google_font_uses_css2_endpoint_and_bounded_timeout()
+	{
+		$this->save_google_fonts_request('Noto Sans JP');
+
+		$this->assertSame(1, self::$font_header_calls);
+		$this->assertSame(
+			'https://fonts.googleapis.com/css2?family=Noto%20Sans%20JP&display=swap',
+			self::$font_url
+		);
+		$this->assertSame(5, self::$font_context_options['http']['timeout']);
+		$this->assertSame('["Noto Sans JP"]', $this->config_text->get('abbc3_google_fonts'));
+	}
+
+	public function test_invalid_remote_google_font_preserves_stored_fonts()
+	{
+		self::$font_headers = ['HTTP/1.1 400 Bad Request'];
+
+		$exception = $this->save_google_fonts_request('Not A Google Font');
+
+		$this->assertSame(E_USER_WARNING, $exception->getCode());
+		$this->assertStringContainsString('ABBC3_INVALID_FONT', $exception->getMessage());
+		$this->assertSame('["Droid Sans","Roboto"]', $this->config_text->get('abbc3_google_fonts'));
+	}
+
+	public function test_unavailable_google_fonts_preserves_stored_fonts()
+	{
+		self::$font_headers = false;
+
+		$exception = $this->save_google_fonts_request('Noto Sans JP');
+
+		$this->assertSame(E_USER_WARNING, $exception->getCode());
+		$this->assertStringContainsString('ABBC3_FONT_CHECK_FAILED', $exception->getMessage());
+		$this->assertSame('["Droid Sans","Roboto"]', $this->config_text->get('abbc3_google_fonts'));
+	}
+
+	public function test_google_font_uses_final_redirect_status()
+	{
+		self::$font_headers = [
+			'HTTP/1.1 302 Found',
+			'Location: https://fonts.googleapis.com/example',
+			'HTTP/2 200',
+		];
+
+		$this->save_google_fonts_request('Noto Sans JP');
+
+		$this->assertSame('["Noto Sans JP"]', $this->config_text->get('abbc3_google_fonts'));
+	}
+
+	/**
+	 * Submit an ACP save request with Google font data.
+	 *
+	 * @param string $fonts
+	 * @return \RuntimeException
+	 */
+	protected function save_google_fonts_request($fonts)
+	{
+		self::$valid_form = true;
+
+		$this->request->method('is_set_post')->willReturn('submit');
+		$this->request->method('variable')->willReturnMap([
+			['abbc3_bbcode_bar', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+			['abbc3_qr_bbcodes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+			['abbc3_auto_video', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+			['abbc3_icons_type', 'png', false, \phpbb\request\request_interface::REQUEST, 'png'],
+			['abbc3_pipes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+			['abbc3_google_fonts', '', false, \phpbb\request\request_interface::REQUEST, $fonts],
+		]);
+
+		try
+		{
+			$this->acp_controller->handle();
+		}
+		catch (\RuntimeException $exception)
+		{
+			return $exception;
+		}
+
+		$this->fail('Expected save_settings() to throw a status exception.');
+	}
+
 	public function test_info()
 	{
 		$info_class = new \vse\abbc3\acp\abbc3_info();
@@ -253,4 +356,20 @@ function check_form_key()
  */
 function add_form_key()
 {
+}
+
+/**
+ * Mock get_headers() without making network requests.
+ *
+ * @param string $url
+ * @param bool $associative
+ * @param resource|null $context
+ * @return array|false
+ */
+function get_headers($url, $associative = false, $context = null)
+{
+	acp_test::$font_header_calls++;
+	acp_test::$font_url = $url;
+	acp_test::$font_context_options = stream_context_get_options($context);
+	return acp_test::$font_headers;
 }
