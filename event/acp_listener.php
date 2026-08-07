@@ -24,20 +24,15 @@ class acp_listener implements EventSubscriberInterface
 	/** @var acp_manager */
 	protected acp_manager $acp_manager;
 
-	/** @var string */
-	protected string $root_path;
-
 	/**
 	 * Constructor
 	 *
 	 * @param acp_manager $acp_manager
-	 * @param string $root_path
 	 * @access public
 	 */
-	public function __construct(acp_manager $acp_manager, string $root_path)
+	public function __construct(acp_manager $acp_manager)
 	{
 		$this->acp_manager = $acp_manager;
-		$this->root_path = $root_path;
 	}
 
 	/**
@@ -114,7 +109,7 @@ class acp_listener implements EventSubscriberInterface
 		}
 
 		// Add some additional template variables
-		$event->update_subarray('template_data', 'UA_DRAG_DROP', str_replace('&amp;', '&', $event['u_action'] . '&action=' . ext::MOVE_DRAG));
+		$event->update_subarray('template_data', 'UA_DRAG_DROP', str_replace('&amp;', '&', $event['u_action'] . '&action=' . ext::MOVE_DRAG . '&hash=' . generate_link_hash(ext::MOVE_DRAG)));
 
 		// Change SQL so that it orders by bbcode_order
 		$event->update_subarray('sql_ary', 'ORDER_BY', 'b.bbcode_order, b.bbcode_id');

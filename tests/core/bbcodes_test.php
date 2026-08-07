@@ -344,6 +344,22 @@ class bbcodes_test extends phpbb_database_test_case
 	}
 
 	/**
+	 * Test attachments inside [hidden] are removed from detached attachments.
+	 */
+	public function test_hidden_attachments()
+	{
+		$this->user->data['user_id'] = ANONYMOUS;
+		$bbcodes_manager = $this->bbcodes_manager();
+		$row = [
+			'post_id' => 3,
+			'post_text' => '<r><ATTACHMENT filename="visible.jpg" index="1">visible.jpg</ATTACHMENT><HIDDEN><ATTACHMENT filename="hidden.jpg" index="0">hidden.jpg</ATTACHMENT></HIDDEN></r>',
+		];
+		$parsed_attachments = [3 => [0 => 'hidden', 2 => 'detached']];
+
+		self::assertSame([3 => [2 => 'detached']], $bbcodes_manager->remove_hidden_attachments($parsed_attachments, $row));
+	}
+
+	/**
 	 * Test set_renderer_params caching behavior
 	 */
 	public function test_set_renderer_params_caching(): void

@@ -93,6 +93,12 @@ class acp_manager
 			return;
 		}
 
+		if (!check_link_hash($this->request->variable('hash', ''), ext::MOVE_DRAG))
+		{
+			$this->send_json_response(false, $this->language->lang('FORM_INVALID'));
+			return;
+		}
+
 		// Get the bbcodes HTML table's name
 		$table_name = $this->request->variable('table_name', '');
 		if (!$table_name)

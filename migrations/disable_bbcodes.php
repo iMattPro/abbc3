@@ -91,7 +91,6 @@ class disable_bbcodes extends container_aware_migration
 			FROM ' . BBCODES_TABLE . '
 			WHERE bbcode_helpline ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char()) . '
 				AND display_on_posting = 1';
-		$this->db->sql_query($sql);
 		$result = $this->db->sql_query($sql);
 		while ($row = $this->db->sql_fetchrow($result))
 		{

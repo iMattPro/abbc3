@@ -27,7 +27,7 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 				[],
 				'',
 				[
-					'UA_DRAG_DROP'	=> '&action=move_drag',
+					'UA_DRAG_DROP'	=> '&action=move_drag&hash=' . generate_link_hash('move_drag'),
 				],
 				[
 					'ORDER_BY'	=> 'b.bbcode_order, b.bbcode_id',
@@ -43,7 +43,7 @@ class acp_bbcodes_custom_sorting_test extends acp_listener_base
 				'&amp;u_action',
 				[
 					'FOO'			=> 'BAR',
-					'UA_DRAG_DROP'	=> '&u_action&action=move_drag',
+					'UA_DRAG_DROP'	=> '&u_action&action=move_drag&hash=' . generate_link_hash('move_drag'),
 				],
 				[
 					'SELECT'	=> 'FOO',

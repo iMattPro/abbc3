@@ -13,7 +13,7 @@
 } %}
 
 {% macro external_link(url, text) -%}
-	<a href="{{ url }}" target="_blank">
+	<a href="{{ url }}" target="_blank" rel="noopener noreferrer">
 		{{ Icon('font', 'arrow-up-right-from-square', '', true) }}
 		{{ text -}}
 	</a>
