@@ -22,20 +22,15 @@ class acp_listener implements EventSubscriberInterface
 	/** @var acp_manager */
 	protected $acp_manager;
 
-	/** @var string */
-	protected $root_path;
-
 	/**
 	 * Constructor
 	 *
 	 * @param acp_manager $acp_manager
-	 * @param string      $root_path
 	 * @access public
 	 */
-	public function __construct(acp_manager $acp_manager, $root_path)
+	public function __construct(acp_manager $acp_manager)
 	{
 		$this->acp_manager = $acp_manager;
-		$this->root_path = $root_path;
 	}
 
 	/**
