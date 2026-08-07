@@ -302,10 +302,10 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Remove hidden inline attachments left behind as detached attachments.
 	 *
-	 * @param \phpbb\event\data $event The event object
+	 * @param data $event The event object
 	 * @access public
 	 */
-	public function remove_hidden_attachments($event)
+	public function remove_hidden_attachments(data $event): void
 	{
 		$post_id = $event['row']['post_id'];
 		$attachments = $this->bbcodes_display->remove_hidden_attachments($event['attachments'], $event['row']);

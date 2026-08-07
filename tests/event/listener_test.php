@@ -80,7 +80,7 @@ class listener_test extends listener_base
 	/**
 	 * Test attachments inside [hidden] are not displayed as detached files.
 	 */
-	public function test_remove_hidden_attachments()
+	public function test_remove_hidden_attachments(): void
 	{
 		$this->set_listener();
 

@@ -258,7 +258,7 @@ class acp_controller
 	 * @param string $font
 	 * @return bool
 	 */
-	protected function validate_google_font_url(string $font)
+	protected function validate_google_font_url(string $font): bool
 	{
 		$url = 'https://fonts.googleapis.com/css2?family=' . rawurlencode($font) . '&display=swap';
 		$status = $this->get_url_status($url);
@@ -291,7 +291,7 @@ class acp_controller
 	 * @param string $url
 	 * @return int|null HTTP status, or null when the request could not be made.
 	 */
-	protected function get_url_status(string $url)
+	protected function get_url_status(string $url): int|null
 	{
 		if (!function_exists('get_headers'))
 		{

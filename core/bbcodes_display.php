@@ -136,7 +136,7 @@ class bbcodes_display
 	 * @param array $row Post row containing original parsed text
 	 * @return array
 	 */
-	public function remove_hidden_attachments(array $attachments, array $row)
+	public function remove_hidden_attachments(array $attachments, array $row): array
 	{
 		if (ANONYMOUS !== (int) $this->user->data['user_id'] && empty($this->user->data['is_bot']))
 		{

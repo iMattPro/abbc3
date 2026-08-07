@@ -346,7 +346,7 @@ class bbcodes_test extends phpbb_database_test_case
 	/**
 	 * Test attachments inside [hidden] are removed from detached attachments.
 	 */
-	public function test_hidden_attachments()
+	public function test_hidden_attachments(): void
 	{
 		$this->user->data['user_id'] = ANONYMOUS;
 		$bbcodes_manager = $this->bbcodes_manager();

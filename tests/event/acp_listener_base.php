@@ -28,10 +28,8 @@ class acp_listener_base extends phpbb_test_case
 	 */
 	protected function set_listener(): void
 	{
-		global $phpbb_root_path;
-
 		$this->acp_manager = $this->createMock(acp_manager::class);
 
-		$this->listener = new acp_listener($this->acp_manager, $phpbb_root_path);
+		$this->listener = new acp_listener($this->acp_manager);
 	}
 }

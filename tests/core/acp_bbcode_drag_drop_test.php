@@ -15,7 +15,7 @@ use vse\abbc3\core\acp_manager;
 
 class acp_bbcode_drag_drop_test extends acp_base
 {
-	const VALID_HASH = '__valid_hash__';
+	public const VALID_HASH = '__valid_hash__';
 
 	protected function setUp(): void
 	{
@@ -122,7 +122,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		self::assertSame([1 => 13, 2 => 14, 3 => 15, 4 => 16, 5 => 17], $this->get_bbcode_order());
 	}
 
-	protected function replace_valid_hash_marker(array $return_map)
+	protected function replace_valid_hash_marker(array $return_map): array
 	{
 		foreach ($return_map as &$map)
 		{
@@ -136,7 +136,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		return $return_map;
 	}
 
-	public function test_bbcode_drag_drop_rejects_invalid_hash()
+	public function test_bbcode_drag_drop_rejects_invalid_hash(): void
 	{
 		$this->request->expects(self::once())
 			->method('is_ajax')
@@ -146,7 +146,7 @@ class acp_bbcode_drag_drop_test extends acp_base
 		$this->request->expects(self::once())
 			->method('variable')
 			->willReturnMap([
-				['hash', '', false, \phpbb\request\request_interface::REQUEST, 'invalid'],
+				['hash', '', false, request_interface::REQUEST, 'invalid'],
 			])
 		;
 

@@ -6,9 +6,8 @@ const abbc3selectElements = [
 	...document.querySelectorAll("#abbc3_buttons select"),
 ];
 const abbc3modal = document.querySelector("#bbcode_wizard");
-const abbc3dropdown = document.querySelector(".abbc3_font_menu_btn");
-const abbc3dropdownLists = [
-	...document.querySelectorAll(".abbc3_font_menu_btn ul"),
+const abbc3dropdowns = [
+	...document.querySelectorAll(".abbc3_dropdown_menu_btn"),
 ];
 const abbc3icons = document.querySelectorAll(".materialbutton .icon");
 abbc3icons.forEach((icon) => {
@@ -84,30 +83,30 @@ if (abbc3mainBox !== null) {
 			"border: 1px solid #ced4da;padding-top: 0.25rem;padding-bottom: 0.25rem;padding-left: 0.5rem;font-size: 0.875rem;border-radius: 0.2rem;height: auto;";
 	});
 
-	abbc3dropdown.classList.add("dropdown");
-	abbc3dropdown.classList.remove("dropdown-container");
-	abbc3dropdown.firstElementChild.classList.add("dropdown-toggle");
-	abbc3dropdown.firstElementChild.classList.remove("dropdown-trigger");
-	abbc3dropdown.firstElementChild.setAttribute("id", "abbc3-dropdown");
-	abbc3dropdown.firstElementChild.setAttribute("data-bs-toggle", "dropdown");
-	abbc3dropdown.firstElementChild.setAttribute("aria-expanded", "false");
-	abbc3dropdown.firstElementChild.lastChild.remove();
+	abbc3dropdowns.forEach((dropdown, index) => {
+		const dropdownId = `abbc3-dropdown-${index}`;
+		const trigger = dropdown.firstElementChild;
+		const menu = dropdown.lastElementChild;
+		const contents = menu.lastElementChild;
 
-	abbc3dropdown.lastElementChild.classList.remove("dropdown");
-	abbc3dropdown.lastElementChild.classList.add("dropdown-menu");
-	abbc3dropdown.lastElementChild.setAttribute(
-		"aria-labelledby",
-		"abbc3-dropdown"
-	);
-	abbc3dropdown.lastElementChild.lastElementChild.classList.add(
-		"list-unstyled"
-	);
-	abbc3dropdown.lastElementChild.lastElementChild.classList.remove(
-		"dropdown-contents"
-	);
+		dropdown.classList.add("dropdown");
+		dropdown.classList.remove("dropdown-container");
+		trigger.classList.add("dropdown-toggle");
+		trigger.classList.remove("dropdown-trigger");
+		trigger.setAttribute("id", dropdownId);
+		trigger.setAttribute("data-bs-toggle", "dropdown");
+		trigger.setAttribute("aria-expanded", "false");
+		trigger.lastElementChild?.remove();
 
-	abbc3dropdownLists.forEach((elem) => {
-		elem.classList.add("list-unstyled", "dropdown-header");
+		menu.classList.remove("dropdown");
+		menu.classList.add("dropdown-menu");
+		menu.setAttribute("aria-labelledby", dropdownId);
+		contents.classList.add("list-unstyled");
+		contents.classList.remove("dropdown-contents");
+
+		dropdown.querySelectorAll("ul").forEach((list) => {
+			list.classList.add("list-unstyled", "dropdown-header");
+		});
 	});
 	abbc3rows.forEach((row) => {
 		row.classList.remove("abbc3_buttons_row_legacy");

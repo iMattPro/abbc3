@@ -40,16 +40,16 @@ class acp_test extends phpbb_database_test_case
 	public static bool $valid_form = false;
 
 	/** @var array|false Mock response for get_headers() */
-	public static $font_headers = ['HTTP/1.1 200 OK'];
+	public static array|false $font_headers = ['HTTP/1.1 200 OK'];
 
 	/** @var int Number of get_headers() calls */
-	public static $font_header_calls = 0;
+	public static int $font_header_calls = 0;
 
 	/** @var string Last URL passed to get_headers() */
-	public static $font_url = '';
+	public static string $font_url = '';
 
 	/** @var array Last stream context options passed to get_headers() */
-	public static $font_context_options = [];
+	public static array $font_context_options = [];
 
 	/** @var acp_controller */
 	protected acp_controller $acp_controller;
@@ -261,14 +261,14 @@ class acp_test extends phpbb_database_test_case
 		}
 	}
 
-	public function test_unchanged_google_fonts_are_not_checked_remotely()
+	public function test_unchanged_google_fonts_are_not_checked_remotely(): void
 	{
 		$this->save_google_fonts_request("Droid Sans\nRoboto");
 
 		$this->assertSame(0, self::$font_header_calls);
 	}
 
-	public function test_google_font_uses_css2_endpoint_and_bounded_timeout()
+	public function test_google_font_uses_css2_endpoint_and_bounded_timeout(): void
 	{
 		$this->save_google_fonts_request('Noto Sans JP');
 
@@ -281,7 +281,7 @@ class acp_test extends phpbb_database_test_case
 		$this->assertSame('["Noto Sans JP"]', $this->config_text->get('abbc3_google_fonts'));
 	}
 
-	public function test_invalid_remote_google_font_preserves_stored_fonts()
+	public function test_invalid_remote_google_font_preserves_stored_fonts(): void
 	{
 		self::$font_headers = ['HTTP/1.1 400 Bad Request'];
 
@@ -292,7 +292,7 @@ class acp_test extends phpbb_database_test_case
 		$this->assertSame('["Droid Sans","Roboto"]', $this->config_text->get('abbc3_google_fonts'));
 	}
 
-	public function test_unavailable_google_fonts_preserves_stored_fonts()
+	public function test_unavailable_google_fonts_preserves_stored_fonts(): void
 	{
 		self::$font_headers = false;
 
@@ -303,7 +303,7 @@ class acp_test extends phpbb_database_test_case
 		$this->assertSame('["Droid Sans","Roboto"]', $this->config_text->get('abbc3_google_fonts'));
 	}
 
-	public function test_google_font_uses_final_redirect_status()
+	public function test_google_font_uses_final_redirect_status(): void
 	{
 		self::$font_headers = [
 			'HTTP/1.1 302 Found',
@@ -322,7 +322,7 @@ class acp_test extends phpbb_database_test_case
 	 * @param string $fonts
 	 * @return \RuntimeException
 	 */
-	protected function save_google_fonts_request($fonts)
+	protected function save_google_fonts_request(string $fonts): RuntimeException
 	{
 		self::$valid_form = true;
 
@@ -373,7 +373,7 @@ function check_form_key(): bool
  * Mock add_form_key()
  * Note: use the same namespace as the controller
  */
-function add_form_key()
+function add_form_key(): void
 {
 }
 
@@ -385,7 +385,7 @@ function add_form_key()
  * @param resource|null $context
  * @return array|false
  */
-function get_headers($url, $associative = false, $context = null)
+function get_headers(string $url, bool $associative = false, mixed $context = null): array|false
 {
 	acp_test::$font_header_calls++;
 	acp_test::$font_url = $url;
