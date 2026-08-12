@@ -13,19 +13,15 @@
 		Remove some unnecessary files/directories
 		${dir}/ is the folder of your extension, e.g. ext/nickvergessen/newspage/
 		-->
+		<delete dir="${dir}/.github" />
 		<delete dir="${dir}/tests" />
 		<delete dir="${dir}/vendor" />
-		<delete dir="${dir}/node_modules" />
-		<delete dir="${dir}/develop" />
-		<delete dir="${dir}/.github" />
 
-		<delete file="${dir}/.gitattributes" />
 		<delete file="${dir}/.gitignore" />
+		<delete file="${dir}/.gitattributes" />
 		<delete file="${dir}/build.xml" />
 		<delete file="${dir}/composer.lock" />
 		<delete file="${dir}/composer.phar" />
-		<delete file="${dir}/package.json" />
-		<delete file="${dir}/package-lock.json" />
 		<delete file="${dir}/phpunit.xml.dist" />
 		<delete file="${dir}/README.md" />
 	</target>
@@ -78,10 +74,6 @@
 			</then>
 		</if>
 
-		<phingcall target="npm-build-task">
-			<property name="dir" value="${package-directory}" />
-		</phingcall>
-
 		<phingcall target="clean-package">
 			<property name="dir" value="${package-directory}" />
 		</phingcall>
@@ -115,19 +107,4 @@
 		<echo msg="Creating archives (${vendor-name}/${extension-name} ${version})" />
 		<zip basedir="${build-directory}/package/" destfile="${destination-filename}.zip" />
 	</target>
-
-	<!--
-	npm installation
-	-->
-	<target name="npm-install" description="npm-install target: install node modules">
-		<exec command="npm install" dir="${package-directory}" passthru="true" checkreturn="true" />
-	</target>
-
-	<!--
-	Run npm build task
-	-->
-	<target name="npm-build-task" depends="npm-install">
-		<exec command="npm run build" dir="${package-directory}" passthru="true" checkreturn="true" />
-	</target>
-
 </project>
