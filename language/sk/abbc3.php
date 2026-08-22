@@ -50,7 +50,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_FONT_HELPLINE'		=> 'Druh písma: [font=Comic Sans MS]text[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Žiariaci text: [glow=color]text[/glow]',
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Skryť pred hosťami: [hidden]text[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Zvýrazniť text: [highlight=yellow]text[/highlight]  Tip: you can also use color=#FF0000',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Zvýrazniť text: [highlight=yellow]text[/highlight]  Tip: môžete použiť aj color=#FF0000',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Markýza (pohyblivý text): [marq=up|down|left|right]text[/marq]',
 	'ABBC3_MOD_HELPLINE'		=> 'Výstražná správa: [mod=username]text[/mod]',
 	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii umenie textu: [nfo]text[/nfo]',
@@ -62,8 +62,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Škrtnutý text: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Dolný index: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Horný index: [sup]text[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'Video YouTube: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Vložte video súbory MP4/OGG/WEBM: URL musí začínať reťazcom <samp class="error">https</samp> alebo <samp class="error">http</samp> a končiť reťazcom <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> alebo <samp class="error">.webm</samp> (nie je potrebné žiadne BBCode). Všimnite si, že podpora prehliadača a implementácia GUI sa líšia.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Skopírovať vybraný text',
@@ -95,15 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Poradie BBCode bolo aktualizované',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Objednávku BBCode nebolo možné aktualizovať.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Nebol prijatý žiadny názov tabuľky BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Neboli prijaté žiadne údaje o objednávke BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Neboli aktualizované žiadne riadky BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Spravovať skupiny, ktoré môžu používať tento BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Pokiaľ nebudú vybrané žiadne skupiny, tak tento BBCode budú môcť používať všetci uživatelia. Použite CTRL+KLIK (alebo CMD+KLIK na Mac) k vybraniu / zrušeniu výberu jednej alebo viac skupín',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Rozšírené BBCode Box BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Rýchla hnedá liška skočí cez lenivého psa',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Príklad:</strong><br>%2$s<br><br><strong>Výsledok:</strong><br>%3$s<hr>',
 ));

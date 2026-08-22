@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Підстрочний текст: [sub]текст[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Надстрочний текст: [sup]текст[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Відео з YouTube: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Вставляти відеофайли MP4/OGG/WEBM: URL має починатися з <samp class="error">https</samp> або <samp class="error">http</samp> і закінчуватися на <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> або <samp class="error">.webm</samp> (BBCode не потрібен). Зауважте, що підтримка браузера та реалізація GUI відрізняються.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Копіювати виділений текст',
@@ -81,13 +81,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Створення таблиць',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Створюйте таблиці, використовуючи будь-який із цих форматів у стилі ASCII.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Посібник користувача',
+	'ABBC3_PIPE_SIMPLE'			=> 'Простий стіл',
+	'ABBC3_PIPE_COMPACT'		=> 'Компактний стіл',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Зовнішні труби та простір навколо труб необов’язкові.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Вирівнювання тексту',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -95,15 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BB-кодів змінено.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Не вдалося оновити порядок BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Ім’я таблиці BBCode не отримано.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Немає даних про замовлення BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Не було оновлено жодного рядка BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Групи, котрі можуть використовувати BB-код',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Якщо група вибрана, то всі її користувачі можуть використовувати BB-код. Використовуйте CTRL+CLICK (або CMD+CLICK на Mac) для того, щоб вибрати кілька груп.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> 'BB-коди Advanced BBCode Box',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Швидка бура лисиця перестрибує ледачого пса',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Приклад:</strong><br>%2$s<br><br><strong>Результат:</strong><br>%3$s<hr>',
 ));

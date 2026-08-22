@@ -33,7 +33,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> 'Verberg Spoiler',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'Off Topic',
+	'ABBC3_OFFTOPIC'			=> 'Off-topic',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Lettertype',
@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Doorstreepte tekst: [s]tekst[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Subscript (kleine letters maken boven de basis regel van de tekst): [sub]tekst[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Superscript (Kleine letters maken boven de tekst regel): [sup]tekst[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube-video: [youtube]http://youtube_url[/youtube]',
 	'ABBC3_AUTOVIDEO_HELPLINE' => 'Embed MP4/OGG/WEBM videobestanden: URL moet beginnen met <samp class="error">https</samp> of <samp class="error">http</samp> en eindigen met <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> of <samp class="error">.webm</samp> (geen BBCode nodig). Houd er rekening mee dat browserondersteuning en GUI-implementatie variëren.',
 
 	// Utility BBCodes
@@ -96,15 +96,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		 => 'De volgorde van de BBcodes is bijgewerkt.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode-bestelling kan niet worden bijgewerkt.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Er is geen BBCode-tabelnaam ontvangen.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Er zijn geen BBCode-bestelgegevens ontvangen.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Er zijn geen BBCode-rijen bijgewerkt.',
 	'ABBC3_BBCODE_GROUP'		   => 'Beheer groepen die deze BBcode kunnen gebruiken',
 	'ABBC3_BBCODE_GROUP_INFO'	  => 'Als je geen groep hebt geselecteerd, kunnen alle groepen deze BBcode gebruiken. Gebruik CTRL+KLIK (of CMD+KLIK bij Mac) om meer dan één groep te selecteren/deselecteren.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
+	'ABBC3_FAQ_TITLE'			=> 'Geavanceerde BBCode Box BBCodes',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'De snelle bruine vos springt over de luie hond',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Voorbeeld:</strong><br>%2$s<br><br><strong>Resultaat:</strong><br>%3$s<hr>',
 ));

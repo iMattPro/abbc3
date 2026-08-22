@@ -50,7 +50,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_FONT_HELPLINE'		=> 'Druh písma: [font=Comic Sans MS]text[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Zářící text: [glow=color]text[/glow]',
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Skrýt před hosty: [hidden]text[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Zvýraznit text: [highlight=yellow]text[/highlight]  Tip: you can also use color=#FF0000',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Zvýraznit text: [highlight=yellow]text[/highlight]  Tip: můžete použít také color=#FF0000',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Markýza (pohyblivý text): [marq=up|down|left|right]text[/marq]',
 	'ABBC3_MOD_HELPLINE'		=> 'Výstražná zpráva: [mod=username]text[/mod]',
 	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii umění textu: [nfo]text[/nfo]',
@@ -62,8 +62,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Škrtnutý text: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Dolní index: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Horní index: [sup]text[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'Video na YouTube: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Vkládejte video soubory MP4/OGG/WEBM: URL musí začínat <samp class="error">https</samp> nebo <samp class="error">http</samp> a končit <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> nebo <samp class="error">.webm</samp> (není potřeba BBCode). Všimněte si, že podpora prohlížeče a implementace GUI se liší.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Zkopírovat vybraný text',
@@ -81,13 +81,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://forums.volgeop.eu/',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Vytvářejte tabulky',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Vytvářejte tabulky pomocí libovolného z těchto formátů ve stylu ASCII.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Uživatelská příručka',
+	'ABBC3_PIPE_SIMPLE'			=> 'Jednoduchý stůl',
+	'ABBC3_PIPE_COMPACT'		=> 'Kompaktní stůl',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Vnější potrubí a prostory kolem potrubí jsou volitelné.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Zarovnání textu',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -95,15 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Pořadí BBCode bylo aktualizováno',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Objednávku BBCode nelze aktualizovat.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Nebyl přijat žádný název tabulky BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Nebyla přijata žádná data objednávky BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Nebyly aktualizovány žádné řádky BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Spravovat skupiny, které mohou používat tento BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Pokud nebudou vybrány žádné skupiny, tak tento BBCode budou moci používat všichni uživatelé. Použijte CTRL+KLIK (nebo CMD+KLIK na Mac) k vybrání / zrušení výběru jedné nebo více skupin',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> 'Pokročilé BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Rychlá hnědá liška přeskakuje líného psa',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Příklad:</strong><br>%2$s<br><br><strong>Výsledek:</strong><br>%3$s<hr>',
 ));

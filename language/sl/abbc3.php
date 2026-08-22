@@ -62,8 +62,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Prečrtano besedilo: [s]besedilo[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Podpisno besedilo: [sub]besedilo[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Nadpodpisno besedilo: [sup]besedilo[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'Video YouTube: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Vdelajte video datoteke MP4/OGG/WEBM: URL se mora začeti z <samp class="error">https</samp> ali <samp class="error">http</samp> in končati z <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ali <samp class="error">.webm</samp> (koda BBC ni potrebna). Upoštevajte, da se podpora brskalnika in implementacija GUI razlikujeta.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopiraj izbrano besedilo',
@@ -95,15 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Vrstni red BBKode je bil posodobljen.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode naročila ni bilo mogoče posodobiti.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Ime tabele BBCode ni bilo prejeto.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Podatki o naročilu BBCode niso bili prejeti.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Posodobljena ni bila nobena vrstica BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Upravljajte skupine, ki lahko uporabljajo to BBKodo',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Če ni izbrana nobena skupina, lahko vsi uporabniki uporabljajo to BBKodo. Uporabite CTRL+CLIK (ali CMD+CLIK na Macu), da izberete/prekličete izbiro več kot ene skupine.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> 'Napredno polje BBCode BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Hitra rjava lisica skoči čez lenega psa',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Primer:</strong><br>%2$s<br><br><strong>Rezultat:</strong><br>%3$s<hr>',
 ));

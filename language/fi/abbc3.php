@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Alaindeksi: [sub]teksti[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Yläindeksi: [sup]teksti[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube-video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Upota MP4/OGG/WEBM-videotiedostoja: URL-osoitteen on alettava <samp class="error">https</samp>- tai <samp class="error">http</samp>-alkuisena ja päätyttävä tunnisteeseen <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> tai <samp class="error">.webm</samp> (BBCodea ei tarvita). Selainten tuki ja käyttöliittymät vaihtelevat.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopioi valittu teksti',
@@ -81,13 +81,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Luo taulukoita',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Luo taulukoita millä tahansa näistä ASCII-tyylisistä muodoista.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Käyttöopas',
+	'ABBC3_PIPE_SIMPLE'			=> 'Yksinkertainen pöytä',
+	'ABBC3_PIPE_COMPACT'		=> 'Kompakti pöytä',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Ulkoputket ja putkien ympärillä olevat tilat ovat valinnaisia.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Tekstin tasaus',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -95,15 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCoden järjestys on päivitetty.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode-järjestystä ei voitu päivittää.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'BBCode-taulukon nimeä ei vastaanotettu.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'BBCode-tilaustietoja ei saatu.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'BBCode-rivejä ei päivitetty.',
 	'ABBC3_BBCODE_GROUP'		=> 'Hallitse ryhmiä jotka voivat käyttää tätä BBCodea',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Jos ryhmiä ei valittu, kaikki voivat käyttää tätä BBCodea. Voit valita useamman ryhmän kerralla painamalla CTRL (tai CMD Macilla).',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> 'Edistyneet BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Nopea ruskea kettu hyppää laiskan koiran yli',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Esimerkki:</strong><br>%2$s<br><br><strong>Tulos:</strong><br>%3$s<hr>',
 ));

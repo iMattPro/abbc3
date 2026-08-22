@@ -58,7 +58,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> '离题: [offtopic]文字[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> '保留格式: [pre]文字[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> '阴影: [shadow=color]文字[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud：[soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> '剧情透露: [spoil]文字[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> '删除: [s]文字[/s]',
 	'ABBC3_SUB_HELPLINE'		=> '上标: [sub]文字[/sub]',
@@ -96,15 +96,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode 顺序已变更',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode 订单无法更新。',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> '未收到 BBCode 表名。',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> '未收到 BBCode 订单数据。',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> '没有更新 BBCode 行。',
 	'ABBC3_BBCODE_GROUP'		=> '变更可使用此BBCode的使用者群组',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未选择任何群，则所有人皆可使用此 BBCode。若要选择多个群组，请按下 CTRL 键。Mac 电脑请用 CMD 键',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> '高级 BBCode 框 BBCode',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> '敏捷的棕色狐狸跳过了懒狗',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>示例：</strong><br>%2$s<br><br><strong>结果：</strong><br>%3$s<hr>',
 ));

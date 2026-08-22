@@ -27,6 +27,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Ajoutez <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> à la <samp class="error">[font]</samp> BBCode. Utilisez une orthographe exacte et respectez la casse. Placez chaque nom de police sur une ligne distincte.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Autoriser l‘utilisation de réseaux de diffusion de contenu tiers" doit être activé sous "Charger les paramètres" pour utiliser cette fonctionnalité.',
 	'ABBC3_INVALID_FONT'		=> 'Nom de police invalide pour “%s”',
+	'ABBC3_FONT_CHECK_FAILED'	=> 'Impossible de vérifier la police Google « %s ». Vérifiez la connexion au serveur et réessayez.',
 	'ABBC3_PIPES'				=> 'Activer le PlugIn Pipe Table',
 	'ABBC3_PIPES_EXPLAIN'		=> 'Le Pipes Table PlugIn permet aux utilisateurs de créer des tableaux dans leurs messages et leurs messages privés en utilisant la syntaxe de démarquage.',
 	'ABBC3_BBCODE_BAR'			=> 'Activer la barre d’icônes BBCode',
