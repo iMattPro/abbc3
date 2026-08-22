@@ -57,13 +57,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_OFFTOPIC_HELPLINE'	=> '離題: [offtopic]文字[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> '保存格式: [pre]文字[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> '影子: [shadow=color]文字[/shadow]',
-	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud: [soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
+	'ABBC3_SOUNDCLOUD_HELPLINE'	=> 'SoundCloud：[soundcloud]https://soundcloud.com/user-name/song-title[/soundcloud]',
 	'ABBC3_SPOILER_HELPLINE'	=> '劇情透露: [spoil]文字[/spoil]',
 	'ABBC3_STRIKE_HELPLINE'		=> '劃掉: [s]文字[/s]',
 	'ABBC3_SUB_HELPLINE'		=> '上標: [sub]文字[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> '下標: [sup]文字[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube影片: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> '嵌入 MP4/OGG/WEBM 視訊檔案：網址必須以 <samp class="error">https</samp> 或 <samp class="error">http</samp> 開頭，並以 <samp class="error">.mp4</samp>、<samp class="error">.ogg</samp> 或 <samp class="error">.webm</samp> 結尾（無需 BBCode）。瀏覽器支援與介面實作可能有所不同。',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> '複製',
@@ -81,13 +81,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> '建立表',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> '使用任何這些 ASCII 樣式格式建立表格。',
+	'ABBC3_PIPE_DOCUMENTATION'	=> '使用者指南',
+	'ABBC3_PIPE_SIMPLE'			=> '簡單的桌子',
+	'ABBC3_PIPE_COMPACT'		=> '緊湊型桌子',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> '外部管道和管道周圍的空間是可選的。',
+	'ABBC3_PIPE_ALIGNMENT'		=> '文字對齊',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -95,15 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode順序已變更',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode 訂單無法更新。',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> '未收到 BBCode 表名。',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> '未收到 BBCode 訂單資料。',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> '沒有更新 BBCode 行。',
 	'ABBC3_BBCODE_GROUP'		=> '變更可使用此BBCode的使用者群組',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未選擇任何群組，則所有人皆可使用此BBCode。若要選擇多個群組，請按下CTRL鍵。蘋果電腦請用CMD鍵',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> '高級 BBCode 框 BBCode',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> '敏捷的棕色狐狸跳過了懶狗',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>範例：</strong><br>%2$s<br><br><strong>結果：</strong><br>%3$s<hr>',
 ));

@@ -25,9 +25,10 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ABBC3_SETTINGS_EXPLAIN'	=> 'Aqui pode alterar as configurações do «Advanced BBCode Box». Para mais informações (em inglês) sobre a customização da barra de ícones, visite %s.',
-	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line.',
-	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
-	'ABBC3_INVALID_FONT'		=> 'Invalid font name for “%s”',
+	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Adicione <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> ao <samp class="error">[font]</samp> BBCode. Use ortografia exata e distinção entre maiúsculas e minúsculas. Coloque cada nome de fonte em uma linha separada.',
+	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Permitir uso de redes de entrega de conteúdo de terceiros” deve estar habilitado em “Configurações de carregamento” para usar este recurso.',
+	'ABBC3_INVALID_FONT'		=> 'Nome de fonte inválido para “%s”',
+	'ABBC3_FONT_CHECK_FAILED'	=> 'Não foi possível verificar a fonte do Google “%s”. Verifique a conexão do servidor e tente novamente.',
 	'ABBC3_PIPES'				=> 'Activar o plugin «Pipe Table PlugIn»',
 	'ABBC3_PIPES_EXPLAIN'		=> 'O «Pipes Table PlugIn» permite aos utilizadores criarem tabelas nos seus posts e mensagens privadas usando a sintaxe <a href="https://pt.wikipedia.org/wiki/Markdown" target="_blank" rel="noopener noreferrer">markdown</a>.',
 	'ABBC3_BBCODE_BAR'			=> 'Activar este BBCode na barra de ícones',
@@ -38,13 +39,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Escolha o formato de imagem usado pelos ícones do ABBC3. Note que só pode usar um único formato para todos os ícones.',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'Barra de ícones BBCode',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Extras',
-	'ABBC3_AUTO_VIDEO'			=> 'Enable Auto Video PlugIn',
-	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'This plugin converts plain-text video file URLs into playable videos. Only URLs starting with <samp class="error">http://</samp> or <samp class="error">https://</samp> and ending with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> are converted.',
+	'ABBC3_AUTO_VIDEO'			=> 'Ativar plug-in de vídeo automático',
+	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Este plugin converte URLs de arquivos de vídeo de texto simples em vídeos reproduzíveis. Somente URLs começando com <samp class="error">http://</samp> ou <samp class="error">https://</samp> e terminando com <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ou <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
-	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Install the optional phpBB Media Embed extension to access settings and management options for embedded rich media content.',
+	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Instale a extensão opcional phpBB Media Embed para acessar configurações e opções de gerenciamento de conteúdo rich media incorporado.',
 	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed extension is not installed. %2$s.',
-		1	=> 'phpBB Media Embed extension is installed. Settings are accessible under the Posting tab.'
+		0	=> 'A extensão phpBB Media Embed não está instalada. %2$s.',
+		1	=> 'A extensão phpBB Media Embed está instalada. As configurações estão acessíveis na guia Postagem.'
 	],
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',

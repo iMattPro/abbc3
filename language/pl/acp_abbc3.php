@@ -26,6 +26,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Dodaj <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> do BBCode <samp class="error">[font]</samp>. Używaj dokładnej pisowni i zwracaj uwagę na wielkość liter. Nazwę każdej czcionki umieść w nowej linii.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Opcja „Zezwalaj na używanie zewnętrznych sieci dostarczania treści” (CDN) musi być włączona w „Ustawieniach obciążenia”, aby móc korzystać z tej funkcji.',
 	'ABBC3_INVALID_FONT'		=> 'Nieprawidłowa nazwa czcionki dla „%s”',
+	'ABBC3_FONT_CHECK_FAILED'	=> 'Nie można zweryfikować czcionki Google „%s”. Sprawdź połączenie z serwerem i spróbuj ponownie.',
 	'ABBC3_PIPES'				=> 'Włącz wtyczkę Pipe Table',
 	'ABBC3_PIPES_EXPLAIN'		=> 'Wtyczka Pipe Table pozwala użytkownikom tworzyć tabele w postach i prywatnych wiadomościach przy użyciu składni markdown.',
 	'ABBC3_BBCODE_BAR'			=> 'Włącz pasek ikon BBCode',

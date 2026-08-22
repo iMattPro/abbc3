@@ -33,7 +33,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> 'Göm Spoiler',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'Off Topic',
+	'ABBC3_OFFTOPIC'			=> 'Utanför ämnet',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Typsnitt',
@@ -42,7 +42,7 @@ $lang = array_merge($lang, array(
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Justera text: [align=center|left|right|justify]text[/align]',
-	'ABBC3_BBVIDEO_HELPLINE'	=> 'Embed any video site url: [bbvideo]http://video_url[/bbvideo]',
+	'ABBC3_BBVIDEO_HELPLINE'	=> 'Bädda in valfri videowebbadress: [bbvideo]http://video_url[/bbvideo]',
 	'ABBC3_BLUR_HELPLINE'		=> 'Oskärpt text: [blur=color]text[/blur]',
 	'ABBC3_DIR_HELPLINE'		=> 'Textriktning: [dir=ltr|rtl]text[/dir]',
 	'ABBC3_DROPSHADOW_HELPLINE'	=> 'Skugga text: [dropshadow=color]text[/dropshadow]',
@@ -51,10 +51,10 @@ $lang = array_merge($lang, array(
 	'ABBC3_FONT_HELPLINE'		=> 'Typsnitt: [font=Comic Sans MS]text[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Lysande text: [glow=color]text[/glow]',
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Göm för gäster: [hidden]text[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Makera text: [highlight=yellow]text[/highlight]  Tip: you can also use color=#FF0000',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Markera text: [highlight=yellow]text[/highlight]  Tips: du kan även använda color=#FF0000',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Rörlig text: [marq=up|down|left|right]text[/marq]',
 	'ABBC3_MOD_HELPLINE'		=> 'Viktigt meddelande: [mod=username]text[/mod]',
-	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii art text: [nfo]text[/nfo]',
+	'ABBC3_NFO_HELPLINE'		=> 'NFO-textgrafik: [nfo]text[/nfo]',
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Off Topic meddelande: [offtopic]text[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Förformaterad text: [pre]text[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Skugga text: [shadow=color]text[/shadow]',
@@ -63,8 +63,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Stryk text: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Nedsänkt text: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Upphöjd text: [sup]text[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube-video: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Bädda in MP4/OGG/WEBM-videofiler: URL måste börja med <samp class="error">https</samp> eller <samp class="error">http</samp> och sluta med <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> eller <samp class="error">.webm</samp>). (ingen BBCode behövs). Observera att webbläsarstöd och GUI-implementering varierar.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopiera makerad text',
@@ -82,13 +82,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Skapa tabeller',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Skapa tabeller med något av dessa ASCII-format.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Användarhandbok',
+	'ABBC3_PIPE_SIMPLE'			=> 'Enkelt bord',
+	'ABBC3_PIPE_COMPACT'		=> 'Kompakt bord',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'De yttre rören och utrymmena runt rören är valfria.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Textjustering',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -96,15 +96,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode ordningen har uppdaterats.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode-ordern kunde inte uppdateras.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Inget BBCode-tabellnamn togs emot.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Inga BBCode-orderdata mottogs.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Inga BBCode-rader uppdaterades.',
 	'ABBC3_BBCODE_GROUP'		=> 'Hantera grupper som kan använda denna BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Om inga grupper är valda, kan alla användare använda denna BBCode. Använd CTRL+CLICK (eller CMD+CLICK på Mac) för att makera eller avmakera mer än en grupp..',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> 'Avancerad BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Den kvicka bruna räven hoppar över den lata hunden',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exempel:</strong><br>%2$s<br><br><strong>Resultat:</strong><br>%3$s<hr>',
 ));

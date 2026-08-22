@@ -27,6 +27,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Füge <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> zum <samp class="error">[font]</samp> BBCode hinzu. Achte auf genaue Schreibweise und Groß-/Kleinschreibung. Setze jeden Schriftartnamen in eine eigene Zeile.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '„Nutzung von Drittanbieter-Servern zulassen“ muss aktiviert sein unter den “Serverlast”-Einstellungen, um diese Funktion zu nutzen.',
 	'ABBC3_INVALID_FONT'		=> 'Ungültiger Schriftname „%s“',
+	'ABBC3_FONT_CHECK_FAILED'	=> 'Die Google-Schriftart „%s“ konnte nicht überprüft werden. Überprüfen Sie die Serververbindung und versuchen Sie es erneut.',
 	'ABBC3_PIPES'				=> 'Aktiviere das „Pipe Table“-Plug-in.',
 	'ABBC3_PIPES_EXPLAIN'		=> 'Mit dem „Pipe Table“-Plug-in können Benutzer Tabellen in ihren Beiträgen und Privaten Nachrichten mit Hilfe der Markdown-Syntax erstellen.',
 	'ABBC3_BBCODE_BAR'			=> 'Aktiviere die BBCode-Menüleiste',

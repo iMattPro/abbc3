@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Indeksiranje teksta: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Eksponentiranje teksta: [sup]text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Ugradite MP4/OGG/WEBM videodatoteke: URL mora započeti s <samp class="error">https</samp> ili <samp class="error">http</samp> i završiti s <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ili <samp class="error">.webm</samp> (nije potreban BBCode). Imajte na umu da se podrška preglednika i GUI implementacija razlikuju.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopiraj označeni tekst',
@@ -82,13 +82,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Napravite tablice',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Izradite tablice pomoću bilo kojeg od ovih ASCII formata.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Korisnički priručnik',
+	'ABBC3_PIPE_SIMPLE'			=> 'Jednostavan stol',
+	'ABBC3_PIPE_COMPACT'		=> 'Kompaktni stol',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Vanjske cijevi i prostori oko cijevi nisu obavezni.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Poravnanje teksta',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -96,15 +96,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBKod poredak je ažuriran.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode redoslijed nije mogao biti ažuriran.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Nije primljen naziv BBCode tablice.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Nisu primljeni podaci o narudžbi BBCodea.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Nijedan redak BBCodea nije ažuriran.',
 	'ABBC3_BBCODE_GROUP'		=> 'Upravljanje grupama koje mogu koristiti ovaj BBKod',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Ukoliko niti jedna grupa nije odabrana, svi/e korisnici/e mogu koristiti ovaj BBKod.<br>Za o(do)značavanje više od jedne grupe, koristi CTRL+KLIK (CMD+KLIK na Macu).',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> 'Napredni BBCode Box BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Brza smeđa lisica preskače lijenog psa',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Primjer:</strong><br>%2$s<br><br><strong>Rezultat:</strong><br>%3$s<hr>',
 ));

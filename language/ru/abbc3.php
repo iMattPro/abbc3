@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Подстрочный текст: [sub]текст[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Надстрочный текст: [sup]текст[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Видео с YouTube: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Встраивайте видеофайлы MP4/OGG/WEBM: URL-адрес должен начинаться с <samp class="error">https</samp> или <samp class="error">http</samp> и заканчиваться <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> или <samp class="error">.webm</samp> (BB-код не требуется). Обратите внимание, что поддержка браузеров и реализация графического интерфейса различаются.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Копировать выделенный текст',
@@ -95,10 +95,10 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BBCode изменён.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Не удалось обновить порядок BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Имя таблицы BBCode не получено.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Данные заказа BBCode не были получены.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Ни одна строка BBCode не была обновлена.',
 	'ABBC3_BBCODE_GROUP'		=> 'Группы, которые могут использовать BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Если группа выбрана, то все её пользователи могут использовать BBCode. Используйте CTRL+клик (или CMD+клик на Mac) для выбора нескольких групп.',
 

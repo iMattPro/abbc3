@@ -50,8 +50,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_FONT_HELPLINE'		=> 'Шрифт: [font=Comic Sans MS]text[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Светещ текст: [glow=color]text[/glow]',
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Скрий от гости: [hidden]text[/hidden]',
-	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Изпъкнал текст (Highlight): [highlight=yellow]text[/highlight]  Tip: you can also use color=#FF0000',
-	'ABBC3_MARQUEE_HELPLINE'	=> 'Marquee text: [marq=up|down|left|right]text[/marq]',
+	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Откроен текст: [highlight=yellow]text[/highlight]  Съвет: можете да използвате и color=#FF0000',
+	'ABBC3_MARQUEE_HELPLINE'	=> 'Движещ се текст: [marq=up|down|left|right]текст[/marq]',
 	'ABBC3_MOD_HELPLINE'		=> 'Предупреждение: [mod=username]text[/mod]',
 	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii художествен текст: [nfo]text[/nfo]',
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Офтопик: [offtopic]text[/offtopic]',
@@ -62,8 +62,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Задраскан текст: [s]text[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Понижен текст: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Покачен текст: [sup]text[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'Видео в YouTube: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Вграждане на MP4/OGG/WEBM видео файлове: URL адресът трябва да започва с <samp class="error">https</samp> или <samp class="error">http</samp> и да завършва с <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> или <samp class="error">.webm</samp> (не е необходим BBCode). Имайте предвид, че поддръжката на браузъра и внедряването на GUI варира.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Копирай текста',
@@ -86,7 +86,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_DOCUMENTATION'	=> 'Инструкция за потребителя',
 	'ABBC3_PIPE_SIMPLE'			=> 'Проста таблица',
 	'ABBC3_PIPE_COMPACT'		=> 'Компактна таблица',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Външните тръби и пространствата около тръбите не са задължителни.',
 	'ABBC3_PIPE_ALIGNMENT'		=> 'Подравняване на таблица',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
@@ -95,15 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode редът бе обновен.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Редът на BBCode не можа да бъде актуализиран.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Не е получено име на BBCode таблица.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Не бяха получени данни за поръчка на BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Не са актуализирани редове на BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Управление на групите, които могат да използват този BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Ако не е избрана група, всички потребители могат да ползват този BBCode. Натисни CTRL+CLICK (или CMD+CLICK на Mac) за да избереш/откажеш повече от една група.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
+	'ABBC3_FAQ_TITLE'			=> 'Разширено поле за BBCode BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Бързата кафява лисица прескача мързеливото куче',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Пример:</strong><br>%2$s<br><br><strong>Резултат:</strong><br>%3$s<hr>',
 ));

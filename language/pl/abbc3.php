@@ -32,7 +32,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> 'Ukryj spoiler',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'Off Topic',
+	'ABBC3_OFFTOPIC'			=> 'Nie na temat',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Czcionki',
@@ -95,10 +95,10 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Kolejność BBCode została zaktualizowana.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Nie można zaktualizować kolejności BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Nie odebrano nazwy tabeli BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Nie otrzymano danych zamówienia BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Nie zaktualizowano żadnych wierszy BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Zarządzaj grupami, które mogą używać tego BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Jeśli nie wybrano żadnych grup, wszyscy użytkownicy będą mogli używać tego BBCode. Użyj CTRL+KLIK (lub CMD+KLIK na Macu), aby zaznaczyć/odznaczyć więcej niż jedną grupę.',
 

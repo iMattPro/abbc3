@@ -63,8 +63,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Joonega läbitõmmatud: [s]tekst[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Alaindeksiga tekst: [sub]tekst[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Ülaindeksiga tekst: [sup]tekst[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube’i video: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Manusta MP4/OGG/WEBM videofaile: URL peab algama <samp class="error">https</samp> või <samp class="error">http</samp> ning lõppema <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> või <samp class="error">.webm</samp> (BBCode pole vajalik). Brauserite tugi ja kasutajaliides võivad erineda.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Kopeeri valitud tekst',
@@ -82,13 +82,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'https://www.phpbb.com',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Loo tabeleid',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Looge tabeleid kasutades mõnda neist ASCII-stiilis vormingutest.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Kasutusjuhend',
+	'ABBC3_PIPE_SIMPLE'			=> 'Lihtne tabel',
+	'ABBC3_PIPE_COMPACT'		=> 'Kompaktne laud',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Välimised torud ja ruumid torude ümber on valikulised.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Teksti joondamine',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -96,12 +96,12 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBkoodi järjestus on uuendatud.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode järjekorda ei saanud värskendada.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'BBCode tabeli nime ei saadud.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'BBCode’i tellimuse andmeid ei saadud.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Ühtegi BBCode rida ei värskendatud.',
 	'ABBC3_BBCODE_GROUP'		=> 'Halda gruppe, kes saavad kasutada seda BBkoodi',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Kui ühtegi gruppi ei ole valitud, siis kõik kasutajad saavad kasutada seda BBkoodi. Kasuta CTRL+CLICK (või CMD+CLICK Mac\'is), et valida / või valikud eemaldada rohkem kui ühelt grupilt.',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Kui ühtegi gruppi ei ole valitud, siis kõik kasutajad saavad kasutada seda BBkoodi. Kasuta CTRL+CLICK (või CMD+CLICK Mac’is), et valida / või valikud eemaldada rohkem kui ühelt grupilt.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBkoodi',

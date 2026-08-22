@@ -26,14 +26,14 @@ $lang = array_merge($lang, array(
 	// Hidden BBCode
 	'ABBC3_HIDDEN_ON'			=> 'Contenuto nascosto',
 	'ABBC3_HIDDEN_OFF'			=> 'Contenuto nascosto (per soli membri)',
-	'ABBC3_HIDDEN_EXPLAIN'		=> 'Registrati ed effettua l\'accesso per visualizzare questo contenuto.',
+	'ABBC3_HIDDEN_EXPLAIN'		=> 'Registrati ed effettua l’accesso per visualizzare questo contenuto.',
 
 	// Spoiler BBCode
 	'ABBC3_SPOILER_SHOW'		=> 'Mostra testo',
 	'ABBC3_SPOILER_HIDE'		=> 'Nascondi testo',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'Off Topic',
+	'ABBC3_OFFTOPIC'			=> 'Fuori tema',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Caratteri',
@@ -53,7 +53,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_HIDDEN_HELPLINE'		=> 'Testo nascosto agli ospiti: [hidden]testo[/hidden]',
 	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Testo evidenziato: [highlight=yellow]testo[/highlight]  Suggerimento: puoi anche usare color=#FF0000',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Testo a scorrimento: [marq=up|down|left|right]testo[/marq]',
-	'ABBC3_MOD_HELPLINE'		=> 'Messaggio d\'allerta: [mod=username]testo[/mod]',
+	'ABBC3_MOD_HELPLINE'		=> 'Messaggio d’allerta: [mod=username]testo[/mod]',
 	'ABBC3_NFO_HELPLINE'		=> 'NFO ASCII Art: [nfo]testo[/nfo]',
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Messaggio Off Topic: [offtopic]testo[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Testo preformattato: [pre]testo[/pre]',
@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Pedice: [sub]testo[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Apice: [sup]testo[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Video di YouTube: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Incorpora file video MP4/OGG/WEBM: l’URL deve iniziare con <samp class="error">https</samp> o <samp class="error">http</samp> e terminare con <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> o <samp class="error">.webm</samp> (non è necessario il BBCode). Tieni presente che il supporto del browser e l’implementazione della GUI variano.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copia il testo selezionato',
@@ -96,15 +96,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'Ordine dei BBCode aggiornato.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Impossibile aggiornare l’ordine del BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Non è stato ricevuto alcun nome di tabella BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Non è stato ricevuto alcun dato dell’ordine BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Nessuna riga del BBCode è stata aggiornata.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestisci i gruppi che possono usare questo BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Se nessun gruppo è selezionato, allora tutti gli utenti potranno usare questo BBCode. Usa CTRL+CLICK (o CMD+CLICK su Mac) per selezionare/deselezionare più di un gruppo.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'BBCode dell\'Advanced BBCode Box',
+	'ABBC3_FAQ_TITLE'			=> 'BBCode dell’Advanced BBCode Box',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Qualche vago ione tipo zolfo, bromo, sodio',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Esempio:</strong><br>%2$s<br><br><strong>Risultato:</strong><br>%3$s<hr>',
 ));

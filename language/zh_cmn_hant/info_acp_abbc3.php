@@ -20,6 +20,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 	'ACP_ABBC3_MODULE'		=> 'Advanced BBCode Box',
-	'ACP_ABBC3_SETTINGS'	=> 'Settings',
-	'LOG_ABBC3_ENABLE_FAIL'	=> '<strong>Advanced BBCode Box was unable to create the directory:</strong><br>%s',
+	'ACP_ABBC3_SETTINGS'	=> '設定',
+	'LOG_ABBC3_ENABLE_FAIL'	=> '<strong>高級 BBCode Box 無法建立目錄：</strong><br>%s',
 ]);

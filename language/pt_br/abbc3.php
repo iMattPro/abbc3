@@ -32,12 +32,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> 'Esconder Spoiler',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'Off Topic',
+	'ABBC3_OFFTOPIC'			=> 'Fora do tópico',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Fontes',
-	'ABBC3_FONT_SAFE'			=> 'System Fonts',
-	'ABBC3_GOOGLE_FONTS'		=> 'Google Fonts',
+	'ABBC3_FONT_SAFE'			=> 'Fontes do sistema',
+	'ABBC3_GOOGLE_FONTS'		=> 'Fontes do Google',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'Alinhar texto: [align=center|left|right|justify]texto[/align]',
@@ -49,11 +49,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_FLOAT_HELPLINE'		=> 'Texto flutuante: [float=left|right]texto[/float]',
 	'ABBC3_FONT_HELPLINE'		=> 'Tipo de fonte: [font=Comic Sans MS]texto[/font]',
 	'ABBC3_GLOW_HELPLINE'		=> 'Texto com brilho: [glow=color]texto[/glow]',
-	'ABBC3_HIDDEN_HELPLINE'		=> 'Hide from guests: [hidden]texto[/hidden]',
+	'ABBC3_HIDDEN_HELPLINE'		=> 'Ocultar dos visitantes: [hidden]texto[/hidden]',
 	'ABBC3_HIGHLIGHT_HELPLINE'	=> 'Realçar o texto: [highlight=yellow]texto[/highlight]  Dica: você também pode usar color=#FF0000',
 	'ABBC3_MARQUEE_HELPLINE'	=> 'Letreiro: [marq=up|down|left|right]texto[/marq]',
 	'ABBC3_MOD_HELPLINE'		=> 'Mensagem de alerta: [mod=username]text[/mod]',
-	'ABBC3_NFO_HELPLINE'		=> 'NFO ascii art text: [nfo]texto[/nfo]',
+	'ABBC3_NFO_HELPLINE'		=> 'Texto de arte ASCII NFO: [nfo]texto[/nfo]',
 	'ABBC3_OFFTOPIC_HELPLINE'	=> 'Mensagem Off Topic: [offtopic]texto[/offtopic]',
 	'ABBC3_PREFORMAT_HELPLINE'	=> 'Texto pré-formatado: [pre]texto[/pre]',
 	'ABBC3_SHADOW_HELPLINE'		=> 'Segunda sobra do texto [shadow=color]texto[/shadow]',
@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Texto subscrito: [sub]text[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texto sobrescrito: [sup]text[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Incorporar arquivos de vídeo MP4/OGG/WEBM: o URL deve começar com <samp class="error">https</samp> ou <samp class="error">http</samp> e terminar com <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ou <samp class="error">.webm</samp> (não é necessário BBCode). Observe que o suporte do navegador e a implementação da GUI variam.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copie o texto selecionado',
@@ -81,13 +81,13 @@ $lang = array_merge($lang, array(
 	'ABBC3_URL_EXAMPLE'			=> 'http://www.google.com.br',
 
 	// Pipe tables
-	'ABBC3_PIPE_TABLES'			=> 'Create tables',
-	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Create tables using any of these ASCII-style formats.',
-	'ABBC3_PIPE_DOCUMENTATION'	=> 'User Guide',
-	'ABBC3_PIPE_SIMPLE'			=> 'Simple table',
-	'ABBC3_PIPE_COMPACT'		=> 'Compact table',
-	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'The outer pipes and spaces around pipes are optional.',
-	'ABBC3_PIPE_ALIGNMENT'		=> 'Text alignment',
+	'ABBC3_PIPE_TABLES'			=> 'Criar tabelas',
+	'ABBC3_PIPE_TABLES_EXPLAIN'	=> 'Crie tabelas usando qualquer um desses formatos de estilo ASCII.',
+	'ABBC3_PIPE_DOCUMENTATION'	=> 'Guia do usuário',
+	'ABBC3_PIPE_SIMPLE'			=> 'Mesa simples',
+	'ABBC3_PIPE_COMPACT'		=> 'Mesa compacta',
+	'ABBC3_PIPE_COMPACT_EXPLAIN'=> 'Os tubos externos e os espaços ao redor dos tubos são opcionais.',
+	'ABBC3_PIPE_ALIGNMENT'		=> 'Alinhamento de texto',
 	// Pipe Table Example Code: DO NOT NEED TO TRANSLATE THESE EXAMPLES
 	'ABBC3_PIPE_SIMPLE_EX'		=> "| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |",
 	'ABBC3_PIPE_COMPACT_EX'		=> "Header 1|Header 2\n-|-\nCell 1|Cell 2",
@@ -95,15 +95,15 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'A ordem BBCode foi atualizado.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'O pedido do BBCode não pôde ser atualizado.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Nenhum nome de tabela BBCode foi recebido.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Nenhum dado de pedido BBCode foi recebido.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Nenhuma linha do BBCode foi atualizada.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gerenciar grupos que podem usar esse BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Se nenhum grupo é selecionado, em seguida, todos os usuários podem usar este BBCode. Use Ctrl + clique (ou CMD + clique no Mac) para selecionar / desmarcar mais de um grupo.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'Advanced BBCode Box BBCodes',
-	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'The quick brown fox jumps over the lazy dog',
-	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Example:</strong><br>%2$s<br><br><strong>Result:</strong><br>%3$s<hr>',
+	'ABBC3_FAQ_TITLE'			=> 'Caixa BBCode avançada BBCodes',
+	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'A rápida raposa marrom salta sobre o cachorro preguiçoso',
+	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Exemplo:</strong><br>%2$s<br><br><strong>Resultado:</strong><br>%3$s<hr>',
 ));
