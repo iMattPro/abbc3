@@ -41,10 +41,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'תוסף זה ממיר כתובות URL של קבצי וידאו בטקסט רגיל לסרטונים שניתנים להפעלה. רק כתובות URL שמתחילות ב-<samp class="error">http://</samp> או <samp class="error">https://</samp> ומסתיימות ב-<samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> או <samp class="error">.webm</samp> מומרות.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'התקן את התוסף האופציונלי של phpBB Media Embed כדי לגשת להגדרות ואפשרויות ניהול עבור תוכן מדיה עשירה מוטבע.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed לא מותקן. %2$s.',
-		1	=> 'phpBB Media Embed מותקן. ההגדרות נגישות בכרטיסייה פרסום.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed לא מותקן. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed מותקן. ההגדרות נגישות בכרטיסייה פרסום.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

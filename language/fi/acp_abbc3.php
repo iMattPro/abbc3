@@ -41,10 +41,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Tämä laajennus muuntaa pelkkätekstivideotiedostojen URL-osoitteet toistettaviksi videoiksi. Vain URL-osoitteet, jotka alkavat <samp class="error">http://</samp> tai <samp class="error">https://</samp> ja päättyvät <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> tai <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Asenna valinnainen phpBB Media Embed -laajennus, jotta voit käyttää upotetun multimediasisällön asetuksia ja hallintavaihtoehtoja.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed -laajennusta ei ole asennettu. %2$s.',
-		1	=> 'phpBB Media Embed -laajennus on asennettu. Asetukset ovat käytettävissä Lähetys-välilehdellä.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed -laajennusta ei ole asennettu. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed -laajennus on asennettu. Asetukset ovat käytettävissä Lähetys-välilehdellä.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

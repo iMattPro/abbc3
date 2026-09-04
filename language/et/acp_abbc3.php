@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'See pistikprogramm teisendab lihtteksti videofailide URL-id esitatavateks videoteks. Teisendatakse ainult URL-id, mis algavad tähega <samp class="error">http://</samp> või <samp class="error">https://</samp> ja lõpevad numbritega <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> või <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Manustatud rikasmeedia sisu seadetele ja haldussuvanditele juurdepääsuks installige valikuline laiendus phpBB Media Embed.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed laiendust pole installitud. %2$s.',
-		1	=> 'phpBB Media Embed laiendus on installitud. Seaded on saadaval vahekaardil Postitamine.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed laiendust pole installitud. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed laiendus on installitud. Seaded on saadaval vahekaardil Postitamine.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

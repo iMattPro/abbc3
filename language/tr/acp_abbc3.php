@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Bu eklenti, düz metinli video dosyası URL’lerini oynatılabilir videolara dönüştürür. Yalnızca <samp class="error">http://</samp> veya <samp class="error">https://</samp> ile başlayan ve <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> veya <samp class="error">.webm</samp> ile biten URL’ler dönüştürülür.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Gömülü zengin medya içeriğinin ayarlarına ve yönetim seçeneklerine erişmek için isteğe bağlı phpBB Media Embed uzantısını yükleyin.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed uzantısı yüklü değil. %2$s.',
-		1	=> 'phpBB Media Embed uzantısı kuruldu. Ayarlara Gönderim sekmesinden erişilebilir.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed uzantısı yüklü değil. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed uzantısı kuruldu. Ayarlara Gönderim sekmesinden erişilebilir.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

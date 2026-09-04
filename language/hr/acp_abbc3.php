@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Ovaj dodatak pretvara URL-ove video datoteka običnog teksta u videozapise koji se mogu reproducirati. Pretvaraju se samo URL-ovi koji počinju s <samp class="error">http://</samp> ili <samp class="error">https://</samp> i završavaju s <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ili <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Instalirajte izborno proširenje phpBB Media Embed za pristup postavkama i mogućnostima upravljanja za ugrađeni bogati medijski sadržaj.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed proširenje nije instalirano. %2$s.',
-		1	=> 'phpBB Media Embed proširenje je instalirano. Postavke su dostupne pod karticom Objavljivanje.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed proširenje nije instalirano. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed proširenje je instalirano. Postavke su dostupne pod karticom Objavljivanje.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

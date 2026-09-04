@@ -41,10 +41,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Tento plugin převádí adresy URL souborů videa ve formátu prostého textu na videa, která lze přehrát. Převedou se pouze adresy URL začínající <samp class="error">http://</samp> nebo <samp class="error">https://</samp> a končící <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> nebo <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Nainstalujte si volitelné rozšíření phpBB Media Embed pro přístup k nastavení a možnostem správy pro vložený multimediální obsah.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'Rozšíření phpBB Media Embed není nainstalováno. %2$s.',
-		1	=> 'Je nainstalováno rozšíření phpBB Media Embed. Nastavení jsou dostupná na kartě Odesílání.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'Rozšíření phpBB Media Embed není nainstalováno. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'Je nainstalováno rozšíření phpBB Media Embed. Nastavení jsou dostupná na kartě Odesílání.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

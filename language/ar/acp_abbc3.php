@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'يقوم هذا البرنامج المساعد بتحويل عناوين URL لملفات الفيديو ذات النص العادي إلى مقاطع فيديو قابلة للتشغيل. يتم فقط تحويل عناوين URL التي تبدأ بـ <samp class="error">http://</samp> أو <samp class="error">https://</samp> وتنتهي بـ <samp class="error">.mp4</samp>، أو <samp class="error">.ogg</samp> أو <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'قم بتثبيت ملحق phpBB Media Embed الاختياري للوصول إلى الإعدادات وخيارات الإدارة لمحتوى الوسائط الغنية المضمن.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'لم يتم تثبيت ملحق phpBB Media Embed. %2$s.',
-		1	=> 'تم تثبيت ملحق phpBB Media Embed. يمكن الوصول إلى الإعدادات ضمن علامة التبويب النشر.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'لم يتم تثبيت ملحق phpBB Media Embed. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'تم تثبيت ملحق phpBB Media Embed. يمكن الوصول إلى الإعدادات ضمن علامة التبويب النشر.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

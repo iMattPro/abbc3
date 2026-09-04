@@ -43,10 +43,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Plugin này chuyển đổi URL tệp video văn bản thuần túy thành video có thể phát được. Chỉ các URL bắt đầu bằng <samp class="error">http://</samp> hoặc <samp class="error">https://</samp> và kết thúc bằng <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> hoặc <samp class="error">.webm</samp> mới được chuyển đổi.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Cài đặt tiện ích mở rộng phpBB Media Embed tùy chọn để truy cập các cài đặt và tùy chọn quản lý cho nội dung đa phương tiện được nhúng.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'Tiện ích mở rộng phpBB Media Embed chưa được cài đặt. %2$s.',
-		1	=> 'Tiện ích mở rộng phpBB Media Embed đã được cài đặt. Cài đặt có thể truy cập được trong tab Đăng bài.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'Tiện ích mở rộng phpBB Media Embed chưa được cài đặt. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'Tiện ích mở rộng phpBB Media Embed đã được cài đặt. Cài đặt có thể truy cập được trong tab Đăng bài.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

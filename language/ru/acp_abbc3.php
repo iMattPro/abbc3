@@ -41,10 +41,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Этот плагин преобразует URL-адреса видеофайлов в виде простого текста в воспроизводимые видео. Преобразовываются только URL-адреса, начинающиеся с <samp class="error">http://</samp> или <samp class="error">https://</samp> и заканчивающиеся на <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> или <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Установите дополнительное расширение phpBB Media Embed, чтобы получить доступ к настройкам и параметрам управления встроенным мультимедийным контентом.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'Расширение phpBB Media Embed не установлено. %2$s.',
-		1	=> 'Расширение phpBB Media Embed установлено. Настройки доступны на вкладке Публикация.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'Расширение phpBB Media Embed не установлено. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'Расширение phpBB Media Embed установлено. Настройки доступны на вкладке Публикация.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

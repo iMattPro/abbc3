@@ -41,10 +41,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> '該插件將純文字視訊檔案 URL 轉換為可播放的影片。僅轉換以 <samp class="error">http://</samp> 或 <samp class="error">https://</samp> 開頭並以 <samp class="error">.mp4</samp>、<samp class="error">.ogg</samp> 或 <samp class="error">.webm</samp> 結尾的 URL。',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> '安裝選購的 phpBB Media Embed 擴充功能以存取嵌入式富媒體內容的設定和管理選項。',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> '未安裝 phpBB 媒體嵌入擴充。 %2$s。',
-		1	=> 'phpBB 媒體嵌入擴充功能已安裝。可在「發布」標籤下存取設定。'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> '未安裝 phpBB 媒體嵌入擴充。 %s。',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB 媒體嵌入擴充功能已安裝。可在「發布」標籤下存取設定。',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

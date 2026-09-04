@@ -41,10 +41,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Ta wtyczka konwertuje adresy URL plików wideo w formie czystego tekstu na odtwarzalne wideo. Konwertowane są tylko adresy URL zaczynające się od <samp class="error">http://</samp> lub <samp class="error">https://</samp> i kończące się na <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> lub <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Zainstaluj opcjonalne rozszerzenie phpBB Media Embed, aby uzyskać dostęp do ustawień i opcji zarządzania osadzoną zawartością multimedialną.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'Rozszerzenie phpBB Media Embed nie jest zainstalowane. %2$s.',
-		1	=> 'Rozszerzenie phpBB Media Embed jest zainstalowane. Ustawienia są dostępne w zakładce Pisanie.',
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'Rozszerzenie phpBB Media Embed nie jest zainstalowane. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'Rozszerzenie phpBB Media Embed jest zainstalowane. Ustawienia są dostępne w zakładce Pisanie.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

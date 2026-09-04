@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Dieses PlugIn konvertiert plain-text Videodatei-URLs in abspielbare Videos. Nur URLs, welche mit <samp class="error">http://</samp> or <samp class="error">https://</samp> beginnen, und mit <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> oder <samp class="error">.webm</samp> enden, werden konvertiert.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installiere die optionale Erweiterung „phpBB Media Embed“, um auf Einstellungen und Verwaltungsoptionen für eingebettete Rich Media-Inhalte zuzugreifen.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed-Erweiterung ist nicht installiert. %2$s.',
-		1	=> 'phpBB Media Embed-Erweiterung ist installiert. Auf die Einstellungen kann über den Tab „Beiträge“ zugegriffen werden.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed-Erweiterung ist nicht installiert. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed-Erweiterung ist installiert. Auf die Einstellungen kann über den Tab „Beiträge“ zugegriffen werden.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

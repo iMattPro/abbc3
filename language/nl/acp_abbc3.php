@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Deze plugin converteert platte tekst videobestands-URL’s naar afspeelbare video’s. Alleen URL’s die beginnen met <samp class="error">http://</samp> of <samp class="error">https://</samp> en eindigen met <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> of <samp class="error">.webm</samp> worden geconverteerd.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installeer de optionele phpBB Media Embed extensie om toegang te krijgen tot de instellings-en beheeropties voor embedded rich media content.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed-extensie is niet geïnstalleerd. %2$s.',
-		1	=> 'phpBB Media Embed-extensie is geïnstalleerd. Instellingen zijn toegankelijk onder het tabblad Plaatsen.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed-extensie is niet geïnstalleerd. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed-extensie is geïnstalleerd. Instellingen zijn toegankelijk onder het tabblad Plaatsen.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

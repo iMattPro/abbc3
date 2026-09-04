@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Detta plugin konverterar webbadresser till videofiler i vanlig text till spelbara videor. Endast webbadresser som börjar med <samp class="error">http://</samp> eller <samp class="error">https://</samp> och slutar med <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> eller <samp class="error">.webm</samp> konverteras.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installera det valfria tillägget phpBB Media Embed för att komma åt inställningar och hanteringsalternativ för inbäddat multimedieinnehåll.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed-tillägget är inte installerat. %2$s.',
-		1	=> 'phpBB Media Embed-tillägget är installerat. Inställningarna är tillgängliga under fliken Inlägg.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed-tillägget är inte installerat. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed-tillägget är installerat. Inställningarna är tillgängliga under fliken Inlägg.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

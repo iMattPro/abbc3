@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Ce plugin convertit les URL de fichiers vidéo en texte brut en vidéos lisibles. Uniquement les URL commençant par <samp class="error">http://</samp> ou <samp class="error">https://</samp> et se terminant par <samp class="error">.mp4 </samp>, <samp class="error">.ogg</samp> ou <samp class="error">.webm</samp> sont convertis.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installez l‘extension facultative phpBB Media Embed pour accéder aux paramètres et aux options de gestion du contenu multimédia intégré.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'L‘extension phpBB Media Embed n‘est pas installée. %2$s.',
-		1	=> 'L‘extension phpBB Media Embed est installée. Les paramètres sont accessibles sous l‘onglet Publication.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'L‘extension phpBB Media Embed n‘est pas installée. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'L‘extension phpBB Media Embed est installée. Les paramètres sont accessibles sous l‘onglet Publication.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

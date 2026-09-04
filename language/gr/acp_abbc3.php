@@ -43,10 +43,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Αυτή η προσθήκη μετατρέπει διευθύνσεις URL αρχείων βίντεο απλού κειμένου σε βίντεο με δυνατότητα αναπαραγωγής. Μετατρέπονται μόνο οι διευθύνσεις URL που ξεκινούν με <samp class="error">http://</samp> ή <samp class="error">https://</samp> και τελειώνουν σε <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ή <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Εγκαταστήστε την προαιρετική επέκταση phpBB Media Embed για πρόσβαση σε ρυθμίσεις και επιλογές διαχείρισης για ενσωματωμένο περιεχόμενο εμπλουτισμένου πολυμέσων.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'Η επέκταση phpBB Media Embed δεν είναι εγκατεστημένη. %2$s.',
-		1	=> 'Έχει εγκατασταθεί η επέκταση phpBB Media Embed. Οι ρυθμίσεις είναι προσβάσιμες στην καρτέλα Δημοσίευση.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'Η επέκταση phpBB Media Embed δεν είναι εγκατεστημένη. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'Έχει εγκατασταθεί η επέκταση phpBB Media Embed. Οι ρυθμίσεις είναι προσβάσιμες στην καρτέλα Δημοσίευση.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

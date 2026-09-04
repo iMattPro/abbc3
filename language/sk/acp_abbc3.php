@@ -41,10 +41,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Tento doplnok konvertuje adresy URL video súborov s obyčajným textom na prehrávateľné videá. Konvertujú sa iba adresy URL začínajúce na <samp class="error">http://</samp> alebo <samp class="error">https://</samp> a končiace na <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> alebo <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Nainštalujte si voliteľné rozšírenie phpBB Media Embed, aby ste získali prístup k nastaveniam a možnostiam správy pre vložený multimediálny obsah.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'Rozšírenie phpBB Media Embed nie je nainštalované. %2$s.',
-		1	=> 'Rozšírenie phpBB Media Embed je nainštalované. Nastavenia sú dostupné na karte Uverejnenie.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'Rozšírenie phpBB Media Embed nie je nainštalované. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'Rozšírenie phpBB Media Embed je nainštalované. Nastavenia sú dostupné na karte Uverejnenie.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

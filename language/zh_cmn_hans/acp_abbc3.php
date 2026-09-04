@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> '此插件可将纯文本视频文件 URL 转换为可播放的视频。只有 URLs 网址以 <samp class="error">http://</samp> 或 <samp class="error">https://</samp> 开头，并且以 <samp class="error">.mp4</samp>， <samp class="error">.ogg</samp> 或 <samp class="error">.webm</samp> 结尾的才能转换。',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> '安装可选的  phpBB Media Embed 扩展，以访问内嵌富媒体内容的设置和管理选项。',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed 扩展没有安装。 %2$s。',
-		1	=> 'phpBB Media Embed 扩展已安装。 在帖子选项卡下设置。'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed 扩展没有安装。 %s。',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed 扩展已安装。 在帖子选项卡下设置。',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

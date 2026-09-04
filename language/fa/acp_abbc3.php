@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'این افزونه آدرس فایل های ویدئویی متن ساده را به ویدئوهای قابل پخش تبدیل می کند. فقط URL هایی که با <samp class="error">http://</samp> یا <samp class="error">https://</samp> شروع می شوند و به <samp class="error">.mp4</samp>، <samp class="error">.ogg</samp> یا <samp class="error">.webm</samp> ختم می شوند، تبدیل می شوند.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'پسوند اختیاری phpBB Media Embed را برای دسترسی به تنظیمات و گزینه های مدیریت محتوای رسانه غنی جاسازی شده نصب کنید.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'پسوند phpBB Media Embed نصب نشده است. %2$s.',
-		1	=> 'پسوند phpBB Media Embed نصب شده است. تنظیمات در زیر تب Posting قابل دسترسی هستند.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'پسوند phpBB Media Embed نصب نشده است. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'پسوند phpBB Media Embed نصب شده است. تنظیمات در زیر تب Posting قابل دسترسی هستند.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

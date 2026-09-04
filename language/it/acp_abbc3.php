@@ -42,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Questo plugin converte gli URL di file video di testo semplice in video riproducibili. Vengono convertiti solo gli URL che iniziano con <samp class="error">http://</samp> o <samp class="error">https://</samp> e terminano con <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> o <samp class="error">.webm</samp>.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installa l’estensione opzionale phpBB Media Embed per accedere alle impostazioni e alle opzioni di gestione per i contenuti multimediali incorporati.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'L’estensione phpBB Media Embed non è installata. %2$s.',
-		1	=> 'L’estensione phpBB Media Embed è installata. Le impostazioni sono accessibili nella scheda Pubblicazione.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'L’estensione phpBB Media Embed non è installata. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'L’estensione phpBB Media Embed è installata. Le impostazioni sono accessibili nella scheda Pubblicazione.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));
