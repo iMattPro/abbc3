@@ -71,7 +71,7 @@
 		</dl>
 		<dl>
 			<dt><label>{{ lang('ABBC3_BBVIDEO') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_BBVIDEO_EXPLAIN') }}</span></dt>
-			<dd><span class="{{ S_ABBC3_MEDIA_EMBED ? 'success' : 'error' }}">{{ lang('ABBC3_MEDIA_EMBED_INSTALL', S_ABBC3_MEDIA_EMBED, _self.external_link(links.media_embed.url, links.media_embed.text)) }}</span></dd>
+			<dd><span class="{{ S_ABBC3_MEDIA_EMBED ? 'success' : 'error' }}">{{ S_ABBC3_MEDIA_EMBED ? lang('ABBC3_MEDIA_EMBED_INSTALLED') : lang('ABBC3_MEDIA_EMBED_NOT_INSTALLED', _self.external_link(links.media_embed.url, links.media_embed.text)) }}</span></dd>
 		</dl>
 		<dl>
 			<dt><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br><br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</span></dt>

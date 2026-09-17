@@ -27,6 +27,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_GOOGLE_FONTS_INFO'	=> '添加 <a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a> 到 <samp>font</samp> BBCode 中。使用完全一致的大小写和拼写。每行写一个字体名称。 例如： <samp>Droid Sans</samp>',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '要使用此特性，请在‘负载设置’页面，设置“允许使用第三方内容分发网络”。',
 	'ABBC3_INVALID_FONT'		=> '无效的字体名称 “%s”',
+	'ABBC3_FONT_CHECK_FAILED'	=> '无法验证 Google 字体“%s”。检查服务器连接并重试。',
 	'ABBC3_PIPES'				=> '启用管道表格插件',
 	'ABBC3_PIPES_EXPLAIN'		=> '管道表格插件，会允许用户在帖子和私信中使用 markdown 语法来创建表格。',
 	'ABBC3_BBCODE_BAR'			=> '启用 BBCode 图标栏',
@@ -41,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> '此插件可将纯文本视频文件 URL 转换为可播放的视频。只有 URLs 网址以 <samp class="error">http://</samp> 或 <samp class="error">https://</samp> 开头，并且以 <samp class="error">.mp4</samp>， <samp class="error">.ogg</samp> 或 <samp class="error">.webm</samp> 结尾的才能转换。',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> '安装可选的  phpBB Media Embed 扩展，以访问内嵌富媒体内容的设置和管理选项。',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed 扩展没有安装。 %2$s。',
-		1	=> 'phpBB Media Embed 扩展已安装。 在帖子选项卡下设置。'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed 扩展没有安装。 %s。',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed 扩展已安装。 在帖子选项卡下设置。',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

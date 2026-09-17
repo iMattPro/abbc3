@@ -27,6 +27,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Ajoutez <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> à la <samp class="error">[font]</samp> BBCode. Utilisez une orthographe exacte et respectez la casse. Placez chaque nom de police sur une ligne distincte.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Autoriser l‘utilisation de réseaux de diffusion de contenu tiers" doit être activé sous "Charger les paramètres" pour utiliser cette fonctionnalité.',
 	'ABBC3_INVALID_FONT'		=> 'Nom de police invalide pour “%s”',
+	'ABBC3_FONT_CHECK_FAILED'	=> 'Impossible de vérifier la police Google « %s ». Vérifiez la connexion au serveur et réessayez.',
 	'ABBC3_PIPES'				=> 'Activer le PlugIn Pipe Table',
 	'ABBC3_PIPES_EXPLAIN'		=> 'Le Pipes Table PlugIn permet aux utilisateurs de créer des tableaux dans leurs messages et leurs messages privés en utilisant la syntaxe de démarquage.',
 	'ABBC3_BBCODE_BAR'			=> 'Activer la barre d’icônes BBCode',
@@ -41,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Ce plugin convertit les URL de fichiers vidéo en texte brut en vidéos lisibles. Uniquement les URL commençant par <samp class="error">http://</samp> ou <samp class="error">https://</samp> et se terminant par <samp class="error">.mp4 </samp>, <samp class="error">.ogg</samp> ou <samp class="error">.webm</samp> sont convertis.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installez l‘extension facultative phpBB Media Embed pour accéder aux paramètres et aux options de gestion du contenu multimédia intégré.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'L‘extension phpBB Media Embed n‘est pas installée. %2$s.',
-		1	=> 'L‘extension phpBB Media Embed est installée. Les paramètres sont accessibles sous l‘onglet Publication.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'L‘extension phpBB Media Embed n‘est pas installée. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'L‘extension phpBB Media Embed est installée. Les paramètres sont accessibles sous l‘onglet Publication.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));

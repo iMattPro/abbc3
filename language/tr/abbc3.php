@@ -63,8 +63,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_STRIKE_HELPLINE'		=> 'Üstü çizili metin: [s]metin[/s]',
 	'ABBC3_SUB_HELPLINE'		=> 'Alt simge metni: [sub]metin[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Üst simge metni: [sup]text[/sup]',
-	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Video: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_YOUTUBE_HELPLINE'	=> 'YouTube Videosu: [youtube]http://youtube_url[/youtube]',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Gömülü MP4/OGG/WEBM video dosyaları: URL, <samp class="error">https</samp> veya <samp class="error">http</samp> ile başlamalı ve <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> veya <samp class="error">.webm</samp> ile bitmelidir (BBCode gerekmez). Tarayıcı desteğinin ve GUI uygulamasının değişiklik gösterdiğini unutmayın.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Seçilen metni kopyala',
@@ -96,10 +96,10 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'BBCode sırası güncellendi.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode sırası güncellenemedi.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'BBCode tablo adı alınmadı.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'BBCode sipariş verisi alınmadı.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Hiçbir BBCode satırı güncellenmedi.',
 	'ABBC3_BBCODE_GROUP'		=> 'Bu BBCode’u kullanabilen grupları yönetin',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Eğer hiç bir grup seçilmezse, tüm kullanıcılar bu BBCode’u kullanabilirler. Birden fazla grup seçmek ya da seçimi bırakmak için CTRL+SAĞ TIK (ya da Mac bilgisayarlarda CMD+SAĞ TIK) klavye ile mouse kombinasyonunu kullanın.',
 

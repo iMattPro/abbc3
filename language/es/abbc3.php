@@ -32,7 +32,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SPOILER_HIDE'		=> 'Ocultar Spoiler',
 
 	// Off Topic BBCode
-	'ABBC3_OFFTOPIC'			=> 'Off Topic',
+	'ABBC3_OFFTOPIC'			=> 'Fuera de tema',
 
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'Fuentes',
@@ -63,7 +63,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'Texto subíndice: [sub]texto[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'Texto superíndice: [sup]texto[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'Vídeo de YouTube: [youtube]http://youtube_url[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Incrustar archivos de vídeo MP4/OGG/WEBM: la URL debe comenzar por <samp class="error">https</samp> o <samp class="error">http</samp> y terminar por <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> o <samp class="error">.webm</samp> (no se necesita BBCode). Tenga en cuenta que la compatibilidad con los navegadores y la implementación en la interfaz gráfica de usuario pueden variar.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'Copiar el texto seleccionado',
@@ -95,10 +95,10 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'El orden de los BBCodes ha sido resincronizado.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'No se ha podido actualizar el orden del BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No se ha recibido ningún nombre de tabla de BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No se han recibido datos de orden del BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No se ha actualizado ninguna fila de BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Gestionar grupos que pueden utilizar este BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Si ningún grupo es selecionado todos los usuarios podrán utilizar este BBCode.<br>Para selecionar (o eliminar la seleción) de multiples grupos simultaneamente, pulse CTRL+CLICK (o CMD-CLICK en Mac) sobre los grupos deseados. Si usted olvida mantener pulsada la tecla CTRL/CMD cuando hace clic en un grupo de usuarios, toda seleción previa sera eliminada.',
 

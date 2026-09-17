@@ -38,7 +38,7 @@ $lang = array_merge($lang, array(
 	// Font BBCode
 	'ABBC3_FONT_BBCODE'			=> 'قائمة الخطوط',
 	'ABBC3_FONT_SAFE'			=> 'خطوط آمنة',
-	'ABBC3_GOOGLE_FONTS'		=> 'Google Fonts',
+	'ABBC3_GOOGLE_FONTS'		=> 'خطوط جوجل',
 
 	// BBCode help lines
 	'ABBC3_ALIGN_HELPLINE'		=> 'محاذاة النص: [align=center|left|right|justify]النص[/align]',
@@ -64,7 +64,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_SUB_HELPLINE'		=> 'نص منخفض: [sub]النص[/sub]',
 	'ABBC3_SUP_HELPLINE'		=> 'نص مرتفع: [sup]النص[/sup]',
 	'ABBC3_YOUTUBE_HELPLINE'	=> 'فيديو يوتيوب: [youtube]رابط الفيديو[/youtube]',
-	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
+	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'تضمين ملفات فيديو MP4/OGG/WEBM: يجب أن يبدأ عنوان URL بـ <samp class="error">https</samp> أو <samp class="error">http</samp> وينتهي بـ <samp class="error">.mp4</samp>، أو <samp class="error">.ogg</samp> أو <samp class="error">.webm</samp> (لا حاجة إلى BBCode). لاحظ أن دعم المتصفح وتنفيذ واجهة المستخدم الرسومية يختلف.',
 
 	// Utility BBCodes
 	'ABBC3_COPY_BBCODE'			=> 'نسخ النص المُحدد',
@@ -96,10 +96,10 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_ORDERED'		=> 'تم تحديث ترتيب الـBBCode.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode order could not be updated.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'No BBCode table name was received.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'No BBCode order data was received.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'No BBCode rows were updated.',
+	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'تعذر تحديث ترتيب BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'لم يتم تلقي اسم جدول BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'لم يتم تلقي أي بيانات طلب BBCode.',
+	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'لم يتم تحديث أي صفوف BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'إدارة المجموعات التي تستطيع استخدام هذا الـBBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'إذا لم يتم تحديد أي مجموعة, فسوف يستطيع جميع الأعضاء استخدام هذا الـBBCode. تستطيع تحديد أكثر من مجموعة أو إزالة التحديد بالنقر مطولاً على زر الكنترول والنقر بالماوس على إسم المجموعة (أو CMD+CLICK في نظام الماك).',
 

@@ -27,6 +27,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Füge <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> zum <samp class="error">[font]</samp> BBCode hinzu. Achte auf genaue Schreibweise und Groß-/Kleinschreibung. Setze jeden Schriftartnamen in eine eigene Zeile.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '„Nutzung von Drittanbieter-Servern zulassen“ muss aktiviert sein unter den “Serverlast”-Einstellungen, um diese Funktion zu nutzen.',
 	'ABBC3_INVALID_FONT'		=> 'Ungültiger Schriftname „%s“',
+	'ABBC3_FONT_CHECK_FAILED'	=> 'Die Google-Schriftart „%s“ konnte nicht überprüft werden. Überprüfen Sie die Serververbindung und versuchen Sie es erneut.',
 	'ABBC3_PIPES'				=> 'Aktiviere das „Pipe Table“-Plug-in.',
 	'ABBC3_PIPES_EXPLAIN'		=> 'Mit dem „Pipe Table“-Plug-in können Benutzer Tabellen in ihren Beiträgen und Privaten Nachrichten mit Hilfe der Markdown-Syntax erstellen.',
 	'ABBC3_BBCODE_BAR'			=> 'Aktiviere die BBCode-Menüleiste',
@@ -41,10 +42,8 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTO_VIDEO_EXPLAIN'	=> 'Dieses PlugIn konvertiert plain-text Videodatei-URLs in abspielbare Videos. Nur URLs, welche mit <samp class="error">http://</samp> or <samp class="error">https://</samp> beginnen, und mit <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> oder <samp class="error">.webm</samp> enden, werden konvertiert.',
 	'ABBC3_BBVIDEO'				=> 'BBVideo',
 	'ABBC3_BBVIDEO_EXPLAIN'		=> 'Installiere die optionale Erweiterung „phpBB Media Embed“, um auf Einstellungen und Verwaltungsoptionen für eingebettete Rich Media-Inhalte zuzugreifen.',
-	'ABBC3_MEDIA_EMBED_INSTALL'	=> [
-		0	=> 'phpBB Media Embed-Erweiterung ist nicht installiert. %2$s.',
-		1	=> 'phpBB Media Embed-Erweiterung ist installiert. Auf die Einstellungen kann über den Tab „Beiträge“ zugegriffen werden.'
-	],
+	'ABBC3_MEDIA_EMBED_NOT_INSTALLED'	=> 'phpBB Media Embed-Erweiterung ist nicht installiert. %s.',
+	'ABBC3_MEDIA_EMBED_INSTALLED'		=> 'phpBB Media Embed-Erweiterung ist installiert. Auf die Einstellungen kann über den Tab „Beiträge“ zugegriffen werden.',
 	'PNG' => 'PNG',
 	'SVG' => 'SVG',
 ));
