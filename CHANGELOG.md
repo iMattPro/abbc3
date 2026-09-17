@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.3.12 - 2026-08-22
+
+- Improved Google Font validation when saving ACP settings:
+  - All submitted names are normalised and checked locally before remote validation.
+  - Fonts are verified against the Google Fonts CSS2 endpoint with bounded timeout and redirect handling.
+  - Existing font settings are preserved if any submitted font is invalid or Google Fonts cannot be reached.
+  - Unchanged font settings no longer trigger unnecessary remote requests.
+  - Connection failures now show a distinct message instead of reporting a valid font as invalid.
+- Updated the ACP icon-type selector for compatibility with both phpBB 3 and phpBB 4 configuration menu formats.
+- Removed a redundant database query when disabling ABBC3 BBCodes during extension cleanup.
+
 ## 3.3.11 - 2026-07-05
 
 - In the ABBC3 BBCode toolbar, the **Font Size** BBCode is now a stylized drop-menu that matches the **Fonts** font-family BBCode drop-menu.
