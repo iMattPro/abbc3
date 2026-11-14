@@ -15,6 +15,20 @@ var bbwizard;
 
 	const fadeTime = 180;
 
+	const hasAncestorFontColor = (element) => {
+		let ancestor = element.parentElement;
+
+		while (ancestor) {
+			if (ancestor.tagName === 'SPAN' && !ancestor.classList.contains('abbc3-highlight') && ancestor.style.color) {
+				return true;
+			}
+
+			ancestor = ancestor.parentElement;
+		}
+
+		return false;
+	};
+
 	const isVisible = (element) => !!(element && (element.offsetWidth || element.offsetHeight || element.getClientRects().length));
 
 	const fade = (element, show) => {
@@ -157,6 +171,10 @@ var bbwizard;
 
 		// Dynamically adjust highlight bbcode's text color
 		document.querySelectorAll('.abbc3-highlight').forEach(highlight => {
+			if (hasAncestorFontColor(highlight)) {
+				return;
+			}
+
 			const rgb = window.getComputedStyle(highlight).backgroundColor.match(/\d+/g);
 			highlight.style.color = (rgb && (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 < 128) ? 'white' : 'black';
 		});
