@@ -67,9 +67,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'فایل‌های ویدیویی MP4/OGG/WEBM را جاسازی کنید: URL باید با <samp class="error">https</samp> یا <samp class="error">http</samp> شروع و به <samp class="error">.mp4</samp>، <samp class="error">.ogg</samp> یا <samp class="error">http</samp> ختم شود. توجه داشته باشید که پشتیبانی مرورگر و اجرای رابط کاربری گرافیکی متفاوت است.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'کپی متن انتخاب شده',
-	'ABBC3_PASTE_BBCODE'		=> 'چسباندن متن انتخاب شده',
-	'ABBC3_PASTE_ERROR'			=> 'شما باید ابتدا متنی را کپی کنید و بعد از ان بچسبانید',
 	'ABBC3_PLAIN_BBCODE'		=> 'همه بی بی کد ها را از متن حذف کنید',
 	'ABBC3_NOSELECT_ERROR'		=> 'متنی انتخاب نشد',
 

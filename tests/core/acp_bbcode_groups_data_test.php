@@ -16,9 +16,9 @@ class acp_bbcode_groups_data_test extends acp_base
 	{
 		return [
 			[[
-				'align=' 		=> '1',
-				'float=' 		=> '2,3',
-				'sup' 			=> '4,5,6',
+				'align=' 		=> [1],
+				'float=' 		=> [2, 3],
+				'sup' 			=> [4, 5, 6],
 			 ]],
 		];
 	}

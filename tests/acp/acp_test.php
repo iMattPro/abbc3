@@ -145,18 +145,33 @@ class acp_test extends \phpbb_database_test_case
 
 	public function test_main_display()
 	{
+		$expected = [
+			'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
+			'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
+			'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
+			'S_ABBC3_AUTO_VIDEO'	=> $this->config['abbc3_auto_video'],
+			'ABBC3_ICONS_TYPE'		=> $this->config['abbc3_icons_type'],
+			'S_ABBC3_GOOGLE_FONTS'	=> "Droid Sans\nRoboto",
+			'S_ABBC3_MEDIA_EMBED'	=> 0,
+			'ABBC3_AVAILABLE_ICONS'	=> [
+				'align', 'badge', 'bbvideo', 'blur', 'bold', 'code', 'copy', 'dir',
+				'dropshadow', 'fade', 'flash', 'float', 'fontcolor', 'glow', 'hidden',
+				'highlight', 'img', 'italic', 'listb', 'listitem', 'listo', 'marq',
+				'media', 'mod', 'nfo', 'offtopic', 'paste', 'pipes', 'plain', 'pre',
+				'quote', 's', 'shadow', 'soundcloud', 'spoil', 'sub', 'sup', 'table',
+				'underline', 'url', 'user',
+			],
+			'U_ACTION'				=> 'foo',
+		];
 		$this->template->expects(self::once())
 			->method('assign_vars')
-			->with([
-				'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
-				'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
-				'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
-				'S_ABBC3_AUTO_VIDEO'	=> $this->config['abbc3_auto_video'],
-				'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
-				'S_ABBC3_GOOGLE_FONTS'	=> "Droid Sans\nRoboto",
-				'S_ABBC3_MEDIA_EMBED'	=> 0,
-				'U_ACTION'				=> 'foo',
-			]);
+			->with(self::callback(static function ($actual) use ($expected) {
+				self::assertArrayHasKey('ABBC3_ICON_PATHS', $actual);
+				self::assertArrayHasKey('png', $actual['ABBC3_ICON_PATHS']);
+				self::assertArrayHasKey('svg', $actual['ABBC3_ICON_PATHS']);
+				unset($actual['ABBC3_ICON_PATHS']);
+				return $actual === $expected;
+			}));
 
 		$this->acp_controller
 			->set_u_action('foo')
@@ -169,7 +184,13 @@ class acp_test extends \phpbb_database_test_case
 
 		$this->request->expects(self::once())
 			->method('is_set_post')
-			->willReturn('submit');
+			->with('abbc3_save_scope')
+			->willReturn(true);
+		$this->request->method('variable')->willReturnMap([
+			['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'setting'],
+			['setting_name', '', false, \phpbb\request\request_interface::REQUEST, 'abbc3_bbcode_bar'],
+			['setting_value', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+		]);
 
 		$this->expectException('\RuntimeException');
 		$this->expectExceptionCode(E_USER_NOTICE);
@@ -184,13 +205,149 @@ class acp_test extends \phpbb_database_test_case
 
 		$this->request->expects(self::once())
 			->method('is_set_post')
-			->willReturn('submit');
+			->with('abbc3_save_scope')
+			->willReturn(true);
 
 		$this->expectException('\RuntimeException');
 		$this->expectExceptionCode(E_USER_WARNING);
 		$this->expectExceptionMessage($this->lang->lang('FORM_INVALID'));
 
 		$this->acp_controller->handle();
+	}
+
+	public function test_setting_scope_saves_only_requested_setting()
+	{
+		self::$valid_form = true;
+		$this->request->method('is_set_post')->willReturn(true);
+		$this->request->method('variable')->willReturnMap([
+			['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'setting'],
+			['setting_name', '', false, \phpbb\request\request_interface::REQUEST, 'abbc3_qr_bbcodes'],
+			['setting_value', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+		]);
+		$this->cache->expects(self::never())->method('destroy');
+
+		try
+		{
+			$this->acp_controller->handle();
+			self::fail('Expected autosave success response.');
+		}
+		catch (\RuntimeException $exception)
+		{
+			self::assertSame(E_USER_NOTICE, $exception->getCode());
+			self::assertSame(0, $this->config['abbc3_qr_bbcodes']);
+			self::assertSame(1, $this->config['abbc3_bbcode_bar']);
+		}
+	}
+
+	public function test_parser_setting_purges_parser_and_renderer_caches()
+	{
+		self::$valid_form = true;
+		$this->request->method('is_set_post')->willReturn(true);
+		$this->request->method('variable')->willReturnMap([
+			['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'setting'],
+			['setting_name', '', false, \phpbb\request\request_interface::REQUEST, 'abbc3_auto_video'],
+			['setting_value', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+		]);
+		$this->cache->expects(self::exactly(2))->method('destroy');
+
+		try
+		{
+			$this->acp_controller->handle();
+			self::fail('Expected autosave success response.');
+		}
+		catch (\RuntimeException $exception)
+		{
+			self::assertSame(E_USER_NOTICE, $exception->getCode());
+			self::assertSame(0, $this->config['abbc3_auto_video']);
+		}
+	}
+
+	public function test_pipes_setting_synchronizes_toolbar_visibility()
+	{
+		self::$valid_form = true;
+		$repository = $this->createMock('\vse\abbc3\core\toolbar_repository');
+		$repository->expects(self::once())->method('sync_visibility')->with(['pipes' => false]);
+		$this->cache->expects(self::exactly(2))->method('destroy');
+		$this->request->method('is_set_post')->willReturn(true);
+		$this->request->method('variable')->willReturnMap([
+			['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'setting'],
+			['setting_name', '', false, \phpbb\request\request_interface::REQUEST, 'abbc3_pipes'],
+			['setting_value', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+		]);
+		$controller = new \vse\abbc3\controller\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '', $repository);
+
+		try
+		{
+			$controller->handle();
+			self::fail('Expected autosave success response.');
+		}
+		catch (\RuntimeException $exception)
+		{
+			self::assertSame(E_USER_NOTICE, $exception->getCode());
+		}
+	}
+
+	public function test_toolbar_scope_saves_layout_with_current_feature_state()
+	{
+		self::$valid_form = true;
+		$repository = $this->createMock('\vse\abbc3\core\toolbar_repository');
+		$placements = [
+			'primary' => ['core:bold'],
+			'more' => ['action:plain'],
+			'hidden' => [],
+		];
+		$icons = ['core:bold' => 'bold'];
+		$repository->expects(self::once())->method('save_layout')->with($placements, $icons, ['pipes' => true]);
+		$this->request->method('is_set_post')->willReturn(true);
+		$this->request->method('variable')->willReturnMap([
+			['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'toolbar'],
+			['toolbar_primary', [0 => ''], false, \phpbb\request\request_interface::REQUEST, $placements['primary']],
+			['toolbar_more', [0 => ''], false, \phpbb\request\request_interface::REQUEST, $placements['more']],
+			['toolbar_hidden', [0 => ''], false, \phpbb\request\request_interface::REQUEST, $placements['hidden']],
+			['toolbar_icon', ['' => ''], false, \phpbb\request\request_interface::REQUEST, $icons],
+		]);
+		$controller = new \vse\abbc3\controller\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '', $repository);
+
+		try
+		{
+			$controller->handle();
+			self::fail('Expected autosave success response.');
+		}
+		catch (\RuntimeException $exception)
+		{
+			self::assertSame(E_USER_NOTICE, $exception->getCode());
+		}
+	}
+
+	/**
+	 * @dataProvider invalid_autosave_data
+	 */
+	public function test_invalid_autosave_request_is_rejected($scope, $name, $value)
+	{
+		self::$valid_form = true;
+		$this->request->method('is_set_post')->willReturn(true);
+		$this->request->method('variable')->willReturnCallback(static function ($variable, $default) use ($scope, $name, $value) {
+			return [
+				'abbc3_save_scope' => $scope,
+				'setting_name' => $name,
+				'setting_value' => $value,
+			][$variable] ?? $default;
+		});
+
+		$this->expectException('\RuntimeException');
+		$this->expectExceptionCode(E_USER_WARNING);
+		$this->expectExceptionMessage($this->lang->lang('FORM_INVALID'));
+		$this->acp_controller->handle();
+	}
+
+	public function invalid_autosave_data()
+	{
+		return [
+			['unknown', '', ''],
+			['setting', 'unknown_setting', '1'],
+			['setting', 'abbc3_icons_type', 'gif'],
+			['setting', 'abbc3_bbcode_bar', 2],
+		];
 	}
 
 	public function save_google_fonts_data()
@@ -218,18 +375,12 @@ class acp_test extends \phpbb_database_test_case
 	{
 		self::$valid_form = true;
 
-		$this->request->expects(self::once())
-			->method('is_set_post')
-			->willReturn('submit');
+		$this->request->method('is_set_post')->willReturn(true);
 
-		$this->request->expects(self::exactly(6))
+		$this->request->expects(self::exactly(2))
 			->method('variable')
 			->willReturnMap([
-				['abbc3_bbcode_bar', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-				['abbc3_qr_bbcodes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-				['abbc3_auto_video', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-				['abbc3_icons_type', 'png', false, \phpbb\request\request_interface::REQUEST, 'png'],
-				['abbc3_pipes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+				['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'fonts'],
 				['abbc3_google_fonts', '', false, \phpbb\request\request_interface::REQUEST, $input],
 			]);
 
@@ -307,13 +458,9 @@ class acp_test extends \phpbb_database_test_case
 	{
 		self::$valid_form = true;
 
-		$this->request->method('is_set_post')->willReturn('submit');
+		$this->request->method('is_set_post')->willReturn(true);
 		$this->request->method('variable')->willReturnMap([
-			['abbc3_bbcode_bar', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-			['abbc3_qr_bbcodes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-			['abbc3_auto_video', 0, false, \phpbb\request\request_interface::REQUEST, 0],
-			['abbc3_icons_type', 'png', false, \phpbb\request\request_interface::REQUEST, 'png'],
-			['abbc3_pipes', 0, false, \phpbb\request\request_interface::REQUEST, 0],
+			['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'fonts'],
 			['abbc3_google_fonts', '', false, \phpbb\request\request_interface::REQUEST, $fonts],
 		]);
 

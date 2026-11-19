@@ -20,7 +20,7 @@ Install Advanced BBCode Box today and unlock a world of enhanced formatting poss
 * Supports phpBB’s custom BBCodes.
 * New BBCodes:
 
-		Copy, Paste, Plain, Font Family, Highlight text, Strike through text,
+		Plain, Font Family, Highlight text, Strike through text,
 		Superscript, Subscript, Glow text, Shadow text, Dropshadow text, Blur
 		text, Fade In/Out, Align (Left, Right Center, Justify), Float (Left,
 		Right), LTR/RTL Direction, Preformatted text, Marquee scroll, Spoiler,
@@ -29,8 +29,8 @@ Install Advanced BBCode Box today and unlock a world of enhanced formatting poss
 * Multiple languages supported. View the pre-installed [localizations](https://github.com/iMattPro/abbc3/tree/master/language).
 
 ## Minimum Requirements
-* phpBB 3.2.2 or higher
-* PHP 7 or higher
+* phpBB 3.3.x
+* PHP 7.2 or higher
 
 ## Install
 * Get [the latest release](https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/) at phpBB.com.

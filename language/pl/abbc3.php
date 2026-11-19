@@ -66,9 +66,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Osadź pliki wideo MP4/OGG/WEBM: URL musi zaczynać się od <samp class="error">https</samp> lub <samp class="error">http</samp> i kończyć na <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> lub <samp class="error">.webm</samp> (nie wymaga BBCode). Wsparcie przeglądarek i interfejs mogą się różnić.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Kopiuj zaznaczony tekst',
-	'ABBC3_PASTE_BBCODE'		=> 'Wklej skopiowany tekst',
-	'ABBC3_PASTE_ERROR'			=> 'Najpierw musisz skopiować zaznaczony tekst, aby go wkleić.',
 	'ABBC3_PLAIN_BBCODE'		=> 'Usuń wszystkie tagi BBCode z zaznaczonego tekstu',
 	'ABBC3_NOSELECT_ERROR'		=> 'Nie zaznaczono żadnego tekstu.',
 

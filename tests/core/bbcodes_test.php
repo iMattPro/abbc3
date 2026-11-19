@@ -193,6 +193,9 @@ class bbcodes_test extends \phpbb_database_test_case
 		// for full coverage of load_memberships()
 		foreach ($data as $key => $bbcode_data)
 		{
+			$tag = rtrim($bbcode_data['bbcode_tag'], '=');
+			$expected[$key]['ABBC3_OPEN'] = '[' . $bbcode_data['bbcode_tag'] . ']';
+			$expected[$key]['ABBC3_CLOSE'] = '[/' . $tag . ']';
 			self::assertEquals($expected[$key], $bbcodes_manager->display_custom_bbcodes($custom_tags, $bbcode_data));
 		}
 	}

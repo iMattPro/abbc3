@@ -66,9 +66,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Upota MP4/OGG/WEBM-videotiedostoja: URL-osoitteen on alettava <samp class="error">https</samp>- tai <samp class="error">http</samp>-alkuisena ja päätyttävä tunnisteeseen <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> tai <samp class="error">.webm</samp> (BBCodea ei tarvita). Selainten tuki ja käyttöliittymät vaihtelevat.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Kopioi valittu teksti',
-	'ABBC3_PASTE_BBCODE'		=> 'Liitä valittu teksti',
-	'ABBC3_PASTE_ERROR'			=> 'Sinun pitää ensin kopioida tekstiä ennen sen liittämistä',
 	'ABBC3_PLAIN_BBCODE'		=> 'Poista kaikki BBCodet valitusta tekstistä',
 	'ABBC3_NOSELECT_ERROR'		=> 'Tekstiä ei ollut valittuna.',
 

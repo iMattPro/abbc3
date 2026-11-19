@@ -26,8 +26,8 @@ class custom_bbcode_modify_sql_test extends listener_base
 					'ORDER_BY'	=> '',
 				],
 				[
-					'SELECT'	=> ', b.bbcode_group',
-					'ORDER_BY'	=> 'b.bbcode_order, b.bbcode_id',
+					'SELECT'	=> '',
+					'ORDER_BY'	=> 'b.bbcode_id',
 				],
 			],
 			[
@@ -38,10 +38,10 @@ class custom_bbcode_modify_sql_test extends listener_base
 					'ORDER_BY'	=> 'b.bbcode_tag',
 				],
 				[
-					'SELECT'	=> 'b.bbcode_id, b.bbcode_tag, b.bbcode_helpline, b.bbcode_group',
+					'SELECT'	=> 'b.bbcode_id, b.bbcode_tag, b.bbcode_helpline',
 					'FROM'		=> [BBCODES_TABLE => 'b'],
 					'WHERE'		=> 'b.display_on_posting = 1',
-					'ORDER_BY'	=> 'b.bbcode_order, b.bbcode_id',
+					'ORDER_BY'	=> 'b.bbcode_id',
 				],
 			],
 		];

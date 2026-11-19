@@ -225,6 +225,7 @@ class bbcodes_installer extends acp_manager
 		$sql = 'DELETE FROM ' . BBCODES_TABLE . '
 			WHERE ' . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), first_pass_match) = N' : 'first_pass_match = ') . "'" . $this->db->sql_escape($bbcode_data['first_pass_match']) . "'
 				AND " . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), first_pass_replace) = N' : 'first_pass_replace = ') . "'" . $this->db->sql_escape($bbcode_data['first_pass_replace']) . "'
+				AND " . ($is_mssql ? 'CONVERT(NVARCHAR(MAX), bbcode_tpl) = N' : 'bbcode_tpl = ') . "'" . $this->db->sql_escape($bbcode_data['bbcode_tpl']) . "'
 				AND bbcode_id = " . (int) $bbcode_id;
 
 		$this->db->sql_query($sql);

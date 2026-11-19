@@ -1,155 +1,43 @@
-/* Hide native phpbb BBCode buttons */
-#imgurAnchor, /* flat boots */
-#format-buttons,
-#core-bbcode-buttons,
-#custom-bbcode-buttons {
+.abbc3-editor--ready #format-buttons,
+.abbc3-editor--ready #core-bbcode-buttons,
+.abbc3-editor--ready #custom-bbcode-buttons {
 	display: none;
 }
 
-/* ABBC3 BBCode buttons */
-#abbc3_buttons {
-	margin: 15px 0 2px;
-}
-
-#abbc3_buttons select {
-	vertical-align: middle;
-	background-color: #ffffff;
-	border: 1px solid #b4bac0;
-	color: #000000;
-	height: 24px;
-	margin: 4px;
-	padding: 0;
-}
-
-.abbc3_button {
-	font-size: 11px;
-	text-align: center;
-	vertical-align: middle;
-	white-space: nowrap;
-	background: transparent no-repeat center;
-	background-size: 20px;
-	border: 1px solid transparent;
-	display: inline-block;
-	min-width: 24px;
-	height: 24px;
-	margin: 4px 0;
-	padding: 0;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.abbc3_button:hover {
-	background-color: #ffffff;
-	border: 1px solid #b4bac0;
-	cursor: pointer;
-}
-
-.abbc3_buttons_row {
-	text-align: left;
-	background: #f9fbfd;
-	background: -moz-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9fbfd), color-stop(100%, #d9dde2));
-	background: -webkit-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
-	background: -o-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
-	background: -ms-linear-gradient(top, #f9fbfd 0%, #d9dde2 100%);
-	background: linear-gradient(to bottom, #f9fbfd 0%, #d9dde2 100%);
-	border: 1px solid #b4bac0;
-	display: block;
-	box-sizing: border-box;
-	width: 80%;
-	min-height: 30px;
-	margin: 0;
-	padding: 0 2px;
-}
-
-.abbc3_buttons_row_legacy {
-	box-sizing: content-box;
-}
-
-/* force buttons row margin to 0 */
-fieldset div.abbc3_buttons_row {
-	margin: 0;
-}
-
-.rtl .abbc3_buttons_row {
-	text-align: right;
-}
-
-/* tweaks for subsilver styles */
-form td .abbc3_buttons_row {
-	width: 98%;
-}
-
-/* tweaks for ACP bbcode editor */
-#main #abbc3_buttons {
-	margin-left: 96px;
-}
-
-#main #abbc3_buttons .abbc3_buttons_row {
-	box-sizing: content-box;
-	width: 95%;
-}
-
-/* tweaks for dropdown bbcode menus */
-.abbc3_dropdown_menu_btn {
-	display: inline-block;
-	vertical-align: middle;
-}
-
-fieldset.fields1 .abbc3_dropdown_menu_btn {
-	margin-bottom: 0;
-}
-
-.abbc3_dropdown_menu_btn .dropdown-contents {
-	font-size: 13px;
-	max-height: none;
-	margin-top: 1px;
-}
-
-.abbc3_dropdown_menu_btn .dropdown-contents .abbc3_dropdown_menu_item,
-.abbc3_dropdown_menu_btn .dropdown-contents .abbc3_dropdown_menu_disabled {
-	margin: 0;
-	padding-top: 3px;
-	padding-right: 3px;
-	padding-bottom: 3px;
-}
-
-.abbc3_dropdown_menu_item:hover {
-	color: #ff4500;
-	cursor: pointer;
-}
-
-.abbc3_dropdown_menu_disabled {
-	opacity: 0.6;
-	pointer-events: none;
-}
-
-/* BBCode wizard */
-#bbcode_wizard {
-	font-size: 0.625rem;
-	background: #ffffff;
-	border: 5px solid #12a3eb;
-	border-radius: 11px;
-	box-shadow: 2px 2px 4px #555555;
+.abbc3-wizard {
+	font-size: 0.75rem;
+	color: #333;
+	background: #fff;
+	border: 4px solid #12a3eb;
+	border-radius: 0.5rem;
+	box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.45);
 	position: fixed;
 	z-index: 500;
-	top: 50%;
-	left: 50%;
-	display: none;
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
 	box-sizing: border-box;
-	width: 100%;
-	max-width: 500px;
-	padding: 5px;
-	transform: translateX(-50%) translateY(-50%);
+	width: min(500px, calc(100vw - 2rem));
+	max-height: calc(100vh - 2rem);
+	overflow: auto;
+	padding: 0.5rem;
+	transform: translate(-50%, -50%);
 }
 
-/* responsive design */
-@media screen and (max-width: 700px) {
-	.abbc3_buttons_row {
-		width: auto;
+.abbc3-wizard[hidden] {
+	display: none;
+}
+
+.abbc3-darken {
+	display: block !important;
+}
+
+.rtl .abbc3-wizard {
+	transform: translate(50%, -50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.abbc3-wizard {
+		scroll-behavior: auto !important;
+		transition: none !important;
 	}
 }

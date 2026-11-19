@@ -18,13 +18,14 @@ class load_google_fonts_test extends listener_base
 	public function load_google_fonts_data()
 	{
 		return [
-			['', null],
-			[null, null],
-			[false, null],
-			['foo', null],
+			['', []],
+			[null, []],
+			[false, []],
+			['foo', []],
 			['[]', []],
-			['[""]', [""]],
+			['[""]', []],
 			['["Droid Sans","Roboto","Shizuru"]', ["Droid Sans","Roboto","Shizuru"]],
+			['["Roboto"," Droid Sans ","Roboto",""]', ["Droid Sans","Roboto"]],
 		];
 	}
 

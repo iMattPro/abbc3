@@ -1,98 +1,122 @@
 {% include 'overall_header.html' %}
 {% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
+{% INCLUDECSS '@vse_abbc3/abbc3_toolbar.css' %}
 
 {% set links = {
-	'faq': {
-		'url': 'https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551',
-		'text': lang('FAQ')
-	},
-	'media_embed': {
-		'url': 'https://www.phpbb.com/customise/db/extension/mediaembed/',
-		'text': lang('DOWNLOAD')
-	}
+	'faq': {'url': 'https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551', 'text': lang('FAQ')},
+	'media_embed': {'url': 'https://www.phpbb.com/customise/db/extension/mediaembed/', 'text': lang('DOWNLOAD')}
 } %}
 
 {% macro external_link(url, text) -%}
-	<a href="{{ url }}" target="_blank" rel="noopener noreferrer">
-		<i class="icon fa-external-link fa-fw" aria-hidden="true"></i>
-		{{ text -}}
-	</a>
+	<a href="{{ url }}" target="_blank" rel="noopener noreferrer"><i class="icon fa-external-link fa-fw" aria-hidden="true"></i>{{ text }}</a>
 {%- endmacro %}
 
 <img src="{{ ROOT_PATH }}ext/vse/abbc3/adm/images/abbc3logo.png" alt="{{ lang('ACP_ABBC3_MODULE') }}">
 <p>{{ lang('ABBC3_SETTINGS_EXPLAIN', _self.external_link(links.faq.url, links.faq.text)) }}</p>
 
-<form id="abbc3_settings" method="post" action="{{ U_ACTION }}" data-ajax="true">
-	<fieldset>
+<noscript><div class="errorbox"><h3>{{ lang('ERROR') }}</h3><p>{{ lang('ABBC3_JAVASCRIPT_REQUIRED') }}</p></div></noscript>
+
+<form id="abbc3_settings" method="post" action="{{ U_ACTION }}"
+	data-status-saving="{{ lang('ABBC3_AUTOSAVE_SAVING') }}"
+	data-status-saved="{{ lang('ABBC3_AUTOSAVE_SAVED') }}"
+	data-status-error="{{ lang('ABBC3_AUTOSAVE_ERROR') }}">
+	<fieldset data-abbc3-editable disabled>
 		<legend>{{ lang('ABBC3_LEGEND_ICON_BAR') }}</legend>
-		<dl>
-			<dt><label for="abbc3_bbcode_bar">{{ lang('ABBC3_BBCODE_BAR') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_BBCODE_BAR_EXPLAIN') }}</span></dt>
-			<dd><label><input type="radio" class="radio" name="abbc3_bbcode_bar" id="abbc3_bbcode_bar" value="1"{% if S_ABBC3_BBCODE_BAR %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="abbc3_bbcode_bar" value="0"{% if not S_ABBC3_BBCODE_BAR %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
-		</dl>
-		<dl>
-			<dt><label for="abbc3_icons_type">{{ lang('ABBC3_ICONS_TYPE') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</span></dt>
-			<dd>
-				<select name="abbc3_icons_type" id="abbc3_icons_type">
-					{% if S_ABBC3_ICONS_TYPE is iterable %}
-						{% for item in S_ABBC3_ICONS_TYPE %}
-							<option value="{{ item.value }}"{% if item.selected %} selected="selected"{% endif %}>{{ item.label }}</option>
+		<div class="abbc3-toolbar-options">
+			<div class="abbc3-setting-card">
+				<span><strong>{{ lang('ABBC3_BBCODE_BAR') }}</strong><small>{{ lang('ABBC3_BBCODE_BAR_EXPLAIN') }}</small></span>
+				<label class="abbc3-switch" for="abbc3_bbcode_bar">
+					<input type="checkbox" name="abbc3_bbcode_bar" id="abbc3_bbcode_bar" value="1" data-autosave-setting{% if S_ABBC3_BBCODE_BAR %} checked{% endif %}>
+					<span aria-hidden="true"></span><span class="sr-only">{{ lang('ABBC3_BBCODE_BAR') }}</span>
+				</label>
+			</div>
+			<div class="abbc3-setting-card">
+				<span><strong>{{ lang('ABBC3_QR_BBCODES') }}</strong><small>{{ lang('ABBC3_QR_BBCODES_EXPLAIN') }}</small></span>
+				<label class="abbc3-switch" for="abbc3_qr_bbcodes">
+					<input type="checkbox" name="abbc3_qr_bbcodes" id="abbc3_qr_bbcodes" value="1" data-autosave-setting{% if S_ABBC3_QR_BBCODES %} checked{% endif %}>
+					<span aria-hidden="true"></span><span class="sr-only">{{ lang('ABBC3_QR_BBCODES') }}</span>
+				</label>
+			</div>
+		</div>
+
+		<div class="abbc3-toolbar-disabled" data-toolbar-disabled{% if S_ABBC3_BBCODE_BAR %} hidden{% endif %}>{{ lang('ABBC3_TOOLBAR_DISABLED') }}</div>
+
+		<div class="abbc3-live-preview" data-abbc3-live-preview>
+			<div class="abbc3-live-preview__header">
+				<strong class="abbc3-live-preview__title">{{ lang('ABBC3_LIVE_PREVIEW') }}</strong>
+				<div class="abbc3-live-preview__actions">
+					<span class="abbc3-autosave-status" data-autosave-status role="status" aria-live="polite" hidden><span data-autosave-message></span><button type="button" data-autosave-retry hidden>{{ lang('ABBC3_AUTOSAVE_RETRY') }}</button></span>
+					<span class="abbc3-format-picker" role="group" aria-label="{{ lang('ABBC3_ICONS_TYPE') }}">
+						<label><input type="radio" name="abbc3_icons_type" value="png" data-autosave-setting{% if ABBC3_ICONS_TYPE == 'png' %} checked{% endif %}><span>PNG</span></label>
+						<label><input type="radio" name="abbc3_icons_type" value="svg" data-autosave-setting{% if ABBC3_ICONS_TYPE == 'svg' %} checked{% endif %}><span>SVG</span></label>
+					</span>
+				</div>
+			</div>
+			<p class="abbc3-live-preview__hint">{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</p>
+			<div class="abbc3-toolbar abbc3-toolbar--preview">
+				<div class="abbc3-toolbar__surface" data-preview-primary role="toolbar" aria-label="{{ lang('ABBC3_LIVE_PREVIEW') }}">
+					<button type="button" class="abbc3-more__trigger" data-preview-more-toggle aria-expanded="false" title="{{ lang('ABBC3_MORE_BUTTONS_SHOW') }}" data-title-show="{{ lang('ABBC3_MORE_BUTTONS_SHOW') }}" data-title-hide="{{ lang('ABBC3_MORE_BUTTONS_HIDE') }}"><span>{{ lang('ABBC3_MORE_BUTTONS') }}</span><span class="abbc3-more__chevron" aria-hidden="true">⌄</span></button>
+				</div>
+				<div class="abbc3-more__tray" data-preview-more role="group" aria-label="{{ lang('ABBC3_MORE_BUTTONS') }}" hidden></div>
+			</div>
+		</div>
+
+		<h2 class="abbc3-composer-title">{{ lang('ABBC3_TOOLBAR_COMPOSER') }}</h2>
+		<p>{{ lang('ABBC3_TOOLBAR_COMPOSER_EXPLAIN') }}</p>
+
+		<div class="abbc3-inspector" data-abbc3-inspector hidden>
+			<div class="abbc3-inspector__identity"><span class="abbc3-inspector__icon" data-inspector-icon aria-hidden="true"></span><span><strong data-inspector-label></strong><small data-inspector-tag></small></span></div>
+			<label><span>{{ lang('ABBC3_ICON') }}</span><select data-inspector-icon-select>{% for icon in ABBC3_AVAILABLE_ICONS %}<option value="{{ icon }}" data-icon-png="{{ ROOT_PATH ~ attribute(ABBC3_ICON_PATHS.png, icon)|default('') }}" data-icon-svg="{{ ROOT_PATH ~ attribute(ABBC3_ICON_PATHS.svg, icon)|default('') }}">{{ icon }}</option>{% endfor %}</select></label>
+			<label><span>{{ lang('ABBC3_PLACEMENT') }}</span><select data-inspector-placement><option value="primary">{{ lang('ABBC3_TOOLBAR_PRIMARY') }}</option><option value="more">{{ lang('ABBC3_TOOLBAR_MORE') }}</option><option value="hidden">{{ lang('ABBC3_TOOLBAR_HIDDEN') }}</option></select></label>
+			<span class="abbc3-inspector__order"><button type="button" data-inspector-move="up">↑ {{ lang('MOVE_UP') }}</button><button type="button" data-inspector-move="down">↓ {{ lang('MOVE_DOWN') }}</button></span>
+		</div>
+
+		<div class="abbc3-composer" data-abbc3-composer>
+			{% for placement in ['primary', 'more', 'hidden'] %}
+				<section class="abbc3-composer-column" data-composer-column data-placement="{{ placement }}">
+					<h3>{{ lang('ABBC3_TOOLBAR_' ~ placement|upper) }} <span class="abbc3-column-count" data-column-count></span></h3>
+					<ul class="abbc3-composer-list" data-composer-list>
+						{% set rows = attribute(_context, 'toolbar_' ~ placement) %}
+						{% for button in rows %}
+							{% set icon_path = attribute(attribute(ABBC3_ICON_PATHS, ABBC3_ICONS_TYPE), button.ICON)|default('') %}
+							<li class="abbc3-composer-item" data-key="{{ button.KEY }}" data-type="{{ button.TYPE }}" data-name="{{ button.NAME }}" data-label="{{ lang(button.LABEL) }}">
+								<button type="button" class="abbc3-drag" data-drag-handle aria-label="{{ lang('ABBC3_DRAG_BUTTON', lang(button.LABEL)) }}">⠿</button>
+								<button type="button" class="abbc3-item-select" data-item-select aria-pressed="false" title="{{ lang(button.LABEL) }}"><span class="abbc3-item-icon" data-item-icon aria-hidden="true">{% if button.TYPE == 'size' or button.NAME == 'font' %}<span>Aa</span>{% elseif icon_path %}<img src="{{ ROOT_PATH ~ icon_path }}" alt="">{% else %}<span>{{ button.NAME|slice(0, 2) }}</span>{% endif %}</span><span class="abbc3-item-meta"><strong>[{{ button.NAME }}]</strong></span></button>
+								<input type="hidden" name="toolbar_{{ placement }}[]" value="{{ button.KEY }}" data-toolbar-key>
+								<input type="hidden" name="toolbar_icon[{{ button.KEY }}]" value="{{ button.ICON }}" data-icon-value>
+							</li>
 						{% endfor %}
-					{% else %}
-						{{ S_ABBC3_ICONS_TYPE }}
-					{% endif %}
-				</select>
-				{% for ext in ['png', 'svg'] %}
-					<div class="abbc3-bar abbc3-icons-{{ ext }} hidden">
-						{% for button in ['bold', 'italic', 'underline', 'quote', 'code', 'listb', 'listo', 'listitem', 'img', 'url', 'fontcolor'] %}
-							<span style="background-image:url('{{ ROOT_PATH }}ext/vse/abbc3/images/icons/{{ button }}.{{ ext }}')"></span>
-						{% endfor %}
-					</div>
-				{% endfor %}
-			</dd>
-		</dl>
+					</ul>
+				</section>
+			{% endfor %}
+		</div>
 	</fieldset>
-	<fieldset>
+
+	<fieldset data-abbc3-editable disabled>
 		<legend>{{ lang('ABBC3_LEGEND_ADD_ONS') }}</legend>
 		<dl>
-			<dt><label for="abbc3_qr_bbcodes">{{ lang('ABBC3_QR_BBCODES') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_QR_BBCODES_EXPLAIN') }}</span></dt>
-			<dd><label><input type="radio" class="radio" name="abbc3_qr_bbcodes" id="abbc3_qr_bbcodes" value="1"{% if S_ABBC3_QR_BBCODES %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="abbc3_qr_bbcodes" value="0"{% if not S_ABBC3_QR_BBCODES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
+			<dt><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br><br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</span></dt>
+			<dd><textarea id="abbc3_google_fonts" cols="40" rows="8" name="abbc3_google_fonts" placeholder="Roboto&#10;Droid Sans&#10;Noto Sans JP" data-autosave-fonts>{{ S_ABBC3_GOOGLE_FONTS }}</textarea></dd>
 		</dl>
 		<dl>
 			<dt><label for="abbc3_pipes">{{ lang('ABBC3_PIPES') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_PIPES_EXPLAIN') }}</span></dt>
-			<dd><label><input type="radio" class="radio" name="abbc3_pipes" id="abbc3_pipes" value="1"{% if S_ABBC3_PIPES %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="abbc3_pipes" value="0"{% if not S_ABBC3_PIPES %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
+			<dd><label class="abbc3-switch" for="abbc3_pipes"><input type="checkbox" name="abbc3_pipes" id="abbc3_pipes" value="1" data-autosave-setting{% if S_ABBC3_PIPES %} checked{% endif %}><span aria-hidden="true"></span><span class="sr-only">{{ lang('ABBC3_PIPES') }}</span></label></dd>
 		</dl>
 		<dl>
 			<dt><label for="abbc3_auto_video">{{ lang('ABBC3_AUTO_VIDEO') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_AUTO_VIDEO_EXPLAIN') }}</span></dt>
-			<dd><label><input type="radio" class="radio" name="abbc3_auto_video" id="abbc3_auto_video" value="1"{% if S_ABBC3_AUTO_VIDEO %} checked="checked"{% endif %}> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="abbc3_auto_video" value="0"{% if not S_ABBC3_AUTO_VIDEO %} checked="checked"{% endif %}> {{ lang('NO') }}</label></dd>
+			<dd><label class="abbc3-switch" for="abbc3_auto_video"><input type="checkbox" name="abbc3_auto_video" id="abbc3_auto_video" value="1" data-autosave-setting{% if S_ABBC3_AUTO_VIDEO %} checked{% endif %}><span aria-hidden="true"></span><span class="sr-only">{{ lang('ABBC3_AUTO_VIDEO') }}</span></label></dd>
 		</dl>
 		<dl>
-			<dt><label>{{ lang('ABBC3_BBVIDEO') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_BBVIDEO_EXPLAIN') }}</span></dt>
+			<dt><span class="abbc3-label">{{ lang('ABBC3_BBVIDEO') ~ lang('COLON') }}</span><br><span>{{ lang('ABBC3_BBVIDEO_EXPLAIN') }}</span></dt>
 			<dd><span class="{{ S_ABBC3_MEDIA_EMBED ? 'success' : 'error' }}">{{ S_ABBC3_MEDIA_EMBED ? lang('ABBC3_MEDIA_EMBED_INSTALLED') : lang('ABBC3_MEDIA_EMBED_NOT_INSTALLED', _self.external_link(links.media_embed.url, links.media_embed.text)) }}</span></dd>
 		</dl>
-		<dl>
-			<dt><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') ~ lang('COLON') }}</label><br><span>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br><br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</span></dt>
-			<dd><textarea id="abbc3_google_fonts" cols="40" rows="8" name="abbc3_google_fonts" placeholder="Roboto&#10;Droid Sans&#10;Noto Sans JP">{{ S_ABBC3_GOOGLE_FONTS }}</textarea></dd>
-		</dl>
 	</fieldset>
-	<fieldset class="submit-buttons">
-		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
-		<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}">
-		{{ S_FORM_TOKEN }}
-	</fieldset>
+
+	<input type="hidden" name="abbc3_save_scope" value="">
+	<input type="hidden" name="setting_name" value="">
+	<input type="hidden" name="setting_value" value="">
+	{{ S_FORM_TOKEN }}
 </form>
 
-<script>
-	const select = document.querySelector("select[name='abbc3_icons_type']");
-	document.querySelector(".abbc3-icons-" + select.value).classList.toggle("hidden");
-	select.addEventListener("change", () => {
-		for (const bar of document.querySelectorAll(".abbc3-bar")) {
-			bar.classList.toggle("hidden");
-		}
-	});
-</script>
-
+{% INCLUDEJS '@vse_abbc3/acp_abbc3_toolbar.js' %}
 {% include 'overall_footer.html' %}

@@ -67,9 +67,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> '嵌入 MP4/OGG/WEBM 视频文件： URL 网址必须以 <samp class="error">https</samp> 开头，或者 <samp class="error">http</samp> 并且以 <samp class="error">.mp4</samp>，<samp class="error">.ogg</samp> 或者 <samp class="error">.webm</samp> (不需要 BBCode )结尾。需要注意的是，浏览器支持和图形用户界面的实现方式各不相同',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> '复制',
-	'ABBC3_PASTE_BBCODE'		=> '粘帖',
-	'ABBC3_PASTE_ERROR'			=> '你必须先复制文字才能粘帖',
 	'ABBC3_PLAIN_BBCODE'		=> '移除 BBCode 代码',
 	'ABBC3_NOSELECT_ERROR'		=> '未选择文字',
 

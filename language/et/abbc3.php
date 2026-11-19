@@ -67,9 +67,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Manusta MP4/OGG/WEBM videofaile: URL peab algama <samp class="error">https</samp> või <samp class="error">http</samp> ning lõppema <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> või <samp class="error">.webm</samp> (BBCode pole vajalik). Brauserite tugi ja kasutajaliides võivad erineda.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Kopeeri valitud tekst',
-	'ABBC3_PASTE_BBCODE'		=> 'Kleebi kopeeritud tekst',
-	'ABBC3_PASTE_ERROR'			=> 'Sa pead esmalt kopeerima valitud teksti ja siis alles kleepima',
 	'ABBC3_PLAIN_BBCODE'		=> 'Eemalda kõik BBkoodi märgendid valitud tekstist',
 	'ABBC3_NOSELECT_ERROR'		=> 'Teksti ei valitud.',
 

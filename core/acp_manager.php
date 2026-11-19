@@ -12,10 +12,8 @@ namespace vse\abbc3\core;
 
 use phpbb\db\driver\driver_interface;
 use phpbb\group\helper;
-use phpbb\json_response;
 use phpbb\language\language;
 use phpbb\request\request;
-use vse\abbc3\ext;
 
 /**
  * ABBC3 ACP manager class
@@ -34,6 +32,9 @@ class acp_manager
 	/** @var request */
 	protected $request;
 
+	/** @var toolbar_repository */
+	protected $toolbar_repository;
+
 	/**
 	 * Constructor
 	 *
@@ -43,105 +44,13 @@ class acp_manager
 	 * @param request          $request
 	 * @access public
 	 */
-	public function __construct(driver_interface $db, helper $group_helper, language $language, request $request)
+	public function __construct(driver_interface $db, helper $group_helper, language $language, request $request, toolbar_repository $toolbar_repository = null)
 	{
 		$this->db = $db;
 		$this->group_helper = $group_helper;
 		$this->language = $language;
 		$this->request = $request;
-	}
-
-	/**
-	 * Update BBCode order fields in the db on move up/down
-	 *
-	 * @param string $action The action move_up|move_down
-	 * @access public
-	 */
-	public function move($action)
-	{
-		$bbcode_id = $this->request->variable('id', 0);
-
-		if (!check_link_hash($this->request->variable('hash', ''), $action . $bbcode_id))
-		{
-			trigger_error($this->language->lang('FORM_INVALID'), E_USER_WARNING);
-		}
-
-		$current_order = $this->get_bbcode_order($bbcode_id);
-
-		// First one can't be moved up
-		if ($current_order <= 1 && $action === ext::MOVE_UP)
-		{
-			return;
-		}
-
-		$updated = $this->update_bbcode_orders($current_order, $action);
-
-		$this->resynchronize_bbcode_order();
-
-		$this->send_json_response($updated);
-	}
-
-	/**
-	 * Update BBCode order fields in the db on drag-n-drop
-	 *
-	 * @access public
-	 */
-	public function move_drag()
-	{
-		if (!$this->request->is_ajax())
-		{
-			return;
-		}
-
-		if (!check_link_hash($this->request->variable('hash', ''), ext::MOVE_DRAG))
-		{
-			$this->send_json_response(false, $this->language->lang('FORM_INVALID'));
-			return;
-		}
-
-		// Get the bbcodes HTML table's name
-		$table_name = $this->request->variable('table_name', '');
-		if (!$table_name)
-		{
-			$this->send_json_response(false, $this->language->lang('ABBC3_BBCODE_ORDER_NO_TABLE'));
-			return;
-		}
-
-		// Fetch the posted list
-		$bbcodes_list = (array) $this->request->variable($table_name, [0 => '']);
-
-		if (empty($bbcodes_list) || $bbcodes_list === [0 => ''])
-		{
-			$this->send_json_response(false, $this->language->lang('ABBC3_BBCODE_ORDER_NO_DATA'));
-			return;
-		}
-
-		$updated = false;
-		$this->db->sql_transaction('begin');
-		foreach ($bbcodes_list as $order => $bbcode_id)
-		{
-			$this->db->sql_query($this->update_bbcode_order($bbcode_id, $order));
-			$updated = $this->db->sql_affectedrows() || $updated;
-		}
-		$this->db->sql_transaction('commit');
-
-		if ($updated)
-		{
-			$this->resynchronize_bbcode_order();
-		}
-
-		$this->send_json_response($updated, $this->language->lang($updated ? 'ABBC3_BBCODE_ORDERED' : 'ABBC3_BBCODE_ORDER_NO_ORDER'));
-	}
-
-	/**
-	 * Retrieve the maximum value from the bbcode_order field stored in the db
-	 *
-	 * @return int The maximum order
-	 * @access public
-	 */
-	public function get_max_bbcode_order()
-	{
-		return $this->get_max_column_value('bbcode_order');
+		$this->toolbar_repository = $toolbar_repository;
 	}
 
 	/**
@@ -165,14 +74,7 @@ class acp_manager
 	 */
 	public function get_bbcode_group_data($bbcode_id)
 	{
-		$sql = 'SELECT bbcode_group
-			FROM ' . BBCODES_TABLE . '
-			WHERE bbcode_id = ' . (int) $bbcode_id;
-		$result = $this->db->sql_query($sql);
-		$row = $this->db->sql_fetchrow($result);
-		$this->db->sql_freeresult($result);
-
-		return !empty($row['bbcode_group']) ? explode(',', $row['bbcode_group']) : [];
+		return $this->toolbar_repository->get_group_ids($bbcode_id);
 	}
 
 	/**
@@ -184,18 +86,23 @@ class acp_manager
 	 */
 	public function get_bbcode_groups_data()
 	{
-		$sql = 'SELECT bbcode_tag, bbcode_group
-			FROM ' . BBCODES_TABLE . "
-			WHERE bbcode_group > ''";
-		$result = $this->db->sql_query($sql);
-		$groups = [];
-		while ($row = $this->db->sql_fetchrow($result))
-		{
-			$groups[$row['bbcode_tag']] = $row['bbcode_group'];
-		}
-		$this->db->sql_freeresult($result);
+		return $this->toolbar_repository->get_all_group_rules();
+	}
 
-		return $groups;
+	public function save_bbcode_groups($bbcode_id)
+	{
+		$groups = $this->get_bbcode_group_form_data();
+		$this->toolbar_repository->set_group_ids($bbcode_id, $groups === '' ? [] : explode(',', $groups));
+	}
+
+	public function register_bbcode($bbcode_id, $tag, $display)
+	{
+		$this->toolbar_repository->sync_bbcode($bbcode_id, $tag, $display);
+	}
+
+	public function remove_toolbar_bbcode($bbcode_id)
+	{
+		$this->toolbar_repository->remove_bbcode($bbcode_id);
 	}
 
 	/**
@@ -233,84 +140,7 @@ class acp_manager
 	 */
 	public function resynchronize_bbcode_order()
 	{
-		$this->db->sql_transaction('begin');
-
-		$sql = 'SELECT bbcode_id, bbcode_order
-			FROM ' . BBCODES_TABLE . '
-			ORDER BY bbcode_order, bbcode_id';
-		$result = $this->db->sql_query($sql);
-
-		$order = 0;
-		while ($row = $this->db->sql_fetchrow($result))
-		{
-			if (++$order !== (int) $row['bbcode_order'])
-			{
-				$this->db->sql_query($this->update_bbcode_order($row['bbcode_id'], $order));
-			}
-		}
-		$this->db->sql_freeresult($result);
-
-		$this->db->sql_transaction('commit');
-	}
-
-	/**
-	 * Get the bbcode_order value for a bbcode
-	 *
-	 * @param int $bbcode_id ID of the bbcode
-	 * @return int The bbcode's order
-	 * @access protected
-	 */
-	protected function get_bbcode_order($bbcode_id)
-	{
-		$sql = 'SELECT bbcode_order
-			FROM ' . BBCODES_TABLE . "
-			WHERE bbcode_id = $bbcode_id";
-		$result = $this->db->sql_query($sql);
-		$bbcode_order = $this->db->sql_fetchfield('bbcode_order');
-		$this->db->sql_freeresult($result);
-
-		return (int) $bbcode_order;
-	}
-
-	/**
-	 * Update the bbcode orders for bbcodes moved up/down
-	 *
-	 * @param int    $bbcode_order Value of the bbcode order
-	 * @param string $action       The action move_up|move_down
-	 * @return mixed Number of the affected rows by the last query
-	 *                             false if no query has been run before
-	 * @access protected
-	 */
-	protected function update_bbcode_orders($bbcode_order, $action)
-	{
-		$amount = ($action === ext::MOVE_UP) ? -1 : 1;
-
-		$order_total = $bbcode_order * 2 + $amount;
-
-		$sql = 'UPDATE ' . BBCODES_TABLE . '
-			SET bbcode_order = ' . $order_total . ' - bbcode_order
-			WHERE ' . $this->db->sql_in_set('bbcode_order', [
-				$bbcode_order,
-				$bbcode_order + $amount,
-			]);
-		$this->db->sql_query($sql);
-
-		return $this->db->sql_affectedrows();
-	}
-
-	/**
-	 * Build SQL query to update a bbcode order value
-	 *
-	 * @param int $bbcode_id    ID of the bbcode
-	 * @param int $bbcode_order Value of the bbcode order
-	 * @return string The SQL query to run
-	 * @access protected
-	 */
-	protected function update_bbcode_order($bbcode_id, $bbcode_order)
-	{
-		return 'UPDATE ' . BBCODES_TABLE . '
-			SET bbcode_order = ' . (int) $bbcode_order . '
-			WHERE bbcode_id = ' . (int) $bbcode_id;
+		// Ordering is stored in ABBC3's toolbar table.
 	}
 
 	/**
@@ -329,23 +159,5 @@ class acp_manager
 		$this->db->sql_freeresult($result);
 
 		return (int) $maximum;
-	}
-
-	/**
-	 * Send a JSON response
-	 *
-	 * @param bool $content The content of the JSON response (true|false)
-	 * @access protected
-	 */
-	protected function send_json_response($content, $message = '')
-	{
-		if ($this->request->is_ajax())
-		{
-			$json_response = new json_response;
-			$json_response->send([
-				'success' => (bool) $content,
-				'message' => $message,
-			]);
-		}
 	}
 }

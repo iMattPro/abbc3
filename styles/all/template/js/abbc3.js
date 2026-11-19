@@ -1,237 +1,406 @@
 /**
  * Advanced BBCode Box
- * @copyright (c) 2013 Matt Friedman
+ * @copyright (c) 2013-2026 Matt Friedman
  * @license GNU General Public License, version 2 (GPL-2.0)
  */
-
-/*global bbfontstyle, insert_text, phpbb */
-
-// global scope vars
-var requestRunning = false;
-var bbwizard;
 
 (() => {
 	'use strict';
 
-	const fadeTime = 180;
+	const stripBBCodes = value => {
+		let result = value;
+		let previous;
+		const pattern = /\[([a-z][a-z0-9]*?)(?:=[^\]]*)?]([\s\S]*?)\[\/\1]/gi;
+		do {
+			previous = result;
+			result = result.replace(pattern, '$2');
+		} while (result !== previous);
+		return result;
+	};
 
-	const hasAncestorFontColor = (element) => {
+	const targetFor = toolbar => {
+		const form = toolbar.closest('form');
+		if (!form) {
+			return null;
+		}
+		return form.elements[toolbar.dataset.abbc3Target] || form.querySelector('textarea');
+	};
+
+	const insert = (textarea, open, close, transform) => {
+		if (!textarea) {
+			return;
+		}
+		const start = typeof textarea.selectionStart === 'number' ? textarea.selectionStart : textarea.value.length;
+		const end = typeof textarea.selectionEnd === 'number' ? textarea.selectionEnd : start;
+		const selected = textarea.value.slice(start, end);
+		const inner = transform ? transform(selected) : selected;
+		const replacement = open + inner + close;
+		textarea.setRangeText(replacement, start, end, 'end');
+		textarea.focus();
+		if (!selected && close) {
+			textarea.setSelectionRange(start + open.length, start + open.length);
+		}
+		textarea.dispatchEvent(new Event('input', { bubbles: true }));
+	};
+
+	const hasAncestorFontColor = element => {
 		let ancestor = element.parentElement;
-
 		while (ancestor) {
 			if (ancestor.tagName === 'SPAN' && !ancestor.classList.contains('abbc3-highlight') && ancestor.style.color) {
 				return true;
 			}
-
 			ancestor = ancestor.parentElement;
 		}
-
 		return false;
 	};
 
-	const isVisible = (element) => !!(element && (element.offsetWidth || element.offsetHeight || element.getClientRects().length));
-
-	const fade = (element, show) => {
-		if (!element) {
-			return;
+	const allowedWizardUrl = (toolbar, mode) => {
+		const sourceKey = mode === 'url' ? 'wizardUrl' : (mode === 'pipes' ? 'wizardPipes' : 'wizardBbvideo');
+		const source = toolbar.dataset[sourceKey];
+		if (!source) {
+			return null;
 		}
-
-		clearTimeout(element.abbc3FadeTimer);
-		element.style.transition = `opacity ${fadeTime}ms ease`;
-
-		if (show) {
-			element.style.opacity = '0';
-			element.style.display = 'block';
-
-			requestAnimationFrame(() => {
-				element.style.opacity = '1';
-			});
-
-			return;
-		}
-
-		element.style.opacity = '0';
-		element.abbc3FadeTimer = setTimeout(() => {
-			element.style.display = 'none';
-		}, fadeTime);
-	};
-
-	const hideLoadingIndicator = (loadingIndicator) => {
-		if (loadingIndicator && typeof loadingIndicator.is === 'function' && loadingIndicator.is(':visible')) {
-			loadingIndicator.fadeOut(phpbb.alertTime);
-		}
-	};
-
-	const getAllowedWizardUrl = (href, bbcode) => {
-		const allowedModes = {
-			bbvideo: ['bbvideo', 'media'],
-			pipes: ['pipes'],
-			url: ['url']
-		};
-
 		try {
-			const url = new URL(href, window.location.href);
-			const match = url.pathname.match(/\/wizard\/bbcode\/(bbvideo|pipes|url)$/);
-			const mode = match && match[1];
-
-			if (url.origin !== window.location.origin || !mode || !allowedModes[mode].includes(bbcode)) {
-				return null;
-			}
-
-			return url.toString();
+			const url = new URL(source, window.location.href);
+			return url.origin === window.location.origin ? url.toString() : null;
 		} catch (error) {
 			return null;
 		}
 	};
 
-	// Show the bbcode wizard (scope must be global)
-	bbwizard = (href, bbcode) => {
-		const wizard = document.getElementById('bbcode_wizard');
-		const modal = document.getElementById('darkenwrapper');
-		const wizardUrl = getAllowedWizardUrl(href, bbcode);
+	let wizardRequestId = 0;
 
-		if (!wizard || !wizardUrl) {
-			bbfontstyle(`[${bbcode}]`, `[/${bbcode}]`);
+	const closeWizard = wizard => {
+		if (!wizard) {
 			return;
 		}
+		wizard.abbc3RequestId = ++wizardRequestId;
+		if (wizard.hidden) return;
+		wizard.hidden = true;
+		wizard.textContent = '';
+		const darken = document.getElementById('darkenwrapper');
+		if (darken) darken.classList.remove('abbc3-darken');
+		if (wizard.abbc3Trigger) wizard.abbc3Trigger.focus();
+	};
 
-		if (requestRunning || isVisible(wizard)) {
+	const openWizard = (toolbar, button, mode, textarea) => {
+		const wizard = toolbar.parentElement.querySelector('.abbc3-wizard') || document.querySelector('.abbc3-wizard');
+		const url = allowedWizardUrl(toolbar, mode);
+		if (!wizard || !url) {
+			insert(textarea, button.dataset.abbc3Open, button.dataset.abbc3Close);
 			return;
 		}
-
-		requestRunning = true;
-		const loadingIndicator = phpbb.loadingIndicator();
-		fade(wizard, false);
-		wizard.replaceChildren();
-
-		fetch(wizardUrl, {
-			credentials: 'same-origin',
-			headers: {
-				'X-Requested-With': 'XMLHttpRequest'
-			}
-		})
-			.then((response) => response.ok ? response.text() : Promise.reject(response))
-			.then((data) => {
-				wizard.insertAdjacentHTML('beforeend', data);
-
-				const submit = wizard.querySelector('#bbcode_wizard_submit');
-				if (submit) {
-					submit.dataset.bbcode = bbcode;
-				}
-
-				fade(modal, true);
-				fade(wizard, true);
+		const requestId = ++wizardRequestId;
+		wizard.abbc3RequestId = requestId;
+		wizard.hidden = true;
+		wizard.textContent = '';
+		const darken = document.getElementById('darkenwrapper');
+		if (darken) darken.classList.remove('abbc3-darken');
+		fetch(url, { credentials: 'same-origin', headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+			.then(response => response.ok ? response.text() : Promise.reject(response))
+			.then(html => {
+				if (wizard.abbc3RequestId !== requestId) return;
+				wizard.abbc3Trigger = button;
+				wizard.abbc3Textarea = textarea;
+				wizard.abbc3Mode = mode;
+				wizard.innerHTML = html;
+				wizard.hidden = false;
+				if (darken) darken.classList.add('abbc3-darken');
+				const firstControl = wizard.querySelector('input:not([type="hidden"]), select, button');
+				if (firstControl) firstControl.focus();
 			})
 			.catch(() => {
-				// On AJAX error, revert to default bbcode application.
-				bbfontstyle(`[${bbcode}]`, `[/${bbcode}]`);
-			})
-			.finally(() => {
-				requestRunning = false;
-				hideLoadingIndicator(loadingIndicator);
+				if (wizard.abbc3RequestId === requestId) insert(textarea, button.dataset.abbc3Open, button.dataset.abbc3Close);
 			});
 	};
 
-	// Document ready
-	document.addEventListener('DOMContentLoaded', () => {
-		const body = document.body;
-		const wizard = document.getElementById('bbcode_wizard');
-		const modal = document.getElementById('darkenwrapper');
+	const menuOptions = menu => [ ...menu.querySelectorAll('[role="option"]') ];
+	let menuPositionFrame = null;
+	const openMenus = new Set();
 
-		// Spoiler toggle
-		document.querySelectorAll('details.abbc3-spoiler, details.abbc3_spoiler').forEach(spoiler => {
+	const closeMenu = (menu, focusTrigger = false) => {
+		if (!menu) return;
+		openMenus.delete(menu);
+		const trigger = menu.querySelector('[data-abbc3-menu-trigger]');
+		const panel = menu.querySelector('[data-abbc3-menu-panel]');
+		if (!trigger || !panel || panel.hidden) return;
+		panel.hidden = true;
+		trigger.setAttribute('aria-expanded', 'false');
+		if (focusTrigger) trigger.focus();
+	};
+
+	const closeToolbarMenus = toolbar => toolbar.querySelectorAll('[data-abbc3-menu]').forEach(menu => closeMenu(menu));
+
+	const positionMenu = menu => {
+		const trigger = menu.querySelector('[data-abbc3-menu-trigger]');
+		const panel = menu.querySelector('[data-abbc3-menu-panel]');
+		const rect = trigger.getBoundingClientRect();
+		panel.style.minWidth = `${rect.width}px`;
+		const panelRect = panel.getBoundingClientRect();
+		const left = Math.max(8, Math.min(rect.left, window.innerWidth - panelRect.width - 8));
+		const below = rect.bottom + panelRect.height + 8 <= window.innerHeight;
+		const top = below ? rect.bottom + 4 : Math.max(8, rect.top - panelRect.height - 4);
+		panel.style.left = `${left}px`;
+		panel.style.top = `${top}px`;
+	};
+
+	const scheduleOpenMenuPositions = () => {
+		if (!openMenus.size || menuPositionFrame !== null) return;
+		menuPositionFrame = window.requestAnimationFrame(() => {
+			menuPositionFrame = null;
+			openMenus.forEach(menu => {
+				const panel = menu.querySelector('[data-abbc3-menu-panel]');
+				if (!document.documentElement.contains(menu) || !panel || panel.hidden) openMenus.delete(menu);
+				else positionMenu(menu);
+			});
+		});
+	};
+
+	const openMenu = (menu, focus = 'none') => {
+		const toolbar = menu.closest('[data-abbc3-toolbar]');
+		closeToolbarMenus(toolbar);
+		const trigger = menu.querySelector('[data-abbc3-menu-trigger]');
+		const panel = menu.querySelector('[data-abbc3-menu-panel]');
+		panel.hidden = false;
+		trigger.setAttribute('aria-expanded', 'true');
+		openMenus.add(menu);
+		positionMenu(menu);
+		const options = menuOptions(menu);
+		if (focus === 'first' && options[0]) options[0].focus();
+		if (focus === 'last' && options.length) options[options.length - 1].focus();
+	};
+
+	const trayStateKey = (toolbar, index) => {
+		const source = new URLSearchParams(window.location.search);
+		const stable = new URLSearchParams();
+		[ 'mode', 'f', 't', 'p', 'u', 'i' ].forEach(key => {
+			if (source.has(key)) stable.set(key, source.get(key));
+		});
+		return `abbc3:tray:${window.location.pathname}?${stable.toString()}:${toolbar.dataset.abbc3Target}:${index}`;
+	};
+
+	const storedTrayState = key => {
+		try { return window.sessionStorage.getItem(key) === 'open'; } catch (error) { return false; }
+	};
+
+	const storeTrayState = (key, expanded) => {
+		try { window.sessionStorage.setItem(key, expanded ? 'open' : 'closed'); } catch (error) { /* Storage can be unavailable. */ }
+	};
+
+	const initToolbar = (toolbar, toolbarIndex) => {
+		const textarea = targetFor(toolbar);
+		if (!textarea) {
+			return;
+		}
+		toolbar.classList.add('abbc3-toolbar--ready');
+		toolbar.querySelectorAll('.abbc3-control__icon').forEach(icon => {
+			icon.addEventListener('error', () => icon.closest('.abbc3-control').classList.add('abbc3-control--icon-error'), { once: true });
+		});
+		const form = toolbar.closest('form');
+		if (form) form.classList.add('abbc3-editor--ready');
+		const moreToggle = toolbar.querySelector('[data-abbc3-more-toggle]');
+		const moreTray = toolbar.querySelector('[data-abbc3-more-tray]');
+		if (moreToggle && moreTray) {
+			const trayId = `abbc3-more-${Math.random().toString(36).slice(2)}`;
+			const stateKey = trayStateKey(toolbar, toolbarIndex);
+			moreTray.id = trayId;
+			moreToggle.setAttribute('aria-controls', trayId);
+			const setTray = (expanded, persist = true) => {
+				moreToggle.setAttribute('aria-expanded', String(expanded));
+				moreToggle.title = expanded ? moreToggle.dataset.titleHide : moreToggle.dataset.titleShow;
+				moreTray.hidden = !expanded;
+				if (!expanded) closeToolbarMenus(toolbar);
+				if (persist) storeTrayState(stateKey, expanded);
+			};
+			toolbar.abbc3SetTray = setTray;
+			setTray(storedTrayState(stateKey), false);
+			moreToggle.addEventListener('click', () => {
+				const expanded = moreToggle.getAttribute('aria-expanded') === 'true';
+				setTray(!expanded);
+			});
+		}
+
+		toolbar.addEventListener('click', event => {
+			const menuTrigger = event.target.closest('[data-abbc3-menu-trigger]');
+			if (menuTrigger) {
+				event.preventDefault();
+				const menu = menuTrigger.closest('[data-abbc3-menu]');
+				if (menuTrigger.getAttribute('aria-expanded') === 'true') closeMenu(menu);
+				else openMenu(menu);
+				return;
+			}
+			const option = event.target.closest('[role="option"]');
+			if (option && option.closest('[data-abbc3-menu]')) {
+				event.preventDefault();
+				if (option.dataset.abbc3SizeValue) insert(textarea, `[size=${option.dataset.abbc3SizeValue}]`, '[/size]');
+				if (option.dataset.abbc3FontValue) insert(textarea, `[font=${option.dataset.abbc3FontValue}]`, '[/font]');
+				closeMenu(option.closest('[data-abbc3-menu]'), true);
+				return;
+			}
+			const button = event.target.closest('[data-abbc3-action]');
+			if (!button) {
+				return;
+			}
+			event.preventDefault();
+			const action = button.dataset.abbc3Action;
+			if (action === 'color') {
+				const editorForm = toolbar.closest('form');
+				if (editorForm && editorForm.id) {
+					window.form_name = editorForm.id;
+					window.text_name = textarea.name;
+				}
+				if (typeof window.change_palette === 'function') {
+					window.change_palette();
+				}
+				return;
+			}
+			if (action === 'plain') {
+				if (textarea.selectionStart === textarea.selectionEnd) {
+					window.alert(toolbar.dataset.abbc3NoSelection);
+					return;
+				}
+				insert(textarea, '', '', stripBBCodes);
+				return;
+			}
+			if (action === 'wizard') {
+				const mode = button.dataset.abbc3Name.toLowerCase();
+				const selected = textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+				if (!selected) {
+					openWizard(toolbar, button, mode, textarea);
+					return;
+				}
+			}
+			insert(textarea, button.dataset.abbc3Open || '', button.dataset.abbc3Close || '');
+		});
+
+		toolbar.addEventListener('keydown', event => {
+			const menu = event.target.closest('[data-abbc3-menu]');
+			if (!menu) return;
+			const trigger = event.target.closest('[data-abbc3-menu-trigger]');
+			const options = menuOptions(menu);
+			if (trigger && [ 'ArrowDown', 'ArrowUp' ].includes(event.key)) {
+				event.preventDefault();
+				openMenu(menu, event.key === 'ArrowDown' ? 'first' : 'last');
+				return;
+			}
+			const index = options.indexOf(event.target);
+			if (index < 0) return;
+			if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+				event.preventDefault();
+				options[(index + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length].focus();
+			} else if (event.key === 'Home' || event.key === 'End') {
+				event.preventDefault();
+				options[event.key === 'Home' ? 0 : options.length - 1].focus();
+			} else if (event.key === 'Escape') {
+				event.preventDefault();
+				closeMenu(menu, true);
+			}
+		});
+		if (form) form.addEventListener('submit', () => closeToolbarMenus(toolbar));
+	};
+
+	const initWizard = wizard => {
+		wizard.addEventListener('click', event => {
+			const cancel = event.target.closest('#bbcode_wizard_cancel');
+			const submit = event.target.closest('#bbcode_wizard_submit');
+			if (cancel) {
+				event.preventDefault();
+				closeWizard(wizard);
+				return;
+			}
+			if (!submit) {
+				return;
+			}
+			event.preventDefault();
+			const mode = wizard.abbc3Mode;
+			if (mode === 'url') {
+				const link = wizard.querySelector('#bbcode_wizard_link').value;
+				const description = wizard.querySelector('#bbcode_wizard_description').value;
+				insert(wizard.abbc3Textarea, description ? `[url=${link}]` : '[url]', '[/url]', () => description || link);
+			} else if (mode === 'bbvideo' || mode === 'media') {
+				const link = wizard.querySelector('#bbvideo_wizard_link').value;
+				insert(wizard.abbc3Textarea, `[${mode}]`, `[/${mode}]`, () => link);
+			}
+			closeWizard(wizard);
+		});
+		wizard.addEventListener('change', event => {
+			if (event.target.id === 'bbvideo_wizard_sites') {
+				wizard.querySelector('#bbvideo_wizard_example').value = event.target.value;
+			}
+		});
+	};
+
+	document.addEventListener('keydown', event => {
+		if (event.key === 'Escape') {
+			const openMenuElement = openMenus.values().next().value;
+			if (openMenuElement) {
+				event.preventDefault();
+				closeMenu(openMenuElement, true);
+				return;
+			}
+			document.querySelectorAll('.abbc3-wizard').forEach(closeWizard);
+			document.querySelectorAll('[data-abbc3-more-toggle][aria-expanded="true"]').forEach(toggle => {
+				const toolbar = toggle.closest('[data-abbc3-toolbar]');
+				if (toolbar && toolbar.abbc3SetTray) toolbar.abbc3SetTray(false);
+				toggle.focus();
+			});
+			return;
+		}
+		if (event.key === 'Tab') {
+			const wizard = [ ...document.querySelectorAll('.abbc3-wizard') ].find(dialog => !dialog.hidden);
+			if (!wizard) {
+				return;
+			}
+			const focusable = [ ...wizard.querySelectorAll('button, input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])') ]
+				.filter(element => !element.disabled && element.offsetParent !== null);
+			if (!focusable.length) {
+				event.preventDefault();
+				return;
+			}
+			const first = focusable[0];
+			const last = focusable[focusable.length - 1];
+			if (event.shiftKey && document.activeElement === first) {
+				event.preventDefault();
+				last.focus();
+			} else if (!event.shiftKey && document.activeElement === last) {
+				event.preventDefault();
+				first.focus();
+			}
+		}
+	});
+
+	document.addEventListener('pointerdown', event => {
+		openMenus.forEach(menu => {
+			if (!menu.contains(event.target)) closeMenu(menu);
+		});
+	});
+
+	window.addEventListener('resize', () => openMenus.forEach(menu => closeMenu(menu)));
+	window.addEventListener('scroll', event => {
+		if (!openMenus.size) return;
+		if (event.target instanceof Element && event.target.closest('[data-abbc3-menu-panel]')) return;
+		scheduleOpenMenuPositions();
+	}, true);
+
+	document.addEventListener('DOMContentLoaded', () => {
+		document.querySelectorAll('[data-abbc3-toolbar]').forEach(initToolbar);
+		document.querySelectorAll('.abbc3-wizard').forEach(initWizard);
+
+		document.querySelectorAll('details.abbc3-spoiler').forEach(spoiler => {
 			const summary = spoiler.querySelector('summary');
 			if (!summary) {
 				return;
 			}
-
-			const showText = spoiler.dataset.show || summary.textContent;
-			const hideText = spoiler.dataset.hide || showText;
-			spoiler.addEventListener('toggle', () => {
-				summary.textContent = spoiler.open ? hideText : showText;
-			});
+			const show = spoiler.dataset.show || summary.textContent;
+			const hide = spoiler.dataset.hide || show;
+			spoiler.addEventListener('toggle', () => { summary.textContent = spoiler.open ? hide : show; });
 		});
 
-		// Legacy spoiler toggle support
-		document.querySelectorAll('.spoilbtn').forEach(button => {
-			const wrapper = button.closest('.spoilwrapper');
-			const content = wrapper && wrapper.querySelector('.spoilcontent');
-			if (!content) {
-				return;
-			}
-
-			const showText = button.dataset.show || button.textContent;
-			const hideText = button.dataset.hide || showText;
-			button.addEventListener('click', () => {
-				const show = !isVisible(content);
-				fade(content, show);
-				button.textContent = show ? hideText : showText;
-			});
-		});
-
-		// Dynamically adjust highlight bbcode's text color
 		document.querySelectorAll('.abbc3-highlight').forEach(highlight => {
-			if (hasAncestorFontColor(highlight)) {
-				return;
-			}
-
+			if (hasAncestorFontColor(highlight)) return;
 			const rgb = window.getComputedStyle(highlight).backgroundColor.match(/\d+/g);
-			highlight.style.color = (rgb && (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 < 128) ? 'white' : 'black';
-		});
-
-		// BBCode Wizard listener events
-		if (!wizard) {
-			return;
-		}
-
-		const closeWizard = () => {
-			if (isVisible(wizard)) {
-				fade(wizard, false);
-				fade(modal, false);
-			}
-		};
-
-		body.addEventListener('click', closeWizard);
-		body.addEventListener('keyup', (event) => {
-			if (event.key === 'Escape') {
-				event.preventDefault();
-				closeWizard();
-			}
-		});
-
-		wizard.addEventListener('click', (event) => {
-			event.stopPropagation();
-			const submit = event.target.closest('#bbcode_wizard_submit');
-			const cancel = event.target.closest('#bbcode_wizard_cancel');
-			if (submit) {
-				event.preventDefault();
-				const bbcode = submit.dataset.bbcode;
-				switch (bbcode) {
-					case 'url': {
-						const link = document.getElementById('bbcode_wizard_link').value;
-						const description = document.getElementById('bbcode_wizard_description').value;
-						const text = description.length ? description : link;
-						const attribute = description.length ? `=${link}` : '';
-						insert_text(`[${bbcode}${attribute}]${text}[/${bbcode}]`);
-						break;
-					}
-					case 'bbvideo':
-					case 'media':
-						insert_text(`[${bbcode}]${document.getElementById('bbvideo_wizard_link').value}[/${bbcode}]`);
-						break;
-				}
-				closeWizard();
-				return;
-			}
-			if (cancel) {
-				event.preventDefault();
-				closeWizard();
-			}
-		});
-
-		wizard.addEventListener('change', (event) => {
-			if (event.target.id === 'bbvideo_wizard_sites') {
-				document.getElementById('bbvideo_wizard_example').value = event.target.value;
+			if (rgb) {
+				highlight.style.color = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 < 128 ? 'white' : 'black';
 			}
 		});
 	});

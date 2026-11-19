@@ -85,4 +85,27 @@ class acp_install_bbcodes_test extends acp_base
 
 		$this->test_install_bbcodes($data);
 	}
+
+	/**
+	 * @dataProvider install_bbcodes_data
+	 */
+	public function test_delete_preserves_admin_modified_template($data)
+	{
+		global $phpbb_root_path, $phpEx;
+
+		$installer = new \vse\abbc3\core\bbcodes_installer(
+			$this->db,
+			$this->group_helper,
+			$this->lang,
+			$this->request,
+			$phpbb_root_path,
+			$phpEx
+		);
+		$installer->install_bbcodes($data);
+		$this->db->sql_query("UPDATE phpbb_bbcodes SET bbcode_tpl = '<strong>{TEXT}</strong>' WHERE bbcode_tag = 'foo'");
+
+		$installer->delete_bbcodes($data);
+
+		self::assertNotFalse($installer->bbcode_exists('foo', 'foo'));
+	}
 }

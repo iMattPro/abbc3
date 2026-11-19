@@ -216,3 +216,23 @@
 	background: rgba(255, 255, 255, 0.05) !important;
 	border-color: rgba(255, 255, 255, 0.12) !important;
 }
+
+@media (prefers-reduced-motion: reduce) {
+	.fadeEffect,
+	.abbc3-marquee-left,
+	.abbc3-marquee-right,
+	.abbc3-marquee-up,
+	.abbc3-marquee-down {
+		animation: none !important;
+		transform: none !important;
+	}
+}
+
+@media (forced-colors: active) {
+	.hc-box,
+	.abbc3-spoiler,
+	.abbc3-off-topic,
+	.abbc3-mod-alert {
+		border: 1px solid CanvasText !important;
+	}
+}

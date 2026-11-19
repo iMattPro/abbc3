@@ -21,6 +21,7 @@ use vse\abbc3\core\bbcodes_display;
 use vse\abbc3\core\bbcodes_help;
 use vse\abbc3\core\bbcodes_config;
 use vse\abbc3\ext;
+use vse\abbc3\core\toolbar_registry;
 
 /**
  * Event listener
@@ -63,6 +64,9 @@ class listener implements EventSubscriberInterface
 	/** @var bool */
 	protected $quick_reply = false;
 
+	/** @var toolbar_registry */
+	protected $toolbar_registry;
+
 	/**
 	 * Constructor
 	 *
@@ -79,7 +83,7 @@ class listener implements EventSubscriberInterface
 	 * @param string $phpEx
 	 * @access public
 	 */
-	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user, $phpbb_root_path, $phpEx)
+	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user, $phpbb_root_path, $phpEx, toolbar_registry $toolbar_registry = null)
 	{
 		$this->bbcodes_config = $bbcodes_config;
 		$this->bbcodes_display = $bbcodes_display;
@@ -92,6 +96,7 @@ class listener implements EventSubscriberInterface
 		$this->user = $user;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $phpEx;
+		$this->toolbar_registry = $toolbar_registry;
 	}
 
 	/**
@@ -160,10 +165,7 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$this->template->assign_var(
-			'abbc3_google_fonts',
-			json_decode($this->config_text->get('abbc3_google_fonts'), true)
-		);
+		$this->template->assign_var('abbc3_google_fonts', $this->get_google_fonts());
 	}
 
 	/**
@@ -175,8 +177,7 @@ class listener implements EventSubscriberInterface
 	public function custom_bbcode_modify_sql($event)
 	{
 		$sql_ary = $event['sql_ary'];
-		$sql_ary['SELECT'] .= ', b.bbcode_group';
-		$sql_ary['ORDER_BY'] = 'b.bbcode_order, b.bbcode_id';
+		$sql_ary['ORDER_BY'] = 'b.bbcode_id';
 		$event['sql_ary'] = $sql_ary;
 	}
 
@@ -187,9 +188,16 @@ class listener implements EventSubscriberInterface
 	 */
 	public function setup_custom_bbcodes()
 	{
+		$toolbar = $this->toolbar_registry ? $this->toolbar_registry->get_editor_buttons() : ['primary' => [], 'more' => []];
+		$fonts = ext::ABBC3_BBCODE_FONTS;
+		$google_fonts = $this->config['allow_cdn'] ? $this->get_google_fonts() : [];
+		if ($google_fonts)
+		{
+			$fonts['ABBC3_GOOGLE_FONTS'] = $google_fonts;
+		}
 		$this->template->assign_vars([
 			'ABBC3_BBCODE_ICONS'		=> $this->bbcodes_display->get_icons(),
-			'ABBC3_BBCODE_FONTS'		=> ext::ABBC3_BBCODE_FONTS,
+			'ABBC3_BBCODE_FONTS'		=> $fonts,
 
 			'S_ABBC3_BBCODES_BAR'		=> $this->config['abbc3_bbcode_bar'],
 			'S_ABBC3_BCSTYLE_BAR'		=> phpbb_version_compare(PHPBB_VERSION, ext::PHPBB_LEGACY_MAX, '<='),
@@ -198,6 +206,30 @@ class listener implements EventSubscriberInterface
 			'UA_ABBC3_PIPES_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'pipes']),
 			'UA_ABBC3_URL_WIZARD'		=> $this->helper->route('vse_abbc3_bbcode_wizard', ['mode' => 'url']),
 		]);
+		foreach ($toolbar['primary'] as $button)
+		{
+			$this->template->assign_block_vars('abbc3_primary', $this->template_button($button));
+		}
+		foreach ($toolbar['more'] as $button)
+		{
+			$this->template->assign_block_vars('abbc3_more', $this->template_button($button));
+		}
+	}
+
+	/**
+	 * Return normalized, sorted Google Font names shared by CSS and editor menus.
+	 */
+	protected function get_google_fonts()
+	{
+		$fonts = json_decode($this->config_text->get('abbc3_google_fonts'), true);
+		if (!is_array($fonts))
+		{
+			return [];
+		}
+
+		$fonts = array_values(array_unique(array_filter(array_map('trim', $fonts), 'strlen')));
+		natcasesort($fonts);
+		return array_values($fonts);
 	}
 
 	/**
@@ -213,7 +245,58 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$event['custom_tags'] = $this->bbcodes_display->display_custom_bbcodes($event['custom_tags'], $event['row']);
+		$custom = $this->bbcodes_display->display_custom_bbcodes($event['custom_tags'], $event['row']);
+		$event['custom_tags'] = $custom;
+		if ($this->toolbar_registry && !empty($custom['S_CUSTOM_BBCODE_ALLOWED']))
+		{
+			$name = strtolower(rtrim($event['row']['bbcode_tag'], '='));
+			$type = $name === 'font' ? 'font' : 'button';
+			$action = in_array($name, ['bbvideo', 'pipes'], true) ? 'wizard' : '';
+			$this->toolbar_registry->add_custom([
+				'type' => $type,
+				'name' => $name,
+				'label' => $custom['BBCODE_HELPLINE'],
+				'open' => $this->custom_open($name, $custom['ABBC3_OPEN']),
+				'close' => $custom['ABBC3_CLOSE'],
+				'accesskey' => '',
+				'condition' => '',
+				'action' => $action,
+				'tag' => $event['row']['bbcode_tag'],
+			]);
+		}
+	}
+
+	protected function custom_open($name, $fallback)
+	{
+		$defaults = [
+			'align' => '[align=center]',
+			'float' => '[float=left]',
+			'dir' => '[dir=' . strrev($this->user->lang['DIRECTION'] ?? 'ltr') . ']',
+			'marq' => '[marq=left]',
+			'highlight' => '[highlight=yellow]',
+			'glow' => '[glow=red]',
+			'shadow' => '[shadow=blue]',
+			'dropshadow' => '[dropshadow=blue]',
+			'blur' => '[blur=blue]',
+			'mod' => '[mod=' . ($this->user->data['username'] ?? '') . ']',
+		];
+		return $defaults[$name] ?? $fallback;
+	}
+
+	protected function template_button(array $button)
+	{
+		return [
+			'KEY' => $button['key'],
+			'TYPE' => $button['type'],
+			'NAME' => $button['name'],
+			'LABEL' => $button['label'],
+			'OPEN' => $button['open'] ?? '',
+			'CLOSE' => $button['close'] ?? '',
+			'ACCESSKEY' => $button['accesskey'] ?? '',
+			'CONDITION' => $button['condition'] ?? '',
+			'ICON' => $button['icon'] ?? $button['name'],
+			'ACTION' => $button['action'] ?? '',
+		];
 	}
 
 	/**

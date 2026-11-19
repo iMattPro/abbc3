@@ -67,9 +67,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Ugradite MP4/OGG/WEBM videodatoteke: URL mora započeti s <samp class="error">https</samp> ili <samp class="error">http</samp> i završiti s <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> ili <samp class="error">.webm</samp> (nije potreban BBCode). Imajte na umu da se podrška preglednika i GUI implementacija razlikuju.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Kopiraj označeni tekst',
-	'ABBC3_PASTE_BBCODE'		=> 'Umetni kopirani tekst',
-	'ABBC3_PASTE_ERROR'			=> 'Da bi umetnuo/la tekst, prvo ga moraš označiti i kopirati.',
 	'ABBC3_PLAIN_BBCODE'		=> 'Izbriši sve BBKod tagove iz označenog teksta.',
 	'ABBC3_NOSELECT_ERROR'		=> 'Tekst nije označen.',
 

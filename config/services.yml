@@ -12,6 +12,33 @@ services:
             - '@ext.manager'
             - '@user'
             - '%core.root_path%'
+            - '@vse.abbc3.toolbar_repository'
+
+    vse.abbc3.toolbar_repository:
+        class: vse\abbc3\core\toolbar_repository
+        arguments:
+            - '@dbal.conn'
+            - '%core.table_prefix%'
+
+    vse.abbc3.toolbar_registry:
+        class: vse\abbc3\core\toolbar_registry
+        arguments:
+            - '@vse.abbc3.toolbar_repository'
+
+    vse.abbc3.bbcode_catalog:
+        class: vse\abbc3\core\bbcode_catalog
+
+    vse.abbc3.uninstall_manager:
+        class: vse\abbc3\core\uninstall_manager
+        arguments:
+            - '@dbal.conn'
+            - '@config_text'
+            - '@cache.driver'
+            - '@vse.abbc3.bbcode_catalog'
+            - '%text_formatter.cache.parser.key%'
+            - '%text_formatter.cache.renderer.key%'
+            - '%core.root_path%'
+            - '%core.php_ext%'
 
     vse.abbc3.bbcodes_help:
         class: vse\abbc3\core\bbcodes_help
@@ -29,6 +56,7 @@ services:
             - '@group_helper'
             - '@language'
             - '@request'
+            - '@vse.abbc3.toolbar_repository'
 
     # ----- Event listeners -----
     vse.abbc3.listener:
@@ -45,6 +73,7 @@ services:
             - '@user'
             - '%core.root_path%'
             - '%core.php_ext%'
+            - '@vse.abbc3.toolbar_registry'
         tags:
             - { name: event.listener }
 
@@ -69,6 +98,8 @@ services:
             - '@template'
             - '%text_formatter.cache.parser.key%'
             - '%text_formatter.cache.renderer.key%'
+            - '@vse.abbc3.toolbar_repository'
+            - '@vse.abbc3.toolbar_registry'
 
     vse.abbc3.wizard:
         class: vse\abbc3\controller\wizard

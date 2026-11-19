@@ -66,9 +66,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Incrustar archivos de vídeo MP4/OGG/WEBM: la URL debe comenzar con <samp class="error">https</samp> o <samp class="error">http</samp> y terminar con <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> o <samp class="error">.webm</samp> (no se necesita BBCode). Tenga en cuenta que la compatibilidad con el navegador y la implementación de la GUI varían.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Copiar el texto seleccionado',
-	'ABBC3_PASTE_BBCODE'		=> 'Pegar el texto seleccionado',
-	'ABBC3_PASTE_ERROR'			=> 'Primero debes copiar un texto seleccionado, a continuación, pégalo',
 	'ABBC3_PLAIN_BBCODE'		=> 'Quitar todas las etiquetas BBCode del texto seleccionado',
 	'ABBC3_NOSELECT_ERROR'		=> 'No hay texto seleccionado.',
 

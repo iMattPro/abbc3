@@ -22,6 +22,7 @@ use phpbb\symfony_request;
 use phpbb\user;
 use PHPUnit\Framework\MockObject\MockObject;
 use vse\abbc3\core\acp_manager;
+use vse\abbc3\core\toolbar_repository;
 
 class acp_base extends \phpbb_database_test_case
 {
@@ -83,6 +84,6 @@ class acp_base extends \phpbb_database_test_case
 
 	protected function get_acp_manager()
 	{
-		return new acp_manager($this->db, $this->group_helper, $this->lang, $this->request);
+		return new acp_manager($this->db, $this->group_helper, $this->lang, $this->request, new toolbar_repository($this->db, 'phpbb_'));
 	}
 }

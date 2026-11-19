@@ -1,133 +1,71 @@
 {% include '@vse_abbc3/abbc3_posting_script.html' %}
 
-{% macro bbcodeButton(icon, class, accesskey, id, value, title, iconClass, path, name = '', func = 'bbstyle') %}
-	<button type="button"
-			class="{{ icon ? 'abbc3_button' : 'button button-icon-only ' ~ class }}"
-			accesskey="{{ accesskey }}"
-			name="{{ name ?: 'addbbcode' ~ id }}"
-			value="{{ value }}"
-			style="background-image:url('{{ path ~ icon }}');"
-			onclick="{{ func ~ '(' ~ (id matches '/^-?\\d+$/' ? id : '\'' ~ id ~ '\'') ~ ')' }}"
-			title="{{ lang(title) }}">
-		{% if not icon %}<i class="icon fa-fw {{ iconClass }}" aria-hidden="true"></i>{% endif %}
-	</button>
-{% endmacro %}
-
-{% EVENT vse_abbc3_posting_editor_buttons_before %}
-<div id="abbc3_buttons">
-	<div class="abbc3_buttons_row{{ S_ABBC3_BCSTYLE_BAR ? ' abbc3_buttons_row_legacy' }}">
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.bold, 'bbcode-b', 'b', 0, ' B ', 'BBCODE_B_HELP', 'fa-bold', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.italic, 'bbcode-i', 'i', 2, ' i ', 'BBCODE_I_HELP', 'fa-italic', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.underline, 'bbcode-u', 'u', 4, ' u ', 'BBCODE_U_HELP', 'fa-underline', ROOT_PATH) }}
-		{% if S_BBCODE_QUOTE %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.quote, 'bbcode-quote', 'q', 6, 'Quote', 'BBCODE_Q_HELP', 'fa-quote-left', ROOT_PATH) }}
-		{% endif %}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.code, 'bbcode-code', 'c', 8, 'Code', 'BBCODE_C_HELP', 'fa-code', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listb, 'bbcode-list', 'l', 10, 'List', 'BBCODE_L_HELP', 'fa-list', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listo, 'bbcode-list-', 'o', 12, 'List=', 'BBCODE_O_HELP', 'fa-list-ol', ROOT_PATH) }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.listitem, 'bbcode-asterisk', 'y', -1, '[*]', 'BBCODE_LISTITEM_HELP', 'fa-asterisk', ROOT_PATH, 'addlistitem') }}
-		{% if S_BBCODE_IMG %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.img, 'bbcode-img', 'p', 14, 'Img', 'BBCODE_P_HELP', 'fa-image', ROOT_PATH) }}
-		{% endif %}
-		{% if S_LINKS_ALLOWED %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.url, 'bbcode-url', 'w', 'url', 'URL', 'BBCODE_W_HELP', 'fa-link', ROOT_PATH, 'addbbcode16', 'bbspecial') }}
-		{% endif %}
-		{% if S_BBCODE_FLASH %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.flash, 'bbcode-flash', 'd', 18, 'Flash', 'BBCODE_D_HELP', 'fa-flash', ROOT_PATH) }}
-		{% endif %}
-		{% if S_BBCODE_MEDIA %}
-			{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.media, 'bbcode-media', 'm', 'media', 'Media', 'BBCODE_MEDIA_HELP', 'fa-television', ROOT_PATH, 'addmedia', 'bbspecial') }}
-		{% endif %}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.fontcolor, 'bbcode-color', '', '', (not ABBC3_BBCODE_ICONS.fontcolor ? lang('FONT_COLOR')), 'BBCODE_S_HELP', 'fa-tint', ROOT_PATH, 'abbc3_bbpalette', 'change_palette') }}
-		{% set ABBC3_FONT_SIZES = [
-			{value: 50, label: lang('FONT_TINY')},
-			{value: 85, label: lang('FONT_SMALL')},
-			{value: 100, label: lang('FONT_NORMAL')}
-		] %}
-		{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 150 %}
-			{% set ABBC3_FONT_SIZES = ABBC3_FONT_SIZES|merge([{value: 150, label: lang('FONT_LARGE')}]) %}
-			{% if not MAX_FONT_SIZE or MAX_FONT_SIZE >= 200 %}
-				{% set ABBC3_FONT_SIZES = ABBC3_FONT_SIZES|merge([{value: 200, label: lang('FONT_HUGE')}]) %}
-			{% endif %}
-		{% endif %}
-		{% if constant('IN_ADMIN') is defined %}
-			<select class="abbc3_select" name="abbc3_addbbcode20" onchange="bbfontstyle('[size=' + this.form.abbc3_addbbcode20.options[this.form.abbc3_addbbcode20.selectedIndex].value + ']', '[/size]');this.form.abbc3_addbbcode20.selectedIndex = 2;" title="{{ lang('BBCODE_F_HELP') }}">
-				{% for size in ABBC3_FONT_SIZES %}
-					<option value="{{ size.value }}"{% if size.value == 100 %} selected="selected"{% endif %}>{{ size.label }}</option>
-				{% endfor %}
-			</select>
-		{% else %}
-			<div class="abbc3_dropdown_menu_btn abbc3_size_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
-				<a href="#" class="dropdown-trigger button button-secondary" title="{{ lang('BBCODE_F_HELP') }}">{{ lang('FONT_SIZE') }} <i class="icon fa-fw fa-caret-down"></i></a>
-				<div class="dropdown">
-					<ul class="dropdown-contents" role="menu">
-						{% for size in ABBC3_FONT_SIZES %}
-							<li class="abbc3_dropdown_menu_item abbc3_size_menu_item" onclick="bbfontstyle('[size={{ size.value }}]', '[/size]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ size.label }}</li>
-						{% endfor %}
-					</ul>
+{% macro button(button, icons, fonts, capabilities, max_font_size, root) %}
+	{% set allowed = not button.CONDITION
+		or attribute(capabilities, button.CONDITION)|default(false) %}
+	{% if allowed %}
+		{% if button.TYPE == 'size' %}
+			<div class="abbc3-menu" data-abbc3-menu>
+				<button type="button" class="abbc3-select abbc3-menu__trigger" data-abbc3-menu-trigger aria-haspopup="listbox" aria-expanded="false" title="{{ lang(button.LABEL) }}"><span>{{ lang('FONT_SIZE') }}</span><span class="abbc3-menu__chevron" aria-hidden="true">⌄</span></button>
+				<div class="abbc3-menu__panel" data-abbc3-menu-panel role="listbox" aria-label="{{ lang(button.LABEL) }}" hidden>
+					<button type="button" role="option" data-abbc3-size-value="50">{{ lang('FONT_TINY') }}</button>
+					<button type="button" role="option" data-abbc3-size-value="85">{{ lang('FONT_SMALL') }}</button>
+					<button type="button" role="option" data-abbc3-size-value="100">{{ lang('FONT_NORMAL') }}</button>
+					{% if not max_font_size or max_font_size >= 150 %}<button type="button" role="option" data-abbc3-size-value="150">{{ lang('FONT_LARGE') }}</button>{% endif %}
+					{% if not max_font_size or max_font_size >= 200 %}<button type="button" role="option" data-abbc3-size-value="200">{{ lang('FONT_HUGE') }}</button>{% endif %}
 				</div>
 			</div>
+		{% elseif button.TYPE == 'font' %}
+			<div class="abbc3-menu" data-abbc3-menu>
+				<button type="button" class="abbc3-select abbc3-menu__trigger" data-abbc3-menu-trigger aria-haspopup="listbox" aria-expanded="false" title="{{ lang(button.LABEL) }}"><span>{{ lang('ABBC3_FONT_BBCODE') }}</span><span class="abbc3-menu__chevron" aria-hidden="true">⌄</span></button>
+				<div class="abbc3-menu__panel abbc3-menu__panel--font" data-abbc3-menu-panel role="listbox" aria-label="{{ lang(button.LABEL) }}" hidden>
+					{% for group, font_group in fonts %}
+						<div class="abbc3-menu__group" role="presentation">{{ lang(group) }}</div>
+						{% for font in font_group %}<button type="button" role="option" data-abbc3-font-value="{{ font }}" style="font-family:'{{ font }}',sans-serif">{{ font }}</button>{% endfor %}
+					{% endfor %}
+				</div>
+			</div>
+		{% else %}
+			{% set icon = icons[button.ICON] ?? icons[button.NAME] %}
+			<button type="button"
+				class="abbc3-control{{ icon ? ' abbc3-control--icon' : ' abbc3-control--text' }}"
+				{% if button.ACCESSKEY %}accesskey="{{ button.ACCESSKEY }}"{% endif %}
+				data-abbc3-action="{{ button.TYPE == 'color' ? 'color' : (button.TYPE == 'plain' ? 'plain' : button.ACTION) }}"
+				data-abbc3-open="{{ button.OPEN }}"
+				data-abbc3-close="{{ button.CLOSE }}"
+				data-abbc3-name="{{ button.NAME }}"
+				aria-label="{{ lang(button.LABEL) }}"
+				title="{{ lang(button.LABEL) }}">
+				{% if icon %}<img class="abbc3-control__icon" src="{{ root ~ icon }}" alt="" aria-hidden="true">{% endif %}
+				<span class="abbc3-control__fallback{{ icon ? ' abbc3-control__fallback--hidden' }}">{{ button.NAME }}</span>
+			</button>
 		{% endif %}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.copy, 'bbcode-copy', '', 'abbc3_copy', 'copy', 'ABBC3_COPY_BBCODE', 'fa-copy', ROOT_PATH, 'copybbcode', 'bbspecial') }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.paste, 'bbcode-paste', '', 'abbc3_paste', 'paste', 'ABBC3_PASTE_BBCODE', 'fa-paste', ROOT_PATH, 'pastebbcode', 'bbspecial') }}
-		{{ _self.bbcodeButton(ABBC3_BBCODE_ICONS.plain, 'bbcode-plain', '', 'abbc3_plain', 'clear', 'ABBC3_PLAIN_BBCODE', 'fa-trash', ROOT_PATH, 'plainbbcode', 'bbspecial') }}
-		{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_before %}
+	{% endif %}
+{% endmacro %}
+
+{% set abbc3_capabilities = {
+	'quote': S_BBCODE_QUOTE,
+	'image': S_BBCODE_IMG,
+	'url': S_LINKS_ALLOWED,
+	'media': S_BBCODE_MEDIA
+} %}
+
+{% EVENT vse_abbc3_posting_editor_buttons_before %}
+<div class="abbc3-toolbar" data-abbc3-toolbar data-abbc3-target="{{ constant('IN_ADMIN') is defined ? 'signature' : 'message' }}" data-wizard-url="{{ UA_ABBC3_URL_WIZARD }}" data-wizard-bbvideo="{{ UA_ABBC3_BBVIDEO_WIZARD }}" data-wizard-pipes="{{ UA_ABBC3_PIPES_WIZARD }}" data-abbc3-no-selection="{{ lang('ABBC3_NOSELECT_ERROR') }}">
+	<div class="abbc3-toolbar__surface" role="toolbar" aria-label="{{ lang('ABBC3_BBCODE_BAR') }}">
+		{% for button in abbc3_primary %}{{ _self.button(button, ABBC3_BBCODE_ICONS, ABBC3_BBCODE_FONTS, abbc3_capabilities, MAX_FONT_SIZE, ROOT_PATH) }}{% endfor %}
+		{% if abbc3_more %}
+			<button type="button" class="abbc3-more__trigger" data-abbc3-more-toggle aria-expanded="false" title="{{ lang('ABBC3_MORE_BUTTONS_SHOW') }}" data-title-show="{{ lang('ABBC3_MORE_BUTTONS_SHOW') }}" data-title-hide="{{ lang('ABBC3_MORE_BUTTONS_HIDE') }}">
+				<span>{{ lang('ABBC3_MORE_BUTTONS') }}</span>
+				<span class="abbc3-more__chevron" aria-hidden="true">⌄</span>
+			</button>
+		{% endif %}
 	</div>
-	{% if custom_tags %}
-		<div class="abbc3_buttons_row{{ S_ABBC3_BCSTYLE_BAR ? ' abbc3_buttons_row_legacy' }}" style="border-top:0;">
-			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_prepend %}
-			{% for custom_tag in custom_tags %}
-				{% if custom_tag.S_CUSTOM_BBCODE_ALLOWED %}
-					{% if custom_tag.BBCODE_TAG in ['font=', 'font'] %}
-						{% if S_ALLOW_CDN %}
-							{% if abbc3_google_fonts is not iterable %}{% set abbc3_google_fonts = [] %}{% endif %}
-							{% set abbc3_google_fonts = abbc3_google_fonts|merge(['Open Sans']) %}
-						{% endif %}
-						{% if abbc3_google_fonts is iterable %}{% set ABBC3_BBCODE_FONTS = { ABBC3_GOOGLE_FONTS: abbc3_google_fonts|sort }|merge(ABBC3_BBCODE_FONTS) %}{% endif %}
-						{% if constant('IN_ADMIN') is defined %}
-							<select class="abbc3_select" name="abbc3_font" onchange="bbfontstyle('[font=' + this.form.abbc3_font.options[this.form.abbc3_font.selectedIndex].value + ']', '[/font]'); this.form.abbc3_font.selectedIndex = 0" title="{{ custom_tag.BBCODE_HELPLINE }}">
-								<option selected="selected" >{{ lang('ABBC3_FONT_BBCODE') }}</option>
-								{% for group, fonts in ABBC3_BBCODE_FONTS %}
-									{% if loop.length > 1 %}<optgroup label="{{ lang(group) }}">{% endif %}
-										{% for font in fonts %}
-											<option style="font-family:'{{ font }}',sans-serif;" value="{{ font }}">{{ font }}</option>
-										{% endfor %}
-									{% if loop.length > 1 %}</optgroup>{% endif %}
-								{% endfor %}
-							</select>
-						{% else %}
-							<div class="abbc3_dropdown_menu_btn dropdown-container dropdown-{S_CONTENT_FLOW_END}">
-								<a href="#" class="dropdown-trigger button button-secondary" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ lang('ABBC3_FONT_BBCODE') }} <i class="icon fa-fw fa-caret-down"></i></a>
-								<div class="dropdown">
-									<ul class="dropdown-contents" role="menu">
-										{% for group, fonts in ABBC3_BBCODE_FONTS %}
-											{% if loop.length > 1 %}
-											<li class="abbc3_dropdown_menu_disabled">{{ lang(group) }}</li>
-											<li>
-												<ul>
-											{% endif %}
-													{% for font in fonts %}
-														<li class="abbc3_dropdown_menu_item abbc3_font_menu_font" style="font-family:'{{ font }}',sans-serif;" onclick="bbfontstyle('[font={{ font|e('js') }}]', '[/font]'); $(phpbb.dropdownHandles).each(phpbb.toggleDropdown);">{{ font }}</li>
-													{% endfor %}
-											{% if loop.length > 1 %}
-												</ul>
-											</li>
-											{% endif %}
-										{% endfor %}
-									</ul>
-								</div>
-							</div>
-						{% endif %}
-					{% else %}
-						<button type="button" class="{{ custom_tag.BBCODE_IMG ? 'abbc3_button' : 'button button-secondary bbcode-' ~ custom_tag.BBCODE_TAG_CLEAN }}" name="addbbcode{{ custom_tag.BBCODE_ID }}" value="{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}"{% if custom_tag.BBCODE_IMG %} style="background-image:url('{{ ROOT_PATH ~ custom_tag.BBCODE_IMG }}');"{% endif %} onclick="bbspecial('{{ custom_tag.BBCODE_TAG }}', {{ custom_tag.BBCODE_ID }})" title="{{ custom_tag.BBCODE_HELPLINE }}">{{ not custom_tag.BBCODE_IMG ? custom_tag.BBCODE_TAG }}</button>
-					{% endif %}
-				{% endif %}
-			{% endfor %}
-			{% EVENT vse_abbc3_posting_editor_buttons_custom_tags_append %}
+	{% if abbc3_more %}
+		<div class="abbc3-more__tray" data-abbc3-more-tray role="group" aria-label="{{ lang('ABBC3_MORE_BUTTONS') }}" hidden>
+			{% for button in abbc3_more %}{{ _self.button(button, ABBC3_BBCODE_ICONS, ABBC3_BBCODE_FONTS, abbc3_capabilities, MAX_FONT_SIZE, ROOT_PATH) }}{% endfor %}
 		</div>
 	{% endif %}
 </div>
 {% EVENT vse_abbc3_posting_editor_buttons_after %}
-{% EVENT vse_abbc3_posting_editor_wizard_before %}
-<div id="bbcode_wizard"></div>
-{% EVENT vse_abbc3_posting_editor_wizard_after %}
+<div class="abbc3-wizard" role="dialog" aria-modal="true" aria-label="{{ lang('ABBC3_BBCODE_WIZ_HELP') }}" hidden></div>

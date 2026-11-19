@@ -66,9 +66,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'הטמעת קובצי וידאו MP4/OG/WEBM: כתובת האתר חייבת להתחיל ב-<samp class="error">https</samp> או <samp class="error">http</samp> ולהסתיים ב-<samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> או <samp class="error">.webm</samp> (אין צורך ב-BBCode). שים לב שתמיכה בדפדפן ויישום ממשק משתמש משתנים.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'העתק טקסט מסומן',
-	'ABBC3_PASTE_BBCODE'		=> 'הדבק טקסט מועתק',
-	'ABBC3_PASTE_ERROR'			=> 'אתה חייב קודם להעתיק טקסט מסומן, ואז להדביק אותו',
 	'ABBC3_PLAIN_BBCODE'		=> 'מחק את כל תגי ה BBCode מהטקסט המסומן',
 	'ABBC3_NOSELECT_ERROR'		=> 'לא נבחר טקסט.',
 

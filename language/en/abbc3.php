@@ -66,11 +66,12 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Embed MP4/OGG/WEBM video files: URL must start with <samp class="error">https</samp> or <samp class="error">http</samp> and end with <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> or <samp class="error">.webm</samp> (no BBCode needed). Note that browser support and GUI implementation varies.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Copy selected text',
-	'ABBC3_PASTE_BBCODE'		=> 'Paste copied text',
-	'ABBC3_PASTE_ERROR'			=> 'You must first copy a selection of text, then paste it.',
 	'ABBC3_PLAIN_BBCODE'		=> 'Remove all BBCode tags from the selected text',
 	'ABBC3_NOSELECT_ERROR'		=> 'No text was selected.',
+	'ABBC3_MORE_BUTTONS'		=> 'More',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Show additional BBCode buttons',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Hide additional BBCode buttons',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'BBCode dialog',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Insert into message',

@@ -18,6 +18,8 @@ use phpbb\extension\manager as ext_manager;
 use phpbb\language\language;
 use phpbb\request\request;
 use phpbb\template\template;
+use vse\abbc3\core\toolbar_registry;
+use vse\abbc3\core\toolbar_repository;
 
 class acp_controller
 {
@@ -51,6 +53,12 @@ class acp_controller
 	/** @var string */
 	protected $renderer_key;
 
+	/** @var toolbar_repository */
+	protected $toolbar_repository;
+
+	/** @var toolbar_registry */
+	protected $toolbar_registry;
+
 	/** @var string */
 	public $u_action;
 
@@ -71,7 +79,7 @@ class acp_controller
 	 * @param $parser_key
 	 * @param $renderer_key
 	 */
-	public function __construct(cache $cache, config $config, db_text $db_text, db $db, ext_manager $ext_manager, language $language, request $request, template $template, $parser_key, $renderer_key)
+	public function __construct(cache $cache, config $config, db_text $db_text, db $db, ext_manager $ext_manager, language $language, request $request, template $template, $parser_key, $renderer_key, toolbar_repository $toolbar_repository = null, toolbar_registry $toolbar_registry = null)
 	{
 		$this->cache = $cache;
 		$this->config = $config;
@@ -83,6 +91,8 @@ class acp_controller
 		$this->template = $template;
 		$this->parser_key = $parser_key;
 		$this->renderer_key = $renderer_key;
+		$this->toolbar_repository = $toolbar_repository;
+		$this->toolbar_registry = $toolbar_registry;
 	}
 
 	/**
@@ -92,19 +102,21 @@ class acp_controller
 	 */
 	public function handle()
 	{
+		$this->language->add_lang('posting');
+		$this->language->add_lang('abbc3', 'vse/abbc3');
 		$this->language->add_lang('acp_abbc3', 'vse/abbc3');
 
 		$form_key = 'vse/abbc3';
 		add_form_key($form_key);
 
-		if ($this->request->is_set_post('submit'))
+		if ($this->request->is_set_post('abbc3_save_scope'))
 		{
 			if (!check_form_key($form_key))
 			{
 				throw new \RuntimeException($this->language->lang('FORM_INVALID'), E_USER_WARNING);
 			}
 
-			$this->save_settings();
+			$this->save_scope($this->request->variable('abbc3_save_scope', ''));
 		}
 
 		$this->display_settings();
@@ -115,34 +127,89 @@ class acp_controller
 	 */
 	protected function display_settings()
 	{
+		$icon_data = $this->get_icon_data();
 		$this->template->assign_vars([
 			'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
 			'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
 			'S_ABBC3_QR_BBCODES'	=> $this->config['abbc3_qr_bbcodes'],
 			'S_ABBC3_AUTO_VIDEO'	=> $this->config['abbc3_auto_video'],
-			'S_ABBC3_ICONS_TYPE'	=> build_select(['png' => 'PNG', 'svg' => 'SVG'], $this->config['abbc3_icons_type']),
+			'ABBC3_ICONS_TYPE'		=> $this->config['abbc3_icons_type'],
 			'S_ABBC3_GOOGLE_FONTS'	=> $this->get_google_fonts(),
 			'S_ABBC3_MEDIA_EMBED'	=> (int) $this->ext_manager->is_enabled('phpbb/mediaembed'),
+			'ABBC3_AVAILABLE_ICONS'	=> $icon_data['names'],
+			'ABBC3_ICON_PATHS'		=> $icon_data['paths'],
 			'U_ACTION'				=> $this->u_action,
 		]);
+
+		if ($this->toolbar_registry)
+		{
+			foreach ($this->toolbar_registry->get_admin_buttons() as $placement => $buttons)
+			{
+				foreach ($buttons as $button)
+				{
+					$this->template->assign_block_vars('toolbar_' . $placement, [
+						'KEY' => $button['key'],
+						'TYPE' => $button['type'],
+						'NAME' => $button['name'],
+						'LABEL' => $button['label'],
+						'ICON' => $button['icon'],
+					]);
+				}
+			}
+		}
+	}
+
+	protected function get_icon_data()
+	{
+		$names = [];
+		$paths = ['png' => [], 'svg' => []];
+		foreach (['svg', 'png'] as $extension)
+		{
+			$found = $this->ext_manager->get_finder()
+				->set_extensions(['vse/abbc3'])
+				->suffix('.' . $extension)
+				->extension_directory('/images/icons')
+				->core_path('images/abbc3/icons/')
+				->find();
+			foreach (array_keys($found) as $path)
+			{
+				$name = pathinfo($path, PATHINFO_FILENAME);
+				$names[$name] = $name;
+				$paths[$extension][$name] = $path;
+			}
+		}
+		ksort($names);
+		ksort($paths['png']);
+		ksort($paths['svg']);
+		return ['names' => array_values($names), 'paths' => $paths];
 	}
 
 	/**
-	 * Save settings data to the database
+	 * Save one autosave scope.
 	 *
+	 * @param string $scope
 	 * @throws \RuntimeException
 	 */
-	protected function save_settings()
+	protected function save_scope($scope)
 	{
-		$this->config->set('abbc3_bbcode_bar', $this->request->variable('abbc3_bbcode_bar', 0));
-		$this->config->set('abbc3_qr_bbcodes', $this->request->variable('abbc3_qr_bbcodes', 0));
-		$this->config->set('abbc3_auto_video', $this->request->variable('abbc3_auto_video', 0));
-		$this->config->set('abbc3_icons_type', $this->request->variable('abbc3_icons_type', 'png'));
-		$this->save_pipes();
-		$this->save_google_fonts();
+		$this->errors = [];
+		switch ($scope)
+		{
+			case 'setting':
+				$this->save_setting();
+			break;
 
-		$this->cache->destroy($this->parser_key);
-		$this->cache->destroy($this->renderer_key);
+			case 'toolbar':
+				$this->save_toolbar();
+			break;
+
+			case 'fonts':
+				$this->save_google_fonts();
+			break;
+
+			default:
+				throw new \RuntimeException($this->language->lang('FORM_INVALID'), E_USER_WARNING);
+		}
 
 		if (!empty($this->errors))
 		{
@@ -152,22 +219,62 @@ class acp_controller
 		throw new \RuntimeException($this->language->lang('CONFIG_UPDATED'), E_USER_NOTICE);
 	}
 
-	/**
-	 * Save the Pipes Table setting.
-	 * - Set the config
-	 * - Show or hide the Pipes BBCode button
-	 * - Purge BBCode caches.
-	 */
-	protected function save_pipes()
+	protected function save_setting()
 	{
-		$enable_pipes = $this->request->variable('abbc3_pipes', 0);
+		$name = $this->request->variable('setting_name', '');
+		if ($name === 'abbc3_icons_type')
+		{
+			$value = $this->request->variable('setting_value', '');
+			if (!in_array($value, ['png', 'svg'], true))
+			{
+				throw new \RuntimeException($this->language->lang('FORM_INVALID'), E_USER_WARNING);
+			}
+			$this->config->set($name, $value);
+			return;
+		}
 
-		$this->config->set('abbc3_pipes', $enable_pipes);
+		$boolean_settings = [
+			'abbc3_bbcode_bar',
+			'abbc3_qr_bbcodes',
+			'abbc3_pipes',
+			'abbc3_auto_video',
+		];
+		if (!in_array($name, $boolean_settings, true))
+		{
+			throw new \RuntimeException($this->language->lang('FORM_INVALID'), E_USER_WARNING);
+		}
 
-		$sql = 'UPDATE ' . BBCODES_TABLE . '
-			SET display_on_posting = ' . (int) $enable_pipes . "
-			WHERE bbcode_tag = 'pipes'";
-		$this->db->sql_query($sql);
+		$value = $this->request->variable('setting_value', 0);
+		if (!in_array($value, [0, 1], true))
+		{
+			throw new \RuntimeException($this->language->lang('FORM_INVALID'), E_USER_WARNING);
+		}
+		$this->config->set($name, $value);
+		if ($name === 'abbc3_pipes' && $this->toolbar_repository)
+		{
+			$this->toolbar_repository->sync_visibility(['pipes' => (bool) $value]);
+		}
+		if (in_array($name, ['abbc3_pipes', 'abbc3_auto_video'], true))
+		{
+			$this->cache->destroy($this->parser_key);
+			$this->cache->destroy($this->renderer_key);
+		}
+	}
+
+	protected function save_toolbar()
+	{
+		if (!$this->toolbar_repository)
+		{
+			return;
+		}
+
+		$placements = [];
+		foreach (['primary', 'more', 'hidden'] as $placement)
+		{
+			$placements[$placement] = $this->request->variable('toolbar_' . $placement, [0 => '']);
+		}
+		$icons = $this->request->variable('toolbar_icon', ['' => '']);
+		$this->toolbar_repository->save_layout($placements, $icons, ['pipes' => !empty($this->config['abbc3_pipes'])]);
 	}
 
 	/**

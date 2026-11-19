@@ -20,51 +20,9 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 	public function acp_bbcodes_modify_create_data()
 	{
 		return [
-			[
-				0,
-				'$bbcode_group',
-				'',
-				[],
-				[],
-				[
-					'bbcode_group'	=> '$bbcode_group',
-				],
-				[
-					'bbcode_group'	=> '$bbcode_group',
-				],
-			],
-			[
-				0,
-				'$bbcode_group',
-				'create',
-				[],
-				[],
-				[
-					'bbcode_order'	=> 1,
-					'bbcode_group'	=> '$bbcode_group',
-				],
-				[
-					'bbcode_group'	=> '$bbcode_group',
-				],
-			],
-			[
-				10,
-				'$bbcode_group',
-				'create',
-				[
-					'bbcode_order'	=> 0,
-				],
-				[
-					'bbcode_group'	=> '',
-				],
-				[
-					'bbcode_order'	=> 11,
-					'bbcode_group'	=> '$bbcode_group',
-				],
-				[
-					'bbcode_group'	=> '$bbcode_group',
-				],
-			],
+			['$bbcode_group', '', [], [], [], ['bbcode_group' => '$bbcode_group']],
+			['$bbcode_group', 'create', [], [], [], ['bbcode_group' => '$bbcode_group']],
+			['$bbcode_group', 'create', ['unchanged' => 1], ['bbcode_group' => ''], ['unchanged' => 1], ['bbcode_group' => '$bbcode_group']],
 		];
 	}
 
@@ -74,13 +32,10 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 	 *
 	 * @dataProvider acp_bbcodes_modify_create_data
 	 */
-	public function test_acp_bbcodes_modify_create($max_order, $bbcode_group, $action, $sql_ary, $hidden_fields, $expected_sql_ary, $expected_hidden_fields)
+	public function test_acp_bbcodes_modify_create($bbcode_group, $action, $sql_ary, $hidden_fields, $expected_sql_ary, $expected_hidden_fields)
 	{
 		$this->set_listener();
 
-		$this->acp_manager->expects($action === 'create' ? self::once() : self::never())
-			->method('get_max_bbcode_order')
-			->willReturn($max_order);
 		$this->acp_manager->expects(self::once())
 			->method('get_bbcode_group_form_data')
 			->willReturn($bbcode_group);

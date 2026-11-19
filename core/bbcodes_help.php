@@ -114,14 +114,14 @@ class bbcodes_help
 	protected function allowed_bbcodes()
 	{
 		$allowed = [];
-		$sql = 'SELECT bbcode_helpline, bbcode_group
+		$sql = 'SELECT bbcode_id, bbcode_helpline
 			FROM ' . BBCODES_TABLE . '
 			WHERE bbcode_helpline ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char()) . '
 				AND display_on_posting = 1';
 		$result = $this->db->sql_query($sql);
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			if ($this->bbcodes_display->user_in_bbcode_group($row['bbcode_group']))
+			if ($this->bbcodes_display->user_can_use_bbcode((int) $row['bbcode_id']))
 			{
 				$allowed[$row['bbcode_helpline']] = true;
 			}

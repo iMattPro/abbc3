@@ -68,9 +68,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Nhúng tệp video MP4/OGG/WEBM: URL phải bắt đầu bằng <samp class="error">https</samp> hoặc <samp class="error">http</samp> và kết thúc bằng <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> hoặc <samp class="error">.webm</samp> (không cần BBCode). Lưu ý rằng việc triển khai GUI và hỗ trợ trình duyệt sẽ khác nhau.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Sao chép đoạn đã bôi đen',
-	'ABBC3_PASTE_BBCODE'		=> 'Dán nội dung đã sao chép',
-	'ABBC3_PASTE_ERROR'			=> 'Bạn phải sao chép nội dung đoạn đã bôi đen, sau đó dán nội dung đã sao chép',
 	'ABBC3_PLAIN_BBCODE'		=> 'Loại bỏ hết các BBCode khỏi đoạn văn đã bôi đen',
 	'ABBC3_NOSELECT_ERROR'		=> 'Bạn chưa bôi đen đoạn văn nào.',
 

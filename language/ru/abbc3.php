@@ -66,9 +66,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Встраивайте видеофайлы MP4/OGG/WEBM: URL-адрес должен начинаться с <samp class="error">https</samp> или <samp class="error">http</samp> и заканчиваться <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> или <samp class="error">.webm</samp> (BB-код не требуется). Обратите внимание, что поддержка браузеров и реализация графического интерфейса различаются.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Копировать выделенный текст',
-	'ABBC3_PASTE_BBCODE'		=> 'Вставить скопированный текст',
-	'ABBC3_PASTE_ERROR'			=> 'Пожалуйста, сначала скопируйте текст, а потом вставляйте',
 	'ABBC3_PLAIN_BBCODE'		=> 'Очистить выделенный текст от BBCode',
 	'ABBC3_NOSELECT_ERROR'		=> 'Пожалуйста, сначала выделите текст.',
 

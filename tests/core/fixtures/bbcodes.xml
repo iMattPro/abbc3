@@ -3,8 +3,6 @@
 	<table name="phpbb_bbcodes">
 		<column>bbcode_id</column>
 		<column>bbcode_tag</column>
-		<column>bbcode_order</column>
-		<column>bbcode_group</column>
 		<column>bbcode_match</column>
 		<column>bbcode_tpl</column>
 		<column>first_pass_match</column>
@@ -13,117 +11,34 @@
 		<column>second_pass_replace</column>
 		<column>bbcode_helpline</column>
 		<column>display_on_posting</column>
-		<row>
-			<value>13</value>
-			<value>font=</value>
-			<value>1</value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value>ABBC3_FONT_HELPLINE</value>
-			<value>1</value>
-		</row>
-		<row>
-			<value>14</value>
-			<value>highlight=</value>
-			<value>2</value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value>ABBC3_HIGHLIGHT_HELPLINE</value>
-			<value>1</value>
-		</row>
-		<row>
-			<value>15</value>
-			<value>align=</value>
-			<value>3</value>
-			<value>1</value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value>ABBC3_ALIGN_HELPLINE</value>
-			<value>1</value>
-		</row>
-		<row>
-			<value>16</value>
-			<value>float=</value>
-			<value>4</value>
-			<value>2,3</value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value>ABBC3_FLOAT_HELPLINE</value>
-			<value>1</value>
-		</row>
-		<row>
-			<value>17</value>
-			<value>sup</value>
-			<value>5</value>
-			<value>4,5,6</value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value></value>
-			<value>ABBC3_SUP_HELPLINE</value>
-			<value>1</value>
-		</row>
+		<row><value>13</value><value>font=</value><value></value><value></value><value></value><value></value><value></value><value></value><value>ABBC3_FONT_HELPLINE</value><value>1</value></row>
+		<row><value>14</value><value>highlight=</value><value></value><value></value><value></value><value></value><value></value><value></value><value>ABBC3_HIGHLIGHT_HELPLINE</value><value>1</value></row>
+		<row><value>15</value><value>align=</value><value></value><value></value><value></value><value></value><value></value><value></value><value>ABBC3_ALIGN_HELPLINE</value><value>1</value></row>
+		<row><value>16</value><value>float=</value><value></value><value></value><value></value><value></value><value></value><value></value><value>ABBC3_FLOAT_HELPLINE</value><value>1</value></row>
+		<row><value>17</value><value>sup</value><value></value><value></value><value></value><value></value><value></value><value></value><value>ABBC3_SUP_HELPLINE</value><value>1</value></row>
+	</table>
+	<table name="phpbb_abbc3_bbcode_groups">
+		<column>bbcode_id</column><column>group_id</column>
+		<row><value>15</value><value>1</value></row>
+		<row><value>16</value><value>2</value></row>
+		<row><value>16</value><value>3</value></row>
+		<row><value>17</value><value>4</value></row>
+		<row><value>17</value><value>5</value></row>
+		<row><value>17</value><value>6</value></row>
+	</table>
+	<table name="phpbb_abbc3_toolbar">
+		<column>button_key</column><column>button_type</column><column>bbcode_id</column><column>placement</column><column>sort_order</column><column>icon</column>
 	</table>
 	<table name="phpbb_groups">
-		<column>group_id</column>
-		<column>group_name</column>
-		<column>group_type</column>
-		<column>group_desc</column>
-		<row>
-			<value>1</value>
-			<value>GUESTS</value>
-			<value>3</value>
-			<value></value>
-		</row>
-		<row>
-			<value>2</value>
-			<value>REGISTERED</value>
-			<value>3</value>
-			<value></value>
-		</row>
-		<row>
-			<value>3</value>
-			<value>REGISTERED_COPPA</value>
-			<value>3</value>
-			<value></value>
-		</row>
-		<row>
-			<value>4</value>
-			<value>GLOBAL_MODERATORS</value>
-			<value>3</value>
-			<value></value>
-		</row>
-		<row>
-			<value>5</value>
-			<value>ADMINISTRATORS</value>
-			<value>3</value>
-			<value></value>
-		</row>
-		<row>
-			<value>6</value>
-			<value>BOTS</value>
-			<value>3</value>
-			<value></value>
-		</row>
+		<column>group_id</column><column>group_name</column><column>group_type</column><column>group_desc</column>
+		<row><value>1</value><value>GUESTS</value><value>3</value><value></value></row>
+		<row><value>2</value><value>REGISTERED</value><value>3</value><value></value></row>
+		<row><value>3</value><value>REGISTERED_COPPA</value><value>3</value><value></value></row>
+		<row><value>4</value><value>GLOBAL_MODERATORS</value><value>3</value><value></value></row>
+		<row><value>5</value><value>ADMINISTRATORS</value><value>3</value><value></value></row>
+		<row><value>6</value><value>BOTS</value><value>3</value><value></value></row>
+	</table>
+	<table name="phpbb_config_text">
+		<column>config_name</column><column>config_value</column>
 	</table>
 </dataset>

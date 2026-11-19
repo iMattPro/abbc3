@@ -23,6 +23,10 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 	protected function setUp(): void
 	{
 		parent::setUp();
+		$this->get_db();
+		$this->db->sql_query("UPDATE " . CONFIG_TABLE . " SET config_value = '1' WHERE config_name = 'allow_cdn'");
+		$this->db->sql_query("UPDATE " . CONFIG_TEXT_TABLE . " SET config_value = '[\"Droid Sans\",\"Roboto\"]' WHERE config_name = 'abbc3_google_fonts'");
+		$this->purge_cache();
 		$this->login();
 	}
 
@@ -70,7 +74,23 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 	 */
 	protected function run_checks($crawler)
 	{
-		self::assertGreaterThan(0, $crawler->filter('#abbc3_buttons')->count());
+		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-toolbar]')->count());
+		self::assertGreaterThan(0, $crawler->filter('[role="toolbar"]')->count());
+		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-more-toggle]')->count());
+		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-more-tray]')->count());
+		self::assertGreaterThan(0, $crawler->filter('.abbc3-control__icon[src*="/images/icons/"]')->count());
+		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-font-value="Droid Sans"][style*="font-family"]')->count());
+		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-font-value="Roboto"][style*="font-family"]')->count());
+		self::assertGreaterThanOrEqual(2, $crawler->filter('.abbc3-menu__panel--font .abbc3-menu__group')->count());
+		self::assertSame(0, $crawler->filter('[data-abbc3-size-value][style*="font-size"]')->count());
+		self::assertGreaterThan(0, $crawler->filter('link[href*="fonts.googleapis.com/css2?"][href*="family=Droid%20Sans"]')->count());
+		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-name="img"]')->count());
+		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-name="url"]')->count());
+		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-name="plain"]')->count());
+		self::assertSame(0, $crawler->filter('.abbc3-more__count')->count());
+		self::assertNotEmpty($crawler->filter('[data-abbc3-more-toggle]')->attr('title'));
+		self::assertSame(0, $crawler->filter('[data-abbc3-name="glow"]')->count());
+		self::assertSame(0, $crawler->filter('[data-abbc3-name="soundcloud"]')->count());
 
 		// test a couple of dynamic bbcodes set in the javascript
 		self::assertStringContainsString('[dir=rtl]', $crawler->filter('body')->html());

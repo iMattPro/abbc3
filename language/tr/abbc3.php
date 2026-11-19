@@ -67,9 +67,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE'	=> 'Gömülü MP4/OGG/WEBM video dosyaları: URL, <samp class="error">https</samp> veya <samp class="error">http</samp> ile başlamalı ve <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> veya <samp class="error">.webm</samp> ile bitmelidir (BBCode gerekmez). Tarayıcı desteğinin ve GUI uygulamasının değişiklik gösterdiğini unutmayın.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Seçilen metni kopyala',
-	'ABBC3_PASTE_BBCODE'		=> 'Kopyalanan metni yapıştır',
-	'ABBC3_PASTE_ERROR'			=> 'Önce bir metin seçimini kopyalamanız, ardından yapıştırmanız gerekir',
 	'ABBC3_PLAIN_BBCODE'		=> 'Seçilen metinden tüm BBCode etiketlerini kaldır',
 	'ABBC3_NOSELECT_ERROR'		=> 'Hiç bir metin seçilmedi.',
 

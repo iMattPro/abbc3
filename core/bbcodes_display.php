@@ -42,6 +42,9 @@ class bbcodes_display
 	/** @var string */
 	protected $root_path;
 
+	/** @var toolbar_repository */
+	protected $toolbar_repository;
+
 	/** @var array */
 	protected $memberships;
 
@@ -59,7 +62,7 @@ class bbcodes_display
 	 * @param string           $root_path         Path to phpBB root
 	 * @access public
 	 */
-	public function __construct(auth $auth, config $config, driver_interface $db, manager $extension_manager, user $user, $root_path)
+	public function __construct(auth $auth, config $config, driver_interface $db, manager $extension_manager, user $user, $root_path, toolbar_repository $toolbar_repository = null)
 	{
 		$this->auth = $auth;
 		$this->config = $config;
@@ -67,6 +70,7 @@ class bbcodes_display
 		$this->extension_manager = $extension_manager;
 		$this->user = $user;
 		$this->root_path = $root_path;
+		$this->toolbar_repository = $toolbar_repository;
 	}
 
 	/**
@@ -81,12 +85,22 @@ class bbcodes_display
 	 */
 	public function display_custom_bbcodes($custom_tags, $row)
 	{
+		if ($this->toolbar_repository)
+		{
+			$this->toolbar_repository->sync_bbcode((int) $row['bbcode_id'], $row['bbcode_tag'], true);
+		}
 		$icons = $this->get_icons();
 
 		$icon_tag = strtolower(rtrim($row['bbcode_tag'], '='));
 
 		$custom_tags['BBCODE_IMG'] = isset($icons[$icon_tag]) ? $icons[$icon_tag] : '';
-		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = empty($row['bbcode_group']) || $this->user_in_bbcode_group($row['bbcode_group']);
+		$groups = $this->toolbar_repository
+			? $this->toolbar_repository->get_group_ids((int) $row['bbcode_id'])
+			: ($row['bbcode_group'] ?? []);
+		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = !$groups || $this->user_in_bbcode_group($groups);
+		$tag = rtrim($row['bbcode_tag'], '=');
+		$custom_tags['ABBC3_OPEN'] = '[' . $row['bbcode_tag'] . ']';
+		$custom_tags['ABBC3_CLOSE'] = !isset($row['bbcode_match']) || stripos($row['bbcode_match'], '[/' . $tag . ']') !== false ? '[/' . $tag . ']' : '';
 
 		return $custom_tags;
 	}
@@ -101,7 +115,7 @@ class bbcodes_display
 	public function allow_custom_bbcodes(parser $service)
 	{
 		$parser = $service->get_parser();
-		foreach ($parser->registeredVars['abbc3.bbcode_groups'] as $bbcode_name => $groups)
+		foreach (($parser->registeredVars['abbc3.bbcode_groups'] ?? []) as $bbcode_name => $groups)
 		{
 			if (!$this->user_in_bbcode_group($groups))
 			{
@@ -188,6 +202,16 @@ class bbcodes_display
 		return true;
 	}
 
+	public function user_can_use_bbcode($bbcode_id)
+	{
+		if (!$this->toolbar_repository)
+		{
+			return true;
+		}
+
+		return $this->user_in_bbcode_group($this->toolbar_repository->get_group_ids($bbcode_id));
+	}
+
 	/**
 	 * Get paths/names to ABBC3's BBCode icons.
 	 * Search in ABBC3's icons dir and also the core's images dir.
@@ -197,27 +221,35 @@ class bbcodes_display
 	 */
 	public function get_icons()
 	{
-		static $icons = [];
+		static $icon_sets = [];
+		$type = $this->config['abbc3_icons_type'] === 'svg' ? 'svg' : 'png';
 
-		if (empty($icons))
+		if (!isset($icon_sets[$type]))
 		{
-			$finder = $this->extension_manager->get_finder();
-			$icons = $finder
-				->set_extensions(['vse/abbc3'])
-				->suffix(".{$this->config['abbc3_icons_type']}")
-				->extension_directory('/images/icons')
-				->core_path('images/abbc3/icons/')
-				->find();
-
-			// Rewrite the image array with img names as keys and paths as values
-			foreach ($icons as $path => $ext)
+			$icons = [];
+			// Prefer the configured format, but use the other format before falling
+			// back to text. This keeps every control visible with partial icon sets.
+			foreach ([$type, $type === 'png' ? 'svg' : 'png'] as $extension)
 			{
-				$icons[basename($path, ".{$this->config['abbc3_icons_type']}")] = $path;
-				unset($icons[$path]);
+				$found = $this->extension_manager->get_finder()
+					->set_extensions(['vse/abbc3'])
+					->suffix(".{$extension}")
+					->extension_directory('/images/icons')
+					->core_path('images/abbc3/icons/')
+					->find();
+				foreach (array_keys($found) as $path)
+				{
+					$name = basename($path, ".{$extension}");
+					if (!isset($icons[$name]))
+					{
+						$icons[$name] = $path;
+					}
+				}
 			}
+			$icon_sets[$type] = $icons;
 		}
 
-		return $icons;
+		return $icon_sets[$type];
 	}
 
 	/**

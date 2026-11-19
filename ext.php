@@ -14,11 +14,9 @@ use phpbb\filesystem\exception\filesystem_exception;
 
 class ext extends \phpbb\extension\base
 {
-	const MOVE_UP = 'move_up';
-	const MOVE_DOWN = 'move_down';
-	const MOVE_DRAG = 'move_drag';
-	const PHPBB_MIN_VERSION = '3.2.2'; // Require 3.2.2 due to TextFormatter and BBCode changes
-	const PHP_MIN_VERSION_ID = 70000; // Require PHP 7.0 or higher (using modern operators like <=>)
+	const PHPBB_MIN_VERSION = '3.3.0';
+	const PHPBB_MAX_VERSION = '4.0.0@dev';
+	const PHP_MIN_VERSION_ID = 70200;
 	const PHPBB_LEGACY_MAX = '3.3.10'; // Max version of phpBB to use legacy settings
 	const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
 
@@ -41,6 +39,11 @@ class ext extends \phpbb\extension\base
 	{
 		if ($old_state === false)
 		{
+			$this->record_install_context();
+			if ($uninstall_manager = $this->get_uninstall_manager())
+			{
+				$uninstall_manager->restore_enable();
+			}
 			$filesystem = $this->container->get('filesystem');
 			$icon_path = $this->container->getParameter('core.root_path') . 'images/abbc3/icons';
 
@@ -64,6 +67,98 @@ class ext extends \phpbb\extension\base
 	}
 
 	/**
+	 * Record fresh install vs upgrade before any extension migrations run.
+	 */
+	protected function record_install_context()
+	{
+		if (!$this->container->has('dbal.conn') || !$this->container->has('config'))
+		{
+			return;
+		}
+
+		$db = $this->container->get('dbal.conn');
+		$migrations = [
+			'old' => '\\vse\\abbc3\\migrations\\v3310_m20_update_bbcodes',
+			'new' => '\\vse\\abbc3\\migrations\\v3312_m21_toolbar',
+		];
+		$sql = 'SELECT migration_name FROM ' . MIGRATIONS_TABLE . '
+			WHERE ' . $db->sql_in_set('migration_name', array_values($migrations));
+		$result = $db->sql_query($sql);
+		$installed = [];
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$installed[$row['migration_name']] = true;
+		}
+		$db->sql_freeresult($result);
+
+		if (!isset($installed[$migrations['new']]))
+		{
+			$this->container->get('config')->set('abbc3_fresh_install', (int) !isset($installed[$migrations['old']]));
+		}
+	}
+
+	public function disable_step($old_state)
+	{
+		if ($old_state === false)
+		{
+			if ($uninstall_manager = $this->get_uninstall_manager())
+			{
+				$uninstall_manager->prepare_disable();
+			}
+			return 'abbc3-disable-prepared';
+		}
+
+		return false;
+	}
+
+	public function purge_step($old_state)
+	{
+		$state = parent::purge_step($old_state);
+		if ($state === false)
+		{
+			if ($uninstall_manager = $this->get_uninstall_manager())
+			{
+				$uninstall_manager->finish_purge();
+			}
+		}
+
+		return $state;
+	}
+
+	/**
+	 * Extension services are unavailable while disabled, so build this lifecycle
+	 * service from phpBB core services when necessary.
+	 *
+	 * @return core\uninstall_manager|null
+	 */
+	protected function get_uninstall_manager()
+	{
+		if ($this->container->has('vse.abbc3.uninstall_manager'))
+		{
+			return $this->container->get('vse.abbc3.uninstall_manager');
+		}
+
+		foreach (['dbal.conn', 'config_text', 'cache.driver'] as $service)
+		{
+			if (!$this->container->has($service))
+			{
+				return null;
+			}
+		}
+
+		return new core\uninstall_manager(
+			$this->container->get('dbal.conn'),
+			$this->container->get('config_text'),
+			$this->container->get('cache.driver'),
+			new core\bbcode_catalog(),
+			$this->container->getParameter('text_formatter.cache.parser.key'),
+			$this->container->getParameter('text_formatter.cache.renderer.key'),
+			$this->container->getParameter('core.root_path'),
+			$this->container->getParameter('core.php_ext')
+		);
+	}
+
+	/**
 	 * Enable version check
 	 *
 	 * @param string|int $version The version to check
@@ -71,6 +166,7 @@ class ext extends \phpbb\extension\base
 	 */
 	protected function version_check($version)
 	{
-		return phpbb_version_compare($version, self::PHPBB_MIN_VERSION, '>=');
+		return phpbb_version_compare($version, self::PHPBB_MIN_VERSION, '>=')
+			&& phpbb_version_compare($version, self::PHPBB_MAX_VERSION, '<');
 	}
 }

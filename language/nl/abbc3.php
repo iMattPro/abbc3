@@ -67,9 +67,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOVIDEO_HELPLINE' => 'Embed MP4/OGG/WEBM videobestanden: URL moet beginnen met <samp class="error">https</samp> of <samp class="error">http</samp> en eindigen met <samp class="error">.mp4</samp>, <samp class="error">.ogg</samp> of <samp class="error">.webm</samp> (geen BBCode nodig). Houd er rekening mee dat browserondersteuning en GUI-implementatie variëren.',
 
 	// Utility BBCodes
-	'ABBC3_COPY_BBCODE'			=> 'Kopieer geselecteerde tekst',
-	'ABBC3_PASTE_BBCODE'		=> 'Plak geselecteerde tekst',
-	'ABBC3_PASTE_ERROR'			=> 'Je moet eerst een tekst selecteren, voordat je het kan plakken',
 	'ABBC3_PLAIN_BBCODE'		=> 'Verwijder alle BBcode-tags van de geselecteerde tekst',
 	'ABBC3_NOSELECT_ERROR'		=> 'Er is geen tekst geselecteerd.',
 

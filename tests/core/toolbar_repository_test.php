@@ -1,0 +1,102 @@
+<?php
+/**
+ * Advanced BBCode Box
+ *
+ * @copyright (c) 2026 Matt Friedman
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ */
+
+namespace vse\abbc3\tests\core;
+
+use vse\abbc3\core\toolbar_repository;
+
+class toolbar_repository_test extends acp_base
+{
+	/** @var toolbar_repository */
+	protected $repository;
+
+	protected function setUp(): void
+	{
+		parent::setUp();
+		$this->repository = new toolbar_repository($this->db, 'phpbb_');
+	}
+
+	public function test_sync_bbcode_renames_row_removes_duplicate_and_preserves_icon()
+	{
+		$this->insert_button('bbcode:font', 13, 'primary', 1, 'custom-font');
+		$this->insert_button('bbcode:legacy-font', 13, 'more', 2, 'legacy-font');
+
+		$this->repository->sync_bbcode(13, 'renamed=', true);
+
+		$rows = $this->get_toolbar_rows(13);
+		self::assertCount(1, $rows);
+		self::assertSame('bbcode:renamed', $rows[0]['button_key']);
+		self::assertSame('primary', $rows[0]['placement']);
+		self::assertSame('custom-font', $rows[0]['icon']);
+	}
+
+	public function test_sync_bbcode_tracks_disabled_and_reenabled_state()
+	{
+		$this->insert_button('bbcode:highlight', 14, 'primary', 1, 'highlight');
+
+		$this->repository->sync_bbcode(14, 'highlight=', false);
+		self::assertSame('hidden', $this->get_toolbar_rows(14)[0]['placement']);
+
+		$this->repository->sync_bbcode(14, 'highlight=', true);
+		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
+	}
+
+	public function test_save_layout_only_changes_registered_bbcodes_and_honors_features()
+	{
+		$this->insert_button('bbcode:font', 13, 'primary', 1, 'font');
+		$this->insert_button('bbcode:highlight', 14, 'more', 1, 'highlight');
+
+		$this->repository->save_layout([
+			'primary' => ['bbcode:font'],
+			'more' => ['bbcode:highlight'],
+			'hidden' => [],
+		], [], ['highlight' => false]);
+
+		self::assertSame('1', $this->get_display_state(13));
+		self::assertSame('0', $this->get_display_state(14));
+		self::assertSame('1', $this->get_display_state(15));
+		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
+
+		$this->repository->sync_visibility(['highlight' => true]);
+		self::assertSame('1', $this->get_display_state(14));
+		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
+	}
+
+	protected function insert_button($key, $bbcode_id, $placement, $order, $icon)
+	{
+		$row = [
+			'button_key' => $key,
+			'button_type' => 'bbcode',
+			'bbcode_id' => $bbcode_id,
+			'placement' => $placement,
+			'sort_order' => $order,
+			'icon' => $icon,
+		];
+		$this->db->sql_query('INSERT INTO phpbb_abbc3_toolbar ' . $this->db->sql_build_array('INSERT', $row));
+	}
+
+	protected function get_toolbar_rows($bbcode_id)
+	{
+		$result = $this->db->sql_query('SELECT * FROM phpbb_abbc3_toolbar WHERE bbcode_id = ' . (int) $bbcode_id . ' ORDER BY button_key');
+		$rows = [];
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$rows[] = $row;
+		}
+		$this->db->sql_freeresult($result);
+		return $rows;
+	}
+
+	protected function get_display_state($bbcode_id)
+	{
+		$result = $this->db->sql_query('SELECT display_on_posting FROM phpbb_bbcodes WHERE bbcode_id = ' . (int) $bbcode_id);
+		$state = $this->db->sql_fetchfield('display_on_posting');
+		$this->db->sql_freeresult($result);
+		return $state;
+	}
+}
