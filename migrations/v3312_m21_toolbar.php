@@ -31,6 +31,7 @@ class v3312_m21_toolbar extends container_aware_migration
 						'placement' => ['VCHAR:16', 'more'],
 						'sort_order' => ['UINT', 0],
 						'icon' => ['VCHAR:64', ''],
+						'font_icon' => ['VCHAR:64', ''],
 					],
 					'PRIMARY_KEY' => 'button_key',
 					'KEYS' => [
@@ -148,6 +149,7 @@ class v3312_m21_toolbar extends container_aware_migration
 			'placement' => $placement,
 			'sort_order' => (int) $order,
 			'icon' => $icon,
+			'font_icon' => '',
 		];
 		$this->db->sql_query('INSERT INTO ' . $this->table_prefix . 'abbc3_toolbar ' . $this->db->sql_build_array('INSERT', $sql_ary));
 	}

@@ -55,7 +55,7 @@ class toolbar_repository_test extends acp_base
 			'primary' => ['bbcode:font'],
 			'more' => ['bbcode:highlight'],
 			'hidden' => [],
-		], [], ['highlight' => false]);
+		], [], [], ['highlight' => false]);
 
 		self::assertSame('1', $this->get_display_state(13));
 		self::assertSame('0', $this->get_display_state(14));
@@ -67,6 +67,22 @@ class toolbar_repository_test extends acp_base
 		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
 	}
 
+	public function test_save_layout_supports_font_image_and_text_icon_fallbacks()
+	{
+		$this->insert_button('bbcode:highlight', 14, 'more', 1, 'highlight');
+		$placements = ['primary' => [], 'more' => ['bbcode:highlight'], 'hidden' => []];
+
+		$this->repository->save_layout($placements, ['bbcode:highlight' => ''], ['bbcode:highlight' => 'fa-star']);
+		$row = $this->get_toolbar_rows(14)[0];
+		self::assertSame('', $row['icon']);
+		self::assertSame('star', $row['font_icon']);
+
+		$this->repository->save_layout($placements, ['bbcode:highlight' => 'highlight'], ['bbcode:highlight' => '']);
+		$row = $this->get_toolbar_rows(14)[0];
+		self::assertSame('highlight', $row['icon']);
+		self::assertSame('', $row['font_icon']);
+	}
+
 	protected function insert_button($key, $bbcode_id, $placement, $order, $icon)
 	{
 		$row = [
@@ -76,6 +92,7 @@ class toolbar_repository_test extends acp_base
 			'placement' => $placement,
 			'sort_order' => $order,
 			'icon' => $icon,
+			'font_icon' => '',
 		];
 		$this->db->sql_query('INSERT INTO phpbb_abbc3_toolbar ' . $this->db->sql_build_array('INSERT', $row));
 	}

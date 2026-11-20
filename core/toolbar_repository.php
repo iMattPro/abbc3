@@ -45,7 +45,7 @@ class toolbar_repository
 		return $layout;
 	}
 
-	public function save_layout(array $placements, array $icons, array $feature_states = [])
+	public function save_layout(array $placements, array $icons, array $font_icons, array $feature_states = [])
 	{
 		$layout = $this->get_layout();
 		$normalized = ['primary' => [], 'more' => [], 'hidden' => []];
@@ -80,9 +80,17 @@ class toolbar_repository
 						'placement' => $placement,
 						'sort_order' => $order + 1,
 					];
-					if (isset($icons[$key]) && preg_match('/^[a-z0-9_-]{1,64}$/i', $icons[$key]))
+					if (array_key_exists($key, $icons) && preg_match('/^(?:[a-z0-9_-]{1,64})?$/i', $icons[$key]))
 					{
 						$sql_ary['icon'] = $icons[$key];
+					}
+					if (array_key_exists($key, $font_icons))
+					{
+						$font_icon = preg_replace('/^fa-/i', '', trim($font_icons[$key]));
+						if (preg_match('/^(?:[a-z0-9-]{1,64})?$/i', $font_icon))
+						{
+							$sql_ary['font_icon'] = strtolower($font_icon);
+						}
 					}
 					$sql = 'UPDATE ' . $this->toolbar_table . '
 						SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . "
@@ -189,6 +197,7 @@ class toolbar_repository
 					'placement' => $placement,
 					'sort_order' => $this->next_order($placement),
 					'icon' => strtolower(rtrim($tag, '=')),
+					'font_icon' => '',
 				];
 				$this->db->sql_query('INSERT INTO ' . $this->toolbar_table . ' ' . $this->db->sql_build_array('INSERT', $row));
 			}

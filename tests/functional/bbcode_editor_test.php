@@ -24,6 +24,8 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 	{
 		parent::setUp();
 		$this->get_db();
+		$this->db->sql_query("UPDATE " . self::$config['table_prefix'] . "abbc3_toolbar SET font_icon = 'star', icon = 'glow' WHERE button_key = 'bbcode:glow'");
+		$this->db->sql_query("UPDATE " . self::$config['table_prefix'] . "abbc3_toolbar SET font_icon = '', icon = '' WHERE button_key = 'bbcode:fade'");
 		$this->db->sql_query("UPDATE " . CONFIG_TABLE . " SET config_value = '1' WHERE config_name = 'allow_cdn'");
 		$this->db->sql_query("UPDATE " . CONFIG_TEXT_TABLE . " SET config_value = '[\"Droid Sans\",\"Roboto\"]' WHERE config_name = 'abbc3_google_fonts'");
 		$this->purge_cache();
@@ -93,6 +95,9 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 		{
 			self::assertGreaterThan(0, $crawler->filter('[data-abbc3-name="' . $bbcode . '"]')->count());
 		}
+		self::assertSame(1, $crawler->filter('[data-abbc3-name="glow"] .fa-star')->count());
+		self::assertSame(0, $crawler->filter('[data-abbc3-name="glow"] img')->count());
+		self::assertSame(0, $crawler->filter('[data-abbc3-name="fade"] .abbc3-control__fallback--hidden')->count());
 		self::assertSame(0, $crawler->filter('[data-abbc3-name="soundcloud"]')->count());
 
 		// test a couple of dynamic bbcodes set in the javascript

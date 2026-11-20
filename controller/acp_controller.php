@@ -153,6 +153,7 @@ class acp_controller
 						'NAME' => $button['name'],
 						'LABEL' => $button['label'],
 						'ICON' => $button['icon'],
+						'FONT_ICON' => $button['font_icon'],
 					]);
 				}
 			}
@@ -274,7 +275,8 @@ class acp_controller
 			$placements[$placement] = $this->request->variable('toolbar_' . $placement, [0 => '']);
 		}
 		$icons = $this->request->variable('toolbar_icon', ['' => '']);
-		$this->toolbar_repository->save_layout($placements, $icons, ['pipes' => !empty($this->config['abbc3_pipes'])]);
+		$font_icons = $this->request->variable('toolbar_font_icon', ['' => '']);
+		$this->toolbar_repository->save_layout($placements, $icons, $font_icons, ['pipes' => !empty($this->config['abbc3_pipes'])]);
 	}
 
 	/**

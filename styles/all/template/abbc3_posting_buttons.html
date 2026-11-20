@@ -24,9 +24,10 @@
 				</div>
 			</div>
 		{% else %}
-			{% set icon = icons[button.ICON] ?? icons[button.NAME] %}
+			{% set icon = icons[button.ICON] ?? null %}
+			{% set has_icon = button.FONT_ICON or icon %}
 			<button type="button"
-				class="abbc3-control{{ icon ? ' abbc3-control--icon' : ' abbc3-control--text' }}"
+				class="abbc3-control{{ button.FONT_ICON ? ' abbc3-control--font-icon' : (icon ? ' abbc3-control--icon' : ' abbc3-control--text') }}"
 				{% if button.ACCESSKEY %}accesskey="{{ button.ACCESSKEY }}"{% endif %}
 				data-abbc3-action="{{ button.TYPE == 'color' ? 'color' : (button.TYPE == 'plain' ? 'plain' : button.ACTION) }}"
 				data-abbc3-open="{{ button.OPEN }}"
@@ -34,8 +35,8 @@
 				data-abbc3-name="{{ button.NAME }}"
 				aria-label="{{ lang(button.LABEL) }}"
 				title="{{ lang(button.LABEL) }}">
-				{% if icon %}<img class="abbc3-control__icon" src="{{ root ~ icon }}" alt="" aria-hidden="true">{% endif %}
-				<span class="abbc3-control__fallback{{ icon ? ' abbc3-control__fallback--hidden' }}">{{ button.NAME }}</span>
+				{% if button.FONT_ICON %}<i class="icon fa-{{ button.FONT_ICON }} fa-fw abbc3-control__font-icon" aria-hidden="true"></i>{% elseif icon %}<img class="abbc3-control__icon" src="{{ root ~ icon }}" alt="" aria-hidden="true">{% endif %}
+				<span class="abbc3-control__fallback{{ has_icon ? ' abbc3-control__fallback--hidden' }}">{{ button.NAME }}</span>
 			</button>
 		{% endif %}
 	{% endif %}

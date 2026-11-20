@@ -27,7 +27,7 @@
 		<row><value>17</value><value>6</value></row>
 	</table>
 	<table name="phpbb_abbc3_toolbar">
-		<column>button_key</column><column>button_type</column><column>bbcode_id</column><column>placement</column><column>sort_order</column><column>icon</column>
+		<column>button_key</column><column>button_type</column><column>bbcode_id</column><column>placement</column><column>sort_order</column><column>icon</column><column>font_icon</column>
 	</table>
 	<table name="phpbb_groups">
 		<column>group_id</column><column>group_name</column><column>group_type</column><column>group_desc</column>

@@ -5,6 +5,7 @@
 	const form = document.getElementById('abbc3_settings');
 	const inspector = document.querySelector('[data-abbc3-inspector]');
 	const iconSelect = inspector ? inspector.querySelector('[data-inspector-icon-select]') : null;
+	const fontIconInput = inspector ? inspector.querySelector('[data-inspector-font-icon]') : null;
 	const placementSelect = inspector ? inspector.querySelector('[data-inspector-placement]') : null;
 	const previewPrimary = document.querySelector('[data-preview-primary]');
 	const previewMore = document.querySelector('[data-preview-more]');
@@ -12,16 +13,17 @@
 	const saveStatus = document.querySelector('[data-autosave-status]');
 	const saveMessage = document.querySelector('[data-autosave-message]');
 	const retryButton = document.querySelector('[data-autosave-retry]');
-	const fonts = document.querySelector('[data-autosave-fonts]');
+	const fonts = document.querySelector('[data-google-fonts]');
+	const fontSaveButton = document.querySelector('[data-save-fonts]');
+	const fontStatus = document.querySelector('[data-font-status]');
 	const toolbarEnabled = document.getElementById('abbc3_bbcode_bar');
 	const toolbarDisabled = document.querySelector('[data-toolbar-disabled]');
-	if (!composer || !form || !inspector || !iconSelect || !placementSelect || !previewPrimary || !previewMore || !previewToggle || !saveStatus || !saveMessage || !retryButton || !fonts) return;
+	if (!composer || !form || !inspector || !iconSelect || !fontIconInput || !placementSelect || !previewPrimary || !previewMore || !previewToggle || !saveStatus || !saveMessage || !retryButton || !fonts || !fontSaveButton || !fontStatus) return;
 
 	const columns = [ ...composer.querySelectorAll('[data-composer-column]') ];
 	const allItems = () => [ ...composer.querySelectorAll('.abbc3-composer-item') ];
 	let selected = null;
 	let drag = null;
-	let fontTimer = null;
 	let saving = false;
 	let savedTimer = null;
 	const pending = new Map();
@@ -116,8 +118,10 @@
 		const payload = basePayload('toolbar');
 		columns.forEach(column => column.querySelectorAll('[data-toolbar-key]').forEach(input => payload.append(input.name, input.value)));
 		allItems().forEach(item => {
-			const input = item.querySelector('[data-icon-value]');
-			payload.append(input.name, input.value);
+			const imageInput = item.querySelector('[data-icon-value]');
+			const fontInput = item.querySelector('[data-font-icon-value]');
+			payload.append(imageInput.name, imageInput.value);
+			payload.append(fontInput.name, fontInput.value);
 		});
 		enqueue('toolbar', payload);
 	};
@@ -130,14 +134,51 @@
 		enqueue(`setting:${input.name}`, payload);
 	};
 
+	const normalizeFonts = value => [ ...new Set(value.split(/[\r\n,]+/).map(font => font.trim().replace(/\s+/g, ' ')).filter(Boolean)) ].join('\n');
+	let savedFonts = normalizeFonts(fonts.value);
+	const syncFontButton = () => { fontSaveButton.disabled = normalizeFonts(fonts.value) === savedFonts; };
+
+	const setFontStatus = (state, message) => {
+		fontStatus.hidden = false;
+		fontStatus.dataset.state = state;
+		fontStatus.textContent = message;
+	};
+
 	const saveFonts = () => {
-		if (fontTimer !== null) {
-			window.clearTimeout(fontTimer);
-			fontTimer = null;
-		}
 		const payload = basePayload('fonts');
-		payload.set('abbc3_google_fonts', fonts.value);
-		enqueue('fonts', payload);
+		const submittedFonts = normalizeFonts(fonts.value);
+		payload.set('abbc3_google_fonts', submittedFonts);
+		fontSaveButton.disabled = true;
+		fonts.disabled = true;
+		fonts.setAttribute('aria-busy', 'true');
+		fonts.removeAttribute('aria-invalid');
+		setFontStatus('saving', form.dataset.fontChecking);
+		window.fetch(form.action, {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+				'X-Requested-With': 'XMLHttpRequest',
+			},
+			body: payload.toString(),
+			keepalive: true,
+		})
+			.then(response => response.ok ? response.json() : Promise.reject(new Error(form.dataset.statusError)))
+			.then(response => {
+				if (response.S_USER_WARNING || !response.S_USER_NOTICE) throw new Error(responseMessage(response));
+				savedFonts = submittedFonts;
+				fonts.value = savedFonts;
+				setFontStatus('saved', form.dataset.fontSaved);
+			})
+			.catch(error => {
+				fonts.value = savedFonts;
+				setFontStatus('error', `${error.message || form.dataset.statusError} ${form.dataset.fontRestored}`);
+			})
+			.then(() => {
+				fonts.disabled = false;
+				fonts.removeAttribute('aria-busy');
+				syncFontButton();
+			});
 	};
 
 	const iconPath = name => {
@@ -149,25 +190,45 @@
 	};
 
 	const iconName = item => item.querySelector('[data-icon-value]').value;
-	const textFallback = item => item.dataset.name.slice(0, 2);
+	const fontIconName = item => item.querySelector('[data-font-icon-value]').value;
+	const normalizeFontIcon = value => value.trim().replace(/^fa-/i, '').toLowerCase().replace(/[^a-z0-9-]/g, '');
 	const isSelectControl = item => item.dataset.type === 'size' || item.dataset.name === 'font';
+	const setIconVisibility = (container, visible) => {
+		container.hidden = !visible;
+		const button = container.closest('[data-item-select]');
+		if (button) button.classList.toggle('abbc3-item-select--text', !visible);
+	};
 
 	const renderIcon = (container, item) => {
 		container.textContent = '';
 		if (isSelectControl(item)) {
 			container.textContent = 'Aa';
+			setIconVisibility(container, true);
+			return;
+		}
+		const fontIcon = fontIconName(item);
+		if (fontIcon) {
+			const icon = document.createElement('i');
+			icon.className = `icon fa-${fontIcon} fa-fw`;
+			icon.setAttribute('aria-hidden', 'true');
+			container.appendChild(icon);
+			setIconVisibility(container, true);
 			return;
 		}
 		const path = iconPath(iconName(item));
 		if (!path) {
-			container.textContent = textFallback(item);
+			setIconVisibility(container, false);
 			return;
 		}
 		const image = document.createElement('img');
 		image.src = path;
 		image.alt = '';
-		image.addEventListener('error', () => { container.textContent = textFallback(item); }, { once: true });
+		image.addEventListener('error', () => {
+			container.textContent = '';
+			setIconVisibility(container, false);
+		}, { once: true });
 		container.appendChild(image);
+		setIconVisibility(container, true);
 	};
 
 	const updateItemIcon = item => renderIcon(item.querySelector('[data-item-icon]'), item);
@@ -192,8 +253,15 @@
 		control.tabIndex = -1;
 		control.title = item.dataset.label;
 		control.setAttribute('aria-hidden', 'true');
-		const path = iconPath(iconName(item));
-		if (path) {
+		const fontIcon = fontIconName(item);
+		const path = fontIcon ? '' : iconPath(iconName(item));
+		if (fontIcon) {
+			control.classList.add('abbc3-control--font-icon');
+			const icon = document.createElement('i');
+			icon.className = `icon fa-${fontIcon} fa-fw abbc3-control__font-icon`;
+			icon.setAttribute('aria-hidden', 'true');
+			control.appendChild(icon);
+		} else if (path) {
 			control.classList.add('abbc3-control--icon');
 			const image = document.createElement('img');
 			image.className = 'abbc3-control__icon';
@@ -203,7 +271,7 @@
 			control.appendChild(image);
 		}
 		const fallback = document.createElement('span');
-		fallback.className = `abbc3-control__fallback${path ? ' abbc3-control__fallback--hidden' : ''}`;
+		fallback.className = `abbc3-control__fallback${fontIcon || path ? ' abbc3-control__fallback--hidden' : ''}`;
 		fallback.textContent = item.dataset.name;
 		control.appendChild(fallback);
 		return control;
@@ -247,7 +315,9 @@
 		inspector.querySelector('[data-inspector-tag]').textContent = `[${item.dataset.name}]`;
 		placementSelect.value = item.closest('[data-composer-column]').dataset.placement;
 		iconSelect.value = iconName(item);
+		fontIconInput.value = fontIconName(item);
 		iconSelect.disabled = isSelectControl(item);
+		fontIconInput.disabled = isSelectControl(item);
 		renderIcon(inspector.querySelector('[data-inspector-icon]'), item);
 	};
 
@@ -272,6 +342,16 @@
 		saveToolbar();
 	});
 
+	fontIconInput.addEventListener('blur', () => {
+		if (!selected) return;
+		fontIconInput.value = normalizeFontIcon(fontIconInput.value);
+		selected.querySelector('[data-font-icon-value]').value = fontIconInput.value;
+		updateItemIcon(selected);
+		renderIcon(inspector.querySelector('[data-inspector-icon]'), selected);
+		renderPreview();
+		saveToolbar();
+	});
+
 	form.querySelectorAll('[data-autosave-setting]').forEach(input => input.addEventListener('change', () => {
 		if (input.name === 'abbc3_icons_type') {
 			allItems().forEach(updateItemIcon);
@@ -282,11 +362,11 @@
 		saveSetting(input);
 	}));
 
+	fontSaveButton.addEventListener('click', saveFonts);
 	fonts.addEventListener('input', () => {
-		if (fontTimer !== null) window.clearTimeout(fontTimer);
-		fontTimer = window.setTimeout(saveFonts, 1000);
+		fontStatus.hidden = true;
+		syncFontButton();
 	});
-	fonts.addEventListener('blur', saveFonts);
 
 	retryButton.addEventListener('click', () => {
 		failed.forEach((failure, scope) => pending.set(scope, failure.payload));
@@ -383,5 +463,6 @@
 
 	allItems().forEach(updateItemIcon);
 	syncNames();
+	syncFontButton();
 	form.querySelectorAll('[data-abbc3-editable]').forEach(fieldset => { fieldset.disabled = false; });
 })();

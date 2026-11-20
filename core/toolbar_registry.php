@@ -41,6 +41,7 @@ class toolbar_registry
 			$button = $definitions[$key];
 			$button['key'] = $key;
 			$button['icon'] = $row['icon'];
+			$button['font_icon'] = $row['font_icon'];
 			$button['order'] = (int) $row['sort_order'];
 			$buttons[$row['placement']][] = $button;
 		}
@@ -79,6 +80,7 @@ class toolbar_registry
 			];
 			$button['key'] = $key;
 			$button['icon'] = $row['icon'];
+			$button['font_icon'] = $row['font_icon'];
 			$button['order'] = (int) $row['sort_order'];
 			$buttons[$row['placement']][] = $button;
 		}

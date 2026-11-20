@@ -295,6 +295,7 @@ class listener implements EventSubscriberInterface
 			'ACCESSKEY' => $button['accesskey'] ?? '',
 			'CONDITION' => $button['condition'] ?? '',
 			'ICON' => $button['icon'] ?? $button['name'],
+			'FONT_ICON' => $button['font_icon'] ?? '',
 			'ACTION' => $button['action'] ?? '',
 		];
 	}

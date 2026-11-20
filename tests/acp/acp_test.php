@@ -297,7 +297,8 @@ class acp_test extends \phpbb_database_test_case
 			'hidden' => [],
 		];
 		$icons = ['core:bold' => 'bold'];
-		$repository->expects(self::once())->method('save_layout')->with($placements, $icons, ['pipes' => true]);
+		$font_icons = ['core:bold' => 'star'];
+		$repository->expects(self::once())->method('save_layout')->with($placements, $icons, $font_icons, ['pipes' => true]);
 		$this->request->method('is_set_post')->willReturn(true);
 		$this->request->method('variable')->willReturnMap([
 			['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'toolbar'],
@@ -305,6 +306,7 @@ class acp_test extends \phpbb_database_test_case
 			['toolbar_more', [0 => ''], false, \phpbb\request\request_interface::REQUEST, $placements['more']],
 			['toolbar_hidden', [0 => ''], false, \phpbb\request\request_interface::REQUEST, $placements['hidden']],
 			['toolbar_icon', ['' => ''], false, \phpbb\request\request_interface::REQUEST, $icons],
+			['toolbar_font_icon', ['' => ''], false, \phpbb\request\request_interface::REQUEST, $font_icons],
 		]);
 		$controller = new \vse\abbc3\controller\acp_controller($this->cache, $this->config, $this->config_text, $this->db, $this->ext_manager, $this->lang, $this->request, $this->template, '', '', $repository);
 

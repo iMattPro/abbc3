@@ -1,5 +1,6 @@
 .abbc3-toolbar {
 	--abbc3-control-size: 30px;
+	--abbc3-icon-size: 20px;
 	--abbc3-gap: 4px;
 	--abbc3-border: rgba(127, 127, 127, 0.32);
 	--abbc3-surface: rgba(127, 127, 127, 0.09);
@@ -55,14 +56,25 @@
 	cursor: pointer;
 }
 
-.abbc3-control--icon {
+.abbc3-control--icon,
+.abbc3-control--font-icon {
 	padding: 0;
+}
+
+.abbc3-control__font-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--abbc3-icon-size);
+	height: var(--abbc3-icon-size);
+	font-size: var(--abbc3-icon-size);
+	line-height: 1;
 }
 
 .abbc3-control__icon {
 	display: block;
-	width: 20px;
-	height: 20px;
+	width: var(--abbc3-icon-size);
+	height: var(--abbc3-icon-size);
 	object-fit: contain;
 }
 
