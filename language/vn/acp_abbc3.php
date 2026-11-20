@@ -24,7 +24,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Tại đây bạn có thể định cấu hình cài đặt cho Hộp BBCode nâng cao. Để biết thông tin về cách tùy chỉnh thanh biểu tượng, hãy truy cập %s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Tại đây bạn có thể định cấu hình cài đặt cho Hộp BBCode nâng cao.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Thêm <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> vào <samp class="error">[font]</samp> BBCode. Sử dụng chính tả chính tả và phân biệt chữ hoa chữ thường. Đặt mỗi tên phông chữ trên một dòng riêng biệt.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Cho phép sử dụng mạng phân phối nội dung của bên thứ ba” phải được bật trong “Tải cài đặt” để sử dụng tính năng này.',
 	'ABBC3_INVALID_FONT'		=> 'Tên phông chữ không hợp lệ cho “%s”',

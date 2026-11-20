@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box. For information about customizing the icon bar, visit the %s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
 	'ABBC3_FONT_CHECK_FAILED'	=> 'Could not verify Google Font “%s”. Check the server connection and try again.',
@@ -34,7 +34,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_QR_BBCODES'			=> 'Enable BBCodes in Quick Reply',
 	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'This will add BBCode buttons to Quick Reply.',
 	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Note that you can only choose one format for all your icons.',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Additional SVG or PNG icons can be uploaded to your board’s <samp class="error">/images/abbc3/icons/</samp> directory.',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Add Ons',
 	'ABBC3_TOOLBAR_COMPOSER'	=> 'Toolbar composer',

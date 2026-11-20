@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'כאן תוכל להגדיר הגדרות עבור תיבת BBCode מתקדמת. למידע על התאמה אישית של סרגל הסמלים, בקר ב-%s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'כאן תוכל להגדיר הגדרות עבור תיבת BBCode מתקדמת.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'הוסף <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">גוגל גופנים</a></strong> ל<samp class="error">[font]</samp> BBCode. השתמש באיות מדויק וברגישות רישיות. הצב כל שם גופן בשורה נפרדת.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '"אפשר שימוש ברשתות אספקת תוכן של צד שלישי" חייב להיות מופעל תחת "טעינת הגדרות" כדי להשתמש בתכונה זו.',
 	'ABBC3_INVALID_FONT'		=> 'שם גופן לא חוקי עבור "%s"',

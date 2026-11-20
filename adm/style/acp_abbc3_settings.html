@@ -3,7 +3,6 @@
 {% INCLUDECSS '@vse_abbc3/abbc3_toolbar.css' %}
 
 {% set links = {
-	'faq': {'url': 'https://www.phpbb.com/customise/db/extension/advanced_bbcode_box/faq/1551', 'text': lang('FAQ')},
 	'media_embed': {'url': 'https://www.phpbb.com/customise/db/extension/mediaembed/', 'text': lang('DOWNLOAD')}
 } %}
 
@@ -12,7 +11,7 @@
 {%- endmacro %}
 
 <img src="{{ ROOT_PATH }}ext/vse/abbc3/adm/images/abbc3logo.png" alt="{{ lang('ACP_ABBC3_MODULE') }}">
-<p>{{ lang('ABBC3_SETTINGS_EXPLAIN', _self.external_link(links.faq.url, links.faq.text)) }}</p>
+<p>{{ lang('ABBC3_SETTINGS_EXPLAIN') }}</p>
 
 <noscript><div class="errorbox"><h3>{{ lang('ERROR') }}</h3><p>{{ lang('ABBC3_JAVASCRIPT_REQUIRED') }}</p></div></noscript>
 

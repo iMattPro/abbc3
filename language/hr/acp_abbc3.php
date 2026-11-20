@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Ovdje možete konfigurirati postavke za Advanced BBCode Box. Za informacije o prilagodbi trake ikona, posjetite %s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Ovdje možete konfigurirati postavke za Advanced BBCode Box.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Dodajte <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fontove</a></strong> <samp class="error">[font]</samp> BBCodu. Koristite točan pravopis i osjetljivost na velika i mala slova. Stavite svaki naziv fonta u zaseban redak.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '"Dopusti korištenje mreža za isporuku sadržaja trećih strana" mora biti omogućeno pod "Učitaj postavke" za korištenje ove značajke.',
 	'ABBC3_INVALID_FONT'		=> 'Nevažeći naziv fonta za “%s”',

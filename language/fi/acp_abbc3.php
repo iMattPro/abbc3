@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Täällä voit määrittää Advanced BBCode Boxin asetukset. Lisätietoja kuvakepalkin mukauttamisesta on osoitteessa %s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Täällä voit määrittää Advanced BBCode Boxin asetukset.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Lisää <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> <samp class="error">[font]</samp> BBCodeen. Käytä tarkkaa oikeinkirjoitusta ja kirjainerottelua. Aseta kunkin fontin nimi omalle riville.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '"Salli kolmansien osapuolien sisällönjakeluverkkojen käyttö" on otettava käyttöön "Lataa asetukset" -kohdassa, jotta voit käyttää tätä ominaisuutta.',
 	'ABBC3_INVALID_FONT'		=> 'Virheellinen fontin nimi "%s"',

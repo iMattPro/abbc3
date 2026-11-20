@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Siin saate konfigureerida täpsema BBCode Boxi sätteid. Ikooniriba kohandamise kohta teabe saamiseks külastage aadressi %s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Siin saate konfigureerida täpsema BBCode Boxi sätteid.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Lisage <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google’i fondid</a></strong> <samp class="error">[font]</samp> BBC-koodi. Kasutage täpset õigekirja ja tõstutundlikkust. Asetage iga fondi nimi eraldi reale.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Selle funktsiooni kasutamiseks peab jaotises „Laadi seaded” olema lubatud valik „Luba kasutada kolmanda osapoole sisuedastusvõrke”.',
 	'ABBC3_INVALID_FONT'		=> 'Kehtetu fondi nimi „%s” jaoks',

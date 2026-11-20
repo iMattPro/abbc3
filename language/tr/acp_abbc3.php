@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Buradan Advanced BBCode Box için ayarları yapılandırabilirsiniz. Simge çubuğunu özelleştirme hakkında bilgi almak için, %s sayfasını ziyaret edin.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Buradan Advanced BBCode Box için ayarları yapılandırabilirsiniz.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> '<strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong>’u <samp class="error">[font]</samp> BBCode’a ekleyin. Tam yazım ve büyük/küçük harf duyarlılığını kullanın. Her yazı tipi adını ayrı bir satıra yerleştirin.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Bu özelliği kullanmak için "Ayarları yükle" altında "Üçüncü taraf içerik dağıtım ağlarının kullanımına izin ver" seçeneğinin etkinleştirilmesi gerekir.',
 	'ABBC3_INVALID_FONT'		=> '“%s” için geçersiz yazı tipi adı',

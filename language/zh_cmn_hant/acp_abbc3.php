@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> '您可以在此處配置高級 BBCode Box 的設定。有關自訂圖示欄的信息，請訪問 %s。',
+	'ABBC3_SETTINGS_EXPLAIN'	=> '您可以在此處配置高級 BBCode Box 的設定。',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> '將 <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google 字型</a></strong> 加入 <samp class="error">[font]</samp> BBCode。使用準確的拼字和區分大小寫。將每個字體名稱放在單獨的行上。',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '必須在「載入設定」下啟用「允許使用第三方內容交付網路」才能使用此功能。',
 	'ABBC3_INVALID_FONT'		=> '“%s”的字體名稱無效',

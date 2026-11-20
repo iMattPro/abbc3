@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Zde můžete nakonfigurovat nastavení pro Advanced BBCode Box. Informace o přizpůsobení lišty ikon naleznete na %s.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Zde můžete nakonfigurovat nastavení pro Advanced BBCode Box.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Přidejte <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> do <samp class="error">[font]</samp> BBCode. Používejte přesný pravopis a rozlišujte malá a velká písmena. Umístěte každý název písma na samostatný řádek.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Chcete-li používat tuto funkci, musí být v části Načíst nastavení povoleno „Povolit použití sítí pro doručování obsahu třetích stran“.',
 	'ABBC3_INVALID_FONT'		=> 'Neplatný název písma pro „%s“',
