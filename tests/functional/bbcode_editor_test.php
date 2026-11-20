@@ -89,7 +89,10 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 		self::assertGreaterThan(0, $crawler->filter('[data-abbc3-name="plain"]')->count());
 		self::assertSame(0, $crawler->filter('.abbc3-more__count')->count());
 		self::assertNotEmpty($crawler->filter('[data-abbc3-more-toggle]')->attr('title'));
-		self::assertSame(0, $crawler->filter('[data-abbc3-name="glow"]')->count());
+		foreach (['glow', 'shadow', 'dropshadow', 'blur', 'fade', 'marq'] as $bbcode)
+		{
+			self::assertGreaterThan(0, $crawler->filter('[data-abbc3-name="' . $bbcode . '"]')->count());
+		}
 		self::assertSame(0, $crawler->filter('[data-abbc3-name="soundcloud"]')->count());
 
 		// test a couple of dynamic bbcodes set in the javascript

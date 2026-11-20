@@ -1,5 +1,3 @@
-{% include '@vse_abbc3/abbc3_posting_script.html' %}
-
 {% macro button(button, icons, fonts, capabilities, max_font_size, root) %}
 	{% set allowed = not button.CONDITION
 		or attribute(capabilities, button.CONDITION)|default(false) %}

@@ -109,11 +109,9 @@ class v3312_m21_toolbar extends container_aware_migration
 
 	protected function apply_fresh_install_defaults()
 	{
-		$legacy = ['glow', 'glow=', 'shadow', 'shadow=', 'dropshadow', 'dropshadow=', 'blur', 'blur=', 'fade', 'marq', 'marq='];
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
-			SET display_on_posting = 0
-			WHERE ' . $this->db->sql_in_set('LOWER(bbcode_tag)', $legacy) . "
-				AND bbcode_helpline " . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char());
+			SET display_on_posting = 1
+			WHERE bbcode_helpline ' . $this->db->sql_like_expression('ABBC3_' . $this->db->get_any_char());
 		$this->db->sql_query($sql);
 
 		// BBvideo handles SoundCloud URLs. Remove only ABBC3's pristine fresh-install
