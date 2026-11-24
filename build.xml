@@ -9,6 +9,32 @@
 	<property name="has-dependencies" value="false" />
 
 	<target name="clean-package">
+		<if>
+			<available file="${dir}/adm/style/google-font-families.json" type="file" />
+			<then>
+				<exec executable="sh" escape="true" dir="${dir}" returnProperty="google-fonts-refresh-result">
+					<arg value="-c" />
+					<arg value='curl --fail --silent --show-error --location --max-time 20
+						--output adm/style/google-font-families.metadata.tmp https://fonts.google.com/metadata/fonts
+						&amp;&amp; php "$1" &lt; adm/style/google-font-families.metadata.tmp &gt; adm/style/google-font-families.json.tmp
+						&amp;&amp; mv -f adm/style/google-font-families.json.tmp adm/style/google-font-families.json' />
+					<arg value="refresh-google-fonts" />
+					<arg file="${project.basedir}/.github/scripts/google_font_families.php" />
+				</exec>
+				<if>
+					<equals arg1="${google-fonts-refresh-result}" arg2="0" />
+					<then>
+						<echo msg="Refreshed the Google Fonts catalog." />
+					</then>
+					<else>
+						<echo level="warning" msg="Could not refresh the Google Fonts catalog. Packaging the archived snapshot." />
+					</else>
+				</if>
+				<delete file="${dir}/adm/style/google-font-families.metadata.tmp" quiet="true" />
+				<delete file="${dir}/adm/style/google-font-families.json.tmp" quiet="true" />
+			</then>
+		</if>
+
 		<!--
 		Remove some unnecessary files/directories
 		${dir}/ is the folder of your extension, e.g. ext/nickvergessen/newspage/

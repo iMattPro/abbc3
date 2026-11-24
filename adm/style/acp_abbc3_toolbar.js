@@ -16,6 +16,7 @@
 	const fonts = document.querySelector('[data-google-fonts]');
 	const fontSaveButton = document.querySelector('[data-save-fonts]');
 	const fontStatus = document.querySelector('[data-font-status]');
+	const fontPicker = document.querySelector('[data-font-picker]');
 	const toolbarEnabled = document.getElementById('abbc3_bbcode_bar');
 	const toolbarDisabled = document.querySelector('[data-toolbar-disabled]');
 	if (!composer || !form || !inspector || !iconSelect || !fontIconInput || !placementSelect || !previewPrimary || !previewMore || !previewToggle || !saveStatus || !saveMessage || !retryButton || !fonts || !fontSaveButton || !fontStatus) return;
@@ -52,6 +53,7 @@
 		const holder = document.createElement('div');
 		holder.innerHTML = response.MESSAGE_TEXT || '';
 		holder.querySelectorAll('a').forEach(link => link.remove());
+		holder.querySelectorAll('br').forEach(lineBreak => lineBreak.replaceWith('\n'));
 		return holder.textContent || form.dataset.statusError;
 	};
 
@@ -141,8 +143,78 @@
 	let savedFonts = normalizeFonts(fonts.value);
 	const syncFontButton = () => { fontSaveButton.disabled = normalizeFonts(fonts.value) === savedFonts; };
 
+	if (fontPicker) {
+		const search = fontPicker.querySelector('[data-font-search]');
+		const status = fontPicker.querySelector('[data-font-search-status]');
+		const results = fontPicker.querySelector('[data-font-results]');
+		let catalog;
+		let loading = false;
+
+		const addFont = family => {
+			const separator = fonts.value && !fonts.value.endsWith('\n') ? '\n' : '';
+			fonts.value += separator + family;
+			search.value = '';
+			search.focus();
+			fonts.dispatchEvent(new Event('input', { bubbles: true }));
+		};
+
+		const renderFontResults = () => {
+			results.textContent = '';
+			results.hidden = true;
+			const query = search.value.trim().toLowerCase();
+			status.textContent = '';
+			if (!query) return;
+
+			if (catalog === undefined) {
+				status.textContent = fontPicker.dataset.loading;
+				if (!loading) {
+					loading = true;
+					window.fetch(fontPicker.dataset.catalogUrl)
+						.then(response => response.ok ? response.json() : Promise.reject())
+						.then(names => {
+							catalog = Array.isArray(names) && names.length && names.every(name => typeof name === 'string' && name.trim())
+								? names.map(name => ({ name, folded: name.toLowerCase() })) : null;
+						})
+						.catch(() => { catalog = null; })
+						.then(renderFontResults);
+				}
+				return;
+			}
+			if (!catalog) {
+				status.textContent = fontPicker.dataset.unavailable;
+				return;
+			}
+
+			const existing = new Set(normalizeFonts(fonts.value).toLowerCase().split('\n'));
+			const prefix = [];
+			const other = [];
+			catalog.forEach(({ name, folded }) => {
+				if (existing.has(folded)) return;
+				if (folded.startsWith(query)) prefix.push(name);
+				else if (folded.includes(query)) other.push(name);
+			});
+			const matches = prefix.concat(other).slice(0, 8);
+			if (!matches.length) {
+				status.textContent = fontPicker.dataset.empty;
+				return;
+			}
+			matches.forEach(name => {
+				const item = document.createElement('li');
+				const button = document.createElement('button');
+				button.type = 'button';
+				button.textContent = name;
+				button.addEventListener('click', () => addFont(name));
+				item.appendChild(button);
+				results.appendChild(item);
+			});
+			results.hidden = false;
+		};
+
+		search.addEventListener('input', renderFontResults);
+		fonts.addEventListener('input', renderFontResults);
+	}
+
 	const setFontStatus = (state, message) => {
-		fontStatus.hidden = false;
 		fontStatus.dataset.state = state;
 		fontStatus.textContent = message;
 	};
@@ -153,8 +225,8 @@
 		payload.set('abbc3_google_fonts', submittedFonts);
 		fontSaveButton.disabled = true;
 		fonts.disabled = true;
+		if (fontPicker) fontPicker.disabled = true;
 		fonts.setAttribute('aria-busy', 'true');
-		fonts.removeAttribute('aria-invalid');
 		setFontStatus('saving', form.dataset.fontChecking);
 		window.fetch(form.action, {
 			method: 'POST',
@@ -174,11 +246,11 @@
 				setFontStatus('saved', form.dataset.fontSaved);
 			})
 			.catch(error => {
-				fonts.value = savedFonts;
-				setFontStatus('error', `${error.message || form.dataset.statusError} ${form.dataset.fontRestored}`);
+				setFontStatus('error', error.message || form.dataset.statusError);
 			})
 			.then(() => {
 				fonts.disabled = false;
+				if (fontPicker) fontPicker.disabled = false;
 				fonts.removeAttribute('aria-busy');
 				syncFontButton();
 			});
@@ -367,7 +439,8 @@
 
 	fontSaveButton.addEventListener('click', saveFonts);
 	fonts.addEventListener('input', () => {
-		fontStatus.hidden = true;
+		fontStatus.textContent = '';
+		delete fontStatus.dataset.state;
 		syncFontButton();
 	});
 

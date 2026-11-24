@@ -20,8 +20,7 @@
 	data-status-saved="{{ lang('ABBC3_AUTOSAVE_SAVED') }}"
 	data-status-error="{{ lang('ABBC3_AUTOSAVE_ERROR') }}"
 	data-font-checking="{{ lang('ABBC3_FONTS_CHECKING') }}"
-	data-font-saved="{{ lang('ABBC3_FONTS_SAVED') }}"
-	data-font-restored="{{ lang('ABBC3_FONTS_RESTORED') }}">
+	data-font-saved="{{ lang('ABBC3_FONTS_SAVED') }}">
 	<fieldset class="abbc3-settings-group" data-abbc3-editable disabled>
 		<legend>{{ lang('ABBC3_LEGEND_ICON_BAR') }}</legend>
 		<div class="abbc3-setting-row">
@@ -112,10 +111,19 @@
 				<p>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</p>
 			</div>
 			<div class="abbc3-font-editor">
-				<textarea id="abbc3_google_fonts" cols="40" rows="6" name="abbc3_google_fonts" placeholder="Roboto&#10;Droid Sans&#10;Noto Sans JP" data-google-fonts>{{ S_ABBC3_GOOGLE_FONTS }}</textarea>
+				<fieldset class="abbc3-font-picker" data-font-picker data-catalog-url="{{ ROOT_PATH }}ext/vse/abbc3/adm/style/google-font-families.json"
+					data-loading="{{ lang('ABBC3_FONT_SEARCH_LOADING') }}"
+					data-empty="{{ lang('ABBC3_FONT_SEARCH_EMPTY') }}"
+					data-unavailable="{{ lang('ABBC3_FONT_SEARCH_UNAVAILABLE') }}">
+					<label for="abbc3_font_search">{{ lang('ABBC3_FONT_SEARCH') }}</label>
+					<input type="search" id="abbc3_font_search" autocomplete="off" aria-controls="abbc3_font_results" aria-describedby="abbc3_font_search_status" data-font-search>
+					<p id="abbc3_font_search_status" role="status" data-font-search-status></p>
+					<ul id="abbc3_font_results" data-font-results hidden></ul>
+				</fieldset>
+				<textarea id="abbc3_google_fonts" cols="40" rows="6" name="abbc3_google_fonts" placeholder="Roboto&#10;Droid Sans&#10;Noto Sans JP" aria-describedby="abbc3_font_status" data-google-fonts>{{ S_ABBC3_GOOGLE_FONTS }}</textarea>
 				<div class="abbc3-font-actions">
 					<button type="button" class="button1" data-save-fonts>{{ lang('ABBC3_SAVE_FONTS') }}</button>
-					<span class="abbc3-font-status" data-font-status role="status" aria-live="polite" hidden></span>
+					<span id="abbc3_font_status" class="abbc3-font-status" data-font-status role="status"></span>
 				</div>
 			</div>
 		</section>

@@ -44,6 +44,8 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertSame(0, $crawler->filter('input[name="abbc3_auto_video"][checked]')->count());
 		self::assertSame('png', $crawler->filter('input[name="abbc3_icons_type"][checked]')->attr('value'));
 		self::assertEquals('', $crawler->filter('textarea#abbc3_google_fonts')->text());
+		self::assertSame(1, $crawler->filter('[data-font-picker][data-catalog-url] input[type="search"]')->count());
+		self::assertSame(1, $crawler->filter('[data-font-picker] [data-font-results][hidden]')->count());
 		self::assertSame(1, $crawler->filter('[data-abbc3-live-preview]')->count());
 		self::assertSame(1, $crawler->filter('[data-abbc3-inspector]')->count());
 		self::assertSame(1, $crawler->filter('#abbc3_settings + [data-autosave-status] [role="status"]')->count());

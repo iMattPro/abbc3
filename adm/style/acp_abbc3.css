@@ -368,11 +368,61 @@
 	outline-offset: 2px;
 }
 
+.abbc3-font-editor .abbc3-font-picker {
+	min-inline-size: 0;
+	max-width: 560px;
+	margin: 0 0 8px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+
+.abbc3-font-picker label {
+	display: block;
+	margin-bottom: 4px;
+	padding: 0;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+
+.abbc3-font-picker input[type="search"],
 .abbc3-font-editor textarea {
 	box-sizing: border-box;
 	width: 100%;
 	max-width: 560px;
+}
+
+.abbc3-font-editor textarea {
 	resize: vertical;
+}
+
+.abbc3-font-picker ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin: 6px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.abbc3-font-picker ul[hidden] {
+	display: none;
+}
+
+.abbc3-font-picker button {
+	max-width: 100%;
+	padding: 3px 8px;
+	border: 1px solid #b4bec7;
+	border-radius: 3px;
+	background: #f5f5f5;
+	color: #115098;
+	cursor: pointer;
+}
+
+.abbc3-font-picker button:hover,
+.abbc3-font-picker button:focus-visible {
+	border-color: #115098;
+	background: #edf3fa;
 }
 
 .abbc3-font-actions {
@@ -386,6 +436,7 @@
 .abbc3-font-status {
 	font-weight: bold;
 	color: #666;
+	white-space: pre-line;
 }
 
 .abbc3-font-status[data-state="saved"] {
