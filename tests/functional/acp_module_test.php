@@ -46,11 +46,12 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertEquals('', $crawler->filter('textarea#abbc3_google_fonts')->text());
 		self::assertSame(1, $crawler->filter('[data-abbc3-live-preview]')->count());
 		self::assertSame(1, $crawler->filter('[data-abbc3-inspector]')->count());
-		self::assertSame(1, $crawler->filter('[data-autosave-status]')->count());
+		self::assertSame(1, $crawler->filter('#abbc3_settings + [data-autosave-status] [role="status"]')->count());
+		self::assertSame(2, $crawler->filter('[data-abbc3-live-preview] input[name="abbc3_icons_type"]')->count());
 		self::assertSame(1, $crawler->filter('[data-save-fonts]')->count());
 		self::assertSame(1, $crawler->filter('[data-font-status]')->count());
 		self::assertSame(0, $crawler->filter('[data-autosave-fonts]')->count());
-		self::assertSame(2, $crawler->filter('[data-abbc3-editable][disabled]')->count());
+		self::assertSame(3, $crawler->filter('[data-abbc3-editable][disabled]')->count());
 		self::assertSame(1, $crawler->filter('noscript')->count());
 		self::assertSame(0, $crawler->filter('[data-abbc3-save-state], [type="submit"], [type="reset"]')->count());
 		self::assertSame(3, $crawler->filter('[data-composer-column]')->count());
@@ -60,7 +61,8 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertSame(1, $crawler->filter('[data-key="bbcode:fade"] [data-item-icon][hidden]')->count());
 		self::assertSame(1, $crawler->filter('[data-inspector-font-icon]')->count());
 		self::assertSame(1, $crawler->filter('[data-inspector-icon-select] option[value=""]')->count());
-		self::assertSame(2, $crawler->filter('.abbc3-addon-options .abbc3-setting-card')->count());
+		self::assertSame(4, $crawler->filter('.abbc3-settings-group .abbc3-setting-row input[type="checkbox"]')->count());
+		self::assertSame(1, $crawler->filter('.abbc3-settings-group + fieldset [data-abbc3-composer]')->count());
 		self::assertSame(1, $crawler->filter('.abbc3-integration-status')->count());
 		self::assertStringNotContainsString('BBCODE_B_HELP', $crawler->text());
 		self::assertSame($this->lang('BBCODE_B_HELP'), $crawler->filter('[data-key="core:bold"] [data-item-select]')->attr('title'));

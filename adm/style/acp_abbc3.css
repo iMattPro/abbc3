@@ -1,42 +1,48 @@
-.abbc3-toolbar-options {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 10px;
-	margin-bottom: 12px;
+.abbc3-settings-logo {
+	max-width: 100%;
+	height: auto;
 }
 
-.abbc3-addon-options {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 10px;
-	margin-bottom: 12px;
+.abbc3-settings-group {
+	min-inline-size: 0;
+	padding-block: 0;
 }
 
-.abbc3-setting-card {
+.abbc3-setting-row {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
-	padding: 10px 12px;
-	background: #f5f5f5;
-	border: 1px solid #c8c8c8;
-	border-radius: 5px;
+	padding: 12px 4px;
 }
 
-.abbc3-setting-card strong,
-.abbc3-addon-panel h3,
-.abbc3-integration-status h3 {
+.abbc3-setting-row + .abbc3-setting-row {
+	border-block-start: 1px solid #dedede;
+}
+
+.abbc3-setting-row--stacked {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 8px;
+}
+
+.abbc3-setting-row > div > strong,
+.abbc3-setting-row > div > h3 {
 	display: block;
 	margin: 0;
+	color: #333;
+	font-family: inherit;
 	font-size: 1em;
 	line-height: 1.2;
 }
 
-.abbc3-setting-card small,
-.abbc3-addon-panel > p,
-.abbc3-integration-status p {
-	display: block;
-	margin-top: 3px;
+.abbc3-setting-row h3 label {
+	padding: 0;
+	font-size: inherit;
+}
+
+.abbc3-setting-row p {
+	margin: 3px 0 0;
 	font-size: 0.9em;
 	line-height: 1.35;
 	color: #666;
@@ -143,16 +149,36 @@
 }
 
 .abbc3-autosave-status {
+	position: fixed;
+	z-index: 999;
+	inset-block-end: max(16px, env(safe-area-inset-bottom));
+	inset-inline-end: 16px;
 	display: flex;
 	align-items: center;
-	gap: 6px;
-	font-size: 11px;
+	flex-wrap: wrap;
+	gap: 8px;
+	box-sizing: border-box;
+	max-width: min(28rem, calc(100% - 32px));
+	max-height: calc(100vh - 32px);
+	overflow: auto;
+	overflow-wrap: anywhere;
+	padding: 10px 12px;
+	border: 1px solid #b4bec7;
+	border-radius: 5px;
+	background: #fff;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+	font-size: 0.9rem;
 	font-weight: bold;
-	color: #666;
+	color: #465366;
 }
 
-.abbc3-autosave-status[hidden] {
-	display: none;
+.abbc3-autosave-status:not([data-state]) {
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
 }
 
 .abbc3-autosave-status[data-state="saved"] {
@@ -163,9 +189,9 @@
 	color: #b00;
 }
 
-.abbc3-autosave-status button {
-	padding: 1px 5px;
-	font-size: 11px;
+.abbc3-autosave-status button:not([hidden]) {
+	padding: 2px 8px;
+	font-size: inherit;
 }
 
 .abbc3-format-picker {
@@ -342,25 +368,7 @@
 	outline-offset: 2px;
 }
 
-.abbc3-addon-panel,
-.abbc3-integration-status {
-	box-sizing: border-box;
-	margin-top: 12px;
-	padding: 12px;
-	background: #f5f5f5;
-	border: 1px solid #c8c8c8;
-	border-radius: 5px;
-}
-
-.abbc3-addon-panel > p {
-	margin-bottom: 10px;
-}
-
-.abbc3-integration-status p {
-	margin-bottom: 6px;
-}
-
-.abbc3-addon-panel textarea {
+.abbc3-font-editor textarea {
 	box-sizing: border-box;
 	width: 100%;
 	max-width: 560px;
@@ -370,6 +378,7 @@
 .abbc3-font-actions {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 	gap: 10px;
 	margin-top: 8px;
 }
@@ -387,20 +396,12 @@
 	color: #b00;
 }
 
-.abbc3-integration-status {
-	display: flex;
-	align-items: flex-start;
-	gap: 10px;
+.abbc3-setting-row .abbc3-integration-status {
+	margin: 0;
+	font-weight: bold;
 }
 
-.abbc3-integration-status > .icon {
-	margin-top: 2px;
-	font-size: 18px;
-	color: #68717a;
-}
-
-.abbc3-integration-status[data-enabled="true"] > .icon,
-.abbc3-integration-status[data-enabled="true"] strong {
+.abbc3-setting-row[data-enabled="true"] .abbc3-integration-status {
 	color: #16803c;
 }
 
@@ -554,14 +555,6 @@
 }
 
 @media (max-width: 1050px) {
-	.abbc3-toolbar-options {
-		grid-template-columns: 1fr;
-	}
-
-	.abbc3-addon-options {
-		grid-template-columns: 1fr;
-	}
-
 	.abbc3-inspector {
 		grid-template-columns: 1fr 1fr;
 	}

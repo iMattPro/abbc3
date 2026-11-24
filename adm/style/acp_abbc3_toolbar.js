@@ -39,9 +39,11 @@
 			window.clearTimeout(savedTimer);
 			savedTimer = null;
 		}
-		saveStatus.hidden = false;
 		saveStatus.dataset.state = state;
 		saveMessage.textContent = message;
+		if (state !== 'error' && document.activeElement === retryButton) {
+			saveMessage.focus({ preventScroll: true });
+		}
 		retryButton.hidden = state !== 'error';
 		form.setAttribute('aria-busy', String(state === 'saving'));
 	};
@@ -72,9 +74,10 @@
 		}
 		showStatus('saved', form.dataset.statusSaved);
 		savedTimer = window.setTimeout(() => {
-			saveStatus.hidden = true;
+			delete saveStatus.dataset.state;
+			saveMessage.textContent = '';
 			savedTimer = null;
-		}, 2000);
+		}, 4000);
 	};
 
 	const processQueue = () => {
