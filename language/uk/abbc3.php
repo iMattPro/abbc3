@@ -100,7 +100,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Якщо група вибрана, то всі її користувачі можуть використовувати BB-код. Використовуйте CTRL+CLICK (або CMD+CLICK на Mac) для того, щоб вибрати кілька груп.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'BB-коди Advanced BBCode Box',
+	'ABBC3_FAQ_TITLE'			=> 'BB-коди Advanced [BBCode] Box',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Швидка бура лисиця перестрибує ледачого пса',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Приклад:</strong><br>%2$s<br><br><strong>Результат:</strong><br>%3$s<hr>',
 ));

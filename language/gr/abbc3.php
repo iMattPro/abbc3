@@ -102,7 +102,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Αν δεν επιλεχθεί ομάδα τότε όλοι οι χρήστες μπορούν να χρησιμοποιήσουν αυτό το BBCode. Πάτα CTRL+CLICK (ή CMD+CLICK για Mac) για να επιλέξεις/αποεπιλέξεις περισσότερες από μία ομάδες.',
 
 	// BBCode FAQ
-	'ABBC3_FAQ_TITLE'			=> 'BBCodes του Advanced BBCode Box',
+	'ABBC3_FAQ_TITLE'			=> 'BBCodes του Advanced [BBCode] Box',
 	'ABBC3_FAQ_SAMPLE_TEXT'		=> 'Η γρήγορη καφετιά αλεπού πηδά πάνω από το τεμπέλικο σκυλί',
 	'ABBC3_FAQ_ANSWER'			=> '%1$s<br><br><strong>Παράδειγμα:</strong><br>%2$s<br><br><strong>Αποτέλεσμα:</strong><br>%3$s<hr>',
 ));

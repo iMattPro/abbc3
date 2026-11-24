@@ -19,7 +19,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'ACP_ABBC3_MODULE'		=> 'Advanced BBCode Box',
+	'ACP_ABBC3_MODULE'		=> 'Advanced [BBCode] Box',
 	'ACP_ABBC3_SETTINGS'	=> 'إعدادات',
 	'LOG_ABBC3_ENABLE_FAIL'	=> '<strong>لم يتمكن صندوق BBCode المتقدم من إنشاء الدليل:</strong><br>%s',
 ]);

@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'در اینجا می توانید تنظیمات Advanced BBCode Box را پیکربندی کنید.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'در اینجا می توانید تنظیمات Advanced [BBCode] Box را پیکربندی کنید.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> '<strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">فونت‌های Google</a></strong> را به <samp class="error">[font]</samp> BBCode اضافه کنید. از املای دقیق و حساسیت به حروف کوچک و بزرگ استفاده کنید. نام هر فونت را در یک خط جداگانه قرار دهید.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'برای استفاده از این ویژگی، «اجازه استفاده از شبکه‌های تحویل محتوای شخص ثالث» را باید در «تنظیمات بارگیری» فعال کنید.',
 	'ABBC3_INVALID_FONT'		=> 'نام قلم نامعتبر برای "%s"',

@@ -19,7 +19,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'ACP_ABBC3_MODULE'		=> 'Advanced BBCode Box',
+	'ACP_ABBC3_MODULE'		=> 'Advanced [BBCode] Box',
 	'ACP_ABBC3_SETTINGS'	=> 'Cài đặt',
 	'LOG_ABBC3_ENABLE_FAIL'	=> '<strong>Hộp BBCode nâng cao không thể tạo thư mục:</strong><br>%s',
 ]);

@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced BBCode Box.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Here you can configure settings for Advanced [BBCode] Box.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Add <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> to the <samp class="error">[font]</samp> BBCode. Use exact spelling and case sensitivity. Place each font name on a separate line.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> '“Allow usage of third party content delivery networks” must be enabled under “Load settings” to use this feature.',
 	'ABBC3_FONT_CHECK_FAILED'	=> 'Could not verify Google Font “%s”. Check the server connection and try again.',
@@ -34,11 +34,11 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPES'				=> 'Enable Pipe Table PlugIn',
 	'ABBC3_PIPES_EXPLAIN'		=> 'The Pipe Table PlugIn allows users to create tables in their posts and private messages using markdown syntax.',
 	'ABBC3_BBCODE_BAR'			=> 'Enable BBCode icon bar',
-	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display ABBC3’s icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
+	'ABBC3_BBCODE_BAR_EXPLAIN'	=> 'This will display an icon-based BBCode toolbar. Disable this to display phpBB’s default BBCode buttons.',
 	'ABBC3_QR_BBCODES'			=> 'Enable BBCodes in Quick Reply',
 	'ABBC3_QR_BBCODES_EXPLAIN'	=> 'This will add BBCode buttons to Quick Reply.',
 	'ABBC3_ICONS_TYPE'			=> 'Icon bar image format',
-	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for ABBC3’s icons. Additional SVG or PNG icons can be uploaded to your board’s <samp class="error">/images/abbc3/icons/</samp> directory.',
+	'ABBC3_ICONS_TYPE_EXPLAIN'	=> 'Choose the image format to use for BBCode icons. Additional SVG or PNG icons can be uploaded to your board’s <samp class="error">/images/abbc3/icons/</samp> directory.',
 	'ABBC3_LEGEND_ICON_BAR'		=> 'BBCode Icon Bar',
 	'ABBC3_LEGEND_ADD_ONS'		=> 'Add-ons',
 	'ABBC3_TOOLBAR_COMPOSER'	=> 'Toolbar composer',
@@ -56,7 +56,7 @@ $lang = array_merge($lang, array(
 	'ABBC3_AUTOSAVE_SAVED'	=> 'Saved',
 	'ABBC3_AUTOSAVE_ERROR'	=> 'Could not save changes.',
 	'ABBC3_AUTOSAVE_RETRY'	=> 'Retry',
-	'ABBC3_JAVASCRIPT_REQUIRED' => 'JavaScript is required to change Advanced BBCode Box settings.',
+	'ABBC3_JAVASCRIPT_REQUIRED' => 'JavaScript is required to change Advanced [BBCode] Box settings.',
 	'ABBC3_DRAG_BUTTON'		=> 'Drag %s',
 	'ABBC3_MOVE_LEFT'			=> 'Move to previous column',
 	'ABBC3_MOVE_RIGHT'		=> 'Move to next column',

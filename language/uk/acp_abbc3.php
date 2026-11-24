@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'Тут ви можете налаштувати параметри Advanced BBCode Box.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'Тут ви можете налаштувати параметри Advanced [BBCode] Box.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'Додайте <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a></strong> до BBCode <samp class="error">[font]</samp>. Використовуйте точне написання та чутливість до регістру. Розмістіть назву кожного шрифту в окремому рядку.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'Щоб використовувати цю функцію, у розділі «Завантажити налаштування» потрібно ввімкнути «Дозволити використання сторонніх мереж доставки контенту».',
 	'ABBC3_INVALID_FONT'		=> 'Недійсна назва шрифту для «%s»',

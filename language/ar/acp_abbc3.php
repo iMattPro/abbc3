@@ -23,7 +23,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ABBC3_SETTINGS_EXPLAIN'	=> 'هنا يمكنك تكوين الإعدادات لـ Advanced BBCode Box.',
+	'ABBC3_SETTINGS_EXPLAIN'	=> 'هنا يمكنك تكوين الإعدادات لـ Advanced [BBCode] Box.',
 	'ABBC3_GOOGLE_FONTS_INFO'	=> 'أضف <strong><a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer">خطوط Google</a></strong> إلى <samp class="error">[font]</samp> BBCode. استخدم التدقيق الإملائي وحساسية حالة الأحرف. ضع اسم كل خط على سطر منفصل.',
 	'ABBC3_GOOGLE_FONTS_NOTE'	=> 'يجب تمكين "السماح باستخدام شبكات توصيل محتوى الطرف الثالث" ضمن "إعدادات التحميل" لاستخدام هذه الميزة.',
 	'ABBC3_INVALID_FONT'		=> 'اسم الخط غير صالح لـ "%s"',
