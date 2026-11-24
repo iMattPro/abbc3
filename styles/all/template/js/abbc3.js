@@ -23,6 +23,10 @@
 		if (!form) {
 			return null;
 		}
+		if (toolbar.hasAttribute('data-abbc3-acp') && typeof window.text_name === 'string') {
+			const editor = form.elements.namedItem(window.text_name);
+			if (editor instanceof HTMLTextAreaElement) return editor;
+		}
 		return form.elements[toolbar.dataset.abbc3Target] || form.querySelector('textarea');
 	};
 
@@ -191,6 +195,11 @@
 		const textarea = targetFor(toolbar);
 		if (!textarea) {
 			return;
+		}
+		if (toolbar.hasAttribute('data-abbc3-acp') && textarea instanceof HTMLTextAreaElement &&
+			textarea.matches('dd > textarea') &&
+			toolbar.closest('fieldset') === textarea.closest('fieldset')) {
+			textarea.before(toolbar);
 		}
 		toolbar.classList.add('abbc3-toolbar--ready');
 		toolbar.querySelectorAll('.abbc3-control__icon').forEach(icon => {

@@ -39,6 +39,7 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 	{
 		$crawler = self::request('GET', 'posting.php?mode=post&f=2&sid=' . $this->sid);
 		$this->run_checks($crawler);
+		self::assertSame(0, $crawler->filter('[data-abbc3-acp]')->count());
 	}
 
 	/**
@@ -67,6 +68,7 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 		$this->admin_login();
 		$crawler = self::request('GET', 'adm/index.php?i=users&u=2&mode=sig&sid=' . $this->sid);
 		$this->run_checks($crawler);
+		self::assertSame(1, $crawler->filter('form#user_signature [data-abbc3-toolbar][data-abbc3-acp]')->count());
 	}
 
 	/**

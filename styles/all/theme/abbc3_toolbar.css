@@ -272,9 +272,18 @@ form td .abbc3-toolbar {
 	width: 98%;
 }
 
-#main .abbc3-toolbar:not(.abbc3-toolbar--preview) {
+.abbc3-toolbar[data-abbc3-acp],
+.abbc3-toolbar[data-abbc3-acp] + textarea {
+	box-sizing: border-box;
 	width: 95%;
-	margin-inline-start: 96px;
+}
+
+.abbc3-toolbar[data-abbc3-acp] {
+	margin: 0 0 4px;
+}
+
+.abbc3-toolbar[data-abbc3-acp] + textarea {
+	resize: vertical;
 }
 
 @media (max-width: 700px) {
@@ -289,11 +298,6 @@ form td .abbc3-toolbar {
 
 	.abbc3-more__tray {
 		max-block-size: 16rem;
-	}
-
-	#main .abbc3-toolbar:not(.abbc3-toolbar--preview) {
-		width: 100%;
-		margin-inline-start: 0;
 	}
 }
 
