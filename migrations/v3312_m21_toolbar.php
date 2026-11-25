@@ -74,6 +74,14 @@ class v3312_m21_toolbar extends container_aware_migration
 
 	public function migrate_toolbar()
 	{
+		$result = $this->db->sql_query('SELECT button_key FROM ' . $this->table_prefix . 'abbc3_toolbar');
+		$existing = [];
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$existing[$row['button_key']] = true;
+		}
+		$this->db->sql_freeresult($result);
+
 		$fresh = !empty($this->config['abbc3_fresh_install']);
 		if ($fresh)
 		{
@@ -89,10 +97,10 @@ class v3312_m21_toolbar extends container_aware_migration
 
 		foreach ($core as $key => $icon)
 		{
-			$this->insert_button('core:' . $key, 'core', 0, 'primary', ++$order, $icon);
+			$this->insert_button($existing, 'core:' . $key, 'core', 0, 'primary', ++$order, $icon);
 		}
 
-		$this->insert_button('action:plain', 'action', 0, 'more', 1, 'plain');
+		$this->insert_button($existing, 'action:plain', 'action', 0, 'more', 1, 'plain');
 
 		$sql = 'SELECT bbcode_id, bbcode_tag, display_on_posting, bbcode_order
 			FROM ' . BBCODES_TABLE . '
@@ -103,7 +111,7 @@ class v3312_m21_toolbar extends container_aware_migration
 		{
 			$tag = strtolower(rtrim($row['bbcode_tag'], '='));
 			$placement = empty($row['display_on_posting']) ? 'hidden' : ($fresh ? 'more' : 'primary');
-			$this->insert_button('bbcode:' . $tag, 'bbcode', (int) $row['bbcode_id'], $placement, ++$custom_order, $tag);
+			$this->insert_button($existing, 'bbcode:' . $tag, 'bbcode', (int) $row['bbcode_id'], $placement, ++$custom_order, $tag);
 		}
 		$this->db->sql_freeresult($result);
 	}
@@ -125,23 +133,41 @@ class v3312_m21_toolbar extends container_aware_migration
 
 	public function migrate_groups()
 	{
+		$table = $this->table_prefix . 'abbc3_bbcode_groups';
+		$result = $this->db->sql_query('SELECT bbcode_id, group_id FROM ' . $table);
+		$existing = [];
+		while ($row = $this->db->sql_fetchrow($result))
+		{
+			$existing[(int) $row['bbcode_id']][(int) $row['group_id']] = true;
+		}
+		$this->db->sql_freeresult($result);
+
 		$sql = 'SELECT bbcode_id, bbcode_group
 			FROM ' . BBCODES_TABLE . "
 			WHERE bbcode_group <> ''";
 		$result = $this->db->sql_query($sql);
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			foreach (array_filter(array_map('intval', explode(',', $row['bbcode_group']))) as $group_id)
+			$bbcode_id = (int) $row['bbcode_id'];
+			foreach (array_unique(array_map('intval', explode(',', $row['bbcode_group']))) as $group_id)
 			{
-				$sql_ary = ['bbcode_id' => (int) $row['bbcode_id'], 'group_id' => $group_id];
-				$this->db->sql_query('INSERT INTO ' . $this->table_prefix . 'abbc3_bbcode_groups ' . $this->db->sql_build_array('INSERT', $sql_ary));
+				if ($group_id > 0 && !isset($existing[$bbcode_id][$group_id]))
+				{
+					$sql_ary = ['bbcode_id' => $bbcode_id, 'group_id' => $group_id];
+					$this->db->sql_query('INSERT INTO ' . $table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary));
+				}
 			}
 		}
 		$this->db->sql_freeresult($result);
 	}
 
-	protected function insert_button($key, $type, $bbcode_id, $placement, $order, $icon)
+	protected function insert_button(array &$existing, $key, $type, $bbcode_id, $placement, $order, $icon)
 	{
+		if (isset($existing[$key]))
+		{
+			return;
+		}
+
 		$sql_ary = [
 			'button_key' => $key,
 			'button_type' => $type,
@@ -152,5 +178,6 @@ class v3312_m21_toolbar extends container_aware_migration
 			'font_icon' => '',
 		];
 		$this->db->sql_query('INSERT INTO ' . $this->table_prefix . 'abbc3_toolbar ' . $this->db->sql_build_array('INSERT', $sql_ary));
+		$existing[$key] = true;
 	}
 }
