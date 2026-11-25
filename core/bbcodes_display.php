@@ -176,7 +176,7 @@ class bbcodes_display
 	 *
 	 * @param string $text Stored post text in TextFormatter or legacy BBCode format
 	 * @param string $uid Post BBCode UID used to match legacy tags
-	 * @return string Post text with hidden content removed for guests and bots
+	 * @return string Post text with hidden content removed for guests and bots, or an empty string if redaction fails
 	 */
 	public function redact_hidden_search_text($text, $uid)
 	{
@@ -192,20 +192,35 @@ class bbcodes_display
 				return $text;
 			}
 
-			$dom = new \DOMDocument();
-			if (!$dom->loadXML($text, LIBXML_NONET | LIBXML_PARSEHUGE | LIBXML_NOERROR | LIBXML_NOWARNING))
+			try
+			{
+				$dom = new \DOMDocument();
+				if (!$dom->loadXML($text, LIBXML_NONET | LIBXML_PARSEHUGE | LIBXML_NOERROR | LIBXML_NOWARNING))
+				{
+					return '';
+				}
+
+				$xpath = new \DOMXPath($dom);
+				$hidden_blocks = $xpath->query('//HIDDEN[not(ancestor::HIDDEN)]');
+				if ($hidden_blocks === false)
+				{
+					return '';
+				}
+
+				// Keep the outer tags so full results still show the login notice.
+				foreach ($hidden_blocks as $hidden)
+				{
+					$hidden->textContent = ' ';
+				}
+
+				$redacted = $dom->saveXML($dom->documentElement);
+			}
+			catch (\DOMException $e)
 			{
 				return '';
 			}
 
-			// Keep the outer tags so full results still show the login notice.
-			$xpath = new \DOMXPath($dom);
-			foreach ($xpath->query('//HIDDEN[not(ancestor::HIDDEN)]') as $hidden)
-			{
-				$hidden->textContent = ' ';
-			}
-
-			return Utils::encodeUnicodeSupplementaryCharacters($dom->saveXML($dom->documentElement));
+			return $redacted === false ? '' : Utils::encodeUnicodeSupplementaryCharacters($redacted);
 		}
 
 		if ($uid === '' || stripos($text, '[hidden:' . $uid . ']') === false)

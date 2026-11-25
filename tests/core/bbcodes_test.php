@@ -363,6 +363,7 @@ class bbcodes_test extends \phpbb_database_test_case
 				$display->redact_hidden_search_text($xml, 'abc123')
 			);
 			self::assertSame('before after [hidden]example[/hidden]', $display->redact_hidden_search_text($legacy, 'abc123'));
+			self::assertSame('', $display->redact_hidden_search_text('<r>before<HIDDEN>private</r>', 'abc123'));
 		}
 
 		$this->user->data = ['user_id' => 2, 'is_bot' => false];
