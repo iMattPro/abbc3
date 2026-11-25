@@ -68,6 +68,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Poista kaikki BBCodet valitusta tekstistä',
 	'ABBC3_NOSELECT_ERROR'		=> 'Tekstiä ei ollut valittuna.',
+	'ABBC3_MORE_BUTTONS'	=> 'Lisää',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Näytä lisää BBCode-painikkeita',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Piilota ylimääräiset BBCode-painikkeet',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'BBCode-valintaikkuna',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Lisää viestiin',
@@ -91,11 +95,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'BBCoden järjestys on päivitetty.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode-järjestystä ei voitu päivittää.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'BBCode-taulukon nimeä ei vastaanotettu.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'BBCode-tilaustietoja ei saatu.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'BBCode-rivejä ei päivitetty.',
 	'ABBC3_BBCODE_GROUP'		=> 'Hallitse ryhmiä jotka voivat käyttää tätä BBCodea',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Jos ryhmiä ei valittu, kaikki voivat käyttää tätä BBCodea. Voit valita useamman ryhmän kerralla painamalla CTRL (tai CMD Macilla).',
 

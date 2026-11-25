@@ -68,6 +68,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Usuń wszystkie tagi BBCode z zaznaczonego tekstu',
 	'ABBC3_NOSELECT_ERROR'		=> 'Nie zaznaczono żadnego tekstu.',
+	'ABBC3_MORE_BUTTONS'	=> 'Więcej',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Pokaż dodatkowe przyciski BBCode',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Ukryj dodatkowe przyciski BBCode',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'Okno dialogowe BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Wstaw do wiadomości',
@@ -91,11 +95,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'Kolejność BBCode została zaktualizowana.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Nie można zaktualizować kolejności BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Nie odebrano nazwy tabeli BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Nie otrzymano danych zamówienia BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Nie zaktualizowano żadnych wierszy BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Zarządzaj grupami, które mogą używać tego BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Jeśli nie wybrano żadnych grup, wszyscy użytkownicy będą mogli używać tego BBCode. Użyj CTRL+KLIK (lub CMD+KLIK na Macu), aby zaznaczyć/odznaczyć więcej niż jedną grupę.',
 

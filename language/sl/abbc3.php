@@ -68,6 +68,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Odstranite vse oznake BBKode iz izbranega besedila',
 	'ABBC3_NOSELECT_ERROR'		=> 'Izbrano ni bilo nobeno besedilo.',
+	'ABBC3_MORE_BUTTONS'	=> 'Več',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Pokaži dodatne gumbe BBCode',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Skrij dodatne gumbe BBCode',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'Pogovorno okno BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Vstavi v sporočilo',
@@ -91,11 +95,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'Vrstni red BBKode je bil posodobljen.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode naročila ni bilo mogoče posodobiti.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Ime tabele BBCode ni bilo prejeto.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Podatki o naročilu BBCode niso bili prejeti.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Posodobljena ni bila nobena vrstica BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Upravljajte skupine, ki lahko uporabljajo to BBKodo',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Če ni izbrana nobena skupina, lahko vsi uporabniki uporabljajo to BBKodo. Uporabite CTRL+CLIK (ali CMD+CLIK na Macu), da izberete/prekličete izbiro več kot ene skupine.',
 

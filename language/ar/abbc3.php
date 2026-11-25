@@ -69,6 +69,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'حذف جميع الوسوم لـ BBCode من النص المُحدد',
 	'ABBC3_NOSELECT_ERROR'		=> 'لم يتم تحديد النص.',
+	'ABBC3_MORE_BUTTONS'	=> 'المزيد',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'إظهار أزرار BBCode الإضافية',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'إخفاء أزرار BBCode الإضافية',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'مربع حوار BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'إدخال إلى الرسالة',
@@ -92,11 +96,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| يسار | وسط | يمين |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'تم تحديث ترتيب الـBBCode.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'تعذر تحديث ترتيب BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'لم يتم تلقي اسم جدول BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'لم يتم تلقي أي بيانات طلب BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'لم يتم تحديث أي صفوف BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'إدارة المجموعات التي تستطيع استخدام هذا الـBBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'إذا لم يتم تحديد أي مجموعة, فسوف يستطيع جميع الأعضاء استخدام هذا الـBBCode. تستطيع تحديد أكثر من مجموعة أو إزالة التحديد بالنقر مطولاً على زر الكنترول والنقر بالماوس على إسم المجموعة (أو CMD+CLICK في نظام الماك).',
 

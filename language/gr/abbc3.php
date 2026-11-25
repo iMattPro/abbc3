@@ -70,6 +70,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Αφαίρεση όλων των BBCode ετικετών από το επιλεγμένο κείμενο',
 	'ABBC3_NOSELECT_ERROR'		=> 'Δεν έχει επιλεχθεί κείμενο.',
+	'ABBC3_MORE_BUTTONS'	=> 'Περισσότερα',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Εμφάνιση επιπλέον κουμπιών BBCode',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Απόκρυψη επιπλέον κουμπιών BBCode',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'Παράθυρο διαλόγου BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Εισαγωγή στο μύνημα',
@@ -93,11 +97,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'Η σειρά των BBCode ενημερώθηκε.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Δεν ήταν δυνατή η ενημέρωση της παραγγελίας του BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Δεν ελήφθη όνομα πίνακα BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Δεν ελήφθησαν δεδομένα παραγγελίας BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Δεν ενημερώθηκαν σειρές BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Δειχείρηση των ομάδων που θα μπορούν να χρησιμοποιήσουν αυτό το BBCode',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Αν δεν επιλεχθεί ομάδα τότε όλοι οι χρήστες μπορούν να χρησιμοποιήσουν αυτό το BBCode. Πάτα CTRL+CLICK (ή CMD+CLICK για Mac) για να επιλέξεις/αποεπιλέξεις περισσότερες από μία ομάδες.',
 

@@ -68,6 +68,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Очистити виділений текст від BB-коду',
 	'ABBC3_NOSELECT_ERROR'		=> 'Будь ласка, спочатку виділіть текст.',
+	'ABBC3_MORE_BUTTONS'	=> 'Більше',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Показати додаткові кнопки BBCode',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Приховати додаткові кнопки BBCode',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'Діалогове вікно BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Вставити повідомлення',
@@ -91,11 +95,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'Порядок BB-кодів змінено.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Не вдалося оновити порядок BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Ім’я таблиці BBCode не отримано.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Немає даних про замовлення BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Не було оновлено жодного рядка BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'Групи, котрі можуть використовувати BB-код',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Якщо група вибрана, то всі її користувачі можуть використовувати BB-код. Використовуйте CTRL+CLICK (або CMD+CLICK на Mac) для того, щоб вибрати кілька груп.',
 

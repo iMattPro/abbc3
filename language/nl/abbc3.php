@@ -69,6 +69,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Verwijder alle BBcode-tags van de geselecteerde tekst',
 	'ABBC3_NOSELECT_ERROR'		=> 'Er is geen tekst geselecteerd.',
+	'ABBC3_MORE_BUTTONS'	=> 'Meer',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Meer BBCode-knoppen weergeven',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Extra BBCode-knoppen verbergen',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'BBCode-dialoogvenster',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Invoegen in bericht',
@@ -92,11 +96,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	  => "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		 => 'De volgorde van de BBcodes is bijgewerkt.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode-bestelling kan niet worden bijgewerkt.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Er is geen BBCode-tabelnaam ontvangen.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Er zijn geen BBCode-bestelgegevens ontvangen.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Er zijn geen BBCode-rijen bijgewerkt.',
 	'ABBC3_BBCODE_GROUP'		   => 'Beheer groepen die deze BBcode kunnen gebruiken',
 	'ABBC3_BBCODE_GROUP_INFO'	  => 'Als je geen groep hebt geselecteerd, kunnen alle groepen deze BBcode gebruiken. Gebruik CTRL+KLIK (of CMD+KLIK bij Mac) om meer dan één groep te selecteren/deselecteren.',
 

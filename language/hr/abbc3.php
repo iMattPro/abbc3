@@ -69,6 +69,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Izbriši sve BBKod tagove iz označenog teksta.',
 	'ABBC3_NOSELECT_ERROR'		=> 'Tekst nije označen.',
+	'ABBC3_MORE_BUTTONS'	=> 'Više',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Prikaži dodatne BBCode gumbe',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Sakrij dodatne BBCode gumbe',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'Dijaloški okvir za BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Umetni u poruku',
@@ -92,11 +96,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'BBKod poredak je ažuriran.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode redoslijed nije mogao biti ažuriran.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Nije primljen naziv BBCode tablice.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Nisu primljeni podaci o narudžbi BBCodea.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Nijedan redak BBCodea nije ažuriran.',
 	'ABBC3_BBCODE_GROUP'		=> 'Upravljanje grupama koje mogu koristiti ovaj BBKod',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Ukoliko niti jedna grupa nije odabrana, svi/e korisnici/e mogu koristiti ovaj BBKod.<br>Za o(do)značavanje više od jedne grupe, koristi CTRL+KLIK (CMD+KLIK na Macu).',
 

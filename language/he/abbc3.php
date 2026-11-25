@@ -68,6 +68,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'מחק את כל תגי ה BBCode מהטקסט המסומן',
 	'ABBC3_NOSELECT_ERROR'		=> 'לא נבחר טקסט.',
+	'ABBC3_MORE_BUTTONS'	=> 'עוד',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'הצגת כפתורי BBCode נוספים',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'הסתרת כפתורי BBCode נוספים',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'תיבת דו־שיח של BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'הכנס לתוך ההודעה',
@@ -91,11 +95,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'סדר ה BBCodes עודכן.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'לא ניתן היה לעדכן את סדר ה-BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'לא התקבל שם טבלת BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'לא התקבלו נתוני הזמנה של BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'לא עודכנו שורות BBCode.',
 	'ABBC3_BBCODE_GROUP'		=> 'נהל קבוצות שיכולות להתשמש ב BBCode זה',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'אם לא נבחרו שום קבוצות, כל המשתמשים יכולים להשתמש ב BBCode זה. השתמש במקש ה CTRL כדי לסמן יותר מקבוצה אחת.',
 

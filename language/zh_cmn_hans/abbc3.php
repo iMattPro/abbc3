@@ -69,6 +69,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> '移除 BBCode 代码',
 	'ABBC3_NOSELECT_ERROR'		=> '未选择文字',
+	'ABBC3_MORE_BUTTONS'	=> '更多',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> '显示更多 BBCode 按钮',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> '隐藏额外的 BBCode 按钮',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'BBCode 对话框',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> '输入至消息',
@@ -92,11 +96,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'BBCode 顺序已变更',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode 订单无法更新。',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> '未收到 BBCode 表名。',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> '未收到 BBCode 订单数据。',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> '没有更新 BBCode 行。',
 	'ABBC3_BBCODE_GROUP'		=> '变更可使用此BBCode的使用者群组',
 	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未选择任何群，则所有人皆可使用此 BBCode。若要选择多个群组，请按下 CTRL 键。Mac 电脑请用 CMD 键',
 

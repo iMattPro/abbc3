@@ -69,6 +69,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'همه بی بی کد ها را از متن حذف کنید',
 	'ABBC3_NOSELECT_ERROR'		=> 'متنی انتخاب نشد',
+	'ABBC3_MORE_BUTTONS'	=> 'بیشتر',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'نمایش دکمه‌های بیشتر BBCode',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'پنهان کردن دکمه‌های اضافی BBCode',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'پنجرهٔ BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'داخل متن وارد کنید',
@@ -92,11 +96,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'بی بی کد دستور داده شده به روز رسانی شد',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'سفارش BBCode به روز نمی شود.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'هیچ نام جدول BBCode دریافت نشد.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'هیچ داده سفارش BBCode دریافت نشد.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'هیچ ردیف BBCode به روز نشد.',
 	'ABBC3_BBCODE_GROUP'		=> 'مدیریت گروه های مجاز برای دسترسی به بی بی کدها',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'اگر گروهی انتخاب نشده باشد ، تمام اعضا به بی بی کدها دسترسی دارند و برای انتخاب گروه های بیشتر کلید کنترل و کلیک را فشار دهید',
 

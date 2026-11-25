@@ -70,6 +70,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Loại bỏ hết các BBCode khỏi đoạn văn đã bôi đen',
 	'ABBC3_NOSELECT_ERROR'		=> 'Bạn chưa bôi đen đoạn văn nào.',
+	'ABBC3_MORE_BUTTONS'	=> 'Thêm',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Hiện thêm các nút BBCode',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Ẩn các nút BBCode bổ sung',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'Hộp thoại BBCode',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Chèn vào nội dung',
@@ -93,11 +97,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'Thứ tự BBCode đã được cập nhật.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'Không thể cập nhật thứ tự BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'Không có tên bảng BBCode nào được nhận.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'Không nhận được dữ liệu đơn hàng BBCode.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Không có hàng BBCode nào được cập nhật.',
 	'ABBC3_BBCODE_GROUP'		=> 'Quản lý những nhóm có khả năng sử dụng BBCode này',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Nếu không có nhóm nào được chọn, tất cả mọi thành viên đều được sử dụng BBCode này. Sử dụng CTRL+CLICK (hoặc CMD+CLICK trên các máy Mac) để chọn hoặc bỏ chọn nhiều hơn 1 nhóm.',
 

@@ -69,6 +69,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Seçilen metinden tüm BBCode etiketlerini kaldır',
 	'ABBC3_NOSELECT_ERROR'		=> 'Hiç bir metin seçilmedi.',
+	'ABBC3_MORE_BUTTONS'	=> 'Daha fazla',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Ek BBCode düğmelerini göster',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Ek BBCode düğmelerini gizle',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'BBCode iletişim kutusu',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Mesaja ekle',
@@ -92,11 +96,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'BBCode sırası güncellendi.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode sırası güncellenemedi.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'BBCode tablo adı alınmadı.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'BBCode sipariş verisi alınmadı.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Hiçbir BBCode satırı güncellenmedi.',
 	'ABBC3_BBCODE_GROUP'		=> 'Bu BBCode’u kullanabilen grupları yönetin',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Eğer hiç bir grup seçilmezse, tüm kullanıcılar bu BBCode’u kullanabilirler. Birden fazla grup seçmek ya da seçimi bırakmak için CTRL+SAĞ TIK (ya da Mac bilgisayarlarda CMD+SAĞ TIK) klavye ile mouse kombinasyonunu kullanın.',
 

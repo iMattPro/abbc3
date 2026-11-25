@@ -69,6 +69,10 @@ $lang = array_merge($lang, array(
 	// Utility BBCodes
 	'ABBC3_PLAIN_BBCODE'		=> 'Eemalda kõik BBkoodi märgendid valitud tekstist',
 	'ABBC3_NOSELECT_ERROR'		=> 'Teksti ei valitud.',
+	'ABBC3_MORE_BUTTONS'	=> 'Veel',
+	'ABBC3_MORE_BUTTONS_SHOW'	=> 'Kuva täiendavad BBCode’i nupud',
+	'ABBC3_MORE_BUTTONS_HIDE'	=> 'Peida täiendavad BBCode’i nupud',
+	'ABBC3_BBCODE_WIZ_HELP'	=> 'BBCode’i dialoog',
 
 	// BBCode Wizards
 	'ABBC3_BBCODE_WIZ_SUBMIT'	=> 'Sisesta otse sõnumisse',
@@ -92,11 +96,6 @@ $lang = array_merge($lang, array(
 	'ABBC3_PIPE_ALIGNMENT_EX'	=> "| Left | Center | Right |\n|:-----|:------:|------:|\n|   x  |    x   |   x   |",
 
 	// ACP
-	'ABBC3_BBCODE_ORDERED'		=> 'BBkoodi järjestus on uuendatud.',
-	'ABBC3_BBCODE_ORDERED_FAIL'	=> 'BBCode järjekorda ei saanud värskendada.',
-	'ABBC3_BBCODE_ORDER_NO_TABLE'	=> 'BBCode tabeli nime ei saadud.',
-	'ABBC3_BBCODE_ORDER_NO_DATA'	=> 'BBCode’i tellimuse andmeid ei saadud.',
-	'ABBC3_BBCODE_ORDER_NO_ORDER'	=> 'Ühtegi BBCode rida ei värskendatud.',
 	'ABBC3_BBCODE_GROUP'		=> 'Halda gruppe, kes saavad kasutada seda BBkoodi',
 	'ABBC3_BBCODE_GROUP_INFO'	=> 'Kui ühtegi gruppi ei ole valitud, siis kõik kasutajad saavad kasutada seda BBkoodi. Kasuta CTRL+CLICK (või CMD+CLICK Mac’is), et valida / või valikud eemaldada rohkem kui ühelt grupilt.',
 
