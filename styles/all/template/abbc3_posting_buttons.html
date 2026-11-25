@@ -35,7 +35,7 @@
 				data-abbc3-name="{{ button.NAME }}"
 				aria-label="{{ lang(button.LABEL) }}"
 				title="{{ lang(button.LABEL) }}">
-				{% if button.FONT_ICON %}<i class="icon fa-{{ button.FONT_ICON }} fa-fw abbc3-control__font-icon" aria-hidden="true"></i>{% elseif icon %}<img class="abbc3-control__icon" src="{{ root ~ icon }}" alt="" aria-hidden="true">{% endif %}
+				{% if button.FONT_ICON %}<i class="fa fa-{{ button.FONT_ICON }} fa-fw abbc3-control__font-icon" aria-hidden="true"></i>{% elseif icon %}<img class="abbc3-control__icon" src="{{ root ~ icon }}" alt="" aria-hidden="true">{% endif %}
 				<span class="abbc3-control__fallback{{ has_icon ? ' abbc3-control__fallback--hidden' }}">{{ button.NAME }}</span>
 			</button>
 		{% endif %}

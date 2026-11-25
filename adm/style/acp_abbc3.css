@@ -320,8 +320,8 @@
 	object-fit: contain;
 }
 
-.abbc3-inspector__icon > .icon,
-.abbc3-item-icon > .icon {
+.abbc3-inspector__icon > .fa,
+.abbc3-item-icon > .fa {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;

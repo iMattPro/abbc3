@@ -284,7 +284,7 @@
 		const fontIcon = fontIconName(item);
 		if (fontIcon) {
 			const icon = document.createElement('i');
-			icon.className = `icon fa-${fontIcon} fa-fw`;
+			icon.className = `fa fa-${fontIcon} fa-fw`;
 			icon.setAttribute('aria-hidden', 'true');
 			container.appendChild(icon);
 			setIconVisibility(container, true);
@@ -333,7 +333,7 @@
 		if (fontIcon) {
 			control.classList.add('abbc3-control--font-icon');
 			const icon = document.createElement('i');
-			icon.className = `icon fa-${fontIcon} fa-fw abbc3-control__font-icon`;
+			icon.className = `fa fa-${fontIcon} fa-fw abbc3-control__font-icon`;
 			icon.setAttribute('aria-hidden', 'true');
 			control.appendChild(icon);
 		} else if (path) {
