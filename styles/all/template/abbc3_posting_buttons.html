@@ -4,8 +4,8 @@
 	{% if allowed %}
 		{% if button.TYPE == 'size' %}
 			<div class="abbc3-menu" data-abbc3-menu>
-				<button type="button" class="abbc3-select abbc3-menu__trigger" data-abbc3-menu-trigger aria-haspopup="listbox" aria-expanded="false" title="{{ lang(button.LABEL) }}"><span>{{ lang('FONT_SIZE') }}</span><span class="abbc3-menu__chevron" aria-hidden="true">⌄</span></button>
-				<div class="abbc3-menu__panel" data-abbc3-menu-panel role="listbox" aria-label="{{ lang(button.LABEL) }}" hidden>
+				<button type="button" class="abbc3-select abbc3-menu__trigger" data-abbc3-menu-trigger aria-haspopup="listbox" aria-expanded="false" title="{{ lang(button.LABEL)|e('html_attr') }}"><span>{{ lang('FONT_SIZE') }}</span><span class="abbc3-menu__chevron" aria-hidden="true">⌄</span></button>
+				<div class="abbc3-menu__panel" data-abbc3-menu-panel role="listbox" aria-label="{{ lang(button.LABEL)|e('html_attr') }}" hidden>
 					<button type="button" role="option" data-abbc3-size-value="50">{{ lang('FONT_TINY') }}</button>
 					<button type="button" role="option" data-abbc3-size-value="85">{{ lang('FONT_SMALL') }}</button>
 					<button type="button" role="option" data-abbc3-size-value="100">{{ lang('FONT_NORMAL') }}</button>
@@ -15,8 +15,8 @@
 			</div>
 		{% elseif button.TYPE == 'font' %}
 			<div class="abbc3-menu" data-abbc3-menu>
-				<button type="button" class="abbc3-select abbc3-menu__trigger" data-abbc3-menu-trigger aria-haspopup="listbox" aria-expanded="false" title="{{ lang(button.LABEL) }}"><span>{{ lang('ABBC3_FONT_BBCODE') }}</span><span class="abbc3-menu__chevron" aria-hidden="true">⌄</span></button>
-				<div class="abbc3-menu__panel abbc3-menu__panel--font" data-abbc3-menu-panel role="listbox" aria-label="{{ lang(button.LABEL) }}" hidden>
+				<button type="button" class="abbc3-select abbc3-menu__trigger" data-abbc3-menu-trigger aria-haspopup="listbox" aria-expanded="false" title="{{ lang(button.LABEL)|e('html_attr') }}"><span>{{ lang('ABBC3_FONT_BBCODE') }}</span><span class="abbc3-menu__chevron" aria-hidden="true">⌄</span></button>
+				<div class="abbc3-menu__panel abbc3-menu__panel--font" data-abbc3-menu-panel role="listbox" aria-label="{{ lang(button.LABEL)|e('html_attr') }}" hidden>
 					{% for group, font_group in fonts %}
 						<div class="abbc3-menu__group" role="presentation">{{ lang(group) }}</div>
 						{% for font in font_group %}<button type="button" role="option" data-abbc3-font-value="{{ font }}" style="font-family:'{{ font }}',sans-serif">{{ font }}</button>{% endfor %}
@@ -33,8 +33,8 @@
 				data-abbc3-open="{{ button.OPEN }}"
 				data-abbc3-close="{{ button.CLOSE }}"
 				data-abbc3-name="{{ button.NAME }}"
-				aria-label="{{ lang(button.LABEL) }}"
-				title="{{ lang(button.LABEL) }}">
+				aria-label="{{ lang(button.LABEL)|e('html_attr') }}"
+				title="{{ lang(button.LABEL)|e('html_attr') }}">
 				{% if button.FONT_ICON %}<i class="fa fa-{{ button.FONT_ICON }} fa-fw abbc3-control__font-icon" aria-hidden="true"></i>{% elseif icon %}<img class="abbc3-control__icon" src="{{ root ~ icon }}" alt="" aria-hidden="true">{% endif %}
 				<span class="abbc3-control__fallback{{ has_icon ? ' abbc3-control__fallback--hidden' }}">{{ button.NAME }}</span>
 			</button>
@@ -50,21 +50,21 @@
 } %}
 
 {% EVENT vse_abbc3_posting_editor_buttons_before %}
-<div class="abbc3-toolbar" data-abbc3-toolbar{% if abbc3_acp_editor %} data-abbc3-acp{% endif %} data-abbc3-target="{{ constant('IN_ADMIN') is defined ? 'signature' : 'message' }}" data-wizard-url="{{ UA_ABBC3_URL_WIZARD }}" data-wizard-bbvideo="{{ UA_ABBC3_BBVIDEO_WIZARD }}" data-wizard-pipes="{{ UA_ABBC3_PIPES_WIZARD }}" data-abbc3-no-selection="{{ lang('ABBC3_NOSELECT_ERROR') }}">
-	<div class="abbc3-toolbar__surface" role="toolbar" aria-label="{{ lang('ABBC3_BBCODE_BAR') }}">
+<div class="abbc3-toolbar" data-abbc3-toolbar{% if abbc3_acp_editor %} data-abbc3-acp{% endif %} data-abbc3-target="{{ constant('IN_ADMIN') is defined ? 'signature' : 'message' }}" data-wizard-url="{{ UA_ABBC3_URL_WIZARD }}" data-wizard-bbvideo="{{ UA_ABBC3_BBVIDEO_WIZARD }}" data-wizard-pipes="{{ UA_ABBC3_PIPES_WIZARD }}" data-abbc3-no-selection="{{ lang('ABBC3_NOSELECT_ERROR')|e('html_attr') }}">
+	<div class="abbc3-toolbar__surface" role="toolbar" aria-label="{{ lang('ABBC3_BBCODE_BAR')|e('html_attr') }}">
 		{% for button in abbc3_primary %}{{ _self.button(button, ABBC3_BBCODE_ICONS, ABBC3_BBCODE_FONTS, abbc3_capabilities, MAX_FONT_SIZE, ROOT_PATH) }}{% endfor %}
 		{% if abbc3_more %}
-			<button type="button" class="abbc3-more__trigger" data-abbc3-more-toggle aria-expanded="false" title="{{ lang('ABBC3_MORE_BUTTONS_SHOW') }}" data-title-show="{{ lang('ABBC3_MORE_BUTTONS_SHOW') }}" data-title-hide="{{ lang('ABBC3_MORE_BUTTONS_HIDE') }}">
+			<button type="button" class="abbc3-more__trigger" data-abbc3-more-toggle aria-expanded="false" title="{{ lang('ABBC3_MORE_BUTTONS_SHOW')|e('html_attr') }}" data-title-show="{{ lang('ABBC3_MORE_BUTTONS_SHOW')|e('html_attr') }}" data-title-hide="{{ lang('ABBC3_MORE_BUTTONS_HIDE')|e('html_attr') }}">
 				<span>{{ lang('ABBC3_MORE_BUTTONS') }}</span>
 				<span class="abbc3-more__chevron" aria-hidden="true">⌄</span>
 			</button>
 		{% endif %}
 	</div>
 	{% if abbc3_more %}
-		<div class="abbc3-more__tray" data-abbc3-more-tray role="group" aria-label="{{ lang('ABBC3_MORE_BUTTONS') }}" hidden>
+		<div class="abbc3-more__tray" data-abbc3-more-tray role="group" aria-label="{{ lang('ABBC3_MORE_BUTTONS')|e('html_attr') }}" hidden>
 			{% for button in abbc3_more %}{{ _self.button(button, ABBC3_BBCODE_ICONS, ABBC3_BBCODE_FONTS, abbc3_capabilities, MAX_FONT_SIZE, ROOT_PATH) }}{% endfor %}
 		</div>
 	{% endif %}
 </div>
 {% EVENT vse_abbc3_posting_editor_buttons_after %}
-<div class="abbc3-wizard" role="dialog" aria-modal="true" aria-label="{{ lang('ABBC3_BBCODE_WIZ_HELP') }}" hidden></div>
+<div class="abbc3-wizard" role="dialog" aria-modal="true" aria-label="{{ lang('ABBC3_BBCODE_WIZ_HELP')|e('html_attr') }}" hidden></div>

@@ -10,17 +10,17 @@
 	<a href="{{ url }}" target="_blank" rel="noopener noreferrer"><i class="icon fa-external-link fa-fw" aria-hidden="true"></i>{{ text }}</a>
 {%- endmacro %}
 
-<img class="abbc3-settings-logo" src="{{ ROOT_PATH }}ext/vse/abbc3/adm/images/abbc3logo-wordmark.png" alt="{{ lang('ACP_ABBC3_MODULE') }}" width="360" height="40">
+<img class="abbc3-settings-logo" src="{{ ROOT_PATH }}ext/vse/abbc3/adm/images/abbc3logo-wordmark.png" alt="{{ lang('ACP_ABBC3_MODULE')|e('html_attr') }}" width="360" height="40">
 <p>{{ lang('ABBC3_SETTINGS_EXPLAIN') }}</p>
 
 <noscript><div class="errorbox"><h3>{{ lang('ERROR') }}</h3><p>{{ lang('ABBC3_JAVASCRIPT_REQUIRED') }}</p></div></noscript>
 
 <form id="abbc3_settings" method="post" action="{{ U_ACTION }}"
-	data-status-saving="{{ lang('ABBC3_AUTOSAVE_SAVING') }}"
-	data-status-saved="{{ lang('ABBC3_AUTOSAVE_SAVED') }}"
-	data-status-error="{{ lang('ABBC3_AUTOSAVE_ERROR') }}"
-	data-font-checking="{{ lang('ABBC3_FONTS_CHECKING') }}"
-	data-font-saved="{{ lang('ABBC3_FONTS_SAVED') }}">
+	data-status-saving="{{ lang('ABBC3_AUTOSAVE_SAVING')|e('html_attr') }}"
+	data-status-saved="{{ lang('ABBC3_AUTOSAVE_SAVED')|e('html_attr') }}"
+	data-status-error="{{ lang('ABBC3_AUTOSAVE_ERROR')|e('html_attr') }}"
+	data-font-checking="{{ lang('ABBC3_FONTS_CHECKING')|e('html_attr') }}"
+	data-font-saved="{{ lang('ABBC3_FONTS_SAVED')|e('html_attr') }}">
 	<fieldset class="abbc3-settings-group" data-abbc3-editable disabled>
 		<legend>{{ lang('ABBC3_LEGEND_ICON_BAR') }}</legend>
 		<div class="abbc3-setting-row">
@@ -46,7 +46,7 @@
 			<div class="abbc3-live-preview__header">
 				<strong class="abbc3-live-preview__title">{{ lang('ABBC3_LIVE_PREVIEW') }}</strong>
 				<div class="abbc3-live-preview__actions">
-					<span class="abbc3-format-picker" role="group" aria-label="{{ lang('ABBC3_ICONS_TYPE') }}">
+					<span class="abbc3-format-picker" role="group" aria-label="{{ lang('ABBC3_ICONS_TYPE')|e('html_attr') }}">
 						<label><input type="radio" name="abbc3_icons_type" value="png" data-autosave-setting{% if ABBC3_ICONS_TYPE == 'png' %} checked{% endif %}><span>PNG</span></label>
 						<label><input type="radio" name="abbc3_icons_type" value="svg" data-autosave-setting{% if ABBC3_ICONS_TYPE == 'svg' %} checked{% endif %}><span>SVG</span></label>
 					</span>
@@ -54,10 +54,10 @@
 			</div>
 			<p class="abbc3-live-preview__hint">{{ lang('ABBC3_ICONS_TYPE_EXPLAIN') }}</p>
 			<div class="abbc3-toolbar abbc3-toolbar--preview">
-				<div class="abbc3-toolbar__surface" data-preview-primary role="toolbar" aria-label="{{ lang('ABBC3_LIVE_PREVIEW') }}">
-					<button type="button" class="abbc3-more__trigger" data-preview-more-toggle aria-expanded="false" title="{{ lang('ABBC3_MORE_BUTTONS_SHOW') }}" data-title-show="{{ lang('ABBC3_MORE_BUTTONS_SHOW') }}" data-title-hide="{{ lang('ABBC3_MORE_BUTTONS_HIDE') }}"><span>{{ lang('ABBC3_MORE_BUTTONS') }}</span><span class="abbc3-more__chevron" aria-hidden="true">⌄</span></button>
+				<div class="abbc3-toolbar__surface" data-preview-primary role="toolbar" aria-label="{{ lang('ABBC3_LIVE_PREVIEW')|e('html_attr') }}">
+					<button type="button" class="abbc3-more__trigger" data-preview-more-toggle aria-expanded="false" title="{{ lang('ABBC3_MORE_BUTTONS_SHOW')|e('html_attr') }}" data-title-show="{{ lang('ABBC3_MORE_BUTTONS_SHOW')|e('html_attr') }}" data-title-hide="{{ lang('ABBC3_MORE_BUTTONS_HIDE')|e('html_attr') }}"><span>{{ lang('ABBC3_MORE_BUTTONS') }}</span><span class="abbc3-more__chevron" aria-hidden="true">⌄</span></button>
 				</div>
-				<div class="abbc3-more__tray" data-preview-more role="group" aria-label="{{ lang('ABBC3_MORE_BUTTONS') }}" hidden></div>
+				<div class="abbc3-more__tray" data-preview-more role="group" aria-label="{{ lang('ABBC3_MORE_BUTTONS')|e('html_attr') }}" hidden></div>
 			</div>
 		</div>
 
@@ -69,7 +69,7 @@
 			<label><span>{{ lang('ABBC3_FONT_ICON') }}</span><input type="text" maxlength="64" placeholder="star" data-inspector-font-icon></label>
 			<label><span>{{ lang('ABBC3_IMAGE_ICON') }}</span><select data-inspector-icon-select><option value="">{{ lang('ABBC3_ICON_NONE') }}</option>{% for icon in ABBC3_AVAILABLE_ICONS %}<option value="{{ icon }}" data-icon-png="{{ ROOT_PATH ~ attribute(ABBC3_ICON_PATHS.png, icon)|default('') }}" data-icon-svg="{{ ROOT_PATH ~ attribute(ABBC3_ICON_PATHS.svg, icon)|default('') }}">{{ icon }}</option>{% endfor %}</select></label>
 			<label><span>{{ lang('ABBC3_PLACEMENT') }}</span><select data-inspector-placement><option value="primary">{{ lang('ABBC3_TOOLBAR_PRIMARY') }}</option><option value="more">{{ lang('ABBC3_TOOLBAR_MORE') }}</option><option value="hidden">{{ lang('ABBC3_TOOLBAR_HIDDEN') }}</option></select></label>
-			<span class="abbc3-inspector__order"><button type="button" data-inspector-move="up" title="{{ lang('MOVE_UP') }}" aria-label="{{ lang('MOVE_UP') }}"><i class="icon acp-icon acp-icon-move-up fa-arrow-circle-up fa-fw" aria-hidden="true"></i></button><button type="button" data-inspector-move="down" title="{{ lang('MOVE_DOWN') }}" aria-label="{{ lang('MOVE_DOWN') }}"><i class="icon acp-icon acp-icon-move-down fa-arrow-circle-down fa-fw" aria-hidden="true"></i></button></span>
+			<span class="abbc3-inspector__order"><button type="button" data-inspector-move="up" title="{{ lang('MOVE_UP')|e('html_attr') }}" aria-label="{{ lang('MOVE_UP')|e('html_attr') }}"><i class="icon acp-icon acp-icon-move-up fa-arrow-circle-up fa-fw" aria-hidden="true"></i></button><button type="button" data-inspector-move="down" title="{{ lang('MOVE_DOWN')|e('html_attr') }}" aria-label="{{ lang('MOVE_DOWN')|e('html_attr') }}"><i class="icon acp-icon acp-icon-move-down fa-arrow-circle-down fa-fw" aria-hidden="true"></i></button></span>
 		</div>
 
 		<div class="abbc3-composer" data-abbc3-composer>
@@ -81,9 +81,9 @@
 						{% for button in rows %}
 							{% set icon_path = attribute(attribute(ABBC3_ICON_PATHS, ABBC3_ICONS_TYPE), button.ICON)|default('') %}
 							{% set has_item_icon = button.TYPE == 'size' or button.NAME == 'font' or button.FONT_ICON or icon_path %}
-							<li class="abbc3-composer-item" data-key="{{ button.KEY }}" data-type="{{ button.TYPE }}" data-name="{{ button.NAME }}" data-label="{{ lang(button.LABEL) }}">
-								<button type="button" class="abbc3-drag" data-drag-handle aria-label="{{ lang('ABBC3_DRAG_BUTTON', lang(button.LABEL)) }}">⠿</button>
-								<button type="button" class="abbc3-item-select{{ not has_item_icon ? ' abbc3-item-select--text' }}" data-item-select aria-pressed="false" title="{{ lang(button.LABEL) }}"><span class="abbc3-item-icon" data-item-icon aria-hidden="true"{% if not has_item_icon %} hidden{% endif %}>{% if button.TYPE == 'size' or button.NAME == 'font' %}<span>Aa</span>{% elseif button.FONT_ICON %}<i class="fa fa-{{ button.FONT_ICON }} fa-fw" aria-hidden="true"></i>{% elseif icon_path %}<img src="{{ ROOT_PATH ~ icon_path }}" alt="">{% endif %}</span><span class="abbc3-item-meta"><strong>[{{ button.NAME }}]</strong></span></button>
+							<li class="abbc3-composer-item" data-key="{{ button.KEY }}" data-type="{{ button.TYPE }}" data-name="{{ button.NAME }}" data-label="{{ lang(button.LABEL)|e('html_attr') }}">
+								<button type="button" class="abbc3-drag" data-drag-handle aria-label="{{ lang('ABBC3_DRAG_BUTTON', lang(button.LABEL))|e('html_attr') }}">⠿</button>
+								<button type="button" class="abbc3-item-select{{ not has_item_icon ? ' abbc3-item-select--text' }}" data-item-select aria-pressed="false" title="{{ lang(button.LABEL)|e('html_attr') }}"><span class="abbc3-item-icon" data-item-icon aria-hidden="true"{% if not has_item_icon %} hidden{% endif %}>{% if button.TYPE == 'size' or button.NAME == 'font' %}<span>Aa</span>{% elseif button.FONT_ICON %}<i class="fa fa-{{ button.FONT_ICON }} fa-fw" aria-hidden="true"></i>{% elseif icon_path %}<img src="{{ ROOT_PATH ~ icon_path }}" alt="">{% endif %}</span><span class="abbc3-item-meta"><strong>[{{ button.NAME }}]</strong></span></button>
 								<input type="hidden" name="toolbar_{{ placement }}[]" value="{{ button.KEY }}" data-toolbar-key>
 								<input type="hidden" name="toolbar_icon[{{ button.KEY }}]" value="{{ button.ICON }}" data-icon-value>
 								<input type="hidden" name="toolbar_font_icon[{{ button.KEY }}]" value="{{ button.FONT_ICON }}" data-font-icon-value>
@@ -112,9 +112,9 @@
 			</div>
 			<div class="abbc3-font-editor">
 				<fieldset class="abbc3-font-picker" data-font-picker data-catalog-url="{{ ROOT_PATH }}ext/vse/abbc3/adm/style/google-font-families.json"
-					data-loading="{{ lang('ABBC3_FONT_SEARCH_LOADING') }}"
-					data-empty="{{ lang('ABBC3_FONT_SEARCH_EMPTY') }}"
-					data-unavailable="{{ lang('ABBC3_FONT_SEARCH_UNAVAILABLE') }}">
+					data-loading="{{ lang('ABBC3_FONT_SEARCH_LOADING')|e('html_attr') }}"
+					data-empty="{{ lang('ABBC3_FONT_SEARCH_EMPTY')|e('html_attr') }}"
+					data-unavailable="{{ lang('ABBC3_FONT_SEARCH_UNAVAILABLE')|e('html_attr') }}">
 					<label for="abbc3_font_search">{{ lang('ABBC3_FONT_SEARCH') }}</label>
 					<input type="search" id="abbc3_font_search" autocomplete="off" aria-controls="abbc3_font_results" aria-describedby="abbc3_font_search_status" data-font-search>
 					<p id="abbc3_font_search_status" role="status" data-font-search-status></p>

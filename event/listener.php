@@ -255,7 +255,7 @@ class listener implements EventSubscriberInterface
 			$this->toolbar_registry->add_custom([
 				'type' => $type,
 				'name' => $name,
-				'label' => $custom['BBCODE_HELPLINE'],
+				'label' => html_entity_decode($custom['BBCODE_HELPLINE'], ENT_QUOTES, 'UTF-8'),
 				'open' => $this->custom_open($name, $custom['ABBC3_OPEN']),
 				'close' => $custom['ABBC3_CLOSE'],
 				'accesskey' => '',

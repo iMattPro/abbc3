@@ -75,7 +75,7 @@ class toolbar_registry
 			$button = $definitions[$key] ?? [
 				'type' => $row['button_type'],
 				'name' => $name,
-				'label' => !empty($row['bbcode_helpline']) ? $row['bbcode_helpline'] : $name,
+				'label' => !empty($row['bbcode_helpline']) ? html_entity_decode($row['bbcode_helpline'], ENT_QUOTES, 'UTF-8') : $name,
 				'condition' => '',
 			];
 			$button['key'] = $key;
