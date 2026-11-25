@@ -173,6 +173,29 @@ class acp_test extends \phpbb_database_test_case
 	 */
 	public function test_main_display()
 	{
+		$icon_paths = [
+			'png' => [
+				'bold' => 'ext/vse/abbc3/images/icons/bold.png',
+				'user' => 'images/abbc3/icons/user.png',
+			],
+			'svg' => [
+				'badge' => 'images/abbc3/icons/badge.svg',
+				'bold' => 'ext/vse/abbc3/images/icons/bold.svg',
+			],
+		];
+		$finder = $this->createMock(\phpbb\finder::class);
+		$finder->method('set_extensions')->with(['vse/abbc3'])->willReturnSelf();
+		$finder->method('extension_directory')->with('/images/icons')->willReturnSelf();
+		$finder->method('core_path')->with('images/abbc3/icons/')->willReturnSelf();
+		$finder->expects(self::exactly(2))->method('suffix')->withConsecutive(['.svg'], ['.png'])->willReturnSelf();
+		$finder->expects(self::exactly(2))->method('find')->willReturnOnConsecutiveCalls(
+			array_fill_keys(array_reverse($icon_paths['svg']), true),
+			array_fill_keys(array_reverse($icon_paths['png']), true)
+		);
+		$manager = $this->createMock(\phpbb\extension\manager::class);
+		$manager->method('get_finder')->willReturn($finder);
+		$controller = new acp_controller($this->cache, $this->config, $this->config_text, $this->db, $manager, $this->lang, $this->request, $this->template, '', '');
+
 		$expected = [
 			'S_ABBC3_PIPES'			=> $this->config['abbc3_pipes'],
 			'S_ABBC3_BBCODE_BAR'	=> $this->config['abbc3_bbcode_bar'],
@@ -181,27 +204,15 @@ class acp_test extends \phpbb_database_test_case
 			'ABBC3_ICONS_TYPE'		=> $this->config['abbc3_icons_type'],
 			'S_ABBC3_GOOGLE_FONTS'	=> "Droid Sans\nRoboto",
 			'S_ABBC3_MEDIA_EMBED'	=> 0,
-			'ABBC3_AVAILABLE_ICONS'	=> [
-				'align', 'badge', 'bbvideo', 'blur', 'bold', 'code', 'copy', 'dir',
-				'dropshadow', 'fade', 'flash', 'float', 'fontcolor', 'glow', 'hidden',
-				'highlight', 'img', 'italic', 'listb', 'listitem', 'listo', 'marq',
-				'media', 'mod', 'nfo', 'offtopic', 'paste', 'pipes', 'plain', 'pre',
-				'quote', 's', 'shadow', 'soundcloud', 'spoil', 'sub', 'sup', 'table',
-				'underline', 'url', 'user',
-			],
+			'ABBC3_AVAILABLE_ICONS'	=> ['badge', 'bold', 'user'],
+			'ABBC3_ICON_PATHS'		=> $icon_paths,
 			'U_ACTION'				=> 'foo',
 		];
 		$this->template->expects(self::once())
 			->method('assign_vars')
-			->with(self::callback(static function ($actual) use ($expected) {
-				self::assertArrayHasKey('ABBC3_ICON_PATHS', $actual);
-				self::assertArrayHasKey('png', $actual['ABBC3_ICON_PATHS']);
-				self::assertArrayHasKey('svg', $actual['ABBC3_ICON_PATHS']);
-				unset($actual['ABBC3_ICON_PATHS']);
-				return $actual === $expected;
-			}));
+			->with(self::identicalTo($expected));
 
-		$this->acp_controller
+		$controller
 			->set_u_action('foo')
 			->handle();
 	}

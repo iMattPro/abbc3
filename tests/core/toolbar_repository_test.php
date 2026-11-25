@@ -117,7 +117,7 @@ class toolbar_repository_test extends acp_base
 				'',
 				$this->repository,
 			])
-			->onlyMethods(['get_icons'])
+			->setMethods(['get_icons'])
 			->getMock();
 		$display->method('get_icons')->willReturn([]);
 
