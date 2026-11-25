@@ -346,29 +346,58 @@ class bbcodes_test extends \phpbb_database_test_case
 		self::assertSame([3 => [2 => 'detached']], $bbcodes_manager->remove_hidden_attachments($parsed_attachments, $row));
 	}
 
-	/**
-	 * Verify search redaction for guest and bot viewers in both post formats.
-	 */
-	public function test_hidden_search_redaction_for_guests_and_bots()
+	public function search_redaction_inputs()
 	{
 		$xml = '<r>before<HIDDEN><s>[hidden]</s>private<HIDDEN>nested</HIDDEN><ATTACHMENT index="0">secret.jpg</ATTACHMENT><e>[/hidden]</e></HIDDEN>after<ATTACHMENT index="1">public.jpg</ATTACHMENT></r>';
+		$redacted_xml = '<r>before<HIDDEN> </HIDDEN>after<ATTACHMENT index="1">public.jpg</ATTACHMENT></r>';
 		$legacy = 'before[hidden:abc123]private[hidden:abc123]nested[/hidden:abc123][/hidden:abc123]after [hidden]example[/hidden]';
-		$display = $this->bbcodes_manager();
+		return [
+			'guest sees only public formatter content' => [ANONYMOUS, false, $xml, 'abc123', $redacted_xml],
+			'bot sees only public formatter content' => [2, true, $xml, 'abc123', $redacted_xml],
+			'member sees full formatter content' => [2, false, $xml, 'abc123', $xml],
+			'guest sees only public legacy content' => [ANONYMOUS, false, $legacy, 'abc123', 'before after [hidden]example[/hidden]'],
+			'bot sees only public legacy content' => [2, true, $legacy, 'abc123', 'before after [hidden]example[/hidden]'],
+			'member sees full legacy content' => [2, false, $legacy, 'abc123', $legacy],
+			'ordinary formatter XML' => [ANONYMOUS, false, '<r>Visible &amp; unchanged</r>', 'abc', '<r>Visible &amp; unchanged</r>'],
+			'plain text without UID' => [ANONYMOUS, false, 'Write [hidden] as markup', '', 'Write [hidden] as markup'],
+			'different legacy UID' => [ANONYMOUS, false, 'write [hidden:example] as markup', 'abc', 'write [hidden:example] as markup'],
+			'mixed-case legacy markup' => [ANONYMOUS, false, 'A[HiDdEn:abc]B[/HIDDEN:abc]C', 'abc', 'A C'],
+			'unclosed legacy block' => [ANONYMOUS, false, 'public[hidden:abc]private', 'abc', 'public '],
+			'malformed formatter XML' => [ANONYMOUS, false, '<r>public<HIDDEN>private</r>', 'abc', ''],
+		];
+	}
 
-		foreach ([['user_id' => ANONYMOUS], ['user_id' => 2, 'is_bot' => true]] as $viewer)
-		{
-			$this->user->data = $viewer;
-			self::assertSame(
-				'<r>before<HIDDEN> </HIDDEN>after<ATTACHMENT index="1">public.jpg</ATTACHMENT></r>',
-				$display->redact_hidden_search_text($xml, 'abc123')
-			);
-			self::assertSame('before after [hidden]example[/hidden]', $display->redact_hidden_search_text($legacy, 'abc123'));
-			self::assertSame('', $display->redact_hidden_search_text('<r>before<HIDDEN>private</r>', 'abc123'));
-		}
+	/** @dataProvider search_redaction_inputs */
+	public function test_search_redaction_results($user_id, $bot, $text, $uid, $expected)
+	{
+		$this->user->data = ['user_id' => $user_id, 'is_bot' => $bot];
+		self::assertSame($expected, $this->bbcodes_manager()->redact_hidden_search_text($text, $uid));
+	}
 
-		$this->user->data = ['user_id' => 2, 'is_bot' => false];
-		self::assertSame($xml, $display->redact_hidden_search_text($xml, 'abc123'));
-		self::assertSame($legacy, $display->redact_hidden_search_text($legacy, 'abc123'));
+	public function test_attachment_redaction_preserves_empty_posts_and_registered_viewers()
+	{
+		$attachments = [3 => [0 => 'private', 2 => 'detached']];
+		$row = ['post_id' => 3, 'post_text' => '<r><HIDDEN><ATTACHMENT index="0">hidden.jpg</ATTACHMENT></HIDDEN></r>'];
+		$this->user->data['user_id'] = 2;
+		self::assertSame($attachments, $this->bbcodes_manager()->remove_hidden_attachments($attachments, $row));
+
+		$this->user->data['user_id'] = ANONYMOUS;
+		$row['post_text'] = '';
+		self::assertSame($attachments, $this->bbcodes_manager()->remove_hidden_attachments($attachments, $row));
+		self::assertTrue($this->bbcodes_manager()->user_can_use_bbcode(13));
+	}
+
+	public function test_bbvideo_keeps_configured_definition_without_media_tag()
+	{
+		$configurator = new \s9e\TextFormatter\Configurator();
+		$configurator->MediaEmbed->add('youtube');
+		unset($configurator->tags['MEDIA']);
+		$configurator->BBCodes->addCustom('[BBVIDEO]{TEXT}[/BBVIDEO]', '<b>{TEXT}</b>');
+		$formatter = new bbcodes_config();
+		$formatter->bbvideo($configurator);
+
+		$parser = $configurator->finalize(['returnRenderer' => false])['parser'];
+		self::assertStringContainsString('<BBVIDEO>', $parser->parse('[bbvideo]text[/bbvideo]'));
 	}
 
 	/**

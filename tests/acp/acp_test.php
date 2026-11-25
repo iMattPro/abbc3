@@ -561,17 +561,21 @@ class acp_test extends \phpbb_database_test_case
  *
  * @return bool
  */
-function check_form_key()
+function check_form_key($form_name)
 {
-	return \vse\abbc3\controller\acp_test::$valid_form;
+	return acp_test::$valid_form ?? \check_form_key($form_name);
 }
 
 /**
  * Mock add_form_key()
  * Note: use the same namespace as the controller
  */
-function add_form_key()
+function add_form_key($form_name)
 {
+	if (acp_test::$valid_form === null)
+	{
+		\add_form_key($form_name);
+	}
 }
 
 /**

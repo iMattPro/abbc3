@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<table name="phpbb_config">
+		<column>config_name</column><column>config_value</column><column>is_dynamic</column>
+		<row><value>version</value><value>3.3.5</value><value>0</value></row>
+		<row><value>assets_version</value><value>0</value><value>0</value></row>
+		<row><value>abbc3_pipes</value><value>1</value><value>0</value></row>
+	</table>
+	<table name="phpbb_bbcodes">
+		<column>bbcode_id</column><column>bbcode_tag</column><column>bbcode_helpline</column><column>display_on_posting</column>
+		<column>bbcode_match</column><column>bbcode_tpl</column><column>first_pass_match</column><column>first_pass_replace</column><column>second_pass_match</column><column>second_pass_replace</column>
+		<row><value>13</value><value>font=</value><value>ABBC3_FONT_HELPLINE</value><value>1</value><value></value><value></value><value></value><value></value><value></value><value></value></row>
+		<row><value>14</value><value>highlight=</value><value>ABBC3_HIGHLIGHT_HELPLINE</value><value>1</value><value></value><value></value><value></value><value></value><value></value><value></value></row>
+	</table>
+	<table name="phpbb_config_text"><column>config_name</column><column>config_value</column></table>
+	<table name="phpbb_migrations"><column>migration_name</column></table>
+	<table name="phpbb_ext"><column>ext_name</column></table>
+	<table name="phpbb_log"><column>log_id</column></table>
+</dataset>

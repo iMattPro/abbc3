@@ -174,6 +174,134 @@ class toolbar_repository_test extends acp_base
 		self::assertSame([1, 2], $this->repository->get_group_ids(15));
 	}
 
+	public function layout_inputs()
+	{
+		return [
+			'duplicates and unknown entries' => [['bbcode:font', 'unknown', 'bbcode:font'], ['bbcode:font', 'bbcode:highlight'], 'new_icon', ' FA-Star ', 'new_icon', 'star', 'more'],
+			'invalid icons and omitted button' => [['bbcode:font'], [], '../font', 'fa-<star>', 'font', '', 'hidden'],
+			'clear icons explicitly' => [['bbcode:font'], [], '', '', '', '', 'hidden'],
+		];
+	}
+
+	/**
+	 * @dataProvider layout_inputs
+	 */
+	public function test_layout_normalizes_submitted_entries($primary, $more, $icon, $font_icon, $expected_icon, $expected_font, $highlight_placement)
+	{
+		$this->insert_button('bbcode:font', 13, 'hidden', 4, 'font');
+		$this->insert_button('bbcode:highlight', 14, 'primary', 2, 'highlight');
+		$this->repository->save_layout(['primary' => $primary, 'more' => $more], ['bbcode:font' => $icon], ['bbcode:font' => $font_icon]);
+
+		$font = $this->get_toolbar_rows(13)[0];
+		self::assertSame('primary', $font['placement']);
+		self::assertSame(1, (int) $font['sort_order']);
+		self::assertSame($expected_icon, $font['icon']);
+		self::assertSame($expected_font, $font['font_icon']);
+		self::assertSame($highlight_placement, $this->get_toolbar_rows(14)[0]['placement']);
+		self::assertCount(2, $this->repository->get_layout());
+	}
+
+	public function test_reconciliation_preserves_key_owner_and_adds_missing_button()
+	{
+		$this->insert_button('bbcode:font', 14, 'more', 1, 'existing');
+		$this->db->sql_query('UPDATE ' . BBCODES_TABLE . ' SET display_on_posting = 1 WHERE bbcode_id IN (13, 14, 15)');
+		$this->repository->reconcile_visibility([]);
+		self::assertSame([], $this->get_toolbar_rows(13));
+		self::assertSame('existing', $this->get_toolbar_rows(14)[0]['icon']);
+		self::assertSame('bbcode:align', $this->get_toolbar_rows(15)[0]['button_key']);
+		self::assertSame('more', $this->get_toolbar_rows(15)[0]['placement']);
+
+		$this->repository->sync_bbcode(15, 'ALIGN=', true);
+		self::assertCount(1, $this->get_toolbar_rows(15));
+	}
+
+	public function test_group_replacement_and_removal_refresh_cached_rules()
+	{
+		$this->insert_button('bbcode:align', 15, 'more', 1, 'align');
+		self::assertSame([1], $this->repository->get_group_ids(15));
+		$this->repository->set_group_ids(15, [2, '2', 0, 'invalid', 3]);
+		self::assertSame([2, 3], $this->repository->get_group_ids(15));
+		self::assertSame([2, 3], $this->repository->get_all_group_rules()['align=']);
+		$this->repository->remove_bbcode(15);
+		self::assertSame([], $this->get_toolbar_rows(15));
+		self::assertSame([], $this->repository->get_group_ids(15));
+		self::assertArrayNotHasKey('align=', $this->repository->get_all_group_rules());
+		self::assertSame(1, (int) $this->get_display_state(15));
+	}
+
+	public function transactional_updates()
+	{
+		return [
+			'layout write' => ['save_layout', [['primary' => ['bbcode:font', 'bbcode:highlight']], [], []], 'UPDATE ON phpbb_abbc3_toolbar WHEN OLD.bbcode_id = 14', ['hidden', 'primary'], 1, [1]],
+			'posting visibility' => ['sync_visibility', [], 'UPDATE ON phpbb_bbcodes WHEN NEW.display_on_posting = 1', ['more', 'more'], 1, [1]],
+			'BBCode registration' => ['sync_bbcode', [13, 'renamed=', true], 'UPDATE ON phpbb_abbc3_toolbar WHEN NEW.button_key = \'bbcode:renamed\'', ['more'], 0, [1]],
+			'group replacement' => ['set_group_ids', [15, [2, 3]], 'INSERT ON phpbb_abbc3_bbcode_groups WHEN NEW.group_id = 3', ['more', 'more'], 0, [2, 3]],
+		];
+	}
+
+	/**
+	 * @dataProvider transactional_updates
+	 */
+	public function test_failed_write_rolls_back_and_can_be_retried($method, array $arguments, $trigger, array $placements, $display, array $groups)
+	{
+		if ($this->db->get_sql_layer() !== 'sqlite3')
+		{
+			self::markTestSkipped('This test uses a SQLite trigger to reject one write inside the transaction.');
+		}
+
+		$this->insert_button('bbcode:font', 13, 'more', 1, 'font');
+		$this->insert_button('bbcode:duplicate', 13, 'more', 2, 'font');
+		$this->insert_button('bbcode:highlight', 14, 'hidden', 1, 'highlight');
+		$this->db->sql_query('UPDATE ' . BBCODES_TABLE . ' SET display_on_posting = 0 WHERE bbcode_id = 13');
+		$before = $this->repository_state();
+		$this->db->sql_query("CREATE TRIGGER abbc3_reject_write BEFORE $trigger BEGIN SELECT RAISE(ABORT, 'ABBC3 test rejected write'); END");
+		try
+		{
+			// Convert phpBB's database error into a throwable as the application does.
+			set_error_handler(static function ($severity, $message) {
+				throw new \ErrorException($message, 0, $severity);
+			}, E_USER_ERROR);
+			try
+			{
+				$this->repository->{$method}(...$arguments);
+				self::fail('The database should reject the write.');
+			}
+			catch (\ErrorException $error)
+			{
+				self::assertStringContainsString('ABBC3 test rejected write', $error->getMessage());
+			}
+			finally
+			{
+				restore_error_handler();
+			}
+			self::assertSame($before, $this->repository_state());
+		}
+		finally
+		{
+			$this->db->sql_query('DROP TRIGGER abbc3_reject_write');
+		}
+
+		$this->repository->{$method}(...$arguments);
+		self::assertSame($placements, array_column($this->get_toolbar_rows(13), 'placement'));
+		self::assertSame($display, (int) $this->get_display_state(13));
+		self::assertSame($groups, $this->repository->get_group_ids(15));
+		if ($method === 'sync_bbcode')
+		{
+			self::assertSame('bbcode:renamed', $this->get_toolbar_rows(13)[0]['button_key']);
+		}
+	}
+
+	private function repository_state()
+	{
+		return [
+			$this->get_toolbar_rows(13),
+			$this->get_toolbar_rows(14),
+			(int) $this->get_display_state(13),
+			(int) $this->get_display_state(14),
+			(new toolbar_repository($this->db, 'phpbb_'))->get_group_ids(15),
+		];
+	}
+
 	/**
 	 * Insert a custom toolbar button into the test database.
 	 *
