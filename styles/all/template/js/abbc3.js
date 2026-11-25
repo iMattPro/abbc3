@@ -87,7 +87,7 @@
 		wizard.textContent = '';
 		const darken = document.getElementById('darkenwrapper');
 		if (darken) darken.classList.remove('abbc3-darken');
-		if (wizard.abbc3Trigger) wizard.abbc3Trigger.focus();
+		wizard.abbc3Textarea.focus();
 	};
 
 	const openWizard = (toolbar, button, mode, textarea) => {
@@ -107,7 +107,6 @@
 			.then(response => response.ok ? response.text() : Promise.reject(response))
 			.then(html => {
 				if (wizard.abbc3RequestId !== requestId) return;
-				wizard.abbc3Trigger = button;
 				wizard.abbc3Textarea = textarea;
 				wizard.abbc3Mode = mode;
 				wizard.innerHTML = html;
@@ -345,6 +344,13 @@
 
 	document.addEventListener('keydown', event => {
 		if (event.key === 'Escape') {
+			if (event.repeat) return;
+			const wizard = document.querySelector('.abbc3-wizard:not([hidden])');
+			if (wizard) {
+				event.preventDefault();
+				closeWizard(wizard);
+				return;
+			}
 			const openMenuElement = openMenus.values().next().value;
 			if (openMenuElement) {
 				event.preventDefault();

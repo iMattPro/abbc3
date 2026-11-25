@@ -5,12 +5,11 @@
 }
 
 .abbc3-wizard {
-	font-size: 0.75rem;
-	color: #333;
+	font-size: 0.625rem;
 	background: #fff;
-	border: 4px solid #12a3eb;
-	border-radius: 0.5rem;
-	box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.45);
+	border: 5px solid #12a3eb;
+	border-radius: 11px;
+	box-shadow: 2px 2px 4px #555555;
 	position: fixed;
 	z-index: 500;
 	inset-block-start: 50%;
@@ -19,7 +18,7 @@
 	width: min(500px, calc(100vw - 2rem));
 	max-height: calc(100vh - 2rem);
 	overflow: auto;
-	padding: 0.5rem;
+	padding: 5px;
 	transform: translate(-50%, -50%);
 }
 
