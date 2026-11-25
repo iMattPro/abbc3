@@ -54,4 +54,29 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		self::assertStringContainsString('Log in or register to view this post.', $crawler->filter('.content > .hc-box')->text());
 		self::assertStringNotContainsString('This is hidden text posted by the testing framework.', $crawler->filter('.content > .hc-box')->text());
 	}
+
+	public function test_restricted_bbvideo_rejects_post()
+	{
+		$this->login();
+		$this->add_lang('posting');
+		$db = $this->get_db();
+		$result = $db->sql_query("SELECT bbcode_id FROM " . BBCODES_TABLE . " WHERE bbcode_tag = 'BBvideo'");
+		$bbcode_id = (int) $db->sql_fetchfield('bbcode_id', false, $result);
+		$db->sql_freeresult($result);
+		$result = $db->sql_query("SELECT group_id FROM " . GROUPS_TABLE . " WHERE group_name = 'GUESTS'");
+		$guest_group = (int) $db->sql_fetchfield('group_id', false, $result);
+		$db->sql_freeresult($result);
+		self::assertGreaterThan(0, $bbcode_id);
+		self::assertGreaterThan(0, $guest_group);
+
+		$repository = new \vse\abbc3\core\toolbar_repository($db, self::$config['table_prefix']);
+		$repository->set_group_ids($bbcode_id, [$guest_group]);
+		$this->purge_cache();
+
+		$subject = 'Restricted BBVideo post';
+		$this->create_topic(2, $subject, '[bbvideo]https://youtu.be/sP4NMoJcFd4[/bbvideo]', [], $this->lang('UNAUTHORISED_BBCODE', '[bbvideo]'));
+		$result = $db->sql_query("SELECT COUNT(*) AS total FROM " . POSTS_TABLE . " WHERE post_subject = '" . $db->sql_escape($subject) . "'");
+		self::assertSame(0, (int) $db->sql_fetchfield('total', false, $result));
+		$db->sql_freeresult($result);
+	}
 }

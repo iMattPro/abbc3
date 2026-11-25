@@ -90,13 +90,35 @@ class bbcodes_config
 			}
 		}
 
+		if (!isset($configurator->tags['MEDIA']))
+		{
+			return;
+		}
+
 		unset($configurator->BBCodes['bbvideo'], $configurator->tags['bbvideo']);
 		$configurator->BBCodes->add(
 			'bbvideo',
 			[
 				'contentAttributes' => ['url'],
-				'tagName'           => 'MEDIA',
+				'tagName'           => 'BBVIDEO',
 			]
 		);
+
+		$configurator->tags->add('BBVIDEO')->filterChain->prepend([self::class, 'forward_bbvideo_to_media'])
+			->resetParameters()
+			->addParameterByName('tag')
+			->addParameterByName('parser');
+	}
+
+	public static function forward_bbvideo_to_media($tag, $parser)
+	{
+		$end_tag = $tag->getEndTag();
+		if ($end_tag)
+		{
+			$parser->addTagPair('MEDIA', $tag->getPos(), $tag->getLen(), $end_tag->getPos(), $end_tag->getLen(), $tag->getSortPriority())
+				->setAttribute('url', $tag->getAttribute('url'));
+		}
+
+		$tag->invalidate();
 	}
 }

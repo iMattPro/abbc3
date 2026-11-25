@@ -119,8 +119,7 @@ class bbcodes_display
 		{
 			if (!$this->user_in_bbcode_group($groups))
 			{
-				$bbcode_name = rtrim($bbcode_name, '=');
-				$service->disable_bbcode($bbcode_name);
+				$service->disable_bbcode(rtrim($bbcode_name, '='));
 			}
 		}
 	}

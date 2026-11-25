@@ -345,6 +345,55 @@ class bbcodes_test extends \phpbb_database_test_case
 		self::assertSame([3 => [2 => 'detached']], $bbcodes_manager->remove_hidden_attachments($parsed_attachments, $row));
 	}
 
+	public function test_bbvideo_permissions_leave_other_media_paths_available()
+	{
+		$configurator = new \s9e\TextFormatter\Configurator();
+		$configurator->MediaEmbed->add('youtube');
+		$configurator->BBCodes->add('bbvideo', []);
+		(new bbcodes_config())->bbvideo($configurator);
+		$configurator->registeredVars['abbc3.bbcode_groups'] = ['bbvideo=' => [2]];
+		$parser = $configurator->finalize(['returnRenderer' => false])['parser'];
+		$cache = new \phpbb_mock_cache();
+		$cache->put('_test_bbvideo_parser', $parser);
+		$service = new \phpbb\textformatter\s9e\parser(
+			$cache,
+			'_test_bbvideo_parser',
+			$this->createMock(\phpbb\textformatter\s9e\factory::class),
+			new \phpbb\event\dispatcher()
+		);
+		$url = 'https://www.youtube.com/watch?v=sP4NMoJcFd4';
+		$bbvideo = '[bbvideo]' . $url . '[/bbvideo]';
+		$legacy = '[BBVIDEO=640,360]' . $url . '[/BBVIDEO]';
+		$media = '[media]' . $url . '[/media]';
+
+		$this->user->data['user_id'] = ANONYMOUS;
+		$this->bbcodes_manager()->allow_custom_bbcodes($service);
+		foreach ([$bbvideo, $legacy] as $message)
+		{
+			$service->parse($message);
+			self::assertSame([['UNAUTHORISED_BBCODE', '[bbvideo]']], $service->get_errors());
+		}
+		foreach ([$media, $url] as $message)
+		{
+			self::assertStringContainsString('<YOUTUBE ', $service->parse($message));
+			self::assertSame([], $service->get_errors());
+		}
+
+		// Reset the parser before simulating a separate request by an allowed user.
+		$service->enable_bbcode('bbvideo');
+		$parser->disablePlugin('MediaEmbed');
+		$this->user->data['user_id'] = 2;
+		$this->bbcodes_manager()->allow_custom_bbcodes($service);
+		foreach ([$bbvideo, $legacy, $media] as $message)
+		{
+			self::assertStringContainsString('<YOUTUBE ', $service->parse($message));
+			self::assertSame([], $service->get_errors());
+		}
+		self::assertStringNotContainsString('<YOUTUBE ', $service->parse($url));
+		$parser->disableTag('MEDIA');
+		self::assertStringNotContainsString('<YOUTUBE ', $service->parse($bbvideo));
+	}
+
 	/**
 	 * Test set_renderer_params caching behavior
 	 */
