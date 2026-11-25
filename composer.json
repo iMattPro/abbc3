@@ -15,14 +15,14 @@
 	],
 	"require": {
 		"php": "^7.2 || ^8.0",
-		"composer/installers": "~1.0",
+		"composer/installers": "~1.0 || ^2.0",
 		"ext-dom": "*",
 		"ext-libxml": "*"
 	},
 	"extra": {
 		"display-name": "Advanced [BBCode] Box",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.3.5,<4.0.0@dev"
+			"phpbb/phpbb": ">=3.3.5,<5.0.0@dev"
 		},
 		"version-check": {
 			"host": "www.phpbb.com",

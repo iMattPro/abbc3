@@ -344,7 +344,6 @@
 
 .abbc3-inspector__order {
 	display: flex;
-	gap: 8px;
 }
 
 .abbc3-inspector__order button {
@@ -359,7 +358,7 @@
 	cursor: pointer;
 }
 
-.abbc3-inspector__order button:hover .icon {
+.abbc3-inspector__order button:hover .acp-icon {
 	color: #0a8ed0;
 }
 

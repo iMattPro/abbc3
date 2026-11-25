@@ -6,8 +6,13 @@
 	'media_embed': {'url': 'https://www.phpbb.com/customise/db/extension/mediaembed/', 'text': lang('DOWNLOAD')}
 } %}
 
+{% macro settings_icon(v4_name, v6_name, extra_classes = '') -%}
+	{%- set fa6 = constant('PHPBB_VERSION') starts with '4.' -%}
+	<i class="{{ fa6 ? 'o-icon o-icon-font fas' : 'icon' }} fa-{{ fa6 ? v6_name : v4_name }} fa-fw{{ extra_classes ? ' ' ~ extra_classes }}" aria-hidden="true"></i>
+{%- endmacro %}
+
 {% macro external_link(url, text) -%}
-	<a href="{{ url }}" target="_blank" rel="noopener noreferrer"><i class="icon fa-external-link fa-fw" aria-hidden="true"></i>{{ text }}</a>
+	<a href="{{ url }}" target="_blank" rel="noopener noreferrer">{{ text }} {{ _self.settings_icon('external-link', 'up-right-from-square') }}</a>
 {%- endmacro %}
 
 <img class="abbc3-settings-logo" src="{{ ROOT_PATH }}ext/vse/abbc3/adm/images/abbc3logo-wordmark.png" alt="{{ lang('ACP_ABBC3_MODULE')|e('html_attr') }}" width="360" height="40">
@@ -69,7 +74,10 @@
 			<label><span>{{ lang('ABBC3_FONT_ICON') }}</span><input type="text" maxlength="64" placeholder="star" data-inspector-font-icon></label>
 			<label><span>{{ lang('ABBC3_IMAGE_ICON') }}</span><select data-inspector-icon-select><option value="">{{ lang('ABBC3_ICON_NONE') }}</option>{% for icon in ABBC3_AVAILABLE_ICONS %}<option value="{{ icon }}" data-icon-png="{{ ROOT_PATH ~ attribute(ABBC3_ICON_PATHS.png, icon)|default('') }}" data-icon-svg="{{ ROOT_PATH ~ attribute(ABBC3_ICON_PATHS.svg, icon)|default('') }}">{{ icon }}</option>{% endfor %}</select></label>
 			<label><span>{{ lang('ABBC3_PLACEMENT') }}</span><select data-inspector-placement><option value="primary">{{ lang('ABBC3_TOOLBAR_PRIMARY') }}</option><option value="more">{{ lang('ABBC3_TOOLBAR_MORE') }}</option><option value="hidden">{{ lang('ABBC3_TOOLBAR_HIDDEN') }}</option></select></label>
-			<span class="abbc3-inspector__order"><button type="button" data-inspector-move="up" title="{{ lang('MOVE_UP')|e('html_attr') }}" aria-label="{{ lang('MOVE_UP')|e('html_attr') }}"><i class="icon acp-icon acp-icon-move-up fa-arrow-circle-up fa-fw" aria-hidden="true"></i></button><button type="button" data-inspector-move="down" title="{{ lang('MOVE_DOWN')|e('html_attr') }}" aria-label="{{ lang('MOVE_DOWN')|e('html_attr') }}"><i class="icon acp-icon acp-icon-move-down fa-arrow-circle-down fa-fw" aria-hidden="true"></i></button></span>
+			<span class="abbc3-inspector__order">
+				<button type="button" data-inspector-move="up" title="{{ lang('MOVE_UP')|e('html_attr') }}" aria-label="{{ lang('MOVE_UP')|e('html_attr') }}">{{ _self.settings_icon('arrow-circle-up', 'circle-arrow-up', 'acp-icon acp-icon-move-up') }}</button>
+				<button type="button" data-inspector-move="down" title="{{ lang('MOVE_DOWN')|e('html_attr') }}" aria-label="{{ lang('MOVE_DOWN')|e('html_attr') }}">{{ _self.settings_icon('arrow-circle-down', 'circle-arrow-down', 'acp-icon acp-icon-move-down') }}</button>
+			</span>
 		</div>
 
 		<div class="abbc3-composer" data-abbc3-composer>
@@ -129,7 +137,13 @@
 		</section>
 		<section class="abbc3-setting-row abbc3-setting-row--stacked" data-enabled="{{ S_ABBC3_MEDIA_EMBED ? 'true' : 'false' }}">
 			<div><h3>{{ lang('ABBC3_MEDIA_EMBED_STATUS') }}</h3><p>{{ lang('ABBC3_BBVIDEO_EXPLAIN') }}</p></div>
-			<p class="abbc3-integration-status"><i class="icon {{ S_ABBC3_MEDIA_EMBED ? 'fa-check-circle' : 'fa-info-circle' }} fa-fw" aria-hidden="true"></i> {{ S_ABBC3_MEDIA_EMBED ? lang('ABBC3_MEDIA_EMBED_INSTALLED') : lang('ABBC3_MEDIA_EMBED_NOT_INSTALLED', _self.external_link(links.media_embed.url, links.media_embed.text)) }}</p>
+			<p class="abbc3-integration-status">
+				{% if S_ABBC3_MEDIA_EMBED %}
+					{{ _self.settings_icon('check-circle', 'circle-check') }} {{ lang('ABBC3_MEDIA_EMBED_INSTALLED') }}
+				{% else %}
+					{{ _self.settings_icon('info-circle', 'circle-info') }} {{ lang('ABBC3_MEDIA_EMBED_NOT_INSTALLED', _self.external_link(links.media_embed.url, links.media_embed.text)) }}
+				{% endif %}
+			</p>
 		</section>
 	</fieldset>
 

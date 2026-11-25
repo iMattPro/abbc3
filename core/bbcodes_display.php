@@ -96,7 +96,9 @@ class bbcodes_display
 			: ($row['bbcode_group'] ?? []);
 		$custom_tags['S_CUSTOM_BBCODE_ALLOWED'] = !$groups || $this->user_in_bbcode_group($groups);
 		$tag = rtrim($row['bbcode_tag'], '=');
-		$custom_tags['ABBC3_OPEN'] = '[' . $row['bbcode_tag'] . ']';
+		$match = $row['bbcode_match'] ?? '';
+		$parameterized = $tag !== $row['bbcode_tag'] || preg_match('/^\[' . preg_quote($tag, '/') . '\s*=/i', ltrim($match));
+		$custom_tags['ABBC3_OPEN'] = '[' . $tag . ($parameterized ? '=' : '') . ']';
 		$custom_tags['ABBC3_CLOSE'] = !isset($row['bbcode_match']) || stripos($row['bbcode_match'], '[/' . $tag . ']') !== false ? '[/' . $tag . ']' : '';
 
 		return $custom_tags;

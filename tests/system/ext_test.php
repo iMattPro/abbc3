@@ -104,7 +104,13 @@ class ext_test extends \phpbb_database_test_case
 		return [
 			'minimum version' => ['3.3.5', true],
 			'below minimum' => ['3.3.4', false],
-			'future version' => ['4.0.0', false],
+			'phpBB 4 alpha' => ['4.0.0-a1', true],
+			'phpBB 4 development build' => ['4.0.0-a3-dev', true],
+			'phpBB 4 stable' => ['4.0.0', true],
+			'phpBB 4 later minor' => ['4.1.0', true],
+			'phpBB 5 development build' => ['5.0.0-dev', false],
+			'phpBB 5 alpha' => ['5.0.0-a1', false],
+			'phpBB 5 stable' => ['5.0.0', false],
 			'legacy version' => ['3.1.0', false],
 		];
 	}

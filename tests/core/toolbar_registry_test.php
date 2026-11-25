@@ -8,6 +8,7 @@
 
 namespace vse\abbc3\tests\core;
 
+use phpbb\db\tools\factory;
 use vse\abbc3\core\toolbar_registry;
 use vse\abbc3\core\toolbar_repository;
 
@@ -46,5 +47,39 @@ class toolbar_registry_test extends acp_base
 		self::assertSame('orphan', $admin['hidden'][1]['label']);
 		self::assertSame('Font & family', $admin['more'][0]['label']);
 		self::assertSame('custom-font', $admin['more'][0]['icon']);
+	}
+
+	public function test_saving_and_clearing_toolbar_font_icon_preserves_native_icon()
+	{
+		$tools = (new factory())->get($this->db);
+		$tools->sql_column_add(BBCODES_TABLE, 'bbcode_font_icon', ['VCHAR:64', '']);
+		try
+		{
+			$this->db->sql_query('UPDATE ' . BBCODES_TABLE . " SET bbcode_font_icon = 'heart' WHERE bbcode_id = 14");
+			$repository = new toolbar_repository($this->db, 'phpbb_');
+			$registry = new toolbar_registry($repository);
+			$repository->sync_bbcode(14, 'highlight=');
+			$registry->add_custom(['name' => 'highlight', 'tag' => 'highlight=', 'type' => 'button', 'label' => 'Highlight']);
+			$placements = ['more' => ['bbcode:highlight']];
+
+			foreach (['star', ''] as $font_icon)
+			{
+				$repository->save_layout($placements, [], ['bbcode:highlight' => $font_icon]);
+				$editor = $registry->get_editor_buttons()['more'][0];
+				$admin = $registry->get_admin_buttons()['more'][0];
+				self::assertSame($font_icon, $editor['font_icon']);
+				self::assertSame($font_icon, $admin['font_icon']);
+				self::assertSame('highlight', $editor['icon']);
+
+				$result = $this->db->sql_query('SELECT bbcode_font_icon FROM ' . BBCODES_TABLE . ' WHERE bbcode_id = 14');
+				$native_icon = $this->db->sql_fetchfield('bbcode_font_icon');
+				$this->db->sql_freeresult($result);
+				self::assertSame('heart', $native_icon);
+			}
+		}
+		finally
+		{
+			$tools->sql_column_remove(BBCODES_TABLE, 'bbcode_font_icon');
+		}
 	}
 }

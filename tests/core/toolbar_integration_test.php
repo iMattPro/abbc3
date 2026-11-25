@@ -134,7 +134,7 @@ class toolbar_integration_test extends acp_base
 		$this->repository->sync_bbcode(17, 'sup');
 		$this->repository->sync_bbcode(18, 'pipes');
 		$this->repository->set_group_ids(17, []);
-		$this->repository->save_layout(['primary' => ['bbcode:font'], 'more' => ['bbcode:highlight', 'bbcode:align', 'bbcode:sup', 'bbcode:pipes']], [], []);
+		$this->repository->save_layout(['primary' => ['bbcode:font'], 'more' => ['bbcode:highlight', 'bbcode:align', 'bbcode:sup', 'bbcode:pipes']], [], ['bbcode:sup' => 'star']);
 
 		foreach ([
 			[13, 'font=', '[font={INTTEXT}]{TEXT}[/font]', 'Font &amp; family', true],
@@ -145,7 +145,7 @@ class toolbar_integration_test extends acp_base
 		] as [$id, $tag, $match, $label, $allowed])
 		{
 			$result = $this->dispatcher->trigger_event('core.display_custom_bbcodes_modify_row', [
-				'custom_tags' => ['BBCODE_HELPLINE' => $label],
+				'custom_tags' => ['BBCODE_HELPLINE' => $label] + ($id === 14 ? ['BBCODE_FONT_ICON' => 'heart'] : []),
 				'row' => ['bbcode_id' => $id, 'bbcode_tag' => $tag, 'bbcode_match' => $match],
 			]);
 			self::assertSame($allowed, $result['custom_tags']['S_CUSTOM_BBCODE_ALLOWED'], $tag);
@@ -159,6 +159,7 @@ class toolbar_integration_test extends acp_base
 		self::assertSame(['[highlight=yellow]', '[sup]', '[pipes]'], array_column($blocks['abbc3_more'], 'OPEN'));
 		self::assertSame(['[/highlight]', '[/sup]', '[/pipes]'], array_column($blocks['abbc3_more'], 'CLOSE'));
 		self::assertSame(['', '', 'wizard'], array_column($blocks['abbc3_more'], 'ACTION'));
+		self::assertSame(['', 'star', ''], array_column($blocks['abbc3_more'], 'FONT_ICON'));
 		self::assertSame(['Open Sans', 'Roboto'], $this->context->retrieve_var('ABBC3_BBCODE_FONTS')['ABBC3_GOOGLE_FONTS']);
 		self::assertStringContainsString('/wizard/bbcode/url', $this->context->retrieve_var('UA_ABBC3_URL_WIZARD'));
 

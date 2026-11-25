@@ -176,6 +176,33 @@ class bbcodes_test extends \phpbb_database_test_case
 		];
 	}
 
+	public function button_markup_cases()
+	{
+		return [
+			'bare tag with required parameter' => ['badge', '[badge={TEXT1}]{TEXT2}[/badge]', '[badge=]', '[/badge]'],
+			'legacy parameterized tag' => ['badge=', '[badge={TEXT1}]{TEXT2}[/badge]', '[badge=]', '[/badge]'],
+			'standalone required parameter' => ['badge', ' [BADGE={URL}]', '[badge=]', ''],
+			'paired tag with nested parameterized markup' => ['badge', '[badge][other={TEXT}][/badge]', '[badge]', '[/badge]'],
+			'standalone plain tag' => ['badge', '[badge]', '[badge]', ''],
+			'legacy tag without match data' => ['badge=', null, '[badge=]', '[/badge]'],
+			'bare tag without match data' => ['badge', null, '[badge]', '[/badge]'],
+		];
+	}
+
+	/** @dataProvider button_markup_cases */
+	public function test_custom_button_insertion_markup($tag, $match, $open, $close)
+	{
+		$row = ['bbcode_id' => 13, 'bbcode_tag' => $tag];
+		if ($match !== null)
+		{
+			$row['bbcode_match'] = $match;
+		}
+
+		$button = $this->bbcodes_manager()->display_custom_bbcodes([], $row);
+		self::assertSame($open, $button['ABBC3_OPEN']);
+		self::assertSame($close, $button['ABBC3_CLOSE']);
+	}
+
 	/**
 	 * @dataProvider display_bbcodes_data
 	 * @param $user_id
