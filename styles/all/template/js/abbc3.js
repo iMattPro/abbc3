@@ -36,13 +36,16 @@
 		}
 		const start = typeof textarea.selectionStart === 'number' ? textarea.selectionStart : textarea.value.length;
 		const end = typeof textarea.selectionEnd === 'number' ? textarea.selectionEnd : start;
+		const direction = textarea.selectionDirection;
 		const selected = textarea.value.slice(start, end);
 		const inner = transform ? transform(selected) : selected;
 		const replacement = open + inner + close;
 		textarea.setRangeText(replacement, start, end, 'end');
 		textarea.focus();
-		if (!selected && close) {
-			textarea.setSelectionRange(start + open.length, start + open.length);
+		if (start !== end || close) {
+			const innerStart = start + open.length;
+			const innerEnd = start !== end ? innerStart + inner.length : innerStart;
+			textarea.setSelectionRange(innerStart, innerEnd, direction);
 		}
 		textarea.dispatchEvent(new Event('input', { bubbles: true }));
 	};
@@ -239,11 +242,12 @@
 				return;
 			}
 			const option = event.target.closest('[role="option"]');
-			if (option && option.closest('[data-abbc3-menu]')) {
+			const menu = option && option.closest('[data-abbc3-menu]');
+			if (menu) {
 				event.preventDefault();
+				closeMenu(menu);
 				if (option.dataset.abbc3SizeValue) insert(textarea, `[size=${option.dataset.abbc3SizeValue}]`, '[/size]');
 				if (option.dataset.abbc3FontValue) insert(textarea, `[font=${option.dataset.abbc3FontValue}]`, '[/font]');
-				closeMenu(option.closest('[data-abbc3-menu]'), true);
 				return;
 			}
 			const button = event.target.closest('[data-abbc3-action]');
