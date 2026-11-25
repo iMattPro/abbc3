@@ -62,6 +62,9 @@ class toolbar_repository_test extends acp_base
 		self::assertSame(1, (int) $this->get_display_state(15));
 		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
 
+		$this->repository->reconcile_visibility(['highlight' => false]);
+		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
+
 		$this->repository->sync_visibility(['highlight' => true]);
 		self::assertSame(1, (int) $this->get_display_state(14));
 		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);

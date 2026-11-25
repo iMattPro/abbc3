@@ -134,6 +134,44 @@ class toolbar_repository
 		}
 	}
 
+	public function reconcile_visibility(array $feature_states)
+	{
+		$sql = "SELECT DISTINCT b.bbcode_id, b.bbcode_tag, b.display_on_posting
+			FROM " . BBCODES_TABLE . ' b
+			LEFT JOIN ' . $this->toolbar_table . " t ON t.bbcode_id = b.bbcode_id
+			WHERE (b.display_on_posting = 1 AND (t.bbcode_id IS NULL OR t.placement = 'hidden'))
+				OR (b.display_on_posting = 0 AND t.placement IN ('primary', 'more'))
+			ORDER BY b.bbcode_id";
+		$result = $this->db->sql_query($sql);
+		$changes = $this->db->sql_fetchrowset($result);
+		$this->db->sql_freeresult($result);
+
+		if (!$changes)
+		{
+			return;
+		}
+
+		$occupied = array_column($this->get_layout(), 'bbcode_id', 'button_key');
+		foreach ($changes as $row)
+		{
+			$tag = strtolower(rtrim($row['bbcode_tag'], '='));
+			if (isset($feature_states[$tag]) && !$feature_states[$tag])
+			{
+				continue;
+			}
+
+			$key = 'bbcode:' . $tag;
+			$id = (int) $row['bbcode_id'];
+			if (isset($occupied[$key]) && (int) $occupied[$key] !== $id)
+			{
+				continue;
+			}
+
+			$this->sync_bbcode($id, $row['bbcode_tag'], (bool) $row['display_on_posting']);
+			$occupied[$key] = $id;
+		}
+	}
+
 	public function sync_bbcode($bbcode_id, $tag, $display = true)
 	{
 		$this->layout = $this->group_ids = $this->group_rules = null;

@@ -63,7 +63,19 @@ class ext extends \phpbb\extension\base
 			return 'abbc3-step';
 		}
 
-		return parent::enable_step($old_state);
+		if (parent::enable_step($old_state))
+		{
+			return true;
+		}
+
+		$repository = new core\toolbar_repository(
+			$this->container->get('dbal.conn'),
+			$this->container->getParameter('core.table_prefix')
+		);
+		$config = $this->container->get('config');
+		$repository->reconcile_visibility(['pipes' => !empty($config['abbc3_pipes'])]);
+
+		return false;
 	}
 
 	/**
