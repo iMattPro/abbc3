@@ -10,8 +10,13 @@ namespace vse\abbc3\migrations;
 
 use phpbb\db\migration\container_aware_migration;
 
-class v3312_m21_toolbar extends container_aware_migration
+class v340_m21_toolbar extends container_aware_migration
 {
+	// effectively_installed() guard intentionally omitted
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public static function depends_on()
 	{
 		return [
@@ -19,6 +24,9 @@ class v3312_m21_toolbar extends container_aware_migration
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function update_schema()
 	{
 		return [
@@ -53,6 +61,9 @@ class v3312_m21_toolbar extends container_aware_migration
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function revert_schema()
 	{
 		return [
@@ -63,6 +74,9 @@ class v3312_m21_toolbar extends container_aware_migration
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function update_data()
 	{
 		return [
@@ -72,6 +86,11 @@ class v3312_m21_toolbar extends container_aware_migration
 		];
 	}
 
+	/**
+	 * Populate missing toolbar entries from the core buttons and legacy BBCode order.
+	 *
+	 * @return void
+	 */
 	public function migrate_toolbar()
 	{
 		$result = $this->db->sql_query('SELECT button_key FROM ' . $this->table_prefix . 'abbc3_toolbar');
@@ -116,6 +135,11 @@ class v3312_m21_toolbar extends container_aware_migration
 		$this->db->sql_freeresult($result);
 	}
 
+	/**
+	 * Set default posting visibility and remove the redundant SoundCloud definition on a fresh installation.
+	 *
+	 * @return void
+	 */
 	protected function apply_fresh_install_defaults()
 	{
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
@@ -131,6 +155,11 @@ class v3312_m21_toolbar extends container_aware_migration
 		$this->db->sql_query($sql);
 	}
 
+	/**
+	 * Copy distinct legacy BBCode group assignments into the new table.
+	 *
+	 * @return void
+	 */
 	public function migrate_groups()
 	{
 		$table = $this->table_prefix . 'abbc3_bbcode_groups';
@@ -161,6 +190,18 @@ class v3312_m21_toolbar extends container_aware_migration
 		$this->db->sql_freeresult($result);
 	}
 
+	/**
+	 * Insert a toolbar entry if its key is still missing.
+	 *
+	 * @param array $existing Existing toolbar keys, updated after insertion
+	 * @param string $key Toolbar button key
+	 * @param string $type Button type
+	 * @param int $bbcode_id Custom BBCode ID, or zero for a built-in control
+	 * @param string $placement Toolbar placement
+	 * @param int $order Sort position
+	 * @param string $icon Image icon name
+	 * @return void
+	 */
 	protected function insert_button(array &$existing, $key, $type, $bbcode_id, $placement, $order, $icon)
 	{
 		if (isset($existing[$key]))

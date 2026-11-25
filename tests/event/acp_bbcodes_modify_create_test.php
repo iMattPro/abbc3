@@ -27,10 +27,15 @@ class acp_bbcodes_modify_create_test extends acp_listener_base
 	}
 
 	/**
-	 * Test the acp_bbcodes_modify_create is updating the
-	 * hidden_fields and sql_ary events with expected data.
+	 * Verify that the event carries selected groups through the confirmation form.
 	 *
 	 * @dataProvider acp_bbcodes_modify_create_data
+	 * @param string $bbcode_group Selected group IDs
+	 * @param string $action ACP action being processed
+	 * @param array $sql_ary Original BBCode database fields
+	 * @param array $hidden_fields Original confirmation fields
+	 * @param array $expected_sql_ary Expected BBCode database fields
+	 * @param array $expected_hidden_fields Expected confirmation fields
 	 */
 	public function test_acp_bbcodes_modify_create($bbcode_group, $action, $sql_ary, $hidden_fields, $expected_sql_ary, $expected_hidden_fields)
 	{

@@ -23,6 +23,18 @@ class uninstall_manager
 	protected $root_path;
 	protected $php_ext;
 
+	/**
+	 * Initialize the manager for disable, re-enable, and purge.
+	 *
+	 * @param db $db Database connection
+	 * @param db_text $config_text Persistent text configuration
+	 * @param driver_interface $cache Cache driver
+	 * @param bbcode_catalog $catalog Managed BBCode definitions
+	 * @param string $parser_key TextFormatter parser cache key
+	 * @param string $renderer_key TextFormatter renderer cache key
+	 * @param string $root_path Path to phpBB root
+	 * @param string $php_ext phpBB file extension
+	 */
 	public function __construct(db $db, db_text $config_text, driver_interface $cache, bbcode_catalog $catalog, $parser_key, $renderer_key, $root_path, $php_ext)
 	{
 		$this->db = $db;
@@ -35,6 +47,12 @@ class uninstall_manager
 		$this->php_ext = $php_ext;
 	}
 
+	/**
+	 * Save the current state and install standalone templates for unmodified ABBC3 BBCodes.
+	 *
+	 * @return void
+	 * @throws \Throwable If saving the disable state or standalone definitions fails
+	 */
 	public function prepare_disable()
 	{
 		if ($this->config_text->get('abbc3_disable_state') !== null)
@@ -81,6 +99,11 @@ class uninstall_manager
 		$this->clear_formatter_cache();
 	}
 
+	/**
+	 * Restore the saved definitions and display flags where the installed fallbacks are still intact.
+	 *
+	 * @return void
+	 */
 	public function restore_enable()
 	{
 		$state = json_decode($this->config_text->get('abbc3_disable_state'), true);
@@ -110,6 +133,11 @@ class uninstall_manager
 		$this->clear_formatter_cache();
 	}
 
+	/**
+	 * Restore the recorded display flags for unmanaged definitions and remove saved extension state.
+	 *
+	 * @return void
+	 */
 	public function finish_purge()
 	{
 		$state = json_decode($this->config_text->get('abbc3_disable_state'), true);
@@ -124,12 +152,24 @@ class uninstall_manager
 		$this->clear_formatter_cache();
 	}
 
+	/**
+	 * Invalidate the cached TextFormatter parser and renderer.
+	 *
+	 * @return void
+	 */
 	protected function clear_formatter_cache()
 	{
 		$this->cache->destroy($this->parser_key);
 		$this->cache->destroy($this->renderer_key);
 	}
 
+	/**
+	 * Compile the phpBB database fields for a replacement BBCode template.
+	 *
+	 * @param string $match BBCode usage pattern
+	 * @param string $template Replacement template
+	 * @return array Template and compiled parser fields
+	 */
 	protected function build_definition($match, $template)
 	{
 		if (!class_exists('acp_bbcodes'))

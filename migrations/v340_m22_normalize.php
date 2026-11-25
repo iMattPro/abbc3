@@ -8,13 +8,21 @@
 
 namespace vse\abbc3\migrations;
 
-class v3312_m22_normalize extends \phpbb\db\migration\migration
+class v340_m22_normalize extends \phpbb\db\migration\migration
 {
+	// effectively_installed() guard intentionally omitted
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public static function depends_on()
 	{
-		return ['\vse\abbc3\migrations\v3312_m21_toolbar'];
+		return ['\vse\abbc3\migrations\v340_m21_toolbar'];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function update_schema()
 	{
 		return [
@@ -24,6 +32,9 @@ class v3312_m22_normalize extends \phpbb\db\migration\migration
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function revert_schema()
 	{
 		return [

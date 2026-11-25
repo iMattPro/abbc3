@@ -12,6 +12,9 @@ use vse\abbc3\core\bbcode_catalog;
 
 class bbcode_catalog_test extends \phpbb_test_case
 {
+	/**
+	 * Verify that fallback templates can render without ABBC3 assets.
+	 */
 	public function test_standalone_fallbacks_do_not_reference_extension_assets()
 	{
 		$catalog = new bbcode_catalog();
@@ -22,6 +25,9 @@ class bbcode_catalog_test extends \phpbb_test_case
 		}
 	}
 
+	/**
+	 * Verify that tag casing and trailing equals signs do not affect catalog lookup.
+	 */
 	public function test_tag_variants_resolve_to_same_entry()
 	{
 		$catalog = new bbcode_catalog();

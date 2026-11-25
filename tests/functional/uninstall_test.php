@@ -16,11 +16,17 @@ use vse\abbc3\core\toolbar_repository;
  */
 class uninstall_test extends \phpbb_functional_test_case
 {
+	/**
+	 * {@inheritdoc}
+	 */
 	protected static function setup_extensions()
 	{
 		return ['vse/abbc3'];
 	}
 
+	/**
+	 * Verify that a managed BBCode retains a usable definition after disable and purge.
+	 */
 	public function test_definitions_remain_readable_through_disable_and_purge()
 	{
 		$font = (new bbcode_catalog())->get('font');
@@ -42,6 +48,9 @@ class uninstall_test extends \phpbb_functional_test_case
 		$this->install_ext('vse/abbc3');
 	}
 
+	/**
+	 * Verify that re-enabling applies posting visibility changes made while ABBC3 was disabled.
+	 */
 	public function test_enable_reconciles_bbcode_visibility_changed_while_disabled()
 	{
 		$db = $this->get_db();
@@ -87,6 +96,13 @@ class uninstall_test extends \phpbb_functional_test_case
 		$this->purge_cache();
 	}
 
+	/**
+	 * Create an independent BBCode for the toolbar lifecycle test.
+	 *
+	 * @param string $tag Custom BBCode tag
+	 * @param bool $display Whether to display the BBCode on the posting form
+	 * @return int ID of the inserted BBCode
+	 */
 	protected function insert_custom_bbcode($tag, $display)
 	{
 		$db = $this->get_db();
@@ -109,6 +125,11 @@ class uninstall_test extends \phpbb_functional_test_case
 		return $id;
 	}
 
+	/**
+	 * Read the installed font BBCode’s replacement template.
+	 *
+	 * @return array|false Template row or false if the definition is missing
+	 */
 	protected function get_font_definition()
 	{
 		$db = $this->get_db();

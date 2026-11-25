@@ -55,6 +55,9 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		self::assertStringNotContainsString('This is hidden text posted by the testing framework.', $crawler->filter('.content > .hc-box')->text());
 	}
 
+	/**
+	 * Verify that guest search results conceal hidden text in short and full results.
+	 */
 	public function test_hidden_text_is_redacted_from_guest_search_results()
 	{
 		$this->login();
@@ -90,6 +93,9 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		}
 	}
 
+	/**
+	 * Verify that ACP group edits affect subsequent posts without a cache purge.
+	 */
 	public function test_bbvideo_group_changes_take_effect_without_purging_cache()
 	{
 		$this->login();
@@ -119,6 +125,13 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		$this->create_topic(2, 'BBVideo post after clearing group restriction', $message);
 	}
 
+	/**
+	 * Save BBVideo group permissions through phpBB’s ACP form.
+	 *
+	 * @param int $bbcode_id BBVideo’s custom BBCode ID
+	 * @param string[] $groups Selected group IDs
+	 * @return void
+	 */
 	protected function save_bbvideo_groups($bbcode_id, array $groups)
 	{
 		$crawler = self::request('GET', 'adm/index.php?i=acp_bbcodes&mode=bbcodes&action=edit&bbcode=' . $bbcode_id . '&sid=' . $this->sid);

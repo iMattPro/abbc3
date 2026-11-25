@@ -203,14 +203,13 @@ class bbcodes_installer extends acp_manager
 	}
 
 	/**
-	 * Remove a bbcode
-	 * Don't remove just by ID. Also match replace fields. This is to ensure we only delete BBCodes created by ABBC3,
-	 * and not if, for example ABBC3 BBCodes that have been altered by the user.
+	 * Remove a BBCode only if its ID, first-pass fields, and template still match the installed definition.
 	 *
-	 * Note special handling for MSSQL Error: 402 The data types ntext and varchar are incompatible in the equal to operator
+	 * SQL Server requires converting legacy text columns before comparison.
 	 *
 	 * @param string|int $bbcode_id bbcode identifier
 	 * @param array $bbcode_data bbcode data
+	 * @return void
 	 * @access protected
 	 */
 	protected function remove_bbcode($bbcode_id, array $bbcode_data)

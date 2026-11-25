@@ -81,6 +81,7 @@ class listener implements EventSubscriberInterface
 	 * @param user $user
 	 * @param string $phpbb_root_path
 	 * @param string $phpEx
+	 * @param toolbar_registry|null $toolbar_registry Toolbar button registry
 	 * @access public
 	 */
 	public function __construct(bbcodes_config $bbcodes_config, bbcodes_display $bbcodes_display, bbcodes_help $bbcodes_help, config $config, db_text $db_text, helper $helper, language $language, template $template, user $user, $phpbb_root_path, $phpEx, toolbar_registry $toolbar_registry = null)
@@ -126,7 +127,7 @@ class listener implements EventSubscriberInterface
 			'core.viewtopic_modify_quick_reply_template_vars' 	=> 'set_quick_reply',
 			'core.viewtopic_modify_page_title'					=> 'add_to_quickreply',
 			'core.viewtopic_modify_post_row'					=> 'remove_hidden_attachments',
-			'core.search_modify_post_row'					=> 'redact_hidden_search_text',
+			'core.search_modify_post_row'					    => 'redact_hidden_search_text',
 
 			// These are meant to fix inline attachment sorting until phpBB can fix this issue,
 			// which can be an issue if inline attachments are bbcodes like hidden, spoiler, etc.
@@ -166,11 +167,12 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
+		/* @noinspection PhpParamsInspection assign_var accepts arrays, contrary to what it says */
 		$this->template->assign_var('abbc3_google_fonts', $this->get_google_fonts());
 	}
 
 	/**
-	 * Modify the SQL array to gather custom BBCode data
+	 * Order phpBB’s custom BBCode query by BBCode ID.
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
@@ -183,7 +185,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Setup custom BBCode variables
+	 * Assign the posting toolbar, font choices, and wizard URLs to the template.
 	 *
 	 * @access public
 	 */
@@ -219,6 +221,8 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * Return normalized, sorted Google Font names shared by CSS and editor menus.
+	 *
+	 * @return string[] Configured Google Font family names
 	 */
 	protected function get_google_fonts()
 	{
@@ -234,7 +238,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Alter custom BBCodes display
+	 * Update phpBB’s button data and register available custom buttons in the editor.
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
@@ -267,6 +271,13 @@ class listener implements EventSubscriberInterface
 		}
 	}
 
+	/**
+	 * Get the opening markup used when the editor inserts a custom BBCode.
+	 *
+	 * @param string $name Normalized BBCode name
+	 * @param string $fallback Opening markup from the saved definition
+	 * @return string Opening markup to insert
+	 */
 	protected function custom_open($name, $fallback)
 	{
 		$defaults = [
@@ -284,6 +295,12 @@ class listener implements EventSubscriberInterface
 		return $defaults[$name] ?? $fallback;
 	}
 
+	/**
+	 * Map a toolbar button definition to the posting template variables.
+	 *
+	 * @param array $button Toolbar button definition
+	 * @return array Template variables for the button
+	 */
 	protected function template_button(array $button)
 	{
 		return [
@@ -356,6 +373,12 @@ class listener implements EventSubscriberInterface
 		$this->bbcodes_display->set_renderer_params($event['renderer'], $urls);
 	}
 
+	/**
+	 * Remove private content from a search result before phpBB generates plain text.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @return void
+	 */
 	public function redact_hidden_search_text($event)
 	{
 		$row = $event['row'];

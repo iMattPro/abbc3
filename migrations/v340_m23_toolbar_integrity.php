@@ -8,13 +8,21 @@
 
 namespace vse\abbc3\migrations;
 
-class v3312_m23_toolbar_integrity extends \phpbb\db\migration\migration
+class v340_m23_toolbar_integrity extends \phpbb\db\migration\migration
 {
+	// effectively_installed() guard intentionally omitted
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public static function depends_on()
 	{
-		return ['\vse\abbc3\migrations\v3312_m22_normalize'];
+		return ['\vse\abbc3\migrations\v340_m22_normalize'];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function update_data()
 	{
 		return [
@@ -22,6 +30,11 @@ class v3312_m23_toolbar_integrity extends \phpbb\db\migration\migration
 		];
 	}
 
+	/**
+	 * Remove duplicate toolbar entries per BBCode and normalize the retained button keys.
+	 *
+	 * @return void
+	 */
 	public function normalize_toolbar_bbcodes()
 	{
 		$table = $this->table_prefix . 'abbc3_toolbar';

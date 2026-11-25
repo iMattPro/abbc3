@@ -82,6 +82,11 @@ class acp_base extends \phpbb_database_test_case
 		);
 	}
 
+	/**
+	 * Create an ACP manager that uses the test toolbar repository.
+	 *
+	 * @return acp_manager ACP manager for the test fixture
+	 */
 	protected function get_acp_manager()
 	{
 		return new acp_manager($this->db, $this->group_helper, $this->lang, $this->request, new toolbar_repository($this->db, 'phpbb_'));

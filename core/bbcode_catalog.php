@@ -10,6 +10,11 @@ namespace vse\abbc3\core;
 
 class bbcode_catalog
 {
+	/**
+	 * Return the BBCode definitions managed by ABBC3.
+	 *
+	 * @return array Definitions keyed by normalized tag name
+	 */
 	public function all()
 	{
 		return [
@@ -39,12 +44,26 @@ class bbcode_catalog
 		];
 	}
 
+	/**
+	 * Look up a managed BBCode by its tag name.
+	 *
+	 * @param string $tag Stored BBCode tag
+	 * @return array|null Definition or null for an unmanaged tag
+	 */
 	public function get($tag)
 	{
 		$all = $this->all();
 		return $all[strtolower(rtrim($tag, '='))] ?? null;
 	}
 
+	/**
+	 * Build a catalog entry from its usage and templates.
+	 *
+	 * @param string $match BBCode usage pattern
+	 * @param string $enhanced Template used while ABBC3 is enabled
+	 * @param string $fallback Standalone template used while ABBC3 is disabled
+	 * @return array BBCode definition
+	 */
 	protected function entry($match, $enhanced, $fallback)
 	{
 		return ['match' => $match, 'enhanced' => $enhanced, 'fallback' => $fallback];

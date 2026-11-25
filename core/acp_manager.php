@@ -38,10 +38,11 @@ class acp_manager
 	/**
 	 * Constructor
 	 *
-	 * @param driver_interface $db
-	 * @param helper           $group_helper
-	 * @param language         $language
-	 * @param request          $request
+	 * @param driver_interface        $db
+	 * @param helper                  $group_helper
+	 * @param language                $language
+	 * @param request                 $request
+	 * @param toolbar_repository|null $toolbar_repository Toolbar and group assignment repository
 	 * @access public
 	 */
 	public function __construct(driver_interface $db, helper $group_helper, language $language, request $request, toolbar_repository $toolbar_repository = null)
@@ -77,17 +78,39 @@ class acp_manager
 		return $this->toolbar_repository->get_group_ids($bbcode_id);
 	}
 
+	/**
+	 * Save the selected user groups for a custom BBCode.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @return void
+	 * @throws \Throwable If saving the group assignments fails
+	 */
 	public function save_bbcode_groups($bbcode_id)
 	{
 		$groups = $this->get_bbcode_group_form_data();
 		$this->toolbar_repository->set_group_ids($bbcode_id, $groups === '' ? [] : explode(',', $groups));
 	}
 
+	/**
+	 * Synchronize a saved custom BBCode with its toolbar entry.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @param string $tag Stored BBCode tag
+	 * @param bool $display Whether to display the BBCode on the posting form
+	 * @return void
+	 * @throws \Throwable If synchronizing the toolbar entry fails
+	 */
 	public function register_bbcode($bbcode_id, $tag, $display)
 	{
 		$this->toolbar_repository->sync_bbcode($bbcode_id, $tag, $display);
 	}
 
+	/**
+	 * Remove the deleted BBCode’s toolbar entry and group assignments.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @return void
+	 */
 	public function remove_toolbar_bbcode($bbcode_id)
 	{
 		$this->toolbar_repository->remove_bbcode($bbcode_id);
@@ -121,8 +144,9 @@ class acp_manager
 	}
 
 	/**
-	 * Resynchronize the Custom BBCodes order field
-	 * (Originally based on Custom BBCode Sorting MOD by RMcGirr83)
+	 * Retain the legacy ordering hook for migrations that still call it.
+	 *
+	 * @return void
 	 *
 	 * @access public
 	 */

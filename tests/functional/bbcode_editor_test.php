@@ -20,6 +20,9 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 		return ['vse/abbc3'];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function setUp(): void
 	{
 		parent::setUp();
@@ -74,7 +77,8 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 	/**
 	 * Checks to run to assert ABBC3 is loaded
 	 *
-	 * @param $crawler
+	 * @param \Symfony\Component\DomCrawler\Crawler $crawler Editor response
+	 * @return void
 	 */
 	protected function run_checks($crawler)
 	{

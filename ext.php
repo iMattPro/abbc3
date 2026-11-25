@@ -14,11 +14,11 @@ use phpbb\filesystem\exception\filesystem_exception;
 
 class ext extends \phpbb\extension\base
 {
-	const PHPBB_MIN_VERSION = '3.3.5';
-	const PHPBB_MAX_VERSION = '4.0.0@dev';
-	const PHP_MIN_VERSION_ID = 70200;
-	const PHPBB_LEGACY_MAX = '3.3.10'; // Max version of phpBB to use legacy settings
-	const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
+	public const PHPBB_MIN_VERSION = '3.3.5';
+	public const PHPBB_MAX_VERSION = '4.0.0@dev';
+	public const PHP_MIN_VERSION_ID = 70200;
+	public const PHPBB_LEGACY_MAX = '3.3.10'; // Max version of phpBB to use legacy settings
+	public const ABBC3_BBCODE_FONTS = ['ABBC3_FONT_SAFE' => ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Trebuchet MS', 'Verdana']];
 
 	/**
 	 * {@inheritdoc}
@@ -34,6 +34,9 @@ class ext extends \phpbb\extension\base
 
 	/**
 	 * {@inheritdoc}
+	 *
+	 * @throws \Throwable If reconciling the toolbar on enable fails
+	 * @noinspection PhpParamsInspection
 	 */
 	public function enable_step($old_state)
 	{
@@ -80,6 +83,8 @@ class ext extends \phpbb\extension\base
 
 	/**
 	 * Record fresh install vs upgrade before any extension migrations run.
+	 *
+	 * @return void
 	 */
 	protected function record_install_context()
 	{
@@ -91,7 +96,7 @@ class ext extends \phpbb\extension\base
 		$db = $this->container->get('dbal.conn');
 		$migrations = [
 			'old' => '\\vse\\abbc3\\migrations\\v3310_m20_update_bbcodes',
-			'new' => '\\vse\\abbc3\\migrations\\v3312_m21_toolbar',
+			'new' => '\\vse\\abbc3\\migrations\\v340_m21_toolbar',
 		];
 		$sql = 'SELECT migration_name FROM ' . MIGRATIONS_TABLE . '
 			WHERE ' . $db->sql_in_set('migration_name', array_values($migrations));
@@ -109,6 +114,11 @@ class ext extends \phpbb\extension\base
 		}
 	}
 
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @throws \Throwable If preparing standalone BBCode definitions fails
+	 */
 	public function disable_step($old_state)
 	{
 		if ($old_state === false)
@@ -123,15 +133,15 @@ class ext extends \phpbb\extension\base
 		return false;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function purge_step($old_state)
 	{
 		$state = parent::purge_step($old_state);
-		if ($state === false)
+		if (($state === false) && $uninstall_manager = $this->get_uninstall_manager())
 		{
-			if ($uninstall_manager = $this->get_uninstall_manager())
-			{
-				$uninstall_manager->finish_purge();
-			}
+			$uninstall_manager->finish_purge();
 		}
 
 		return $state;
@@ -142,6 +152,8 @@ class ext extends \phpbb\extension\base
 	 * service from phpBB core services when necessary.
 	 *
 	 * @return core\uninstall_manager|null
+	 * @noinspection PhpIncompatibleReturnTypeInspection
+	 * @noinspection PhpParamsInspection
 	 */
 	protected function get_uninstall_manager()
 	{

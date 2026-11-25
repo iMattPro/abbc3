@@ -42,6 +42,9 @@ class faq_test extends \phpbb_database_test_case
 		return $compositeDs;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function setUp(): void
 	{
 		parent::setUp();

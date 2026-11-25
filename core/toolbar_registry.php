@@ -16,16 +16,32 @@ class toolbar_registry
 	/** @var array */
 	protected $custom = [];
 
+	/**
+	 * Initialize the toolbar registry.
+	 *
+	 * @param toolbar_repository $repository Toolbar layout repository
+	 */
 	public function __construct(toolbar_repository $repository)
 	{
 		$this->repository = $repository;
 	}
 
+	/**
+	 * Register a custom BBCode available in the current editor.
+	 *
+	 * @param array $button Custom button definition
+	 * @return void
+	 */
 	public function add_custom(array $button)
 	{
 		$this->custom['bbcode:' . strtolower(rtrim($button['tag'], '='))] = $button;
 	}
 
+	/**
+	 * Combine the available button definitions with the saved layout.
+	 *
+	 * @return array Buttons grouped by placement and sorted by saved order
+	 */
 	public function get_buttons()
 	{
 		$definitions = $this->core_definitions() + $this->custom;
@@ -57,6 +73,11 @@ class toolbar_registry
 		return $buttons;
 	}
 
+	/**
+	 * Get the buttons visible in the posting editor.
+	 *
+	 * @return array Buttons grouped into Primary and More
+	 */
 	public function get_editor_buttons()
 	{
 		$buttons = $this->get_buttons();
@@ -64,6 +85,11 @@ class toolbar_registry
 		return $buttons;
 	}
 
+	/**
+	 * Get the saved toolbar layout for the ACP composer, including hidden buttons.
+	 *
+	 * @return array Buttons grouped by placement and sorted by saved order
+	 */
 	public function get_admin_buttons()
 	{
 		$layout = $this->repository->get_layout();
@@ -95,6 +121,11 @@ class toolbar_registry
 		return $buttons;
 	}
 
+	/**
+	 * Get the built-in buttons and editor actions.
+	 *
+	 * @return array Button definitions keyed by toolbar key
+	 */
 	protected function core_definitions()
 	{
 		return [
@@ -115,6 +146,18 @@ class toolbar_registry
 		];
 	}
 
+	/**
+	 * Build the definition for a built-in toolbar button.
+	 *
+	 * @param string $name Button name
+	 * @param string $label Language key for the button label
+	 * @param string $open Opening BBCode markup
+	 * @param string $close Closing BBCode markup
+	 * @param string $accesskey Optional keyboard shortcut
+	 * @param string $condition Optional editor visibility condition
+	 * @param string $action Optional editor action
+	 * @return array Button definition
+	 */
 	protected function button($name, $label, $open, $close, $accesskey = '', $condition = '', $action = '')
 	{
 		return [

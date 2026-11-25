@@ -76,8 +76,10 @@ class acp_controller
 	 * @param language $language
 	 * @param request $request
 	 * @param template $template
-	 * @param $parser_key
-	 * @param $renderer_key
+	 * @param string $parser_key TextFormatter parser cache key
+	 * @param string $renderer_key TextFormatter renderer cache key
+	 * @param toolbar_repository|null $toolbar_repository
+	 * @param toolbar_registry|null $toolbar_registry
 	 */
 	public function __construct(cache $cache, config $config, db_text $db_text, db $db, ext_manager $ext_manager, language $language, request $request, template $template, $parser_key, $renderer_key, toolbar_repository $toolbar_repository = null, toolbar_registry $toolbar_registry = null)
 	{
@@ -96,9 +98,11 @@ class acp_controller
 	}
 
 	/**
-	 * Main handler for this controller
+	 * Process an ACP autosave request or display the settings page.
 	 *
-	 * @throws \RuntimeException
+	 * @return void
+	 * @throws \RuntimeException To report an ACP notice or warning
+	 * @throws \Throwable If a toolbar or visibility save fails
 	 */
 	public function handle()
 	{
@@ -123,7 +127,9 @@ class acp_controller
 	}
 
 	/**
-	 * Add settings template vars to the form
+	 * Assign settings, icon choices, and the saved toolbar layout to the ACP template.
+	 *
+	 * @return void
 	 */
 	protected function display_settings()
 	{
@@ -160,6 +166,11 @@ class acp_controller
 		}
 	}
 
+	/**
+	 * Find bundled and board-local toolbar icons for both image formats.
+	 *
+	 * @return array Icon names and paths grouped by format
+	 */
 	protected function get_icon_data()
 	{
 		$names = [];
@@ -188,8 +199,9 @@ class acp_controller
 	/**
 	 * Save one autosave scope.
 	 *
-	 * @param string $scope
-	 * @throws \RuntimeException
+	 * @param string $scope Autosave scope (setting, toolbar, or fonts)
+	 * @throws \RuntimeException To report autosave success or failure to phpBB
+	 * @throws \Throwable If a toolbar or visibility save fails
 	 */
 	protected function save_scope($scope)
 	{
@@ -220,6 +232,13 @@ class acp_controller
 		throw new \RuntimeException($this->language->lang('CONFIG_UPDATED'), E_USER_NOTICE);
 	}
 
+	/**
+	 * Validate and save one submitted ACP setting.
+	 *
+	 * @return void
+	 * @throws \RuntimeException If the name or value is invalid
+	 * @throws \Throwable If synchronizing Pipe Tables visibility fails
+	 */
 	protected function save_setting()
 	{
 		$name = $this->request->variable('setting_name', '');
@@ -262,6 +281,12 @@ class acp_controller
 		}
 	}
 
+	/**
+	 * Save the submitted toolbar layout, icons, and feature visibility.
+	 *
+	 * @return void
+	 * @throws \Throwable If saving the toolbar layout fails
+	 */
 	protected function save_toolbar()
 	{
 		if (!$this->toolbar_repository)

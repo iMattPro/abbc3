@@ -13,6 +13,9 @@ use vse\abbc3\core\toolbar_repository;
 
 class toolbar_registry_test extends \phpbb_test_case
 {
+	/**
+	 * Verify that the saved layout combines core and custom buttons.
+	 */
 	public function test_layout_combines_core_and_custom_buttons()
 	{
 		$repository = $this->createMock(toolbar_repository::class);

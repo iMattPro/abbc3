@@ -25,6 +25,12 @@ class toolbar_repository
 	protected $group_ids;
 	protected $group_rules;
 
+	/**
+	 * Initialize the toolbar repository for the board’s table prefix.
+	 *
+	 * @param driver_interface $db Database connection
+	 * @param string $table_prefix Board table prefix
+	 */
 	public function __construct(driver_interface $db, $table_prefix)
 	{
 		$this->db = $db;
@@ -32,6 +38,11 @@ class toolbar_repository
 		$this->groups_table = $table_prefix . 'abbc3_bbcode_groups';
 	}
 
+	/**
+	 * Load the saved toolbar layout with custom BBCode names and help lines.
+	 *
+	 * @return array Layout rows keyed by button key
+	 */
 	public function get_layout()
 	{
 		if ($this->layout !== null)
@@ -54,6 +65,16 @@ class toolbar_repository
 		return $this->layout = $layout;
 	}
 
+	/**
+	 * Save placements and icons, then update the posting visibility of registered BBCodes.
+	 *
+	 * @param array $placements Ordered button keys grouped by placement
+	 * @param array $icons Image icon names keyed by button key
+	 * @param array $font_icons Font icon names keyed by button key
+	 * @param array $feature_states Enabled flags keyed by BBCode tag
+	 * @return void
+	 * @throws \Throwable If writing the layout or posting flags fails
+	 */
 	public function save_layout(array $placements, array $icons, array $font_icons, array $feature_states = [])
 	{
 		$layout = $this->get_layout();
@@ -119,6 +140,13 @@ class toolbar_repository
 		}
 	}
 
+	/**
+	 * Update phpBB’s posting flags from the saved toolbar layout and feature settings.
+	 *
+	 * @param array $feature_states Enabled flags keyed by BBCode tag
+	 * @return void
+	 * @throws \Throwable If synchronizing the posting flags fails
+	 */
 	public function sync_visibility(array $feature_states = [])
 	{
 		$this->db->sql_transaction('begin');
@@ -134,6 +162,13 @@ class toolbar_repository
 		}
 	}
 
+	/**
+	 * Bring the saved toolbar layout into line with phpBB’s posting flags after re-enable.
+	 *
+	 * @param array $feature_states Enabled flags keyed by BBCode tag, used to preserve placement for disabled features
+	 * @return void
+	 * @throws \Throwable If reconciling a toolbar entry fails
+	 */
 	public function reconcile_visibility(array $feature_states)
 	{
 		$sql = "SELECT DISTINCT b.bbcode_id, b.bbcode_tag, b.display_on_posting
@@ -172,6 +207,15 @@ class toolbar_repository
 		}
 	}
 
+	/**
+	 * Register or update the toolbar entry for a custom BBCode.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @param string $tag Stored BBCode tag
+	 * @param bool $display Whether to display the BBCode on the posting form
+	 * @return void
+	 * @throws \Throwable If synchronizing the toolbar entry fails
+	 */
 	public function sync_bbcode($bbcode_id, $tag, $display = true)
 	{
 		$this->layout = $this->group_ids = $this->group_rules = null;
@@ -218,7 +262,7 @@ class toolbar_repository
 					$placement = 'hidden';
 					$sort_order = $this->next_order($placement);
 				}
-				elseif ($display && $placement === 'hidden')
+				else if ($display && $placement === 'hidden')
 				{
 					$placement = 'more';
 					$sort_order = $this->next_order($placement);
@@ -260,6 +304,12 @@ class toolbar_repository
 		}
 	}
 
+	/**
+	 * Get the next sort position within a toolbar placement.
+	 *
+	 * @param string $placement Toolbar placement
+	 * @return int Sort position for an appended button
+	 */
 	protected function next_order($placement)
 	{
 		$sql = 'SELECT MAX(sort_order) AS max_order FROM ' . $this->toolbar_table . "
@@ -270,12 +320,25 @@ class toolbar_repository
 		return $order;
 	}
 
+	/**
+	 * Delete a toolbar entry by its key.
+	 *
+	 * @param string $key Toolbar button key
+	 * @return void
+	 */
 	protected function delete_button($key)
 	{
 		$this->db->sql_query('DELETE FROM ' . $this->toolbar_table . "
 			WHERE button_key = '" . $this->db->sql_escape($key) . "'");
 	}
 
+	/**
+	 * Set phpBB’s posting flags for the registered custom BBCodes in the supplied layout.
+	 *
+	 * @param array $layout Toolbar layout rows
+	 * @param array $feature_states Enabled flags keyed by BBCode tag
+	 * @return void
+	 */
 	protected function apply_visibility(array $layout, array $feature_states)
 	{
 		$registered = [];
@@ -310,12 +373,26 @@ class toolbar_repository
 		}
 	}
 
+	/**
+	 * Get the user groups that may use a custom BBCode.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @return int[] Allowed group IDs, or an empty array for unrestricted use
+	 */
 	public function get_group_ids($bbcode_id)
 	{
 		$this->load_group_rules();
 		return $this->group_ids[(int) $bbcode_id] ?? [];
 	}
 
+	/**
+	 * Replace a custom BBCode’s group assignments in one transaction.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @param array $group_ids Selected group IDs, or an empty array for unrestricted use
+	 * @return void
+	 * @throws \Throwable If replacing the group assignments fails
+	 */
 	public function set_group_ids($bbcode_id, array $group_ids)
 	{
 		$this->group_ids = $this->group_rules = null;
@@ -337,6 +414,12 @@ class toolbar_repository
 		}
 	}
 
+	/**
+	 * Delete a custom BBCode’s toolbar entries and group assignments.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @return void
+	 */
 	public function remove_bbcode($bbcode_id)
 	{
 		$this->layout = $this->group_ids = $this->group_rules = null;
@@ -344,12 +427,22 @@ class toolbar_repository
 		$this->db->sql_query('DELETE FROM ' . $this->toolbar_table . ' WHERE bbcode_id = ' . (int) $bbcode_id);
 	}
 
+	/**
+	 * Get the restrictions applied at parser setup.
+	 *
+	 * @return array Allowed group IDs keyed by stored BBCode tag
+	 */
 	public function get_all_group_rules()
 	{
 		$this->load_group_rules();
 		return $this->group_rules;
 	}
 
+	/**
+	 * Load group restrictions once per repository instance, indexed by BBCode ID and tag.
+	 *
+	 * @return void
+	 */
 	protected function load_group_rules()
 	{
 		if ($this->group_ids !== null)

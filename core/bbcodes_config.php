@@ -66,7 +66,7 @@ class bbcodes_config
 	}
 
 	/**
-	 * Configure BBVideo to use the MEDIA tag with the Media Embed plugin
+	 * Keep BBVideo distinct for group checks and send allowed tags to Media Embed.
 	 *
 	 * @param Configurator $configurator
 	 * @access public
@@ -110,6 +110,13 @@ class bbcodes_config
 			->addParameterByName('parser');
 	}
 
+	/**
+	 * Forward a permitted paired or standalone BBVideo tag to Media Embed.
+	 *
+	 * @param \s9e\TextFormatter\Parser\Tag $tag Parsed BBVideo tag
+	 * @param \s9e\TextFormatter\Parser $parser Active TextFormatter parser
+	 * @return void
+	 */
 	public static function forward_bbvideo_to_media($tag, $parser)
 	{
 		$end_tag = $tag->getEndTag();
@@ -118,7 +125,7 @@ class bbcodes_config
 			$parser->addTagPair('MEDIA', $tag->getPos(), $tag->getLen(), $end_tag->getPos(), $end_tag->getLen(), $tag->getSortPriority())
 				->setAttribute('url', $tag->getAttribute('url'));
 		}
-		elseif ($tag->hasAttribute('url'))
+		else if ($tag->hasAttribute('url'))
 		{
 			$parser->addSelfClosingTag('MEDIA', $tag->getPos(), $tag->getLen(), $tag->getSortPriority())
 				->setAttribute('url', $tag->getAttribute('url'));

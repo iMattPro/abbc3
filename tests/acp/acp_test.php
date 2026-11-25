@@ -143,6 +143,34 @@ class acp_test extends \phpbb_database_test_case
 		self::assertEquals('acp_abbc3_settings', $module->tpl_name);
 	}
 
+	/**
+	 * Verify that an unexpected runtime exception survives the ACP boundary.
+	 */
+	public function test_main_module_propagates_unexpected_runtime_exception()
+	{
+		$failure = new \RuntimeException('Toolbar save failed');
+		$controller = $this->createMock(\vse\abbc3\controller\acp_controller::class);
+		$controller->method('set_u_action')->willReturnSelf();
+		$controller->expects(self::once())->method('handle')->willThrowException($failure);
+		$this->container->expects(self::once())
+			->method('get')
+			->with('vse.abbc3.acp_controller')
+			->willReturn($controller);
+
+		try
+		{
+			(new \vse\abbc3\acp\abbc3_module())->main();
+			self::fail('Expected the controller exception to propagate.');
+		}
+		catch (\RuntimeException $exception)
+		{
+			self::assertSame($failure, $exception);
+		}
+	}
+
+	/**
+	 * Verify that opening the ACP page assigns the settings template data.
+	 */
 	public function test_main_display()
 	{
 		$expected = [
@@ -178,6 +206,9 @@ class acp_test extends \phpbb_database_test_case
 			->handle();
 	}
 
+	/**
+	 * Verify that a valid ACP save returns the standard success notice.
+	 */
 	public function test_main_save()
 	{
 		self::$valid_form = true;
@@ -199,6 +230,9 @@ class acp_test extends \phpbb_database_test_case
 		$this->acp_controller->handle();
 	}
 
+	/**
+	 * Verify that a save with an invalid form token is rejected.
+	 */
 	public function test_main_save_error()
 	{
 		self::$valid_form = false;
@@ -215,6 +249,9 @@ class acp_test extends \phpbb_database_test_case
 		$this->acp_controller->handle();
 	}
 
+	/**
+	 * Verify that an individual setting save leaves the other settings intact.
+	 */
 	public function test_setting_scope_saves_only_requested_setting()
 	{
 		self::$valid_form = true;
@@ -239,6 +276,9 @@ class acp_test extends \phpbb_database_test_case
 		}
 	}
 
+	/**
+	 * Verify that changing a parser setting invalidates both formatter caches.
+	 */
 	public function test_parser_setting_purges_parser_and_renderer_caches()
 	{
 		self::$valid_form = true;
@@ -262,6 +302,9 @@ class acp_test extends \phpbb_database_test_case
 		}
 	}
 
+	/**
+	 * Verify that toggling Pipe Tables updates its posting visibility.
+	 */
 	public function test_pipes_setting_synchronizes_toolbar_visibility()
 	{
 		self::$valid_form = true;
@@ -287,6 +330,9 @@ class acp_test extends \phpbb_database_test_case
 		}
 	}
 
+	/**
+	 * Verify that toolbar saves respect feature visibility.
+	 */
 	public function test_toolbar_scope_saves_layout_with_current_feature_state()
 	{
 		self::$valid_form = true;
@@ -322,7 +368,12 @@ class acp_test extends \phpbb_database_test_case
 	}
 
 	/**
+	 * Verify that invalid autosave requests are rejected.
+	 *
 	 * @dataProvider invalid_autosave_data
+	 * @param string $scope Submitted autosave scope
+	 * @param string $name Submitted setting name
+	 * @param string|int $value Submitted setting value
 	 */
 	public function test_invalid_autosave_request_is_rejected($scope, $name, $value)
 	{
@@ -342,6 +393,11 @@ class acp_test extends \phpbb_database_test_case
 		$this->acp_controller->handle();
 	}
 
+	/**
+	 * Provide invalid autosave scopes, setting names, and values.
+	 *
+	 * @return array Invalid autosave requests
+	 */
 	public function invalid_autosave_data()
 	{
 		return [

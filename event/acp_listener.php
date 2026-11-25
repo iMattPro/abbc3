@@ -63,7 +63,7 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Handle BBCode order and group data during modify/create routines
+	 * Carry the selected BBCode groups through phpBB’s unsafe-template confirmation.
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
@@ -76,12 +76,25 @@ class acp_listener implements EventSubscriberInterface
 		$event->update_subarray('hidden_fields', 'bbcode_group', $bbcode_group);
 	}
 
+	/**
+	 * Save the group restrictions and toolbar entry after phpBB saves the BBCode.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @return void
+	 * @throws \Throwable If saving the groups or toolbar entry fails
+	 */
 	public function acp_bbcodes_modify_create_after($event)
 	{
 		$this->acp_manager->save_bbcode_groups((int) $event['bbcode_id']);
 		$this->acp_manager->register_bbcode((int) $event['bbcode_id'], $event['sql_ary']['bbcode_tag'], !empty($event['sql_ary']['display_on_posting']));
 	}
 
+	/**
+	 * Remove the deleted BBCode’s toolbar entry and group restrictions.
+	 *
+	 * @param \phpbb\event\data $event The event object
+	 * @return void
+	 */
 	public function acp_bbcodes_delete_after($event)
 	{
 		$this->acp_manager->remove_toolbar_bbcode((int) $event['bbcode_id']);

@@ -14,6 +14,9 @@ use vse\abbc3\core\uninstall_manager;
 
 class uninstall_manager_test extends acp_base
 {
+	/**
+	 * Verify that disabling installs a standalone definition and re-enabling restores it.
+	 */
 	public function test_disable_installs_standalone_fallback_and_enable_restores_definition()
 	{
 		global $phpbb_root_path, $phpEx;
@@ -52,6 +55,14 @@ class uninstall_manager_test extends acp_base
 		self::assertNull($config_text->get('abbc3_disable_state'));
 	}
 
+	/**
+	 * Install a compiled definition in the test BBCode table.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @param string $match BBCode usage pattern
+	 * @param string $template Replacement template
+	 * @return void
+	 */
 	protected function set_definition($bbcode_id, $match, $template)
 	{
 		global $phpbb_root_path, $phpEx;
@@ -68,6 +79,12 @@ class uninstall_manager_test extends acp_base
 		$this->db->sql_query('UPDATE phpbb_bbcodes SET ' . $this->db->sql_build_array('UPDATE', $data) . ' WHERE bbcode_id = ' . (int) $bbcode_id);
 	}
 
+	/**
+	 * Read the current template and display flag for a test BBCode.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @return array|false Stored definition or false if the row is missing
+	 */
 	protected function get_definition($bbcode_id)
 	{
 		$result = $this->db->sql_query('SELECT bbcode_tpl, display_on_posting FROM phpbb_bbcodes WHERE bbcode_id = ' . (int) $bbcode_id);

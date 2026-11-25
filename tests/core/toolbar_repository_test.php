@@ -15,12 +15,18 @@ class toolbar_repository_test extends acp_base
 	/** @var toolbar_repository */
 	protected $repository;
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function setUp(): void
 	{
 		parent::setUp();
 		$this->repository = new toolbar_repository($this->db, 'phpbb_');
 	}
 
+	/**
+	 * Verify that a BBCode rename consolidates its entries and retains its icon.
+	 */
 	public function test_sync_bbcode_renames_row_removes_duplicate_and_preserves_icon()
 	{
 		$this->insert_button('bbcode:font', 13, 'primary', 1, 'custom-font');
@@ -35,6 +41,9 @@ class toolbar_repository_test extends acp_base
 		self::assertSame('custom-font', $rows[0]['icon']);
 	}
 
+	/**
+	 * Verify that posting visibility moves a button between Hidden and More.
+	 */
 	public function test_sync_bbcode_tracks_disabled_and_reenabled_state()
 	{
 		$this->insert_button('bbcode:highlight', 14, 'primary', 1, 'highlight');
@@ -46,6 +55,9 @@ class toolbar_repository_test extends acp_base
 		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
 	}
 
+	/**
+	 * Verify that toolbar visibility honors feature settings and leaves unregistered BBCodes alone.
+	 */
 	public function test_save_layout_only_changes_registered_bbcodes_and_honors_features()
 	{
 		$this->insert_button('bbcode:font', 13, 'primary', 1, 'font');
@@ -70,6 +82,9 @@ class toolbar_repository_test extends acp_base
 		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
 	}
 
+	/**
+	 * Verify that the layout stores font, image, and text icon choices.
+	 */
 	public function test_save_layout_supports_font_image_and_text_icon_fallbacks()
 	{
 		$this->insert_button('bbcode:highlight', 14, 'more', 1, 'highlight');
@@ -86,6 +101,9 @@ class toolbar_repository_test extends acp_base
 		self::assertSame('', $row['font_icon']);
 	}
 
+	/**
+	 * Verify that editor rendering reuses layout and group reads without writing toolbar entries.
+	 */
 	public function test_editor_reads_layout_and_groups_once_without_synchronizing()
 	{
 		$this->insert_button('bbcode:font', 13, 'hidden', 1, 'font');
@@ -117,12 +135,15 @@ class toolbar_repository_test extends acp_base
 		self::assertSame([2], $this->repository->get_group_ids(15));
 	}
 
+	/**
+	 * Verify that migration retries retain existing toolbar entries and avoid duplicate group assignments.
+	 */
 	public function test_toolbar_migration_retries_keep_existing_rows_and_deduplicate_groups()
 	{
 		global $phpbb_root_path, $phpEx;
 		$this->insert_button('bbcode:font', 13, 'hidden', 3, 'admin-icon');
 		$tools = (new \phpbb\db\tools\factory())->get($this->db);
-		$migration = new \vse\abbc3\migrations\v3312_m21_toolbar(
+		$migration = new \vse\abbc3\migrations\v340_m21_toolbar(
 			new \phpbb\config\config([]),
 			$this->db,
 			$tools,
@@ -153,6 +174,16 @@ class toolbar_repository_test extends acp_base
 		self::assertSame([1, 2], $this->repository->get_group_ids(15));
 	}
 
+	/**
+	 * Insert a custom toolbar button into the test database.
+	 *
+	 * @param string $key Toolbar button key
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @param string $placement Toolbar placement
+	 * @param int $order Sort position
+	 * @param string $icon Image icon name
+	 * @return void
+	 */
 	protected function insert_button($key, $bbcode_id, $placement, $order, $icon)
 	{
 		$row = [
@@ -167,6 +198,12 @@ class toolbar_repository_test extends acp_base
 		$this->db->sql_query('INSERT INTO phpbb_abbc3_toolbar ' . $this->db->sql_build_array('INSERT', $row));
 	}
 
+	/**
+	 * Read saved toolbar entries for a custom BBCode.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @return array Saved toolbar entries
+	 */
 	protected function get_toolbar_rows($bbcode_id)
 	{
 		$result = $this->db->sql_query('SELECT * FROM phpbb_abbc3_toolbar WHERE bbcode_id = ' . (int) $bbcode_id . ' ORDER BY button_key');
@@ -179,6 +216,12 @@ class toolbar_repository_test extends acp_base
 		return $rows;
 	}
 
+	/**
+	 * Read the stored posting visibility flag.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @return mixed Stored display flag, or false if the row is missing
+	 */
 	protected function get_display_state($bbcode_id)
 	{
 		$result = $this->db->sql_query('SELECT display_on_posting FROM phpbb_bbcodes WHERE bbcode_id = ' . (int) $bbcode_id);

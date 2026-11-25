@@ -63,6 +63,12 @@ class bbcodes_test extends \phpbb_database_test_case
 			]);
 	}
 
+	/**
+	 * Create a BBCode display service for the test fixture.
+	 *
+	 * @param \vse\abbc3\core\toolbar_repository|null $repository Optional toolbar repository
+	 * @return \vse\abbc3\core\bbcodes_display BBCode display service
+	 */
 	protected function bbcodes_manager(\vse\abbc3\core\toolbar_repository $repository = null)
 	{
 		return new \vse\abbc3\core\bbcodes_display($this->auth, $this->config, $this->db, $this->ext_manager, $this->user, $this->root_path, $repository);
@@ -340,6 +346,9 @@ class bbcodes_test extends \phpbb_database_test_case
 		self::assertSame([3 => [2 => 'detached']], $bbcodes_manager->remove_hidden_attachments($parsed_attachments, $row));
 	}
 
+	/**
+	 * Verify search redaction for guest and bot viewers in both post formats.
+	 */
 	public function test_hidden_search_redaction_for_guests_and_bots()
 	{
 		$xml = '<r>before<HIDDEN><s>[hidden]</s>private<HIDDEN>nested</HIDDEN><ATTACHMENT index="0">secret.jpg</ATTACHMENT><e>[/hidden]</e></HIDDEN>after<ATTACHMENT index="1">public.jpg</ATTACHMENT></r>';
@@ -361,6 +370,9 @@ class bbcodes_test extends \phpbb_database_test_case
 		self::assertSame($legacy, $display->redact_hidden_search_text($legacy, 'abc123'));
 	}
 
+	/**
+	 * Verify that current group rules apply to BBVideo syntax without affecting independent media embeds.
+	 */
 	public function test_bbvideo_permissions_leave_other_media_paths_available()
 	{
 		$configurator = new \s9e\TextFormatter\Configurator();

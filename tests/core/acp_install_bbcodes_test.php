@@ -87,7 +87,10 @@ class acp_install_bbcodes_test extends acp_base
 	}
 
 	/**
+	 * Verify that removing managed definitions preserves a template edited in the ACP.
+	 *
 	 * @dataProvider install_bbcodes_data
+	 * @param array $data Managed BBCode definitions
 	 */
 	public function test_delete_preserves_admin_modified_template($data)
 	{

@@ -22,8 +22,9 @@ class abbc3_module
 	public $u_action;
 
 	/**
-	 * Main ACP module
-	 * @throws \Exception
+	 * Run the ACP controller and send its notices and warnings through phpBB.
+	 *
+	 * @throws \Throwable If the controller fails unexpectedly
 	 */
 	public function main()
 	{
@@ -40,6 +41,11 @@ class abbc3_module
 		}
 		catch (\RuntimeException $e)
 		{
+			if (!in_array($e->getCode(), [E_USER_NOTICE, E_USER_WARNING], true))
+			{
+				throw $e;
+			}
+
 			trigger_error($e->getMessage() . adm_back_link($this->u_action), $e->getCode());
 		}
 	}

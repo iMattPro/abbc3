@@ -54,12 +54,13 @@ class bbcodes_display
 	/**
 	 * Constructor
 	 *
-	 * @param auth             $auth              Auth object
-	 * @param config            $config             Config object
-	 * @param driver_interface $db                Database connection
-	 * @param manager          $extension_manager Extension manager object
-	 * @param user             $user              User object
-	 * @param string           $root_path         Path to phpBB root
+	 * @param auth                    $auth               Auth object
+	 * @param config                  $config             Config object
+	 * @param driver_interface        $db                 Database connection
+	 * @param manager                 $extension_manager  Extension manager object
+	 * @param user                    $user               User object
+	 * @param string                  $root_path          Path to phpBB root
+	 * @param toolbar_repository|null $toolbar_repository Toolbar layout and group rules
 	 * @access public
 	 */
 	public function __construct(auth $auth, config $config, driver_interface $db, manager $extension_manager, user $user, $root_path, toolbar_repository $toolbar_repository = null)
@@ -89,7 +90,7 @@ class bbcodes_display
 
 		$icon_tag = strtolower(rtrim($row['bbcode_tag'], '='));
 
-		$custom_tags['BBCODE_IMG'] = isset($icons[$icon_tag]) ? $icons[$icon_tag] : '';
+		$custom_tags['BBCODE_IMG'] = $icons[$icon_tag] ?? '';
 		$groups = $this->toolbar_repository
 			? $this->toolbar_repository->get_group_ids((int) $row['bbcode_id'])
 			: ($row['bbcode_group'] ?? []);
@@ -102,7 +103,7 @@ class bbcodes_display
 	}
 
 	/**
-	 * Disable BBCodes not allowed by a user's group(s).
+	 * Disable custom BBCodes restricted by the current group rules at parser setup.
 	 *
 	 * @param parser $service Object from the text_formatter.parser service
 	 * @return void
@@ -172,6 +173,10 @@ class bbcodes_display
 
 	/**
 	 * Remove hidden content before phpBB turns search result posts into excerpts.
+	 *
+	 * @param string $text Stored post text in TextFormatter or legacy BBCode format
+	 * @param string $uid Post BBCode UID used to match legacy tags
+	 * @return string Post text with hidden content removed for guests and bots
 	 */
 	public function redact_hidden_search_text($text, $uid)
 	{
@@ -237,6 +242,11 @@ class bbcodes_display
 		return $visible;
 	}
 
+	/**
+	 * Check whether the current viewer can read content inside [hidden].
+	 *
+	 * @return bool True for signed-in users other than bots
+	 */
 	protected function can_view_hidden_content()
 	{
 		return ANONYMOUS !== (int) $this->user->data['user_id'] && empty($this->user->data['is_bot']);
@@ -269,6 +279,12 @@ class bbcodes_display
 		return true;
 	}
 
+	/**
+	 * Check the current user’s group access to a custom BBCode.
+	 *
+	 * @param int $bbcode_id Custom BBCode ID
+	 * @return bool True if the user can use the BBCode
+	 */
 	public function user_can_use_bbcode($bbcode_id)
 	{
 		if (!$this->toolbar_repository)

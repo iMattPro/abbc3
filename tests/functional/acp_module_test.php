@@ -20,6 +20,9 @@ class acp_module_test extends \phpbb_functional_test_case
 		return ['vse/abbc3'];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function setUp(): void
 	{
 		parent::setUp();
@@ -28,6 +31,9 @@ class acp_module_test extends \phpbb_functional_test_case
 		$this->add_lang_ext('vse/abbc3', 'acp_abbc3');
 	}
 
+	/**
+	 * Verify the toolbar composer and settings saves on the ACP page.
+	 */
 	public function test_module_page()
 	{
 		$this->login();
@@ -111,6 +117,14 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertGreaterThan(0, $crawler->filter('.successbox')->count());
 	}
 
+	/**
+	 * Submit one setting using the standard ACP form.
+	 *
+	 * @param \Symfony\Component\DomCrawler\Form $form ACP settings form
+	 * @param string $name Setting name
+	 * @param string|int $value Submitted setting value
+	 * @return \Symfony\Component\DomCrawler\Crawler ACP response
+	 */
 	protected function submit_setting($form, $name, $value)
 	{
 		return self::submit($form, [
@@ -120,6 +134,14 @@ class acp_module_test extends \phpbb_functional_test_case
 		]);
 	}
 
+	/**
+	 * Submit one setting via AJAX and verify the success response.
+	 *
+	 * @param \Symfony\Component\DomCrawler\Form $form ACP settings form
+	 * @param string $name Setting name
+	 * @param string|int $value Submitted setting value
+	 * @return void
+	 */
 	protected function submit_ajax_setting($form, $name, $value)
 	{
 		self::$client->setServerParameter('HTTP_X_REQUESTED_WITH', 'XMLHttpRequest');
@@ -133,6 +155,12 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertTrue($response['S_USER_NOTICE']);
 	}
 
+	/**
+	 * Read the posting visibility flag for the supplied tag.
+	 *
+	 * @param string $tag Stored BBCode tag
+	 * @return mixed Stored display flag, or false if the row is missing
+	 */
 	protected function get_bbcode_display_state($tag)
 	{
 		$db = $this->get_db();
