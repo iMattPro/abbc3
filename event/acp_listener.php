@@ -42,13 +42,10 @@ class acp_listener implements EventSubscriberInterface
 	public static function getSubscribedEvents()
 	{
 		return [
-			'core.acp_bbcodes_modify_create'			=> 'acp_bbcodes_modify_create',
+			'core.acp_bbcodes_modify_create'		=> 'acp_bbcodes_modify_create',
 			'core.acp_bbcodes_modify_create_after'	=> 'acp_bbcodes_modify_create_after',
-			'core.acp_bbcodes_delete_after'				=> 'acp_bbcodes_delete_after',
-			'core.acp_bbcodes_edit_add'					=> 'acp_bbcodes_group_select_box',
-
-			// text_formatter events (for phpBB 3.2.x)
-			'core.text_formatter_s9e_configure_after'	=> 's9e_store_bbcode_groups',
+			'core.acp_bbcodes_delete_after'			=> 'acp_bbcodes_delete_after',
+			'core.acp_bbcodes_edit_add'				=> 'acp_bbcodes_group_select_box',
 		];
 	}
 
@@ -88,22 +85,5 @@ class acp_listener implements EventSubscriberInterface
 	public function acp_bbcodes_delete_after($event)
 	{
 		$this->acp_manager->remove_toolbar_bbcode((int) $event['bbcode_id']);
-	}
-
-	/**
-	 * Store BBCode groups in a s9e\TextFormatter variable
-	 *
-	 * @param \phpbb\event\data $event The event object
-	 * @access public
-	 */
-	public function s9e_store_bbcode_groups($event)
-	{
-		/** @var \s9e\TextFormatter\Configurator $configurator */
-		$configurator = $event['configurator'];
-		$bbcode_groups = $this->acp_manager->get_bbcode_groups_data();
-
-		// Save BBCode groups in a registered variable in the configurator. That variable will be
-		// copied in the parser's configuration and be available during parser setup.
-		$configurator->registeredVars['abbc3.bbcode_groups'] = $bbcode_groups;
 	}
 }

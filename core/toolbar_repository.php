@@ -319,11 +319,21 @@ class toolbar_repository
 	public function set_group_ids($bbcode_id, array $group_ids)
 	{
 		$this->group_ids = $this->group_rules = null;
-		$this->db->sql_query('DELETE FROM ' . $this->groups_table . ' WHERE bbcode_id = ' . (int) $bbcode_id);
-		foreach (array_unique(array_filter(array_map('intval', $group_ids))) as $group_id)
+		$this->db->sql_transaction('begin');
+		try
 		{
-			$row = ['bbcode_id' => (int) $bbcode_id, 'group_id' => $group_id];
-			$this->db->sql_query('INSERT INTO ' . $this->groups_table . ' ' . $this->db->sql_build_array('INSERT', $row));
+			$this->db->sql_query('DELETE FROM ' . $this->groups_table . ' WHERE bbcode_id = ' . (int) $bbcode_id);
+			foreach (array_unique(array_filter(array_map('intval', $group_ids))) as $group_id)
+			{
+				$row = ['bbcode_id' => (int) $bbcode_id, 'group_id' => $group_id];
+				$this->db->sql_query('INSERT INTO ' . $this->groups_table . ' ' . $this->db->sql_build_array('INSERT', $row));
+			}
+			$this->db->sql_transaction('commit');
+		}
+		catch (\Throwable $e)
+		{
+			$this->db->sql_transaction('rollback');
+			throw $e;
 		}
 	}
 

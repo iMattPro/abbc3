@@ -110,8 +110,8 @@ class bbcodes_display
 	 */
 	public function allow_custom_bbcodes(parser $service)
 	{
-		$parser = $service->get_parser();
-		foreach (($parser->registeredVars['abbc3.bbcode_groups'] ?? []) as $bbcode_name => $groups)
+		$rules = $this->toolbar_repository ? $this->toolbar_repository->get_all_group_rules() : [];
+		foreach ($rules as $bbcode_name => $groups)
 		{
 			if (!$this->user_in_bbcode_group($groups))
 			{

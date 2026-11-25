@@ -63,9 +63,9 @@ class bbcodes_test extends \phpbb_database_test_case
 			]);
 	}
 
-	protected function bbcodes_manager()
+	protected function bbcodes_manager(\vse\abbc3\core\toolbar_repository $repository = null)
 	{
-		return new \vse\abbc3\core\bbcodes_display($this->auth, $this->config, $this->db, $this->ext_manager, $this->user, $this->root_path);
+		return new \vse\abbc3\core\bbcodes_display($this->auth, $this->config, $this->db, $this->ext_manager, $this->user, $this->root_path, $repository);
 	}
 
 	public function bbcode_data()
@@ -123,24 +123,19 @@ class bbcodes_test extends \phpbb_database_test_case
 	 */
 	public function test_allow_custom_bbcodes($user_id, $data, $disable)
 	{
-		/** @var \s9e\TextFormatter\Parser|\PHPUnit\Framework\MockObject\MockObject $parser */
-		$parser = $this->createMock('\s9e\TextFormatter\Parser');
-		$parser->registeredVars['abbc3.bbcode_groups'] = [
-			$data['bbcode_tag'] => $data['bbcode_group'],
-		];
+		$repository = $this->createMock(\vse\abbc3\core\toolbar_repository::class);
+		$repository->method('get_all_group_rules')->willReturn([
+			$data['bbcode_tag'] => array_map('intval', array_filter(explode(',', $data['bbcode_group']))),
+		]);
 
 		/** @var \phpbb\textformatter\s9e\parser|\PHPUnit\Framework\MockObject\MockObject $service */
 		$service = $this->createMock('\phpbb\textformatter\s9e\parser');
 		$service->expects($disable ? self::once() : self::never())
 			->method('disable_bbcode')
 			->with($data['bbcode_tag']);
-		$service->expects(self::once())
-			->method('get_parser')
-			->willReturn($parser);
-
 		$this->user->data['user_id'] = $user_id;
 
-		$bbcodes_manager = $this->bbcodes_manager();
+		$bbcodes_manager = $this->bbcodes_manager($repository);
 
 		$bbcodes_manager->allow_custom_bbcodes($service);
 	}
@@ -351,8 +346,12 @@ class bbcodes_test extends \phpbb_database_test_case
 		$configurator->MediaEmbed->add('youtube');
 		$configurator->BBCodes->add('bbvideo', []);
 		(new bbcodes_config())->bbvideo($configurator);
-		$configurator->registeredVars['abbc3.bbcode_groups'] = ['bbvideo=' => [2]];
+		// Simulate a previously cached parser generated before groups were assigned.
+		$configurator->registeredVars['abbc3.bbcode_groups'] = [];
 		$parser = $configurator->finalize(['returnRenderer' => false])['parser'];
+		$this->db->sql_query("UPDATE " . BBCODES_TABLE . " SET bbcode_tag = 'bbvideo=' WHERE bbcode_id = 13");
+		$repository = new \vse\abbc3\core\toolbar_repository($this->db, 'phpbb_');
+		$repository->set_group_ids(13, [2]);
 		$cache = new \phpbb_mock_cache();
 		$cache->put('_test_bbvideo_parser', $parser);
 		$service = new \phpbb\textformatter\s9e\parser(
@@ -368,7 +367,7 @@ class bbcodes_test extends \phpbb_database_test_case
 		$media = '[media]' . $url . '[/media]';
 
 		$this->user->data['user_id'] = ANONYMOUS;
-		$this->bbcodes_manager()->allow_custom_bbcodes($service);
+		$this->bbcodes_manager($repository)->allow_custom_bbcodes($service);
 		foreach ([$bbvideo, $legacy, $standalone] as $message)
 		{
 			$service->parse($message);
@@ -384,7 +383,7 @@ class bbcodes_test extends \phpbb_database_test_case
 		$service->enable_bbcode('bbvideo');
 		$parser->disablePlugin('MediaEmbed');
 		$this->user->data['user_id'] = 2;
-		$this->bbcodes_manager()->allow_custom_bbcodes($service);
+		$this->bbcodes_manager($repository)->allow_custom_bbcodes($service);
 		foreach ([$bbvideo, $legacy, $standalone, $media] as $message)
 		{
 			self::assertStringContainsString('<YOUTUBE ', $service->parse($message));

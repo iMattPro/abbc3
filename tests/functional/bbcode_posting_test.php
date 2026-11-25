@@ -55,10 +55,12 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		self::assertStringNotContainsString('This is hidden text posted by the testing framework.', $crawler->filter('.content > .hc-box')->text());
 	}
 
-	public function test_restricted_bbvideo_rejects_post()
+	public function test_bbvideo_group_changes_take_effect_without_purging_cache()
 	{
 		$this->login();
+		$this->admin_login();
 		$this->add_lang('posting');
+		$this->add_lang('acp/posting');
 		$db = $this->get_db();
 		$result = $db->sql_query("SELECT bbcode_id FROM " . BBCODES_TABLE . " WHERE bbcode_tag = 'BBvideo'");
 		$bbcode_id = (int) $db->sql_fetchfield('bbcode_id', false, $result);
@@ -69,14 +71,30 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		self::assertGreaterThan(0, $bbcode_id);
 		self::assertGreaterThan(0, $guest_group);
 
-		$repository = new \vse\abbc3\core\toolbar_repository($db, self::$config['table_prefix']);
-		$repository->set_group_ids($bbcode_id, [$guest_group]);
-		$this->purge_cache();
-
+		$message = '[bbvideo]https://youtu.be/sP4NMoJcFd4[/bbvideo]';
+		$this->create_topic(2, 'Unrestricted BBVideo post', $message);
+		$this->save_bbvideo_groups($bbcode_id, [(string) $guest_group]);
 		$subject = 'Restricted BBVideo post';
-		$this->create_topic(2, $subject, '[bbvideo]https://youtu.be/sP4NMoJcFd4[/bbvideo]', [], $this->lang('UNAUTHORISED_BBCODE', '[bbvideo]'));
+		$this->create_topic(2, $subject, $message, [], $this->lang('UNAUTHORISED_BBCODE', '[bbvideo]'));
 		$result = $db->sql_query("SELECT COUNT(*) AS total FROM " . POSTS_TABLE . " WHERE post_subject = '" . $db->sql_escape($subject) . "'");
 		self::assertSame(0, (int) $db->sql_fetchfield('total', false, $result));
 		$db->sql_freeresult($result);
+
+		$this->save_bbvideo_groups($bbcode_id, []);
+		$this->create_topic(2, 'BBVideo post after clearing group restriction', $message);
+	}
+
+	protected function save_bbvideo_groups($bbcode_id, array $groups)
+	{
+		$crawler = self::request('GET', 'adm/index.php?i=acp_bbcodes&mode=bbcodes&action=edit&bbcode=' . $bbcode_id . '&sid=' . $this->sid);
+		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
+		$form['bbcode_group'] = $groups;
+		$crawler = self::submit($form);
+		$confirm = $crawler->selectButton($this->lang('YES'));
+		if ($confirm->count())
+		{
+			$crawler = self::submit($confirm->form());
+		}
+		self::assertStringContainsString($this->lang('BBCODE_EDITED'), $crawler->filter('body')->text());
 	}
 }

@@ -77,18 +77,6 @@ class acp_manager
 		return $this->toolbar_repository->get_group_ids($bbcode_id);
 	}
 
-	/**
-	 * Get the bbcode_group data from the database,
-	 * for every BBCode that has groups assigned
-	 *
-	 * @return array Custom BBCode user group ids for each BBCode, by name
-	 * @access public
-	 */
-	public function get_bbcode_groups_data()
-	{
-		return $this->toolbar_repository->get_all_group_rules();
-	}
-
 	public function save_bbcode_groups($bbcode_id)
 	{
 		$groups = $this->get_bbcode_group_form_data();
