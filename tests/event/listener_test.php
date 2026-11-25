@@ -40,6 +40,7 @@ class listener_test extends listener_base
 			'core.viewtopic_modify_quick_reply_template_vars',
 			'core.viewtopic_modify_page_title',
 			'core.viewtopic_modify_post_row',
+			'core.search_modify_post_row',
 			'core.search_modify_rowset',
 			'core.topic_review_modify_post_list',
 			'core.mcp_topic_modify_post_data',

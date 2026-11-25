@@ -340,6 +340,27 @@ class bbcodes_test extends \phpbb_database_test_case
 		self::assertSame([3 => [2 => 'detached']], $bbcodes_manager->remove_hidden_attachments($parsed_attachments, $row));
 	}
 
+	public function test_hidden_search_redaction_for_guests_and_bots()
+	{
+		$xml = '<r>before<HIDDEN><s>[hidden]</s>private<HIDDEN>nested</HIDDEN><ATTACHMENT index="0">secret.jpg</ATTACHMENT><e>[/hidden]</e></HIDDEN>after<ATTACHMENT index="1">public.jpg</ATTACHMENT></r>';
+		$legacy = 'before[hidden:abc123]private[hidden:abc123]nested[/hidden:abc123][/hidden:abc123]after [hidden]example[/hidden]';
+		$display = $this->bbcodes_manager();
+
+		foreach ([['user_id' => ANONYMOUS], ['user_id' => 2, 'is_bot' => true]] as $viewer)
+		{
+			$this->user->data = $viewer;
+			self::assertSame(
+				'<r>before<HIDDEN> </HIDDEN>after<ATTACHMENT index="1">public.jpg</ATTACHMENT></r>',
+				$display->redact_hidden_search_text($xml, 'abc123')
+			);
+			self::assertSame('before after [hidden]example[/hidden]', $display->redact_hidden_search_text($legacy, 'abc123'));
+		}
+
+		$this->user->data = ['user_id' => 2, 'is_bot' => false];
+		self::assertSame($xml, $display->redact_hidden_search_text($xml, 'abc123'));
+		self::assertSame($legacy, $display->redact_hidden_search_text($legacy, 'abc123'));
+	}
+
 	public function test_bbvideo_permissions_leave_other_media_paths_available()
 	{
 		$configurator = new \s9e\TextFormatter\Configurator();

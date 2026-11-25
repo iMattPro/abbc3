@@ -55,6 +55,41 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 		self::assertStringNotContainsString('This is hidden text posted by the testing framework.', $crawler->filter('.content > .hc-box')->text());
 	}
 
+	public function test_hidden_text_is_redacted_from_guest_search_results()
+	{
+		$this->login();
+		$public = 'orchardneedle';
+		$private = 'quartzshade';
+		$message = $public . ' public text [hidden]' . $private . ' private marker[/hidden] ' . str_repeat('Visible filler text. ', 12);
+		$this->create_topic(2, 'Hidden search result', $message);
+
+		foreach ([80, 0] as $length)
+		{
+			$crawler = self::request('GET', "search.php?keywords=$private&sr=posts&ch=$length&sid=$this->sid");
+			$result = $crawler->filter('.search.post .content');
+			self::assertStringContainsString($private, $result->text());
+			self::assertStringContainsString('private marker', $result->text());
+		}
+		$this->logout();
+
+		foreach ([$public, $private] as $keyword)
+		{
+			foreach ([80, 0] as $length)
+			{
+				$crawler = self::request('GET', "search.php?keywords=$keyword&sr=posts&ch=$length");
+				$result = $crawler->filter('.search.post .content');
+				self::assertStringContainsString($public, $result->text());
+				self::assertStringNotContainsString($private, $result->text());
+				self::assertStringNotContainsString('private marker', $result->text());
+				self::assertCount($length === 0 ? 1 : 0, $result->filter('.hc-box'));
+				if ($length === 0)
+				{
+					self::assertStringContainsString('Log in or register to view this post.', $result->text());
+				}
+			}
+		}
+	}
+
 	public function test_bbvideo_group_changes_take_effect_without_purging_cache()
 	{
 		$this->login();

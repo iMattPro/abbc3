@@ -126,6 +126,7 @@ class listener implements EventSubscriberInterface
 			'core.viewtopic_modify_quick_reply_template_vars' 	=> 'set_quick_reply',
 			'core.viewtopic_modify_page_title'					=> 'add_to_quickreply',
 			'core.viewtopic_modify_post_row'					=> 'remove_hidden_attachments',
+			'core.search_modify_post_row'					=> 'redact_hidden_search_text',
 
 			// These are meant to fix inline attachment sorting until phpBB can fix this issue,
 			// which can be an issue if inline attachments are bbcodes like hidden, spoiler, etc.
@@ -353,6 +354,13 @@ class listener implements EventSubscriberInterface
 		];
 
 		$this->bbcodes_display->set_renderer_params($event['renderer'], $urls);
+	}
+
+	public function redact_hidden_search_text($event)
+	{
+		$row = $event['row'];
+		$row['post_text'] = $this->bbcodes_display->redact_hidden_search_text($row['post_text'], $row['bbcode_uid']);
+		$event['row'] = $row;
 	}
 
 	/**

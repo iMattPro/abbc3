@@ -147,7 +147,7 @@ class bbcodes_display
 	 */
 	public function remove_hidden_attachments(array $attachments, array $row)
 	{
-		if (ANONYMOUS !== (int) $this->user->data['user_id'] && empty($this->user->data['is_bot']))
+		if ($this->can_view_hidden_content())
 		{
 			return $attachments;
 		}
@@ -168,6 +168,78 @@ class bbcodes_display
 		}
 
 		return $attachments;
+	}
+
+	/**
+	 * Remove hidden content before phpBB turns search result posts into excerpts.
+	 */
+	public function redact_hidden_search_text($text, $uid)
+	{
+		if ($this->can_view_hidden_content())
+		{
+			return $text;
+		}
+
+		if (preg_match('#^<[rt][ >]#', $text))
+		{
+			if (!preg_match('#<HIDDEN[\s/>]#', $text))
+			{
+				return $text;
+			}
+
+			$dom = new \DOMDocument();
+			if (!$dom->loadXML($text, LIBXML_NONET | LIBXML_PARSEHUGE | LIBXML_NOERROR | LIBXML_NOWARNING))
+			{
+				return '';
+			}
+
+			// Keep the outer tags so full results still show the login notice.
+			$xpath = new \DOMXPath($dom);
+			foreach ($xpath->query('//HIDDEN[not(ancestor::HIDDEN)]') as $hidden)
+			{
+				$hidden->textContent = ' ';
+			}
+
+			return Utils::encodeUnicodeSupplementaryCharacters($dom->saveXML($dom->documentElement));
+		}
+
+		if ($uid === '' || stripos($text, '[hidden:' . $uid . ']') === false)
+		{
+			return $text;
+		}
+
+		$parts = preg_split('#(\[/?hidden:' . preg_quote($uid, '#') . '\])#i', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$visible = '';
+		$depth = 0;
+		foreach ($parts as $index => $part)
+		{
+			if ($index % 2)
+			{
+				if ($part[1] === '/')
+				{
+					$depth = max(0, $depth - 1);
+				}
+				else
+				{
+					if ($depth === 0)
+					{
+						$visible .= ' ';
+					}
+					$depth++;
+				}
+			}
+			else if ($depth === 0)
+			{
+				$visible .= $part;
+			}
+		}
+
+		return $visible;
+	}
+
+	protected function can_view_hidden_content()
+	{
+		return ANONYMOUS !== (int) $this->user->data['user_id'] && empty($this->user->data['is_bot']);
 	}
 
 	/**
