@@ -118,6 +118,11 @@ class bbcodes_config
 			$parser->addTagPair('MEDIA', $tag->getPos(), $tag->getLen(), $end_tag->getPos(), $end_tag->getLen(), $tag->getSortPriority())
 				->setAttribute('url', $tag->getAttribute('url'));
 		}
+		elseif ($tag->hasAttribute('url'))
+		{
+			$parser->addSelfClosingTag('MEDIA', $tag->getPos(), $tag->getLen(), $tag->getSortPriority())
+				->setAttribute('url', $tag->getAttribute('url'));
+		}
 
 		$tag->invalidate();
 	}

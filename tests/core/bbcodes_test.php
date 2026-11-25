@@ -364,11 +364,12 @@ class bbcodes_test extends \phpbb_database_test_case
 		$url = 'https://www.youtube.com/watch?v=sP4NMoJcFd4';
 		$bbvideo = '[bbvideo]' . $url . '[/bbvideo]';
 		$legacy = '[BBVIDEO=640,360]' . $url . '[/BBVIDEO]';
+		$standalone = '[bbvideo url="' . $url . '"]';
 		$media = '[media]' . $url . '[/media]';
 
 		$this->user->data['user_id'] = ANONYMOUS;
 		$this->bbcodes_manager()->allow_custom_bbcodes($service);
-		foreach ([$bbvideo, $legacy] as $message)
+		foreach ([$bbvideo, $legacy, $standalone] as $message)
 		{
 			$service->parse($message);
 			self::assertSame([['UNAUTHORISED_BBCODE', '[bbvideo]']], $service->get_errors());
@@ -384,7 +385,7 @@ class bbcodes_test extends \phpbb_database_test_case
 		$parser->disablePlugin('MediaEmbed');
 		$this->user->data['user_id'] = 2;
 		$this->bbcodes_manager()->allow_custom_bbcodes($service);
-		foreach ([$bbvideo, $legacy, $media] as $message)
+		foreach ([$bbvideo, $legacy, $standalone, $media] as $message)
 		{
 			self::assertStringContainsString('<YOUTUBE ', $service->parse($message));
 			self::assertSame([], $service->get_errors());
@@ -392,6 +393,7 @@ class bbcodes_test extends \phpbb_database_test_case
 		self::assertStringNotContainsString('<YOUTUBE ', $service->parse($url));
 		$parser->disableTag('MEDIA');
 		self::assertStringNotContainsString('<YOUTUBE ', $service->parse($bbvideo));
+		self::assertStringNotContainsString('<YOUTUBE ', $service->parse($standalone));
 	}
 
 	/**
