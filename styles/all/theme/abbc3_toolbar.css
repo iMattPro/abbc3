@@ -5,6 +5,7 @@
 	--abbc3-border: rgba(127, 127, 127, 0.32);
 	--abbc3-surface: rgba(127, 127, 127, 0.09);
 	--abbc3-surface-strong: rgba(127, 127, 127, 0.16);
+	position: relative;
 	box-sizing: border-box;
 	width: 80%;
 	max-width: 100%;
@@ -149,10 +150,11 @@
 }
 
 .abbc3-menu__panel {
-	position: fixed;
+	position: absolute;
 	z-index: 10000;
 	display: grid;
 	box-sizing: border-box;
+	width: max-content;
 	min-width: 10rem;
 	max-width: min(22rem, calc(100vw - 16px));
 	max-height: min(22rem, calc(100vh - 16px));

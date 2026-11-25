@@ -138,22 +138,33 @@
 	const closeToolbarMenus = toolbar => toolbar.querySelectorAll('[data-abbc3-menu]').forEach(menu => closeMenu(menu));
 
 	const positionMenu = menu => {
+		const toolbar = menu.closest('[data-abbc3-toolbar]');
 		const trigger = menu.querySelector('[data-abbc3-menu-trigger]');
 		const panel = menu.querySelector('[data-abbc3-menu-panel]');
+		const toolbarRect = toolbar.getBoundingClientRect();
 		const rect = trigger.getBoundingClientRect();
-		panel.style.minWidth = `${rect.width}px`;
+		const edge = 8;
+		const gap = 4;
+		panel.style.minWidth = `${Math.min(rect.width, window.innerWidth - 2 * edge)}px`;
+		panel.style.maxHeight = '';
 		const panelRect = panel.getBoundingClientRect();
-		const left = Math.max(8, Math.min(rect.left, window.innerWidth - panelRect.width - 8));
-		const below = rect.bottom + panelRect.height + 8 <= window.innerHeight;
-		const top = below ? rect.bottom + 4 : Math.max(8, rect.top - panelRect.height - 4);
-		panel.style.left = `${left}px`;
-		panel.style.top = `${top}px`;
+		const left = Math.max(edge, Math.min(rect.left, window.innerWidth - panelRect.width - edge));
+		const spaceBelow = window.innerHeight - rect.bottom - gap - edge;
+		const spaceAbove = rect.top - gap - edge;
+		const below = panelRect.height <= spaceBelow || spaceBelow >= spaceAbove;
+		const height = Math.min(panelRect.height, below ? spaceBelow : spaceAbove);
+		if (height < panelRect.height) panel.style.maxHeight = `${height}px`;
+		const top = below ? rect.bottom + gap : rect.top - gap - height;
+		panel.style.left = `${left - toolbarRect.left - toolbar.clientLeft}px`;
+		panel.style.top = `${top - toolbarRect.top - toolbar.clientTop}px`;
 	};
 
 	const scheduleOpenMenuPositions = () => {
 		if (!openMenus.size || menuPositionFrame !== null) return;
 		menuPositionFrame = window.requestAnimationFrame(() => {
 			menuPositionFrame = null;
+			const root = document.scrollingElement;
+			if (root && (root.scrollTop < -1 || root.scrollTop > root.scrollHeight - root.clientHeight + 1)) return;
 			openMenus.forEach(menu => {
 				const panel = menu.querySelector('[data-abbc3-menu-panel]');
 				if (!document.documentElement.contains(menu) || !panel || panel.hidden) openMenus.delete(menu);
