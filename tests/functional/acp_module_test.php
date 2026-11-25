@@ -82,7 +82,7 @@ class acp_module_test extends \phpbb_functional_test_case
 		$this->submit_setting($form, 'abbc3_auto_video', 1);
 		$crawler = self::submit($form, ['abbc3_save_scope' => 'fonts', 'abbc3_google_fonts' => "Droid Sans\nRoboto"]);
 		$this->assertContainsLang('CONFIG_UPDATED', $crawler->filter('.successbox')->text());
-		self::assertSame('0', $this->get_bbcode_display_state('pipes'));
+		self::assertSame(0, (int) $this->get_bbcode_display_state('pipes'));
 
 		// Verify ABBC3 module settings have been updated
 		$crawler = self::request('GET', 'adm/index.php?i=\vse\abbc3\acp\abbc3_module&mode=settings&sid=' . $this->sid);
@@ -101,7 +101,7 @@ class acp_module_test extends \phpbb_functional_test_case
 		$this->submit_setting($form, 'abbc3_icons_type', 'png');
 		$crawler = $this->submit_setting($form, 'abbc3_pipes', 1);
 		$this->assertContainsLang('CONFIG_UPDATED', $crawler->filter('.successbox')->text());
-		self::assertSame('1', $this->get_bbcode_display_state('pipes'));
+		self::assertSame(1, (int) $this->get_bbcode_display_state('pipes'));
 
 		// While we're here, lets enable quick reply, so we can test that later
 		$crawler = self::request('GET', "adm/index.php?i=acp_forums&icat=6&mode=manage&parent_id=1&f=2&action=edit&sid=$this->sid");

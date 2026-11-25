@@ -32,13 +32,13 @@ class custom_bbcode_modify_sql_test extends listener_base
 			],
 			[
 				[
-					'SELECT'	=> 'b.bbcode_id, b.bbcode_tag, b.bbcode_helpline',
+					'SELECT'	=> 'b.bbcode_id, b.bbcode_tag, b.bbcode_helpline, b.bbcode_match',
 					'FROM'		=> [BBCODES_TABLE => 'b'],
 					'WHERE'		=> 'b.display_on_posting = 1',
 					'ORDER_BY'	=> 'b.bbcode_tag',
 				],
 				[
-					'SELECT'	=> 'b.bbcode_id, b.bbcode_tag, b.bbcode_helpline',
+					'SELECT'	=> 'b.bbcode_id, b.bbcode_tag, b.bbcode_helpline, b.bbcode_match',
 					'FROM'		=> [BBCODES_TABLE => 'b'],
 					'WHERE'		=> 'b.display_on_posting = 1',
 					'ORDER_BY'	=> 'b.bbcode_id',

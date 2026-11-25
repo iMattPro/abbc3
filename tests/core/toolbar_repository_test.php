@@ -57,13 +57,13 @@ class toolbar_repository_test extends acp_base
 			'hidden' => [],
 		], [], [], ['highlight' => false]);
 
-		self::assertSame('1', $this->get_display_state(13));
-		self::assertSame('0', $this->get_display_state(14));
-		self::assertSame('1', $this->get_display_state(15));
+		self::assertSame(1, (int) $this->get_display_state(13));
+		self::assertSame(0, (int) $this->get_display_state(14));
+		self::assertSame(1, (int) $this->get_display_state(15));
 		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
 
 		$this->repository->sync_visibility(['highlight' => true]);
-		self::assertSame('1', $this->get_display_state(14));
+		self::assertSame(1, (int) $this->get_display_state(14));
 		self::assertSame('more', $this->get_toolbar_rows(14)[0]['placement']);
 	}
 

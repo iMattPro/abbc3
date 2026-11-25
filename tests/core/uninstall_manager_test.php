@@ -40,7 +40,7 @@ class uninstall_manager_test extends acp_base
 		$manager->prepare_disable();
 		$row = $this->get_definition(13);
 		self::assertSame($entry['fallback'], $row['bbcode_tpl']);
-		self::assertSame('0', $row['display_on_posting']);
+		self::assertSame(0, (int) $row['display_on_posting']);
 		self::assertNotNull($config_text->get('abbc3_disable_state'));
 
 		// Repeated disable step must not overwrite saved enhanced definition.
@@ -48,7 +48,7 @@ class uninstall_manager_test extends acp_base
 		$manager->restore_enable();
 		$row = $this->get_definition(13);
 		self::assertSame($entry['enhanced'], $row['bbcode_tpl']);
-		self::assertSame('1', $row['display_on_posting']);
+		self::assertSame(1, (int) $row['display_on_posting']);
 		self::assertNull($config_text->get('abbc3_disable_state'));
 	}
 
