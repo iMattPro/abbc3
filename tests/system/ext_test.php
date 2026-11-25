@@ -49,8 +49,8 @@ class ext_test extends \phpbb_test_case
 	public function ext_test_data()
 	{
 		return [
-			[ext::PHPBB_MIN_VERSION, true], // current setting is enableable
-			['3.3.0', true],
+			['3.3.5', true],
+			['3.3.4', false],
 			['4.0.0', false],
 			['3.1.0', false], // old phpbb is not enableable
 		];

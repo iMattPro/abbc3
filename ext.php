@@ -14,7 +14,7 @@ use phpbb\filesystem\exception\filesystem_exception;
 
 class ext extends \phpbb\extension\base
 {
-	const PHPBB_MIN_VERSION = '3.3.0';
+	const PHPBB_MIN_VERSION = '3.3.5';
 	const PHPBB_MAX_VERSION = '4.0.0@dev';
 	const PHP_MIN_VERSION_ID = 70200;
 	const PHPBB_LEGACY_MAX = '3.3.10'; // Max version of phpBB to use legacy settings
