@@ -21,6 +21,10 @@ class toolbar_repository
 	/** @var string */
 	protected $groups_table;
 
+	protected $layout;
+	protected $group_ids;
+	protected $group_rules;
+
 	public function __construct(driver_interface $db, $table_prefix)
 	{
 		$this->db = $db;
@@ -30,6 +34,11 @@ class toolbar_repository
 
 	public function get_layout()
 	{
+		if ($this->layout !== null)
+		{
+			return $this->layout;
+		}
+
 		$sql = 'SELECT t.*, b.bbcode_tag, b.bbcode_helpline
 			FROM ' . $this->toolbar_table . ' t
 			LEFT JOIN ' . BBCODES_TABLE . ' b ON b.bbcode_id = t.bbcode_id
@@ -42,12 +51,13 @@ class toolbar_repository
 		}
 		$this->db->sql_freeresult($result);
 
-		return $layout;
+		return $this->layout = $layout;
 	}
 
 	public function save_layout(array $placements, array $icons, array $font_icons, array $feature_states = [])
 	{
 		$layout = $this->get_layout();
+		$this->layout = null;
 		$normalized = ['primary' => [], 'more' => [], 'hidden' => []];
 		$seen = [];
 		foreach (array_keys($normalized) as $placement)
@@ -126,6 +136,7 @@ class toolbar_repository
 
 	public function sync_bbcode($bbcode_id, $tag, $display = true)
 	{
+		$this->layout = $this->group_ids = $this->group_rules = null;
 		$bbcode_id = (int) $bbcode_id;
 		$key = 'bbcode:' . strtolower(rtrim($tag, '='));
 		$sql = 'SELECT * FROM ' . $this->toolbar_table . '
@@ -263,21 +274,13 @@ class toolbar_repository
 
 	public function get_group_ids($bbcode_id)
 	{
-		$sql = 'SELECT group_id FROM ' . $this->groups_table . '
-			WHERE bbcode_id = ' . (int) $bbcode_id;
-		$result = $this->db->sql_query($sql);
-		$groups = [];
-		while ($row = $this->db->sql_fetchrow($result))
-		{
-			$groups[] = (int) $row['group_id'];
-		}
-		$this->db->sql_freeresult($result);
-
-		return $groups;
+		$this->load_group_rules();
+		return $this->group_ids[(int) $bbcode_id] ?? [];
 	}
 
 	public function set_group_ids($bbcode_id, array $group_ids)
 	{
+		$this->group_ids = $this->group_rules = null;
 		$this->db->sql_query('DELETE FROM ' . $this->groups_table . ' WHERE bbcode_id = ' . (int) $bbcode_id);
 		foreach (array_unique(array_filter(array_map('intval', $group_ids))) as $group_id)
 		{
@@ -288,24 +291,41 @@ class toolbar_repository
 
 	public function remove_bbcode($bbcode_id)
 	{
+		$this->layout = $this->group_ids = $this->group_rules = null;
 		$this->db->sql_query('DELETE FROM ' . $this->groups_table . ' WHERE bbcode_id = ' . (int) $bbcode_id);
 		$this->db->sql_query('DELETE FROM ' . $this->toolbar_table . ' WHERE bbcode_id = ' . (int) $bbcode_id);
 	}
 
 	public function get_all_group_rules()
 	{
-		$sql = 'SELECT b.bbcode_tag, g.group_id
-			FROM ' . BBCODES_TABLE . ' b
-			JOIN ' . $this->groups_table . ' g ON g.bbcode_id = b.bbcode_id
-			ORDER BY b.bbcode_id, g.group_id';
+		$this->load_group_rules();
+		return $this->group_rules;
+	}
+
+	protected function load_group_rules()
+	{
+		if ($this->group_ids !== null)
+		{
+			return;
+		}
+
+		$sql = 'SELECT g.bbcode_id, g.group_id, b.bbcode_tag
+			FROM ' . $this->groups_table . ' g
+			LEFT JOIN ' . BBCODES_TABLE . ' b ON b.bbcode_id = g.bbcode_id
+			ORDER BY g.bbcode_id, g.group_id';
 		$result = $this->db->sql_query($sql);
+		$ids = [];
 		$rules = [];
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$rules[$row['bbcode_tag']][] = (int) $row['group_id'];
+			$ids[(int) $row['bbcode_id']][] = (int) $row['group_id'];
+			if ($row['bbcode_tag'] !== null)
+			{
+				$rules[$row['bbcode_tag']][] = (int) $row['group_id'];
+			}
 		}
 		$this->db->sql_freeresult($result);
-
-		return $rules;
+		$this->group_ids = $ids;
+		$this->group_rules = $rules;
 	}
 }

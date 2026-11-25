@@ -85,10 +85,6 @@ class bbcodes_display
 	 */
 	public function display_custom_bbcodes($custom_tags, $row)
 	{
-		if ($this->toolbar_repository)
-		{
-			$this->toolbar_repository->sync_bbcode((int) $row['bbcode_id'], $row['bbcode_tag'], true);
-		}
 		$icons = $this->get_icons();
 
 		$icon_tag = strtolower(rtrim($row['bbcode_tag'], '='));

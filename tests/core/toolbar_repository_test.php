@@ -83,6 +83,73 @@ class toolbar_repository_test extends acp_base
 		self::assertSame('', $row['font_icon']);
 	}
 
+	public function test_editor_reads_layout_and_groups_once_without_synchronizing()
+	{
+		$this->insert_button('bbcode:font', 13, 'hidden', 1, 'font');
+		$display = $this->getMockBuilder('\vse\abbc3\core\bbcodes_display')
+			->setConstructorArgs([
+				$this->createMock('\phpbb\auth\auth'),
+				new \phpbb\config\config([]),
+				$this->db,
+				$this->createMock('\phpbb\extension\manager'),
+				$this->user,
+				'',
+				$this->repository,
+			])
+			->onlyMethods(['get_icons'])
+			->getMock();
+		$display->method('get_icons')->willReturn([]);
+
+		$before = $this->db->sql_num_queries();
+		$display->display_custom_bbcodes([], ['bbcode_id' => 13, 'bbcode_tag' => 'font=']);
+		$single = $display->display_custom_bbcodes([], ['bbcode_id' => 14, 'bbcode_tag' => 'line', 'bbcode_match' => '[line]']);
+		self::assertSame('', $single['ABBC3_CLOSE']);
+		self::assertSame('hidden', $this->repository->get_layout()['bbcode:font']['placement']);
+		self::assertSame([1], $this->repository->get_all_group_rules()['align=']);
+		self::assertSame([1], $this->repository->get_group_ids(15));
+		self::assertCount(1, $this->repository->get_layout());
+		self::assertSame($before + 2, $this->db->sql_num_queries());
+
+		$this->repository->set_group_ids(15, [2]);
+		self::assertSame([2], $this->repository->get_group_ids(15));
+	}
+
+	public function test_toolbar_migration_retries_keep_existing_rows_and_deduplicate_groups()
+	{
+		global $phpbb_root_path, $phpEx;
+		$this->insert_button('bbcode:font', 13, 'hidden', 3, 'admin-icon');
+		$tools = (new \phpbb\db\tools\factory())->get($this->db);
+		$migration = new \vse\abbc3\migrations\v3312_m21_toolbar(
+			new \phpbb\config\config([]),
+			$this->db,
+			$tools,
+			$phpbb_root_path,
+			$phpEx,
+			'phpbb_'
+		);
+
+		$tools->sql_column_add(BBCODES_TABLE, 'bbcode_order', ['UINT', 0]);
+		$tools->sql_column_add(BBCODES_TABLE, 'bbcode_group', ['VCHAR:255', '']);
+		try
+		{
+			$this->db->sql_query("UPDATE phpbb_bbcodes SET bbcode_group = '1,1,2,0,-1' WHERE bbcode_id = 15");
+			$migration->migrate_toolbar();
+			$migration->migrate_groups();
+			$migration->migrate_toolbar();
+			$migration->migrate_groups();
+		}
+		finally
+		{
+			$tools->sql_column_remove(BBCODES_TABLE, 'bbcode_group');
+			$tools->sql_column_remove(BBCODES_TABLE, 'bbcode_order');
+		}
+
+		self::assertCount(19, $this->repository->get_layout());
+		self::assertSame('admin-icon', $this->repository->get_layout()['bbcode:font']['icon']);
+		self::assertSame('hidden', $this->repository->get_layout()['bbcode:font']['placement']);
+		self::assertSame([1, 2], $this->repository->get_group_ids(15));
+	}
+
 	protected function insert_button($key, $bbcode_id, $placement, $order, $icon)
 	{
 		$row = [
