@@ -1,5 +1,5 @@
-{% if abbc3_google_fonts is iterable %}
+{% if abbc3_google_fonts is iterable and abbc3_google_fonts|length %}
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	{% if abbc3_google_fonts|length %}<link href="https://fonts.googleapis.com/css2?{% for font in abbc3_google_fonts %}family={{ font|url_encode }}{% if not loop.last %}&amp;{% endif %}{% endfor %}&amp;display=swap" rel="stylesheet">{% endif %}
+	<link href="https://fonts.googleapis.com/css2?{% for font in abbc3_google_fonts %}family={{ font|url_encode }}{% if not loop.last %}&amp;{% endif %}{% endfor %}&amp;display=swap" rel="stylesheet">
 {% endif %}
