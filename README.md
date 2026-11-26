@@ -29,7 +29,7 @@ Install Advanced [BBCode] Box today and unlock a world of enhanced formatting po
 * Multiple languages supported. View the pre-installed [localizations](https://github.com/iMattPro/abbc3/tree/master/language).
 
 ## Minimum Requirements
-* phpBB 3.3.x
+* phpBB 3.3.5
 * PHP 7.2 or higher
 
 ## Install

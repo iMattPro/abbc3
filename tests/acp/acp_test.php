@@ -450,7 +450,7 @@ class acp_test extends \phpbb_database_test_case
 			->method('variable')
 			->willReturnMap([
 				['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'fonts'],
-				['abbc3_google_fonts', '', false, \phpbb\request\request_interface::REQUEST, $input],
+				['abbc3_google_fonts', '', true, \phpbb\request\request_interface::REQUEST, $input],
 			]);
 
 		try {
@@ -530,7 +530,7 @@ class acp_test extends \phpbb_database_test_case
 		$this->request->method('is_set_post')->willReturn(true);
 		$this->request->method('variable')->willReturnMap([
 			['abbc3_save_scope', '', false, \phpbb\request\request_interface::REQUEST, 'fonts'],
-			['abbc3_google_fonts', '', false, \phpbb\request\request_interface::REQUEST, $fonts],
+			['abbc3_google_fonts', '', true, \phpbb\request\request_interface::REQUEST, $fonts],
 		]);
 
 		try

@@ -52,8 +52,8 @@
 				<strong class="abbc3-live-preview__title">{{ lang('ABBC3_LIVE_PREVIEW') }}</strong>
 				<div class="abbc3-live-preview__actions">
 					<span class="abbc3-format-picker" role="group" aria-label="{{ lang('ABBC3_ICONS_TYPE')|e('html_attr') }}">
-						<label><input type="radio" name="abbc3_icons_type" value="png" data-autosave-setting{% if ABBC3_ICONS_TYPE == 'png' %} checked{% endif %}><span>PNG</span></label>
-						<label><input type="radio" name="abbc3_icons_type" value="svg" data-autosave-setting{% if ABBC3_ICONS_TYPE == 'svg' %} checked{% endif %}><span>SVG</span></label>
+						<label><input type="radio" name="abbc3_icons_type" value="png" data-autosave-setting{% if ABBC3_ICONS_TYPE == 'png' %} checked{% endif %}><span>{{ lang('PNG') }}</span></label>
+						<label><input type="radio" name="abbc3_icons_type" value="svg" data-autosave-setting{% if ABBC3_ICONS_TYPE == 'svg' %} checked{% endif %}><span>{{ lang('SVG') }}</span></label>
 					</span>
 				</div>
 			</div>
@@ -116,7 +116,12 @@
 		<section class="abbc3-setting-row abbc3-setting-row--stacked" aria-labelledby="abbc3-google-fonts-title">
 			<div>
 				<h3 id="abbc3-google-fonts-title"><label for="abbc3_google_fonts">{{ lang('ABBC3_GOOGLE_FONTS') }}</label></h3>
-				<p>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}{% if not S_ALLOW_CDN %}<br>{{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}{% endif %}</p>
+				<p>{{ lang('ABBC3_GOOGLE_FONTS_INFO') }}</p>
+				{% if not S_ALLOW_CDN %}
+					<p class="abbc3-integration-status">
+						{{ _self.settings_icon('info-circle', 'circle-info') }} {{ lang('ABBC3_GOOGLE_FONTS_NOTE') }}
+					</p>
+				{% endif %}
 			</div>
 			<div class="abbc3-font-editor">
 				<fieldset class="abbc3-font-picker" data-font-picker data-catalog-url="{{ ROOT_PATH }}ext/vse/abbc3/adm/style/google-font-families.json"

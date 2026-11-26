@@ -71,7 +71,7 @@ class acp_module_test extends \phpbb_functional_test_case
 		self::assertSame(1, $crawler->filter('[data-inspector-icon-select] option[value=""]')->count());
 		self::assertSame(4, $crawler->filter('.abbc3-settings-group .abbc3-setting-row input[type="checkbox"]')->count());
 		self::assertSame(1, $crawler->filter('.abbc3-settings-group + fieldset [data-abbc3-composer]')->count());
-		self::assertSame(1, $crawler->filter('.abbc3-integration-status')->count());
+		self::assertSame(2, $crawler->filter('.abbc3-integration-status')->count());
 		self::assertStringNotContainsString('BBCODE_B_HELP', $crawler->text());
 		self::assertSame($this->lang('BBCODE_B_HELP'), $crawler->filter('[data-key="core:bold"] [data-item-select]')->attr('title'));
 		self::assertLessThan(strpos($crawler->html(), $this->lang('ABBC3_LEGEND_ADD_ONS')), strpos($crawler->html(), $this->lang('ABBC3_TOOLBAR_COMPOSER')));

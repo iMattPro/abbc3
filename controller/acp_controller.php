@@ -322,7 +322,7 @@ class acp_controller
 	 */
 	protected function save_google_fonts()
 	{
-		$fonts = $this->request->variable('abbc3_google_fonts', '');
+		$fonts = $this->request->variable('abbc3_google_fonts', '', true);
 		$stored_value = $this->config_text->get('abbc3_google_fonts');
 		$stored_fonts = json_decode($stored_value, true);
 
