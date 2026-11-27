@@ -17,6 +17,11 @@
 	display: none;
 }
 
+.abbc3-toolbar .abbc3-toolbar__group,
+.abbc3-toolbar .abbc3-menu {
+	margin-bottom: 0;
+}
+
 .abbc3-toolbar__group {
 	display: flex;
 	flex-wrap: wrap;
@@ -31,6 +36,11 @@
 	padding-inline-start: var(--abbc3-gap);
 }
 
+.abbc3-toolbar__surface,
+.abbc3-more__tray {
+	padding: 3px;
+}
+
 .abbc3-toolbar__surface {
 	display: flex;
 	flex-wrap: wrap;
@@ -38,7 +48,6 @@
 	gap: var(--abbc3-gap);
 	box-sizing: border-box;
 	min-height: 38px;
-	padding: 3px;
 	background: var(--abbc3-surface);
 	border: 1px solid var(--abbc3-border);
 	border-radius: 6px;
@@ -257,8 +266,7 @@
 	box-sizing: border-box;
 	width: 100%;
 	max-block-size: 12rem;
-	margin-top: 4px;
-	padding: 7px;
+	margin-top: 2px;
 	overflow-y: auto;
 	background: var(--abbc3-surface);
 	border: 1px solid var(--abbc3-border);
