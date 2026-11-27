@@ -372,6 +372,62 @@
 	outline-offset: 2px;
 }
 
+.abbc3-acp-action {
+	appearance: none;
+	justify-self: start;
+	box-sizing: border-box;
+	min-block-size: 30px;
+	max-inline-size: 100%;
+	padding: 4px 10px;
+	font: inherit;
+	font-weight: bold;
+	line-height: 1.25;
+	white-space: normal;
+	overflow-wrap: anywhere;
+	color: #115098;
+	background: #f7fbfd;
+	border: 1px solid #9bbccc;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.abbc3-acp-action:enabled:hover {
+	background: #edf3fa;
+	border-color: #115098;
+}
+
+.abbc3-acp-action:enabled:active {
+	background: #deebf5;
+}
+
+.abbc3-acp-action--primary {
+	color: #fff;
+	background: #115098;
+	border-color: #115098;
+}
+
+.abbc3-acp-action--primary:enabled:hover {
+	background: #0d407c;
+	border-color: #0d407c;
+}
+
+.abbc3-acp-action--primary:enabled:active {
+	background: #0a3363;
+	border-color: #0a3363;
+}
+
+.abbc3-acp-action:focus-visible {
+	outline: 2px solid #115098;
+	outline-offset: 2px;
+}
+
+.abbc3-acp-action:disabled {
+	color: #666;
+	background: #eee;
+	border-color: #c8c8c8;
+	cursor: default;
+}
+
 .abbc3-font-editor .abbc3-font-picker {
 	min-inline-size: 0;
 	max-width: 560px;

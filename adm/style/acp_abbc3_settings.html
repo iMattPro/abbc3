@@ -86,7 +86,7 @@
 				<button type="button" data-inspector-move="up" title="{{ lang('MOVE_UP')|e('html_attr') }}" aria-label="{{ lang('MOVE_UP')|e('html_attr') }}">{{ _self.settings_icon('arrow-circle-up', 'circle-arrow-up', 'acp-icon acp-icon-move-up') }}</button>
 				<button type="button" data-inspector-move="down" title="{{ lang('MOVE_DOWN')|e('html_attr') }}" aria-label="{{ lang('MOVE_DOWN')|e('html_attr') }}">{{ _self.settings_icon('arrow-circle-down', 'circle-arrow-down', 'acp-icon acp-icon-move-down') }}</button>
 			</span>
-			<button type="button" class="button2" data-remove-divider hidden>{{ lang('ABBC3_REMOVE_DIVIDER') }}</button>
+			<button type="button" class="abbc3-acp-action" data-remove-divider hidden>{{ lang('ABBC3_REMOVE_DIVIDER') }}</button>
 		</div>
 
 		<div class="abbc3-composer" data-abbc3-composer>
@@ -94,7 +94,7 @@
 			{% for placement in ['primary', 'more', 'hidden'] %}
 				<section class="abbc3-composer-column" data-composer-column data-placement="{{ placement }}">
 					<h3>{{ lang('ABBC3_TOOLBAR_' ~ placement|upper) }} <span class="abbc3-column-count" data-column-count></span></h3>
-					{% if placement != 'hidden' %}<button type="button" class="button2" data-add-divider>{{ lang('ABBC3_ADD_DIVIDER') }}</button>{% endif %}
+					{% if placement != 'hidden' %}<button type="button" class="abbc3-acp-action" data-add-divider>{{ lang('ABBC3_ADD_DIVIDER') }}</button>{% endif %}
 					<ul class="abbc3-composer-list" data-composer-list>
 						{% set rows = attribute(_context, 'toolbar_' ~ placement) %}
 						{% for button in rows %}
@@ -150,7 +150,7 @@
 				</fieldset>
 				<textarea id="abbc3_google_fonts" cols="40" rows="6" name="abbc3_google_fonts" placeholder="Roboto&#10;Droid Sans&#10;Noto Sans JP" aria-describedby="abbc3_font_status" data-google-fonts>{{ S_ABBC3_GOOGLE_FONTS }}</textarea>
 				<div class="abbc3-font-actions">
-					<button type="button" class="button1" data-save-fonts>{{ lang('ABBC3_SAVE_FONTS') }}</button>
+					<button type="button" class="abbc3-acp-action abbc3-acp-action--primary" data-save-fonts>{{ lang('ABBC3_SAVE_FONTS') }}</button>
 					<span id="abbc3_font_status" class="abbc3-font-status" data-font-status role="status"></span>
 				</div>
 			</div>
