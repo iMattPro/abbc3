@@ -265,8 +265,13 @@
 	border-radius: 5px;
 }
 
-.abbc3-inspector[hidden] {
+.abbc3-inspector[hidden],
+.abbc3-inspector [hidden] {
 	display: none;
+}
+
+.abbc3-inspector--divider {
+	grid-template-columns: minmax(0, 1fr) minmax(120px, 165px) auto auto;
 }
 
 .abbc3-inspector__identity {
@@ -522,6 +527,14 @@
 .abbc3-composer-item--selected {
 	border-color: #0a8ed0;
 	box-shadow: 0 0 0 1px #0a8ed0;
+}
+
+.abbc3-composer-item--divider {
+	border-style: dashed;
+}
+
+.abbc3-composer-column [data-add-divider] {
+	margin: 0 2px 6px;
 }
 
 .abbc3-drag {

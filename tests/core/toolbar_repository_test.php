@@ -9,6 +9,7 @@
 namespace vse\abbc3\tests\core;
 
 use vse\abbc3\core\toolbar_repository;
+use vse\abbc3\core\toolbar_registry;
 
 class toolbar_repository_test extends acp_base
 {
@@ -99,6 +100,42 @@ class toolbar_repository_test extends acp_base
 		$row = $this->get_toolbar_rows(14)[0];
 		self::assertSame('highlight', $row['icon']);
 		self::assertSame('', $row['font_icon']);
+	}
+
+	public function test_save_layout_replaces_ordered_dividers_in_visible_placements()
+	{
+		$this->insert_button('bbcode:font', 13, 'primary', 1, 'font');
+		$this->insert_button('bbcode:highlight', 14, 'primary', 2, 'highlight');
+		$placements = [
+			'primary' => ['bbcode:font', 'separator', 'separator', 'bbcode:highlight'],
+			'more' => ['separator'],
+			'hidden' => ['separator'],
+		];
+
+		$this->repository->save_layout($placements, ['separator' => 'star'], []);
+		$this->repository->save_layout($placements, [], []);
+		$repository = new toolbar_repository($this->db, 'phpbb_');
+		$registry = new toolbar_registry($repository);
+		$layout = $registry->get_admin_buttons();
+		self::assertSame(['bbcode', 'separator', 'separator', 'bbcode'], array_column($layout['primary'], 'type'));
+		self::assertSame(['separator'], array_column($layout['more'], 'type'));
+		self::assertSame([], $layout['hidden']);
+		self::assertSame('', $layout['primary'][1]['icon']);
+		self::assertSame(['separator', 'separator'], array_column($registry->get_editor_buttons()['primary'], 'type'));
+		self::assertSame(1, (int) $this->get_display_state(13));
+		self::assertSame(1, (int) $this->get_display_state(14));
+
+		$repository->save_layout([
+			'primary' => ['bbcode:font'],
+			'more' => ['bbcode:highlight', 'separator'],
+		], [], []);
+		$layout = $registry->get_admin_buttons();
+		self::assertSame(['bbcode'], array_column($layout['primary'], 'type'));
+		self::assertSame(['bbcode', 'separator'], array_column($layout['more'], 'type'));
+
+		$repository->save_layout(['primary' => ['bbcode:font', 'bbcode:highlight']], [], []);
+		self::assertSame(['bbcode', 'bbcode'], array_column($registry->get_admin_buttons()['primary'], 'type'));
+		self::assertSame([], $registry->get_admin_buttons()['more']);
 	}
 
 	/**

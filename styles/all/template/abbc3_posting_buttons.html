@@ -42,27 +42,49 @@
 	{% endif %}
 {% endmacro %}
 
+{% macro groups(buttons, icons, fonts, capabilities, max_font_size, root) %}
+	{% set groups = [] %}
+	{% set group = [] %}
+	{% for button in buttons %}
+		{% if button.TYPE == 'separator' %}
+			{% if group %}
+				{% set groups = groups|merge([group]) %}
+				{% set group = [] %}
+			{% endif %}
+		{% elseif not button.CONDITION or attribute(capabilities, button.CONDITION)|default(false) %}
+			{% set group = group|merge([button]) %}
+		{% endif %}
+	{% endfor %}
+	{% if group %}{% set groups = groups|merge([group]) %}{% endif %}
+	{% for group in groups %}
+		{% if groups|length > 1 %}<div class="abbc3-toolbar__group{{ not loop.first ? ' abbc3-toolbar__group--divided' }}">{% endif %}
+		{% for button in group %}{{ _self.button(button, icons, fonts, capabilities, max_font_size, root) }}{% endfor %}
+		{% if groups|length > 1 %}</div>{% endif %}
+	{% endfor %}
+{% endmacro %}
+
 {% set abbc3_capabilities = {
 	'quote': S_BBCODE_QUOTE,
 	'image': S_BBCODE_IMG,
 	'url': S_LINKS_ALLOWED,
 	'media': S_BBCODE_MEDIA
 } %}
+{% set more_controls = _self.groups(abbc3_more, ABBC3_BBCODE_ICONS, ABBC3_BBCODE_FONTS, abbc3_capabilities, MAX_FONT_SIZE, ROOT_PATH) %}
 
 {% EVENT vse_abbc3_posting_editor_buttons_before %}
 <div class="abbc3-toolbar" data-abbc3-toolbar{% if abbc3_acp_editor %} data-abbc3-acp{% endif %} data-abbc3-target="{{ constant('IN_ADMIN') is defined ? 'signature' : 'message' }}" data-wizard-url="{{ UA_ABBC3_URL_WIZARD }}" data-wizard-bbvideo="{{ UA_ABBC3_BBVIDEO_WIZARD }}" data-wizard-pipes="{{ UA_ABBC3_PIPES_WIZARD }}" data-abbc3-no-selection="{{ lang('ABBC3_NOSELECT_ERROR')|e('html_attr') }}">
 	<div class="abbc3-toolbar__surface" role="toolbar" aria-label="{{ lang('ABBC3_BBCODE_BAR')|e('html_attr') }}">
-		{% for button in abbc3_primary %}{{ _self.button(button, ABBC3_BBCODE_ICONS, ABBC3_BBCODE_FONTS, abbc3_capabilities, MAX_FONT_SIZE, ROOT_PATH) }}{% endfor %}
-		{% if abbc3_more %}
+		{{ _self.groups(abbc3_primary, ABBC3_BBCODE_ICONS, ABBC3_BBCODE_FONTS, abbc3_capabilities, MAX_FONT_SIZE, ROOT_PATH) }}
+		{% if more_controls|trim %}
 			<button type="button" class="abbc3-more__trigger" data-abbc3-more-toggle aria-expanded="false" title="{{ lang('ABBC3_MORE_BUTTONS_SHOW')|e('html_attr') }}" data-title-show="{{ lang('ABBC3_MORE_BUTTONS_SHOW')|e('html_attr') }}" data-title-hide="{{ lang('ABBC3_MORE_BUTTONS_HIDE')|e('html_attr') }}">
 				<span>{{ lang('ABBC3_MORE_BUTTONS') }}</span>
 				<span class="abbc3-more__chevron" aria-hidden="true">⌄</span>
 			</button>
 		{% endif %}
 	</div>
-	{% if abbc3_more %}
+	{% if more_controls|trim %}
 		<div class="abbc3-more__tray" data-abbc3-more-tray role="group" aria-label="{{ lang('ABBC3_MORE_BUTTONS')|e('html_attr') }}" hidden>
-			{% for button in abbc3_more %}{{ _self.button(button, ABBC3_BBCODE_ICONS, ABBC3_BBCODE_FONTS, abbc3_capabilities, MAX_FONT_SIZE, ROOT_PATH) }}{% endfor %}
+			{{ more_controls }}
 		</div>
 	{% endif %}
 </div>

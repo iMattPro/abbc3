@@ -50,11 +50,12 @@ class toolbar_registry
 
 		foreach ($layout as $key => $row)
 		{
-			if (!isset($definitions[$key]))
+			$is_separator = $row['button_type'] === toolbar_repository::SEPARATOR;
+			if (!$is_separator && !isset($definitions[$key]))
 			{
 				continue;
 			}
-			$button = $definitions[$key];
+			$button = $is_separator ? $this->separator() : $definitions[$key];
 			$button['key'] = $key;
 			$button['icon'] = $row['icon'];
 			$button['font_icon'] = $row['font_icon'];
@@ -98,12 +99,12 @@ class toolbar_registry
 		foreach ($layout as $key => $row)
 		{
 			$name = !empty($row['bbcode_tag']) ? strtolower(rtrim($row['bbcode_tag'], '=')) : preg_replace('/^[^:]+:/', '', $key);
-			$button = $definitions[$key] ?? [
+			$button = $row['button_type'] === toolbar_repository::SEPARATOR ? $this->separator() : ($definitions[$key] ?? [
 				'type' => $row['button_type'],
 				'name' => $name,
 				'label' => !empty($row['bbcode_helpline']) ? html_entity_decode($row['bbcode_helpline'], ENT_QUOTES, 'UTF-8') : $name,
 				'condition' => '',
-			];
+			]);
 			$button['key'] = $key;
 			$button['icon'] = $row['icon'];
 			$button['font_icon'] = $row['font_icon'];
@@ -119,6 +120,16 @@ class toolbar_registry
 		unset($group);
 
 		return $buttons;
+	}
+
+	/**
+	 * Build the definition for a visual divider.
+	 *
+	 * @return array Divider definition
+	 */
+	protected function separator()
+	{
+		return ['type' => toolbar_repository::SEPARATOR, 'name' => '', 'label' => 'ABBC3_TOOLBAR_DIVIDER'];
 	}
 
 	/**

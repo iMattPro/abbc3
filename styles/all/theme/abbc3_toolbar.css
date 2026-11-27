@@ -17,6 +17,20 @@
 	display: none;
 }
 
+.abbc3-toolbar__group {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--abbc3-gap);
+	box-sizing: border-box;
+	max-inline-size: 100%;
+}
+
+.abbc3-toolbar__group--divided {
+	border-inline-start: 1px solid var(--abbc3-border);
+	padding-inline-start: var(--abbc3-gap);
+}
+
 .abbc3-toolbar__surface {
 	display: flex;
 	flex-wrap: wrap;

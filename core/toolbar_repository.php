@@ -12,6 +12,8 @@ use phpbb\db\driver\driver_interface;
 
 class toolbar_repository
 {
+	const SEPARATOR = 'separator';
+
 	/** @var driver_interface */
 	protected $db;
 
@@ -68,7 +70,7 @@ class toolbar_repository
 	/**
 	 * Save placements and icons, then update the posting visibility of registered BBCodes.
 	 *
-	 * @param array $placements Ordered button keys grouped by placement
+	 * @param array $placements Ordered button keys and separator markers grouped by placement
 	 * @param array $icons Image icon names keyed by button key
 	 * @param array $font_icons Font icon names keyed by button key
 	 * @param array $feature_states Enabled flags keyed by BBCode tag
@@ -80,12 +82,19 @@ class toolbar_repository
 		$layout = $this->get_layout();
 		$this->layout = null;
 		$normalized = ['primary' => [], 'more' => [], 'hidden' => []];
+		$layout = array_filter($layout, static function ($row) {
+			return $row['button_type'] !== self::SEPARATOR;
+		});
 		$seen = [];
 		foreach (array_keys($normalized) as $placement)
 		{
 			foreach (($placements[$placement] ?? []) as $key)
 			{
-				if (isset($layout[$key]) && !isset($seen[$key]))
+				if ($key === self::SEPARATOR && $placement !== 'hidden')
+				{
+					$normalized[$placement][] = self::SEPARATOR;
+				}
+				else if (isset($layout[$key]) && !isset($seen[$key]))
 				{
 					$normalized[$placement][] = $key;
 					$seen[$key] = true;
@@ -103,6 +112,8 @@ class toolbar_repository
 		$this->db->sql_transaction('begin');
 		try
 		{
+			$this->db->sql_query('DELETE FROM ' . $this->toolbar_table . "
+				WHERE button_type = '" . self::SEPARATOR . "'");
 			foreach (['primary', 'more', 'hidden'] as $placement)
 			{
 				foreach ($normalized[$placement] as $order => $key)
@@ -111,6 +122,15 @@ class toolbar_repository
 						'placement' => $placement,
 						'sort_order' => $order + 1,
 					];
+					if ($key === self::SEPARATOR)
+					{
+						$sql_ary += [
+							'button_key' => self::SEPARATOR . ':' . $placement . ':' . ($order + 1),
+							'button_type' => self::SEPARATOR,
+						];
+						$this->db->sql_query('INSERT INTO ' . $this->toolbar_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary));
+						continue;
+					}
 					if (array_key_exists($key, $icons) && preg_match('/^(?:[a-z0-9_-]{1,64})?$/i', $icons[$key]))
 					{
 						$sql_ary['icon'] = $icons[$key];

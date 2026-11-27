@@ -18,6 +18,14 @@
 <img class="abbc3-settings-logo" src="{{ ROOT_PATH }}ext/vse/abbc3/adm/images/abbc3logo-wordmark.png" alt="{{ lang('ACP_ABBC3_MODULE')|e('html_attr') }}" width="360" height="40">
 <p>{{ lang('ABBC3_SETTINGS_EXPLAIN') }}</p>
 
+{% macro divider(placement) %}
+	<li class="abbc3-composer-item abbc3-composer-item--divider" data-type="separator" data-label="{{ lang('ABBC3_TOOLBAR_DIVIDER')|e('html_attr') }}">
+		<button type="button" class="abbc3-drag" data-drag-handle aria-label="{{ lang('ABBC3_DRAG_BUTTON', lang('ABBC3_TOOLBAR_DIVIDER'))|e('html_attr') }}">⠿</button>
+		<button type="button" class="abbc3-item-select abbc3-item-select--text" data-item-select aria-pressed="false">{{ lang('ABBC3_TOOLBAR_DIVIDER') }}</button>
+		<input type="hidden" name="toolbar_{{ placement }}[]" value="separator" data-toolbar-key>
+	</li>
+{% endmacro %}
+
 <noscript><div class="errorbox"><h3>{{ lang('ERROR') }}</h3><p>{{ lang('ABBC3_JAVASCRIPT_REQUIRED') }}</p></div></noscript>
 
 <form id="abbc3_settings" method="post" action="{{ U_ACTION }}"
@@ -78,24 +86,31 @@
 				<button type="button" data-inspector-move="up" title="{{ lang('MOVE_UP')|e('html_attr') }}" aria-label="{{ lang('MOVE_UP')|e('html_attr') }}">{{ _self.settings_icon('arrow-circle-up', 'circle-arrow-up', 'acp-icon acp-icon-move-up') }}</button>
 				<button type="button" data-inspector-move="down" title="{{ lang('MOVE_DOWN')|e('html_attr') }}" aria-label="{{ lang('MOVE_DOWN')|e('html_attr') }}">{{ _self.settings_icon('arrow-circle-down', 'circle-arrow-down', 'acp-icon acp-icon-move-down') }}</button>
 			</span>
+			<button type="button" class="button2" data-remove-divider hidden>{{ lang('ABBC3_REMOVE_DIVIDER') }}</button>
 		</div>
 
 		<div class="abbc3-composer" data-abbc3-composer>
+			<template data-divider-template>{{ _self.divider('primary') }}</template>
 			{% for placement in ['primary', 'more', 'hidden'] %}
 				<section class="abbc3-composer-column" data-composer-column data-placement="{{ placement }}">
 					<h3>{{ lang('ABBC3_TOOLBAR_' ~ placement|upper) }} <span class="abbc3-column-count" data-column-count></span></h3>
+					{% if placement != 'hidden' %}<button type="button" class="button2" data-add-divider>{{ lang('ABBC3_ADD_DIVIDER') }}</button>{% endif %}
 					<ul class="abbc3-composer-list" data-composer-list>
 						{% set rows = attribute(_context, 'toolbar_' ~ placement) %}
 						{% for button in rows %}
-							{% set icon_path = attribute(attribute(ABBC3_ICON_PATHS, ABBC3_ICONS_TYPE), button.ICON)|default('') %}
-							{% set has_item_icon = button.TYPE == 'size' or button.NAME == 'font' or button.FONT_ICON or icon_path %}
-							<li class="abbc3-composer-item" data-key="{{ button.KEY }}" data-type="{{ button.TYPE }}" data-name="{{ button.NAME }}" data-label="{{ lang(button.LABEL)|e('html_attr') }}">
-								<button type="button" class="abbc3-drag" data-drag-handle aria-label="{{ lang('ABBC3_DRAG_BUTTON', lang(button.LABEL))|e('html_attr') }}">⠿</button>
-								<button type="button" class="abbc3-item-select{{ not has_item_icon ? ' abbc3-item-select--text' }}" data-item-select aria-pressed="false" title="{{ lang(button.LABEL)|e('html_attr') }}"><span class="abbc3-item-icon" data-item-icon aria-hidden="true"{% if not has_item_icon %} hidden{% endif %}>{% if button.TYPE == 'size' or button.NAME == 'font' %}<span>Aa</span>{% elseif button.FONT_ICON %}<i class="fa fa-{{ button.FONT_ICON }} fa-fw" aria-hidden="true"></i>{% elseif icon_path %}<img src="{{ ROOT_PATH ~ icon_path }}" alt="">{% endif %}</span><span class="abbc3-item-meta"><strong>[{{ button.NAME }}]</strong></span></button>
-								<input type="hidden" name="toolbar_{{ placement }}[]" value="{{ button.KEY }}" data-toolbar-key>
-								<input type="hidden" name="toolbar_icon[{{ button.KEY }}]" value="{{ button.ICON }}" data-icon-value>
-								<input type="hidden" name="toolbar_font_icon[{{ button.KEY }}]" value="{{ button.FONT_ICON }}" data-font-icon-value>
-							</li>
+							{% if button.TYPE == 'separator' %}
+								{{ _self.divider(placement) }}
+							{% else %}
+								{% set icon_path = attribute(attribute(ABBC3_ICON_PATHS, ABBC3_ICONS_TYPE), button.ICON)|default('') %}
+								{% set has_item_icon = button.TYPE == 'size' or button.NAME == 'font' or button.FONT_ICON or icon_path %}
+								<li class="abbc3-composer-item" data-key="{{ button.KEY }}" data-type="{{ button.TYPE }}" data-name="{{ button.NAME }}" data-label="{{ lang(button.LABEL)|e('html_attr') }}">
+									<button type="button" class="abbc3-drag" data-drag-handle aria-label="{{ lang('ABBC3_DRAG_BUTTON', lang(button.LABEL))|e('html_attr') }}">⠿</button>
+									<button type="button" class="abbc3-item-select{{ not has_item_icon ? ' abbc3-item-select--text' }}" data-item-select aria-pressed="false" title="{{ lang(button.LABEL)|e('html_attr') }}"><span class="abbc3-item-icon" data-item-icon aria-hidden="true"{% if not has_item_icon %} hidden{% endif %}>{% if button.TYPE == 'size' or button.NAME == 'font' %}<span>Aa</span>{% elseif button.FONT_ICON %}<i class="fa fa-{{ button.FONT_ICON }} fa-fw" aria-hidden="true"></i>{% elseif icon_path %}<img src="{{ ROOT_PATH ~ icon_path }}" alt="">{% endif %}</span><span class="abbc3-item-meta"><strong>[{{ button.NAME }}]</strong></span></button>
+									<input type="hidden" name="toolbar_{{ placement }}[]" value="{{ button.KEY }}" data-toolbar-key>
+									<input type="hidden" name="toolbar_icon[{{ button.KEY }}]" value="{{ button.ICON }}" data-icon-value>
+									<input type="hidden" name="toolbar_font_icon[{{ button.KEY }}]" value="{{ button.FONT_ICON }}" data-font-icon-value>
+								</li>
+							{% endif %}
 						{% endfor %}
 					</ul>
 				</section>

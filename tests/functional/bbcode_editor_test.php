@@ -10,6 +10,8 @@
 
 namespace vse\abbc3\tests\functional;
 
+use vse\abbc3\core\toolbar_repository;
+
 /**
 * @group functional
 */
@@ -43,6 +45,46 @@ class bbcode_editor_test extends \phpbb_functional_test_case
 		$crawler = self::request('GET', 'posting.php?mode=post&f=2&sid=' . $this->sid);
 		$this->run_checks($crawler);
 		self::assertSame(0, $crawler->filter('[data-abbc3-acp]')->count());
+	}
+
+	public function test_dividers_only_split_visible_controls()
+	{
+		$repository = new toolbar_repository($this->db, self::$config['table_prefix']);
+		$original = [];
+		foreach ($repository->get_layout() as $row)
+		{
+			$original[$row['placement']][] = $row['button_type'] === toolbar_repository::SEPARATOR ? toolbar_repository::SEPARATOR : $row['button_key'];
+		}
+
+		try
+		{
+			$repository->save_layout([
+				'primary' => ['separator', 'core:bold', 'separator', 'core:media', 'separator', 'core:italic', 'separator'],
+				'more' => ['separator', 'core:underline', 'separator', 'core:image', 'separator'],
+			], [], []);
+
+			$url = 'posting.php?mode=post&f=2&sid=' . $this->sid;
+			$crawler = self::request('GET', $url);
+			$groups = $crawler->filter('.abbc3-toolbar__surface .abbc3-toolbar__group');
+			self::assertCount(2, $groups);
+			self::assertCount(1, $groups->eq(0)->filter('[data-abbc3-name="bold"]'));
+			self::assertCount(1, $groups->eq(1)->filter('[data-abbc3-name="italic"]'));
+			self::assertCount(1, $crawler->filter('.abbc3-toolbar__surface .abbc3-toolbar__group--divided'));
+			self::assertCount(1, $crawler->filter('.abbc3-more__tray .abbc3-toolbar__group--divided [data-abbc3-name="img"]'));
+
+			$repository->save_layout([
+				'primary' => ['core:bold', 'separator', 'core:media'],
+				'more' => ['separator', 'core:media', 'separator'],
+			], [], []);
+			$crawler = self::request('GET', $url);
+			self::assertCount(1, $crawler->filter('.abbc3-toolbar__surface > [data-abbc3-name="bold"]'));
+			self::assertCount(0, $crawler->filter('.abbc3-toolbar__group'));
+			self::assertCount(0, $crawler->filter('[data-abbc3-more-toggle], [data-abbc3-more-tray]'));
+		}
+		finally
+		{
+			$repository->save_layout($original, [], []);
+		}
 	}
 
 	/**

@@ -23,6 +23,13 @@
 
 	const columns = [ ...composer.querySelectorAll('[data-composer-column]') ];
 	const allItems = () => [ ...composer.querySelectorAll('.abbc3-composer-item') ];
+	const isDivider = item => item.dataset.type === 'separator';
+	const buttonItems = () => allItems().filter(item => !isDivider(item));
+	const dividerTemplate = composer.querySelector('[data-divider-template]');
+	const removeDivider = inspector.querySelector('[data-remove-divider]');
+	const inspectorIcon = inspector.querySelector('[data-inspector-icon]');
+	const inspectorTag = inspector.querySelector('[data-inspector-tag]');
+	const hiddenPlacement = placementSelect.querySelector('option[value="hidden"]');
 	let selected = null;
 	let drag = null;
 	let saving = false;
@@ -122,7 +129,7 @@
 	const saveToolbar = () => {
 		const payload = basePayload('toolbar');
 		columns.forEach(column => column.querySelectorAll('[data-toolbar-key]').forEach(input => payload.append(input.name, input.value)));
-		allItems().forEach(item => {
+		buttonItems().forEach(item => {
 			const imageInput = item.querySelector('[data-icon-value]');
 			const fontInput = item.querySelector('[data-font-icon-value]');
 			payload.append(imageInput.name, imageInput.value);
@@ -357,11 +364,28 @@
 		previewMore.textContent = '';
 		columns.forEach(column => {
 			if (column.dataset.placement === 'hidden') return;
+			const groups = [];
+			let group = [];
 			column.querySelectorAll('.abbc3-composer-item').forEach(item => {
-				const control = previewControl(item);
-				control.dataset.previewControl = '';
-				if (column.dataset.placement === 'primary') previewPrimary.insertBefore(control, previewToggle);
-				else previewMore.appendChild(control);
+				if (isDivider(item)) {
+					if (group.length) groups.push(group);
+					group = [];
+				} else group.push(previewControl(item));
+			});
+			if (group.length) groups.push(group);
+			groups.forEach((controls, index) => {
+				if (groups.length > 1) {
+					const wrapper = document.createElement('div');
+					wrapper.className = 'abbc3-toolbar__group';
+					if (index) wrapper.classList.add('abbc3-toolbar__group--divided');
+					wrapper.append(...controls);
+					controls = [wrapper];
+				}
+				controls.forEach(control => {
+					control.dataset.previewControl = '';
+					if (column.dataset.placement === 'primary') previewPrimary.insertBefore(control, previewToggle);
+					else previewMore.appendChild(control);
+				});
 			});
 		});
 		previewToggle.hidden = !previewMore.children.length;
@@ -369,7 +393,9 @@
 			previewToggle.setAttribute('aria-expanded', 'false');
 			previewMore.hidden = true;
 		}
-		columns.forEach(column => { column.querySelector('[data-column-count]').textContent = column.querySelectorAll('.abbc3-composer-item').length; });
+		columns.forEach(column => {
+			column.querySelector('[data-column-count]').textContent = column.querySelectorAll('.abbc3-composer-item:not(.abbc3-composer-item--divider)').length;
+		});
 	};
 
 	const syncNames = () => {
@@ -386,14 +412,23 @@
 		selected = item;
 		inspector.hidden = !item;
 		if (!item) return;
+		const divider = isDivider(item);
+		inspector.classList.toggle('abbc3-inspector--divider', divider);
 		inspector.querySelector('[data-inspector-label]').textContent = item.dataset.label;
-		inspector.querySelector('[data-inspector-tag]').textContent = `[${item.dataset.name}]`;
 		placementSelect.value = item.closest('[data-composer-column]').dataset.placement;
+		hiddenPlacement.disabled = divider;
+		removeDivider.hidden = !divider;
+		iconSelect.closest('label').hidden = divider;
+		fontIconInput.closest('label').hidden = divider;
+		inspectorTag.hidden = divider;
+		inspectorIcon.hidden = divider;
+		if (divider) return;
+		inspectorTag.textContent = `[${item.dataset.name}]`;
 		iconSelect.value = iconName(item);
 		fontIconInput.value = fontIconName(item);
 		iconSelect.disabled = isSelectControl(item);
 		fontIconInput.disabled = isSelectControl(item);
-		renderIcon(inspector.querySelector('[data-inspector-icon]'), item);
+		renderIcon(inspectorIcon, item);
 	};
 
 	previewToggle.addEventListener('click', () => {
@@ -404,33 +439,56 @@
 	});
 
 	composer.addEventListener('click', event => {
+		const add = event.target.closest('[data-add-divider]');
+		if (add) {
+			const list = add.closest('[data-composer-column]').querySelector('[data-composer-list]');
+			const divider = dividerTemplate.content.firstElementChild.cloneNode(true);
+			const next = selected && selected.parentNode === list ? selected.nextElementSibling : null;
+			list.insertBefore(divider, next);
+			selectItem(divider);
+			divider.querySelector('[data-item-select]').focus();
+			syncNames();
+			saveToolbar();
+			return;
+		}
 		const trigger = event.target.closest('[data-item-select]');
 		if (trigger) selectItem(trigger.closest('.abbc3-composer-item'));
 	});
 
+	removeDivider.addEventListener('click', () => {
+		if (!selected || !isDivider(selected)) return;
+		const next = selected.nextElementSibling || selected.previousElementSibling;
+		const add = selected.closest('[data-composer-column]').querySelector('[data-add-divider]');
+		selected.remove();
+		selectItem(next);
+		(next ? next.querySelector('[data-item-select]') : add).focus();
+		syncNames();
+		saveToolbar();
+	});
+
 	iconSelect.addEventListener('change', () => {
-		if (!selected) return;
+		if (!selected || isDivider(selected)) return;
 		selected.querySelector('[data-icon-value]').value = iconSelect.value;
 		updateItemIcon(selected);
-		renderIcon(inspector.querySelector('[data-inspector-icon]'), selected);
+		renderIcon(inspectorIcon, selected);
 		renderPreview();
 		saveToolbar();
 	});
 
 	fontIconInput.addEventListener('blur', () => {
-		if (!selected) return;
+		if (!selected || isDivider(selected)) return;
 		fontIconInput.value = normalizeFontIcon(fontIconInput.value);
 		selected.querySelector('[data-font-icon-value]').value = fontIconInput.value;
 		updateItemIcon(selected);
-		renderIcon(inspector.querySelector('[data-inspector-icon]'), selected);
+		renderIcon(inspectorIcon, selected);
 		renderPreview();
 		saveToolbar();
 	});
 
 	form.querySelectorAll('[data-autosave-setting]').forEach(input => input.addEventListener('change', () => {
 		if (input.name === 'abbc3_icons_type') {
-			allItems().forEach(updateItemIcon);
-			if (selected) renderIcon(inspector.querySelector('[data-inspector-icon]'), selected);
+			buttonItems().forEach(updateItemIcon);
+			if (selected && !isDivider(selected)) renderIcon(inspectorIcon, selected);
 			renderPreview();
 		}
 		if (input === toolbarEnabled && toolbarDisabled) toolbarDisabled.hidden = input.checked;
@@ -451,7 +509,7 @@
 	});
 
 	placementSelect.addEventListener('change', () => {
-		if (!selected) return;
+		if (!selected || (isDivider(selected) && placementSelect.value === 'hidden')) return;
 		columns.find(column => column.dataset.placement === placementSelect.value).querySelector('[data-composer-list]').appendChild(selected);
 		syncNames();
 		saveToolbar();
@@ -496,13 +554,13 @@
 		drag.ghost.style.transform = `translate3d(${event.clientX - drag.startX}px, ${event.clientY - drag.startY}px, 0)`;
 		const target = document.elementFromPoint(event.clientX, event.clientY);
 		const column = target ? target.closest('[data-composer-column]') : null;
-		if (column) {
+		if (column && !(isDivider(drag.item) && column.dataset.placement === 'hidden')) {
 			const list = column.querySelector('[data-composer-list]');
 			const before = [ ...list.querySelectorAll('.abbc3-composer-item') ].find(item => event.clientY < item.getBoundingClientRect().top + item.getBoundingClientRect().height / 2);
 			if (before) list.insertBefore(drag.placeholder, before); else list.appendChild(drag.placeholder);
 			clearDropTargets();
 			column.classList.add('abbc3-composer-column--target');
-		}
+		} else clearDropTargets();
 		if (event.clientY < 48) window.scrollBy(0, -12);
 		else if (event.clientY > window.innerHeight - 48) window.scrollBy(0, 12);
 	};
@@ -531,13 +589,17 @@
 	});
 
 	window.addEventListener('pointermove', moveDrag, { passive: false });
-	window.addEventListener('pointerup', event => { if (drag && event.pointerId === drag.pointerId) finishDrag(false); });
+	window.addEventListener('pointerup', event => {
+		if (!drag || event.pointerId !== drag.pointerId) return;
+		const target = document.elementFromPoint(event.clientX, event.clientY);
+		finishDrag(isDivider(drag.item) && !!(target && target.closest('[data-placement="hidden"]')));
+	});
 	window.addEventListener('pointercancel', event => { if (drag && event.pointerId === drag.pointerId) finishDrag(true); });
 	window.addEventListener('blur', () => finishDrag(true));
 
 	form.addEventListener('submit', event => event.preventDefault());
 
-	allItems().forEach(updateItemIcon);
+	buttonItems().forEach(updateItemIcon);
 	syncNames();
 	syncFontButton();
 	form.querySelectorAll('[data-abbc3-editable]').forEach(fieldset => { fieldset.disabled = false; });
