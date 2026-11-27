@@ -236,6 +236,11 @@
 			};
 			toolbar.abbc3SetTray = setTray;
 			setTray(storedTrayState(stateKey), false);
+			moreToggle.addEventListener('pointerdown', event => {
+				if (event.isPrimary && event.button === 0 && document.activeElement === textarea) {
+					event.preventDefault();
+				}
+			});
 			moreToggle.addEventListener('click', () => {
 				const expanded = moreToggle.getAttribute('aria-expanded') === 'true';
 				setTray(!expanded);
