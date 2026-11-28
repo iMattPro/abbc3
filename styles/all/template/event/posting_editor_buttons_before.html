@@ -1,0 +1,17 @@
+{% if S_ABBC3_BBCODES_BAR %}
+	<script>
+		(() => {
+			const script = document.currentScript;
+			const form = script && script.closest('form');
+			if (!form) {
+				return;
+			}
+
+			form.classList.add('abbc3-editor--pending');
+			document.addEventListener('DOMContentLoaded', () => {
+				// Restore the stock controls if ABBC3 did not initialize.
+				window.setTimeout(() => form.classList.remove('abbc3-editor--pending'), 0);
+			}, { once: true });
+		})();
+	</script>
+{% endif %}

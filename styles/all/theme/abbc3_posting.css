@@ -1,3 +1,9 @@
+.abbc3-editor--pending #format-buttons,
+.abbc3-editor--pending #core-bbcode-buttons,
+.abbc3-editor--pending #custom-bbcode-buttons {
+	visibility: hidden;
+}
+
 .abbc3-editor--ready #format-buttons,
 .abbc3-editor--ready #core-bbcode-buttons,
 .abbc3-editor--ready #custom-bbcode-buttons {

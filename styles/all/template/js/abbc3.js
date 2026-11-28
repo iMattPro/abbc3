@@ -259,7 +259,6 @@
 			toolbar.closest('fieldset') === textarea.closest('fieldset')) {
 			textarea.before(toolbar);
 		}
-		toolbar.classList.add('abbc3-toolbar--ready');
 		toolbar.querySelectorAll('.abbc3-control__icon').forEach(icon => {
 			const showFallback = () => icon.closest('.abbc3-control').classList.add('abbc3-control--icon-error');
 			if (icon.complete && icon.naturalWidth === 0) {
@@ -269,9 +268,6 @@
 			}
 		});
 		const form = toolbar.closest('form');
-		if (form) {
-			form.classList.add('abbc3-editor--ready');
-		}
 		const moreToggle = toolbar.querySelector('[data-abbc3-more-toggle]');
 		const moreTray = toolbar.querySelector('[data-abbc3-more-tray]');
 		if (moreToggle && moreTray) {
@@ -393,7 +389,10 @@
 		});
 		if (form) {
 			form.addEventListener('submit', () => closeToolbarMenus(toolbar));
+			form.classList.add('abbc3-editor--ready');
+			form.classList.remove('abbc3-editor--pending');
 		}
+		toolbar.classList.add('abbc3-toolbar--ready');
 	};
 
 	const initWizard = wizard => {
