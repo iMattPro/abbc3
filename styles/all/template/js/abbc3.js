@@ -216,7 +216,9 @@
 		}
 		toolbar.classList.add('abbc3-toolbar--ready');
 		toolbar.querySelectorAll('.abbc3-control__icon').forEach(icon => {
-			icon.addEventListener('error', () => icon.closest('.abbc3-control').classList.add('abbc3-control--icon-error'), { once: true });
+			const showFallback = () => icon.closest('.abbc3-control').classList.add('abbc3-control--icon-error');
+			if (icon.complete && icon.naturalWidth === 0) showFallback();
+			else icon.addEventListener('error', showFallback, { once: true });
 		});
 		const form = toolbar.closest('form');
 		if (form) form.classList.add('abbc3-editor--ready');

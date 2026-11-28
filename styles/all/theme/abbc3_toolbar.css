@@ -85,6 +85,12 @@
 	padding: 0;
 }
 
+.abbc3-control--text,
+.abbc3-control--icon-error {
+	padding-inline: 7px;
+	border-color: var(--abbc3-border);
+}
+
 .abbc3-control__font-icon {
 	display: inline-flex;
 	align-items: center;

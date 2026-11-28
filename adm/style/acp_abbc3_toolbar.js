@@ -351,7 +351,7 @@
 			image.alt = '';
 			image.addEventListener('error', () => { control.classList.add('abbc3-control--icon-error'); }, { once: true });
 			control.appendChild(image);
-		}
+		} else control.classList.add('abbc3-control--text');
 		const fallback = document.createElement('span');
 		fallback.className = `abbc3-control__fallback${fontIcon || path ? ' abbc3-control__fallback--hidden' : ''}`;
 		fallback.textContent = item.dataset.name;
