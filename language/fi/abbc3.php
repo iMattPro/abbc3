@@ -96,7 +96,7 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_GROUP'		=> 'Hallitse ryhmiä jotka voivat käyttää tätä BBCodea',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Jos ryhmiä ei valittu, kaikki voivat käyttää tätä BBCodea. Voit valita useamman ryhmän kerralla painamalla CTRL (tai CMD Macilla).',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Jos ryhmiä ei valittu, kaikki voivat käyttää tätä BBCodea.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Edistyneet BBCode Box BBCodes',

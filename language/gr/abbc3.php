@@ -98,7 +98,7 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_GROUP'		=> 'Δειχείρηση των ομάδων που θα μπορούν να χρησιμοποιήσουν αυτό το BBCode',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Αν δεν επιλεχθεί ομάδα τότε όλοι οι χρήστες μπορούν να χρησιμοποιήσουν αυτό το BBCode. Πάτα CTRL+CLICK (ή CMD+CLICK για Mac) για να επιλέξεις/αποεπιλέξεις περισσότερες από μία ομάδες.',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Αν δεν επιλεχθεί ομάδα τότε όλοι οι χρήστες μπορούν να χρησιμοποιήσουν αυτό το BBCode.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'BBCodes του Advanced [BBCode] Box',

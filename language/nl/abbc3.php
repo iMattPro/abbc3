@@ -97,7 +97,7 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_GROUP'		   => 'Beheer groepen die deze BBcode kunnen gebruiken',
-	'ABBC3_BBCODE_GROUP_INFO'	  => 'Als je geen groep hebt geselecteerd, kunnen alle groepen deze BBcode gebruiken. Gebruik CTRL+KLIK (of CMD+KLIK bij Mac) om meer dan één groep te selecteren/deselecteren.',
+	'ABBC3_BBCODE_GROUP_INFO'	  => 'Als je geen groep hebt geselecteerd, kunnen alle groepen deze BBcode gebruiken.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Geavanceerde BBCode Box BBCodes',

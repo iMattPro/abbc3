@@ -97,7 +97,7 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_GROUP'		=> '变更可使用此BBCode的使用者群组',
-	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未选择任何群，则所有人皆可使用此 BBCode。若要选择多个群组，请按下 CTRL 键。Mac 电脑请用 CMD 键',
+	'ABBC3_BBCODE_GROUP_INFO'	=> '如果未选择任何群，则所有人皆可使用此 BBCode。',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> '高级 BBCode 框 BBCode',

@@ -37,6 +37,7 @@
 		<row><value>4</value><value>GLOBAL_MODERATORS</value><value>3</value><value></value></row>
 		<row><value>5</value><value>ADMINISTRATORS</value><value>3</value><value></value></row>
 		<row><value>6</value><value>BOTS</value><value>3</value><value></value></row>
+		<row><value>7</value><value>AI_CRAWLERS</value><value>3</value><value></value></row>
 	</table>
 	<table name="phpbb_config_text">
 		<column>config_name</column><column>config_value</column>

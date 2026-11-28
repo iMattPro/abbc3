@@ -96,7 +96,7 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_GROUP'		=> 'Spravovať skupiny, ktoré môžu používať tento BBCode',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Pokiaľ nebudú vybrané žiadne skupiny, tak tento BBCode budú môcť používať všetci uživatelia. Použite CTRL+KLIK (alebo CMD+KLIK na Mac) k vybraniu / zrušeniu výberu jednej alebo viac skupín',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Pokiaľ nebudú vybrané žiadne skupiny, tak tento BBCode budú môcť používať všetci uživatelia.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Rozšírené BBCode Box BBCodes',

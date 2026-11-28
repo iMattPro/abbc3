@@ -96,7 +96,7 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_GROUP'		=> 'Групи, котрі можуть використовувати BB-код',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Якщо група вибрана, то всі її користувачі можуть використовувати BB-код. Використовуйте CTRL+CLICK (або CMD+CLICK на Mac) для того, щоб вибрати кілька груп.',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Якщо група вибрана, то всі її користувачі можуть використовувати BB-код.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'BB-коди Advanced [BBCode] Box',

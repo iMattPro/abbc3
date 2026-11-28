@@ -19,39 +19,40 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 	 */
 	public function acp_bbcodes_group_select_box_data()
 	{
+		$group_opts = [['ID' => 1, 'NAME' => 'Guests', 'S_SELECTED' => false]];
 		return [
 			[
-				0, 'add', [], '$group_opts',
+				0, 'add', [], $group_opts,
 				[],
 				[
-					'S_GROUP_OPTIONS'	=> '$group_opts',
+					'ABBC3_BBCODE_GROUPS'	=> $group_opts,
 				],
 			],
 			[
-				0, 'add', [], '$group_opts',
+				0, 'add', [], $group_opts,
 				[
 					'FOO'				=> 'BAR',
 				],
 				[
 					'FOO'				=> 'BAR',
-					'S_GROUP_OPTIONS'	=> '$group_opts',
+					'ABBC3_BBCODE_GROUPS'	=> $group_opts,
 				],
 			],
 			[
-				1, 'edit', [1], '$group_opts',
+				1, 'edit', [1], $group_opts,
 				[],
 				[
-					'S_GROUP_OPTIONS'	=> '$group_opts',
+					'ABBC3_BBCODE_GROUPS'	=> $group_opts,
 				],
 			],
 			[
-				2, 'edit', [2], '$group_opts',
+				2, 'edit', [2], $group_opts,
 				[
 					'FOO'				=> 'BAR',
 				],
 				[
 					'FOO'				=> 'BAR',
-					'S_GROUP_OPTIONS'	=> '$group_opts',
+					'ABBC3_BBCODE_GROUPS'	=> $group_opts,
 				],
 			],
 		];
@@ -59,7 +60,7 @@ class acp_bbcodes_group_select_box_test extends acp_listener_base
 
 	/**
 	 * Test the acp_bbcodes_group_select_box is adding
-	 * S_GROUP_OPTIONS data to the template array
+	 * ABBC3_BBCODE_GROUPS data to the template array
 	 *
 	 * @dataProvider acp_bbcodes_group_select_box_data
 	 */

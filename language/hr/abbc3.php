@@ -97,7 +97,7 @@ $lang = array_merge($lang, array(
 
 	// ACP
 	'ABBC3_BBCODE_GROUP'		=> 'Upravljanje grupama koje mogu koristiti ovaj BBKod',
-	'ABBC3_BBCODE_GROUP_INFO'	=> 'Ukoliko niti jedna grupa nije odabrana, svi/e korisnici/e mogu koristiti ovaj BBKod.<br>Za o(do)značavanje više od jedne grupe, koristi CTRL+KLIK (CMD+KLIK na Macu).',
+	'ABBC3_BBCODE_GROUP_INFO'	=> 'Ukoliko niti jedna grupa nije odabrana, svi/e korisnici/e mogu koristiti ovaj BBKod.',
 
 	// BBCode FAQ
 	'ABBC3_FAQ_TITLE'			=> 'Napredni BBCode Box BBCodes',

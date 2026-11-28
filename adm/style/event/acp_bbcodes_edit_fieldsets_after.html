@@ -1,7 +1,15 @@
+{% INCLUDECSS '@vse_abbc3/acp_abbc3.css' %}
+
 <fieldset>
 	<legend>{{ lang('ACP_GROUPS_PERMISSIONS') }}</legend>
 	<dl>
-		<dt><label for="bbcode_group">{{ lang('ABBC3_BBCODE_GROUP') }}</label><br><br><span>{{ lang('ABBC3_BBCODE_GROUP_INFO') }}</span></dt>
-		<dd><select id="bbcode_group" name="bbcode_group[]" size="10" multiple="multiple">{{ S_GROUP_OPTIONS }}</select></dd>
+		<dt><strong id="abbc3-bbcode-group-label">{{ lang('ABBC3_BBCODE_GROUP') }}</strong><br><br><span id="abbc3-bbcode-group-info">{{ lang('ABBC3_BBCODE_GROUP_INFO') }}</span></dt>
+		<dd>
+			<div class="abbc3-group-checklist" role="group" aria-labelledby="abbc3-bbcode-group-label" aria-describedby="abbc3-bbcode-group-info">
+				{% for group in ABBC3_BBCODE_GROUPS %}
+					<label><input type="checkbox" name="bbcode_group[]" value="{{ group.ID }}"{% if group.S_SELECTED %} checked{% endif %}><span>{{ group.NAME|e }}</span></label>
+				{% endfor %}
+			</div>
+		</dd>
 	</dl>
 </fieldset>

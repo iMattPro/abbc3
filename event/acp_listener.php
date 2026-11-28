@@ -50,7 +50,7 @@ class acp_listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Add the Group select form field on BBCode edit page
+	 * Supply the group permissions checklist on the BBCode edit page.
 	 *
 	 * @param \phpbb\event\data $event The event object
 	 * @access public
@@ -59,7 +59,7 @@ class acp_listener implements EventSubscriberInterface
 	{
 		$bbcode_group = ($event['action'] === 'edit') ? $this->acp_manager->get_bbcode_group_data($event['bbcode_id']) : [];
 
-		$event->update_subarray('tpl_ary', 'S_GROUP_OPTIONS', $this->acp_manager->bbcode_group_select_options($bbcode_group));
+		$event->update_subarray('tpl_ary', 'ABBC3_BBCODE_GROUPS', $this->acp_manager->bbcode_group_select_options($bbcode_group));
 	}
 
 	/**

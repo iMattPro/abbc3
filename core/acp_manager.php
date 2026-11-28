@@ -117,26 +117,31 @@ class acp_manager
 	}
 
 	/**
-	 * Generate a select box containing user groups
+	 * Get the groups displayed in the BBCode permissions checklist.
 	 *
 	 * @param array $select_id The user groups to mark as selected
-	 * @return string HTML markup of user groups select box for the form
+	 * @return array Group IDs, display names, and selected states
 	 * @access public
 	 */
 	public function bbcode_group_select_options(array $select_id = [])
 	{
-		// Get all groups except bots
-		$sql = 'SELECT group_id, group_name, group_type
-			FROM ' . GROUPS_TABLE . "
-			WHERE group_name <> 'BOTS'
-			ORDER BY group_name ASC";
+		// Exclude groups reserved for bots and AI crawlers.
+		$sql = 'SELECT group_id, group_name
+			FROM ' . GROUPS_TABLE . '
+			WHERE ' . $this->db->sql_in_set('group_name', ['BOTS', 'AI_CRAWLERS'], true) . '
+			ORDER BY group_name ASC';
 		$result = $this->db->sql_query($sql);
 
-		$group_options = '';
+		$group_options = [];
+		$select_id = array_map('intval', $select_id);
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$selected = in_array($row['group_id'], $select_id) ? ' selected="selected"' : '';
-			$group_options .= '<option value="' . $row['group_id'] . '"' . $selected . '>' . $this->group_helper->get_name($row['group_name']) . '</option>';
+			$group_id = (int) $row['group_id'];
+			$group_options[] = [
+				'ID' => $group_id,
+				'NAME' => html_entity_decode($this->group_helper->get_name($row['group_name']), ENT_QUOTES, 'UTF-8'),
+				'S_SELECTED' => in_array($group_id, $select_id, true),
+			];
 		}
 		$this->db->sql_freeresult($result);
 
