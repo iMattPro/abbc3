@@ -25,7 +25,9 @@
 		}
 		if (toolbar.hasAttribute('data-abbc3-acp') && typeof window.text_name === 'string') {
 			const editor = form.elements.namedItem(window.text_name);
-			if (editor instanceof HTMLTextAreaElement) return editor;
+			if (editor instanceof HTMLTextAreaElement) {
+				return editor;
+			}
 		}
 		return form.elements[toolbar.dataset.abbc3Target] || form.querySelector('textarea');
 	};
@@ -82,11 +84,15 @@
 			return;
 		}
 		wizard.abbc3RequestId = ++wizardRequestId;
-		if (wizard.hidden) return;
+		if (wizard.hidden) {
+			return;
+		}
 		wizard.hidden = true;
 		wizard.textContent = '';
 		const darken = document.getElementById('darkenwrapper');
-		if (darken) darken.classList.remove('abbc3-darken');
+		if (darken) {
+			darken.classList.remove('abbc3-darken');
+		}
 		wizard.abbc3Textarea.focus();
 	};
 
@@ -102,21 +108,31 @@
 		wizard.hidden = true;
 		wizard.textContent = '';
 		const darken = document.getElementById('darkenwrapper');
-		if (darken) darken.classList.remove('abbc3-darken');
+		if (darken) {
+			darken.classList.remove('abbc3-darken');
+		}
 		fetch(url, { credentials: 'same-origin', headers: { 'X-Requested-With': 'XMLHttpRequest' } })
 			.then(response => response.ok ? response.text() : Promise.reject(response))
 			.then(html => {
-				if (wizard.abbc3RequestId !== requestId) return;
+				if (wizard.abbc3RequestId !== requestId) {
+					return;
+				}
 				wizard.abbc3Textarea = textarea;
 				wizard.abbc3Mode = mode;
 				wizard.innerHTML = html;
 				wizard.hidden = false;
-				if (darken) darken.classList.add('abbc3-darken');
+				if (darken) {
+					darken.classList.add('abbc3-darken');
+				}
 				const firstControl = wizard.querySelector('input:not([type="hidden"]), select, button');
-				if (firstControl) firstControl.focus();
+				if (firstControl) {
+					firstControl.focus();
+				}
 			})
 			.catch(() => {
-				if (wizard.abbc3RequestId === requestId) insert(textarea, button.dataset.abbc3Open, button.dataset.abbc3Close);
+				if (wizard.abbc3RequestId === requestId) {
+					insert(textarea, button.dataset.abbc3Open, button.dataset.abbc3Close);
+				}
 			});
 	};
 
@@ -125,14 +141,20 @@
 	const openMenus = new Set();
 
 	const closeMenu = (menu, focusTrigger = false) => {
-		if (!menu) return;
+		if (!menu) {
+			return;
+		}
 		openMenus.delete(menu);
 		const trigger = menu.querySelector('[data-abbc3-menu-trigger]');
 		const panel = menu.querySelector('[data-abbc3-menu-panel]');
-		if (!trigger || !panel || panel.hidden) return;
+		if (!trigger || !panel || panel.hidden) {
+			return;
+		}
 		panel.hidden = true;
 		trigger.setAttribute('aria-expanded', 'false');
-		if (focusTrigger) trigger.focus();
+		if (focusTrigger) {
+			trigger.focus();
+		}
 	};
 
 	const closeToolbarMenus = toolbar => toolbar.querySelectorAll('[data-abbc3-menu]').forEach(menu => closeMenu(menu));
@@ -153,22 +175,31 @@
 		const spaceAbove = rect.top - gap - edge;
 		const below = panelRect.height <= spaceBelow || spaceBelow >= spaceAbove;
 		const height = Math.min(panelRect.height, below ? spaceBelow : spaceAbove);
-		if (height < panelRect.height) panel.style.maxHeight = `${height}px`;
+		if (height < panelRect.height) {
+			panel.style.maxHeight = `${height}px`;
+		}
 		const top = below ? rect.bottom + gap : rect.top - gap - height;
 		panel.style.left = `${left - toolbarRect.left - toolbar.clientLeft}px`;
 		panel.style.top = `${top - toolbarRect.top - toolbar.clientTop}px`;
 	};
 
 	const scheduleOpenMenuPositions = () => {
-		if (!openMenus.size || menuPositionFrame !== null) return;
+		if (!openMenus.size || menuPositionFrame !== null) {
+			return;
+		}
 		menuPositionFrame = window.requestAnimationFrame(() => {
 			menuPositionFrame = null;
 			const root = document.scrollingElement;
-			if (root && (root.scrollTop < -1 || root.scrollTop > root.scrollHeight - root.clientHeight + 1)) return;
+			if (root && (root.scrollTop < -1 || root.scrollTop > root.scrollHeight - root.clientHeight + 1)) {
+				return;
+			}
 			openMenus.forEach(menu => {
 				const panel = menu.querySelector('[data-abbc3-menu-panel]');
-				if (!document.documentElement.contains(menu) || !panel || panel.hidden) openMenus.delete(menu);
-				else positionMenu(menu);
+				if (!document.documentElement.contains(menu) || !panel || panel.hidden) {
+					openMenus.delete(menu);
+				} else {
+					positionMenu(menu);
+				}
 			});
 		});
 	};
@@ -183,25 +214,39 @@
 		openMenus.add(menu);
 		positionMenu(menu);
 		const options = menuOptions(menu);
-		if (focus === 'first' && options[0]) options[0].focus();
-		if (focus === 'last' && options.length) options[options.length - 1].focus();
+		if (focus === 'first' && options[0]) {
+			options[0].focus();
+		}
+		if (focus === 'last' && options.length) {
+			options[options.length - 1].focus();
+		}
 	};
 
 	const trayStateKey = (toolbar, index) => {
 		const source = new URLSearchParams(window.location.search);
 		const stable = new URLSearchParams();
 		[ 'mode', 'f', 't', 'p', 'u', 'i' ].forEach(key => {
-			if (source.has(key)) stable.set(key, source.get(key));
+			if (source.has(key)) {
+				stable.set(key, source.get(key));
+			}
 		});
 		return `abbc3:tray:${window.location.pathname}?${stable.toString()}:${toolbar.dataset.abbc3Target}:${index}`;
 	};
 
 	const storedTrayState = key => {
-		try { return window.sessionStorage.getItem(key) === 'open'; } catch (error) { return false; }
+		try {
+			return window.sessionStorage.getItem(key) === 'open';
+		} catch (error) {
+			return false;
+		}
 	};
 
 	const storeTrayState = (key, expanded) => {
-		try { window.sessionStorage.setItem(key, expanded ? 'open' : 'closed'); } catch (error) { /* Storage can be unavailable. */ }
+		try {
+			window.sessionStorage.setItem(key, expanded ? 'open' : 'closed');
+		} catch (error) {
+			/* Storage can be unavailable. */
+		}
 	};
 
 	const initToolbar = (toolbar, toolbarIndex) => {
@@ -217,11 +262,16 @@
 		toolbar.classList.add('abbc3-toolbar--ready');
 		toolbar.querySelectorAll('.abbc3-control__icon').forEach(icon => {
 			const showFallback = () => icon.closest('.abbc3-control').classList.add('abbc3-control--icon-error');
-			if (icon.complete && icon.naturalWidth === 0) showFallback();
-			else icon.addEventListener('error', showFallback, { once: true });
+			if (icon.complete && icon.naturalWidth === 0) {
+				showFallback();
+			} else {
+				icon.addEventListener('error', showFallback, { once: true });
+			}
 		});
 		const form = toolbar.closest('form');
-		if (form) form.classList.add('abbc3-editor--ready');
+		if (form) {
+			form.classList.add('abbc3-editor--ready');
+		}
 		const moreToggle = toolbar.querySelector('[data-abbc3-more-toggle]');
 		const moreTray = toolbar.querySelector('[data-abbc3-more-tray]');
 		if (moreToggle && moreTray) {
@@ -233,8 +283,12 @@
 				moreToggle.setAttribute('aria-expanded', String(expanded));
 				moreToggle.title = expanded ? moreToggle.dataset.titleHide : moreToggle.dataset.titleShow;
 				moreTray.hidden = !expanded;
-				if (!expanded) closeToolbarMenus(toolbar);
-				if (persist) storeTrayState(stateKey, expanded);
+				if (!expanded) {
+					closeToolbarMenus(toolbar);
+				}
+				if (persist) {
+					storeTrayState(stateKey, expanded);
+				}
 			};
 			toolbar.abbc3SetTray = setTray;
 			setTray(storedTrayState(stateKey), false);
@@ -254,8 +308,11 @@
 			if (menuTrigger) {
 				event.preventDefault();
 				const menu = menuTrigger.closest('[data-abbc3-menu]');
-				if (menuTrigger.getAttribute('aria-expanded') === 'true') closeMenu(menu);
-				else openMenu(menu);
+				if (menuTrigger.getAttribute('aria-expanded') === 'true') {
+					closeMenu(menu);
+				} else {
+					openMenu(menu);
+				}
 				return;
 			}
 			const option = event.target.closest('[role="option"]');
@@ -263,8 +320,12 @@
 			if (menu) {
 				event.preventDefault();
 				closeMenu(menu);
-				if (option.dataset.abbc3SizeValue) insert(textarea, `[size=${option.dataset.abbc3SizeValue}]`, '[/size]');
-				if (option.dataset.abbc3FontValue) insert(textarea, `[font=${option.dataset.abbc3FontValue}]`, '[/font]');
+				if (option.dataset.abbc3SizeValue) {
+					insert(textarea, `[size=${option.dataset.abbc3SizeValue}]`, '[/size]');
+				}
+				if (option.dataset.abbc3FontValue) {
+					insert(textarea, `[font=${option.dataset.abbc3FontValue}]`, '[/font]');
+				}
 				return;
 			}
 			const button = event.target.closest('[data-abbc3-action]');
@@ -305,7 +366,9 @@
 
 		toolbar.addEventListener('keydown', event => {
 			const menu = event.target.closest('[data-abbc3-menu]');
-			if (!menu) return;
+			if (!menu) {
+				return;
+			}
 			const trigger = event.target.closest('[data-abbc3-menu-trigger]');
 			const options = menuOptions(menu);
 			if (trigger && [ 'ArrowDown', 'ArrowUp' ].includes(event.key)) {
@@ -314,7 +377,9 @@
 				return;
 			}
 			const index = options.indexOf(event.target);
-			if (index < 0) return;
+			if (index < 0) {
+				return;
+			}
 			if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
 				event.preventDefault();
 				options[(index + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length].focus();
@@ -326,7 +391,9 @@
 				closeMenu(menu, true);
 			}
 		});
-		if (form) form.addEventListener('submit', () => closeToolbarMenus(toolbar));
+		if (form) {
+			form.addEventListener('submit', () => closeToolbarMenus(toolbar));
+		}
 	};
 
 	const initWizard = wizard => {
@@ -362,7 +429,9 @@
 
 	document.addEventListener('keydown', event => {
 		if (event.key === 'Escape') {
-			if (event.repeat) return;
+			if (event.repeat) {
+				return;
+			}
 			const wizard = document.querySelector('.abbc3-wizard:not([hidden])');
 			if (wizard) {
 				event.preventDefault();
@@ -378,7 +447,9 @@
 			document.querySelectorAll('.abbc3-wizard').forEach(closeWizard);
 			document.querySelectorAll('[data-abbc3-more-toggle][aria-expanded="true"]').forEach(toggle => {
 				const toolbar = toggle.closest('[data-abbc3-toolbar]');
-				if (toolbar && toolbar.abbc3SetTray) toolbar.abbc3SetTray(false);
+				if (toolbar && toolbar.abbc3SetTray) {
+					toolbar.abbc3SetTray(false);
+				}
 				toggle.focus();
 			});
 			return;
@@ -408,14 +479,20 @@
 
 	document.addEventListener('pointerdown', event => {
 		openMenus.forEach(menu => {
-			if (!menu.contains(event.target)) closeMenu(menu);
+			if (!menu.contains(event.target)) {
+				closeMenu(menu);
+			}
 		});
 	});
 
 	window.addEventListener('resize', () => openMenus.forEach(menu => closeMenu(menu)));
 	window.addEventListener('scroll', event => {
-		if (!openMenus.size) return;
-		if (event.target instanceof Element && event.target.closest('[data-abbc3-menu-panel]')) return;
+		if (!openMenus.size) {
+			return;
+		}
+		if (event.target instanceof Element && event.target.closest('[data-abbc3-menu-panel]')) {
+			return;
+		}
 		scheduleOpenMenuPositions();
 	}, true);
 
@@ -434,7 +511,9 @@
 		});
 
 		document.querySelectorAll('.abbc3-highlight').forEach(highlight => {
-			if (hasAncestorFontColor(highlight)) return;
+			if (hasAncestorFontColor(highlight)) {
+				return;
+			}
 			const rgb = window.getComputedStyle(highlight).backgroundColor.match(/\d+/g);
 			if (rgb) {
 				highlight.style.color = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 < 128 ? 'white' : 'black';

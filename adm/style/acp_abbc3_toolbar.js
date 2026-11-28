@@ -19,7 +19,9 @@
 	const fontPicker = document.querySelector('[data-font-picker]');
 	const toolbarEnabled = document.getElementById('abbc3_bbcode_bar');
 	const toolbarDisabled = document.querySelector('[data-toolbar-disabled]');
-	if (!composer || !form || !inspector || !iconSelect || !fontIconInput || !placementSelect || !previewPrimary || !previewMore || !previewToggle || !saveStatus || !saveMessage || !retryButton || !fonts || !fontSaveButton || !fontStatus) return;
+	if (!composer || !form || !inspector || !iconSelect || !fontIconInput || !placementSelect || !previewPrimary || !previewMore || !previewToggle || !saveStatus || !saveMessage || !retryButton || !fonts || !fontSaveButton || !fontStatus) {
+		return;
+	}
 
 	const columns = [ ...composer.querySelectorAll('[data-composer-column]') ];
 	const allItems = () => [ ...composer.querySelectorAll('.abbc3-composer-item') ];
@@ -90,7 +92,9 @@
 	};
 
 	const processQueue = () => {
-		if (saving || !pending.size) return;
+		if (saving || !pending.size) {
+			return;
+		}
 		const current = pending.entries().next().value;
 		const scope = current[0];
 		const payload = current[1];
@@ -139,7 +143,9 @@
 	};
 
 	const saveSetting = input => {
-		if (input.type === 'radio' && !input.checked) return;
+		if (input.type === 'radio' && !input.checked) {
+			return;
+		}
 		const payload = basePayload('setting');
 		payload.set('setting_name', input.name);
 		payload.set('setting_value', input.type === 'checkbox' ? (input.checked ? '1' : '0') : input.value);
@@ -170,7 +176,9 @@
 			results.hidden = true;
 			const query = search.value.trim().toLowerCase();
 			status.textContent = '';
-			if (!query) return;
+			if (!query) {
+				return;
+			}
 
 			if (catalog === undefined) {
 				status.textContent = fontPicker.dataset.loading;
@@ -196,9 +204,14 @@
 			const prefix = [];
 			const other = [];
 			catalog.forEach(({ name, folded }) => {
-				if (existing.has(folded)) return;
-				if (folded.startsWith(query)) prefix.push(name);
-				else if (folded.includes(query)) other.push(name);
+				if (existing.has(folded)) {
+					return;
+				}
+				if (folded.startsWith(query)) {
+					prefix.push(name);
+				} else if (folded.includes(query)) {
+					other.push(name);
+				}
 			});
 			const matches = prefix.concat(other).slice(0, 8);
 			if (!matches.length) {
@@ -232,7 +245,9 @@
 		payload.set('abbc3_google_fonts', submittedFonts);
 		fontSaveButton.disabled = true;
 		fonts.disabled = true;
-		if (fontPicker) fontPicker.disabled = true;
+		if (fontPicker) {
+			fontPicker.disabled = true;
+		}
 		fonts.setAttribute('aria-busy', 'true');
 		setFontStatus('saving', form.dataset.fontChecking);
 		window.fetch(form.action, {
@@ -247,7 +262,9 @@
 		})
 			.then(response => response.ok ? response.json() : Promise.reject(new Error(form.dataset.statusError)))
 			.then(response => {
-				if (response.S_USER_WARNING || !response.S_USER_NOTICE) throw new Error(responseMessage(response));
+				if (response.S_USER_WARNING || !response.S_USER_NOTICE) {
+					throw new Error(responseMessage(response));
+				}
 				savedFonts = submittedFonts;
 				fonts.value = savedFonts;
 				setFontStatus('saved', form.dataset.fontSaved);
@@ -257,7 +274,9 @@
 			})
 			.then(() => {
 				fonts.disabled = false;
-				if (fontPicker) fontPicker.disabled = false;
+				if (fontPicker) {
+					fontPicker.disabled = false;
+				}
 				fonts.removeAttribute('aria-busy');
 				syncFontButton();
 			});
@@ -265,7 +284,9 @@
 
 	const iconPath = name => {
 		const option = [ ...iconSelect.options ].find(candidate => candidate.value === name);
-		if (!option) return '';
+		if (!option) {
+			return '';
+		}
 		const type = iconTypeValue();
 		const preferred = option.dataset[`icon${type[0].toUpperCase()}${type.slice(1)}`];
 		return preferred || option.dataset.iconPng || option.dataset.iconSvg || '';
@@ -278,7 +299,9 @@
 	const setIconVisibility = (container, visible) => {
 		container.hidden = !visible;
 		const button = container.closest('[data-item-select]');
-		if (button) button.classList.toggle('abbc3-item-select--text', !visible);
+		if (button) {
+			button.classList.toggle('abbc3-item-select--text', !visible);
+		}
 	};
 
 	const renderIcon = (container, item) => {
@@ -351,7 +374,9 @@
 			image.alt = '';
 			image.addEventListener('error', () => { control.classList.add('abbc3-control--icon-error'); }, { once: true });
 			control.appendChild(image);
-		} else control.classList.add('abbc3-control--text');
+		} else {
+			control.classList.add('abbc3-control--text');
+		}
 		const fallback = document.createElement('span');
 		fallback.className = `abbc3-control__fallback${fontIcon || path ? ' abbc3-control__fallback--hidden' : ''}`;
 		fallback.textContent = item.dataset.name;
@@ -363,28 +388,41 @@
 		previewPrimary.querySelectorAll('[data-preview-control]').forEach(control => control.remove());
 		previewMore.textContent = '';
 		columns.forEach(column => {
-			if (column.dataset.placement === 'hidden') return;
+			if (column.dataset.placement === 'hidden') {
+				return;
+			}
 			const groups = [];
 			let group = [];
 			column.querySelectorAll('.abbc3-composer-item').forEach(item => {
 				if (isDivider(item)) {
-					if (group.length) groups.push(group);
+					if (group.length) {
+						groups.push(group);
+					}
 					group = [];
-				} else group.push(previewControl(item));
+				} else {
+					group.push(previewControl(item));
+				}
 			});
-			if (group.length) groups.push(group);
+			if (group.length) {
+				groups.push(group);
+			}
 			groups.forEach((controls, index) => {
 				if (groups.length > 1) {
 					const wrapper = document.createElement('div');
 					wrapper.className = 'abbc3-toolbar__group';
-					if (index) wrapper.classList.add('abbc3-toolbar__group--divided');
+					if (index) {
+						wrapper.classList.add('abbc3-toolbar__group--divided');
+					}
 					wrapper.append(...controls);
 					controls = [wrapper];
 				}
 				controls.forEach(control => {
 					control.dataset.previewControl = '';
-					if (column.dataset.placement === 'primary') previewPrimary.insertBefore(control, previewToggle);
-					else previewMore.appendChild(control);
+					if (column.dataset.placement === 'primary') {
+						previewPrimary.insertBefore(control, previewToggle);
+					} else {
+						previewMore.appendChild(control);
+					}
 				});
 			});
 		});
@@ -411,7 +449,9 @@
 		});
 		selected = item;
 		inspector.hidden = !item;
-		if (!item) return;
+		if (!item) {
+			return;
+		}
 		const divider = isDivider(item);
 		inspector.classList.toggle('abbc3-inspector--divider', divider);
 		inspector.querySelector('[data-inspector-label]').textContent = item.dataset.label;
@@ -422,7 +462,9 @@
 		fontIconInput.closest('label').hidden = divider;
 		inspectorTag.hidden = divider;
 		inspectorIcon.hidden = divider;
-		if (divider) return;
+		if (divider) {
+			return;
+		}
 		inspectorTag.textContent = `[${item.dataset.name}]`;
 		iconSelect.value = iconName(item);
 		fontIconInput.value = fontIconName(item);
@@ -452,11 +494,15 @@
 			return;
 		}
 		const trigger = event.target.closest('[data-item-select]');
-		if (trigger) selectItem(trigger.closest('.abbc3-composer-item'));
+		if (trigger) {
+			selectItem(trigger.closest('.abbc3-composer-item'));
+		}
 	});
 
 	removeDivider.addEventListener('click', () => {
-		if (!selected || !isDivider(selected)) return;
+		if (!selected || !isDivider(selected)) {
+			return;
+		}
 		const next = selected.nextElementSibling || selected.previousElementSibling;
 		const add = selected.closest('[data-composer-column]').querySelector('[data-add-divider]');
 		selected.remove();
@@ -467,7 +513,9 @@
 	});
 
 	iconSelect.addEventListener('change', () => {
-		if (!selected || isDivider(selected)) return;
+		if (!selected || isDivider(selected)) {
+			return;
+		}
 		selected.querySelector('[data-icon-value]').value = iconSelect.value;
 		updateItemIcon(selected);
 		renderIcon(inspectorIcon, selected);
@@ -476,7 +524,9 @@
 	});
 
 	fontIconInput.addEventListener('blur', () => {
-		if (!selected || isDivider(selected)) return;
+		if (!selected || isDivider(selected)) {
+			return;
+		}
 		fontIconInput.value = normalizeFontIcon(fontIconInput.value);
 		selected.querySelector('[data-font-icon-value]').value = fontIconInput.value;
 		updateItemIcon(selected);
@@ -488,10 +538,14 @@
 	form.querySelectorAll('[data-autosave-setting]').forEach(input => input.addEventListener('change', () => {
 		if (input.name === 'abbc3_icons_type') {
 			buttonItems().forEach(updateItemIcon);
-			if (selected && !isDivider(selected)) renderIcon(inspectorIcon, selected);
+			if (selected && !isDivider(selected)) {
+				renderIcon(inspectorIcon, selected);
+			}
 			renderPreview();
 		}
-		if (input === toolbarEnabled && toolbarDisabled) toolbarDisabled.hidden = input.checked;
+		if (input === toolbarEnabled && toolbarDisabled) {
+			toolbarDisabled.hidden = input.checked;
+		}
 		saveSetting(input);
 	}));
 
@@ -509,7 +563,9 @@
 	});
 
 	placementSelect.addEventListener('change', () => {
-		if (!selected || (isDivider(selected) && placementSelect.value === 'hidden')) return;
+		if (!selected || (isDivider(selected) && placementSelect.value === 'hidden')) {
+			return;
+		}
 		columns.find(column => column.dataset.placement === placementSelect.value).querySelector('[data-composer-list]').appendChild(selected);
 		syncNames();
 		saveToolbar();
@@ -517,7 +573,9 @@
 
 	inspector.addEventListener('click', event => {
 		const move = event.target.closest('[data-inspector-move]');
-		if (!move || !selected) return;
+		if (!move || !selected) {
+			return;
+		}
 		let moved = false;
 		if (move.dataset.inspectorMove === 'up' && selected.previousElementSibling) {
 			selected.parentNode.insertBefore(selected, selected.previousElementSibling);
@@ -528,28 +586,40 @@
 			moved = true;
 		}
 		syncNames();
-		if (moved) saveToolbar();
+		if (moved) {
+			saveToolbar();
+		}
 	});
 
 	const clearDropTargets = () => columns.forEach(column => column.classList.remove('abbc3-composer-column--target'));
 	const finishDrag = cancelled => {
-		if (!drag) return;
+		if (!drag) {
+			return;
+		}
 		if (cancelled) {
 			drag.origin.parentNode.insertBefore(drag.item, drag.origin);
 			drag.placeholder.remove();
-		} else drag.placeholder.replaceWith(drag.item);
+		} else {
+			drag.placeholder.replaceWith(drag.item);
+		}
 		drag.origin.remove();
 		drag.ghost.remove();
 		clearDropTargets();
 		document.body.classList.remove('abbc3-is-dragging');
 		drag = null;
 		syncNames();
-		if (!cancelled) saveToolbar();
-		if (selected) selectItem(selected);
+		if (!cancelled) {
+			saveToolbar();
+		}
+		if (selected) {
+			selectItem(selected);
+		}
 	};
 
 	const moveDrag = event => {
-		if (!drag || event.pointerId !== drag.pointerId) return;
+		if (!drag || event.pointerId !== drag.pointerId) {
+			return;
+		}
 		event.preventDefault();
 		drag.ghost.style.transform = `translate3d(${event.clientX - drag.startX}px, ${event.clientY - drag.startY}px, 0)`;
 		const target = document.elementFromPoint(event.clientX, event.clientY);
@@ -557,17 +627,28 @@
 		if (column && !(isDivider(drag.item) && column.dataset.placement === 'hidden')) {
 			const list = column.querySelector('[data-composer-list]');
 			const before = [ ...list.querySelectorAll('.abbc3-composer-item') ].find(item => event.clientY < item.getBoundingClientRect().top + item.getBoundingClientRect().height / 2);
-			if (before) list.insertBefore(drag.placeholder, before); else list.appendChild(drag.placeholder);
+			if (before) {
+				list.insertBefore(drag.placeholder, before);
+			} else {
+				list.appendChild(drag.placeholder);
+			}
 			clearDropTargets();
 			column.classList.add('abbc3-composer-column--target');
-		} else clearDropTargets();
-		if (event.clientY < 48) window.scrollBy(0, -12);
-		else if (event.clientY > window.innerHeight - 48) window.scrollBy(0, 12);
+		} else {
+			clearDropTargets();
+		}
+		if (event.clientY < 48) {
+			window.scrollBy(0, -12);
+		} else if (event.clientY > window.innerHeight - 48) {
+			window.scrollBy(0, 12);
+		}
 	};
 
 	composer.addEventListener('pointerdown', event => {
 		const handle = event.target.closest('[data-drag-handle]');
-		if (!handle || event.button !== 0 || drag || window.matchMedia('(max-width: 1050px)').matches) return;
+		if (!handle || event.button !== 0 || drag || window.matchMedia('(max-width: 1050px)').matches) {
+			return;
+		}
 		event.preventDefault();
 		const item = handle.closest('.abbc3-composer-item');
 		const rect = item.getBoundingClientRect();
@@ -590,11 +671,17 @@
 
 	window.addEventListener('pointermove', moveDrag, { passive: false });
 	window.addEventListener('pointerup', event => {
-		if (!drag || event.pointerId !== drag.pointerId) return;
+		if (!drag || event.pointerId !== drag.pointerId) {
+			return;
+		}
 		const target = document.elementFromPoint(event.clientX, event.clientY);
 		finishDrag(isDivider(drag.item) && !!(target && target.closest('[data-placement="hidden"]')));
 	});
-	window.addEventListener('pointercancel', event => { if (drag && event.pointerId === drag.pointerId) finishDrag(true); });
+	window.addEventListener('pointercancel', event => {
+		if (drag && event.pointerId === drag.pointerId) {
+			finishDrag(true);
+		}
+	});
 	window.addEventListener('blur', () => finishDrag(true));
 
 	form.addEventListener('submit', event => event.preventDefault());
