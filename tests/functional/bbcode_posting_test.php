@@ -135,8 +135,23 @@ class bbcode_posting_test extends \phpbb_functional_test_case
 	protected function save_bbvideo_groups($bbcode_id, array $groups)
 	{
 		$crawler = self::request('GET', 'adm/index.php?i=acp_bbcodes&mode=bbcodes&action=edit&bbcode=' . $bbcode_id . '&sid=' . $this->sid);
+		$checked_count = 0;
+		foreach ($crawler->filter('input[type="checkbox"][name="bbcode_group[]"]') as $checkbox)
+		{
+			$group_id = $checkbox->getAttribute('value');
+			if (in_array($group_id, $groups, true))
+			{
+				$checkbox->setAttribute('checked', 'checked');
+				$checked_count++;
+			}
+			else
+			{
+				$checkbox->removeAttribute('checked');
+			}
+		}
+		self::assertSame(count($groups), $checked_count, 'Every requested group must have a checkbox.');
+
 		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
-		$form['bbcode_group'] = $groups;
 		$crawler = self::submit($form);
 		$confirm = $crawler->selectButton($this->lang('YES'));
 		if ($confirm->count())
